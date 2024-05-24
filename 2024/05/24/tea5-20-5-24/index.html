@@ -26,7 +26,7 @@
 <meta property="og:description" content="茶5.20-5.24MonTernary String 1354B 题目翻译： 输入T（T&lt;&#x3D;24)，表示T组数据。所有数据的字符串长度之和&lt;&#x3D;25。 每组数据输入一个长度&lt;&#x3D;25的字符串，只包含数字’1’,’2’,’3’。 输出s中的最短子串的长度，该子串必须包含所有’1’’2’’3’三种字符。 如果没有这样的子串，输出0。 Sol： 用一个长为3">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-24T14:09:15.000Z">
-<meta property="article:modified_time" content="2024-05-24T14:12:08.380Z">
+<meta property="article:modified_time" content="2024-05-24T15:58:34.495Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="algorithm">
 <meta property="article:tag" content="tea">
@@ -403,7 +403,7 @@
 
 <h2 id="Fri"><a href="#Fri" class="headerlink" title="Fri"></a>Fri</h2><p>状压 DP！</p>
 <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/beautiful-arrangement/">优美的排列</a></p>
-<p>如果一个 1<del>n 的排列 p，对于每个 i&#x3D;1,2,3,…n，都满足 i 和 p[i] 其中一个能整除另一个，则称 p 是好的。<br>输入 n(1≤n≤15)，输出有多少个 1</del>n 的排列是好的。</p>
+<p>如果一个 1-n 的排列 p，对于每个 i&#x3D;1,2,3,…n，都满足 i 和 p[i] 其中一个能整除另一个，则称 p 是好的。<br>输入 n(1≤n≤15)，输出有多少个 1-n 的排列是好的。</p>
 <p>输入 2<br>输出 2<br>解释 [1,2] 和 [2,1]</p>
 <p>输入 1<br>输出 1</p>
 <p>额外加练：</p>
@@ -436,7 +436,7 @@
 </ul>
 <p>$$<br>dfs(S) &#x3D; \sum_jdfs(S \bigcup {j})<br>$$</p>
 <p>递归边界: dfs(U) &#x3D; 1,其中全集 U &#x3D; {1,2,…n}.如果能递归到S &#x3D; U的状态，表示所有数都选完了，我们找到了一个合法排列。</p>
-<p>递归入口:dfs($\emptyset$),也就是答案。其中$\empty$表示空集，因为一开始什么也没选。</p>
+<p>递归入口:dfs($\emptyset$),也就是答案。其中$\emptyset$表示空集，因为一开始什么也没选。</p>
 <p>3.递归搜索+保存递归返回值&#x3D;记忆化搜索</p>
 <p>考虑到整个递归过程中有大量重复递归调用（递归入参相同）。由于递归函数没有副作用，同样的入参无论计算多少次，算出来的结果都是一样的，因此可以用记忆话搜索来优化：</p>
 <ul>
