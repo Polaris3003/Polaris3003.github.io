@@ -18,23 +18,26 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="口撕Raft  1.Raft协议什么作用 Raft是一种分布式一致性算法，主要用于管理分布式系统中的复制日志。其设计的主要目标是易于理解和实现，同时保证系统的一致性和可用性。 在分布式系统中，由于网络延迟、节点故障等问题，确保所有节点的状态保持一致是一个非常大的挑战。Raft协议就是为了解决这个问题而设计的。  **领导者选举：**在Raft协议中，系统的所有操作都有领导者来进行。当系统启动或者">
+    <meta name="description" content="5.24-问题排查  RocketMQ消息堆积问题排查  问题现象 负责的业务中有一个应用因为特殊原因，需要修改消息配置（将Spring Cloud Stream 改为 RocketMQ native），修改前和修改后的配置项如下： 1234567891011121314spring.cloud.stream.bindings.consumerA.group&#x3D;CID_CONSUMER_Aspri">
 <meta property="og:type" content="article">
-<meta property="og:title" content="raft面试">
-<meta property="og:url" content="http://polaris3003.github.io/2024/03/24/raft%E9%9D%A2%E8%AF%95/index.html">
+<meta property="og:title" content="troubleshooting-1">
+<meta property="og:url" content="http://polaris3003.github.io/2024/05/24/troubleshooting-1/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="口撕Raft  1.Raft协议什么作用 Raft是一种分布式一致性算法，主要用于管理分布式系统中的复制日志。其设计的主要目标是易于理解和实现，同时保证系统的一致性和可用性。 在分布式系统中，由于网络延迟、节点故障等问题，确保所有节点的状态保持一致是一个非常大的挑战。Raft协议就是为了解决这个问题而设计的。  **领导者选举：**在Raft协议中，系统的所有操作都有领导者来进行。当系统启动或者">
+<meta property="og:description" content="5.24-问题排查  RocketMQ消息堆积问题排查  问题现象 负责的业务中有一个应用因为特殊原因，需要修改消息配置（将Spring Cloud Stream 改为 RocketMQ native），修改前和修改后的配置项如下： 1234567891011121314spring.cloud.stream.bindings.consumerA.group&#x3D;CID_CONSUMER_Aspri">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-03-24T08:02:00.000Z">
-<meta property="article:modified_time" content="2024-03-24T13:54:57.657Z">
+<meta property="og:image" content="http://polaris3003.github.io/2024/05/24/imgs/troubleshooting-1/image-20240524222103739.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/05/24/imgs/troubleshooting-1/image-20240524222138611.png">
+<meta property="article:published_time" content="2024-05-24T14:17:09.000Z">
+<meta property="article:modified_time" content="2024-05-24T14:22:48.871Z">
 <meta property="article:author" content="Polaris">
-<meta property="article:tag" content="raft">
-<meta property="article:tag" content="分布式算法">
+<meta property="article:tag" content="troubleshooting">
+<meta property="article:tag" content="RocketMQ">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://polaris3003.github.io/2024/05/24/imgs/troubleshooting-1/image-20240524222103739.png">
   
   
   
-  <title>raft面试 - Polarisのblog</title>
+  <title>troubleshooting-1 - Polarisのblog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -257,7 +260,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="raft面试"></span>
+            <span id="subtitle" data-typed-text="troubleshooting-1"></span>
           
         </div>
 
@@ -268,8 +271,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-24 16:02" pubdate>
-          2024年3月24日 下午
+        <time datetime="2024-05-24 22:17" pubdate>
+          2024年5月24日 晚上
         </time>
       </span>
     
@@ -280,7 +283,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k 字
+          885 字
         
       </span>
     
@@ -291,7 +294,7 @@
         
         
         
-          32 分钟
+          8 分钟
         
       </span>
     
@@ -336,83 +339,48 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">raft面试</h1>
+            <h1 id="seo-header">troubleshooting-1</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="口撕raft"><a class="markdownIt-Anchor" href="#口撕raft"></a> 口撕Raft</h1>
-<h2 id="1raft协议什么作用"><a class="markdownIt-Anchor" href="#1raft协议什么作用"></a> 1.Raft协议什么作用</h2>
-<p>Raft是一种分布式一致性算法，主要用于管理分布式系统中的复制日志。其设计的主要目标是易于理解和实现，同时保证系统的一致性和可用性。</p>
-<p>在分布式系统中，由于网络延迟、节点故障等问题，确保所有节点的状态保持一致是一个非常大的挑战。Raft协议就是为了解决这个问题而设计的。</p>
-<ol>
-<li>**领导者选举：**在Raft协议中，系统的所有操作都有领导者来进行。当系统启动或者当前的领导者失效时，Raft协议能够通过领导者选举过程来选举出一个新的领导者。</li>
-<li>**日志复制：**领导者负责将系统的状态变更（即操作或者事务）以日志条目的形式复制到其它节点。Raft协议保证了所有的日志复制操作都是由领导者来协调的，这大大简化了复制过程。</li>
-<li>**保证一致性：**Raft协议通过一系列的机制来保证系统的一致性。无论何时，只要大多数节点都可用，Raft协议都能保证系统的一致性。</li>
-<li>**故障恢复：**当一个节点崩溃并重新启动后，Raft协议能够帮助这个节点恢复其状态，重新加入到系统中来。</li>
-</ol>
-<p>总的来说，Raft协议在分布式系统中起到了关键的作用，它使得构建高可用、一致性的分布式系统成为可能。</p>
-<h2 id="2详细介绍raft流程"><a class="markdownIt-Anchor" href="#2详细介绍raft流程"></a> 2.详细介绍Raft流程</h2>
-<ol>
-<li>**启动：**当集群启动时，所有的节点都处于跟随者状态。这时，它们等待领导者发送心跳消息</li>
-<li>**选举：**如果跟随者在一段时间内（称为选举超时时间）没有收到领导者的心跳消息，它们会认为领导者已经失效，并启动领导者选举。每个跟随者都会自增其任期号，切换到候选人状态，然后向所有其他节点发送请求投票的消息。</li>
-<li>**投票：**当一个节点收到请求投票的消息时，如果它没有给别的候选人投过票，并且请求者的任期号不小于自己的任期号，且请求者的日志至少和自己一样新，那么它就会投票给这个请求者。否则，它会拒绝投票。</li>
-<li>**当选：**一个候选人如果在一次选举中收到了大多数节点的投票，那么它就成为了新的领导者。然后，它会开始向所有节点发送心跳消息，阻止他们新的选举。</li>
-<li>**领导者的工作：**领导者接收到客户端的请求后，将请求作为一个新的日志条目添加到自己的日志中，然后尝试将这个日志条目复制到所有其他节点的日志中。。</li>
-<li>**日志复制：**领导者通过心跳消息来复制日志条目。每个心跳消息中都包含了需要复制的日志条目。当一个跟随者收到心跳消息后，它会将其中的日志条目添加到自己的日志中。</li>
-<li>**日志提交：**当一个日志条目呗复制到了大多数节点的日志中，领导者就认为这个日志条目已经被提交，然后它会通知所有节点将这个日志条目应用到自己的状态机。</li>
-<li>**领导者失效和重新选举：**如果一个领导者失效（崩溃或者网络问题），那么当跟随者超过选举超时时间没有收到领导者的心跳消息时，它们就会开始新的领导者选举。</li>
-<li>**安全性：**为了保证系统的一致性，Raft协议在领导者选举和日志复制等过程中加入了一些安全性措施。例如，一个候选人在领导者选举中只有在其日志至少和大多数节点一样新时，才能赢得选举。</li>
-<li>**持久化：**节点会定期将自己的信息，比如当前任期号、投票信息、日志条目和快照，持久化到硬盘。这是为了确保即使节点崩溃或者重启，也能从硬盘恢复到最新的状态。</li>
-<li>**恢复：**当节点重启时，它首先从硬盘中读取持久化的信息，恢复其任期号、投票信息、日志条目和快照。然后，它会以跟随者的身份开始运行，等待领导者的心跳消息。</li>
-<li>**日志压缩：**随着时间的推移，每个节点的日志可能会变得非常大，因此需要进行压缩。这个过程被称为快照，在快照过程中，节点将当前的系统状态（状态机的状态）保存下来，并清除所有已被应用且索引值小于这个状态的日志条目。快照也需要持久化存储，以防节点重启时丢失状态。</li>
-</ol>
-<h3 id="3follower会响应client的读写操作吗"><a class="markdownIt-Anchor" href="#3follower会响应client的读写操作吗"></a> 3.follower会响应client的读写操作吗</h3>
-<p>在Raft协议中，跟随者节点通常不直接响应客户端的读写请求。所有的读写请求都应该由领导者节点处理。这样设计的主要原因是保持系统的一致性。因为只有领导者节点才能确保它拥有过最新和完整的系统状态。</p>
-<p>对于写请求，客户端的请求首先会被发送到领导者节点，然后领导者把这个更新操作作为一个新的日志条目，然后通过日志复制过程，将这个新的日志条目复制到所有的跟随者节点。只有当大多数节点都写入了这个日志条目，领导者才会认为这个操作已经完成，然后应用这个操作到系统的状态机，并将结果返回给客户端。</p>
-<p>对于读请求，也通常由领导者节点直接处理。因为只有领导者才能确保它的状态是最新的。</p>
-<p>但是也有一些优化的方法可以让跟随者处理读请求，以减轻领导者的负载。一种方法是领导者在响应客户端的读请求之前，首先向所有的跟随者发送一条心跳消息，等所有的跟随者都恢复后，再响应客户端的读请求。这样可以确保跟随者的状态和领导者是一致的。然后跟随者就可以直接响应来自客户端的读请求。</p>
-<h2 id="4超过半数的决策机制如何保证leader日志的完整性"><a class="markdownIt-Anchor" href="#4超过半数的决策机制如何保证leader日志的完整性"></a> 4.超过半数的决策机制如何保证leader日志的完整性</h2>
-<p>在Raft协议中，领导者维护的日志的完整性通过多数投票机制进行保障。这主要体现在两个方面：</p>
-<ol>
-<li>领导者选举：在选举新的领导者时，只有当候选人的日志至少和大部分节点的日志一样新，它才能得到足够多的票数称为领导者。这就确保了新领导者的日志中包含了所有已经提交的日志项。</li>
-<li>日志复制：领导者在接收到客户端的命令后，将命令作为新的日志项添加到其日志中，然后尝试将这个日志项复制到其他的跟随者节点。一旦这个日志项被复制到大多数的服务器上，它就被认为时已经提交的。领导者会将已提交的日志项应用到状态机，然后客户端返回结果。</li>
-</ol>
-<p>通过这样的方式，超过半数的决策机制确保了领导者日志的完整性，确保了在领导者发生更换的时候，新的领导者的日志包含了所有已经提交的日志项，从而避免了数据丢失。同时，只有当一个日志项被大多数的服务器复制，它才被认为时已经提交的，这样就能确保数据的一致性。</p>
-<h2 id="5为什么使用log不直接写入状态机"><a class="markdownIt-Anchor" href="#5为什么使用log不直接写入状态机"></a> 5.为什么使用log，不直接写入状态机</h2>
-<ol>
-<li>Raft系统之所以对log关注这么多的一个原因时，log时leader用来对操作排序的一种手段。这对复制状态机而言至关重要，对于这些复制状态机来说，所有副本不仅要执行相同的操作，还需要用相同的顺序执行这些操作。而log与其他很多事物，共同构成了Leader对接收到的客户端操作分配顺序的机制。比如说，我由10个客户端同时向Leader发出请求，Leader必须对这些请求确定一个顺序，并确保所有其他的副本都遵从这个顺序。实际上，log时一些按照数字编号的槽位，槽位的数字表示了leader选择的顺序。</li>
-<li>Log的另一个用途是，在一个副本收到了操作，但是还没有执行操作时。该副本需要将这个操作存放在某处，直到收到了Leader发送的新的commit号才执行。所以，对于Raft的Follower来说，Log时用来存放临时操作的地方。Follower收到了这些临时的操作，但是还不确定这些操作是否被commit了。我们将会看到，这些操作可能会被抛弃。</li>
-<li>Log的另一个用途是用在Leader节点，我（Robert教授）很喜欢这个特性。Leader需要在它的Log中记录操作，因为这些操作可能需要重传给Follower。如果一些Follower由于网络原因或者其他原因短时间离线了或者丢了一些消息，Leader需要能够向Follower重传丢失的Log消息。所以，Leader也需要一个地方来存放客户端请求的拷贝。即使对那些已经commit的请求，为了能够向丢失了相应操作的副本重传，也需要存储在Leader的Log中。</li>
-<li>所有节点都需要保存Log还有一个原因，就是它可以帮助重启的服务器恢复状态。你可能的确需要一个故障了的服务器在修复后，能重新加入到Raft集群，要不然你就永远少了一个服务器。比如对于一个3节点的集群来说，如果一个节点故障重启之后不能自动加入，那么当前系统只剩2个节点，那将不能再承受任何故障，所以我们需要能够重新并入故障重启了的服务器。对于一个重启的服务器来说，会使用存储在磁盘中的Log。每个Raft节点都需要将Log写入到它的磁盘中，这样它故障重启之后，Log还能保留。而这个Log会被Raft节点用来从头执行其中的操作进而重建故障前的状态，并继续以这个状态运行。所以，Log也会被用来持久化存储操作，服务器可以依赖这些操作来恢复状态。</li>
-</ol>
-<h2 id="6如何解决split-vote的问题"><a class="markdownIt-Anchor" href="#6如何解决split-vote的问题"></a> 6.如何解决split vote的问题</h2>
-<p>分票(split vote): 这是一个选举问题，在Raft等一致性协议中可能会遇到。当一个集群中没有一个节点能够得到大多数节点的选票，从而无法选举出新的领导者时，我们就称之为发生了分票。这通常是由于网络延迟，节点启动时间不一致或者其他原因导致的。</p>
-<ol>
-<li>随机选举超时时间</li>
-<li>选举失败后的重新选举</li>
-<li>票的限制性投票</li>
-</ol>
-<h2 id="7paxos"><a class="markdownIt-Anchor" href="#7paxos"></a> 7.Paxos</h2>
-<p>Paxos协议是基于消息传递的，并且有三种角色：proposers（提议者），acceptors（接受者）和learners（学习者）。一个节点可以扮演这三种角色中的一个或多个。</p>
-<ol>
-<li>Proposers：提议者提出一个提议，这个提议包含了一个提议编号（N）和一个值（V）。提议者首先发送一个请求，请求在一组接受者中获得对提议编号N的承诺。如果提议者从大多数接受者那里受到了承诺，那么它就可以向这些接受者发送一个新请求，要求它们接受提议（N，V）。</li>
-<li>Acceptors：接受者是Paxos协议中的主要角色。一个接受者可以接受多个提议者的建议。但是，一旦它已经对某个提议编号N做出了承诺，就不能再接受任何编号小于N的提议。</li>
-<li>Learners:学习者角色是用来学习呗接受者接受的提议。再大多数的Paxos应用中，每个节点都充当了学习者的角色，这个每个节点都能了解到被接受的提议。</li>
-</ol>
-<p>虽然Paxos协议在理论上是一个很好的解决一致性问题的方法， 但是在实际中并不常用。这是因为它的原始版本相当复杂，难以理解和实现。此外，它不支持更复杂的功能，如集群成员管理和日志复制等。因此，许多系统采用了Paxos的变体或其他替代方案，如Raft协议等</p>
-<p>Paxos算法流程可分为两个阶段，即准备和提议阶段</p>
-<p>1.准备阶段：</p>
+                <h1 id="524-问题排查"><a class="markdownIt-Anchor" href="#524-问题排查"></a> 5.24-问题排查</h1>
+<h2 id="rocketmq消息堆积问题排查"><a class="markdownIt-Anchor" href="#rocketmq消息堆积问题排查"></a> RocketMQ消息堆积问题排查</h2>
+<h3 id="问题现象"><a class="markdownIt-Anchor" href="#问题现象"></a> 问题现象</h3>
+<p>负责的业务中有一个应用因为特殊原因，需要修改消息配置（将Spring Cloud Stream 改为 RocketMQ native），修改前和修改后的配置项如下：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.cloud.stream.bindings.consumerA.group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerA.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerA.destination</span>=<span class="hljs-string">CONSUMER_A_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerA.consumer.tags</span>=<span class="hljs-string">CONSUMER_A_TOPIC_TAG</span><br><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.destination</span>=<span class="hljs-string">CONSUMER_B_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerB.consumer.tags</span>=<span class="hljs-string">CONSUMER_B_TOPIC_TAG</span><br><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.destination</span>=<span class="hljs-string">CONSUMER_C_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerC.consumer.tags</span>=<span class="hljs-string">CONSUMER_C_TOPIC_TAG</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.rocketmq.consumers[0].consumer-group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.rocketmq.consumers[0].topic</span>=<span class="hljs-string">CONSUMER_A_TOPIC</span><br><span class="hljs-attr">spring.rocketmq.consumers[0].sub-expression</span>=<span class="hljs-string">CONSUMER_A_TOPIC_TAG</span><br><span class="hljs-attr">spring.rocketmq.consumers[0].message-listener-ref</span>=<span class="hljs-string">consumerAListener</span><br><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.destination</span>=<span class="hljs-string">CONSUMER_B_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerB.consumer.tags</span>=<span class="hljs-string">CONSUMER_B_TOPIC_TAG</span><br><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.destination</span>=<span class="hljs-string">CONSUMER_C_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerC.consumer.tags</span>=<span class="hljs-string">CONSUMER_C_TOPIC_TAG</span><br></code></pre></td></tr></table></figure>
+<p>但是机器发布一半后开始灰度观察的时候，出现了消息堆积问题</p>
+<h3 id="问题原因"><a class="markdownIt-Anchor" href="#问题原因"></a> 问题原因</h3>
+<h4 id="消息订阅关系不一致"><a class="markdownIt-Anchor" href="#消息订阅关系不一致"></a> 消息订阅关系不一致</h4>
+<p>经过历史经验和踩坑，感觉有可能是订阅组机器订阅关系不一致导致的消息堆积问题（因为订阅组的机器有的订阅关系是A，有的是B，MQ不能确定是否要消费，就能只能先堆积到broker中），查看MQ控制台后发现，确实是消息订阅关系不一致，导致消息堆积</p>
+<h4 id="spring-cloud-stream-和-rocketmq-native"><a class="markdownIt-Anchor" href="#spring-cloud-stream-和-rocketmq-native"></a> Spring Cloud Stream 和 RocketMQ Native</h4>
+<p>所以就引申出了一个问题，为什么将Spring Cloud Stream修改为原生的MetaQ之后，同一个ConsumerId对应的订阅关系就会改变呢？</p>
+<p>更简单来说，就是为什么当RocketMQ和Spring Cloud Stream 使用相同的ComsumerId之后，RocketMQ的订阅关系会把Spring Cloud Stream的订阅关系给冲掉呢？</p>
+<blockquote>
+<p>注意，一个consumerId是可以订阅多个topic的</p>
+</blockquote>
+<h5 id="rocketmq"><a class="markdownIt-Anchor" href="#rocketmq"></a> RocketMQ</h5>
+<p>client的类图如下：</p>
+<p><img src="../imgs/troubleshooting-1/image-20240524222103739.png" srcset="/img/loading.gif" lazyload alt="RocketMQ client" /></p>
 <ul>
-<li>提议者选择一个提议编号N，并将准备请求发送给接受者群体中的大多数或全部节点，该请求包含提议编号N。</li>
-<li>接受者收到准备请求后，如果此请求的提议编号N大于该接受者已经恢复过的所有准备请求的编号，那么该接受者承诺不再接受任何编号小于N的提议，并将自己上一次接受的提议回复给提议者。</li>
+<li>MQConsumerInner：记录当前consumerGroup和服务端的交互方式，以及topic和tag的映射关系。默认的实现时DefaultMQPushConsumerImpl，和consumerGroup的对应关系是1:1</li>
+<li>MQClientInstance：统一管理网络连接等可以复用的对象，通过Map维护了ConsumerGroupId和MQConsumerInner的映射关系。简单来说，就是一个ConsumerGroup，只能对应一个MQConsumer</li>
 </ul>
-<p>2.提议阶段</p>
-<ul>
-<li>提议者如果收到了大多数接受者的回复，那么就会开始第二阶段，发送接受请求给大多数或全部接受者。该请求包含提议编号N和一个值V，如果提议者收到的回复中有接受者已接受的提议，那么该值V应该是所有回复中编号最大的已接受提议的值，否则V可以是提议者自己决定的值。</li>
-<li>接受者收到接受请求后，如果此请求的提议编号N不小于该接受者已经回复过的所有准备请求的编号，那么接受者就接受这个提议，即该提议称为接受者接受的提议。</li>
-</ul>
-<p>Paxos算法的基本思想是只要有一个提议被大多数接受者接受，那么该提议的值就被决定下来。但在实际过程中可能存在多个提议者同时提交提议的情况，因此可能出现一个值被确定后，仍有提议者不知情而继续提交新的提议，所以这个算法要确保任何新的提议的值必须等于已经被决定的值，这就需要接受者做出承诺，不再接受编号小于N的任何提议，确保已决定的值不会被更改。</p>
+<h5 id="spring-cloud-stream"><a class="markdownIt-Anchor" href="#spring-cloud-stream"></a> Spring Cloud Stream</h5>
+<p><img src="../imgs/troubleshooting-1/image-20240524222138611.png" srcset="/img/loading.gif" lazyload alt="Spring Cloud Stream" /></p>
+<p>Spring Cloud Stream是连接Spring和中间件的一个胶水层，在Spring Cloud Stream启动的时候，也会注册一个ConsumerGourp</p>
+<h3 id="问题根因"><a class="markdownIt-Anchor" href="#问题根因"></a> 问题根因</h3>
+<p>分析到这里，原因就已经很明显了。Spring Cloud Stream会在启动的时候自己new一个MetaPushConsumer（事实上就是一个新的MQConsumerInner），所以对于一个ConsumerGroup来说，就存在了两个MQConsumerInner，这显然是不符合RocketMQ要求的1:1的映射关系的，所以RocketMQ默认会用新的映射代替老的映射关系。显然，Spring Cloud Stream的被RocketMQ原生的给替代掉了。</p>
+<p>这也就是为什么已经发布的机器中，对于ConsumerA来说，只剩下RocketMQ原生的那组订阅关系了</p>
+<h3 id="解决思路"><a class="markdownIt-Anchor" href="#解决思路"></a> 解决思路</h3>
+<p>修改consumerId</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.rocketmq.consumers[0].consumer-group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.rocketmq.consumers[0].topic</span>=<span class="hljs-string">CONSUMER_A_TOPIC</span><br><span class="hljs-attr">spring.rocketmq.consumers[0].sub-expression</span>=<span class="hljs-string">CONSUMER_A_TOPIC_TAG</span><br><span class="hljs-attr">spring.rocketmq.consumers[0].message-listener-ref</span>=<span class="hljs-string">consumerAListener</span><br><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.group</span>=<span class="hljs-string">CID_CONSUMER_B</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.destination</span>=<span class="hljs-string">CONSUMER_B_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerB.consumer.tags</span>=<span class="hljs-string">CONSUMER_B_TOPIC_TAG</span><br><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.group</span>=<span class="hljs-string">CID_CONSUMER_B</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.destination</span>=<span class="hljs-string">CONSUMER_C_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerC.consumer.tags</span>=<span class="hljs-string">CONSUMER_C_TOPIC_TAG</span><br></code></pre></td></tr></table></figure>
+<h3 id="思考与总结"><a class="markdownIt-Anchor" href="#思考与总结"></a> 思考与总结</h3>
+<ol>
+<li>问题原因并不复杂，但是很多人可能分析到第一层（订阅关系不一致导致消费堆积）就不会再往下分析了，但是我们还需要有更深入的探索精神的</li>
+<li>生产环境中尽量不要搞两套配置项，会额外增加理解成本。。。。</li>
+</ol>
 
                 
               </div>
@@ -431,7 +399,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/mit6-824/" class="category-chain-item">mit6.824</a>
+  <a href="/categories/interview/" class="category-chain-item">interview</a>
   
   
 
@@ -446,9 +414,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/raft/" class="print-no-link">#raft</a>
+        <a href="/tags/troubleshooting/" class="print-no-link">#troubleshooting</a>
       
-        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%AE%97%E6%B3%95/" class="print-no-link">#分布式算法</a>
+        <a href="/tags/RocketMQ/" class="print-no-link">#RocketMQ</a>
       
     </div>
   
@@ -460,8 +428,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>raft面试</div>
-      <div>http://polaris3003.github.io/2024/03/24/raft面试/</div>
+      <div>troubleshooting-1</div>
+      <div>http://polaris3003.github.io/2024/05/24/troubleshooting-1/</div>
     </div>
     <div class="license-meta">
       
@@ -473,7 +441,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月24日</div>
+          <div>2024年5月24日</div>
         </div>
       
       
@@ -505,18 +473,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/02/ZooKeeper/" title="ZooKeeper">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ZooKeeper</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/23/GFS/" title="GFS">
-                        <span class="hidden-mobile">GFS</span>
+                      <a href="/2024/05/24/scene-question-1/" title="scene-question-1">
+                        <span class="hidden-mobile">scene-question-1</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
