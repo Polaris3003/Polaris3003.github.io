@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1 简介 晚上收到字节周五约面，所以专心准备项目八股和算法，今天先抠一下项目的细节，从6.824开始  2 6.824  可能会问的问题  mapreduce Q&amp;A 1.简单介绍一下mapreduce（开始乱吹） 在二十年以前，分布式系统和分布式计算并不普及，很多公司只是用一台计算机进行操作，但是随着互联网的飞速发展，一台机器的算力已经不足以支撑起快速的计算了，所以就有了分布式这个概念">
+    <meta name="description" content="1 简介晚上收到字节周五约面，所以专心准备项目八股和算法，今天先抠一下项目的细节，从6.824开始 2 6.824可能会问的问题mapreduce Q&amp;A1.简单介绍一下mapreduce（开始乱吹） 在二十年以前，分布式系统和分布式计算并不普及，很多公司只是用一台计算机进行操作，但是随着互联网的飞速发展，一台机器的算力已经不足以支撑起快速的计算了，所以就有了分布式这个概念，多台电脑一起完">
 <meta property="og:type" content="article">
 <meta property="og:title" content="18th-March">
 <meta property="og:url" content="http://polaris3003.github.io/2024/03/18/18th-March/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="1 简介 晚上收到字节周五约面，所以专心准备项目八股和算法，今天先抠一下项目的细节，从6.824开始  2 6.824  可能会问的问题  mapreduce Q&amp;A 1.简单介绍一下mapreduce（开始乱吹） 在二十年以前，分布式系统和分布式计算并不普及，很多公司只是用一台计算机进行操作，但是随着互联网的飞速发展，一台机器的算力已经不足以支撑起快速的计算了，所以就有了分布式这个概念">
+<meta property="og:description" content="1 简介晚上收到字节周五约面，所以专心准备项目八股和算法，今天先抠一下项目的细节，从6.824开始 2 6.824可能会问的问题mapreduce Q&amp;A1.简单介绍一下mapreduce（开始乱吹） 在二十年以前，分布式系统和分布式计算并不普及，很多公司只是用一台计算机进行操作，但是随着互联网的飞速发展，一台机器的算力已经不足以支撑起快速的计算了，所以就有了分布式这个概念，多台电脑一起完">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-18T13:56:53.000Z">
 <meta property="article:modified_time" content="2024-03-18T14:33:24.420Z">
@@ -341,12 +341,8 @@
             
               <div class="markdown-body">
                 
-                <h1 id="1-简介"><a class="markdownIt-Anchor" href="#1-简介"></a> 1 简介</h1>
-<p>晚上收到字节周五约面，所以专心准备项目八股和算法，今天先抠一下项目的细节，从6.824开始</p>
-<h1 id="2-6824"><a class="markdownIt-Anchor" href="#2-6824"></a> 2 6.824</h1>
-<h2 id="可能会问的问题"><a class="markdownIt-Anchor" href="#可能会问的问题"></a> 可能会问的问题</h2>
-<h3 id="mapreduce-qa"><a class="markdownIt-Anchor" href="#mapreduce-qa"></a> mapreduce Q&amp;A</h3>
-<p><font color='red'>1.简单介绍一下mapreduce（开始乱吹）</font></p>
+                <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h1><p>晚上收到字节周五约面，所以专心准备项目八股和算法，今天先抠一下项目的细节，从6.824开始</p>
+<h1 id="2-6-824"><a href="#2-6-824" class="headerlink" title="2 6.824"></a>2 6.824</h1><h2 id="可能会问的问题"><a href="#可能会问的问题" class="headerlink" title="可能会问的问题"></a>可能会问的问题</h2><h3 id="mapreduce-Q-A"><a href="#mapreduce-Q-A" class="headerlink" title="mapreduce Q&amp;A"></a>mapreduce Q&amp;A</h3><p><font color='red'>1.简单介绍一下mapreduce（开始乱吹）</font></p>
 <p>在二十年以前，分布式系统和分布式计算并不普及，很多公司只是用一台计算机进行操作，但是随着互联网的飞速发展，一台机器的算力已经不足以支撑起快速的计算了，所以就有了分布式这个概念，多台电脑一起完成一个工作。谷歌作为一个国际大公司也是对这方面有着很深刻的研究，他们也会经常要使用并行的计算，而计算必须分布在数百台或者上千台机器，以便在合理的时间内完成，如何并行化计算、分布数据和处理故障等问题，使得单机变成多机的问题十分的复杂。所以就这样，他们受到了map和reduce原语的启发，也就有了mapreduce这么一个简单但强大的支持大规模计算的自动并行化和分布的接口</p>
 <p><font color = 'red'>2.mapreduce是怎么操作的</font></p>
 <p>首先mapreduce库将输入文件分成m个16-64mb的小文件 然后再一个机器集群上启动该程序的副本</p>
@@ -357,11 +353,10 @@
 <p>reduce worker遍历已排序的中间数据，对于遇到的每个唯一的中间键，它将键和相应的中间值集传递给用户的reduce函数。Reduce函数的输出被附加到这个Reduce分区的最终输出文件中。</p>
 <p>当所有map任务和reduce任务完成后，主程序唤醒用户程序。此时，用户程序中的MapReduce调用返回到用户代码。</p>
 <p><font color = 'red'>3.mapreduce的优化点？</font></p>
-<p>combiner</p>
+<p>combiner </p>
 <p>状态信息</p>
 <p>我们从这项工作中学到了一些东西。首先，限制编程模型使其易于并行化和分布计算，并使此类计算具有容错性。第二，网络带宽是一种稀缺资源。因此，我们系统中的许多优化都以减少通过网络发送的数据量为目标:局域优化允许我们从本地磁盘读取数据，并将中间数据的单个副本写入本地磁盘以节省网络带宽。第三，冗余执行可用于减少慢机的影响，并处理机器故障和数据丢失</p>
-<h3 id="raft-qa"><a class="markdownIt-Anchor" href="#raft-qa"></a> Raft Q&amp;A</h3>
-<p><font color='red'>简单讲讲Raft？</font></p>
+<h3 id="Raft-Q-A"><a href="#Raft-Q-A" class="headerlink" title="Raft Q&amp;A"></a>Raft Q&amp;A</h3><p><font color='red'>简单讲讲Raft？</font></p>
 <p>他是从多副本状态机的角度提出来的，用于管理多副本状态机的日志复制，分为多个子问题：Leader选举，日志同步，安全性，日志压缩，成员变更等</p>
 <p>raft将系统中的角色分为leader，follower，和candidate</p>
 <p>leader：接受客户端请求，并向Follower同步请求日志，当日志同步到大多数节点上后告诉Follower提交日志</p>
@@ -385,8 +380,7 @@
 </ul>
 <p>线性一致</p>
 <p>目前看完2B 看明天怎么看一下2C和2D 争取把这个干完有时间再看其他两个</p>
-<h1 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h1>
-<p>算法 八股 项目 都得看看</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>算法 八股 项目 都得看看 </p>
 <p>算法把那几个dp干完看csview上的 但是记得字节应该是得自己new样例的</p>
 <p>八股 先小林 然后再看其他的怎么说</p>
 <p>今天就先这样吧</p>
