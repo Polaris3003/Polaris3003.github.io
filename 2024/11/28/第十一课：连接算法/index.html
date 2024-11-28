@@ -18,33 +18,27 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第十二课：查询处理I1 查询计划DBMS将一个SQL语句转换成一个查询计划。查询计划中的操作被整理成一个树。数据从这颗树的叶子流向树根。树的根节点的输出是查询的结果。通常情况下，运算符都是二进制的（1-2 个子运算符）。同一个查询计划可以用多种方式执行。 2 处理模型DBMS 处理模型定义了系统如何执行查询计划。它指定了诸如查询计划的评估方向以及沿途运算符之间传递的数据类型等内容。存在不同的处理模">
+    <meta name="description" content="第十一课：连接算法1 连接良好的数据库设计的目标是尽量减少信息重复量。这就是为什么表格是基于规范化理论组成的。因此需要连接来重建原始表格。 本课程将介绍用于合并两个表的内部等值连接算法。等值连接算法连接键相等的表。这些算法可以调整以支持其他连接。 运算符输出对于在连接属性上匹配的元组 r $\in$ R 和元组 s $\in$ S，连接运算符将 r 和 s 连接在一起形成一个新的输出元组。 实际上">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CMU15445-lecture12">
-<meta property="og:url" content="http://polaris3003.github.io/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/index.html">
+<meta property="og:title" content="CMU15445-lecture11">
+<meta property="og:url" content="http://polaris3003.github.io/2024/11/28/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="第十二课：查询处理I1 查询计划DBMS将一个SQL语句转换成一个查询计划。查询计划中的操作被整理成一个树。数据从这颗树的叶子流向树根。树的根节点的输出是查询的结果。通常情况下，运算符都是二进制的（1-2 个子运算符）。同一个查询计划可以用多种方式执行。 2 处理模型DBMS 处理模型定义了系统如何执行查询计划。它指定了诸如查询计划的评估方向以及沿途运算符之间传递的数据类型等内容。存在不同的处理模">
+<meta property="og:description" content="第十一课：连接算法1 连接良好的数据库设计的目标是尽量减少信息重复量。这就是为什么表格是基于规范化理论组成的。因此需要连接来重建原始表格。 本课程将介绍用于合并两个表的内部等值连接算法。等值连接算法连接键相等的表。这些算法可以调整以支持其他连接。 运算符输出对于在连接属性上匹配的元组 r $\in$ R 和元组 s $\in$ S，连接运算符将 r 和 s 连接在一起形成一个新的输出元组。 实际上">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://polaris3003.github.io/imgs/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241121204121679.png">
-<meta property="og:image" content="http://polaris3003.github.io/imgs/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241121210346219.png">
-<meta property="og:image" content="http://polaris3003.github.io/imgs/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241123234749040.png">
-<meta property="og:image" content="http://polaris3003.github.io/imgs/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241127205536313.png">
-<meta property="og:image" content="http://polaris3003.github.io/imgs/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241127210523298.png">
-<meta property="og:image" content="http://polaris3003.github.io/imgs/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241128155039980.png">
-<meta property="og:image" content="http://polaris3003.github.io/imgs/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241128160655862.png">
-<meta property="article:published_time" content="2024-11-21T11:36:40.000Z">
-<meta property="article:modified_time" content="2024-11-28T09:29:37.901Z">
+<meta property="og:image" content="http://polaris3003.github.io/2024/11/28/imgs/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95/image-20241128211147350.png">
+<meta property="article:published_time" content="2024-11-28T11:36:40.000Z">
+<meta property="article:modified_time" content="2024-11-28T13:14:28.206Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="查询优化">
-<meta property="article:tag" content="查询处理">
-<meta property="article:tag" content="执行模型">
-<meta property="article:tag" content="迭代器模型">
+<meta property="article:tag" content="连接算法">
+<meta property="article:tag" content="嵌套循环连接">
+<meta property="article:tag" content="哈希连接">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://polaris3003.github.io/imgs/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241121204121679.png">
+<meta name="twitter:image" content="http://polaris3003.github.io/2024/11/28/imgs/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95/image-20241128211147350.png">
   
   
   
-  <title>CMU15445-lecture12 - Polarisのblog</title>
+  <title>CMU15445-lecture11 - Polarisのblog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -267,7 +261,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CMU15445-lecture12"></span>
+            <span id="subtitle" data-typed-text="CMU15445-lecture11"></span>
           
         </div>
 
@@ -278,8 +272,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-21 19:36" pubdate>
-          2024年11月21日 晚上
+        <time datetime="2024-11-28 19:36" pubdate>
+          2024年11月28日 晚上
         </time>
       </span>
     
@@ -290,7 +284,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          2.5k 字
         
       </span>
     
@@ -301,7 +295,7 @@
         
         
         
-          23 分钟
+          21 分钟
         
       </span>
     
@@ -346,102 +340,72 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">CMU15445-lecture12</h1>
+            <h1 id="seo-header">CMU15445-lecture11</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="第十二课：查询处理I"><a href="#第十二课：查询处理I" class="headerlink" title="第十二课：查询处理I"></a>第十二课：查询处理I</h1><h2 id="1-查询计划"><a href="#1-查询计划" class="headerlink" title="1 查询计划"></a>1 查询计划</h2><p>DBMS将一个SQL语句转换成一个查询计划。查询计划中的操作被整理成一个树。数据从这颗树的叶子流向树根。树的根节点的输出是查询的结果。通常情况下，运算符都是二进制的（1-2 个子运算符）。同一个查询计划可以用多种方式执行。</p>
-<h2 id="2-处理模型"><a href="#2-处理模型" class="headerlink" title="2 处理模型"></a>2 处理模型</h2><p>DBMS 处理模型定义了系统如何执行查询计划。它指定了诸如查询计划的评估方向以及沿途运算符之间传递的数据类型等内容。存在不同的处理模型，它们针对不同的工作负载有各种权衡。</p>
-<p>这些模型也可以从上到下或从下到上调用操作符来实现。尽管自上而下的方法更为常见，但自下而上的方法可以更严格地控制管道中的缓存&#x2F;寄存器。</p>
-<p>我们考虑的三种执行模型是：</p>
+                <h1 id="第十一课：连接算法"><a href="#第十一课：连接算法" class="headerlink" title="第十一课：连接算法"></a>第十一课：连接算法</h1><h2 id="1-连接"><a href="#1-连接" class="headerlink" title="1 连接"></a>1 连接</h2><p>良好的数据库设计的目标是尽量减少信息重复量。这就是为什么表格是基于规范化理论组成的。因此需要连接来重建原始表格。</p>
+<p>本课程将介绍用于合并两个表的内部等值连接算法。等值连接算法连接键相等的表。这些算法可以调整以支持其他连接。</p>
+<h3 id="运算符输出"><a href="#运算符输出" class="headerlink" title="运算符输出"></a>运算符输出</h3><p>对于在连接属性上匹配的元组 r $\in$ R 和元组 s $\in$ S，连接运算符将 r 和 s 连接在一起形成一个新的输出元组。</p>
+<p>实际上，连接运算符生成的输出元组的内容各不相同。这取决于 DBMS 的查询处理模型、存储模型和查询本身。连接运算符输出的内容有多种方法。</p>
 <ul>
-<li>迭代器模型</li>
-<li>实例化模型</li>
-<li>矢量化&#x2F;批处理模型</li>
+<li><strong>数据</strong>：这种方法将外表和内表中属性的值复制到仅针对该运算符的中间结果表中的元组中。这种方法的优点是查询计划中未来的操作符永远不需要返回基表来获取更多数据。缺点是这需要更多内存来实现整个元组。这称为实例化。DBMS 还可以进行额外的计算并省略查询中以后不需要的属性以进一步优化这种方法。</li>
+<li><strong>记录ID</strong>：在这种方法中，DBMS 仅复制连接键以及匹配元组的记录 ID。这种方法非常适合列存储，因为 DBMS 不会复制查询不需要的数据。这称为延迟实现。</li>
 </ul>
-<h3 id="迭代器模型"><a href="#迭代器模型" class="headerlink" title="迭代器模型"></a>迭代器模型</h3><p>迭代器模型，也称为 Volcano 或 Pipeline 模型，是最常见的处理模型，几乎每个（基于行）DBMS 都使用这种模型。</p>
-<p>迭代器模型通过为数据库中的每个运算符实现一个 Next 函数来工作。查询计划中的每个节点都会对其子节点调用 Next，直到到达叶节点，叶节点开始向其父节点发出元组进行处理。然后，在检索下一个元组之前，尽可能按照计划处理每个元组。这在基于磁盘的系统中非常有用，因为它允许我们在访问下一个元组或页面之前充分利用内存中的每个元组。图 1 显示了迭代器模型的示例图。</p>
-<p>迭代器模型中的查询计划运算符具有高度可组合性，并且易于推理。因为每个运算符都可以独立于查询计划树中的父运算符或子运算符实现，只要它实现如下的 Next 函数：</p>
+<h3 id="成本分析"><a href="#成本分析" class="headerlink" title="成本分析"></a>成本分析</h3><p>这里用于分析不同连接算法的成本指标是用于计算连接的磁盘 I/O 数量。这包括从磁盘读取数据以及将任何中间数据写入磁盘所产生的 I/O。</p>
+<p>请注意，只考虑计算连接时的 I/O，而不考虑输出结果时产生的 I/O。这是因为输出成本取决于数据，而且任何连接算法的输出都是相同的，因此不同算法之间的成本不会改变。</p>
+<blockquote>
+<p>本课中使用的变量：</p>
 <ul>
-<li>每次调用 Next 时，如果没有更多元组可发出，则运算符将返回单个元组或空标记。</li>
-<li>该运算符实现一个循环，调用其子运算符上的 Next 来检索它们的元组，然后处理它们。这样，对父节点调用 Next 就会对其子节点调用 Next。作为响应，子节点将返回父节点必须处理的下一个元组。</li>
+<li>R表（内表）中有M个页表，共m个元组</li>
+<li>S表（外表）中有N个页表，共n个元组</li>
 </ul>
-<p>迭代器模型允许流水线操作，其中 DBMS 可以通过尽可能多的运算符处理一个元组，然后再检索下一个元组。查询计划中针对给定元组执行的一系列任务称为管道。</p>
-<p>某些运算符会阻塞，直到子运算符发出所有元组。此类运算符的示例包括连接、子查询和排序 (ORDER BY)。此类运算符称为管道断路器。</p>
-<p>输出控制可以通过这种方法（LIMIT）轻松地工作，因为一旦操作员拥有了所需的所有元组，它就可以停止在其子操作员上调用 Next。</p>
-<p><img src="/../imgs/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241121204121679.png" srcset="/img/loading.gif" lazyload alt="图一：迭代器模型示例 – 每个运算符的不同 Next 函数的伪代码。Next 函数本质上是 for 循环，迭代其子运算符的输出。例如，根节点在其子节点上调用 Next，即连接运算符，这是一种循环遍历关系 R 并向上发出元组然后进行操作的访问方法。处理完所有元组后，将发送一个空指针（或另一个指示符），让父节点知道继续前进。"></p>
-<h3 id="实例化模型"><a href="#实例化模型" class="headerlink" title="实例化模型"></a>实例化模型</h3><p>实例化模型是迭代器模型的一种特殊化，其中每个运算符一次处理其输入，然后一次发出其输出。每个运算符每次到达时都会返回其所有元组，而不是使用返回单个元组的下一个函数。为了避免扫描太多元组，DBMS 可以将需要多少元组的信息传播给后续操作符（例如 LIMIT）。运算符将其输出“实例化”为单个结果。输出可以是整个元组 (NSM) 或列的子集 (DSM)。图 2 显示了实例化模型的示意图。</p>
-<p>每个查询计划运算符都实现一个Output函数：</p>
+</blockquote>
+<p>一般来说，许多算法/优化可以在某些情况下降低连接成本，但没有一种算法可以在所有情况下都运行良好。</p>
+<h2 id="2-嵌套循环连接"><a href="#2-嵌套循环连接" class="headerlink" title="2 嵌套循环连接"></a>2 嵌套循环连接</h2><p>从高层次上讲，这种类型的连接算法由两个嵌套的 for 循环组成，它们对两个表中的元组进行迭代，并逐对比较它们。如果元组与连接谓词匹配，则输出它们。外层 for 循环中的表称为外表，内层 for 循环中的表称为内表。</p>
+<p>DBMS 总是希望使用“较小”的表作为外表。较小可以是元组数量或页面数量。DBMS 还会希望在内存中缓冲尽可能多的外表。它还可以尝试利用索引在内表中查找匹配项。</p>
+<h3 id="简单嵌套循环连接"><a href="#简单嵌套循环连接" class="headerlink" title="简单嵌套循环连接"></a>简单嵌套循环连接</h3><p>对于外表中的每个元组，将其与内表中的每个元组进行比较。这是最糟糕的情况，DBMS 必须对外表中的每个元组进行整个内表扫描，而没有任何缓存或访问局部性。</p>
+<p><strong>复杂度</strong>：M + (m * N)</p>
+<h3 id="块嵌套循环连接"><a href="#块嵌套循环连接" class="headerlink" title="块嵌套循环连接"></a>块嵌套循环连接</h3><p>对于外表中的每个块，从内表获取每个块并比较这两个块中的所有元组。该算法执行的磁盘访问较少，因为 DBMS 扫描内表以查找每个外表块，而不是每个元组。</p>
+<p><strong>复杂度</strong>：M + (M * N)</p>
+<p>如果 DBMS 有 B 个缓冲区可用于计算连接，则它可以使用 B − 2 个缓冲区来扫描外表。它将使用一个缓冲区来扫描内表，另一个缓冲区来存储连接的输出。</p>
+<p><strong>复杂度</strong>：M + ($\lceil M / (B - 2) \rceil * N$)</p>
+<h3 id="索引嵌套循环连接"><a href="#索引嵌套循环连接" class="headerlink" title="索引嵌套循环连接"></a>索引嵌套循环连接</h3><p>以前的嵌套循环连接算法性能较差，因为 DBMS 必须执行顺序扫描来检查内表中是否存在匹配项。但是，如果数据库已经为连接键上的其中一个表建立了索引，则可以使用该索引来加快比较速度。DBMS 可以使用现有索引，也可以为连接操作建立临时索引。</p>
+<p>外表是没有索引的表，内表是有索引的表。</p>
+<p>假设每个索引探测的成本是每个元组的某个常数值 C。</p>
+<p><strong>复杂度</strong>：M + (m * C)</p>
+<h2 id="3-排序合并连接"><a href="#3-排序合并连接" class="headerlink" title="3 排序合并连接"></a>3 排序合并连接</h2><p>从高层次上讲，排序合并连接根据连接键对两个表进行排序。DBMS 可以使用外部合并排序算法来实现这一点。然后，它使用游标逐一遍历每个表并发出匹配项（就像合并排序一样）。</p>
+<p>如果一个或两个表已经根据连接属性（例如使用聚集索引）排序，或者输出需要根据连接键排序，则此算法很有用。</p>
+<p>该算法的最坏情况是两个表中所有元组的连接属性都包含相同的值，这在实际数据库中不太可能发生。在这种情况下，合并的成本将是 M · N。不过，大多数情况下，密钥大多是唯一的，因此合并成本大约为 M + N。</p>
+<p>假设 DBMS 有 B 个缓冲区可用于该算法：</p>
 <ul>
-<li>操作立即处理子节点传来的所有元组</li>
-<li>此函数的返回结果是该运算符将发出的所有元组。当该运算符完成执行时，DBMS 无需返回该函数来检索更多数据。</li>
+<li>表R的排序成本：2M * (1 + $\lceil log_{B-1}\lceil M/B \rceil \rceil$)</li>
+<li>表S的排序成本：2N * (1 + $\lceil log_{B-1}\lceil N/B \rceil \rceil$)</li>
+<li>合并成本：（M + N）</li>
 </ul>
-<p>这种方法更适合OLTP工作负载，因为查询通常一次只访问少量元组。因此，检索元组的函数调用较少。实例化模型不适合具有大量中间结果的 OLAP 查询，因为 DBMS 可能必须在操作员之间将这些结果溢出到磁盘。</p>
-<p><img src="/../imgs/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241121210346219.png" srcset="/img/loading.gif" lazyload alt="图二：实例化模型示例 - 从根开始，调用 child.Output() 函数，该函数调用下面的运算符，返回所有元组。"></p>
-<h3 id="矢量化模型"><a href="#矢量化模型" class="headerlink" title="矢量化模型"></a>矢量化模型</h3><p>与迭代器模型一样，矢量化模型中的每个运算符都实现一个 Next 函数。但是，每个运算符都会发出一批数据（即向量），而不是单个元组。运算符的内循环实现针对处理批量数据（而不是一次处理单个数据）进行了优化。批次的大小可能因硬件或查询属性而异。请参阅图 3 中的矢量化模型示例。</p>
-<p>矢量化模型方法非常适合需要扫描大量元组的 OLAP 查询，因为 Next 函数的调用次数较少。</p>
-<p>矢量化模型使得操作能够更轻松地使用矢量化（SIMD）指令来处理批量元组。</p>
-<p><img src="/../imgs/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241123234749040.png" srcset="/img/loading.gif" lazyload alt="图三：矢量化模型样例-矢量化模型与迭代器模型非常相似，不同之处在于，每个操作符都会将输出缓冲区与所需的发射大小进行比较。如果缓冲区较大，则发送元组批次。"></p>
-<h3 id="操作方向"><a href="#操作方向" class="headerlink" title="操作方向"></a>操作方向</h3><ul>
-<li>方式一：自顶向下<ul>
-<li>从根开始，将数据从子节点“拉”到父节点</li>
-<li>元组总是通过函数调用传输</li>
+<p>总成本：排序 + 合并</p>
+<h2 id="4-哈希连接"><a href="#4-哈希连接" class="headerlink" title="4 哈希连接"></a>4 哈希连接</h2><p>哈希连接算法的高级思想是使用哈希表根据元组的连接属性将其分成更小的块。这减少了 DBMS 计算连接时需要对每个元组执行的比较次数。哈希连接只能用于完整连接键上的等值连接。</p>
+<p>如果元组 r $\in$ R 和元组 s $\in$ S 满足连接条件，则它们对于连接属性具有相同的值。如果该值被哈希化为某个值 i，则 R 元组必须在存储桶 r<sub>i</sub> 中，而 S 元组必须在存储桶 s<sub>i</sub> 中。因此，存储桶 r<sub>i</sub> 中的 R 元组只需与存储桶 s<sub>i</sub> 中的 S 元组进行比较。</p>
+<h3 id="基本哈希连接"><a href="#基本哈希连接" class="headerlink" title="基本哈希连接"></a>基本哈希连接</h3><ul>
+<li>阶段1 – 构建：首先，扫描外部关系并使用连接属性上的哈希函数 h1 填充哈希表。哈希表中的键是连接属性。值取决于实现（可以是完整元组值或元组 ID）</li>
+<li>阶段2 - 探测：扫描内部关系并在每个元组的连接属性上使用哈希函数 h1 跳转到哈希表中的相应位置并找到匹配的元组。由于哈希表中可能存在冲突，DBMS 将需要检查连接属性的原始值以确定元组是否真正匹配。</li>
 </ul>
-</li>
-<li>方式二：自底向上<ul>
-<li>从叶节点开始，将数据从子节点“推送”到父节点</li>
-<li>允许更严格地控制操作管道中的缓存&#x2F;寄存器</li>
-</ul>
-</li>
-</ul>
-<h2 id="3-访问方法"><a href="#3-访问方法" class="headerlink" title="3 访问方法"></a>3 访问方法</h2><p>访问方法是 DBMS 访问表中存储的数据的方式。一般来说，访问模型有两种方法：要么从表中读取数据，要么通过顺序扫描从索引中读取数据。</p>
-<h3 id="顺序扫描"><a href="#顺序扫描" class="headerlink" title="顺序扫描"></a>顺序扫描</h3><p>顺序扫描运算符遍历表中的每个页面并从缓冲池中检索它。当扫描遍历每个页面上的所有元组时，它会评估谓词以决定是否将元组发送给下一个运算符。</p>
-<p>DBMS 维护一个内部游标，用于跟踪其检查的最后一页&#x2F;槽。</p>
-<p>顺序表扫描几乎始终是 DBMS 执行查询时效率最低的方法。有许多优化方法可帮助加快顺序扫描速度：</p>
+<p>如果 DBMS 知道外表的大小，则连接可以使用静态哈希表。如果不知道大小，则连接必须使用动态哈希表或允许溢出页面。</p>
+<p>一个有 N 页的表需要大约 $\sqrt N$ 个缓冲区。上述方法在第 1 阶段创建了最多有 B 个块大小的 B − 1 个溢出分区，因此假设哈希函数均匀分布记录，则可以使用此方法进行哈希处理的最大表是 B · (B − 1) 个缓冲区。如果哈希函数不是均匀的，则可以引入一个模糊因子f&gt;1，因此最大的此类表为$B <em> \sqrt{f </em> N}$。</p>
+<p>探测阶段的一个优化是使用布隆过滤器。这是一个概率数据结构，可以放入 CPU 缓存中，并回答问题“密钥 x 是否在哈希表中？”要么肯定否，要么很可能是。这可以通过阻止不会导致发出元组的磁盘读取来减少磁盘 I/O 量。</p>
+<h3 id="Grace-Hash-连接-分区哈希连接"><a href="#Grace-Hash-连接-分区哈希连接" class="headerlink" title="Grace Hash 连接/分区哈希连接"></a>Grace Hash 连接/分区哈希连接</h3><p>当表无法放入主内存时，DBMS 必须随机地交换表，这会导致性能不佳。Grace Hash Join 是基本哈希连接的扩展，它还将内表哈希化为写入磁盘的分区。</p>
 <ul>
-<li><strong>预读取</strong>：提前获取接下来的几页，以便 DBMS 在访问每个页面时不必阻塞存储 I&#x2F;O。</li>
-<li><strong>缓存池绕过</strong>：扫描操作符将从磁盘获取的页面存储在其本地内存中而不是缓冲池中，以避免顺序洪泛。</li>
-<li><strong>并行化</strong>：使用多个线程&#x2F;进程并行执行扫描。</li>
-<li><strong>慢实例化</strong>：DBMS 可以将元组的拼接延迟到查询计划的上部。这样每个操作符都可以将所需的最少信息传递给下一个操作符（例如记录 ID、列中记录的偏移量）。这仅在列存储系统中有用。</li>
-<li><strong>堆聚类</strong>：元组按照聚类索引指定的顺序存储在堆页中。</li>
-<li><strong>近似查询（跳过有损数据）</strong>：对整个表的抽样子集执行查询以产生近似结果。这通常用于在允许低误差产生近乎准确的答案的场景中计算聚合。</li>
-<li><strong>区域图（无损数据跳过）</strong>：预先计算页面中每个元组属性的聚合。然后，DBMS 可以通过首先检查区域图来决定是否需要访问页面。每个页面的区域图存储在单独的页面中，并且每个区域图页面中通常有多个条目。因此，可以减少连续扫描中检查的总页面数。区域图在云数据库系统中尤其有价值，因为通过网络传输数据会产生更大的成本。参见图 4 的区域地图示例。</li>
+<li>阶段1 – 构建：首先，扫描外表和内表，并使用连接属性上的哈希函数 h1 填充哈希表。哈希表的存储桶根据需要写入磁盘。如果内存中无法容纳单个存储桶，则 DBMS 可以使用不同的哈希函数 h2（其中 h1 ̸= h2）进行递归分区，以进一步划分存储桶。此过程可以递归继续，直到内存中容纳所有存储桶为止。</li>
+<li>阶段2 - 探测：对于每个存储桶级别，检索外部表和内表的相应页面。然后，对这两个页面中的元组执行嵌套循环连接。页面可以装入内存，因此此连接操作会很快。</li>
 </ul>
-<p><img src="/../imgs/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241127205536313.png" srcset="/img/loading.gif" lazyload alt="图四：区域图样例 – 区域图存储页面中值的预先计算的聚合。在上面的示例中，选择查询从区域图中得知，原始数据中的最大值只有 400.然后，查询就不必遍历页面中的每个元组，而是可以完全避免访问该页面，因为没有任何值大于 600。"></p>
-<h3 id="索引扫描"><a href="#索引扫描" class="headerlink" title="索引扫描"></a>索引扫描</h3><p>在索引扫描中，DBMS 选择一个索引来查找查询所需的元组。</p>
-<p><img src="/../imgs/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241127210523298.png" srcset="/img/loading.gif" lazyload alt="图五：索引扫描样例 – 考虑一个包含 100 个元组和两个索引（年龄和部门）的单表。在第一种情况下，最好在扫描中使用部门索引，因为它只有两个元组需要匹配。选择 age 索引并不会比简单的顺序扫描好多少。在第二种情况下，age 索引会消除更多不必要的扫描，是最佳选择。"></p>
-<p>DBMS 的索引选择过程涉及许多因素，包括：</p>
-<ul>
-<li>索引包含哪些属性</li>
-<li>查询引用了哪些属性</li>
-<li>属性的值域</li>
-<li>谓词组合</li>
-<li>索引是否具有唯一键或非唯一键</li>
-</ul>
-<p>图 5 显示了索引扫描的一个简单示例。</p>
-<p>更高级的 DBMS 支持多索引扫描。当对查询使用多个索引时，DBMS 会使用每个匹配的索引计算记录 ID 集，根据查询的谓词组合这些集合，然后检索记录并应用可能保留的任何谓词。DBMS 可以使用位图、哈希表或布隆过滤器通过集合交集计算记录 ID。请参阅图 6 中利用多索引扫描的示例。</p>
-<p><img src="/../imgs/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241128155039980.png" srcset="/img/loading.gif" lazyload alt="图六：多索引扫描示例 – 考虑图 5 中的同一张表。借助多索引扫描支持，我们首先使用相应的索引分别计算满足年龄和部门谓词的记录 ID 集。然后，我们计算两个集合的交集，获取相应的记录，并应用剩余的谓词 country=’US’。"></p>
-<h2 id="4-修改查询"><a href="#4-修改查询" class="headerlink" title="4 修改查询"></a>4 修改查询</h2><p>修改数据库（INSERT、UPDATE、DELETE）的操作员负责检查约束和更新索引。对于UPDATE&#x2F;DELETE，子操作符传递目标元组的记录ID，并且必须跟踪先前看到的元组。</p>
-<p>关于如何处理 INSERT 运算符有两种实现选择：</p>
-<ul>
-<li>选择1：在运算符内部实现元组。</li>
-<li>选择2：运算符插入从子运算符传入的任何元组。</li>
-</ul>
-<h3 id="万圣节问题"><a href="#万圣节问题" class="headerlink" title="万圣节问题"></a>万圣节问题</h3><p>万圣节问题是一种异常现象，其中更新操作会更改元组的物理位置，从而导致扫描运算符多次访问该元组。这可能发生在聚簇表或索引扫描上。</p>
-<p>这一现象最初是由 IBM 研究人员在 1976 年万圣节当天构建 System R 时发现的。解决此问题的方法是跟踪每个查询的修改记录 ID。</p>
-<h2 id="5-表达式求值"><a href="#5-表达式求值" class="headerlink" title="5 表达式求值"></a>5 表达式求值</h2><p>DBMS 将 WHERE 子句表示为表达式树（参见图 7 中的示例）。树中的节点表示不同的表达式类型。</p>
-<p><img src="/../imgs/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241128160655862.png" srcset="/img/loading.gif" lazyload alt="图 7：表达式求值示例 – WHERE 子句及其对应表达式的图表。"></p>
-<p>可以存储在树节点中的表达式类型的一些示例：</p>
-<ul>
-<li>比较（&#x3D;、&lt;、&gt;、!&#x3D;）</li>
-<li>连接 (AND)、分离 (OR)</li>
-<li>算术运算符（+、-、*、&#x2F;、%）</li>
-<li>常量和参数值</li>
-<li>元组属性引用</li>
-</ul>
-<p>为了在运行时评估表达式树，DBMS 维护一个上下文句柄，其中包含执行的元数据，例如当前元组、参数和表架构。然后，DBMS 遍历树来评估其运算符并产生结果。</p>
-<p>以这种方式评估谓词很慢，因为 DBMS 必须遍历整个树并确定每个运算符要采取的正确操作。更好的方法是直接评估表达式（想想 JIT 编译）。基于内部成本模型，DBMS 将确定是否采用代码生成来加速查询。</p>
+<p>分割阶段成本:2 * (M + N)</p>
+<p>探测阶段成本：（M + N)</p>
+<p>总成本：3 * （M + N）</p>
+<p>混合哈希连接优化：在基本哈希连接和 Grace 哈希连接之间进行调整；如果键有偏差，则将热分区保留在内存中并立即进行比较，而不是将其溢出到磁盘。很难正确实施。</p>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h2><p>连接是与关系数据库交互的重要部分，因此确保 DBMS 具有有效的算法来执行连接至关重要。</p>
+<p><img src="../imgs/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95/image-20241128211147350.png" srcset="/img/loading.gif" lazyload alt="图一：上表假设以下情况：M = 1000，m = 100000，N = 500，n= 40000，B = 100 和每个 I/O 0.1 毫秒。"></p>
+<p>哈希连接几乎总是比基于排序的连接算法更好，但在某些情况下基于排序的连接会更受欢迎。这包括查询非均匀数据、数据已按连接键排序以及结果需要排序的情况。好的 DBMS 会使用其中一种或两种方法。</p>
 
                 
               </div>
@@ -477,11 +441,11 @@
       
         <a href="/tags/%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/" class="print-no-link">#查询优化</a>
       
-        <a href="/tags/%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86/" class="print-no-link">#查询处理</a>
+        <a href="/tags/%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95/" class="print-no-link">#连接算法</a>
       
-        <a href="/tags/%E6%89%A7%E8%A1%8C%E6%A8%A1%E5%9E%8B/" class="print-no-link">#执行模型</a>
+        <a href="/tags/%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF%E8%BF%9E%E6%8E%A5/" class="print-no-link">#嵌套循环连接</a>
       
-        <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%9E%8B/" class="print-no-link">#迭代器模型</a>
+        <a href="/tags/%E5%93%88%E5%B8%8C%E8%BF%9E%E6%8E%A5/" class="print-no-link">#哈希连接</a>
       
     </div>
   
@@ -493,8 +457,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CMU15445-lecture12</div>
-      <div>http://polaris3003.github.io/2024/11/21/第十二课：查询处理I/</div>
+      <div>CMU15445-lecture11</div>
+      <div>http://polaris3003.github.io/2024/11/28/第十一课：连接算法/</div>
     </div>
     <div class="license-meta">
       
@@ -506,7 +470,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月21日</div>
+          <div>2024年11月28日</div>
         </div>
       
       
@@ -538,18 +502,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/28/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95/" title="CMU15445-lecture11">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CMU15445-lecture11</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/19/%E7%AC%AC%E5%8D%81%E8%AF%BE%EF%BC%9A%E6%8E%92%E5%BA%8F%E5%92%8C%E8%81%9A%E5%90%88%E7%AE%97%E6%B3%95/" title="CMU15445-lecture10">
-                        <span class="hidden-mobile">CMU15445-lecture10</span>
+                      <a href="/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/" title="CMU15445-lecture12">
+                        <span class="hidden-mobile">CMU15445-lecture12</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
