@@ -25,17 +25,17 @@
 <meta property="og:site_name" content="Polarisのblog">
 <meta property="og:description" content="ZooKeeper：互联网规模的无等待协调摘要在本文中，我们介绍ZooKeeper，一个用于协调分布式应用程序过程的服务。由于ZooKeeper时关键基础架构的一部分，它旨在为客户建立更复杂的协调基础提供一个简单而高性能的内核。它在复制的集中式服务中结合了小组消息传递，共享寄存器和分布式锁服务的元素。ZooKeeper暴露的接口具有共享寄存器的无等待方面，其事件驱动的机制类似于分布式文件系统的缓存">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://polaris3003.github.io/2024/05/02/imgs/ZooKeeper/image-20240502031217505.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/05/02/imgs/ZooKeeper/image-20240502031314762.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/05/02/imgs/ZooKeeper/image-20240502031330397.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/05/02/imgs/ZooKeeper/image-20240502031349211.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/05/02/ZooKeeper/image-20240502031217505.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/05/02/ZooKeeper/image-20240502031314762.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/05/02/ZooKeeper/image-20240502031330397.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/05/02/ZooKeeper/image-20240502031349211.png">
 <meta property="article:published_time" content="2024-05-01T19:02:39.000Z">
-<meta property="article:modified_time" content="2024-05-01T19:13:57.366Z">
+<meta property="article:modified_time" content="2025-02-10T07:46:34.500Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="分布式系统">
 <meta property="article:tag" content="mit6.824">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://polaris3003.github.io/2024/05/02/imgs/ZooKeeper/image-20240502031217505.png">
+<meta name="twitter:image" content="http://polaris3003.github.io/2024/05/02/ZooKeeper/image-20240502031217505.png">
   
   
   
@@ -361,7 +361,7 @@
 <h2 id="2-ZooKeeper服务"><a href="#2-ZooKeeper服务" class="headerlink" title="2.ZooKeeper服务"></a>2.ZooKeeper服务</h2><p>客户端使用 ZooKeeper 客户端库通过客户端 API 向 ZooKeeper 提交请求。除了通过客户端API公开ZooKeeper服务接口之外，客户端库还管理客户端和ZooKeeper服务器之间的网络连接。在本节中，我们首先提供 ZooKeeper 服务的高级视图。然后我们讨论客户端用来与ZooKeeper交互的API。</p>
 <p><code>术语</code>：本文中，我们用client表示ZooKeeper服务的用户，server表示提供ZooKeeper服务的进程，znode 表示 ZooKeeper 数据中的内存数据节点，它组织在称为数据树的分层命名空间中。</p>
 <h3 id="2-1-服务概览"><a href="#2-1-服务概览" class="headerlink" title="2.1 服务概览"></a>2.1 服务概览</h3><p>ZooKeeper 向其客户端提供一组数据节点（znode）的抽象，这些数据节点根据分层名称空间进行组织。此层次结构中的 znode 是客户端通过 ZooKeeper API 操作的数据对象。层次命名空间通常用在文件系统中。这是组织数据对象的理想方式，因为用户已经习惯了这种抽象，并且它可以更好地组织应用程序元数据。为了指向一个给定的znode，我们对文件系统路径使用标准 UNIX 表示法。例如，我们使用 /A/B/C 来表示 znode C 的路径，其中 C 以 B 作为其父节点，B 以 A 作为其父节点。所有 znode 都存储数据，并且除临时 znode 之外的所有 znode 都可以有子节点。</p>
-<p><img src="../imgs/ZooKeeper/image-20240502031217505.png" srcset="/img/loading.gif" lazyload alt="图 1：ZooKeeper 分层名称空间的图示。"></p>
+<p><img src="/2024/05/02/ZooKeeper/image-20240502031217505.png" srcset="/img/loading.gif" lazyload alt="图 1：ZooKeeper 分层名称空间的图示。"></p>
 <p>客户端可以创建两种类型的znode：</p>
 <p><code>常规</code>：客户端通过显式创建和删除常规znode来操作它们；</p>
 <p><code>短期</code>：客户端创建此类znode，并且它们要么显式删除它们，要么让系统在创建它们的会话终止时（故意或由于失败）自动删除它们。</p>
@@ -425,13 +425,13 @@
 <p><code>双重屏障</code>:双屏障使客户端能够同步计算的开始和结束。当由屏障阈值定义的足够多的进程加入屏障时，进程开始计算并在完成后离开屏障。我们用 znode 表示 ZooKeeper 中的屏障，称为 b。每个进程 p 在进入时向 b 注册（通过创建一个 znode 作为 b 的子节点），并在准备离开时取消注册（重新移动子节点）。当 b 的子 znode 数量超过屏障阈值时，进程可以进入屏障。当所有进程都删除了它们的子进程时，进程就可以离开屏障。我们使用watch有效等待满足的进入和退出条件。为了进入，进程会监视 b 是否存在就绪子级，该子级将由导致子级数量超过屏障阈值的进程创建。为了离开，进程会监视特定子节点的消失，并且仅在该 znode 被删除后才检查退出条件。</p>
 <h2 id="3-ZooKeeper应用程序"><a href="#3-ZooKeeper应用程序" class="headerlink" title="3 ZooKeeper应用程序"></a>3 ZooKeeper应用程序</h2><p>现在我们描述一些使用 ZooKeeper 的应用程序，并简要解释它们如何使用它。我们以<strong>粗体</strong>显示每个示例的原语。</p>
 <p><strong>抓取服务</strong> 爬虫是搜索引擎的重要组成部分，而 Yahoo!抓取数十亿的Web文档。获取服务 (FS) 是Yahoo!爬虫的一部分，目前正在生产中。本质上，它具有命令页面获取进程的主进程。主设备为提取器提供配置，并且提取器回写通知其状态和健康状况。使用 ZooKeeper for FS 的主要优点是从主服务器故障中恢复、在发生故障时保证可用性以及将客户端与服务器解耦，允许他们通过从 ZooKeeper 读取状态来将请求定向到健康的服务器。因此，FS主要使用ZooKeeper来管理配置元数据，尽管它也使用ZooKeeper来选举master（领导者选举）。</p>
-<p><img src="../imgs/ZooKeeper/image-20240502031314762.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/2024/05/02/ZooKeeper/image-20240502031314762.png" srcset="/img/loading.gif" lazyload alt></p>
 <p>图 2 显示了 FS 使用的 ZooKeeper 服务器三天内的读写流量。为了生成这个图表，我们计算了该时间段内每一秒的操作次数，每个点对应于该秒内的操作次数。我们观察到读取流量比写入流量高得多。在速率高于每秒 1,000 次操作期间，读：写比率在 10:1 和 100:1 之间变化。此工作负载中的读取操作为 getData()、getChildren() 和 Exists()，按流行程度递增的顺序排列</p>
-<p><strong><font size=3>Katta</font></strong> Katta是一个分布式索引器，使用 ZooKeeper 进行协调，它是非 Yahoo! 的一个示例应用。Katta 使用分片来划分索引工作。主服务器将分片分配给从服务器并跟踪进度。从站可能会发生故障，因此主节点必须在从节点来来去去时重新分配负载。主服务器也可能发生故障，因此其他服务器必须准备好在发生故障时接管。 Katta 使用 ZooKeeper 跟踪从服务器和主服务器的状态（组成员身份），并处理主服务器故障转移（领导者选举）。Katta 还使用 ZooKeeper 来跟踪分片分配并将其传播到从属设备（配置管理）。</p>
-<p><strong><font size=3>Yahoo!消息代理</font></strong> Yahoo！消息代理（YMB）是一个分布式发布订阅系统。该系统管理着数千个主题，客户端可以向这些主题发布消息并从中接收消息。这些主题分布在一组服务器中以提供可扩展性。每个主题都使用主备方案进行复制，确保消息复制到两台机器，以确保可靠的消息传递。组成 YMB 的服务器使用无共享分布式架构，这使得协调对于正确操作至关重要。组成 YMB 的服务器使用无共享分布式架构，这使得协调对于正确操作至关重要。YMB使用ZooKeeper来管理主题的分布（配置元数据），处理系统中机器的故障（故障检测和组成员身份），并控制系统操作。</p>
-<p><img src="../imgs/ZooKeeper/image-20240502031330397.png" srcset="/img/loading.gif" lazyload alt="图 3：YMB在ZooKeeper中的消息代理结构"></p>
+<p><strong><font size="3">Katta</font></strong> Katta是一个分布式索引器，使用 ZooKeeper 进行协调，它是非 Yahoo! 的一个示例应用。Katta 使用分片来划分索引工作。主服务器将分片分配给从服务器并跟踪进度。从站可能会发生故障，因此主节点必须在从节点来来去去时重新分配负载。主服务器也可能发生故障，因此其他服务器必须准备好在发生故障时接管。 Katta 使用 ZooKeeper 跟踪从服务器和主服务器的状态（组成员身份），并处理主服务器故障转移（领导者选举）。Katta 还使用 ZooKeeper 来跟踪分片分配并将其传播到从属设备（配置管理）。</p>
+<p><strong><font size="3">Yahoo!消息代理</font></strong> Yahoo！消息代理（YMB）是一个分布式发布订阅系统。该系统管理着数千个主题，客户端可以向这些主题发布消息并从中接收消息。这些主题分布在一组服务器中以提供可扩展性。每个主题都使用主备方案进行复制，确保消息复制到两台机器，以确保可靠的消息传递。组成 YMB 的服务器使用无共享分布式架构，这使得协调对于正确操作至关重要。组成 YMB 的服务器使用无共享分布式架构，这使得协调对于正确操作至关重要。YMB使用ZooKeeper来管理主题的分布（配置元数据），处理系统中机器的故障（故障检测和组成员身份），并控制系统操作。</p>
+<p><img src="/2024/05/02/ZooKeeper/image-20240502031330397.png" srcset="/img/loading.gif" lazyload alt="图 3：YMB在ZooKeeper中的消息代理结构"></p>
 <p>图 3 显示了 YMB 的 znode 数据布局的一部分。每个代理域都有一个称为节点的 znode，它为组成 YMB 服务的每个活动服务器都有一个临时 znode。每个 YMB 服务器在具有负载和状态信息的节点下创建一个临时 znode，通过 ZooKeeper 提供组成员身份和状态信息。禁止关闭和迁移等节点由组成服务的所有服务器进行监控，并允许 YMB 进行集中控制。主题目录对于 YMB 管理的每个主题都有一个子 znode。这些主题 znode 具有子 znode，它们指示每个主题的主服务器和备份服务器以及该主题的订阅者。主服务器和备份服务器 znode 不仅允许服务器发现负责某个主题的服务器，而且还管理领导者选举和服务器崩溃。</p>
-<p><img src="../imgs/ZooKeeper/image-20240502031349211.png" srcset="/img/loading.gif" lazyload alt="图4：ZooKeeper服务的组件"></p>
+<p><img src="/2024/05/02/ZooKeeper/image-20240502031349211.png" srcset="/img/loading.gif" lazyload alt="图4：ZooKeeper服务的组件"></p>
 <h2 id="4-ZooKeeper实现"><a href="#4-ZooKeeper实现" class="headerlink" title="4.ZooKeeper实现"></a>4.ZooKeeper实现</h2><p>ZooKeeper 通过在组成服务的每台服务器上复制 ZooKeeper 数据来提供高可用性。我们假设服务器因崩溃而发生故障，并且此类故障服务器稍后可能会恢复。图 4 显示了 ZooKeeper 服务的高级组件。接收到请求后，服务器准备执行该请求（请求处理器）。如果这样的请求需要服务器之间的协调（写请求），那么它们使用一致协议（原子广播的实现），最后，服务器将更改提交到 ZooKeeper 数据库，并在整体的所有服务器上完全复制。在读取请求的情况下，服务器只需读取本地数据库的状态并生成对请求的响应。</p>
 <p>复制数据库是包含整个数据树的内存数据库。树中的每个 znode 默认情况下最多存储 1MB 的数据，但这个最大值是一个配置参数，可以在特定情况下更改。为了可恢复性，我们将更新有效地记录到磁盘，并强制写入在磁盘介质上，然后再应用于内存数据库。事实上，正如Chubby一样，我们保留已提交操作的重播日志（在我们的例子中是预写日志），并生成内存数据库的定期快照。</p>
 <p>每个 ZooKeeper 服务器都为客户端提供服务。客户端仅连接到一台服务器来提交其请求。正如我们之前提到的，读取请求由每个服务器数据库的本地副本提供服务。更改服务状态的请求（写入请求）由协议协议处理。作为协议的一部分，写请求被转发到称为领导者的单个服务器。剩下的ZooKeeper服务器，叫做跟随者，接收消息提案包括来自领导者的状态更改，并就状态更改达成一致。</p>
@@ -441,12 +441,12 @@
 <p>有一些实现细节可以简化我们的实现并为我们提供出色的性能。我们使用 TCP 进行传输，因此消息顺序由网络维护，这使我们能够简化实现。我们使用 Zab 选择的领导者作为 ZooKeeper 领导者，以便创建事务的同一进程也会提议它们。我们使用日志来跟踪提案,作为内存数据库的预写日志，这样我们就不必将消息写入磁盘两次。</p>
 <p>在正常操作期间，Zab 确实按顺序传递所有消息并且只传递一次，但由于 Zab 不会持久记录传递的每条消息的 id，因此 Zab 可能会在恢复期间重新传递消息。因为我们使用幂等事务，所以只要按顺序交付，多次交付是可以接受的。事实上，ZooKeeper 要求 Zab 至少重新传送上次快照开始后传送的所有消息。</p>
 <h3 id="4-3-复制数据库"><a href="#4-3-复制数据库" class="headerlink" title="4.3 复制数据库"></a>4.3 复制数据库</h3><p>每个副本在内存中都有一个 ZooKeeper 状态的副本。当 ZooKeeper 服务器从崩溃中恢复时，它需要恢复此内部状态。在运行服务器一段时间后，重放所有已传递的消息以恢复状态将花费非常长的时间，因此 ZooKeeper 使用定期快照，并且只需要自快照启动以来重新传递消息。我们将 ZooKeeper 快照称为模糊快照，因为我们不锁定 ZooKeeper 状态来拍摄快照；相反，我们对树进行深度优先扫描，自动读取每个 znode 的数据和元数据并将它们写入磁盘。由于生成的模糊快照可能应用了快照生成期间传递的状态更改的某些子集，因此结果可能与 ZooKeeper 在任何时间点的状态都不对应。但是，由于状态更改是幂等的，因此只要按顺序应用状态更改，我们就可以应用两次。</p>
-<p>例如，假设在 ZooKeeper 数据树中，两个节点 /foo 和 /goo 的值分别为 f1 和 g1，并且在模糊快照开始时都位于版本 1，并且以下状态更改流的格式为 <transactionType， path， value， new-version>：</p>
-<SetDataTXN, /foo, f2, 2>
+<p>例如，假设在 ZooKeeper 数据树中，两个节点 /foo 和 /goo 的值分别为 f1 和 g1，并且在模糊快照开始时都位于版本 1，并且以下状态更改流的格式为 <transactionType， path， value， new-version>：</transactionType，></p>
+<SetDataTXN, 2 foo, f2,>
 
-<SetDataTXN, /goo, g2, 2> 
+<SetDataTXN, 2 goo, g2,> 
 
-<SetDataTXN, /foo, f3, 3> 
+<SetDataTXN, 3 foo, f3,> 
 
 <p>处理这些状态更改后，/foo 和 /goo 的值 f3 和 g2 分别为版本 3 和 2。然而，模糊快照可能记录了 /foo 和 /goo 的值 f3 和 g1 分别为版本 3 和 1，这不是 ZooKeeper 数据树的有效状态。如果服务器崩溃并使用此快照恢复，并且 Zab 重新传递状态更改，则结果状态对应于崩溃之前服务的状态。</p>
 <h3 id="4-4-客户端-服务器交互"><a href="#4-4-客户端-服务器交互" class="headerlink" title="4.4 客户端-服务器交互"></a>4.4 客户端-服务器交互</h3><p>当服务器处理写入请求时，它还会发送并清除与与该更新相对应的任何监视相关的通知。服务器按顺序处理写入，不会同时处理其他写入或读取。这确保了通知的严格连续性。请注意，服务器在本地处理通知。只有客户端连接的服务器才会跟踪并触发该客户端的通知。</p>
@@ -464,7 +464,7 @@
 <p>DepSpace 使用元组空间来提供拜占庭容错服务。与 ZooKeeper 一样，DepSpace 使用简单的服务器接口在客户端实现强同步原语。虽然DepSpace的性能远低于ZooKeeper，但它提供了更强的容错性和机密性保证。</p>
 <h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6 总结"></a>6 总结</h2><p>ZooKeeper 通过向客户端公开无等待对象，采用无等待方法来解决分布式系统中的进程协调问题。我们发现 ZooKeeper 对于 Yahoo! 内部和外部的多个应用程序非常有用。ZooKeeper 通过使用watch的快速读取（这两个操作均由本地副本提供服务），为读取为主的工作负载实现了每秒数十万次操作的吞吐量值。尽管我们对读取和监视的一致性保证似乎很弱，但我们已经通过我们的用例表明，这种组合使我们能够在客户端实现高效和复杂的协调协议，即使读取不是优先顺序的，并且数据对象的实现是无等待的。事实证明，无等待属性对于高性能至关重要。</p>
 <p>虽然我们只描述了几个应用程序，但还有许多其他应用程序使用 ZooKeeper。我们相信这样的成功是由于其简单的界面和可以通过这种界面实现的强大抽象。此外，由于 ZooKeeper 的高吞吐量，应用程序可以广泛使用它，而不仅仅是粗粒度锁定。</p>
-
+</SetDataTXN,></SetDataTXN,></SetDataTXN,>
                 
               </div>
             

@@ -25,17 +25,17 @@
 <meta property="og:site_name" content="Polarisのblog">
 <meta property="og:description" content="MapReduce:在大型集群上的简易数据处理摘要​    MapReduce是一种用于处理和生成大型数据集的编程模型和相关实现。用户使用map函数处理kv对，生成一个中间value和中间key，使用reduce函数merge所有的中间kv键。很多现实世界任务都可以用这个模型来表示。 ​    用这种函数式风格编写的程序被自动并行化，并在大量的商用机器上执行。运行时系统负责对输入数据进行分区、在一">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://polaris3003.github.io/2024/03/14/imgs/mapreduce/image-20240314162209411.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/03/14/imgs/mapreduce/image-20240314163016983.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/03/14/imgs/mapreduce/image-20240314175218619.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/03/14/imgs/mapreduce/image-20240314175700641.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/14/mapreduce/image-20240314162209411.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/14/mapreduce/image-20240314163016983.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/14/mapreduce/image-20240314175218619.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/14/mapreduce/image-20240314175700641.png">
 <meta property="article:published_time" content="2024-03-13T16:10:17.000Z">
-<meta property="article:modified_time" content="2024-03-14T11:15:35.058Z">
+<meta property="article:modified_time" content="2025-02-10T07:45:44.447Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="分布式系统">
 <meta property="article:tag" content="mit6.824">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://polaris3003.github.io/2024/03/14/imgs/mapreduce/image-20240314162209411.png">
+<meta name="twitter:image" content="http://polaris3003.github.io/2024/03/14/mapreduce/image-20240314162209411.png">
   
   
   
@@ -359,16 +359,16 @@
 <p>​    map函数发出每个单词加上相关的出现次数计数,reduce函数将针对特定单词发出的所有计数求和。</p>
 <p>​    此外，用户编写代码，用输入和输出文件的名称以及可选的调优参数填充mapreduce规范对象。然后，用户调用MapReduce函数，将规范对象传递给它。用户的代码与MapReduce库(用c++实现)链接在一起。附录A包含这个示例的完整程序文本。</p>
 <h3 id="2-2-Types"><a href="#2-2-Types" class="headerlink" title="2.2 Types"></a>2.2 Types</h3><p>​    尽管前面的伪代码是根据字符串输入和输出编写的，但从概念上讲，用户提供的map和reduce函数具有相关的类型:</p>
-<p><img src="../imgs/mapreduce/image-20240314162209411.png" srcset="/img/loading.gif" lazyload alt="image-20240314162209411"></p>
+<p><img src="/2024/03/14/mapreduce/image-20240314162209411.png" srcset="/img/loading.gif" lazyload alt="image-20240314162209411"></p>
 <p>​    输入键和值是从与输出键和值不同的域中绘制的。此外，中间键和值与输出键和值来自相同的domain。</p>
 <p>​    我们的c++实现将字符串传递给用户定义函数，并将其留给用户代码在字符串和适当类型之间进行转换。</p>
 <h3 id="2-3-More-Examples"><a href="#2-3-More-Examples" class="headerlink" title="2.3 More Examples"></a>2.3 More Examples</h3><p>​    Distributed Grep: 如果map函数匹配提供的模式，则会发出一行。reduce函数是一个恒等函数，它只是将提供的中间数据复制到输出。</p>
-<p>​    Count of URL Access Frequency: map函数处理web页面请求日志，输出<URL,1>。reduce函数将同一URL的所有值相加，并发出一个&lt; RL,total count&gt;对。</p>
-<p>​    Reverse Web-Link Graph: map函数为在名为source的页面中找到的每个指向目标URL的链接输出<target,source>对。reduce函数将与给定目标URL相关联的所有源URL的列表连接起来，并发出对:<target, list(source)></p>
-<p>​    Term-Vector per Host: 术语向量是将文档或一组文档中最重要的单词总结为<word, frequency>对的列表。map函数会针对每个输入文档生成一个<hostname, term vector>对（其中主机名从文档的URL中提取）。reduce函数会合并给定主机下所有文档的术语向量，将它们相加，并丢弃不常见的术语，最终输出<hostname, term vector>对。</p>
-<p>​    Inverted Index: map函数解析每个文档，并发出<word,document ID>对的序列。reduce函数接受给定单词的所有对，对相应的文档ID进行排序并发出<word, list(文档ID)>对。所有输出对的集合形成一个简单的倒排索引。很容易增加这个计算来跟踪单词的位置。</p>
-<p>​    Distributed Sort: map函数从每个记录中提取键，并发出一个<key,record>对。reduce函数不加更改地发出所有对。这种计算依赖于第4.1节中描述的分区工具和第4.2节中描述的排序属性。</p>
-<h2 id="3-实现"><a href="#3-实现" class="headerlink" title="3 实现"></a>3 实现</h2><p><img src="../imgs/mapreduce/image-20240314163016983.png" srcset="/img/loading.gif" lazyload alt="图1：执行概述"></p>
+<p>​    Count of URL Access Frequency: map函数处理web页面请求日志，输出<URL,1>。reduce函数将同一URL的所有值相加，并发出一个&lt; RL,total count&gt;对。</URL,1></p>
+<p>​    Reverse Web-Link Graph: map函数为在名为source的页面中找到的每个指向目标URL的链接输出<target,source>对。reduce函数将与给定目标URL相关联的所有源URL的列表连接起来，并发出对:<target, list(source)></target,></target,source></p>
+<p>​    Term-Vector per Host: 术语向量是将文档或一组文档中最重要的单词总结为<word, frequency>对的列表。map函数会针对每个输入文档生成一个<hostname, term vector>对（其中主机名从文档的URL中提取）。reduce函数会合并给定主机下所有文档的术语向量，将它们相加，并丢弃不常见的术语，最终输出<hostname, term vector>对。</hostname,></hostname,></word,></p>
+<p>​    Inverted Index: map函数解析每个文档，并发出<word,document id>对的序列。reduce函数接受给定单词的所有对，对相应的文档ID进行排序并发出<word, list(文档id)>对。所有输出对的集合形成一个简单的倒排索引。很容易增加这个计算来跟踪单词的位置。</word,></word,document></p>
+<p>​    Distributed Sort: map函数从每个记录中提取键，并发出一个<key,record>对。reduce函数不加更改地发出所有对。这种计算依赖于第4.1节中描述的分区工具和第4.2节中描述的排序属性。</key,record></p>
+<h2 id="3-实现"><a href="#3-实现" class="headerlink" title="3 实现"></a>3 实现</h2><p><img src="/2024/03/14/mapreduce/image-20240314163016983.png" srcset="/img/loading.gif" lazyload alt="图1：执行概述"></p>
 <p>​    MapReduce接口可能有许多不同的实现。正确的选择取决于环境。例如，一种实现可能适用于小型共享内存机器，另一种适用于大型NUMA多处理器，还有一种适用于更大的联网机器集合。</p>
 <p>​    本节描述了针对Google广泛使用的计算环境的实现:大型商用pc集群通过交换以太网连接在一起。在我们的环境中:</p>
 <ol>
@@ -434,9 +434,9 @@
 <p>​    用户发现计数器功能对于安全检查MapReduce操作的行为很有用。例如，在一些MapReduce操作中，用户代码可能希望确保生成的输出对的数量恰好等于处理的输入对的数量，或者处理的德语文档的比例在处理的文档总数的某个可容忍的比例之内。</p>
 <h2 id="5-Performance"><a href="#5-Performance" class="headerlink" title="5 Performance"></a>5 Performance</h2><p>主要是一些性能的测试，就分析图片吧</p>
 <p>集群配置：所有的程序都在一个由大约1800台机器组成的集群上执行。每台机器都有两个2GHz英特尔至强处理器，支持超线程，4GB内存，两个160GB IDE磁盘和千兆以太网链路。这些机器被安排在一个两级树状交换网络中，根节点的总带宽约为100- 200gbps。所有的机器都在同一个托管设施中，因此任何一对机器之间的往返时间都小于1毫秒。在4GB内存中，大约有1-1.5GB是由集群上运行的其他任务保留的。这些程序是在一个周末的下午执行的，当时cpu、磁盘和网络大多处于空闲状态。</p>
-<p><img src="../imgs/mapreduce/image-20240314175218619.png" srcset="/img/loading.gif" lazyload alt="图2:随时间变化的数据传输速率"></p>
+<p><img src="/2024/03/14/mapreduce/image-20240314175218619.png" srcset="/img/loading.gif" lazyload alt="图2:随时间变化的数据传输速率"></p>
 <p>图2显示了计算随时间的进展。y轴表示扫描输入数据的速率。当更多的机器被分配到这个MapReduce计算时，速率逐渐回升，当分配了1764个worker时，速率超过30GB/s。当地图任务完成时，速率开始下降，并在计算后80秒左右达到零。整个计算从开始到结束大约需要150秒。这包括大约一分钟的启动开销。开销是由于将程序传播到所有工作机器，以及延迟与GFS交互以打开1000个输入文件集并获得局部性优化所需的信息。</p>
-<p><img src="../imgs/mapreduce/image-20240314175700641.png" srcset="/img/loading.gif" lazyload alt="图3:排序程序的不同执行随时间变化的数据传输速率"></p>
+<p><img src="/2024/03/14/mapreduce/image-20240314175700641.png" srcset="/img/loading.gif" lazyload alt="图3:排序程序的不同执行随时间变化的数据传输速率"></p>
 <p>图3 (a)显示了排序程序正常执行的进度。左上角的图表显示了读取输入的速率。速率峰值约为13gb /s，并且很快就会消失，因为所有的map任务在200秒内就完成了。注意，输入速率小于grep。这是因为排序映射任务花费大约一半的时间和I/O带宽将中间输出写入本地磁盘。grep对应的中间输出的大小可以忽略不计。</p>
 <p>左中图显示了数据通过网络从map任务发送到reduce任务的速率。当第一个map任务完成时，shuffle就开始了。图中的第一个驼峰是第一批大约1700个reduce任务(整个MapReduce被分配了大约1700台机器，每台机器一次最多执行一个reduce任务)。在大约300秒的计算中，第一批reduce任务中的一些完成了，我们开始为剩余的reduce任务转移数据。所有的洗牌在计算后大约600秒完成</p>
 <p>左下角的图表显示了reduce任务将排序后的数据写入最终输出文件的速率。在第一个洗牌周期的结束和写入周期的开始之间有一个延迟，因为机器忙于对中间数据进行排序。继续以大约2-4 GB/s的速率写一段时间。所有的写操作在计算完成后大约850秒完成。包括启动开销在内，整个计算耗时891秒。这与目前TeraSort基准测试1057秒的最佳报告结果相似。</p>

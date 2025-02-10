@@ -25,16 +25,16 @@
 <meta property="og:site_name" content="Polarisのblog">
 <meta property="og:description" content="Bigtable：结构化数据的分布式存储系统概要Bigtable是一个用于管理结构化数据的分布式存储系统，旨在扩展到非常大的尺寸：数千台商用服务器上的PB级数据。Google 的许多项目都将数据存储在 Bigtable 中，包括网络索引、Google Earth 和 Google Finance。这些应用程序对 Bigtable 提出了截然不同的要求，无论是在数据大小（从 URL 到网页到卫星图像">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://polaris3003.github.io/2024/05/11/imgs/Bigtable/image-20240511210040299.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/05/11/imgs/Bigtable/image-20240511210136031.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/05/11/imgs/Bigtable/image-20240511210159571.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/05/11/Bigtable/image-20240511210040299.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/05/11/Bigtable/image-20240511210136031.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/05/11/Bigtable/image-20240511210159571.png">
 <meta property="article:published_time" content="2024-05-11T12:47:51.000Z">
-<meta property="article:modified_time" content="2024-05-11T13:02:24.112Z">
+<meta property="article:modified_time" content="2025-02-10T07:45:16.096Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="分布式系统">
 <meta property="article:tag" content="mit6.824">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://polaris3003.github.io/2024/05/11/imgs/Bigtable/image-20240511210040299.png">
+<meta name="twitter:image" content="http://polaris3003.github.io/2024/05/11/Bigtable/image-20240511210040299.png">
   
   
   
@@ -351,7 +351,7 @@
 <p>第 2 节更详细地描述了数据模型，第 3 节提供了客户端 API 的概述。第4节简述了Bigtable所依赖的底层Google基础设施。第5节描述了Bigtable实现的基础知识，第6节描述了我们为提高Bigtable性能所做的一些改进。我们在第 7 节中描述了 Google 如何使用 Bigtable 的几个示例，并在第 8 节中讨论了我们在设计和支持 Bigtable 时学到的一些经验教训。最后，第9节描述了相关工作，第10节介绍了我们的结论。</p>
 <h2 id="2-数据模型"><a href="#2-数据模型" class="headerlink" title="2 数据模型"></a>2 数据模型</h2><p>Bigtable是一个稀疏的、分布式的、持久的多维排序映射。该映射通过行键、列键和时间戳进行索引；映射中的每个值都是未解释的字节数组。</p>
 <p><code>(row:string, column:string, time:int64) -&gt; string</code></p>
-<p><img src="../imgs/Bigtable/image-20240511210040299.png" srcset="/img/loading.gif" lazyload alt="图 1：存储网页的示例表的切片。行名是反转的 URL。内容列族包含页面内容，锚点列族包含引用该页面的任何锚点的文本。CNN的主页被《体育画报》和MY-look主页引用，因此该行包含名为anchor:cnnsi.com和anchor：my.look.ca的列。每个锚单元格都有一个版本;内容列有三个版本，时间戳为 T3、T5 和 T6。"></p>
+<p><img src="/2024/05/11/Bigtable/image-20240511210040299.png" srcset="/img/loading.gif" lazyload alt="图 1：存储网页的示例表的切片。行名是反转的 URL。内容列族包含页面内容，锚点列族包含引用该页面的任何锚点的文本。CNN的主页被《体育画报》和MY-look主页引用，因此该行包含名为anchor:cnnsi.com和anchor：my.look.ca的列。每个锚单元格都有一个版本;内容列有三个版本，时间戳为 T3、T5 和 T6。"></p>
 <p>在检查了类似 Bigtable 的系统的各种潜在用途后，我们决定采用这个数据模型。作为推动我们的一些设计决策的一个具体示例，假设我们向阳保留大量网页和相关信息的副本，供许多不同的项目使用；让我们将这个特定的表称为Webtable。在Webtable中，我们将使用URL作为行键，使用网页的各个方面作为列名称，并将网页内容存储在抓取时的时间戳下的contents：column中，如图1所示。</p>
 <h3 id="行"><a href="#行" class="headerlink" title="行"></a>行</h3><p>在一个表中行键值是任意的字符串（目前最大大小为64kb，尽管10-100字节时我们大多数用户的典型大小）。在单个行键下读取或写入数据的每次都是原子的（无论行中读取或写入的不同列的数量如何），这种设计决策使客户端更容易在同一行存在并发更新的情况下推理系统的行为。</p>
 <p>Bigtable按行键的字典顺序维护数据。一个表的行范围是动态分区的。每一个行范围称为一个tablet，它是分配和负载均衡的单位。因此，短行范围的读取是有效的，并且通常只需要与少量机器进行通信。客户端可以通过选择行键来利用此属性，以便获得良好的数据访问局部性。例如，在Webtable中，通过反转URL的主机名部分，同一域中的页面被分组为连续的行。例如，我们将maps.google.com/index.html的数据存储在com.google.maps/index.htm键下。将来自同一域的页面彼此靠近存储可以使某些主机和域分析更加有效。</p>
@@ -380,7 +380,7 @@
 <p>与许多单主机分布式存储系统一样，客户端数据不通过主机移动：客户端直接与tablet服务器通信以进行读取和写入。由于Bigtable客户端不依赖主服务器获取tablet位置信息，因此大多数客户端从不与主服务器通信。因此，master在实践中的负载很轻。</p>
 <p>Bigtable集群存储许多表。每个表由一组tablet组成，每个tablet包含与行范围相关联的所有数据。最初，每个表仅包含一个tablet，随着表的增长，它会自动拆分为多个片，默认情况下每个片的大小约为100-200MB。</p>
 <h3 id="5-1-Tablet位置"><a href="#5-1-Tablet位置" class="headerlink" title="5.1 Tablet位置"></a>5.1 Tablet位置</h3><p>我们使用类似于B+树的三级层次结构来存储tablet的位置信息（图4）。</p>
-<p><img src="../imgs/Bigtable/image-20240511210136031.png" srcset="/img/loading.gif" lazyload alt="图4"></p>
+<p><img src="/2024/05/11/Bigtable/image-20240511210136031.png" srcset="/img/loading.gif" lazyload alt="图4"></p>
 <p>第一层是存储在Chubby中的文件，其中包含根数据块的位置。根tablet包含所有tablet在特殊METADATA表中的位置。每个元数据tablet都包含一组用户tablet的位置。根tablet只是METADATA表中的第一个tablet，但经过特殊处理——它永远不会被分割——以确保tablet位置层次结构不超过三个级别。METADATA 表将tablet的位置存储在行键下，该行键是tablet的表标识符及其结束行的编码。每个METADATA行在内存中存储大约1KB的数据。由于128MB元数据tablet的适度限制，我们的三级定位方案足以寻址2<sup>34</sup>个tablet（或者128MBtablet中的2<sup>61</sup>个字节)。</p>
 <p>客户端库缓存tablet位置。如果客户端不知道tablet的位置，或者发现缓存的位置信息不正确，则它会递归地向上移动tablet位置层次结构。如果客户端的缓存为空，则定位算法需要3次网络往返，其中一次从Chubby读取。如果客户端的缓存已过时，则定位算法可能需要最多6次往返，因为过时的缓存条目仅在未命中时才会发现（假设METADATA tablet不经常移动）。尽管tablet位置存储在内存中，因此不需要 GFS 访问，但在常见情况下，我们通过让客户端库预取tablet位置来进一步降低此成本：每当它读取 METADATA 表时，它都会读取多个tablet的元数据。</p>
 <p>我们还在元数据表中存储辅助信息，包括与每个tablet相关的所有事件的日志（例如服务器何时开始为其提供服务）。这些信息有助于调试和性能分析。</p>
@@ -398,7 +398,7 @@
 <p>一个复杂的情况是，在分配METADATA片之前无法扫描METADATA表。因此，在开始扫描（步骤4）之前，如果在步骤3期间未发现根tablet的分配，则主设备会将根tablet添加到未分配的tablet集合中。此添加可确保分配根tablet。因为根tablet包含所有METADATA tablet的名称，所以master在扫描根tablet后就知道所有这些信息。</p>
 <p>仅当创建或删除表、合并两个现有tablet以形成一个较大的tablet或将现有tablet拆分为两个较小的tablet时，现有tablet集才会发生变化。主设备能够跟踪这些更改，因为它启动了除最后一个之外的所有更改。tablet拆分会被特殊处理，因为它们是由tablet服务器发起的。tabelt服务器通过在METADATA表中记录新tablet的信息来提交拆分。当拆分提交后，它会通知master。为了防止拆分通知丢失（因为tablet服务器或主节点宕机），当master请求tablet服务器加载现在已经分裂的tablet时，它会检测到新的tablet。tablet服务器将通知master拆分的信息，因为它在元数据表中找到的tablet条目将仅指定master要求其加载的tablet的一部分。</p>
 <h3 id="5-3-tablet服务"><a href="#5-3-tablet服务" class="headerlink" title="5.3 tablet服务"></a>5.3 tablet服务</h3><p>tablet的持久状态存储在GFS中，如图5所示。更新被提交到存储重做记录的提交日志中。在这些更新中，最近提交的更新存储在内存中一个称为memtable的排序缓冲区中；较旧的更新存储在一系列SSTable中。为了恢复tablet，tablet服务器从 METADATA 表中读取其元数据。</p>
-<p><img src="../imgs/Bigtable/image-20240511210159571.png" srcset="/img/loading.gif" lazyload alt="图5"></p>
+<p><img src="/2024/05/11/Bigtable/image-20240511210159571.png" srcset="/img/loading.gif" lazyload alt="图5"></p>
 <p>该元数据包含SSTable列表，该列表包含一个tablet和一组重做点，这些重做点是指向可能包含tablet数据的任何提交日志的指针。服务器将SSTable的索引读取到内存中，并通过应用自重做点以来已提交的所有更新来重建内存表。</p>
 <p>当写操作到达tablet服务器时，服务器会检查它的格式是否正确，以及发送者是否有权执行突变。授权是通过从Chubby文件（几乎总是在Chubby客户端缓存中命中）读取允许的写入者列表来执行的。有效的变更将写入提交日志。组提交用于提高大量小突变的吞吐量。提交写入后，其内容将插入到内存表中。</p>
 <p>当读取操作到达tablet服务器时，同样会检查其格式正确性和正确的授权。在SSTable序列和内存表的合并视图上执行有效的读取操作。由于SSTable和memtable时按字典序排序的数据结构，因此可以有效地形成合并视图。</p>

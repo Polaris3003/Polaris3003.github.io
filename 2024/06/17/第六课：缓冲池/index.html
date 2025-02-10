@@ -25,11 +25,11 @@
 <meta property="og:site_name" content="Polarisのblog">
 <meta property="og:description" content="第六课：缓冲池1 介绍DBMS负责管理其内存并在磁盘上来回移动数据。由于在大多数情况下，数据无法直接在磁盘中进行操作，因此任何数据库必须能够有效地将表示为文件的数据从磁盘移动到内存中，以便可以使用。交互的示意图如图一所示。理想情况下，从执行引擎的角度来看，它应该“看起来”好像所有数据都在内存中。它不必担心如何将数据提取到内存中。  思考这个问题的另一种方式是从空间和时间控制的角度来考虑。 空间控制">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://polaris3003.github.io/2024/06/17/imgs/%E7%AC%AC%E5%85%AD%E8%AF%BE%EF%BC%9A%E7%BC%93%E5%86%B2%E6%B1%A0/image-20240617170556181.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/06/17/imgs/%E7%AC%AC%E5%85%AD%E8%AF%BE%EF%BC%9A%E7%BC%93%E5%86%B2%E6%B1%A0/image-20240617172314457.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/06/17/imgs/%E7%AC%AC%E5%85%AD%E8%AF%BE%EF%BC%9A%E7%BC%93%E5%86%B2%E6%B1%A0/image-20240618143256776.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/06/17/%E7%AC%AC%E5%85%AD%E8%AF%BE%EF%BC%9A%E7%BC%93%E5%86%B2%E6%B1%A0/image-20240617170556181.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/06/17/%E7%AC%AC%E5%85%AD%E8%AF%BE%EF%BC%9A%E7%BC%93%E5%86%B2%E6%B1%A0/image-20240617172314457.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/06/17/%E7%AC%AC%E5%85%AD%E8%AF%BE%EF%BC%9A%E7%BC%93%E5%86%B2%E6%B1%A0/image-20240618143256776.png">
 <meta property="article:published_time" content="2024-06-17T08:57:51.000Z">
-<meta property="article:modified_time" content="2024-06-21T18:33:14.897Z">
+<meta property="article:modified_time" content="2025-02-10T07:47:05.501Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="Buffer Pool">
 <meta property="article:tag" content="Locks vs. Latches">
@@ -52,7 +52,7 @@
 <meta property="article:tag" content="Disk I&#x2F;O Scheduling">
 <meta property="article:tag" content="Sequential vs. Random I&#x2F;O">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://polaris3003.github.io/2024/06/17/imgs/%E7%AC%AC%E5%85%AD%E8%AF%BE%EF%BC%9A%E7%BC%93%E5%86%B2%E6%B1%A0/image-20240617170556181.png">
+<meta name="twitter:image" content="http://polaris3003.github.io/2024/06/17/%E7%AC%AC%E5%85%AD%E8%AF%BE%EF%BC%9A%E7%BC%93%E5%86%B2%E6%B1%A0/image-20240617170556181.png">
   
   
   
@@ -364,7 +364,7 @@
               <div class="markdown-body">
                 
                 <h1 id="第六课：缓冲池"><a href="#第六课：缓冲池" class="headerlink" title="第六课：缓冲池"></a>第六课：缓冲池</h1><h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h2><p>DBMS负责管理其内存并在磁盘上来回移动数据。由于在大多数情况下，数据无法直接在磁盘中进行操作，因此任何数据库必须能够有效地将表示为文件的数据从磁盘移动到内存中，以便可以使用。交互的示意图如图一所示。理想情况下，从执行引擎的角度来看，它应该“看起来”好像所有数据都在内存中。它不必担心如何将数据提取到内存中。</p>
-<p><img src="../imgs/第六课：缓冲池/image-20240617170556181.png" srcset="/img/loading.gif" lazyload alt="图1"></p>
+<p><img src="/2024/06/17/%E7%AC%AC%E5%85%AD%E8%AF%BE%EF%BC%9A%E7%BC%93%E5%86%B2%E6%B1%A0/image-20240617170556181.png" srcset="/img/loading.gif" lazyload alt="图1"></p>
 <p>思考这个问题的另一种方式是从空间和时间控制的角度来考虑。</p>
 <p>空间控制是指页面在磁盘上物理写入的位置。空间控制的目标是使经常一起使用的页面在磁盘上尽可能物理地靠近。</p>
 <p>时间控制是指何时将页面读入内存以及何时将其写入磁盘。时间控制旨在最大限度地减少因必须从磁盘读取数据而导致的停顿数量。</p>
@@ -373,7 +373,7 @@
 <p><strong>Latchs：</strong>latch是一种低级保护原语，DBMS用于其内部数据结构（例如哈希表、内存区域）中的关键部分。Latchs仅在执行操作期间被保持。不需要能够回滚更改。</p>
 <h2 id="3-缓冲池"><a href="#3-缓冲池" class="headerlink" title="3 缓冲池"></a>3 缓冲池</h2><p>缓冲池是从磁盘读取的页面的内存缓存。它本质上是在数据库内部分配的一个大内存区域，用于存储从磁盘获取的页面。</p>
 <p>缓冲池的内存区域组织为固定大小页面的数组。每个数组条目称为一个帧。当DBMS请求一页时，会将其从磁盘复制到缓冲池的其中一个帧。当一个页面被请求时，数据库系统能先查找缓冲池。只有这个页面没有找到时，系统才会从磁盘中获取这个页面的一个copy。脏页被缓冲并且不会立即写回。缓冲池的内存组织图见图 2。</p>
-<p><img src="../imgs/第六课：缓冲池/image-20240617172314457.png" srcset="/img/loading.gif" lazyload alt="图2"></p>
+<p><img src="/2024/06/17/%E7%AC%AC%E5%85%AD%E8%AF%BE%EF%BC%9A%E7%BC%93%E5%86%B2%E6%B1%A0/image-20240617172314457.png" srcset="/img/loading.gif" lazyload alt="图2"></p>
 <h3 id="缓冲池元数据"><a href="#缓冲池元数据" class="headerlink" title="缓冲池元数据"></a>缓冲池元数据</h3><p>缓冲池必须维护某些元数据才能有效且正确地使用。</p>
 <p>首先，页表是内存中的哈希表，用于跟踪当前内存中的页面。它将页面 ID 映射到缓冲池中的帧位置。由于缓冲池中页面的顺序不一定反映磁盘上的顺序，因此这个额外的间接层允许识别池中的页面位置。</p>
 <p>注意：不要将页表与页目录混淆，页目录是从页 id 到数据库文件中页位置的映射。对页目录的所有更改都必须记录在磁盘上，以便 DBMS 在重新启动时能够找到。</p>
@@ -398,7 +398,7 @@
 <h3 id="最近最少使用（LRU）"><a href="#最近最少使用（LRU）" class="headerlink" title="最近最少使用（LRU）"></a>最近最少使用（LRU）</h3><p>最近最少使用的替换策略维护每个页面上次访问时间的时间戳。 DBMS 选择逐出具有最早时间戳的页面。该时间戳可以存储在单独的数据结构中，例如队列，以允许排序并通过减少驱逐时的排序时间来提高效率。</p>
 <h3 id="CLOCK"><a href="#CLOCK" class="headerlink" title="CLOCK"></a>CLOCK</h3><p>CLOCK 策略是 LRU 的近似，不需要每页单独的时间戳。在CLOCK策略中，每个页面都被赋予一个参考位。当访问页面时，设置为1。</p>
 <p>为了形象化这一点，请使用“时钟指针”将页面组织在循环缓冲区中。扫描时检查页面的位是否设置为 1。如果是，则设置为零，如果否，则将其逐出。通过这种方式，时钟指针可以记住驱逐之间的位置。</p>
-<p><img src="../imgs/第六课：缓冲池/image-20240618143256776.png" srcset="/img/loading.gif" lazyload alt="图3"></p>
+<p><img src="/2024/06/17/%E7%AC%AC%E5%85%AD%E8%AF%BE%EF%BC%9A%E7%BC%93%E5%86%B2%E6%B1%A0/image-20240618143256776.png" srcset="/img/loading.gif" lazyload alt="图3"></p>
 <h3 id="备选方案"><a href="#备选方案" class="headerlink" title="备选方案"></a>备选方案</h3><p>LRU 和 CLOCK 替换策略存在许多问题。</p>
 <p>也就是说，LRU 和 CLOCK 容易受到顺序泛洪的影响，其中缓冲池的内容由于顺序扫描而被损坏。由于顺序扫描会快速读取许多页面，因此缓冲池会被填满，并且来自其他查询的页面会被逐出，因为它们将具有较早的时间戳。在这种情况下，最新的时间戳并不能准确反映我们实际想要驱逐的页面。</p>
 <p>针对LRU和CLOCK策略的缺点，存在三种解决方案。</p>

@@ -25,15 +25,15 @@
 <meta property="og:site_name" content="Polarisのblog">
 <meta property="og:description" content="面经刚好都是字节国际电商？ 估计问的就差不多，所以偷一下看看 OS虚拟内存相关内存虚拟化是什么，有什么目的？内存虚拟化是一种将物理内存资源抽象、管理和分配的技术。它允许将计算机的物理内存划分为独立的、隔离的虚拟内存块，每个虚拟内存块都有操作系统或虚拟机管理。内存虚拟化可以在多个层次实现，如硬件层、操作系统层或应用程序层。 目的：  资源隔离与共享：内存虚拟化可以在不同的进程、应用程序或虚拟机之间隔">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://polaris3003.github.io/2024/03/19/imgs/19th-March/21.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/03/19/imgs/19th-March/image-20240320000304343.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/19/19th-March/21.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/19/19th-March/image-20240320000304343.png">
 <meta property="article:published_time" content="2024-03-19T02:51:47.000Z">
-<meta property="article:modified_time" content="2024-03-19T16:05:30.716Z">
+<meta property="article:modified_time" content="2025-02-10T07:44:21.512Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="diary">
 <meta property="article:tag" content="八股">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://polaris3003.github.io/2024/03/19/imgs/19th-March/21.png">
+<meta name="twitter:image" content="http://polaris3003.github.io/2024/03/19/19th-March/21.png">
   
   
   
@@ -392,7 +392,7 @@
 <h3 id="TCP流量控制"><a href="#TCP流量控制" class="headerlink" title="TCP流量控制"></a>TCP流量控制</h3><p>发送方不能无脑的发数据给接收方，要考虑接收方处理能力。</p>
 <p>如果一直无脑的发数据给对方，但对方处理不过来，那么就会导致触发重发机制，从而导致网络流量的无端的浪费。</p>
 <p>为了解决这种现象发生，TCP提供了一种机制可以让发送放根据接收方的实际接受能力控制发送的数据量，这就是所谓的流量控制。</p>
-<p><img src="../imgs/19th-March/21.png" srcset="/img/loading.gif" lazyload alt="流量控制"></p>
+<p><img src="/2024/03/19/19th-March/21.png" srcset="/img/loading.gif" lazyload alt="流量控制"></p>
 <ol>
 <li>客户端向服务端发送请求数据报文。</li>
 <li>服务端收到请求报文后，发送确认报文和80字节的数据，于是可用窗口 <code>Usable</code> 减少为 120 字节，同时<code>SND.NXT</code>指针页向右偏移80字节，这意味着下次发送数据的时候，序列号时321.</li>
@@ -444,7 +444,7 @@
 </ul>
 <p><strong>在 Redis 7.0 中，压缩列表数据结构已经废弃了，交由 listpack 数据结构来实现了。</strong></p>
 <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/copy-list-with-random-pointer/">138. 随机链表的复制</a></p>
-<p><img src="../imgs/19th-March/image-20240320000304343.png" srcset="/img/loading.gif" lazyload alt="随机链表的复制"></p>
+<p><img src="/2024/03/19/19th-March/image-20240320000304343.png" srcset="/img/loading.gif" lazyload alt="随机链表的复制"></p>
 <p>哈希表实现：</p>
 <p>用哈希表存储每个链表节点 然后再串联next和random</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-comment">/*</span><br><span class="hljs-comment">// Definition for a Node.</span><br><span class="hljs-comment">class Node &#123;</span><br><span class="hljs-comment">public:</span><br><span class="hljs-comment">    int val;</span><br><span class="hljs-comment">    Node* next;</span><br><span class="hljs-comment">    Node* random;</span><br><span class="hljs-comment">    </span><br><span class="hljs-comment">    Node(int _val) &#123;</span><br><span class="hljs-comment">        val = _val;</span><br><span class="hljs-comment">        next = NULL;</span><br><span class="hljs-comment">        random = NULL;</span><br><span class="hljs-comment">    &#125;</span><br><span class="hljs-comment">&#125;;</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">Node* <span class="hljs-title">copyRandomList</span><span class="hljs-params">(Node* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        Node* cur = head;<br>        unordered_map&lt;Node*,Node*&gt; map;<br>        <span class="hljs-keyword">while</span>(cur != <span class="hljs-literal">nullptr</span>)&#123;<br>            map[cur] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(cur-&gt;val);<br>            cur = cur-&gt;next;<br>        &#125;<br>        cur = head;<br>        <span class="hljs-keyword">while</span>(cur != <span class="hljs-literal">nullptr</span>)&#123;<br>            map[cur]-&gt;next = map[cur-&gt;next];<br>            map[cur]-&gt;random = map[cur-&gt;random];<br>            cur = cur-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> map[head];<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>

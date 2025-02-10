@@ -25,20 +25,20 @@
 <meta property="og:site_name" content="Polarisのblog">
 <meta property="og:description" content="第十三课：查询处理II1 背景前面关于查询执行的讨论都假设查询由单个工作器（即线程）执行。然而，在实践中，查询通常由多个工作器并行执行。 并行执行为 DBMS 提供了许多关键优势：  提高吞吐量（每秒更多查询）和延迟（每个查询所用时间更少）的性能。 从 DBMS 外部客户端的角度来看，响应能力和可用性有所提高。 潜在降低总拥有成本 (TCO)。此成本包括硬件采购和软件许可，以及部署 DBMS 的人">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://polaris3003.github.io/2024/12/03/imgs/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20241203205321890.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/12/03/imgs/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250120141109075.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/12/03/imgs/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250120141738917.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/12/03/imgs/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250206141201753.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/12/03/imgs/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250206144107341.png">
-<meta property="og:image" content="http://polaris3003.github.io/2024/12/03/imgs/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250206144425418.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20241203205321890.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250120141109075.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250120141738917.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250206141201753.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250206144107341.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250206144425418.png">
 <meta property="article:published_time" content="2024-12-03T11:36:40.000Z">
-<meta property="article:modified_time" content="2025-02-06T06:59:01.651Z">
+<meta property="article:modified_time" content="2025-02-10T07:47:25.488Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="并行执行 (Parallel Execution)">
 <meta property="article:tag" content="查询内并行 (Intra-Query Parallelism)">
 <meta property="article:tag" content="分布式数据库 (Distributed Databases)">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://polaris3003.github.io/2024/12/03/imgs/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20241203205321890.png">
+<meta name="twitter:image" content="http://polaris3003.github.io/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20241203205321890.png">
   
   
   
@@ -366,7 +366,7 @@
 <p>即使数据库可能在物理上分布在多个资源上，但它在应用程序看来仍然是一个逻辑数据库实例。因此，针对单节点 DBMS 执行的 SQL 查询应该在并行或分布式 DBMS 上生成相同的结果。</p>
 <h2 id="3-处理模型"><a href="#3-处理模型" class="headerlink" title="3 处理模型"></a>3 处理模型</h2><p>DBMS 进程模型定义系统如何支持来自多用户应用程序/环境的并发请求。DBMS 由多个工作器组成，负责代表客户端执行任务并返回结果。应用程序可能会同时发送一个或多个大型请求，这些请求必须分配给不同的工作程序。</p>
 <p>DBMS 可能采用两种主要进程模型：每个工作者进程和每个工作者线程。第三种常见的数据库使用模式采用嵌入式方法。</p>
-<p><img src="../imgs/第十三课：查询处理II/image-20241203205321890.png" srcset="/img/loading.gif" lazyload alt="图1：每个工作者进程模型" id="image1"></p>
+<p><img src="/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20241203205321890.png" srcset="/img/loading.gif" lazyload alt="图1：每个工作者进程模型" id="image1"></p>
 <h3 id="每个工作者进程"><a href="#每个工作者进程" class="headerlink" title="每个工作者进程"></a>每个工作者进程</h3><p>最基本的方法是每个工作进程。在这里，每个工作进程都是一个单独的操作系统进程，因此依赖于操作系统调度程序。应用程序发送请求并打开与数据库系统的连接。一些调度程序接收请求，选择其中一个工作进程来管理连接。应用程序现在直接与负责执行查询请求的工作进程进行通信。此事件序列如<a href="#image1">图 1 </a>所示。</p>
 <p>依赖操作系统进行调度会有效降低 DBMS 对执行的控制力。此外，该模型依赖共享内存来维护全局数据结构或依赖消息传递，开销较高。</p>
 <p>每个工作进程方法的优点在于进程崩溃不会破坏整个系统，因为每个工作进程都在其自己的操作系统进程上下文中运行。</p>
@@ -375,7 +375,7 @@
 <h3 id="每个工作者线程"><a href="#每个工作者线程" class="headerlink" title="每个工作者线程"></a>每个工作者线程</h3><p>如今最常见的模型是每个工作线程一个线程。不同于让不同的进程执行不同的任务，每个数据库系统只有一个进程和多个工作线程。在这种环境中，数据库管理系统（DBMS）对任务和线程具有完全的控制权，可以管理自己的调度。多线程模型可能使用或不使用分发线程。线程每个工作的模型示意图如<a href="#image2">图 2 </a>所示。</p>
 <p>使用多线程架构提供了一定的优势。首先，每次上下文切换的开销较小。此外，不必维护共享模型。然而，每个工作线程的模型并不一定意味着数据库管理系统支持查询内部的并行性。</p>
 <p>在过去20年中几乎所有创建的数据库管理系统都采用这种方法，包括Microsoft SQL Server和MySQL。IBM DB2和Oracle也更新了他们的模型，以支持这种方法。Postgres和Postgres衍生的数据库在很大程度上仍然使用基于进程的方法。</p>
-<p><img src="../imgs/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250120141109075.png" srcset="/img/loading.gif" lazyload alt="图2：每个工作者线程模型" id="image2"></p>
+<p><img src="/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250120141109075.png" srcset="/img/loading.gif" lazyload alt="图2：每个工作者线程模型" id="image2"></p>
 <h3 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h3><p>总之，对于每个查询计划，DBMS 必须决定在何处、何时以及如何执行。相关问题包括：</p>
 <ul>
 <li>应该使用多少个任务？</li>
@@ -384,14 +384,14 @@
 <li>任务应该将其输出存储在哪里？</li>
 </ul>
 <p>在制定有关查询计划的决策时，DBMS 总是比 OS 了解得更多，因此应该优先考虑。</p>
-<p><img src="../imgs/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250120141738917.png" srcset="/img/loading.gif" lazyload alt="图3：嵌入式 DBMS 调度" id="image3"></p>
+<p><img src="/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250120141738917.png" srcset="/img/loading.gif" lazyload alt="图3：嵌入式 DBMS 调度" id="image3"></p>
 <h3 id="嵌入式DBMS"><a href="#嵌入式DBMS" class="headerlink" title="嵌入式DBMS"></a>嵌入式DBMS</h3><p>一种非常不同的数据库使用模式涉及将系统在应用程序的相同地址空间中运行，与数据库独立于应用程序的客户端-服务器模型相对。在这种情况下，应用程序将设置线程和任务以在数据库系统上运行。应用程序本身在很大程度上将负责调度。嵌入式数据库管理系统的调度行为的示意图如<a href="#image3">图3</a>所示。</p>
 <p>DuckDB、SQLite和RocksDB是最著名的嵌入式数据库管理系统。</p>
 <h2 id="4-查询间并行"><a href="#4-查询间并行" class="headerlink" title="4 查询间并行"></a>4 查询间并行</h2><p>在查询间并行中，DBMS 会同时执行不同的查询。由于多个工作器同时运行请求，因此整体性能得到改善。这会增加吞吐量并减少延迟。</p>
 <p>如果查询是只读的，则查询之间几乎不需要协调。但是，如果多个查询同时更新数据库，则会出现更复杂的冲突。这些问题将在第 15 讲中进一步讨论。</p>
 <h2 id="5-查询内并行"><a href="#5-查询内并行" class="headerlink" title="5 查询内并行"></a>5 查询内并行</h2><p>在查询内并行中，DBMS 并行执行单个查询的操作。这减少了长时间运行的查询的延迟。</p>
 <p>查询内并行性的组织可以从生产者/消费者范式的角度来思考。每个操作符都是数据的生产者，同时也是其下层运行的操作符的数据的消费者。</p>
-<p><img src="../imgs/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250206141201753.png" srcset="/img/loading.gif" lazyload alt="图4：操作内部并行性 – 此SELECT的查询计划是在A上进行的顺序扫描，结果被输入到一个过滤操作符中。为了并行运行，查询计划被划分为不相交的片段。给定的计划片段由不同的工作者进行操作。交换操作符同时在所有片段上调用Next，然后从各自的页面检索数据。" id="image4"></p>
+<p><img src="/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250206141201753.png" srcset="/img/loading.gif" lazyload alt="图4：操作内部并行性 – 此SELECT的查询计划是在A上进行的顺序扫描，结果被输入到一个过滤操作符中。为了并行运行，查询计划被划分为不相交的片段。给定的计划片段由不同的工作者进行操作。交换操作符同时在所有片段上调用Next，然后从各自的页面检索数据。" id="image4"></p>
 <p>每个关系运算符都有并行算法。DBMS 既可以让多个线程访问集中式数据结构，也可以使用分区来划分工作。</p>
 <p>在查询内并行性中，有三种类型的并行性：操作内并行性、操作间并行性和密集并行性。这些方法并不相互排斥。DBMS 有责任将这些技术结合起来，以优化给定工作负载的性能。</p>
 <h3 id="操作内并行性（水平）"><a href="#操作内并行性（水平）" class="headerlink" title="操作内并行性（水平）"></a>操作内并行性（水平）</h3><p>在操作符内并行中，查询计划的操作符被分解为独立的片段，这些片段对不同的（不相交的）数据子集执行相同的功能。</p>
@@ -404,8 +404,8 @@
 </ul>
 <h3 id="操作间并行性（垂直）"><a href="#操作间并行性（垂直）" class="headerlink" title="操作间并行性（垂直）"></a>操作间并行性（垂直）</h3><p>在运算符间并行中，DBMS 重叠运算符，以便将数据从一个阶段流水线传输到下一个阶段而无需具体化。这有时称为流水线并行。参见<a href="#image5">图 5</a> 中的示例。</p>
 <p>这种方法广泛应用于流处理系统，即对输入元组流持续执行查询的系统。</p>
-<p><img src="../imgs/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250206144107341.png" srcset="/img/loading.gif" lazyload alt="图5：操作间并行 - 在左边的 JOIN 语句中，一个工作者执行连接，然后将结果发送给另一个工作者，后者执行投影，然后再次发出结果。" id="image5"></p>
-<p><img src="../imgs/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250206144425418.png" srcset="/img/loading.gif" lazyload alt="图6：密集平行性 - 为了对三个表执行 4 路 JOIN，查询计划被分为四个片段，如图所示。查询计划的不同部分同时运行，方式类似于运算符间并行。" id="image6"></p>
+<p><img src="/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250206144107341.png" srcset="/img/loading.gif" lazyload alt="图5：操作间并行 - 在左边的 JOIN 语句中，一个工作者执行连接，然后将结果发送给另一个工作者，后者执行投影，然后再次发出结果。" id="image5"></p>
+<p><img src="/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/image-20250206144425418.png" srcset="/img/loading.gif" lazyload alt="图6：密集平行性 - 为了对三个表执行 4 路 JOIN，查询计划被分为四个片段，如图所示。查询计划的不同部分同时运行，方式类似于运算符间并行。" id="image6"></p>
 <h3 id="密集并行性"><a href="#密集并行性" class="headerlink" title="密集并行性"></a>密集并行性</h3><p>密集并行是操作符内并行和操作符间并行的混合，其中工作者同时执行来自查询计划的不同段的多个操作符。</p>
 <p>DBMS 仍然使用交换运算符来组合这些段的中间结果。示例如<a href="#image6">图 6</a> 所示。</p>
 <h2 id="6-I-O并行"><a href="#6-I-O并行" class="headerlink" title="6 I/O并行"></a>6 I/O并行</h2><p>如果磁盘始终是主要瓶颈，那么使用额外的进程/线程来并行执行查询不会提高性能。因此，能够将数据库拆分到多个存储设备中非常重要。</p>
