@@ -356,8 +356,10 @@
 </ul>
 <h4 id="物理内存与虚拟内存的映射机制"><a href="#物理内存与虚拟内存的映射机制" class="headerlink" title="物理内存与虚拟内存的映射机制"></a>物理内存与虚拟内存的映射机制</h4><p>物理内存和虚拟内存的映射机制是计算机系统中实现内存虚拟化的关键技术。虚拟内存到物理内存的映射方式一般有分段和分页两种，由于分段机制内存碎片较多，常用的是分页机制。映射过程有内存管理单元（MMU）和操作系统共同完成。</p>
 <ul>
-<li><strong>分页机制：</strong>在分页系统中，虚拟内存和物理内存都被划分为固定大小的单元，称为页。虚拟页的大小和物理页相同，通常为4KB或更大。分页系统的主要目的是将虚拟内存中的页映射到物理内存中的页。</li>
-<li><strong>页表：</strong>页表是一种数据结构，用于存储虚拟页到物理页的映射关系。每个进程都有自己的页表，由操作系统管理。页表中的每个条目包含一个虚拟页号和对应的物理页号。当CPU访问虚拟内存时，MMU会使用页表将虚拟地址转换为物理地址。</li>
+<li><p><strong>分页机制：</strong>在分页系统中，虚拟内存和物理内存都被划分为固定大小的单元，称为页。虚拟页的大小和物理页相同，通常为4KB或更大。分页系统的主要目的是将虚拟内存中的页映射到物理内存中的页。</p>
+</li>
+<li><p><strong>页表：</strong>页表是一种数据结构，用于存储虚拟页到物理页的映射关系。每个进程都有自己的页表，由操作系统管理。页表中的每个条目包含一个虚拟页号和对应的物理页号。当CPU访问虚拟内存时，MMU会使用页表将虚拟地址转换为物理地址。</p>
+</li>
 <li><p><strong>地址转换：</strong>虚拟地址通常由两部分组成：虚拟页号（VPN）和页内偏移（offset）。虚拟页号用于查找页表中相应的物理页号，而页内偏移表示在物理页中的具体位置。地址抓换过程如下：</p>
 <ol>
 <li>CPU生成一个虚拟地址</li>
@@ -369,16 +371,20 @@
 </li>
 <li><p>页面置换和缺页中断：当虚拟页尚未加载到物理内存时，发生页面缺失（page fault）。在这种情况下，操作系统需要从磁盘或其他存储设备中加载所需的虚拟页，并将其映射到物理内存。为了腾出空间，操作系统可能需要选择一个已加载的页面，将其换出到磁盘。页面置换算法用于决定哪个页面应该被换出</p>
 </li>
-<li>多级页表：多级页表使一种用于减少页表大小的技术。在具有大量虚拟地址空间的系统中，使用单级页表可能导致浪费大量内存。多级页表通过将虚拟地址空间划分为多个层次来减小页表的大小。每个层次都有自己的页表，只有在需要时才会分配。这样可以大大减小内存开销。</li>
-<li>快表（TLB）：快表，也称为转换后援缓冲（Translation Lookaside Buffer），是一种硬件缓存，用于加速虚拟地址到物理地址的转换过程。TLB将最近使用过的虚拟地址到物理地址的映射存储在高速缓存中，以便快速查找。当MMU需要转换一个虚拟地址时，它首先检查TLB是否包含所需的映射。如何TLB中存在映射，MMU可以避免访问内存中的页表，从而加速地址转换过程。</li>
-<li>内存分配策略：操作系统使用不同的内存分配策略来管理虚拟内存和物理内存之间的映射。按需分配是一种常用的策略，它旨在进程实际访问虚拟内存时才将虚拟页加载到物理内存。预取是另一种策略，它根据进程的访问模式提前加载可能需要的虚拟页，以减少页面缺失的开销。</li>
-<li>内存共享：内存共享是一种允许多个进程访问相同物理内存区域的技术。通过将不同 进程的虚拟地址映射到同一物理页，操作系统可以实现内存共享。这种技术在共享库、进程间通信和内存去重等场景中非常有用。</li>
+<li><p>多级页表：多级页表使一种用于减少页表大小的技术。在具有大量虚拟地址空间的系统中，使用单级页表可能导致浪费大量内存。多级页表通过将虚拟地址空间划分为多个层次来减小页表的大小。每个层次都有自己的页表，只有在需要时才会分配。这样可以大大减小内存开销。</p>
+</li>
+<li><p>快表（TLB）：快表，也称为转换后援缓冲（Translation Lookaside Buffer），是一种硬件缓存，用于加速虚拟地址到物理地址的转换过程。TLB将最近使用过的虚拟地址到物理地址的映射存储在高速缓存中，以便快速查找。当MMU需要转换一个虚拟地址时，它首先检查TLB是否包含所需的映射。如何TLB中存在映射，MMU可以避免访问内存中的页表，从而加速地址转换过程。</p>
+</li>
+<li><p>内存分配策略：操作系统使用不同的内存分配策略来管理虚拟内存和物理内存之间的映射。按需分配是一种常用的策略，它旨在进程实际访问虚拟内存时才将虚拟页加载到物理内存。预取是另一种策略，它根据进程的访问模式提前加载可能需要的虚拟页，以减少页面缺失的开销。</p>
+</li>
+<li><p>内存共享：内存共享是一种允许多个进程访问相同物理内存区域的技术。通过将不同 进程的虚拟地址映射到同一物理页，操作系统可以实现内存共享。这种技术在共享库、进程间通信和内存去重等场景中非常有用。</p>
+</li>
 </ul>
 <p>物理内存和虚拟内存的映射机制通过分页、页表、地址转换、多级页表、TLB、内存分配策略等技术实现。这种映射提供了内存虚拟化、进程隔离和内存优化等关键功能。</p>
 <h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><h4 id="进程、线程、协程区别与联系"><a href="#进程、线程、协程区别与联系" class="headerlink" title="进程、线程、协程区别与联系"></a>进程、线程、协程区别与联系</h4><p>进程、线程和协程是计算机程序执行的三个不同层次</p>
 <p><strong>进程：</strong>进程是操作系统进行资源分配和调度的基本单位，是一个独立运行的程序实体。每个进程拥有独立的内存空间、文件描述符、寄存器状态等资源。进程之间的资源是相互隔离的，因此进程间通信需要通过操作系统提供的特定机制（如管道、消息队列、共享内存等）进行。由于进程拥有独立的资源，所以进程间的切换调度开销较大</p>
 <p><strong>线程：</strong>线程是操作系统调度执行的最小单位，是进程内的一个执行流。一个进程可以拥有多个线程，这些线程共享进程的资源（如内存空间、文件描述符等）。由于线程共享相同的资源，线程间通信相对简单，可以直接通过共享变量、锁等方式进行。线程相较于进程，上下文切换和调度开销较小。但多个线程并行执行时，需要处理好同步和互斥问题，以避免数据不一致或竞争条件。</p>
-<p><strong>协程：</strong>协程是一种用户态的轻量级线程，它的调度和切换完全由程序控制，不依赖于操作系统的调度。协程之间共享线程的资源，因此协程间通信也可以通过共享变量、锁等方式进行。协程的优势在于可以轻松地实现高并发，因此协程切换和调度的开销非常小。协程适用于I/O密集型任务，通过异步I/O可以有效地提高程序的性能。</p>
+<p><strong>协程：</strong>协程是一种用户态的轻量级线程，它的调度和切换完全由程序控制，不依赖于操作系统的调度。协程之间共享线程的资源，因此协程间通信也可以通过共享变量、锁等方式进行。协程的优势在于可以轻松地实现高并发，因此协程切换和调度的开销非常小。协程适用于I&#x2F;O密集型任务，通过异步I&#x2F;O可以有效地提高程序的性能。</p>
 <p><strong>联系</strong></p>
 <ul>
 <li>线程属于进程，多个线程共享进程的资源，一个进程可以包含多个线程，这些线程共同完成任务，提高程序的并发性。</li>
@@ -448,6 +454,7 @@
 <p>哈希表实现：</p>
 <p>用哈希表存储每个链表节点 然后再串联next和random</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-comment">/*</span><br><span class="hljs-comment">// Definition for a Node.</span><br><span class="hljs-comment">class Node &#123;</span><br><span class="hljs-comment">public:</span><br><span class="hljs-comment">    int val;</span><br><span class="hljs-comment">    Node* next;</span><br><span class="hljs-comment">    Node* random;</span><br><span class="hljs-comment">    </span><br><span class="hljs-comment">    Node(int _val) &#123;</span><br><span class="hljs-comment">        val = _val;</span><br><span class="hljs-comment">        next = NULL;</span><br><span class="hljs-comment">        random = NULL;</span><br><span class="hljs-comment">    &#125;</span><br><span class="hljs-comment">&#125;;</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">Node* <span class="hljs-title">copyRandomList</span><span class="hljs-params">(Node* head)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        Node* cur = head;<br>        unordered_map&lt;Node*,Node*&gt; map;<br>        <span class="hljs-keyword">while</span>(cur != <span class="hljs-literal">nullptr</span>)&#123;<br>            map[cur] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(cur-&gt;val);<br>            cur = cur-&gt;next;<br>        &#125;<br>        cur = head;<br>        <span class="hljs-keyword">while</span>(cur != <span class="hljs-literal">nullptr</span>)&#123;<br>            map[cur]-&gt;next = map[cur-&gt;next];<br>            map[cur]-&gt;random = map[cur-&gt;random];<br>            cur = cur-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> map[head];<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <p>明天实现一下在节点后面添加新的节点再脱离一下</p>
 
                 

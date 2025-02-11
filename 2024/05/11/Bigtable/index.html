@@ -350,28 +350,30 @@
 <p>在许多方面，Bigtable 类似于一个数据库：它与数据库共享许多实现策略。Parallel 数据库和主内存数据库已经实现了可扩展性和高性能，但 Bigtable 提供了与此类系统不同的接口。Bigtable不支持完整的关系数据模型；相反，它为客户端提供了一个简单的数据模型，支持对数据布局和格式的动态控制，并允许客户端推断底层存储中表示的数据的局部性属性。使用行名和列名（可以是任意字符串）对数据进行索引。Bigtable 还将数据视为未解释的字符串，尽管客户端经常将各种形式的结构化和半结构化数据序列化到这些字符串中。客户可以通过仔细选择其模式来控制数据的位置。最后，Bigtable模式参数允许客户端动态控制是从内存还是从磁盘提供数据。</p>
 <p>第 2 节更详细地描述了数据模型，第 3 节提供了客户端 API 的概述。第4节简述了Bigtable所依赖的底层Google基础设施。第5节描述了Bigtable实现的基础知识，第6节描述了我们为提高Bigtable性能所做的一些改进。我们在第 7 节中描述了 Google 如何使用 Bigtable 的几个示例，并在第 8 节中讨论了我们在设计和支持 Bigtable 时学到的一些经验教训。最后，第9节描述了相关工作，第10节介绍了我们的结论。</p>
 <h2 id="2-数据模型"><a href="#2-数据模型" class="headerlink" title="2 数据模型"></a>2 数据模型</h2><p>Bigtable是一个稀疏的、分布式的、持久的多维排序映射。该映射通过行键、列键和时间戳进行索引；映射中的每个值都是未解释的字节数组。</p>
-<p><code>(row:string, column:string, time:int64) -&gt; string</code></p>
+<p><code>(row:string, column:string, time:int64) -&gt; string </code></p>
 <p><img src="/2024/05/11/Bigtable/image-20240511210040299.png" srcset="/img/loading.gif" lazyload alt="图 1：存储网页的示例表的切片。行名是反转的 URL。内容列族包含页面内容，锚点列族包含引用该页面的任何锚点的文本。CNN的主页被《体育画报》和MY-look主页引用，因此该行包含名为anchor:cnnsi.com和anchor：my.look.ca的列。每个锚单元格都有一个版本;内容列有三个版本，时间戳为 T3、T5 和 T6。"></p>
 <p>在检查了类似 Bigtable 的系统的各种潜在用途后，我们决定采用这个数据模型。作为推动我们的一些设计决策的一个具体示例，假设我们向阳保留大量网页和相关信息的副本，供许多不同的项目使用；让我们将这个特定的表称为Webtable。在Webtable中，我们将使用URL作为行键，使用网页的各个方面作为列名称，并将网页内容存储在抓取时的时间戳下的contents：column中，如图1所示。</p>
 <h3 id="行"><a href="#行" class="headerlink" title="行"></a>行</h3><p>在一个表中行键值是任意的字符串（目前最大大小为64kb，尽管10-100字节时我们大多数用户的典型大小）。在单个行键下读取或写入数据的每次都是原子的（无论行中读取或写入的不同列的数量如何），这种设计决策使客户端更容易在同一行存在并发更新的情况下推理系统的行为。</p>
-<p>Bigtable按行键的字典顺序维护数据。一个表的行范围是动态分区的。每一个行范围称为一个tablet，它是分配和负载均衡的单位。因此，短行范围的读取是有效的，并且通常只需要与少量机器进行通信。客户端可以通过选择行键来利用此属性，以便获得良好的数据访问局部性。例如，在Webtable中，通过反转URL的主机名部分，同一域中的页面被分组为连续的行。例如，我们将maps.google.com/index.html的数据存储在com.google.maps/index.htm键下。将来自同一域的页面彼此靠近存储可以使某些主机和域分析更加有效。</p>
+<p>Bigtable按行键的字典顺序维护数据。一个表的行范围是动态分区的。每一个行范围称为一个tablet，它是分配和负载均衡的单位。因此，短行范围的读取是有效的，并且通常只需要与少量机器进行通信。客户端可以通过选择行键来利用此属性，以便获得良好的数据访问局部性。例如，在Webtable中，通过反转URL的主机名部分，同一域中的页面被分组为连续的行。例如，我们将maps.google.com&#x2F;index.html的数据存储在com.google.maps&#x2F;index.htm键下。将来自同一域的页面彼此靠近存储可以使某些主机和域分析更加有效。</p>
 <h3 id="列族"><a href="#列族" class="headerlink" title="列族"></a>列族</h3><p>列键被分组为称为列族的集合，它们构成访问控制的基本单元。存储在了列族中的所有数据通常都是相同的类型（我们将同一列族中的数据压缩在一起）。必须先创建列族，然后才能将数据存储在该族中的任何一个列键下；创建族后，可以使用族内的任何列键。我们的目的是表中不同列族的数量很小（最多数百个），并且列族在操作过程中很少发生变化。相反，表可以具有无限数量的列。</p>
 <p>列键使用以下语法命名：family：qualifier。列族名称必须是可打印的，但限定符可以是任意字符串。Webtable的一个示例列族是language，它存储编写网页所用的语言。我们只使用language族中的一个列键，它存储每个网页的语言ID。该表的另一个有用的列族是锚；该族中的每个列键代表一个锚点，如图1所示。限定符是引用站点的名称；单元格内容是链接文本。</p>
 <p>访问控制以及磁盘和内存和酸都是在列族级别执行的。在我们Webtable示例中，这些控件使我们能够管理几种不同类型的应用程序：有些添加新的基础数据，有些读取基础数据并创建派生列族，有些只允许查看现有数据（处于隐私原因甚至可能不允许查看所有现有列族）。</p>
 <h3 id="时间戳"><a href="#时间戳" class="headerlink" title="时间戳"></a>时间戳</h3><p>Bigtable中的每个单元格可以包含相同数据的多个版本；这些版本按时间戳索引。Bigtable时间戳是64位整数。它们可以由 Bigtable 签名，在这种情况下，它们以微秒为单位表示“实时”，也可以由客户端应用程序显式分配。需要避免冲突的应用程序必须自己生成唯一的时间戳。单元的不同版本按时间戳降序存储，以便可以首先读取最新版本。</p>
 <p><strong><code>写入Bigtable</code></strong></p>
 <figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs pf">// Open the <span class="hljs-built_in">table</span> <br>Table *T = OpenOrDie(<span class="hljs-string">&quot;/bigtable/web/webtable&quot;</span>); <br>// Write a new <span class="hljs-built_in">anchor</span> and delete an old <span class="hljs-built_in">anchor</span> <br>RowMutation r1(T, <span class="hljs-string">&quot;com.cnn.www&quot;</span>); <br>r1.Set(<span class="hljs-string">&quot;anchor:www.c-span.org&quot;</span>, <span class="hljs-string">&quot;CNN&quot;</span>); <br>r1.Delete(<span class="hljs-string">&quot;anchor:www.abc.com&quot;</span>); <br>Operation op; <br>Apply(&amp;op, &amp;r1); <br></code></pre></td></tr></table></figure>
+
 <p>为了减轻版本数据的管理负担，我们支持两个每列族设置，告诉Bigtable自动垃圾收集单元版本。客户端可以指定仅保留单元的最后 n 个版本，或者仅保留足够新的版本（例如，仅保留最近 7 天内写入的值）。</p>
 <p>在我们的 Webtable 示例中，我们将存储在 content：column中的已爬网页的时间戳设置为实际爬取这些页面版本的时间。上面描述的垃圾回收机制允许我们只保留每个页面的最新三个版本。</p>
 <h2 id="3-API"><a href="#3-API" class="headerlink" title="3 API"></a>3 API</h2><p>Bigtable API 提供了创建和删除表和列族的功能。它还提供更改集群、表和列族元数据的功能，例如访问控制权限。</p>
-<p>客户端应用程序可以在 Bigtable 中写入或删除值、从各个行查找值或迭代表中的数据子集。图 2 显示了使用 RowMutation 抽象来按形式进行一系列更新的 C++ 代码。（省略了不相关的细节，以保持示例简短。对 Apply 的调用对 Webtable 执行原子突变：它向 www.cnn.com 添加一个锚点并删除另一个锚点。</p>
+<p>客户端应用程序可以在 Bigtable 中写入或删除值、从各个行查找值或迭代表中的数据子集。图 2 显示了使用 RowMutation 抽象来按形式进行一系列更新的 C++ 代码。（省略了不相关的细节，以保持示例简短。对 Apply 的调用对 Webtable 执行原子突变：它向 <a target="_blank" rel="noopener" href="http://www.cnn.com/">www.cnn.com</a> 添加一个锚点并删除另一个锚点。</p>
 <p>图 3 显示了使用 Scanner 抽象遍历特定行中所有定位点的 C++ 代码。客户端可以遍历多个列族，并且有多种机制可用于限制扫描生成的行、列和时间戳。例如，我们可以将上面的扫描限制为仅生成其列与正则表达式锚点匹配的锚点：*.cnn.com，或者仅生成时间戳落在当前时间十天内的锚点。</p>
 <p>从Bigtable读取：</p>
 <figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs xl">Scanner scanner(T); <br><br>ScanStream *stream; <br><br>stream = scanner.FetchColumnFamily(<span class="hljs-string">&quot;anchor&quot;</span>); <br><br><span class="hljs-function"><span class="hljs-title">stream</span>-&gt;</span>SetReturnAllVersions(); <br><br>scanner.Lookup(<span class="hljs-string">&quot;com.cnn.www&quot;</span>); <br><br><span class="hljs-function"><span class="hljs-title">for</span> (; !stream-&gt;</span>D<span class="hljs-function"><span class="hljs-title">one</span>(); stream-&gt;</span>Next()) &#123; <br><br>printf(<span class="hljs-string">&quot;%s %s %lld %s\n&quot;</span>, <br><br>scanner.RowName(), <br><br><span class="hljs-function"><span class="hljs-title">stream</span>-&gt;</span>ColumnName(), <br><br><span class="hljs-function"><span class="hljs-title">stream</span>-&gt;</span>MicroTimestamp(), <br><br><span class="hljs-function"><span class="hljs-title">stream</span>-&gt;</span>Value()); <br><br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>Bigtable 支持其他几个功能，允许用户以更复杂的方式操作数据。首先，Bigtable 支持单行事务，可用于对存储在单行键下的数据执行原子读取-修改-写入序列。Bigtable 目前不支持跨行键的一般事务，尽管它提供了一个用于在客户端跨行键批量写入的接口。其次，Bigtable 允许将单元格用作整数计数器。最后，Bigtable 支持在服务器的地址空间中执行客户端提供的脚本。这些脚本是用 Google 开发的一种名为 Sawzall 的数据处理语言编写的。目前，我们基于 Sawzall 的 API 不允许客户端脚本写回 Bigtable，但它允许各种形式的数据转换、基于任意表达式的过滤以及通过各种运算符进行汇总。</p>
 <p>Bigtable 可以与 MapReduce 一起使用，MapReduce 是 Google 开发的运行大规模并行计算的框架。我们编写了一组包装器，允许将 Bigtable 用作 MapReduce 作业的输入源和输出目标。</p>
 <h2 id="4-建筑模块"><a href="#4-建筑模块" class="headerlink" title="4 建筑模块"></a>4 建筑模块</h2><p>Bigtable是建立在Google基础架构的其他几个部分之上的。Bigtable使用分布式Google文件系统（GFS）来存储日志和数据文件。Bigtable集群通常在运行各种其他分布式应用程序的计算机共享池中运行，并且Bigtable进程通常与其他应用程序的进程共享同一台计算机。Bigtable依赖于集群管理系统来调度作业、管理共享机器上的资源、处理机器故障以及监视机器状态。</p>
-<p>Google SSTable文件格式在内部使用来存储Bigtable数据。SSTable提供了从键到值的持久的、有序的不可变映射，其中键和值都是任意字节字符串。提供了一些操作来查找与指定键关联的值，并循环访问指定键范围内的所有键/值对。在内部，每个SSTable包含一系列块（通常每个块的大小为64KB，但这是可配置的）。块索引（存储在SSTable的末尾）用于定位块；当SSTable打开时，索引被加载到内存中。可以通过单个磁盘查找来执行查找：我们首先通过在内存索引中执行二分搜索来找到适当的块，然后从磁盘中读取适当的块。或者，SSTable可以完全映射到内存中，这使我们能够在不接触磁盘的情况下执行查找和扫描。</p>
+<p>Google SSTable文件格式在内部使用来存储Bigtable数据。SSTable提供了从键到值的持久的、有序的不可变映射，其中键和值都是任意字节字符串。提供了一些操作来查找与指定键关联的值，并循环访问指定键范围内的所有键&#x2F;值对。在内部，每个SSTable包含一系列块（通常每个块的大小为64KB，但这是可配置的）。块索引（存储在SSTable的末尾）用于定位块；当SSTable打开时，索引被加载到内存中。可以通过单个磁盘查找来执行查找：我们首先通过在内存索引中执行二分搜索来找到适当的块，然后从磁盘中读取适当的块。或者，SSTable可以完全映射到内存中，这使我们能够在不接触磁盘的情况下执行查找和扫描。</p>
 <p>Bigtable依赖于一个名为Chubby的高可用且持久的分布式锁服务。一个Chubby服务由5个活动副本组成，其中一个被选举为主副本并主动服务请求。当大多数副本正在运行并且可以相互通信时，该服务处于活动状态。Chubby使用Paxos算法在出现故障时保持其副本的一致性。Chubby提供了一个由目录和小文件组成的命名空间。每个目录或文件都可以用作锁，并且对文件的读取和写入是原子的。Chubby客户端库提供了Chubby文件的一致缓存。每个Chubby客户端都维护与Chubby服务的会话。如果客户端无法在租约到期时间内续订其会话租约，则客户端的会话将到期。当客户端的会话过期时，它会丢失所有锁和打开的句柄。Chubby客户端还可以在Chubby文件和目录上注册回调，以通知更改或会话过期。</p>
 <p>Bigtable使用Chubby执行各种任务：确保在任何时候最多有一个活动主节点;存储 Bigtable 数据的引导位置（参见第 5.1 节）;发现tablet服务器并确定tablet服务器死亡（请参阅第 5.2 节）;存储 Bigtable 架构信息（每个 table 的列族信息）;并存储访问控制列表。如果 Chubby 在很长一段时间内不可用，则 Bigtable 将不可用。我们最近在跨越 11 个 Chubby 实例的 14 个 Bigtable 集群中检验了这种效果。由于 Chubby 不可用（由 Chubby 中断或网络问题引起）而导致存储在 Bigtable 中的某些数据不可用的 Bigtable 服务器时间的平均百分比为 0.0047%。受 Chubby 不可用性影响最大的单个集群的百分比为 0.0326%。</p>
 <h2 id="5-实现"><a href="#5-实现" class="headerlink" title="5 实现"></a>5 实现</h2><p>Bigtable实现具有三个主要组件：链接到每个客户端的库、一台主服务器和许多tablet服务器。可以从集群中动态添加或删除tablet服务器，以适应工作负载的变化。</p>
@@ -409,10 +411,10 @@
 <h2 id="6-改进"><a href="#6-改进" class="headerlink" title="6 改进"></a>6 改进</h2><p>上一节中描述的实现需要进行大量改进才能实现用户所需的高性能、可用性和可靠性。本节更详细地描述了部分实现，以突出这些改进。</p>
 <h3 id="位置组"><a href="#位置组" class="headerlink" title="位置组"></a>位置组</h3><p>客户端可以将多个列族组合到一个位置组中。为每个tablet中的每个位置组生成一个单独的SSTable。将通常不一起访问的列族分离到单独的位置组中可以实现更高效的读取。例如，Webtable中的页面元数据（例如语言和校验和）可以位于一个位置组中，而页面的内容可以位于不同的组中：想要读取元数据的应用程序不需要读取所有页面内容。</p>
 <p>此外，还可以在每个位置组的基础上指定一些有用的优化参数。例如，可以将位置组声明为内存中。内存中位置组的 SSTable 将延迟加载到 Tablet 服务器的内存中。加载后，可以在不访问磁盘的情况下读取属于此类位置组的列名称。此功能对于经常访问的小块数据非常有用：我们在内部将其用于 METADATA 表中的位置列系列。</p>
-<h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><p>客户端可以控制是否压缩位置组的 SSTable，如果是，则使用哪种压缩格式。用户指定的压缩格式应用于每个 SSTable 块（其大小可通过局部组特定调整参数进行控制）。虽然我们通过单独压缩每个块而损失了一些空间，但我们受益于可以读取 SSTable 的一小部分，而无需解压缩整个文件。许多客户端使用两遍自定义压缩方案。第一遍使用 Bentley 和 McIlroy 的方案，该方案在一个大窗口中压缩长的公共字符串。第二遍使用快速压缩算法，在数据的 16 KB 小窗口中查找重复项。两种压缩过程都非常快，在现代机器上，它们的编码速度为 100-200 MB/s，解码速度为 400-1000 MB/s。</p>
+<h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><p>客户端可以控制是否压缩位置组的 SSTable，如果是，则使用哪种压缩格式。用户指定的压缩格式应用于每个 SSTable 块（其大小可通过局部组特定调整参数进行控制）。虽然我们通过单独压缩每个块而损失了一些空间，但我们受益于可以读取 SSTable 的一小部分，而无需解压缩整个文件。许多客户端使用两遍自定义压缩方案。第一遍使用 Bentley 和 McIlroy 的方案，该方案在一个大窗口中压缩长的公共字符串。第二遍使用快速压缩算法，在数据的 16 KB 小窗口中查找重复项。两种压缩过程都非常快，在现代机器上，它们的编码速度为 100-200 MB&#x2F;s，解码速度为 400-1000 MB&#x2F;s。</p>
 <p>尽管我们在选择压缩算法时强调速度而不是空间减少，但这种两遍压缩方案的表现却出奇的好。例如，在Webtable中，我们使用这种压缩方案来存储网页内容。在一项实验中，我们将大量文档存储在压缩的位置组中。出于实验目的，我们将自己限制为每个文档的一个版本，而不是存储我们可用的所有版本。该方案实现了10比1的空间缩减。由于 Webtable 行的布局方式，这比 HTML 页面上典型的 Gzip 压缩（3 比 1 或 4 比 1）要好得多：来自单个主机的所有页面都彼此靠近存储。这允许 Bentley-McIlroy 算法识别来自同一主机的页面中的大量共享样板。许多应用程序（不仅仅是 Webtable）选择它们的行名，以便类似的数据最终聚集起来，从而实现非常好的压缩比。当我们在Bigtable中存储相同值的多个版本时，压缩率会变得更好。</p>
 <h3 id="缓存以提高读取性能"><a href="#缓存以提高读取性能" class="headerlink" title="缓存以提高读取性能"></a>缓存以提高读取性能</h3><p>为了提高读取性能，tablet服务器使用两个级别的缓存。扫描缓存是一种更高级别的缓存，用于缓存 SSTable 接口返回的键值对到tablet服务器代码。块缓存是一种较低级别的缓存，用于缓存从 GFS 读取的 SSTables 块。扫描缓存对于倾向于重复读取相同数据的应用程序最有用。块缓存对于倾向于读取接近其最近读取的数据（例如，顺序读取或对热行中同一位置组中的不同列的随机读取）的应用程序非常有用。</p>
-<h3 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h3><p>如第 5.3 节所述，读取操作必须从构成tablet状态的所有 SSTable 中读取。如果这些 SSTable 不在内存中，我们最终可能会进行许多磁盘访问。我们通过允许客户端指定应为特定位置组中的 SSTables 创建 Bloom 过滤器来减少访问次数。Bloom lter 允许我们询问 SSTable 是否可能包含指定行/列对的任何数据。对于某些应用程序，用于存储 Bloom 过滤器的少量tablet服务器内存可大大减少读取操作所需的磁盘寻道次数。我们使用 Bloom 过滤器还意味着大多数对不存在的行或列的查找不需要接触磁盘。</p>
+<h3 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h3><p>如第 5.3 节所述，读取操作必须从构成tablet状态的所有 SSTable 中读取。如果这些 SSTable 不在内存中，我们最终可能会进行许多磁盘访问。我们通过允许客户端指定应为特定位置组中的 SSTables 创建 Bloom 过滤器来减少访问次数。Bloom lter 允许我们询问 SSTable 是否可能包含指定行&#x2F;列对的任何数据。对于某些应用程序，用于存储 Bloom 过滤器的少量tablet服务器内存可大大减少读取操作所需的磁盘寻道次数。我们使用 Bloom 过滤器还意味着大多数对不存在的行或列的查找不需要接触磁盘。</p>
 <h3 id="提交日志实现"><a href="#提交日志实现" class="headerlink" title="提交日志实现"></a>提交日志实现</h3><p>如果我们将每个 tablet 的提交日志保存在一个单独的日志文件中，那么 GFS 中将同时写入大量文件。根据每个 GFS 服务器上的底层文件系统实现，这些写入可能会导致大量磁盘寻求写入不同的物理日志。此外，每个tablet都有单独的日志 les 也会降低组提交优化的有效性，因为组往往会更小。为了解决这些问题，我们将突变附加到每个tablet服务器的单个提交日志中，将不同tablet的突变混合在同一物理日志中。</p>
 <p>在正常操作期间使用一个日志可以提供显著的性能优势，但它会使恢复变得复杂。当一个tablet服务器挂掉时，它所服务的tablet将被转移到大量其他tablet服务器上：每个服务器通常加载少量原始服务器的tablet。为了恢复tablet的状态，新的tablet服务器需要从原始tablet服务器写入的提交日志中重新应用该tablet的突变。然而，这些tablet的突变混合在同一个物理日志文件中。一种方法是让每个新的tablet服务器读取此完整的提交日志，并仅应用它需要恢复的tablet所需的条目。但是，在这种方案下，如果 100 台计算机从发生故障的tablet服务器中为每台计算机分配一台tablet，则日志文件将被读取 100 次（每台服务器读取一次）。</p>
 <p>我们通过首先按键&lt;表，行名，日志序列号&gt;的顺序对提交日志条目进行排序来避免重复读取日志。在排序的输出中，特定tablet的所有突变都是连续的，因此可以通过一次磁盘查找和顺序读取来有效地读取。为了并行排序，我们将日志文件划分为64MB的段，并在不同的Tablet服务器上并行对每个段进行排序。此排序过程由主服务器协调，并在Tablet服务器指示它需要从某些提交日志文件中恢复突变时启动。</p>
@@ -430,7 +432,7 @@
 <p>最近的许多项目都解决了在广域网上提供分布式存储或更高级别的服务的问题，通常是在“互联网”规模上。这些系统解决了 Bigtable 不会出现的问题，例如高度可变的带宽、不受信任的参与者或频繁的重新协调;去中心化控制和拜占庭式容错不是 Bigtable 的目标。</p>
 <p>就可能提供给应用程序开发人员的分布式数据存储模型而言，我们认为分布式 B 树或分布式哈希表提供的键值对模型过于局限。键值对是一个有用的构建块，但它们不应该是提供给开发人员的唯一构建块。我们选择的模型比简单的键值对更丰富，并且支持稀疏的半结构化数据。尽管如此，它仍然足够简单，以至于它适合于非常有效的平面文件表示，并且它足够透明（通过位置组），允许我们的用户调整系统的重要行为。</p>
 <p>一些数据库供应商已经开发了可以存储大量数据的并行数据库。Oracle 的 Real Application Cluster 数据库 [27] 使用共享磁盘来存储数据（Bigtable 使用 GFS）和分布式锁管理器（Bigtable 使用 Chubby）。IBM 的 DB2 Parallel Edition [4] 基于类似于 Bigtable 的无共享 [33] 架构。每个 DB2 服务器负责表中行的子集，该行存储在本地关系数据库中。这两种产品都提供了一个完整的事务关系模型。</p>
-<p>对于使用基于列而不是基于行的存储在磁盘上组织数据的其他系统，包括 C-Store [1， 34] 和商业产品，如 Sybase IQ [15， 36]、SenSage [31]、KDB+ [22] 和 MonetDB/X100 中的 ColumnBM 存储层 [38]，Bigtable 局部组实现了类似的压缩和磁盘读取性能。另一个将垂直和水平数据划分为atles并实现良好数据压缩比的系统是AT&amp;T的Day-tona数据库[19]。局部组不支持 CPU 缓存级别的优化，例如 Ailamaki [2] 所描述的优化。</p>
+<p>对于使用基于列而不是基于行的存储在磁盘上组织数据的其他系统，包括 C-Store [1， 34] 和商业产品，如 Sybase IQ [15， 36]、SenSage [31]、KDB+ [22] 和 MonetDB&#x2F;X100 中的 ColumnBM 存储层 [38]，Bigtable 局部组实现了类似的压缩和磁盘读取性能。另一个将垂直和水平数据划分为atles并实现良好数据压缩比的系统是AT&amp;T的Day-tona数据库[19]。局部组不支持 CPU 缓存级别的优化，例如 Ailamaki [2] 所描述的优化。</p>
 <p>Bigtable 使用 memtables 和 SSTables 来存储平板电脑更新的方式类似于日志结构化合并树 [26] 存储更新以索引数据的方式。在这两种系统中，排序后的数据在写入磁盘之前都会在内存中缓冲，并且读取必须合并内存和磁盘中的数据。</p>
 <p>C-Store 和 Bigtable 有许多共同的特点：这两个系统都使用无共享架构，并具有两种不同的数据结构，一种用于存储最近的写入，另一种用于存储长期数据，并具有将数据从一种形式移动到另一种形式的机制。这些系统在其 API 中存在显着差异：C-Store 的行为类似于关系数据库，而 Bigtable 提供较低级别的读写接口，旨在支持每台服务器每秒数千次此类操作。C-Store 也是一个“读取优化的关系 DBMS”，而 Bigtable 在读取密集型和写入密集型应用程序上都提供了良好的性能。</p>
 <p>Bigtable 的负载均衡器必须解决一些与无共享数据库相同的负载和内存平衡问题（例如，[11， 35]）。我们的问题稍微简单一些：（1）我们没有考虑同一数据的多个副本的可能性，由于视图或索引，可能以不同的形式出现;（2）我们让用户告诉我们哪些数据属于内存，哪些数据应该保留在磁盘上，而不是试图动态地确定这一点;（3）我们没有复杂的查询来执行或优化。</p>
@@ -460,7 +462,7 @@
 <p>[6] BENTLEY, J. L., AND MCILROY, M. D. Data compres-</p>
 <p>sion using long common strings. In Data Compression </p>
 <p>Conference (1999), pp. 287ñ295. </p>
-<p>[7] BLOOM, B. H. Space/timetrade-offs inhashcodingwith </p>
+<p>[7] BLOOM, B. H. Space&#x2F;timetrade-offs inhashcodingwith </p>
 <p>allowable errors. CACM 13, 7 (1970), 422ñ426. </p>
 <p>[8] BURROWS, M. The Chubby lock service for loosely-</p>
 <p>coupled distributed systems. In Proc. of the 7th OSDI </p>
@@ -487,7 +489,7 @@
 <p>do not work for DSS. In Proc. of SIGMOD (May 1995), </p>
 <p>pp. 449ñ450. </p>
 <p>[16] GAWLICK, D., AND KINKADE, D. Varieties of concur-</p>
-<p>rency controlin IMS/VSfastpath. Database Engineering </p>
+<p>rency controlin IMS&#x2F;VSfastpath. Database Engineering </p>
 <p>Bulletin 8, 2 (1985), 3ñ10. </p>
 <p>[17] GHEMAWAT, S., GOBIOFF, H., AND LEUNG, S.-T. The </p>
 <p>Googlelesystem. InProc.of the19thACMSOSP(Dec. </p>
@@ -503,7 +505,7 @@
 <p>[21] HARTMAN, J. H., AND OUSTERHOUT, J. K. The Zebra </p>
 <p>striped network le system. In Proc. of the 14th SOSP </p>
 <p>(Asheville, NC, 1993), pp. 29ñ43. </p>
-<p>[22] KX.COM. kx.com/products/database.php. Product page. </p>
+<p>[22] KX.COM. kx.com&#x2F;products&#x2F;database.php. Product page. </p>
 <p>[23] LAMPORT, L. The part-time parliament. ACM TOCS 16, </p>
 <p>2 (1998), 133ñ169. </p>
 <p>[24] MACCORMICK, J., MURPHY, N., NAJORK, M., </p>
@@ -516,8 +518,8 @@
 <p>[26] O’NEIL, P., CHENG, E., GAWLICK, D., AND O’NEIL, </p>
 <p>E. The log-structured merge-tree (LSM-tree). Acta Inf. </p>
 <p>33, 4 (1996), 351ñ385. </p>
-<p>[27] ORACLE.COM. www.oracle.com/technology/products/-</p>
-<p>database/clustering/index.html. Product page. </p>
+<p>[27] ORACLE.COM. <a target="_blank" rel="noopener" href="http://www.oracle.com/technology/products/-">www.oracle.com/technology/products/-</a></p>
+<p>database&#x2F;clustering&#x2F;index.html. Product page. </p>
 <p>[28] PIKE, R., DORWARD, S., GRIESEMER, R., AND QUIN-</p>
 <p>LAN, S. Interpreting the data: Parallel analysis with </p>
 <p>Sawzall. Scientic Programming Journal 13, 4 (2005), </p>
@@ -525,14 +527,12 @@
 <p>[29] RATNASAMY, S., FRANCIS, P., HANDLEY, M., KARP, </p>
 <p>R., AND SHENKER, S. A scalable content-addressable </p>
 <p>network. In Proc. of SIGCOMM (Aug. 2001), pp. 161ñ </p>
-<ol>
-<li><p>[30] ROWSTRON, A., AND DRUSCHEL, P. Pastry: Scal-</p>
-</li>
-</ol>
+<p>172. </p>
+<p>[30] ROWSTRON, A., AND DRUSCHEL, P. Pastry: Scal-</p>
 <p>able, distributed object location and routing for large-</p>
 <p>scale peer-to-peer systems. In Proc. of Middleware 2001 </p>
 <p>(Nov. 2001), pp. 329ñ350. </p>
-<p>[31] SENSAGE.COM. sensage.com/products-sensage.htm. </p>
+<p>[31] SENSAGE.COM. sensage.com&#x2F;products-sensage.htm. </p>
 <p>Product page. </p>
 <p>[32] STOICA, I., MORRIS, R., KARGER, D., KAASHOEK, </p>
 <p>M. F., AND BALAKRISHNAN, H. Chord: A scalable </p>
@@ -545,21 +545,19 @@
 <p>A., MADDEN, S., O’NEIL, E., O’NEIL, P., RASIN, </p>
 <p>A., TRAN, N., AND ZDONIK, S. C-Store: A column-</p>
 <p>oriented DBMS. InProc.ofVLDB(Aug.2005), pp. 553ñ </p>
-<ol>
-<li><p>[35] STONEBRAKER, M., AOKI, P. M., DEVINE, R., </p>
-</li>
-</ol>
+<p>564. </p>
+<p>[35] STONEBRAKER, M., AOKI, P. M., DEVINE, R., </p>
 <p>LITWIN, W., AND OLSON, M. A. Mariposa: A new ar-</p>
 <p>chitecturefordistributeddata. InProc.oftheTenthICDE </p>
 <p>(1994), IEEEComputer Society, pp. 54ñ65. </p>
-<p>[36] SYBASE.COM. www.sybase.com/products/database-</p>
-<p>servers/sybaseiq. Product page. </p>
+<p>[36] SYBASE.COM. <a target="_blank" rel="noopener" href="http://www.sybase.com/products/database-">www.sybase.com/products/database-</a></p>
+<p>servers&#x2F;sybaseiq. Product page. </p>
 <p>[37] ZHAO, B. Y., KUBIATOWICZ, J., AND JOSEPH, A. D. </p>
 <p>Tapestry: An infrastructure for fault-tolerant wide-area </p>
-<p>location and routing. Tech. Rep. UCB/CSD-01-1141, CS </p>
+<p>location and routing. Tech. Rep. UCB&#x2F;CSD-01-1141, CS </p>
 <p>Division, UC Berkeley, Apr. 2001. </p>
 <p>[38] ZUKOWSKI, M., BONCZ, P. A., NES, N., AND HEMAN, </p>
-<p>S. MonetDB/X100 óA DBMSin the CPUcache. IEEE </p>
+<p>S. MonetDB&#x2F;X100 óA DBMSin the CPUcache. IEEE </p>
 <p>Data Eng. Bull. 28, 2 (2005), 17ñ22. </p>
 
                 

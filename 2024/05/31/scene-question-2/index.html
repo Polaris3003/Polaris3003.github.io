@@ -28,12 +28,12 @@
 <meta property="article:published_time" content="2024-05-31T14:07:05.000Z">
 <meta property="article:modified_time" content="2024-05-31T14:09:23.554Z">
 <meta property="article:author" content="Polaris">
-<meta property="article:tag" content="High QPS">
-<meta property="article:tag" content="Performance Tuning">
 <meta property="article:tag" content="JVM">
+<meta property="article:tag" content="Performance Tuning">
 <meta property="article:tag" content="Garbage Collection">
 <meta property="article:tag" content="G1GC">
 <meta property="article:tag" content="Memory Management">
+<meta property="article:tag" content="High QPS">
 <meta property="article:tag" content="System Optimization">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Application Performance">
@@ -358,6 +358,7 @@
 </blockquote>
 <h3 id="堆内存设置"><a href="#堆内存设置" class="headerlink" title="堆内存设置"></a>堆内存设置</h3><p>首先是堆内存大小的设置。当我们的机器只有4核8G的时候，堆内存的大小肯定不能太大，一般不建议设置的太大，因为我们需要给机器上的其他应用预留出一部分内容。所以我们一般建议都是把JVM的堆内存设置成操作系统内存的一半，也就是4G。至于初始内存和最大内存，我们这场景中建议设置成一样的。这样可以避免JVM在运行过程中频繁进行内存扩容和收缩操作，提高应用程序的性能和稳定性。即</p>
 <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-Xms4G -Xmx4G</span><br></code></pre></td></tr></table></figure>
+
 <h3 id="垃圾收集器选择"><a href="#垃圾收集器选择" class="headerlink" title="垃圾收集器选择"></a>垃圾收集器选择</h3><p>在设置了堆空间的总大小之后，我们需要考虑用那种垃圾收集器。另外，我们前面分析过，这个业务中会频繁在新生代创建并销毁对象，那么，就意味着新生代的GC会比较频繁。所以我们需要选择一种在GC过程中STW时间短的，并且在年轻代的回收中也能发挥效果的。</p>
 <p>在新生代的垃圾收集器中，主要以Serial、ParNew、Parallel Scavenge以及支持整堆回收的G1了。</p>
 <p>因为新生代采用的都是复制算法，所以不太需要考虑碎片的问题，我们主要考虑吞吐量和STW的时长就行了。</p>
@@ -365,6 +366,7 @@
 <p>从使用门槛上来说，G1是可以用的，因为一般来说，内存要大于等于4G的话，才适合使用G1进行GC。</p>
 <p>所以，我们采用G1作为垃圾收集器：</p>
 <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-XX: +UseG1GC</span><br></code></pre></td></tr></table></figure>
+
 <p>在使用了G1之后，其实他自己是有一套自动的预测和调优机制的。我们只需要通过-XX:MaxGCPauseMillis参数来设置最大停顿时间就行了。一般建议设置到100-200之间，一般这个时长对用户来说基本无感知</p>
 <p>其次，我们还可以自己调节一些G1的配置，比如设置GC线程数</p>
 <h3 id="各区大小设置"><a href="#各区大小设置" class="headerlink" title="各区大小设置"></a>各区大小设置</h3><p>G1的内存划分是自适应的，它会根据堆的大小和使用情况来动态调整各个区域的大小和比例。但是，我们也可以通过一些JVM参数来手动设置G1的各个分代内存配置。</p>
@@ -372,6 +374,7 @@
 <p>-XX:G1NewSizePercent 和 -XX:G1MaxNewSizePercent分别用于设置年轻代的初始大小和最大大小，它们的默认值分别为 5% 和 60%。针对我们的业务场景，我们其实可以适当的调高一下年轻代的初始大小，5%的比例太小了，我们可以调整到30%。</p>
 <h3 id="添加必要的日志"><a href="#添加必要的日志" class="headerlink" title="添加必要的日志"></a>添加必要的日志</h3><p>因为以上配置都是根据业务大致分析出来的初始配置，所以我们一定是需要不断地调优的，那么必要的日志相关参数就要添加。如：</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:MaxGCPauseMillis=</span><span class="hljs-number">100</span>：最大 <span class="hljs-variable constant_">GC</span> 暂停时间为 <span class="hljs-number">100</span> 毫秒，可以根据实际情况调整；<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+HeapDumpOnOutOfMemoryError</span>：当出现内存溢出时，自动生成堆内存快照文件；<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:HeapDumpPath=/path/to/heap/dump/file</span>.hprof：堆内存快照文件的存储路径；<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+PrintGC</span>：输出 <span class="hljs-variable constant_">GC</span> 信息；<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+PrintGCDateStamps</span>：输出 <span class="hljs-variable constant_">GC</span> 发生时间；<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+PrintGCTimeStamps</span>：输出 <span class="hljs-variable constant_">GC</span> 发生时 <span class="hljs-variable constant_">JVM</span> 的运行时间；<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+PrintGCDetails</span>：输出 <span class="hljs-variable constant_">GC</span> 的详细信息；<br>-<span class="hljs-title class_">Xlog</span><span class="hljs-symbol">:gc*</span><span class="hljs-symbol">:file=/path/to/gc</span>.<span class="hljs-symbol">log:</span>time,<span class="hljs-symbol">uptime:</span>filecount=<span class="hljs-number">10</span>,filesize=100M：将 <span class="hljs-variable constant_">GC</span> 日志输出到指定文件中，可以根据需要调整日志文件路径、数量和大小<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -405,17 +408,17 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/High-QPS/" class="print-no-link">#High QPS</a>
+        <a href="/tags/JVM/" class="print-no-link">#JVM</a>
       
         <a href="/tags/Performance-Tuning/" class="print-no-link">#Performance Tuning</a>
-      
-        <a href="/tags/JVM/" class="print-no-link">#JVM</a>
       
         <a href="/tags/Garbage-Collection/" class="print-no-link">#Garbage Collection</a>
       
         <a href="/tags/G1GC/" class="print-no-link">#G1GC</a>
       
         <a href="/tags/Memory-Management/" class="print-no-link">#Memory Management</a>
+      
+        <a href="/tags/High-QPS/" class="print-no-link">#High QPS</a>
       
         <a href="/tags/System-Optimization/" class="print-no-link">#System Optimization</a>
       

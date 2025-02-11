@@ -297,7 +297,7 @@
         
         
         
-          20 分钟
+          21 分钟
         
       </span>
     
@@ -354,9 +354,10 @@
 <p>数据库存储为 DBMS 管理的逗号分隔值 (CSV) 文件。每个实体将存储在其自己的文件中。应用程序每次想要读取或更新记录时都必须解析文件。</p>
 <p>按照数字音乐商店的示例，将有两个文件：一个用于艺术家，另一个用于专辑。</p>
 <p>每个实体都有自己的一组属性，因此在每个文件中，不同的记录由换行符分隔，而记录中的每个相应属性由逗号分隔。</p>
-<p>示例：艺术家可以具有姓名、年份和国家/地区属性，而专辑则具有姓名、艺术家和年份属性。</p>
-<p>以下是一个 CSV 文件示例，其中包含有关具有架构（姓名、年份、国家/地区）的艺术家的信息：</p>
+<p>示例：艺术家可以具有姓名、年份和国家&#x2F;地区属性，而专辑则具有姓名、艺术家和年份属性。</p>
+<p>以下是一个 CSV 文件示例，其中包含有关具有架构（姓名、年份、国家&#x2F;地区）的艺术家的信息：</p>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">&quot;Wu-Tang Clan&quot;</span>, <span class="hljs-number">1992</span>, <span class="hljs-string">&quot;USA&quot;</span> <br><span class="hljs-string">&quot;Notorious BIG&quot;</span>, <span class="hljs-number">1992</span>, <span class="hljs-string">&quot;USA&quot;</span> <br><span class="hljs-string">&quot;GZA&quot;</span>, <span class="hljs-number">1990</span>, <span class="hljs-string">&quot;USA&quot;</span> <br></code></pre></td></tr></table></figure>
+
 <p>平面文件的问题：</p>
 <ul>
 <li><strong>效率</strong> 需要扫描整个文件并存储在内存中才能找到特定的记录。</li>
@@ -370,7 +371,7 @@
 <p>一个数据库管理系统（DBMS）是一种允许应用程序在数据库中存储和分析信息的软件。</p>
 <p>通用的DBMS旨在根据某种数据模型，允许数据库的定义、创建、查询、更新和管理。</p>
 <p>数据模型是用于描述数据库中数据的一组概念。</p>
-<p>例如：例如：关系型（最常见的）、NoSQL（键/值、文档、图形）、数组/矩阵/向量（用于机器学习）。</p>
+<p>例如：例如：关系型（最常见的）、NoSQL（键&#x2F;值、文档、图形）、数组&#x2F;矩阵&#x2F;向量（用于机器学习）。</p>
 <p>模式是基于数据模型的特定数据集合的描述。</p>
 <h3 id="早期DBMS"><a href="#早期DBMS" class="headerlink" title="早期DBMS"></a>早期DBMS</h3><p>早期的数据库管理系统（DBMS）由于逻辑和物理层之间的紧密耦合，所以构建和维护都很困难。</p>
 <p>逻辑层描述了数据库中有哪些实体和属性，而物理层描述了这些实体和属性是如何存储的。在早期，物理层是在应用程序代码中定义的，所以如果我们想要更改应用程序正在使用的物理层，我们必须改变所有的代码以适应新的物理层。</p>
@@ -397,39 +398,39 @@
 <h2 id="5-数据操作语言（DMLs）"><a href="#5-数据操作语言（DMLs）" class="headerlink" title="5 数据操作语言（DMLs）"></a>5 数据操作语言（DMLs）</h2><hr>
 <p>存储和检索数据库中的信息的方法。对此有两类语言：</p>
 <ul>
-<li>过程性语言：查询指定了DBMS应使用哪种（高级）策略基于集合/包找到所需结果。例如，使用for循环扫描所有记录并计算记录数以检索表中的记录数。</li>
+<li>过程性语言：查询指定了DBMS应使用哪种（高级）策略基于集合&#x2F;包找到所需结果。例如，使用for循环扫描所有记录并计算记录数以检索表中的记录数。</li>
 <li>非过程性语言（声明性语言）：查询仅指定所需的数据而不指定如何查找它。例如，使用SQL select count(*) from artist来计算表中有多少条记录。</li>
 </ul>
 <h2 id="6-关系代数"><a href="#6-关系代数" class="headerlink" title="6 关系代数"></a>6 关系代数</h2><hr>
 <p>关系代数是一组检索和操作关系中元组的基本操作。每个操作符都接受一个或多个关系作为输入，并输出一个新的关系。为了编写查询，我们可以“链接”这些操作符以创建更复杂的操作。</p>
 <h3 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h3><p>Select接受一个关系，并输出满足选择谓词的关系中的一部分元组。谓词的作用类似于过滤器，并且我们可以使用合取和析取来组合多个谓词。</p>
 <p>语法：$\sigma_{predicate}(R)$.</p>
-<p>例子：$\sigma_{a.id=’a2’}(R)$</p>
-<p>SQL:SELECT * FROM R WHERE a_id = ‘a2’.</p>
+<p>例子：$\sigma_{a.id&#x3D;’a2’}(R)$</p>
+<p>SQL:SELECT * FROM R WHERE a_id &#x3D; ‘a2’.</p>
 <h3 id="Projection"><a href="#Projection" class="headerlink" title="Projection"></a>Projection</h3><p>投影会接收一个关系，并输出一个只包含指定属性的关系。您可以重新安排输入关系中属性的顺序，并操纵其值。</p>
 <p>语法:$\pi_{A1,A2,…,An}(R)$.</p>
-<p>例子：$\pi<em>{b.id-100,a.id}(\sigma</em>{a.id=’a2’}(R))$.</p>
-<p>SQL:SELECT b.id-100, a.id FROM R WHERE a.id = ‘a2’.</p>
+<p>例子：$\pi_{b.id-100,a.id}(\sigma_{a.id&#x3D;’a2’}(R))$.</p>
+<p>SQL:SELECT b.id-100, a.id FROM R WHERE a.id &#x3D; ‘a2’.</p>
 <h3 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h3><p>Union接收两个关系，并输出一个包含所有出现在至少一个输入关系中的元组的关系。注意：两个输入必须具有完全相同的属性。</p>
 <p>语法：$(R \cup S)$.</p>
-<p>SQL:(SELECT <em> FROM R) UNION ALL (SELECT </em> FROM S).</p>
+<p>SQL:(SELECT * FROM R) UNION ALL (SELECT * FROM S).</p>
 <h3 id="Intersection"><a href="#Intersection" class="headerlink" title="Intersection"></a>Intersection</h3><p>交集操作接收两个关系，并输出包含出现在两个输入关系中的所有元组的关系。注意：两个输入关系必须具有完全相同的属性。</p>
 <p>语法：$(R \cap S)$.</p>
-<p>SQL:(SELECT <em> FROM R) INTERSECT (SELECT </em> FROM S).</p>
+<p>SQL:(SELECT * FROM R) INTERSECT (SELECT * FROM S).</p>
 <h3 id="Difference"><a href="#Difference" class="headerlink" title="Difference"></a>Difference</h3><p>差异操作接受两个关系，输出一个包含在第一个关系中出现但不在第二个关系中出现的所有元组的关系。注意：两个输入关系必须具有完全相同的属性。</p>
 <p>语法：$(R - S)$.</p>
-<p>SQL:(SELECT <em> FROM R) EXCEPT (SELECT </em> FROM S).</p>
+<p>SQL:(SELECT * FROM R) EXCEPT (SELECT * FROM S).</p>
 <h3 id="Product"><a href="#Product" class="headerlink" title="Product"></a>Product</h3><p>Product接收两个关系作为输入，并输出一个包含来自输入关系的所有可能组合的关系。</p>
 <p>语法：$(R \times S)$.</p>
-<p>SQL:(SELECT <em> FROM R) CROSS JOIN (SELECT </em> FROM S),或者简单的 SELECT * FROM R, S.</p>
+<p>SQL:(SELECT * FROM R) CROSS JOIN (SELECT * FROM S),或者简单的 SELECT * FROM R, S.</p>
 <h3 id="Join"><a href="#Join" class="headerlink" title="Join"></a>Join</h3><p>Join操作接收两个关系，并输出包含所有元组的关系，这些元组是来自于两个元组的组合，其中对于两个关系共享的每个属性，两个元组在该属性上的值相同。</p>
 <p>语法：$(R \Join S)$.</p>
 <p>SQL: SELECT * FROM R JOIN S USING (ATTRIBUTE1, ATTRIBUTE2…).</p>
-<h3 id="Observation"><a href="#Observation" class="headerlink" title="Observation"></a>Observation</h3><p>关系代数是一种过程性语言，因为它定义了计算查询的高级步骤。例如，$\sigma<em>{b.id=102}(R \Join S)$表示首先进行R和S的连接，然后进行选择操作，而$(R \Join (\sigma</em>{b.id=102}(S)))$将首先在S上进行选择操作，然后进行连接。这两个语句实际上会产生相同的答案，但是如果在十亿个元组中只有一个具有b.id=102的元组，则$(R \Join (\sigma<em>{b.id=102}(S)))$的速度将显著快于$\sigma</em>{b.id=102}(R \Join S)$。</p>
+<h3 id="Observation"><a href="#Observation" class="headerlink" title="Observation"></a>Observation</h3><p>关系代数是一种过程性语言，因为它定义了计算查询的高级步骤。例如，$\sigma_{b.id&#x3D;102}(R \Join S)$表示首先进行R和S的连接，然后进行选择操作，而$(R \Join (\sigma_{b.id&#x3D;102}(S)))$将首先在S上进行选择操作，然后进行连接。这两个语句实际上会产生相同的答案，但是如果在十亿个元组中只有一个具有b.id&#x3D;102的元组，则$(R \Join (\sigma_{b.id&#x3D;102}(S)))$的速度将显著快于$\sigma_{b.id&#x3D;102}(R \Join S)$。</p>
 <p>更好的方法是说出你想要的结果（从R和S中检索到bid等于102的连接元组），然后让数据库管理系统决定计算查询所需的步骤。SQL会完全做到这点，它是在关系模型数据库上编写查询的事实标准。</p>
 <h2 id="7-数据模型"><a href="#7-数据模型" class="headerlink" title="7 数据模型"></a>7 数据模型</h2><hr>
 <ul>
-<li>文档模型：包含命名字段/值对的记录文档的集合.</li>
+<li>文档模型：包含命名字段&#x2F;值对的记录文档的集合.</li>
 <li>向量模型：是用于最近邻搜索（精确或近似）的一维数组.</li>
 </ul>
 
