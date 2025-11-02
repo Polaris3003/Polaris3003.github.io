@@ -1,0 +1,1203 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ZooKeeper：互联网规模的无等待协调 摘要 在本文中，我们介绍ZooKeeper，一个用于协调分布式应用程序过程的服务。由于ZooKeeper时关键基础架构的一部分，它旨在为客户建立更复杂的协调基础提供一个简单而高性能的内核。它在复制的集中式服务中结合了小组消息传递，共享寄存器和分布式锁服务的元素。ZooKeeper暴露的接口具有共享寄存器的无等待方面，其事件驱动的机制类似于分布式文件系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZooKeeper">
+<meta property="og:url" content="http://polaris3003.github.io/2024/05/02/ZooKeeper/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="ZooKeeper：互联网规模的无等待协调 摘要 在本文中，我们介绍ZooKeeper，一个用于协调分布式应用程序过程的服务。由于ZooKeeper时关键基础架构的一部分，它旨在为客户建立更复杂的协调基础提供一个简单而高性能的内核。它在复制的集中式服务中结合了小组消息传递，共享寄存器和分布式锁服务的元素。ZooKeeper暴露的接口具有共享寄存器的无等待方面，其事件驱动的机制类似于分布式文件系">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://polaris3003.github.io/2024/05/02/ZooKeeper/image-20240502031217505.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/05/02/ZooKeeper/image-20240502031314762.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/05/02/ZooKeeper/image-20240502031330397.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/05/02/ZooKeeper/image-20240502031349211.png">
+<meta property="article:published_time" content="2024-05-01T19:02:39.000Z">
+<meta property="article:modified_time" content="2025-02-11T09:26:34.000Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="分布式系统">
+<meta property="article:tag" content="mit6.824">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://polaris3003.github.io/2024/05/02/ZooKeeper/image-20240502031217505.png">
+  
+  
+  
+  <title>ZooKeeper - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"polaris3003.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ZooKeeper"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-02 03:02" pubdate>
+          2024年5月2日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          105 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ZooKeeper</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="zookeeper互联网规模的无等待协调">ZooKeeper：互联网规模的无等待协调</h1>
+<h2 id="摘要">摘要</h2>
+<p>在本文中，我们介绍ZooKeeper，一个用于协调分布式应用程序过程的服务。由于ZooKeeper时关键基础架构的一部分，它旨在为客户建立更复杂的协调基础提供一个简单而高性能的内核。它在复制的集中式服务中结合了小组消息传递，共享寄存器和分布式锁服务的元素。ZooKeeper暴露的接口具有共享寄存器的无等待方面，其事件驱动的机制类似于分布式文件系统的缓存无效，以提供简单但功能可行的协调服务。</p>
+<p>ZooKeeper接口可以实现高性能服务。除了无等待属性外，ZooKeeper还为所有更改ZooKeeper状态的重新审查的请求执行和线性化提供了每个客户的保障。这些设计决定促进了高性能处理管道的实现，并在本地服务器满足读取请求。我们显示目标工作负载2：1至100：1读取比例，Zookeeper可以处理数十万到数十万每秒的交易。该性能使Zookeeper可以通过客户端应用程序进行广泛的使用。</p>
+<h2 id="介绍">1.介绍</h2>
+<p>大型分布式应用需要不同形式的协调。配置是协调的最基本形式之一。以最简单的形式，配置只是系统调用的操作参数列表，而更复杂的系统具有动态配置参数。小组成员和领导者选举在分布式系统中也很常见：通常，操作需要知道哪些其他操作还活着以及这些操作负责什么。锁构成了强大的协调原语，该原语可实施对关键资源的相互排斥访问。</p>
+<p>协调的一种方法是为每个不同的协调需求开发服务。比如说Amazon Simple
+Queue
+Service专门针对队列，其他services是专门针对领导者选举和配置开发的。比如说Chubby是一个有强一致性保障的锁服务。然后可以使用锁来实施领导者选举，小组成员资格等。</p>
+<p>在设计协调服务时，我们不再在服务器端实施特定的原始图，而是选择了使应用程序开发人员能够实现自己的基础的API。这样的选择导致了协调内核的实现，该内核可以使新的原始素无需更改服务核心。该AP搜索实现了适合应用程序要求的多种形式的协调，而不是将开发人员限制为一组固定的原语。在设计ZooKeeper的API时，我们避开了阻塞原语（例如锁）。除其他问题外，锁协调服务的原语可能会导致客户速度缓慢或有缺陷的客户，从而对更快的客户的表现产生负面影响。如果处理请求取决于响应和其他客户的失败检测，那么服务本身的实现将变得更加复杂。因此，我们的系统（Zookeeper）实现了一种API，该API像文件系统中一样，在层次上组织简单的无等待数据对象。实际上，Zookeeper
+API类似于其他任何文件系统之一，并且仅查看API签名，Zookeeper似乎像Chubby一样没有锁、open和close。但是，实现无需候补数据对象，基于阻止原语锁（例如锁），将ZooKeeper与系统显著区分。虽然无等待属性对性能和容错很重要，但它不足以协调。我们还必须为操作提供顺序保证。特别是，我们发现，保证所有操作的FIFO客户端顺序和线性写入能够有效地实施该服务，并且足以为我们的应用程序的实施关注的协调基础。实际上，我们可以使用我们的API对任何数量的流程实现共识，并且根据Herlihy的层次结构，Zoo-Keeper实现了一个通用对象。Zookeeper服务包括一系列服务器，这些服务器使用复制来实现高可用性和性能。它的高性能使应用程序可以使用大量操作来使用此类协调内核来管理协调的所有方面。我们能够实施一个简单的管道架构，使我们能够有数百或数千个请求，同时仍达到低延迟。这样的管道自然可以以FIFO顺序从单个客户端执行操作。保证FIFO客户顺序使客户能够异步提交操作。通过异步操作，客户可以一次进行多个不错的操作。当新客户成为领导者时，此功能是可取的，因此必须操纵元数据并相应地对其进行更新。如果没有多次出色操作的可能性，初始化的时间可以是秒的顺序，而不是次秒。</p>
+<p>为了确保该更新操作满足线性性能，我们实施了一个基于领导者的原子广播协议，称为ZAB。但是，Zookeeper应用程序的典型工作负载主要由读取操作主导，并且希望扩展读取吞吐量。在Zookeeper中，服务器过程在本地读取操作，我们不会使用ZAB来完全排序它们。</p>
+<p>客户端的缓存数据是提高读取性能的重要技术。例如，对于一个过程来缓存当前领导者的标识符，而不是每次需要了解领导者时探测Zookeeper，这很有用。Zookeeper使用watch机制来使客户能够直接加速客户端缓存数据。有了这种机制，客户端可以关注给定数据对象的更新，并在更新时接收通知。Chubby直接管理客户端缓存。它会阻止更新，以内部估算所有客户端的缓存数据的缓存。在此设计下，如果这些客户端中的任何一个是缓慢或错误的，则更新会延迟。Chubby使用租赁来防止有缺陷的客户无限地阻塞系统。但是，租赁只会限制慢速或错误客户的影响，而ZooKeeper的watch机制完全避免了问题。</p>
+<p>在本文中，我们讨论了我们对ZooKeeper的设计和实施。使用Zookeeper，即使只能写入可以线性化，我们也能够完成我们应用所需的所有协调基础。为了验证我们的方法，我们展示了如何与Zookeeper实施一些协调基础。</p>
+<p>总而言之，在本文中，我们的主要贡献是：</p>
+<p><code>协调内核</code>：我们提出了一项无等待的协调，并具有轻松的一致性保证，可用于分布式系统。我们特别描述了协调内核的设计和实现，我们已在许多关键应用程序中使用该内核来实现各种协调技术。</p>
+<p><code>协调方案</code>：我们展示了如何使用 ZooKeeper
+构建更高级别的协调原语，甚至是分布式应用程序中经常使用的阻塞和强一致原语。</p>
+<p><code>协调经验</code>：我们分享一些使用 ZooKeeper
+并评估其性能的方法。</p>
+<h2 id="zookeeper服务">2.ZooKeeper服务</h2>
+<p>客户端使用 ZooKeeper 客户端库通过客户端 API 向 ZooKeeper
+提交请求。除了通过客户端API公开ZooKeeper服务接口之外，客户端库还管理客户端和ZooKeeper服务器之间的网络连接。在本节中，我们首先提供
+ZooKeeper
+服务的高级视图。然后我们讨论客户端用来与ZooKeeper交互的API。</p>
+<p><code>术语</code>：本文中，我们用client表示ZooKeeper服务的用户，server表示提供ZooKeeper服务的进程，znode
+表示 ZooKeeper
+数据中的内存数据节点，它组织在称为数据树的分层命名空间中。</p>
+<h3 id="服务概览">2.1 服务概览</h3>
+<p>ZooKeeper
+向其客户端提供一组数据节点（znode）的抽象，这些数据节点根据分层名称空间进行组织。此层次结构中的
+znode 是客户端通过 ZooKeeper API
+操作的数据对象。层次命名空间通常用在文件系统中。这是组织数据对象的理想方式，因为用户已经习惯了这种抽象，并且它可以更好地组织应用程序元数据。为了指向一个给定的znode，我们对文件系统路径使用标准
+UNIX 表示法。例如，我们使用 /A/B/C 来表示 znode C 的路径，其中 C 以 B
+作为其父节点，B 以 A 作为其父节点。所有 znode 都存储数据，并且除临时
+znode 之外的所有 znode 都可以有子节点。</p>
+<p><img src="/2024/05/02/ZooKeeper/image-20240502031217505.png" srcset="/img/loading.gif" lazyload alt="图 1：ZooKeeper 分层名称空间的图示。"></p>
+<p>客户端可以创建两种类型的znode：</p>
+<p><code>常规</code>：客户端通过显式创建和删除常规znode来操作它们；</p>
+<p><code>短期</code>：客户端创建此类znode，并且它们要么显式删除它们，要么让系统在创建它们的会话终止时（故意或由于失败）自动删除它们。</p>
+<p>此外，当创建新的 znode
+时，客户端可以设置顺序标志。使用顺序标志集创建的节点具有附加到其名称的单调递增计数器的值。如果
+n 是新 znode，p 是父 znode，则 n 的序列值永远不会小于 p
+下创建的任何其他顺序 znode 的名称中的值。ZooKeeper
+实现了Watch，允许客户端及时接收更改通知，而无需轮询。当客户端发出设置了watch标志的读取操作时，操作会正常完成，只是服务器承诺在返回的信息发生更改时通知客户端。监视是与会话关联的一次性触发器；一旦触发或会话关闭，它们就会被注销。Watch指示已发生更改，但不提供更改。例如，如果客户端在“/foo”更改两次之前发出
+getData(‘‘/foo’’,
+true)，则客户端将收到一个监视事件，告诉客户端“/foo”的数据已更改。会话事件（例如连接丢失事件）也会发送到监视回调，以便客户端知道监视事件可能会延迟。</p>
+<p><strong>数据模型</strong></p>
+<p>ZooKeeper的数据模型本质上是一个具有简化API且仅进行完整数据读写的文件系统，或者是具有分层键的键/值表。分层命名空间对于为不同应用程序的命名空间分配子树以及设置对这些子树的访问权限非常有用。我们还利用客户端的目录概念来构建更高级别的原语，正如我们将在
+2.4 节中看到的那样。</p>
+<p>与文件系统中的文件不同，znode
+并不是为一般数据存储而设计的。相反，znode
+映射到客户端应用程序的抽象，通常对应于用于协调目的的元数据。为了说明这一点，在图
+1 中，我们有两个子树，一个用于应用程序 1 (/app1)，另一个用于应用程序 2
+(/app2)。应用程序 1 的子树实现了一个简单的组成员身份协议：每个客户端进程
+pi 在 /app1 下创建一个 znode
+pi，只要进程正在运行，该节点就会持续存在。</p>
+<p>尽管 znode 不是为一般数据存储而设计的，但 ZooKeeper
+确实允许客户端存储一些可用于分布式计算中的元数据或配置的信息。例如，在基于领导者的应用程序中，对于刚刚开始了解哪个其他服务器当前是领导者的应用程序服务器非常有用。为了实现这个目标，我们可以让当前领导者将此信息写入
+znode 空间中的已知位置。Znode
+还具有与时间戳和版本计数器关联的元数据，这允许客户端跟踪 znode
+的更改并根据 znode 的版本执行条件更新。</p>
+<p><strong>会话</strong></p>
+<p>客户端连接到 ZooKeeper
+并启动会话。会话有对应的超时。如果客户端在超过该超时时间内没有从会话中收到任何内容，Zoo-Keeper
+就会认为客户端有故障。当客户端显式关闭会话句柄或 ZooKeeper
+检测到客户端出现故障时，会话结束。在会话中，客户端观察到一系列反映其操作执行情况的状态更改。会话使客户端能够在
+ZooKeeper 整体中透明地从一台服务器移动到另一台服务器，从而在 ZooKeeper
+服务器之间持续存在。</p>
+<h3 id="客户端api">2.2 客户端API</h3>
+<p>我们在下面介绍了 ZooKeeper API
+的相关子集，并讨论了每个请求的语义。</p>
+<p><code>create(path, data, flags)</code>：创建一个路径名为path的znode，在其中存储data[]，并返回新znode的名称。
+flags 使客户端能够选择 znode 的类型：常规、临时，并设置顺序标志；</p>
+<p><code>delete(path, version)</code>：如果 znode
+处于预期的版本，则删除该 znode 路径；</p>
+<p><code>exists(path, watch)</code>:如果路径名为path的znode存在则返回true，否则返回false。watch标识符使用户在该znode上建立一个watch</p>
+<p><code>getData(path, watch)</code>：返回与 znode
+关联的数据和元数据，例如版本信息。 watch 标志的工作方式与 Exists()
+相同，只是如果 znode 不存在，Zoo-Keeper 不会设置 watch；</p>
+<p><code>setData(path, data, version)</code>：如果版本号是znode的当前版本，则将data[]写入znode路径；</p>
+<p><code>getChildren(path, watch)</code>：返回 znode
+的子节点的名称集合；</p>
+<p><code>sync(path)</code>：等待操作开始时挂起的所有更新传播到客户端连接到的服务器。该路径当前被忽略。</p>
+<p>所有方法都有通过 API 提供的同步和异步版本。当应用程序需要执行单个
+ZooKeeper 操作并且没有要执行的并发任务时，应用程序会使用同步
+API，因此它会进行必要的 ZooKeeper 调用并阻塞。然而，异步 API
+使应用程序能够同时执行多个未完成的 ZooKeeper 操作和其他任务。ZooKeeper
+客户端保证每个操作的相应回调按顺序调用。</p>
+<p>请注意，ZooKeeper 不使用句柄来访问 znode。每个请求都包含正在操作的
+znode 的完整路径。这种选择不仅简化了 API（没有 open() 或 close()
+方法），而且还消除了服务器需要维护的额外状态。</p>
+<p>每个更新方法都采用预期的版本号，这使得可以实现条件更新。如果 znode
+的实际版本号与预期版本号不匹配，则更新将失败并出现意外版本错误。如果版本号为-1，则不进行版本检查。</p>
+<h3 id="zookeeper-保证">2.3 ZooKeeper 保证</h3>
+<p>ZooKeeper 有两个基本的顺序保证：</p>
+<ol type="1">
+<li>线性化写入：所有更新 ZooKeeper
+状态的请求都是可序列化的并尊重优先级；</li>
+<li>FIFO
+客户端顺序：来自给定客户端的所有请求都按照客户端发送的顺序执行。</li>
+</ol>
+<p>请注意，我们对线性化的定义与 Herlihy 最初提出的定义不同，我们将其称为
+A-线性化（异步线性化）。在 Herlihy
+对线性化的最初定义中，客户端一次只能有一个未完成的操作（一个客户端是一个线程）。在我们的系统中，我们允许一个客户端有多个未完成的操作，因此我们可以选择对同一客户端的未完成操作不保证特定的顺序，或者保证先进先出的顺序。我们为我们的属性选择后者。重要的是要观察到，适用于可线性化对象的所有结果也适用于可线性化对象，因为满足A-线性化的系统也满足可线性化的系统。由于只有更新请求是
+A 线性化的，ZooKeeper
+在每个副本上本地处理读取请求。这使得服务可以随着服务器添加到系统而线性扩展。</p>
+<p>要了解这两个保证如何相互作用，请考虑以下场景。包含多个进程的系统会选举一个领导者来指挥工作进程。当新的领导者接管系统时，它必须更改大量配置参数，并在完成后通知其他进程。那么我们有两个重要的要求：</p>
+<ul>
+<li>当新的领导者开始进行更改时，我们不希望其他进程开始使用正在更改的配置；</li>
+<li>如果新的领导者在配置完全更新之前死亡，我们不希望进程使用这部分配置。</li>
+</ul>
+<p>请注意，分布式锁（例如 Chubby
+提供的锁）有助于满足第一个要求，但不足以满足第二个要求。通过ZooKeeper，新领导者可以指定一条路径作为就绪znode；其他进程只会在该
+znode
+存在时使用该配置。新领导者通过删除ready、更新各种配置znodes以及创建ready来进行配置更改。所有这些更改都可以通过管道传输并异步发出，以快速更新配置状态。尽管变更操作的延迟约为
+2
+毫秒，但如果请求是另一个接一个地发出的请求，则必须更新5000个不同Znodes的新领导者将需要10秒；通过异步发出请求，请求将不到一秒钟。由于顺序保证，如果一个进程看到就绪的
+znode，它还必须看到新领导者所做的所有配置更改。如果新的领导者在创建就绪的
+znode
+之前死亡，则其他进程知道配置尚未最终确定并且不会使用它。上述方案仍然存在一个问题：如果一个进程在新的领导者开始进行更改之前发现就绪存在，然后在更改正在进行时开始读取配置，会发生什么情况。这个问题可以通过通知的顺序保证来解决：如果客户端正在监视更改，则客户端将在更改发生后看到系统的新状态之前看到通知事件。因此，如果读取就绪
+znode 的进程请求获得该 znode
+更改的通知，在它可以读取任何新配置之前它会看到通知告诉它客户端的更改。</p>
+<p>当客户端除了 ZooKeeper
+之外还有自己的通信通道时，可能会出现另一个问题。例如，考虑两个客户端 A
+和 B 在 ZooKeeper 中具有共享配置并通过共享通信通道进行通信。如果 A
+更改了 ZooKeeper 中的共享配置并通过共享通信通道告知 B 更改，B
+会期望在重新读取配置时看到更改。如果 B 的 ZooKeeper 副本稍微落后于
+A，则它可能看不到新配置。使用上述保证 B
+可以通过在重新读取配置之前发出写入来确保它看到最新的信息。为了更有效地处理这种情况，Zoo-Keeper
+提供了同步请求：当随后进行读取时，构成慢速读取。同步会导致服务器在处理读取之前应用所有挂起的写入请求，而不会产生完整写入的开销。该原语在思想上与ISIS的flush原语类似。</p>
+<p>ZooKeeper还具有以下两个活性和持久性保证：</p>
+<ul>
+<li>如果大多数 ZooKeeper 服务器处于活动状态并且通信服务可用；</li>
+<li>如果 ZooKeeper
+服务成功响应更改请求，则只要特度不够数量的服务器最终能够恢复，该更改就会在任意数量的故障中持续存在。</li>
+</ul>
+<h3 id="原语示例">2.4 原语示例</h3>
+<p>在本节中，我们将展示如何使用ZooKeeper
+API来实现更强大的原语。ZooKeeper服务对这些更强大的原语一无所知，因为它们完全是使用ZooKeeper客户端API在客户端实现的。一些常见的原语（例如组成员身份和配置管理）也是无需等待的。对于其他事件，例如集合点，客户端需要等待事件。即使
+ZooKeeper 是无等待的，我们也可以使用 ZooKeeper
+实现高效的阻塞原语。ZooKeeper
+的排序保证允许对系统状态进行有效的推理，而监视则允许有效的等待。</p>
+<p><code>配置管理</code>：ZooKeeper可用于在分布式应用程序中实现动态配置。配置以最简单的形式存储在
+znode z<sub>c</sub>
+中。进程以z<sub>c</sub>的完整路径名启动。启动进程通过读取 z<sub>c</sub>
+来获取其配置，并将监视标志设置为 true。如果 z<sub>c</sub>
+中的配置被更新，进程会收到通知并读取新配置，再次将监视标志设置为
+true。请注意，在此方案中，与大多数使用监视的其他方案一样，监视用于确保进程拥有最新信息。例如，如果监视
+z<sub>c</sub> 的进程收到 z<sub>c</sub> 更改的通知，并且在它可以发出对
+z<sub>c</sub> 的读取之前，z<sub>c</sub>
+又发生了三个更改，则该进程不会再收到三个通知事件。这不会影响进程的行为，因为这三个事件只是通知进程它已经知道的事情：它拥有的
+z<sub>c</sub> 信息已过时。</p>
+<p><code>汇合</code>：有时，在分布式系统中，并不总是先验地清楚最终的系统配置会是什么样子。例如，客户端可能想要启动一个主进程和几个工作进程，但是启动进程是由调度程序完成的，因此客户端无法提前知道可以为工作进程提供连接到主进程的地址和端口等信息。我们通过
+ZooKeeper 使用集合点 znode z<sub>r</sub> 来处理这种情况，z<sub>r</sub>
+是客户端创建的节点。客户端将 z<sub>r</sub>
+的完整路径名作为主进程和工作进程的启动参数传递。当主机启动时，它会在
+z<sub>r</sub>
+中填充有关其正在使用的地址和端口的信息。当worker启动时，他们会读取
+z<sub>r</sub> 并将 watch 设置为 true。如果 z<sub>r</sub>
+尚未填写，worker 等待 z<sub>r</sub> 更新时收到通知。如果 z<sub>r</sub>
+是临时节点，则主进程和工作进程可以监视 z<sub>r</sub>
+是否被删除，并在客户端结束时自行清理。</p>
+<p><code>组成员</code>：我们利用临时节点来实现组成员资格。具体来说，我们利用临时节点允许我们查看创建节点的会话状态的事实。我们首先指定一个
+znode，z<sub>g</sub> 来代表该组。当组中的进程成员启动时，它会在
+z<sub>g</sub> 下创建一个临时子
+znode。如果每个进程都有唯一的名称或标识符，则该名称用作子 znode
+的名称；否则，进程将创建带有 SEQUENTIAL 标志的 znode
+以获得唯一的名称分配。例如，进程可以将进程信息放入子znode的数据、进程使用的地址和端口中。</p>
+<p>在 z<sub>g</sub> 下创建子 znode
+后，进程正常启动。它不需要做任何其他事情。如果进程失败或者结束，z<sub>g</sub>下代表它的znode会被自动移除。</p>
+<p>进程可以通过简单地列出 z<sub>g</sub>
+的子进程来获取组信息。如果进程想要监视组成员身份的更改，则该进程可以将监视标志设置为
+true，并在收到更改通知时刷新组信息（始终将监视标志设置为 true）。</p>
+<p><code>简单的锁</code>：虽然ZooKeeper不是一个锁服务，但它可以用来实现锁。使用
+ZooKeeper
+的应用程序通常使用根据其需求定制的同步原语，例如上面所示的那些。在这里，我们展示了如何使用
+ZooKeeper 实现锁，以表明它可以实现各种通用同步原语。</p>
+<p>最简单的锁实现使用“锁文件”。锁由 znode
+表示。为了获取锁，客户端尝试使用 EPHEMERAL 标志创建指定的
+znode。如果创建成功，则客户端持有锁。否则，客户端可以读取设置了监视标志的
+znode，以便在当前领导者死亡时收到通知。客户端在死亡或显式删除 znode
+时释放锁。其他正在等待锁的客户端一旦观察到 znode
+被删除，就会再次尝试获取锁。</p>
+<p>虽然这个简单的锁定协议有效，但它确实存在一些问题。首先，它受到羊群效应的影响。如果有很多客户端等待获取锁，那么当锁释放时，即使只有一个客户端可以获得锁，它们也会争夺锁。其次，它只实现独占锁定。以下两个原语展示了如何克服这两个问题。</p>
+<p><code>无羊群效应的简单锁</code>：我们定义一个锁znode
+l来实现这样的锁。直观上，我们将所有请求锁的客户端排列起来，每个客户端按照请求到达的顺序获得锁。因此，希望获得锁的客户端执行以下操作：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs awk">Lock <br><span class="hljs-number">1</span> n = create(l + “/lock-”, EPHEMERAL|SEQUENTIAL) <br><span class="hljs-number">2</span> C = getChildren(l, false) <br><span class="hljs-number">3</span> <span class="hljs-keyword">if</span> n is lowest znode <span class="hljs-keyword">in</span> C, <span class="hljs-keyword">exit</span> <br><span class="hljs-number">4</span> p = znode <span class="hljs-keyword">in</span> C ordered just before n <br><span class="hljs-number">5</span> <span class="hljs-keyword">if</span> exists(p, true) wait <span class="hljs-keyword">for</span> watch event <br><span class="hljs-number">6</span> goto <span class="hljs-number">2</span> <br>Unlock <br><span class="hljs-number">1</span> <span class="hljs-keyword">delete</span>(n) <br></code></pre></td></tr></table></figure>
+<p>Lock 第 1 行中 SEQUENTIAL
+标志的使用命令客户端获取锁的尝试相对于所有其他尝试。如果客户端的 znode
+在第 3
+行具有最低序列号，则客户端持有锁。否则，客户端将等待删除拥有锁或将在该客户端的
+znode 之前接收锁的 znode。通过仅观察客户端 znode 之前的
+znode，我们可以在释放锁或放弃锁请求时仅唤醒一个进程，从而避免羊群效应。一旦客户端正在监视的
+znode
+消失，客户端必须检查它现在是否持有锁。（之前的锁请求可能已经被放弃，并且有一个序列号较低的znode仍在等待或持有锁。）</p>
+<p>释放锁就像删除代表锁请求的 znode n 一样简单。通过在创建时使用
+EPHEMERAL
+标志，崩溃的进程将自动清除任何锁定请求或释放它们可能拥有的任何锁定。综上所述，这种锁定方案有以下优点：</p>
+<ol type="1">
+<li>删除一个 znode 只会导致一个客户端醒来，因为每个 znode
+都被另一个客户端监视，所以我们没有羊群效应；</li>
+<li>没有轮询或超时；</li>
+<li>由于我们实现锁定的方式，我们可以通过浏览 ZooKeeper
+数据来查看锁争用、中断锁定和调试锁定问题的数量。</li>
+</ol>
+<p><code>读/写锁</code>：为了实现读/写锁，我们稍微改变了锁定过程，并具有单独的读锁和写锁过程。解锁过程与全局锁定情况相同。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">Write</span> <span class="hljs-keyword">Lock</span> <br><span class="hljs-number">1</span> n = <span class="hljs-keyword">create</span>(l + “/<span class="hljs-keyword">write</span>-”, EPHEMERAL|SEQUENTIAL) <br><span class="hljs-number">2</span> C = getChildren(l, <span class="hljs-keyword">false</span>) <br><span class="hljs-number">3</span> <span class="hljs-keyword">if</span> n <span class="hljs-keyword">is</span> lowest znode <span class="hljs-keyword">in</span> C, <span class="hljs-keyword">exit</span> <br><span class="hljs-number">4</span> p = znode <span class="hljs-keyword">in</span> C ordered just <span class="hljs-keyword">before</span> n <br><span class="hljs-number">5</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">exists</span>(p, <span class="hljs-keyword">true</span>) wait <span class="hljs-keyword">for</span> event <br><span class="hljs-number">6</span> goto <span class="hljs-number">2</span> <br><span class="hljs-keyword">Read</span> <span class="hljs-keyword">Lock</span> <br><span class="hljs-number">1</span> n = <span class="hljs-keyword">create</span>(l + “/<span class="hljs-keyword">read</span>-”, EPHEMERAL|SEQUENTIAL) <br><span class="hljs-number">2</span> C = getChildren(l, <span class="hljs-keyword">false</span>) <br><span class="hljs-number">3</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">no</span> <span class="hljs-keyword">write</span> znodes lower than n <span class="hljs-keyword">in</span> C, <span class="hljs-keyword">exit</span> <br><span class="hljs-number">4</span> p = <span class="hljs-keyword">write</span> znode <span class="hljs-keyword">in</span> C ordered just <span class="hljs-keyword">before</span> n <br><span class="hljs-number">5</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">exists</span>(p, <span class="hljs-keyword">true</span>) wait <span class="hljs-keyword">for</span> event <br><span class="hljs-number">6</span> goto <span class="hljs-number">3</span> <br></code></pre></td></tr></table></figure>
+<p>此锁定过程与之前的锁定略有不同。写锁仅在命名上有所不同。由于读锁可能是共享的，因此第
+3 行和第 4 行略有不同，因为只有较早的写锁 znode
+会阻止客户端获取读锁。当有多个客户端等待读锁并在删除序列号较低的“写”znode
+时收到通知时，我们可能会出现“羊群效应”；事实上，这是一种期望的行为，所有这些读取客户端都应该被释放，因为它们现在可能拥有锁。</p>
+<p><code>双重屏障</code>:双屏障使客户端能够同步计算的开始和结束。当由屏障阈值定义的足够多的进程加入屏障时，进程开始计算并在完成后离开屏障。我们用
+znode 表示 ZooKeeper 中的屏障，称为 b。每个进程 p 在进入时向 b
+注册（通过创建一个 znode 作为 b
+的子节点），并在准备离开时取消注册（重新移动子节点）。当 b 的子 znode
+数量超过屏障阈值时，进程可以进入屏障。当所有进程都删除了它们的子进程时，进程就可以离开屏障。我们使用watch有效等待满足的进入和退出条件。为了进入，进程会监视
+b
+是否存在就绪子级，该子级将由导致子级数量超过屏障阈值的进程创建。为了离开，进程会监视特定子节点的消失，并且仅在该
+znode 被删除后才检查退出条件。</p>
+<h2 id="zookeeper应用程序">3 ZooKeeper应用程序</h2>
+<p>现在我们描述一些使用 ZooKeeper
+的应用程序，并简要解释它们如何使用它。我们以<strong>粗体</strong>显示每个示例的原语。</p>
+<p><strong>抓取服务</strong> 爬虫是搜索引擎的重要组成部分，而
+Yahoo!抓取数十亿的Web文档。获取服务 (FS)
+是Yahoo!爬虫的一部分，目前正在生产中。本质上，它具有命令页面获取进程的主进程。主设备为提取器提供配置，并且提取器回写通知其状态和健康状况。使用
+ZooKeeper for FS
+的主要优点是从主服务器故障中恢复、在发生故障时保证可用性以及将客户端与服务器解耦，允许他们通过从
+ZooKeeper
+读取状态来将请求定向到健康的服务器。因此，FS主要使用ZooKeeper来管理配置元数据，尽管它也使用ZooKeeper来选举master（领导者选举）。</p>
+<p><img src="/2024/05/02/ZooKeeper/image-20240502031314762.png" srcset="/img/loading.gif" lazyload></p>
+<p>图 2 显示了 FS 使用的 ZooKeeper
+服务器三天内的读写流量。为了生成这个图表，我们计算了该时间段内每一秒的操作次数，每个点对应于该秒内的操作次数。我们观察到读取流量比写入流量高得多。在速率高于每秒
+1,000 次操作期间，读：写比率在 10:1 和 100:1
+之间变化。此工作负载中的读取操作为 getData()、getChildren() 和
+Exists()，按流行程度递增的顺序排列</p>
+<p><strong><font size="3">Katta</font></strong>
+Katta是一个分布式索引器，使用 ZooKeeper 进行协调，它是非 Yahoo!
+的一个示例应用。Katta
+使用分片来划分索引工作。主服务器将分片分配给从服务器并跟踪进度。从站可能会发生故障，因此主节点必须在从节点来来去去时重新分配负载。主服务器也可能发生故障，因此其他服务器必须准备好在发生故障时接管。
+Katta 使用 ZooKeeper
+跟踪从服务器和主服务器的状态（组成员身份），并处理主服务器故障转移（领导者选举）。Katta
+还使用 ZooKeeper 来跟踪分片分配并将其传播到从属设备（配置管理）。</p>
+<p><strong><font size="3">Yahoo!消息代理</font></strong>
+Yahoo！消息代理（YMB）是一个分布式发布订阅系统。该系统管理着数千个主题，客户端可以向这些主题发布消息并从中接收消息。这些主题分布在一组服务器中以提供可扩展性。每个主题都使用主备方案进行复制，确保消息复制到两台机器，以确保可靠的消息传递。组成
+YMB 的服务器使用无共享分布式架构，这使得协调对于正确操作至关重要。组成
+YMB
+的服务器使用无共享分布式架构，这使得协调对于正确操作至关重要。YMB使用ZooKeeper来管理主题的分布（配置元数据），处理系统中机器的故障（故障检测和组成员身份），并控制系统操作。</p>
+<p><img src="/2024/05/02/ZooKeeper/image-20240502031330397.png" srcset="/img/loading.gif" lazyload alt="图 3：YMB在ZooKeeper中的消息代理结构"></p>
+<p>图 3 显示了 YMB 的 znode
+数据布局的一部分。每个代理域都有一个称为节点的 znode，它为组成 YMB
+服务的每个活动服务器都有一个临时 znode。每个 YMB
+服务器在具有负载和状态信息的节点下创建一个临时 znode，通过 ZooKeeper
+提供组成员身份和状态信息。禁止关闭和迁移等节点由组成服务的所有服务器进行监控，并允许
+YMB 进行集中控制。主题目录对于 YMB 管理的每个主题都有一个子
+znode。这些主题 znode 具有子
+znode，它们指示每个主题的主服务器和备份服务器以及该主题的订阅者。主服务器和备份服务器
+znode
+不仅允许服务器发现负责某个主题的服务器，而且还管理领导者选举和服务器崩溃。</p>
+<p><img src="/2024/05/02/ZooKeeper/image-20240502031349211.png" srcset="/img/loading.gif" lazyload alt="图4：ZooKeeper服务的组件"></p>
+<h2 id="zookeeper实现">4.ZooKeeper实现</h2>
+<p>ZooKeeper 通过在组成服务的每台服务器上复制 ZooKeeper
+数据来提供高可用性。我们假设服务器因崩溃而发生故障，并且此类故障服务器稍后可能会恢复。图
+4 显示了 ZooKeeper
+服务的高级组件。接收到请求后，服务器准备执行该请求（请求处理器）。如果这样的请求需要服务器之间的协调（写请求），那么它们使用一致协议（原子广播的实现），最后，服务器将更改提交到
+ZooKeeper
+数据库，并在整体的所有服务器上完全复制。在读取请求的情况下，服务器只需读取本地数据库的状态并生成对请求的响应。</p>
+<p>复制数据库是包含整个数据树的内存数据库。树中的每个 znode
+默认情况下最多存储 1MB
+的数据，但这个最大值是一个配置参数，可以在特定情况下更改。为了可恢复性，我们将更新有效地记录到磁盘，并强制写入在磁盘介质上，然后再应用于内存数据库。事实上，正如Chubby一样，我们保留已提交操作的重播日志（在我们的例子中是预写日志），并生成内存数据库的定期快照。</p>
+<p>每个 ZooKeeper
+服务器都为客户端提供服务。客户端仅连接到一台服务器来提交其请求。正如我们之前提到的，读取请求由每个服务器数据库的本地副本提供服务。更改服务状态的请求（写入请求）由协议协议处理。作为协议的一部分，写请求被转发到称为领导者的单个服务器。剩下的ZooKeeper服务器，叫做跟随者，接收消息提案包括来自领导者的状态更改，并就状态更改达成一致。</p>
+<h3 id="请求处理器">4.1 请求处理器</h3>
+<p>由于消息传递层是原子的，因此我们保证本地副本永远不会分歧，尽管在任何时候某些服务器可能比其他服务器应用了更多的事务。与客户端发送的请求不同，事务是幂等的。当领导者收到写入请求时，它会计算应用写入时系统的状态，并将其转换为捕获此新状态的事务。必须计算未来状态，因为可能存在尚未应用到数据库的未完成事务。例如，如果客户端执行了条件
+setData 并且请求中的版本号与正在更新的 znode
+的未来版本号相匹配，该服务生成一个
+setDataTXN，其中包含新数据、新版本号和更新的时间戳。如果发生错误，例如版本号不匹配或要更新的
+znode 不存在，则会生成 errorTXN。</p>
+<h3 id="原子广播">4.2 原子广播</h3>
+<p>所有更新 ZooKeeper 状态的请求都会转发给领导者。 Leader
+执行请求并通过原子广播协议 Zab 将变化广播到 ZooKeeper
+状态。接收到客户端请求的服务器在传递相应的状态变化时响应客户端。Zab
+默认使用简单多数仲裁来决定提案，因此只有大多数服务器正确时，Zab 和
+ZooKeeper 才能工作（即，使用 2f + 1 个服务器，我们可以容忍 f
+个故障）。</p>
+<p>为了实现高吞吐量，ZooKeeper
+尝试保持请求处理管道已满。它可能在处理管道的不同部分有数千个请求。由于状态更改取决于先前状态更改的应用，因此
+Zab 提供了比常规原子广播更强的顺序保证。更具体地说，Zab
+保证领导者广播的更改按照发送的顺序进行传递，并且先前领导者的所有更改都会在已建立的领导者广播自己的更改之前传递给已建立的领导者。</p>
+<p>有一些实现细节可以简化我们的实现并为我们提供出色的性能。我们使用 TCP
+进行传输，因此消息顺序由网络维护，这使我们能够简化实现。我们使用 Zab
+选择的领导者作为 ZooKeeper
+领导者，以便创建事务的同一进程也会提议它们。我们使用日志来跟踪提案,作为内存数据库的预写日志，这样我们就不必将消息写入磁盘两次。</p>
+<p>在正常操作期间，Zab 确实按顺序传递所有消息并且只传递一次，但由于 Zab
+不会持久记录传递的每条消息的 id，因此 Zab
+可能会在恢复期间重新传递消息。因为我们使用幂等事务，所以只要按顺序交付，多次交付是可以接受的。事实上，ZooKeeper
+要求 Zab 至少重新传送上次快照开始后传送的所有消息。</p>
+<h3 id="复制数据库">4.3 复制数据库</h3>
+<p>每个副本在内存中都有一个 ZooKeeper 状态的副本。当 ZooKeeper
+服务器从崩溃中恢复时，它需要恢复此内部状态。在运行服务器一段时间后，重放所有已传递的消息以恢复状态将花费非常长的时间，因此
+ZooKeeper 使用定期快照，并且只需要自快照启动以来重新传递消息。我们将
+ZooKeeper 快照称为模糊快照，因为我们不锁定 ZooKeeper
+状态来拍摄快照；相反，我们对树进行深度优先扫描，自动读取每个 znode
+的数据和元数据并将它们写入磁盘。由于生成的模糊快照可能应用了快照生成期间传递的状态更改的某些子集，因此结果可能与
+ZooKeeper
+在任何时间点的状态都不对应。但是，由于状态更改是幂等的，因此只要按顺序应用状态更改，我们就可以应用两次。</p>
+<p>例如，假设在 ZooKeeper 数据树中，两个节点 /foo 和 /goo 的值分别为 f1
+和 g1，并且在模糊快照开始时都位于版本 1，并且以下状态更改流的格式为
+&lt;transactionType， path， value， new-version&gt;：</p>
+<p>&lt;SetDataTXN, /foo, f2, 2&gt;</p>
+<p>&lt;SetDataTXN, /goo, g2, 2&gt;</p>
+<p>&lt;SetDataTXN, /foo, f3, 3&gt;</p>
+<p>处理这些状态更改后，/foo 和 /goo 的值 f3 和 g2 分别为版本 3 和
+2。然而，模糊快照可能记录了 /foo 和 /goo 的值 f3 和 g1 分别为版本 3 和
+1，这不是 ZooKeeper
+数据树的有效状态。如果服务器崩溃并使用此快照恢复，并且 Zab
+重新传递状态更改，则结果状态对应于崩溃之前服务的状态。</p>
+<h3 id="客户端-服务器交互">4.4 客户端-服务器交互</h3>
+<p>当服务器处理写入请求时，它还会发送并清除与与该更新相对应的任何监视相关的通知。服务器按顺序处理写入，不会同时处理其他写入或读取。这确保了通知的严格连续性。请注意，服务器在本地处理通知。只有客户端连接的服务器才会跟踪并触发该客户端的通知。</p>
+<p>读取请求在每台服务器上本地处理。每个读取请求都会被处理并使用 zxid
+进行标记，该 zxid 对应于服务器看到的最后一个事务。该 zxid
+定义读请求相对于写请求的部分顺序。通过在本地处理读取，我们获得了出色的读取性能，因为它只是本地服务器上的内存中操作，并且没有磁盘活动或协议协议可以运行。这种设计选择对于实现我们以读取为主的工作负载实现卓越性能的目标至关重要。</p>
+<p>使用快速读取的一个缺点是不能保证读取操作的优先顺序。也就是说，即使已提交对同一
+znode
+的更新更新，读取操作也可能返回过时的值。并非所有应用程序都需要优先顺序，但对于确实需要优先顺序的应用程序，我们已经实现了同步。该原语异步执行，并在所有待处理写入其本地副本后由领导者排序。为了保证给定的读取操作返回最新更新的值，客户端在读取操作后调用同步。客户端操作的
+FIFO
+顺序保证与同步的全局保证一起使读取操作的结果能够反映发出同步之前发生的任何更改。在我们的实现中，我们不需要原子地广播同步，因为我们使用基于领导者的算法，我们只需将同步操作放在领导者和执行同步调用的服务器之间的请求队列的末尾。为了使其发挥作用，追随者必须确保领导者仍然是领导者。如果有待提交的事务，则服务器不会怀疑领导者。如果挂起队列为空，则领导者需要发出一个空事务来提交，并在该事务之后命令同步。这有一个很好的特性，即当领导者处于负载状态时，不会生成额外的广播流量。在我们的实现中，设置了超时，以便领导者在追随者放弃他们之前意识到自己不是领导者，因此我们不会发出空事务。</p>
+<p>ZooKeeper 服务器按照 FIFO
+顺序处理来自客户端的请求。响应包括响应相关的
+zxid。即使在无活动间隔期间的心跳消息也包含客户端连接到的服务器看到的最后一个
+zxid。如果客户端连接到新服务器，则该新服务器通过对照客户端的最后一个
+zxid 来检查客户端的最后一个 zxid，以确保其 ZooKeeper
+数据的视图至少与客户端的视图一样新。如果客户端的视图比服务器更新，则在服务器赶上之前，服务器不会重新建立与客户端的会话。保证客户端能够找到具有系统最新视图的另一台服务器，因为客户端只能看到已复制到大多数
+ZooKeeper 服务器的更改。此行为对于保证持久性非常重要。</p>
+<p>为了检测客户端会话失败，ZooKeeper
+使用超时。如果在会话超时期间没有其他服务器从客户端接收到任何内容，则领导者确定已发生故障。如果客户端发送重新任务的频率足够高，则无需发送任何其他消息。否则，客户端将在低活动期间发送检测信号消息。如果客户端无法与服务器通信以发送请求或检测信号，它将连接到其他
+ZooKeeper 服务器以重新建立其会话。为了防止会话计时，ZooKeeper
+客户端库在会话空闲 s/3 毫秒后发送检测信号，如果会话在 2s/3
+毫秒内没有收到来自服务器的消息，则切换到新服务器，其中 s
+是会话超时（以毫秒为单位）。</p>
+<h2 id="相关工作">5 相关工作</h2>
+<p>ZooKeeper
+的目标是提供一种服务来缓解分布式应用程序中协调进程的问题。为了实现这一目标，它的设计借鉴了之前的协调服务、容错系统、分布式算法和文件系统的思想。</p>
+<p>我们并不是第一个提出分布式应用程序协调系统的人。一些早期的系统提出了一种用于事务应用程序的分布式锁服务，以及用于在计算机集群中共享信息。最近，Chubby
+提出了一个系统来管理分布式应用程序的咨询锁 。 Chubby 与 ZooKeeper
+有着共同的几个目标。它还具有类似文件系统的接口，并使用一致协议来保证副本的一致性。但是，ZooKeeper
+不是锁服务。客户端可以使用它来实现锁，但其API中没有锁操作。与 Chubby
+不同，ZooKeeper 允许客户端连接到任何 ZooKeeper
+服务器，而不仅仅是领导者。ZooKeeper
+客户端可以使用其本地副本来提供数据并管理监视，因为它的一致性模型比
+Chubby
+轻松得多。这使得ZooKeeper能够提供比Chubby更高的性能，从而允许应用程序更广泛地使用ZooKeeper。</p>
+<p>文献中已经提出了容错系统，其目标是缓解构建容错分布式应用程序的问题。ISIS
+是一种早期系统。
+ISIS系统将抽象类型规范转换为容错的分布式对象，从而使容错机制对用户透明。Horus
+和 Ensemble 是从 ISIS 演变而来的系统。 ZooKeeper 采用 ISIS
+虚拟同步的概念。最后，Totem
+保证了利用局域网硬件广播的架构中消息传递的总顺序。ZooKeeper
+适用于各种网络拓扑，这促使我们依赖服务器进程之间的 TCP
+连接，而不是假设任何特殊的拓扑或硬件功能。我们也不会公开 ZooKeeper
+内部使用的任何集成通信。</p>
+<p>构建容错服务的一项重要技术是状态机复制，而 Paxos
+是一种能够高效实现异步系统复制状态机的算法。我们使用的算法具有 Paxos
+的一些特性，但它将共识所需的事务日志记录与数据树恢复所需的预写日志记录相结合，以实现高效的实现。已经提出了用于实际实现拜占庭容错复制状态机的协议。ZooKeeper
+并不假设服务器可以是拜占庭式的，但我们确实采用校验和和健全性检查等机制来捕获非恶意的拜占庭式错误。克莱门特等人，讨论一种在不修改当前服务器代码库的情况下使
+ZooKeeper
+完全具有拜占庭容错能力的方法。迄今为止，我们还没有观察到使用完全拜占庭容错协议可以避免的生产错误。</p>
+<p>Boxwood 是一个使用分布式锁服务器的系统。 Boxwood
+为应用程序提供了更高级别的抽象，并且它依赖于基于 Paxos
+的分布式锁服务。与 Boxwood 一样，ZooKeeper
+是用于构建分布式系统的组件。但是，ZooKeeper
+具有高性能要求，并且在客户端应用程序中使用得更广泛。ZooKeeper
+公开了应用程序用于实现高级基元的较低级别基元。</p>
+<p>ZooKeeper
+类似于一个小型文件系统，但它只提供文件系统操作的一小部分，并添加了大多数文件系统中不存在的功能，例如排序保证和条件写入。然而，ZooKeeper
+watch在思想上与 AFS 的缓存回调相似。</p>
+<p>Sinfonia 引入了迷你事务，这是构建可扩展分布式系统的新范例。 Sinfonia
+被设计用来存储应用程序数据，而 ZooKeeper 则存储应用程序元数据。ZooKeeper
+将其状态完全复制并保存在内存中，以实现高性能和一致的延迟。我们使用文件系统（如操作和排序）来实现类似于小型事务的功能。znode
+是一个方便的抽象，我们在它上面添加了watch，这是 Sinfonia
+中缺少的功能。Dynamo 允许客户端获取相对少量（小于
+1M）的数据并将其放入分布式键值存储中。与 ZooKeeper 不同，Dynamo
+中的密钥空间不是分层的。Dynamo
+也不为写入提供强大的持久性和一致性保证，而是解决读取冲突。</p>
+<p>DepSpace 使用元组空间来提供拜占庭容错服务。与 ZooKeeper
+一样，DepSpace
+使用简单的服务器接口在客户端实现强同步原语。虽然DepSpace的性能远低于ZooKeeper，但它提供了更强的容错性和机密性保证。</p>
+<h2 id="总结">6 总结</h2>
+<p>ZooKeeper
+通过向客户端公开无等待对象，采用无等待方法来解决分布式系统中的进程协调问题。我们发现
+ZooKeeper 对于 Yahoo! 内部和外部的多个应用程序非常有用。ZooKeeper
+通过使用watch的快速读取（这两个操作均由本地副本提供服务），为读取为主的工作负载实现了每秒数十万次操作的吞吐量值。尽管我们对读取和监视的一致性保证似乎很弱，但我们已经通过我们的用例表明，这种组合使我们能够在客户端实现高效和复杂的协调协议，即使读取不是优先顺序的，并且数据对象的实现是无等待的。事实证明，无等待属性对于高性能至关重要。</p>
+<p>虽然我们只描述了几个应用程序，但还有许多其他应用程序使用
+ZooKeeper。我们相信这样的成功是由于其简单的界面和可以通过这种界面实现的强大抽象。此外，由于
+ZooKeeper 的高吞吐量，应用程序可以广泛使用它，而不仅仅是粗粒度锁定。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/mit6-824/" class="category-chain-item">mit6.824</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" class="print-no-link">#分布式系统</a>
+      
+        <a href="/tags/mit6-824/" class="print-no-link">#mit6.824</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ZooKeeper</div>
+      <div>http://polaris3003.github.io/2024/05/02/ZooKeeper/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/05/11/Bigtable/" title="Bigtable">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Bigtable</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/24/raft%E9%9D%A2%E8%AF%95/" title="raft面试">
+                        <span class="hidden-mobile">raft面试</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

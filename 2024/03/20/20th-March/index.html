@@ -1,0 +1,1555 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="每日八股 计网 HTTP&#x2F;1.1、HTTP&#x2F;2、HTTP&#x2F;3演变 HTTP&#x2F;1.1 相比 HTTP&#x2F;1.0提高了什么性能？  使用长连接的方式改善了HTTP&#x2F;1.0短连接造成的性能开销 支持管道网络运输，只要第一个请求发出去了，不必等其回来，就可以发第二个请求出去，可以减少整体的响应时间。  但HTTP&#x2F;1.1还是有性能瓶颈：  请求&#x2F;响应头部（Header）未经压缩就发送，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20th-March">
+<meta property="og:url" content="http://polaris3003.github.io/2024/03/20/20th-March/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="每日八股 计网 HTTP&#x2F;1.1、HTTP&#x2F;2、HTTP&#x2F;3演变 HTTP&#x2F;1.1 相比 HTTP&#x2F;1.0提高了什么性能？  使用长连接的方式改善了HTTP&#x2F;1.0短连接造成的性能开销 支持管道网络运输，只要第一个请求发出去了，不必等其回来，就可以发第二个请求出去，可以减少整体的响应时间。  但HTTP&#x2F;1.1还是有性能瓶颈：  请求&#x2F;响应头部（Header）未经压缩就发送，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/stream.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/tcp%E9%98%9F%E5%A4%B4%E9%98%BB%E5%A1%9E.gif">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/quic%E6%97%A0%E9%98%BB%E5%A1%9E.jpeg">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/20th-March/http2%E9%98%BB%E5%A1%9E.jpeg">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/28-HTTP3%E4%BA%A4%E4%BA%92%E6%AC%A1%E6%95%B0.jpeg">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/format,png-20230309231026577.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/format,png-20230309230439961.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/format,png-20230309230534096.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/5.jpg">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/10.jpg">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/11.jpg">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/12.jpg">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/13.jpg">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/29.jpg">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/%E6%8B%A5%E5%A1%9E%E5%8F%91%E7%94%9F-%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0.drawio.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/readview%E7%BB%93%E6%9E%84.drawio.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/f595d13450878acd04affa82731f76c5.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/ReadView.drawio.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/%E4%BA%8B%E5%8A%A1ab%E7%9A%84%E8%A7%86%E5%9B%BE-new.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/%E4%BA%8B%E5%8A%A1ab%E7%9A%84%E8%A7%86%E5%9B%BE2.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/f46cbe347f65ded522f1cc3fd8dba549.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/4d2dc376b5fd68dae70d9284ae82b73a.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/c5fb0a602d4caaca37ff0357f05b0abf.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/03/20/20th-March/image-20240320214547723.png">
+<meta property="article:published_time" content="2024-03-20T07:32:23.000Z">
+<meta property="article:modified_time" content="2025-02-11T09:26:54.000Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="diary">
+<meta property="article:tag" content="八股">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://polaris3003.github.io/2024/03/20/20th-March/stream.png">
+  
+  
+  
+  <title>20th-March - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"polaris3003.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="20th-March"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-20 15:32" pubdate>
+          2024年3月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          100 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">20th-March</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="每日八股">每日八股</h1>
+<h2 id="计网">计网</h2>
+<h3 id="http1.1http2http3演变">HTTP/1.1、HTTP/2、HTTP/3演变</h3>
+<h4 id="http1.1-相比-http1.0提高了什么性能">HTTP/1.1 相比
+HTTP/1.0提高了什么性能？</h4>
+<ul>
+<li>使用长连接的方式改善了HTTP/1.0短连接造成的性能开销</li>
+<li>支持管道网络运输，只要第一个请求发出去了，不必等其回来，就可以发第二个请求出去，可以减少整体的响应时间。</li>
+</ul>
+<p>但HTTP/1.1还是有性能瓶颈：</p>
+<ul>
+<li>请求/响应头部（Header）未经压缩就发送，首部信息越多延迟越大。只能压缩<code>Body</code>的部分</li>
+<li>发送冗长的首部。每次互相发送相同的首部造成的浪费较多</li>
+<li>服务器是按请求的顺序响应的，如果服务器响应慢，会导致客户端一直请求不到数据，也就是队头阻塞</li>
+<li>没有请求优先级控制</li>
+<li>请求只能从客户端开始，服务器只能被动响应</li>
+</ul>
+<h4 id="http2做了什么优化">HTTP/2做了什么优化？</h4>
+<p>HTTP/2协议是基于HTTPS的，所以HTTP/2的安全性也是有保障的。</p>
+<ul>
+<li>头部压缩</li>
+<li>二进制格式</li>
+<li>并发传输</li>
+<li>服务器主动推送资源</li>
+</ul>
+<p>1.头部压缩</p>
+<p>HTTP/2会压缩头，如果你同时发出多个请求，他们的头是一样的或是相似，那么，协议会帮你消除重复的部分。</p>
+<p>这就是所谓的HPACK算法:在客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成一个索引号，以后就不发送重复的字段了，只发送索引号，这样就提高速度了。</p>
+<p>2.二进制格式</p>
+<p>HTTP/2不再像HTTP/1.1里的纯文本形式的文本，而是全面采用了二进制格式，头信息和数据体都是二进制，并且统称为帧：头信息帧和数据帧</p>
+<p>这样虽然对人不友好，但是对计算机非常友好，因为计算机只懂二进制，那么收到报文后，无需再将明文的报文转成二进制，而是直接解析二进制报文，这<strong>增加了数据传输的效率</strong>。</p>
+<p>比如状态码 200 ，在 HTTP/1.1 是用 '2''0''0'
+三个字符来表示（二进制：00110010 00110000 00110000），共用了 3
+个字节，在 HTTP/2 对于状态码 200 的二进制编码是 10001000，只用了 1
+字节就能表示，相比于 HTTP/1.1 节省了 2 个字节，</p>
+<p>3.并发传输</p>
+<p>我们都知道HTTP/1.1的实现是基于请求-响应模型的。同一个连接中，HTTP完成一个事务（请求与响应），才能处理下一个事务，也就是说在发出请求等待响应的过程中，是没办法做其他事情的，如果响应迟迟不来，那么后续的请求是无法发送的，也造成了对头阻塞的问题</p>
+<p>而HTTP/2就引出了Stream概念，多个Stream复用在一条TCP连接</p>
+<p><img src="/2024/03/20/20th-March/stream.png" srcset="/img/loading.gif" lazyload alt="Stream"></p>
+<p>从上图可以看到，1个TCP连接包含多个Stream，Stream里可以包含1个或多个Message，Message对应HTTP/1中的请求或响应，由HTTP头部和Body构成。Message里包含一条或者多个Frame，Frame是HTTP/2最小单位，以二进制压缩格式存放HTTP/1中的内容。</p>
+<p>针对不同的HTTP请求用独一无二的Stream ID来区分，接收端可以通过Stream
+ID有序组装成HTTP消息，不同Stream的帧是可以乱序发送的，因此可以并发不同的Stream，也就是HTTP/2可以并行交错地发送请求和响应。</p>
+<p>4.服务器推送</p>
+<p>HTTP/2还在一定程度上改善了传统的请求-应答工作模式，服务端不再是被动地响应，可以主动向客户端发送信息。</p>
+<p>客户端和服务器<strong>双方都可以建立 Stream</strong>， Stream ID
+也是有区别的，客户端建立的 Stream 必须是奇数号，而服务器建立的 Stream
+必须是偶数号。</p>
+<h4 id="http2有什么缺陷">HTTP/2有什么缺陷？</h4>
+<p>HTTP/2通过Stream的并发能力，解决了HTTP1/1队头阻塞的问题，看似很完美了，但是HTTP/2还是存在“队头阻塞”的问题，不过是在TCP这一层。</p>
+<p><strong>HTTP/2 是基于 TCP 协议来传输数据的，TCP 是字节流协议，TCP
+层必须保证收到的字节数据是完整且连续的，这样内核才会将缓冲区里的数据返回给
+HTTP 应用，那么当「前 1
+个字节数据」没有到达时，后收到的字节数据只能存放在内核缓冲区里，只有等到这
+1 个字节数据到达时，HTTP/2 应用层才能从内核中拿到数据，这就是 HTTP/2
+队头阻塞问题。</strong></p>
+<p><img src="/2024/03/20/20th-March/tcp%E9%98%9F%E5%A4%B4%E9%98%BB%E5%A1%9E.gif" srcset="/img/loading.gif" lazyload alt="TCP队头阻塞"></p>
+<p>图中发送方发送了很多个 packet，每个 packet
+都有自己的序号，你可以认为是 TCP 的序列号，其中 packet 3
+在网络中丢失了，即使 packet 4-6 被接收方收到后，由于内核中的 TCP
+数据不是连续的，于是接收方的应用层就无法从内核中读取到，只有等到 packet
+3 重传后，接收方的应用层才可以从内核中读取到数据，这就是 HTTP/2
+的队头阻塞问题，是在 TCP 层面发生的。</p>
+<p>所以，一旦发生了丢包现象，就会触发 TCP 的重传机制，这样在一个 TCP
+连接中的<strong>所有的 HTTP
+请求都必须等待这个丢了的包被重传回来</strong>。</p>
+<h4 id="http3-做了哪些优化">HTTP/3 做了哪些优化？</h4>
+<p>从TCP改成了UDP</p>
+<p>UDP 发送是不管顺序，也不管丢包的，所以不会出现像 HTTP/2
+队头阻塞的问题。大家都知道 UDP 是不可靠传输的，但基于 UDP 的
+<strong>QUIC 协议</strong> 可以实现类似 TCP 的可靠性传输。</p>
+<ul>
+<li>无队头阻塞</li>
+<li>更快的连接建立</li>
+<li>连接迁移</li>
+</ul>
+<p>1.无队头阻塞</p>
+<p>QUIC协议也有类似HTTP/2
+Stream与多路复用的概念，也是可以在同一条连接上并发传输多个Stream，Stream可以认为就是一条HTTP请求。</p>
+<p>QUIC有自己的一套机制可以保证传输的可靠性的。当某个流发生丢包时，只会阻塞这个流，其他流不会受到影响，因此不存在队头阻塞问题。这与HTTP/2不同，HTTP/2只要某个流中的数据包丢失了，其他流也会因此受影响。</p>
+<p>所以，QUIC 连接上的多个 Stream
+之间并没有依赖，都是独立的，某个流发生丢包了，只会影响该流，其他流不受影响。</p>
+<p><img src="/2024/03/20/20th-March/quic%E6%97%A0%E9%98%BB%E5%A1%9E.jpeg" srcset="/img/loading.gif" lazyload alt="QUIC多路复用"></p>
+<p><img src="./20th-March/http2%E9%98%BB%E5%A1%9E.jpeg" srcset="/img/loading.gif" lazyload alt="TCP队头阻塞"></p>
+<p>2.更快的连接建立</p>
+<p>对于HTTP/1和HTTP/2协议，TCP和TLS是分层的，分别属于内核实现的传输层，openssl层库实现的表示层，因此它们难以合并在一起，需要分批次来我收，先TCP握手再TLS握手。</p>
+<p>HTTP/3再传输数据前虽然需要QUIC协议握手，但是这个握手过程只需要1RTT，握手的目的是为确认双方的连接ID，连接迁移就是基于连接ID实现的。</p>
+<p>但是HTTP/3的QUIC协议并不是与TLS分层，而是QUIC内部包含了TLS，它再自己的帧会携带TLS里的“记录”，再加上QUIC使用的是TLS/1.3，因此只需要1个RTT就可以同时完成建立连接与密钥协商</p>
+<p><img src="/2024/03/20/20th-March/28-HTTP3%E4%BA%A4%E4%BA%92%E6%AC%A1%E6%95%B0.jpeg" srcset="/img/loading.gif" lazyload alt="TCP HTTPS（TLS/1.3） 和 QUIC HTTPS"></p>
+<p>3.连接迁移</p>
+<p>基于TCP传输协议的HTTP协议，由于是通过四元组确定一条TCP连接。</p>
+<p><img src="/2024/03/20/20th-March/format,png-20230309231026577.png" srcset="/img/loading.gif" lazyload alt="TCP 四元组"></p>
+<p>那么当移动设备的网络从4G切换到WIFI时，意味着IP地址变化了，那么久必须要断开连接，然后重新建立连接。而建立连接的过程包含
+TCP 三次握手和 TLS 四次握手的时延，以及 TCP
+慢启动的减速过程，给用户的感觉就是网络突然卡顿了一下，因此连接的迁移成本是很高的。</p>
+<p>而 QUIC 协议没有用四元组的方式来“绑定”连接，而是通过<strong>连接
+ID</strong> 来标记通信的两个端点，客户端和服务器可以各自选择一组 ID
+来标记自己，因此即使移动设备的网络变化后，导致 IP
+地址变化了，只要仍保有上下文信息（比如连接 ID、TLS
+密钥等），就可以“无缝”地复用原连接，消除重连的成本，没有丝毫卡顿感，达到了<strong>连接迁移</strong>的功能。</p>
+<p>所以， QUIC 是一个在 UDP 之上的<strong>伪</strong> TCP + TLS + HTTP/2
+的多路复用的协议。</p>
+<p>QUIC 是新协议，对于很多网络设备，根本不知道什么是 QUIC，只会当做
+UDP，这样会出现新的问题，因为有的网络设备是会丢掉 UDP 包的，而 QUIC
+是基于 UDP 实现的，那么如果网络设备无法识别这个是 QUIC 包，那么就会当作
+UDP包，然后被丢弃。</p>
+<h3 id="什么是tcp">什么是TCP？</h3>
+<p>TCP是面向连接的、可靠的、基于字节流的传输层通信协议</p>
+<ul>
+<li>面向连接：一定是一对一才能连接，不能像UDP协议可以一个主机同时向多个主机发送消息，也就是一对多是无法做到的</li>
+<li>可靠的：无论网络链路中出现了怎样的链路变化，TCP都可以保证一个报文一定能够到达接收端</li>
+<li>字节流：用户消息通过 TCP
+协议传输时，消息可能会被操作系统「分组」成多个的 TCP
+报文，如果接收方的程序如果不知道「消息的边界」，是无法读出一个有效的用户消息的。并且
+TCP 报文是「有序的」，当「前一个」TCP
+报文没有收到的时候，即使它先收到了后面的 TCP
+报文，那么也不能扔给应用层去处理，同时对「重复」的 TCP
+报文会自动丢弃。</li>
+</ul>
+<h3 id="udp和tcp有什么区别呢分别的应用场景是">UDP和TCP有什么区别呢？分别的应用场景是？</h3>
+<p>UDP不提供复杂的控制机制，利用IP提供面向无连接的通信服务。</p>
+<ul>
+<li>目标和源端口：主要是告诉UDP协议应该把报文发给哪个进程。</li>
+<li>包长度：该字段保存了UDP首部的长度跟数据的长度之和</li>
+<li>校验和：校验和是为了提供可靠的UDP首部和数据而设计，防止收到再网络传输中受损的UDP包</li>
+</ul>
+<p><img src="/2024/03/20/20th-March/format,png-20230309230439961.png" srcset="/img/loading.gif" lazyload alt="UDP 头部格式"></p>
+<p><img src="/2024/03/20/20th-March/format,png-20230309230534096.png" srcset="/img/loading.gif" lazyload alt="TCP 头格式"></p>
+<p>区别：</p>
+<p>1.连接</p>
+<ul>
+<li>TCP是面向连接的传输层协议，传输数据前先要建立连接</li>
+<li>UDP是不需要连接，即刻传输数据。</li>
+</ul>
+<p>2.服务对象</p>
+<ul>
+<li>TCP是一对一的两点服务，即一条连接只有两个端点</li>
+<li>UDP支持一对一、一对多、多对多的交互通信</li>
+</ul>
+<p>3.可靠性</p>
+<ul>
+<li>TCP是可靠交付数据的，数据可以无差错、不丢失、不重复、按序到达。</li>
+<li>UDP是尽最大努力交付，不保证可靠交付数据，但是可以基于UDP传输协议实现一个可靠的传输协议，比如QUIC协议</li>
+</ul>
+<p>4.拥塞控制，流量控制</p>
+<ul>
+<li>TCP由拥塞控制和流量控制机制，保证数据传输的安全性</li>
+<li>UDP则没有，即使网络非常拥堵了，也不会影响UDP的发送速率。</li>
+</ul>
+<p>5.首部开销</p>
+<ul>
+<li>TCP首部长度较长，会有一定的开销，首部在没有使用选项时是20个字节，如果使用了选项字段则会变长的。</li>
+<li>UDP首部只有8个字节，并且是固定不变的，开销较小</li>
+</ul>
+<ol start="6" type="1">
+<li>传输方式</li>
+</ol>
+<ul>
+<li>TCP 是流式传输，没有边界，但保证顺序和可靠。</li>
+<li>UDP 是一个包一个包的发送，是有边界的，但可能会丢包和乱序。</li>
+</ul>
+<p>7.分片不同</p>
+<ul>
+<li>TCP 的数据大小如果大于 MSS
+大小，则会在传输层进行分片，目标主机收到后，也同样在传输层组装 TCP
+数据包，如果中途丢失了一个分片，只需要传输丢失的这个分片。</li>
+<li>UDP 的数据大小如果大于 MTU 大小，则会在 IP
+层进行分片，目标主机收到后，在 IP 层组装完数据，接着再传给传输层。</li>
+</ul>
+<p><strong>TCP 和 UDP 应用场景：</strong></p>
+<p>由于 TCP 是面向连接，能保证数据的可靠性交付，因此经常用于：</p>
+<ul>
+<li><code>FTP</code> 文件传输；</li>
+<li>HTTP / HTTPS；</li>
+</ul>
+<p>由于 UDP 面向无连接，它可以随时发送数据，再加上 UDP
+本身的处理既简单又高效，因此经常用于：</p>
+<ul>
+<li>包总量较少的通信，如 <code>DNS</code> 、<code>SNMP</code> 等；</li>
+<li>视频、音频等多媒体通信；</li>
+<li>广播通信；</li>
+</ul>
+<h3 id="tcp重传流量控制拥塞控制">TCP重传、流量控制、拥塞控制</h3>
+<p>TCP 实现可靠传输的方式之一，是通过序列号与确认应答。</p>
+<p>在 TCP
+中，当发送端的数据到达接收主机时，接收端主机会返回一个确认应答消息，表示已收到消息。</p>
+<p>但在错综复杂的网络，并不一定能如上图那么顺利能正常的数据传输，万一数据在传输过程中丢失了呢？</p>
+<p>所以 TCP
+针对数据包丢失的情况，会用<strong>重传机制</strong>解决。</p>
+<p>接下来说说常见的重传机制：</p>
+<ul>
+<li>超时重传</li>
+<li>快速重传</li>
+<li>SACK</li>
+<li>D-SACK</li>
+</ul>
+<h3 id="超时重传">超时重传</h3>
+<p>重传机制的其中一个方式，就是在发送数据时，设定一个定时器，当超过指定的时间后，没有收到对方的
+<code>ACK</code>
+确认应答报文，就会重发该数据，也就是我们常说的<strong>超时重传</strong>。</p>
+<p>TCP 会在以下两种情况发生超时重传：</p>
+<ul>
+<li>数据包丢失</li>
+<li>确认应答丢失</li>
+</ul>
+<p><img src="/2024/03/20/20th-March/5.jpg" srcset="/img/loading.gif" lazyload alt="超时重传的两种情况"></p>
+<p>超时触发重传存在的问题是，超时周期可能相对较长。那是不是可以有更快的方式呢？</p>
+<p>于是就可以用「快速重传」机制来解决超时重发的时间等待。</p>
+<h3 id="快速重传"><a target="_blank" rel="noopener" href="https://xiaolincoding.com/network/3_tcp/tcp_feature.html#快速重传">#</a>快速重传</h3>
+<p>TCP 还有另外一种<strong>快速重传（Fast
+Retransmit）机制</strong>，它<strong>不以时间为驱动，而是以数据驱动重传</strong>。</p>
+<p>快速重传机制，是如何工作的呢？其实很简单，一图胜千言。</p>
+<p><img src="/2024/03/20/20th-March/10.jpg" srcset="/img/loading.gif" lazyload alt="快速重传机制"></p>
+<p>在上图，发送方发出了 1，2，3，4，5 份数据：</p>
+<ul>
+<li>第一份 Seq1 先送到了，于是就 Ack 回 2；</li>
+<li>结果 Seq2 因为某些原因没收到，Seq3 到达了，于是还是 Ack 回 2；</li>
+<li>后面的 Seq4 和 Seq5 都到了，但还是 Ack 回 2，因为 Seq2
+还是没有收到；</li>
+<li><strong>发送端收到了三个 Ack = 2 的确认，知道了 Seq2
+还没有收到，就会在定时器过期之前，重传丢失的 Seq2。</strong></li>
+<li>最后，收到了 Seq2，此时因为 Seq3，Seq4，Seq5 都收到了，于是 Ack 回 6
+。</li>
+</ul>
+<p>所以，快速重传的工作方式是当收到三个相同的 ACK
+报文时，会在定时器过期之前，重传丢失的报文段。</p>
+<p>快速重传机制只解决了一个问题，就是超时时间的问题，但是它依然面临着另外一个问题。就是<strong>重传的时候，是重传一个，还是重传所有的问题。</strong></p>
+<p>举个例子，假设发送方发了 6 个数据，编号的顺序是 Seq1 ~ Seq6 ，但是
+Seq2、Seq3 都丢失了，那么接收方在收到 Seq4、Seq5、Seq6 时，都是回复 ACK2
+给发送方，但是发送方并不清楚这连续的 ACK2 是接收方收到哪个报文而回复的，
+那是选择重传 Seq2 一个报文，还是重传 Seq2
+之后已发送的所有报文呢（Seq2、Seq3、 Seq4、Seq5、 Seq6） 呢？</p>
+<ul>
+<li>如果只选择重传 Seq2 一个报文，那么重传的效率很低。因为对于丢失的
+Seq3 报文，还得在后续收到三个重复的 ACK3 才能触发重传。</li>
+<li>如果选择重传 Seq2 之后已发送的所有报文，虽然能同时重传已丢失的 Seq2
+和 Seq3 报文，但是 Seq4、Seq5、Seq6 的报文是已经被接收过了，对于重传
+Seq4 ～Seq6 折部分数据相当于做了一次无用功，浪费资源。</li>
+</ul>
+<p>可以看到，不管是重传一个报文，还是重传已发送的报文，都存在问题。</p>
+<p>为了解决不知道该重传哪些 TCP 报文，于是就有 <code>SACK</code>
+方法。</p>
+<h3 id="sack-方法">SACK 方法</h3>
+<p>还有一种实现重传机制的方式叫：<code>SACK</code>（ Selective
+Acknowledgment）， <strong>选择性确认</strong>。</p>
+<p>这种方式需要在 TCP 头部「选项」字段里加一个 <code>SACK</code>
+的东西，它<strong>可以将已收到的数据的信息发送给「发送方」</strong>，这样发送方就可以知道哪些数据收到了，哪些数据没收到，知道了这些信息，就可以<strong>只重传丢失的数据</strong>。</p>
+<p>如下图，发送方收到了三次同样的 ACK
+确认报文，于是就会触发快速重发机制，通过 <code>SACK</code> 信息发现只有
+<code>200~299</code> 这段数据丢失，则重发时，就只选择了这个 TCP
+段进行重复。</p>
+<p><img src="/2024/03/20/20th-March/11.jpg" srcset="/img/loading.gif" lazyload alt="选择性确认"></p>
+<h3 id="duplicate-sack">Duplicate SACK</h3>
+<p>Duplicate SACK 又称 <code>D-SACK</code>，其主要<strong>使用了 SACK
+来告诉「发送方」有哪些数据被重复接收了。</strong></p>
+<p>下面举例两个栗子，来说明 <code>D-SACK</code> 的作用。</p>
+<p><img src="/2024/03/20/20th-March/12.jpg" srcset="/img/loading.gif" lazyload alt="ACK 丢包"></p>
+<ul>
+<li>「接收方」发给「发送方」的两个 ACK
+确认应答都丢失了，所以发送方超时后，重传第一个数据包（3000 ~ 3499）</li>
+<li><strong>于是「接收方」发现数据是重复收到的，于是回了一个 SACK =
+3000<sub>3500</sub></strong>，告诉「发送方」 3000<sub>3500</sub>
+的数据早已被接收了，因为 ACK 都到了 4000 了，已经意味着 4000
+之前的所有数据都已收到，所以这个 SACK 就代表着
+<code>D-SACK</code>。</li>
+<li>这样「发送方」就知道了，数据没有丢，是「接收方」的 ACK
+确认报文丢了。</li>
+</ul>
+<p><img src="/2024/03/20/20th-March/13.jpg" srcset="/img/loading.gif" lazyload alt="网络延时"></p>
+<ul>
+<li>数据包（1000<sub>1499</sub>） 被网络延迟了，导致「发送方」没有收到
+Ack 1500 的确认报文。</li>
+<li>而后面报文到达的三个相同的 ACK
+确认报文，就触发了快速重传机制，但是在重传后，被延迟的数据包（1000<sub>1499</sub>）又到了「接收方」；</li>
+<li><strong>所以「接收方」回了一个 SACK=1000<sub>1500</sub>，因为 ACK
+已经到了 3000，所以这个 SACK 是
+D-SACK，表示收到了重复的包。</strong></li>
+<li>这样发送方就知道快速重传触发的原因不是发出去的包丢了，也不是因为回应的
+ACK 包丢了，而是因为网络延迟了。</li>
+</ul>
+<p>可见，<code>D-SACK</code> 有这么几个好处：</p>
+<ol type="1">
+<li>可以让「发送方」知道，是发出去的包丢了，还是接收方回应的 ACK
+包丢了;</li>
+<li>可以知道是不是「发送方」的数据包被网络延迟了;</li>
+<li>可以知道网络中是不是把「发送方」的数据包给复制了;</li>
+</ol>
+<h2 id="流量控制">流量控制</h2>
+<p>发送方不能无脑的发数据给接收方，要考虑接收方处理能力。</p>
+<p>如果一直无脑的发数据给对方，但对方处理不过来，那么就会导致触发重发机制，从而导致网络流量的无端的浪费。</p>
+<p>为了解决这种现象发生，<strong>TCP
+提供一种机制可以让「发送方」根据「接收方」的实际接收能力控制发送的数据量，这就是所谓的流量控制。</strong></p>
+<p>下面举个栗子，为了简单起见，假设以下场景：</p>
+<ul>
+<li>客户端是接收方，服务端是发送方</li>
+<li>假设接收窗口和发送窗口相同，都为 <code>200</code></li>
+<li>假设两个设备在整个传输过程中都保持相同的窗口大小，不受外界影响</li>
+</ul>
+<h2 id="拥塞控制">拥塞控制</h2>
+<blockquote>
+<p>为什么要有拥塞控制呀，不是有流量控制了吗？</p>
+</blockquote>
+<p>前面的流量控制是避免「发送方」的数据填满「接收方」的缓存，但是并不知道网络的中发生了什么。</p>
+<p>一般来说，计算机网络都处在一个共享的环境。因此也有可能会因为其他主机之间的通信使得网络拥堵。</p>
+<p><strong>在网络出现拥堵时，如果继续发送大量数据包，可能会导致数据包时延、丢失等，这时
+TCP
+就会重传数据，但是一重传就会导致网络的负担更重，于是会导致更大的延迟以及更多的丢包，这个情况就会进入恶性循环被不断地放大....</strong></p>
+<p>所以，TCP
+不能忽略网络上发生的事，它被设计成一个无私的协议，当网络发送拥塞时，TCP
+会自我牺牲，降低发送的数据量。</p>
+<p>于是，就有了<strong>拥塞控制</strong>，控制的目的就是<strong>避免「发送方」的数据填满整个网络。</strong></p>
+<p>为了在「发送方」调节所要发送数据的量，定义了一个叫做「<strong>拥塞窗口</strong>」的概念。</p>
+<blockquote>
+<p>什么是拥塞窗口？和发送窗口有什么关系呢？</p>
+</blockquote>
+<p><strong>拥塞窗口
+cwnd</strong>是发送方维护的一个的状态变量，它会根据<strong>网络的拥塞程度动态变化的</strong>。</p>
+<p>我们在前面提到过发送窗口 <code>swnd</code> 和接收窗口
+<code>rwnd</code>
+是约等于的关系，那么由于加入了拥塞窗口的概念后，此时发送窗口的值是swnd =
+min(cwnd, rwnd)，也就是拥塞窗口和接收窗口中的最小值。</p>
+<p>拥塞窗口 <code>cwnd</code> 变化的规则：</p>
+<ul>
+<li>只要网络中没有出现拥塞，<code>cwnd</code> 就会增大；</li>
+<li>但网络中出现了拥塞，<code>cwnd</code> 就减少；</li>
+</ul>
+<blockquote>
+<p>那么怎么知道当前网络是否出现了拥塞呢？</p>
+</blockquote>
+<p>其实只要「发送方」没有在规定时间内接收到 ACK
+应答报文，也就是<strong>发生了超时重传，就会认为网络出现了拥塞。</strong></p>
+<blockquote>
+<p>拥塞控制有哪些控制算法？</p>
+</blockquote>
+<p>拥塞控制主要是四个算法：</p>
+<ul>
+<li>慢启动</li>
+<li>拥塞避免</li>
+<li>拥塞发生</li>
+<li>快速恢复</li>
+</ul>
+<h4 id="慢启动">慢启动</h4>
+<p>TCP在刚建立连接完成后，首先是有个慢启动的过程，这个慢启动的意思就是一点一点的提高发送数据包的数量如果一上来就发大量的数据，就是再给网络添堵。</p>
+<p><strong>当发送方每收到一个 ACK，拥塞窗口 cwnd 的大小就会加
+1。</strong></p>
+<ul>
+<li>连接建立完成后，一开始初始化 <code>cwnd = 1</code>，表示可以传一个
+<code>MSS</code> 大小的数据。</li>
+<li>当收到一个 ACK 确认应答后，cwnd 增加 1，于是一次能够发送 2 个</li>
+<li>当收到 2 个的 ACK 确认应答后， cwnd 增加 2，于是就可以比之前多发2
+个，所以这一次能够发送 4 个</li>
+<li>当这 4 个的 ACK 确认到来的时候，每个确认 cwnd 增加 1， 4 个确认 cwnd
+增加 4，于是就可以比之前多发 4 个，所以这一次能够发送 8 个。</li>
+</ul>
+<p>可以看出慢启动算法，发包的个数是<strong>指数性的增长</strong>。</p>
+<blockquote>
+<p>那慢启动涨到什么时候是个头呢？</p>
+</blockquote>
+<p>有一个叫慢启动门限 <code>ssthresh</code> （slow start
+threshold）状态变量。</p>
+<ul>
+<li>当 <code>cwnd</code> &lt; <code>ssthresh</code>
+时，使用慢启动算法。</li>
+<li>当 <code>cwnd</code> &gt;= <code>ssthresh</code>
+时，就会使用「拥塞避免算法」。</li>
+</ul>
+<h4 id="拥塞避免算法">拥塞避免算法</h4>
+<p>前面说道，当拥塞窗口 <code>cwnd</code> 「超过」慢启动门限
+<code>ssthresh</code> 就会进入拥塞避免算法。</p>
+<p>一般来说 <code>ssthresh</code> 的大小是 <code>65535</code> 字节。</p>
+<p>那么进入拥塞避免算法后，它的规则是：<strong>每当收到一个 ACK 时，cwnd
+增加 1/cwnd。</strong></p>
+<p>接上前面的慢启动的栗子，现假定 <code>ssthresh</code> 为
+<code>8</code>：</p>
+<ul>
+<li>当 8 个 ACK 应答确认到来时，每个确认增加 1/8，8 个 ACK 确认 cwnd
+一共增加 1，于是这一次能够发送 9 个 <code>MSS</code>
+大小的数据，变成了<strong>线性增长。</strong></li>
+</ul>
+<p>所以，我们可以发现，拥塞避免算法就是将原本慢启动算法的指数增长变成了线性增长，还是增长阶段，但是增长速度缓慢了一些。</p>
+<p>就这么一直增长着后，网络就会慢慢进入了拥塞的状况了，于是就会出现丢包现象，这时就需要对丢失的数据包进行重传。</p>
+<p>当触发了重传机制，也就进入了「拥塞发生算法」。</p>
+<h3 id="拥塞发生"><a target="_blank" rel="noopener" href="https://xiaolincoding.com/network/3_tcp/tcp_feature.html#拥塞发生">#</a>拥塞发生</h3>
+<p>当网络出现拥塞，也就是会发生数据包重传，重传机制主要有两种：</p>
+<ul>
+<li>超时重传</li>
+<li>快速重传</li>
+</ul>
+<p>这两种使用的拥塞发送算法是不同的，接下来分别来说说。</p>
+<blockquote>
+<p>发生超时重传的拥塞发生算法</p>
+</blockquote>
+<p>当发生了「超时重传」，则就会使用拥塞发生算法。</p>
+<p>这个时候，ssthresh 和 cwnd 的值会发生变化：</p>
+<ul>
+<li><code>ssthresh</code> 设为 <code>cwnd/2</code>，</li>
+<li><code>cwnd</code> 重置为 <code>1</code> （是恢复为 cwnd
+初始化值，我这里假定 cwnd 初始化值 1）</li>
+</ul>
+<p><img src="/2024/03/20/20th-March/29.jpg" srcset="/img/loading.gif" lazyload alt="拥塞发送 —— 超时重传"></p>
+<p>接着，就重新开始慢启动，慢启动是会突然减少数据流的。这真是一旦「超时重传」，马上回到解放前。但是这种方式太激进了，反应也很强烈，会造成网络卡顿。</p>
+<p>就好像本来在秋名山高速漂移着，突然来个紧急刹车，轮胎受得了吗。。。</p>
+<blockquote>
+<p>发生快速重传的拥塞发生算法</p>
+</blockquote>
+<p>还有更好的方式，前面我们讲过「快速重传算法」。当接收方发现丢了一个中间包的时候，发送三次前一个包的
+ACK，于是发送端就会快速地重传，不必等待超时再重传。</p>
+<p>TCP 认为这种情况不严重，因为大部分没丢，只丢了一小部分，则
+<code>ssthresh</code> 和 <code>cwnd</code> 变化如下：</p>
+<ul>
+<li><code>cwnd = cwnd/2</code> ，也就是设置为原来的一半;</li>
+<li><code>ssthresh = cwnd</code>;</li>
+<li>进入快速恢复算法</li>
+</ul>
+<h3 id="快速恢复">快速恢复</h3>
+<p>快速重传和快速恢复算法一般同时使用，快速恢复算法是认为，你还能收到 3
+个重复 ACK 说明网络也不那么糟糕，所以没有必要像 <code>RTO</code>
+超时那么强烈。</p>
+<p>正如前面所说，进入快速恢复之前，<code>cwnd</code> 和
+<code>ssthresh</code> 已被更新了：</p>
+<ul>
+<li><code>cwnd = cwnd/2</code> ，也就是设置为原来的一半;</li>
+<li><code>ssthresh = cwnd</code>;</li>
+</ul>
+<p>然后，进入快速恢复算法如下：</p>
+<ul>
+<li>拥塞窗口 <code>cwnd = ssthresh + 3</code> （ 3 的意思是确认有 3
+个数据包被收到了）；</li>
+<li>重传丢失的数据包；</li>
+<li>如果再收到重复的 ACK，那么 cwnd 增加 1；</li>
+<li>如果收到新数据的 ACK 后，把 cwnd 设置为第一步中的 ssthresh
+的值，原因是该 ACK 确认了新的数据，说明从 duplicated ACK
+时的数据都已收到，该恢复过程已经结束，可以回到恢复之前的状态了，也即再次进入拥塞避免状态；</li>
+</ul>
+<p>快速恢复算法的变化过程如下图：</p>
+<p><img src="/2024/03/20/20th-March/%E6%8B%A5%E5%A1%9E%E5%8F%91%E7%94%9F-%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0.drawio.png" srcset="/img/loading.gif" lazyload alt="快速重传和快速恢复"></p>
+<h2 id="mysql">Mysql</h2>
+<h3 id="事务有哪些特性">事务有哪些特性？</h3>
+<p>事务是由MySQL的引擎来实现的，我们常见的InnoDB引擎它是支持事务的。</p>
+<p>不过并不是所有的引擎都能支持事务，比如 MySQL 原生的 MyISAM
+引擎就不支持事务，也正是这样，所以大多数 MySQL 的引擎都是用 InnoDB。</p>
+<p>事务看起来感觉简单，但是要实现事务必须要遵守 4 个特性，分别如下：</p>
+<ul>
+<li><strong>原子性（Atomicity）：</strong>一个事务中的所有操作，要么全部完成，要么全部不完成，不会结束在中间的某个环节，而且事务在执行过程中发生错误，会被回滚到事务开始前的状态。</li>
+<li><strong>一致性（Consistency）：</strong>是指事务操作前和操作后，数据满足完整性约束，数据库保持一致性状态。比如，用户
+A 和用户 B 在银行分别有 800 元和 600 元，总共 1400 元，用户 A 给用户 B
+转账 200 元，分为两个步骤，从 A 的账户扣除 200 元和对 B 的账户增加 200
+元。一致性就是要求上述步骤操作后，最后的结果是用户 A 还有 600 元，用户 B
+有 800 元，总共 1400 元，而不会出现用户 A 扣除了 200 元，但用户 B
+未增加的情况（该情况，用户 A 和 B 均为 600 元，总共 1200 元）。</li>
+<li><strong>隔离性（Isolation）</strong>：数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致，因为多个事务同时使用相同的数据时，不会相互干扰，每个事务都有一个完整的数据空间，对其他并发事务是隔离的。也就是说，消费者购买商品这个事务，是不影响其他消费者购买的。</li>
+<li><strong>持久性（Durability）</strong>：事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</li>
+</ul>
+<p>InnoDB 引擎通过什么技术来保证事务的这四个特性的呢？</p>
+<ul>
+<li>持久性是通过 redo log （重做日志）来保证的；</li>
+<li>原子性是通过 undo log（回滚日志） 来保证的；</li>
+<li>隔离性是通过 MVCC（多版本并发控制） 或锁机制来保证的；</li>
+<li>一致性则是通过持久性+原子性+隔离性来保证；</li>
+</ul>
+<h2 id="并行事务会引发什么问题">并行事务会引发什么问题？</h2>
+<p>MySQL 服务端是允许多个客户端连接的，这意味着 MySQL
+会出现同时处理多个事务的情况。</p>
+<p>那么<strong>在同时处理多个事务的时候，就可能出现脏读（dirty
+read）、不可重复读（non-repeatable read）、幻读（phantom
+read）的问题</strong>。</p>
+<p>接下来，通过举例子给大家说明，这些问题是如何发生的。</p>
+<h3 id="脏读"><a target="_blank" rel="noopener" href="https://xiaolincoding.com/mysql/transaction/mvcc.html#脏读">#</a>脏读</h3>
+<p><strong>如果一个事务「读到」了另一个「未提交事务修改过的数据」，就意味着发生了「脏读」现象。</strong></p>
+<p>假设有 A 和 B 这两个事务同时在处理，事务 A
+先开始从数据库中读取小林的余额数据，然后再执行更新操作，如果此时事务 A
+还没有提交事务，而此时正好事务 B
+也从数据库中读取小林的余额数据，那么事务 B 读取到的余额数据是刚才事务 A
+更新后的数据，即使没有提交事务。</p>
+<p>因为事务 A
+是还没提交事务的，也就是它随时可能发生回滚操作，<strong>如果在上面这种情况事务
+A 发生了回滚，那么事务 B
+刚才得到的数据就是过期的数据，这种现象就被称为脏读。</strong></p>
+<h3 id="不可重复读">不可重复读</h3>
+<p><strong>在一个事务内多次读取同一个数据，如果出现前后两次读到的数据不一样的情况，就意味着发生了「不可重复读」现象。</strong></p>
+<p>假设有 A 和 B 这两个事务同时在处理，事务 A
+先开始从数据库中读取小林的余额数据，然后继续执行代码逻辑处理，<strong>在这过程中如果事务
+B 更新了这条数据，并提交了事务，那么当事务 A
+再次读取该数据时，就会发现前后两次读到的数据是不一致的，这种现象就被称为不可重复读。</strong></p>
+<h3 id="幻读">幻读</h3>
+<p>在一个事务内多次查询某个符合查询条件的记录数量，如果出现前后两次查询到的记录数量不一样的情况，就意味着发生了幻读现象。</p>
+<p>假设有 A 和 B 这两个事务同时在处理，事务 A
+先开始从数据库查询账户余额大于 100 万的记录，发现共有 5 条，然后事务 B
+也按相同的搜索条件也是查询出了 5 条记录。</p>
+<p>接下来，事务 A 插入了一条余额超过 100
+万的账号，并提交了事务，此时数据库超过 100 万余额的账号个数就变为
+6。</p>
+<p>然后事务 B 再次查询账户余额大于 100 万的记录，此时查询到的记录数量有
+6
+条，<strong>发现和前一次读到的记录数量不一样了，就感觉发生了幻觉一样，这种现象就被称为幻读。</strong></p>
+<h2 id="事务的隔离级别有哪些">事务的隔离级别有哪些？</h2>
+<p>前面我们提到，当多个事务并发执行时可能会遇到「脏读、不可重复读、幻读」的现象，这些现象会对事务的一致性产生不同程序的影响。</p>
+<ul>
+<li>脏读：读到其他事务未提交的数据；</li>
+<li>不可重复读：前后读取的数据不一致；</li>
+<li>幻读：前后读取的记录数量不一致。</li>
+</ul>
+<p>SQL
+标准提出了四种隔离级别来规避这些现象，隔离级别越高，性能效率就越低，这四个隔离级别如下：</p>
+<ul>
+<li><strong>读未提交（*read
+uncommitted*）</strong>，指一个事务还没提交时，它做的变更就能被其他事务看到；</li>
+<li><strong>读提交（*read
+committed*）</strong>，指一个事务提交之后，它做的变更才能被其他事务看到；</li>
+<li><strong>可重复读（*repeatable
+read*）</strong>，指一个事务执行过程中看到的数据，一直跟这个事务启动时看到的数据是一致的，<strong>MySQL
+InnoDB 引擎的默认隔离级别</strong>；</li>
+<li><strong>串行化（*serializable*
+）</strong>；会对记录加上读写锁，在多个事务对这条记录进行读写操作时，如果发生了读写冲突的时候，后访问的事务必须等前一个事务执行完成，才能继续执行；</li>
+</ul>
+<p>针对不同的隔离级别，并发事务时可能发生的现象也会不同。</p>
+<ul>
+<li>在「读未提交」隔离级别下，可能发生脏读、不可重复读和幻读现象；</li>
+<li>在「读提交」隔离级别下，可能发生不可重复读和幻读现象，但是不可能发生脏读现象；</li>
+<li>在「可重复读」隔离级别下，可能发生幻读现象，但是不可能脏读和不可重复读现象；</li>
+<li>在「串行化」隔离级别下，脏读、不可重复读和幻读现象都不可能会发生。</li>
+</ul>
+<p>MySQL InnoDB
+引擎的默认隔离级别虽然是「可重复读」，但是它很大程度上避免幻读现象（并不是完全解决了）解决的方案有两种：</p>
+<ul>
+<li>针对<strong>快照读</strong>（普通 select 语句），是<strong>通过 MVCC
+方式解决了幻读</strong>，因为可重复读隔离级别下，事务执行过程中看到的数据，一直跟这个事务启动时看到的数据是一致的，即使中途有其他事务插入了一条数据，是查询不出来这条数据的，所以就很好了避免幻读问题。</li>
+<li>针对<strong>当前读</strong>（select ... for update
+等语句），是<strong>通过 next-key
+lock（记录锁+间隙锁）方式解决了幻读</strong>，因为当执行 select ... for
+update 语句的时候，会加上 next-key lock，如果有其他事务在 next-key lock
+锁范围内插入了一条记录，那么这个插入语句就会被阻塞，无法成功插入，所以就很好了避免幻读问题。</li>
+</ul>
+<h2 id="read-view-在-mvcc-里如何工作的">Read View 在 MVCC
+里如何工作的？</h2>
+<p>我们需要了解两个知识：</p>
+<ul>
+<li>Read View 中四个字段作用；</li>
+<li>聚簇索引记录中两个跟事务有关的隐藏列；</li>
+</ul>
+<p>那 Read View 到底是个什么东西？</p>
+<p><img src="/2024/03/20/20th-March/readview%E7%BB%93%E6%9E%84.drawio.png" srcset="/img/loading.gif" lazyload alt="mvcc"></p>
+<p>Read View 有四个重要的字段：</p>
+<ul>
+<li>m_ids ：指的是在创建 Read View
+时，当前数据库中「活跃事务」的<strong>事务 id
+列表</strong>，注意是一个列表，<strong>“活跃事务”指的就是，启动了但还没提交的事务</strong>。</li>
+<li>min_trx_id ：指的是在创建 Read View
+时，当前数据库中「活跃事务」中事务 <strong>id
+最小的事务</strong>，也就是 m_ids 的最小值。</li>
+<li>max_trx_id ：这个并不是 m_ids 的最大值，而是<strong>创建 Read View
+时当前数据库中应该给下一个事务的 id
+值</strong>，也就是全局事务中最大的事务 id 值 + 1；</li>
+<li>creator_trx_id ：指的是<strong>创建该 Read View 的事务的事务
+id</strong>。</li>
+</ul>
+<p>知道了 Read View
+的字段，我们还需要了解聚簇索引记录中的两个隐藏列。</p>
+<p><img src="/2024/03/20/20th-March/f595d13450878acd04affa82731f76c5.png" srcset="/img/loading.gif" lazyload alt="隐藏列"></p>
+<p>对于使用 InnoDB
+存储引擎的数据库表，它的聚簇索引记录中都包含下面两个隐藏列：</p>
+<ul>
+<li>trx_id，当一个事务对某条聚簇索引记录进行改动时，就会<strong>把该事务的事务
+id 记录在 trx_id 隐藏列里</strong>；</li>
+<li>roll_pointer，每次对某条聚簇索引记录进行改动时，都会把旧版本的记录写入到
+undo
+日志中，然后<strong>这个隐藏列是个指针，指向每一个旧版本记录</strong>，于是就可以通过它找到修改前的记录。</li>
+</ul>
+<p>在创建 Read View 后，我们可以将记录中的 trx_id 划分这三种情况：</p>
+<p><img src="/2024/03/20/20th-March/ReadView.drawio.png" srcset="/img/loading.gif" lazyload alt="trx_id"></p>
+<p>一个事务去访问记录的时候，除了自己的更新记录总是可见之外，还有这几种情况：</p>
+<ul>
+<li>如果记录的 trx_id 值小于 Read View 中的 <code>min_trx_id</code>
+值，表示这个版本的记录是在创建 Read View
+<strong>前</strong>已经提交的事务生成的，所以该版本的记录对当前事务<strong>可见</strong>。</li>
+<li>如果记录的 trx_id 值大于等于 Read View 中的 <code>max_trx_id</code>
+值，表示这个版本的记录是在创建 Read View
+<strong>后</strong>才启动的事务生成的，所以该版本的记录对当前事务<strong>不可见</strong>。</li>
+<li>如果记录的 trx_id 值在 Read View
+的<code>min_trx_id</code>和<code>max_trx_id</code>之间，需要判断
+<code>trx_id</code> 是否在 m_ids 列表中：
+<ul>
+<li>如果记录的 trx_id <strong>在</strong> <code>m_ids</code>
+列表中，表示生成该版本记录的活跃事务依然活跃着（还没提交事务），所以该版本的记录对当前事务<strong>不可见</strong>。</li>
+<li>如果记录的 trx_id <strong>不在</strong>
+<code>m_ids</code>列表中，表示生成该版本记录的活跃事务已经被提交，所以该版本的记录对当前事务<strong>可见</strong>。</li>
+</ul></li>
+</ul>
+<p><strong>这种通过「版本链」来控制并发事务访问同一个记录时的行为就叫
+MVCC（多版本并发控制）。</strong></p>
+<h2 id="可重复读是如何工作的">可重复读是如何工作的？</h2>
+<p><strong>可重复读隔离级别是启动事务时生成一个 Read
+View，然后整个事务期间都在用这个 Read View</strong>。</p>
+<p>假设事务 A （事务 id 为51）启动后，紧接着事务 B （事务 id
+为52）也启动了，那这两个事务创建的 Read View 如下：</p>
+<p><img src="/2024/03/20/20th-March/%E4%BA%8B%E5%8A%A1ab%E7%9A%84%E8%A7%86%E5%9B%BE-new.png" srcset="/img/loading.gif" lazyload alt="可重复读ReadView"></p>
+<p>事务 A 和 事务 B 的 Read View 具体内容如下：</p>
+<ul>
+<li>在事务 A 的 Read View 中，它的事务 id 是
+51，由于它是第一个启动的事务，所以此时活跃事务的事务 id 列表就只有
+51，活跃事务的事务 id 列表中最小的事务 id 是事务 A 本身，下一个事务 id
+则是 52。</li>
+<li>在事务 B 的 Read View 中，它的事务 id 是 52，由于事务 A
+是活跃的，所以此时活跃事务的事务 id 列表是 51 和 52，<strong>活跃的事务
+id 中最小的事务 id 是事务 A</strong>，下一个事务 id 应该是 53。</li>
+</ul>
+<p>接着，在可重复读隔离级别下，事务 A 和事务 B
+按顺序执行了以下操作：</p>
+<ul>
+<li>事务 B 读取小林的账户余额记录，读到余额是 100 万；</li>
+<li>事务 A 将小林的账户余额记录修改成 200 万，并没有提交事务；</li>
+<li>事务 B 读取小林的账户余额记录，读到余额还是 100 万；</li>
+<li>事务 A 提交事务；</li>
+<li>事务 B 读取小林的账户余额记录，读到余额依然还是 100 万；</li>
+</ul>
+<p>事务 B 第一次读小林的账户余额记录，在找到记录后，它会先看这条记录的
+trx_id，此时<strong>发现 trx_id 为 50，比事务 B 的 Read View 中的
+min_trx_id 值（51）还小，这意味着修改这条记录的事务早就在事务 B
+启动前提交过了，所以该版本的记录对事务 B 可见的</strong>，也就是事务 B
+可以获取到这条记录。</p>
+<p>接着，事务 A 通过 update
+语句将这条记录修改了（还未提交事务），将小林的余额改成 200 万，这时
+MySQL 会记录相应的 undo
+log，并以链表的方式串联起来，形成<strong>版本链</strong>，如下图：</p>
+<p><img src="/2024/03/20/20th-March/%E4%BA%8B%E5%8A%A1ab%E7%9A%84%E8%A7%86%E5%9B%BE2.png" srcset="/img/loading.gif" lazyload alt="版本链"></p>
+<p>你可以在上图的「记录的字段」看到，由于事务 A
+修改了该记录，以前的记录就变成旧版本记录了，于是最新记录和旧版本记录通过链表的方式串起来，而且最新记录的
+trx_id 是事务 A 的事务 id（trx_id = 51）。</p>
+<p>然后事务 B 第二次去读取该记录，<strong>发现这条记录的 trx_id 值为
+51，在事务 B 的 Read View 的 min_trx_id 和 max_trx_id 之间，则需要判断
+trx_id 值是否在 m_ids
+范围内，判断的结果是在的，那么说明这条记录是被还未提交的事务修改的，这时事务
+B 并不会读取这个版本的记录。而是沿着 undo log
+链条往下找旧版本的记录，直到找到 trx_id 「小于」事务 B 的 Read View 中的
+min_trx_id 值的第一条记录</strong>，所以事务 B 能读取到的是 trx_id 为 50
+的记录，也就是小林余额是 100 万的这条记录。</p>
+<p>最后，当事物 A
+提交事务后，<strong>由于隔离级别时「可重复读」，所以事务 B
+再次读取记录时，还是基于启动事务时创建的 Read View
+来判断当前版本的记录是否可见。所以，即使事物 A 将小林余额修改为 200
+万并提交了事务， 事务 B 第三次读取记录时，读到的记录都是小林余额是 100
+万的这条记录</strong>。</p>
+<h2 id="读提交是如何工作的">读提交是如何工作的？</h2>
+<p><strong>读提交隔离级别是在每次读取数据时，都会生成一个新的 Read
+View</strong>。</p>
+<p>也意味着，事务期间的多次读取同一条数据，前后两次读的数据可能会出现不一致，因为可能这期间另外一个事务修改了该记录，并提交了事务。</p>
+<p>那读提交隔离级别是怎么工作呢？我们还是以前面的例子来聊聊。</p>
+<p>假设事务 A （事务 id 为51）启动后，紧接着事务 B （事务 id
+为52）也启动了，接着按顺序执行了以下操作：</p>
+<ul>
+<li>事务 B 读取数据（创建 Read View），小林的账户余额为 100 万；</li>
+<li>事务 A 修改数据（还没提交事务），将小林的账户余额从 100 万修改成了
+200 万；</li>
+<li>事务 B 读取数据（创建 Read View），小林的账户余额为 100 万；</li>
+<li>事务 A 提交事务；</li>
+<li>事务 B 读取数据（创建 Read View），小林的账户余额为 200 万；</li>
+</ul>
+<h2 id="redis">Redis</h2>
+<h2 id="quicklist">quicklist</h2>
+<p>在 Redis 3.0 之前，List
+对象的底层数据结构是双向链表或者压缩列表。然后在 Redis 3.2 的时候，List
+对象的底层改由 quicklist 数据结构实现。</p>
+<p>其实 quicklist 就是「双向链表 + 压缩列表」组合，因为一个 quicklist
+就是一个链表，而链表中的每个元素又是一个压缩列表。</p>
+<p>在前面讲压缩列表的时候，我也提到了压缩列表的不足，虽然压缩列表是通过紧凑型的内存布局节省了内存开销，但是因为它的结构设计，如果保存的元素数量增加，或者元素变大了，压缩列表会有「连锁更新」的风险，一旦发生，会造成性能下降。</p>
+<p>quicklist
+解决办法，<strong>通过控制每个链表节点中的压缩列表的大小或者元素个数，来规避连锁更新的问题。因为压缩列表元素越少或越小，连锁更新带来的影响就越小，从而提供了更好的访问性能。</strong></p>
+<h3 id="quicklist-结构设计"><a target="_blank" rel="noopener" href="https://xiaolincoding.com/redis/data_struct/data_struct.html#quicklist-结构设计">#</a>quicklist
+结构设计</h3>
+<p>quicklist 的结构体跟链表的结构体类似，都包含了表头和表尾，区别在于
+quicklist 的节点是 quicklistNode。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">quicklist</span> &#123;</span><br>    <span class="hljs-comment">//quicklist的链表头</span><br>    quicklistNode *head;      <span class="hljs-comment">//quicklist的链表头</span><br>    <span class="hljs-comment">//quicklist的链表尾</span><br>    quicklistNode *tail; <br>    <span class="hljs-comment">//所有压缩列表中的总元素个数</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> count;<br>    <span class="hljs-comment">//quicklistNodes的个数</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> len;       <br>    ...<br>&#125; quicklist;<br></code></pre></td></tr></table></figure>
+<p>接下来看看，quicklistNode 的结构定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">quicklistNode</span> &#123;</span><br>    <span class="hljs-comment">//前一个quicklistNode</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">quicklistNode</span> *<span class="hljs-title">prev</span>;</span>     <span class="hljs-comment">//前一个quicklistNode</span><br>    <span class="hljs-comment">//下一个quicklistNode</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">quicklistNode</span> *<span class="hljs-title">next</span>;</span>     <span class="hljs-comment">//后一个quicklistNode</span><br>    <span class="hljs-comment">//quicklistNode指向的压缩列表</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> *zl;              <br>    <span class="hljs-comment">//压缩列表的的字节大小</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> sz;                <br>    <span class="hljs-comment">//压缩列表的元素个数</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> count : <span class="hljs-number">16</span>;        <span class="hljs-comment">//ziplist中的元素个数 </span><br>    ....<br>&#125; quicklistNode;<br></code></pre></td></tr></table></figure>
+<p>可以看到，quicklistNode
+结构体里包含了前一个节点和下一个节点指针，这样每个 quicklistNode
+形成了一个双向链表。但是链表节点的元素不再是单纯保存元素值，而是保存了一个压缩列表，所以
+quicklistNode 结构体里有个指向压缩列表的指针 *zl。</p>
+<p><img src="/2024/03/20/20th-March/f46cbe347f65ded522f1cc3fd8dba549.png" srcset="/img/loading.gif" lazyload alt="quicklist"></p>
+<p>在向 quicklist
+添加一个元素的时候，不会像普通的链表那样，直接新建一个链表节点。而是会检查插入位置的压缩列表是否能容纳该元素，如果能容纳就直接保存到
+quicklistNode 结构里的压缩列表，如果不能容纳，才会新建一个新的
+quicklistNode 结构。</p>
+<p>quicklist 会控制 quicklistNode
+结构里的压缩列表的大小或者元素个数，来规避潜在的连锁更新的风险，但是这并没有完全解决连锁更新的问题。</p>
+<h2 id="listpack">listpack</h2>
+<p>quicklist 虽然通过控制 quicklistNode
+结构里的压缩列表的大小或者元素个数，来减少连锁更新带来的性能影响，但是并没有完全解决连锁更新的问题。</p>
+<p>因为 quicklistNode
+还是用了压缩列表来保存元素，压缩列表连锁更新的问题，来源于它的结构设计，所以要想彻底解决这个问题，需要设计一个新的数据结构。</p>
+<p>于是，Redis 在 5.0 新设计一个数据结构叫
+listpack，目的是替代压缩列表，它最大特点是 listpack
+中每个节点不再包含前一个节点的长度了，压缩列表每个节点正因为需要保存前一个节点的长度字段，就会有连锁更新的隐患。</p>
+<p><strong>我看了 Redis 的 Github，在最新 6.2 发行版本中，Redis Hash
+对象、ZSet 对象的底层数据结构的压缩列表还未被替换成 listpack，而 Redis
+的最新代码（还未发布版本）已经将所有用到压缩列表底层数据结构的 Redis
+对象替换成 listpack 数据结构来实现，估计不久将来，Redis
+就会发布一个将压缩列表为 listpack 的发行版本</strong>。</p>
+<h3 id="listpack-结构设计"><a target="_blank" rel="noopener" href="https://xiaolincoding.com/redis/data_struct/data_struct.html#listpack-结构设计">#</a>listpack
+结构设计</h3>
+<p>listpack
+采用了压缩列表的很多优秀的设计，比如还是用一块连续的内存空间来紧凑地保存数据，并且为了节省内存的开销，listpack
+节点会采用不同的编码方式保存不同大小的数据。</p>
+<p>我们先看看 listpack 结构：</p>
+<p><img src="/2024/03/20/20th-March/4d2dc376b5fd68dae70d9284ae82b73a.png" srcset="/img/loading.gif" lazyload alt="listpack结构"></p>
+<p>listpack 头包含两个属性，分别记录了 listpack 总字节数和元素数量，然后
+listpack 末尾也有个结尾标识。图中的 listpack entry 就是 listpack
+的节点了。</p>
+<p>每个 listpack 节点结构如下：</p>
+<p><img src="/2024/03/20/20th-March/c5fb0a602d4caaca37ff0357f05b0abf.png" srcset="/img/loading.gif" lazyload alt="listpack entry"></p>
+<p>主要包含三个方面内容：</p>
+<ul>
+<li>encoding，定义该元素的编码类型，会对不同长度的整数和字符串进行编码；</li>
+<li>data，实际存放的数据；</li>
+<li>len，encoding+data的总长度；</li>
+</ul>
+<p>可以看到，<strong>listpack
+没有压缩列表中记录前一个节点长度的字段了，listpack
+只记录当前节点的长度，当我们向 listpack
+加入一个新元素的时候，不会影响其他节点的长度字段的变化，从而避免了压缩列表的连锁更新问题</strong>。</p>
+<h2 id="算法">算法</h2>
+<p><a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/886370fe658f41b498d40fb34ae76ff9?tpId=295&amp;tqId=1377477&amp;ru=/exam/company&amp;qru=/ta/format-top101/question-ranking&amp;sourceUrl=%2Fexam%2Fcompany"><strong>链表中倒数最后k个结点</strong></a></p>
+<p><img src="/2024/03/20/20th-March/image-20240320214547723.png" srcset="/img/loading.gif" lazyload alt="链表中倒数最后k个节点"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs C++"><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">ListNode</span> &#123;<br> *	<span class="hljs-type">int</span> val;<br> *	<span class="hljs-keyword">struct</span> <span class="hljs-title class_">ListNode</span> *next;<br> *	<span class="hljs-built_in">ListNode</span>(<span class="hljs-type">int</span> x) : <span class="hljs-built_in">val</span>(x), <span class="hljs-built_in">next</span>(<span class="hljs-literal">nullptr</span>) &#123;&#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * </span><br><span class="hljs-comment">     * @param pHead ListNode类 </span><br><span class="hljs-comment">     * @param k int整型 </span><br><span class="hljs-comment">     * @return ListNode类</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function">ListNode* <span class="hljs-title">FindKthToTail</span><span class="hljs-params">(ListNode* pHead, <span class="hljs-type">int</span> k)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(pHead == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        ListNode* fast = pHead,*slow = pHead;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++) &#123;<br>            fast = fast-&gt;next;<br>            <span class="hljs-keyword">if</span>(fast == <span class="hljs-literal">nullptr</span>&amp;&amp;i!=k<span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        &#125;<br>        <span class="hljs-keyword">while</span>(fast) &#123;<br>            fast = fast-&gt;next;<br>            slow = slow-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> slow;<br>    &#125;<br>&#125;;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> n;<br>    cin&gt;&gt;n;<br>    ListNode* dummyhead = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>(<span class="hljs-number">-1</span>);<br>    ListNode* curr = dummyhead;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-type">int</span> x;<br>        cin&gt;&gt;x;<br>        curr-&gt;next = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>(x);<br>      	curr = curr-&gt;next;<br>    &#125;<br>    Solution sol1;<br>    <span class="hljs-type">int</span> k;<br>    cin&gt;&gt;k;<br>    ListNode* ans = sol.<span class="hljs-built_in">FindKthToTail</span>(dummyhead-&gt;next,k);<br>    <span class="hljs-keyword">while</span>(ans) &#123;<br>        cout&lt;&lt;ans-&gt;val&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>      	ans = ans-&gt;next;<br>    &#125;<br>    cout&lt;&lt;<span class="hljs-string">&#x27;\n&#x27;</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="写在最后">写在最后</h2>
+<p>今天感觉体验还不错 但是不知道过没过 不过过了也得考虑去不去吧</p>
+<p>周五字节 先抠八股和算法 周一美团 重点sql和算法 周二快手
+重点看看824</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%85%AB%E8%82%A1/" class="category-chain-item">八股</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/diary/" class="print-no-link">#diary</a>
+      
+        <a href="/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>20th-March</div>
+      <div>http://polaris3003.github.io/2024/03/20/20th-March/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/21/21st-March/" title="21st-March">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">21st-March</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/19/19th-March/" title="19th-March">
+                        <span class="hidden-mobile">19th-March</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
