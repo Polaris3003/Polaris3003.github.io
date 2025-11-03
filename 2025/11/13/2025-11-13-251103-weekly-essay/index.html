@@ -18,27 +18,22 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第十一课：连接算法 1 连接 良好的数据库设计的目标是尽量减少信息重复量。这就是为什么表格是基于规范化理论组成的。因此需要连接来重建原始表格。 本课程将介绍用于合并两个表的内部等值连接算法。等值连接算法连接键相等的表。这些算法可以调整以支持其他连接。 运算符输出 对于在连接属性上匹配的元组 r \(\in\) R 和元组 s \(\in\) S，连接运算符将 r 和 s 连接在一起形">
+    <meta name="description" content="1103-降温☁️ NFL New Orleans Saints vs. Los Angeles Rams 新奥尔良saint不愧是1-7的队伍，感觉一点斗志也没有，看了不到两节就知道最后的结果了。stafford和nacua这两人配合起来在整个nfl就是顶级的吧，williams跑球也还不错。不过karty这个踢球手真的好败笔，现在6-2，其中就有一把他全责，感觉公羊如果不优化一下踢球的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CMU15445-lecture11">
-<meta property="og:url" content="http://polaris3003.github.io/2024/11/28/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="251103-weekly-essay">
+<meta property="og:url" content="http://polaris3003.github.io/2025/11/13/2025-11-13-251103-weekly-essay/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="第十一课：连接算法 1 连接 良好的数据库设计的目标是尽量减少信息重复量。这就是为什么表格是基于规范化理论组成的。因此需要连接来重建原始表格。 本课程将介绍用于合并两个表的内部等值连接算法。等值连接算法连接键相等的表。这些算法可以调整以支持其他连接。 运算符输出 对于在连接属性上匹配的元组 r \(\in\) R 和元组 s \(\in\) S，连接运算符将 r 和 s 连接在一起形">
+<meta property="og:description" content="1103-降温☁️ NFL New Orleans Saints vs. Los Angeles Rams 新奥尔良saint不愧是1-7的队伍，感觉一点斗志也没有，看了不到两节就知道最后的结果了。stafford和nacua这两人配合起来在整个nfl就是顶级的吧，williams跑球也还不错。不过karty这个踢球手真的好败笔，现在6-2，其中就有一把他全责，感觉公羊如果不优化一下踢球的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://polaris3003.github.io/2024/11/28/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95/image-20241128211147350.png">
-<meta property="article:published_time" content="2024-11-28T11:36:40.000Z">
-<meta property="article:modified_time" content="2025-02-11T09:24:24.000Z">
+<meta property="article:published_time" content="2025-11-13T07:44:51.000Z">
+<meta property="article:modified_time" content="2025-11-03T14:44:08.716Z">
 <meta property="article:author" content="Polaris">
-<meta property="article:tag" content="查询优化">
-<meta property="article:tag" content="连接算法">
-<meta property="article:tag" content="嵌套循环连接">
-<meta property="article:tag" content="哈希连接">
+<meta property="article:tag" content="nfl">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://polaris3003.github.io/2024/11/28/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95/image-20241128211147350.png">
   
   
   
-  <title>CMU15445-lecture11 - Polarisのblog</title>
+  <title>251103-weekly-essay - Polarisのblog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -262,7 +257,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CMU15445-lecture11"></span>
+            <span id="subtitle" data-typed-text="251103-weekly-essay"></span>
           
         </div>
 
@@ -273,8 +268,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-28 19:36" pubdate>
-          2024年11月28日 晚上
+        <time datetime="2025-11-13 15:44" pubdate>
+          2025年11月13日 下午
         </time>
       </span>
     
@@ -285,7 +280,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k 字
+          447 字
         
       </span>
     
@@ -296,7 +291,7 @@
         
         
         
-          21 分钟
+          4 分钟
         
       </span>
     
@@ -341,134 +336,31 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">CMU15445-lecture11</h1>
+            <h1 id="seo-header">251103-weekly-essay</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="第十一课连接算法">第十一课：连接算法</h1>
-<h2 id="连接">1 连接</h2>
-<p>良好的数据库设计的目标是尽量减少信息重复量。这就是为什么表格是基于规范化理论组成的。因此需要连接来重建原始表格。</p>
-<p>本课程将介绍用于合并两个表的内部等值连接算法。等值连接算法连接键相等的表。这些算法可以调整以支持其他连接。</p>
-<h3 id="运算符输出">运算符输出</h3>
-<p>对于在连接属性上匹配的元组 r <span class="math inline">\(\in\)</span>
-R 和元组 s <span class="math inline">\(\in\)</span> S，连接运算符将 r 和
-s 连接在一起形成一个新的输出元组。</p>
-<p>实际上，连接运算符生成的输出元组的内容各不相同。这取决于 DBMS
-的查询处理模型、存储模型和查询本身。连接运算符输出的内容有多种方法。</p>
-<ul>
-<li><strong>数据</strong>：这种方法将外表和内表中属性的值复制到仅针对该运算符的中间结果表中的元组中。这种方法的优点是查询计划中未来的操作符永远不需要返回基表来获取更多数据。缺点是这需要更多内存来实现整个元组。这称为实例化。DBMS
-还可以进行额外的计算并省略查询中以后不需要的属性以进一步优化这种方法。</li>
-<li><strong>记录ID</strong>：在这种方法中，DBMS
-仅复制连接键以及匹配元组的记录 ID。这种方法非常适合列存储，因为 DBMS
-不会复制查询不需要的数据。这称为延迟实现。</li>
-</ul>
-<h3 id="成本分析">成本分析</h3>
-<p>这里用于分析不同连接算法的成本指标是用于计算连接的磁盘 I/O
-数量。这包括从磁盘读取数据以及将任何中间数据写入磁盘所产生的 I/O。</p>
-<p>请注意，只考虑计算连接时的 I/O，而不考虑输出结果时产生的
-I/O。这是因为输出成本取决于数据，而且任何连接算法的输出都是相同的，因此不同算法之间的成本不会改变。</p>
-<blockquote>
-<p>本课中使用的变量：</p>
-<ul>
-<li>R表（内表）中有M个页表，共m个元组</li>
-<li>S表（外表）中有N个页表，共n个元组</li>
-</ul>
-</blockquote>
-<p>一般来说，许多算法/优化可以在某些情况下降低连接成本，但没有一种算法可以在所有情况下都运行良好。</p>
-<h2 id="嵌套循环连接">2 嵌套循环连接</h2>
-<p>从高层次上讲，这种类型的连接算法由两个嵌套的 for
-循环组成，它们对两个表中的元组进行迭代，并逐对比较它们。如果元组与连接谓词匹配，则输出它们。外层
-for 循环中的表称为外表，内层 for 循环中的表称为内表。</p>
-<p>DBMS
-总是希望使用“较小”的表作为外表。较小可以是元组数量或页面数量。DBMS
-还会希望在内存中缓冲尽可能多的外表。它还可以尝试利用索引在内表中查找匹配项。</p>
-<h3 id="简单嵌套循环连接">简单嵌套循环连接</h3>
-<p>对于外表中的每个元组，将其与内表中的每个元组进行比较。这是最糟糕的情况，DBMS
-必须对外表中的每个元组进行整个内表扫描，而没有任何缓存或访问局部性。</p>
-<p><strong>复杂度</strong>：M + (m * N)</p>
-<h3 id="块嵌套循环连接">块嵌套循环连接</h3>
-<p>对于外表中的每个块，从内表获取每个块并比较这两个块中的所有元组。该算法执行的磁盘访问较少，因为
-DBMS 扫描内表以查找每个外表块，而不是每个元组。</p>
-<p><strong>复杂度</strong>：M + (M * N)</p>
-<p>如果 DBMS 有 B 个缓冲区可用于计算连接，则它可以使用 B − 2
-个缓冲区来扫描外表。它将使用一个缓冲区来扫描内表，另一个缓冲区来存储连接的输出。</p>
-<p><strong>复杂度</strong>：M + (<span class="math inline">\(\lceil M /
-(B - 2) \rceil * N\)</span>)</p>
-<h3 id="索引嵌套循环连接">索引嵌套循环连接</h3>
-<p>以前的嵌套循环连接算法性能较差，因为 DBMS
-必须执行顺序扫描来检查内表中是否存在匹配项。但是，如果数据库已经为连接键上的其中一个表建立了索引，则可以使用该索引来加快比较速度。DBMS
-可以使用现有索引，也可以为连接操作建立临时索引。</p>
-<p>外表是没有索引的表，内表是有索引的表。</p>
-<p>假设每个索引探测的成本是每个元组的某个常数值 C。</p>
-<p><strong>复杂度</strong>：M + (m * C)</p>
-<h2 id="排序合并连接">3 排序合并连接</h2>
-<p>从高层次上讲，排序合并连接根据连接键对两个表进行排序。DBMS
-可以使用外部合并排序算法来实现这一点。然后，它使用游标逐一遍历每个表并发出匹配项（就像合并排序一样）。</p>
-<p>如果一个或两个表已经根据连接属性（例如使用聚集索引）排序，或者输出需要根据连接键排序，则此算法很有用。</p>
-<p>该算法的最坏情况是两个表中所有元组的连接属性都包含相同的值，这在实际数据库中不太可能发生。在这种情况下，合并的成本将是
-M · N。不过，大多数情况下，密钥大多是唯一的，因此合并成本大约为 M +
-N。</p>
-<p>假设 DBMS 有 B 个缓冲区可用于该算法：</p>
-<ul>
-<li>表R的排序成本：2M * (1 + <span class="math inline">\(\lceil
-log_{B-1}\lceil M/B \rceil \rceil\)</span>)</li>
-<li>表S的排序成本：2N * (1 + <span class="math inline">\(\lceil
-log_{B-1}\lceil N/B \rceil \rceil\)</span>)</li>
-<li>合并成本：（M + N）</li>
-</ul>
-<p>总成本：排序 + 合并</p>
-<h2 id="哈希连接">4 哈希连接</h2>
-<p>哈希连接算法的高级思想是使用哈希表根据元组的连接属性将其分成更小的块。这减少了
-DBMS
-计算连接时需要对每个元组执行的比较次数。哈希连接只能用于完整连接键上的等值连接。</p>
-<p>如果元组 r <span class="math inline">\(\in\)</span> R 和元组 s <span class="math inline">\(\in\)</span> S
-满足连接条件，则它们对于连接属性具有相同的值。如果该值被哈希化为某个值
-i，则 R 元组必须在存储桶 r<sub>i</sub> 中，而 S 元组必须在存储桶
-s<sub>i</sub> 中。因此，存储桶 r<sub>i</sub> 中的 R 元组只需与存储桶
-s<sub>i</sub> 中的 S 元组进行比较。</p>
-<h3 id="基本哈希连接">基本哈希连接</h3>
-<ul>
-<li>阶段1 – 构建：首先，扫描外部关系并使用连接属性上的哈希函数 h1
-填充哈希表。哈希表中的键是连接属性。值取决于实现（可以是完整元组值或元组
-ID）</li>
-<li>阶段2 - 探测：扫描内部关系并在每个元组的连接属性上使用哈希函数 h1
-跳转到哈希表中的相应位置并找到匹配的元组。由于哈希表中可能存在冲突，DBMS
-将需要检查连接属性的原始值以确定元组是否真正匹配。</li>
-</ul>
-<p>如果 DBMS
-知道外表的大小，则连接可以使用静态哈希表。如果不知道大小，则连接必须使用动态哈希表或允许溢出页面。</p>
-<p>一个有 N 页的表需要大约 <span class="math inline">\(\sqrt N\)</span>
-个缓冲区。上述方法在第 1 阶段创建了最多有 B 个块大小的 B − 1
-个溢出分区，因此假设哈希函数均匀分布记录，则可以使用此方法进行哈希处理的最大表是
-B · (B − 1)
-个缓冲区。如果哈希函数不是均匀的，则可以引入一个模糊因子f&gt;1，因此最大的此类表为<span class="math inline">\(B * \sqrt{f * N}\)</span>。</p>
-<p>探测阶段的一个优化是使用布隆过滤器。这是一个概率数据结构，可以放入
-CPU 缓存中，并回答问题“密钥 x
-是否在哈希表中？”要么肯定否，要么很可能是。这可以通过阻止不会导致发出元组的磁盘读取来减少磁盘
-I/O 量。</p>
-<h3 id="grace-hash-连接分区哈希连接">Grace Hash 连接/分区哈希连接</h3>
-<p>当表无法放入主内存时，DBMS 必须随机地交换表，这会导致性能不佳。Grace
-Hash Join 是基本哈希连接的扩展，它还将内表哈希化为写入磁盘的分区。</p>
-<ul>
-<li>阶段1 – 构建：首先，扫描外表和内表，并使用连接属性上的哈希函数 h1
-填充哈希表。哈希表的存储桶根据需要写入磁盘。如果内存中无法容纳单个存储桶，则
-DBMS 可以使用不同的哈希函数 h2（其中 h1 ̸=
-h2）进行递归分区，以进一步划分存储桶。此过程可以递归继续，直到内存中容纳所有存储桶为止。</li>
-<li>阶段2 -
-探测：对于每个存储桶级别，检索外部表和内表的相应页面。然后，对这两个页面中的元组执行嵌套循环连接。页面可以装入内存，因此此连接操作会很快。</li>
-</ul>
-<p>分割阶段成本:2 * (M + N)</p>
-<p>探测阶段成本：（M + N)</p>
-<p>总成本：3 * （M + N）</p>
-<p>混合哈希连接优化：在基本哈希连接和 Grace
-哈希连接之间进行调整；如果键有偏差，则将热分区保留在内存中并立即进行比较，而不是将其溢出到磁盘。很难正确实施。</p>
-<h2 id="总结">5 总结</h2>
-<p>连接是与关系数据库交互的重要部分，因此确保 DBMS
-具有有效的算法来执行连接至关重要。</p>
-<p><img src="/2024/11/28/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95/image-20241128211147350.png" srcset="/img/loading.gif" lazyload alt="图一：上表假设以下情况：M = 1000，m = 100000，N = 500，n= 40000，B = 100 和每个 I/O 0.1 毫秒。"></p>
-<p>哈希连接几乎总是比基于排序的连接算法更好，但在某些情况下基于排序的连接会更受欢迎。这包括查询非均匀数据、数据已按连接键排序以及结果需要排序的情况。好的
-DBMS 会使用其中一种或两种方法。</p>
+                <h1 id="降温">1103-降温<span class="emoji" data-emoji="cloud">☁️</span></h1>
+<h2 id="nfl">NFL</h2>
+<h3 id="new-orleans-saints-vs.-los-angeles-rams">New Orleans Saints vs.
+Los Angeles Rams</h3>
+<p>新奥尔良saint不愧是1-7的队伍，感觉一点斗志也没有，看了不到两节就知道最后的结果了。stafford和nacua这两人配合起来在整个nfl就是顶级的吧，williams跑球也还不错。不过karty这个踢球手真的好败笔，现在6-2，其中就有一把他全责，感觉公羊如果不优化一下踢球的话还是会有很大的隐患的。本赛季还是可以好好观望一下的，说不定有机会冲击super
+bowl。</p>
+<iframe width="920" height="520" src="https://www.youtube.com/embed/YZEmuzr-u7o" title="New Orleans Saints vs. Los Angeles Rams Game Highlights | NFL 2025 Season Week 9" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+<h3 id="kansas-city-chiefs-vs-buffalo-bills">Kansas City Chiefs vs
+Buffalo Bills</h3>
+<p>两队顶尖的quarter
+back，虽然感觉都不是巅峰状态，但是看着还是有强队风范的。我的判断有点浅显。。主要就是看在逆风的时候能不能有力的回应，强势翻盘或者打出漂亮的进攻。个人觉得酋长越来越弱了，和霉霉在一起的那个叫什么去了？凯尔西，感觉已经没啥能力了。。比尔就更不了解了~</p>
+<iframe width="1840" height="1035" src="https://www.youtube.com/embed/G9SIgQo88zg" title="Kansas City Chiefs vs Buffalo Bills Game Highlights | 2025 NFL Season Week 9" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+<h3 id="seattle-seahawks-vs-washington-commanders">Seattle Seahawks vs
+Washington Commanders</h3>
+<p>关注到海鹰还是因为Kupp，但是感觉卡普在队内的战术地位有点太低了。。之前看了一场有点离谱的进攻，居然让卡普来传球？？然后秒被抄截。。随后卡普也再没有接到过球了，但是这周缺席，下周再好好观察一下吧，不过现在国西的竞争是真大啊，海鹰和公羊的两场比赛大概率谁赢谁就是分区第一了，甚至还有可能是国联第一。</p>
+<p>指挥官的话我也只认识一个丹尼尔斯，去年在季后赛的时候特别猛，不过可惜，今天伤病复出感觉没啥状态，已经3-6的指挥官，应该也进不去季后赛了。</p>
+<iframe width="1840" height="1035" src="https://www.youtube.com/embed/Qh9YqtFy23U" title="Seattle Seahawks vs Washington Commanders Game Highlights | 2025 NFL Season Week 9" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
 
                 
               </div>
@@ -487,7 +379,7 @@ DBMS 会使用其中一种或两种方法。</p>
     
       <span class="category-chain">
         
-  <a href="/categories/cmu15445/" class="category-chain-item">cmu15445</a>
+  <a href="/categories/essay/" class="category-chain-item">essay</a>
   
   
 
@@ -502,13 +394,7 @@ DBMS 会使用其中一种或两种方法。</p>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/" class="print-no-link">#查询优化</a>
-      
-        <a href="/tags/%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95/" class="print-no-link">#连接算法</a>
-      
-        <a href="/tags/%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF%E8%BF%9E%E6%8E%A5/" class="print-no-link">#嵌套循环连接</a>
-      
-        <a href="/tags/%E5%93%88%E5%B8%8C%E8%BF%9E%E6%8E%A5/" class="print-no-link">#哈希连接</a>
+        <a href="/tags/nfl/" class="print-no-link">#nfl</a>
       
     </div>
   
@@ -520,8 +406,8 @@ DBMS 会使用其中一种或两种方法。</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CMU15445-lecture11</div>
-      <div>http://polaris3003.github.io/2024/11/28/第十一课：连接算法/</div>
+      <div>251103-weekly-essay</div>
+      <div>http://polaris3003.github.io/2025/11/13/2025-11-13-251103-weekly-essay/</div>
     </div>
     <div class="license-meta">
       
@@ -533,7 +419,7 @@ DBMS 会使用其中一种或两种方法。</p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月28日</div>
+          <div>2025年11月13日</div>
         </div>
       
       
@@ -565,18 +451,12 @@ DBMS 会使用其中一种或两种方法。</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/" title="CMU15445-lecture13">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CMU15445-lecture13</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/" title="CMU15445-lecture12">
-                        <span class="hidden-mobile">CMU15445-lecture12</span>
+                      <a href="/2025/03/03/Tea202503/" title="茶-2025-03">
+                        <span class="hidden-mobile">茶-2025-03</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
