@@ -1,0 +1,955 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="茶5.20-5.24 Mon Ternary String 1354B 题目翻译： 输入T（T&lt;&#x3D;24)，表示T组数据。所有数据的字符串长度之和&lt;&#x3D;25。 每组数据输入一个长度&lt;&#x3D;25的字符串，只包含数字&#39;1&#39;,&#39;2&#39;,&#39;3&#39;。 输出s中的最短子串的长度，该子串必须包含所有&#39;1&#39;&#39;2&#39;&#39;3&#39;三种字符。 如果没有这样的子串，输出0。 Sol： 用一个长为3的cn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tea5.20-5.24">
+<meta property="og:url" content="http://polaris3003.github.io/2024/05/24/tea5-20-5-24/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="茶5.20-5.24 Mon Ternary String 1354B 题目翻译： 输入T（T&lt;&#x3D;24)，表示T组数据。所有数据的字符串长度之和&lt;&#x3D;25。 每组数据输入一个长度&lt;&#x3D;25的字符串，只包含数字&#39;1&#39;,&#39;2&#39;,&#39;3&#39;。 输出s中的最短子串的长度，该子串必须包含所有&#39;1&#39;&#39;2&#39;&#39;3&#39;三种字符。 如果没有这样的子串，输出0。 Sol： 用一个长为3的cn">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-24T14:09:15.000Z">
+<meta property="article:modified_time" content="2025-02-11T09:26:20.000Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="algorithm">
+<meta property="article:tag" content="tea">
+<meta property="article:tag" content="dfs">
+<meta property="article:tag" content="dp">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>tea5.20-5.24 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"polaris3003.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="tea5.20-5.24"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-24 22:09" pubdate>
+          2024年5月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">tea5.20-5.24</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="茶5.20-5.24">茶5.20-5.24</h1>
+<h2 id="mon">Mon</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1354/B">Ternary
+String 1354B</a></p>
+<p><strong>题目翻译：</strong></p>
+<p>输入T（T&lt;=2<sup>4</sup>)，表示T组数据。所有数据的字符串长度之和&lt;=2<sup>5</sup>。</p>
+<p>每组数据输入一个长度&lt;=2<sup>5</sup>的字符串，只包含数字'1','2','3'。</p>
+<p>输出s中的最短子串的长度，该子串必须包含所有'1''2''3'三种字符。</p>
+<p>如果没有这样的子串，输出0。</p>
+<p><strong>Sol：</strong></p>
+<p>用一个长为3的cnt数组维护子串内的1 2
+3的个数。如果三个数的cnt都大于0，就更新答案的最小值，移动左端点。</p>
+<p><strong>Code：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    string s;<br>    cin&gt;&gt;s;<br>    <span class="hljs-type">int</span> length = s.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-function">vi <span class="hljs-title">cnt</span><span class="hljs-params">(<span class="hljs-number">3</span>,<span class="hljs-number">0</span>)</span></span>;<br>    <span class="hljs-type">int</span> ans = INT_MAX;<br>    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>,right = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(right = <span class="hljs-number">0</span>; right &lt; length; right++) &#123;<br>        cnt[s[right]-<span class="hljs-string">&#x27;1&#x27;</span>]++;<br>        <span class="hljs-keyword">while</span>(cnt[<span class="hljs-number">0</span>]&gt;<span class="hljs-number">0</span>&amp;&amp;cnt[<span class="hljs-number">1</span>]&gt;<span class="hljs-number">0</span>&amp;&amp;cnt[<span class="hljs-number">2</span>]&gt;<span class="hljs-number">0</span>) &#123;<br>            ans = <span class="hljs-built_in">min</span>(ans,right-left<span class="hljs-number">+1</span>);<br>            cnt[s[left]-<span class="hljs-string">&#x27;1&#x27;</span>]--;<br>            left++;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(ans==INT_MAX) &#123;<br>        ans=<span class="hljs-number">0</span>;<br>    &#125;<br>    cout&lt;&lt;ans&lt;&lt;endl;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="feb">Feb</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/760/B">Frodo and
+pillows 760B</a></p>
+<p><strong>题目翻译：</strong></p>
+<p>输入n m k(1&lt;=n&lt;=m&lt;=10<sup>9</sup>,1&lt;=k&lt;=n).</p>
+<p>有一个长为n的数组a，已知其所有元素均为正整数，元素和等于m且|a[i]-a[i+1]|&lt;=1.</p>
+<p>问：a[k]最大能是多少？</p>
+<p><strong>Sol：</strong></p>
+<p>二分。设a[k]=mx,那么数组元素最佳是按照</p>
+<p>... a[k-2] = mx-2,a[k-1] = mx - 1,a[k] = mx,a[k+1] = mx - 1,a[k+2] =
+mx - 2,...</p>
+<p>这样元素和尽量小。按照上述规则，计算等差数列和cnt，通过比较cnt与m的大小来调整二分边界。</p>
+<p><strong>Code:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    ll n,m,k;<br>    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;<br>    m -= n;<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> lo = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> hi = m;<br>    <br>    <span class="hljs-keyword">while</span> (lo &lt; hi) &#123;<br>        <span class="hljs-type">long</span> <span class="hljs-type">long</span> mid = (lo + hi + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br>        <span class="hljs-type">long</span> <span class="hljs-type">long</span> need = -mid;<br>        <span class="hljs-keyword">if</span> (mid &lt;= k) &#123;<br>        need += mid * (mid + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>        need += (mid + mid - k + <span class="hljs-number">1</span>) * k / <span class="hljs-number">2</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (mid &lt;= n - k + <span class="hljs-number">1</span>) &#123;<br>        need += mid * (mid + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>        need += (mid + mid - n + k) * (n - k + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br>        &#125;<br>    <br>        <span class="hljs-keyword">if</span> (need &lt;= m) &#123;<br>        lo = mid;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>        hi = mid - <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br>    <br>    cout &lt;&lt; lo + <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="wed">Wed</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1689/C">Infected
+Tree 1689C</a></p>
+<p><strong>题目描述：</strong></p>
+<p>输入 T(≤5000) 表示 T 组数据。所有数据的 n 之和 ≤3e5。 每组数据输入
+n(2≤n≤3e5) 和一棵 n 个节点的二叉树的 n-1 条双向边。节点编号从 1 开始。
+二叉树的根节点是 1。 一开始，根节点被感染。 然后执行如下过程 n 次：</p>
+<p>首先，选择一个未被感染也未被删除的点，将其删除（相连的边也删除）；或者什么也不做。</p>
+<p>然后，任何与被感染节点相邻的节点，都被感染。</p>
+<p>输出最多可以让多少个点不被感染也不被删除。</p>
+<p><strong>拓展：</strong></p>
+<p>改成多叉树：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1041">传染病控制</a></p>
+<p><strong>Sol：</strong></p>
+<p>贪心 + 树形dp</p>
+<p>当某颗子树的根节点被感染时，删除左儿子或右儿子，可以尽最大可能地减少感染。</p>
+<p>那么应该删除左儿子还是右儿子，用dp判断最优解。</p>
+<p>可以考虑感染和删除最少多少个点。</p>
+<p>对于以v为根点子树而言，在v被感染的情况下：</p>
+<p>1.如果v是叶子，返回1，表示v被感染。</p>
+<p>2.如果v只有一个儿子，删除儿子，返回2，表示v被感染，v的儿子被删除。</p>
+<p>3.如果v有两个儿子，枚举删除哪个儿子，递归另一颗子树w，返回dfs（w，v）
++ 2 的最小值，第二个参数是父节点。</p>
+<p>答案为 n - dfs（1，0）。</p>
+<p><strong>Code：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; g, <span class="hljs-type">int</span> v, <span class="hljs-type">int</span> fa)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (g[v].<span class="hljs-built_in">size</span>() &lt;= <span class="hljs-number">2</span>) &#123;<br>        <span class="hljs-keyword">return</span> g[v].<span class="hljs-built_in">size</span>();<br>    &#125;<br>    <span class="hljs-type">int</span> mx = <span class="hljs-number">1e9</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> w : g[v]) &#123;<br>        <span class="hljs-keyword">if</span> (w != fa) &#123;<br>            mx = <span class="hljs-built_in">min</span>(mx, <span class="hljs-built_in">dfs</span>(g, w, v) + <span class="hljs-number">2</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> mx;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> n;<br>    cin&gt;&gt;n;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">g</span>(n + <span class="hljs-number">1</span>);<br>    g[<span class="hljs-number">1</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-type">int</span> v, w;<br>        cin&gt;&gt;v&gt;&gt;w;<br>        g[v].<span class="hljs-built_in">push_back</span>(w);<br>        g[w].<span class="hljs-built_in">push_back</span>(v);<br>    &#125;<br>    cout &lt;&lt; n - <span class="hljs-built_in">dfs</span>(g, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>) &lt;&lt; endl;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="thu">Thu</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/451/E">Devu and
+Flowers 451E</a></p>
+<p>输入 n(1≤n≤20) s(0≤s≤1e14) 和长为 n 的数组 a(0≤a[i]≤1e12)。</p>
+<p>你有 n 个盒子，第 i 个盒子装有 a[i]
+朵颜色一样的花（无法区分）。<br>
+此外，没有两个盒子中的花朵颜色相同。<br>
+从这些盒子中恰好选出 s 朵花的方案数是多少？</p>
+<p>输入<br>
+2 3<br>
+1 3<br>
+输出 2</p>
+<p>输入<br>
+2 4<br>
+2 2<br>
+输出 1</p>
+<p>输入<br>
+3 5<br>
+1 3 2<br>
+输出 3</p>
+<p><strong>Sol：</strong></p>
+<p>容斥原理+组合数。</p>
+<p>请先阅读 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/distribute-candies-among-children-ii/solution/o1-rong-chi-yuan-li-pythonjavacgo-by-end-2woj/">n=3
+时的题解</a> 看成是把 s 个无区别的小球，分给 n 个有区别的盒子，第 i
+个盒子至多容纳 a[i] 个小球。</p>
+<p>计算方法同上面的力扣题（n=3 的情况）。</p>
+<p>枚举 a 的所有子集，子集中的盒子预先分配 a[i]+1 个小球。 剩余的小球 s2
+按照 C(s2+n-1,n-1) 计算方案数。 组合数 C(n,k)
+的计算可以分别计算分子和分母，最后用模运算除法解决。 关于模运算除法请看
+<a target="_blank" rel="noopener" href="https://leetcode.cn/circle/discuss/mDfnkW/">模运算的世界：当加减乘除遇上取模</a>
+注意 n 很大，要先把 n 取模。 注意使用 64 位整数。 <a target="_blank" rel="noopener" href="https://codeforces.com/problemset/submission/451/261442815">代码</a>
+<a target="_blank" rel="noopener" href="https://codeforces.com/problemset/submission/451/261443307">优化：预处理
+n-1 以内的阶乘的逆元</a></p>
+<p><strong>Code:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">20</span>;<br><br><span class="hljs-type">int</span> n;<br><span class="hljs-type">long</span> <span class="hljs-type">long</span> f[N];<br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> MOD = <span class="hljs-number">1000000007</span>;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">inv</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> </span>&#123;<br>	<span class="hljs-keyword">return</span> a == <span class="hljs-number">1</span> ? <span class="hljs-number">1</span> : (<span class="hljs-type">long</span> <span class="hljs-type">long</span>)(MOD - MOD / a) * <span class="hljs-built_in">inv</span>(MOD % a) % MOD;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-title">choose</span><span class="hljs-params">(<span class="hljs-type">long</span> <span class="hljs-type">long</span> s, <span class="hljs-type">long</span> <span class="hljs-type">long</span> n)</span> </span>&#123;<br>	<span class="hljs-type">long</span> <span class="hljs-type">long</span> ret = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>		ret = (<span class="hljs-type">long</span> <span class="hljs-type">long</span>)ret * ((s - i) % MOD) % MOD * <span class="hljs-built_in">inv</span>(i + <span class="hljs-number">1</span>) % MOD;<br>	&#125;<br>	<span class="hljs-keyword">return</span> ret;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-title">go</span><span class="hljs-params">(<span class="hljs-type">int</span> i, <span class="hljs-type">long</span> <span class="hljs-type">long</span> s)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span> (s &lt; <span class="hljs-number">0</span>) &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	&#125;<br>	<span class="hljs-keyword">if</span> (i == n) &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-built_in">choose</span>(s + n - <span class="hljs-number">1</span>, n - <span class="hljs-number">1</span>);<br>	&#125;<br>	<span class="hljs-keyword">return</span> (<span class="hljs-built_in">go</span>(i + <span class="hljs-number">1</span>, s) - <span class="hljs-built_in">go</span>(i + <span class="hljs-number">1</span>, s - f[i])) % MOD;<br>&#125;<br><br><span class="hljs-type">long</span> <span class="hljs-type">long</span> s;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	cin &gt;&gt; n &gt;&gt; s;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>		cin &gt;&gt; f[i];	<br>		++f[i];<br>	&#125;<br>	cout &lt;&lt; (<span class="hljs-built_in">go</span>(<span class="hljs-number">0</span>, s) + MOD) % MOD &lt;&lt; endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="fri">Fri</h2>
+<p>状压 DP！</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/beautiful-arrangement/">优美的排列</a></p>
+<p>如果一个 1-n 的排列 p，对于每个 i=1,2,3,...n，都满足 i 和 p[i]
+其中一个能整除另一个，则称 p 是好的。<br>
+输入 n(1≤n≤15)，输出有多少个 1-n 的排列是好的。</p>
+<p>输入 2<br>
+输出 2<br>
+解释 [1,2] 和 [2,1]</p>
+<p>输入 1<br>
+输出 1</p>
+<p>额外加练：</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1771/F">Hossam and
+Range Minimum Query</a></p>
+<p>题解(仙佬的）:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Athanasy/p/18012165" class="uri">https://www.cnblogs.com/Athanasy/p/18012165</a></p>
+<p><strong>Sol：（摘自灵神）</strong></p>
+<p>1.寻找子问题</p>
+<p>将1-n的排列简记为p</p>
+<p>假设n=5，先不考虑整除：</p>
+<ul>
+<li>枚举p<sub>1</sub>选哪个，它可以是1，2，3，4，5，假设p<sub>1</sub>=2.</li>
+<li>枚举p<sub>2</sub>选哪个，它可以是1，3，4，5，假设p<sub>2</sub>=4.</li>
+<li>枚举p<sub>3</sub>选哪个，它可以是1，3，5，假设p<sub>3</sub>=5.</li>
+<li>枚举p<sub>4</sub>选哪个，它可以是1，3，假设p<sub>4</sub>=3.</li>
+<li>枚举p<sub>5</sub>选哪个，它只可以是1，所以p<sub>5</sub>=1.</li>
+</ul>
+<p>在这个过程中，我们需要知道：哪些数不能选。可以用一个集合S存储选过的数。枚举p<sub>i</sub>的值，然后加入集合S。注意剩下能选的数变少了，要解决的问题规模也小了。</p>
+<p>所以我们可以考虑递归解决。但是注意上述过程中，会产生重复子问题,例如</p>
+<ul>
+<li>目前生成的排列 p = [2,4,1,<em>,</em>],
+现在递归到倒数第二个位置，那么 S = {1,2,4}.</li>
+<li>目前生成的排列 p = [4,2,1,<em>,</em>],
+现在递归到倒数第二个位置，那么 S = {1,2,4}.</li>
+</ul>
+<p>前面的排列具体如何，我们并不关心，我们记录的是无序的集合，不是有序的列表。</p>
+<p>2.状态定义和状态转移方程</p>
+<p>按照上面的讨论，定义dfs(S)表示在之前选过的数的集合为S的情况下，剩余数字可以构造的优美排列的数量。</p>
+<p>考虑p<sub>i</sub>选什么：</p>
+<ul>
+<li>枚举 j = 1,2,...,n,且j <span class="math inline">\(\notin\)</span> S
+且 i 和 j 一个可以整除另一个</li>
+<li>要解决的问题变成：在之前选过的数的集合为 S <span class="math inline">\(\bigcup\)</span> {j}
+的情况下，剩余数字可以构造的优美排列的数量，即dfs(S <span class="math inline">\(\bigcup\)</span> {j}).</li>
+</ul>
+<p><span class="math display">\[
+dfs(S) = \sum_jdfs(S \bigcup {j})
+\]</span></p>
+<p>递归边界: dfs(U) = 1,其中全集 U = {1,2,...n}.如果能递归到S =
+U的状态，表示所有数都选完了，我们找到了一个合法排列。</p>
+<p>递归入口:dfs(<span class="math inline">\(\emptyset\)</span>),也就是答案。其中<span class="math inline">\(\emptyset\)</span>表示空集，因为一开始什么也没选。</p>
+<p>3.递归搜索+保存递归返回值=记忆化搜索</p>
+<p>考虑到整个递归过程中有大量重复递归调用（递归入参相同）。由于递归函数没有副作用，同样的入参无论计算多少次，算出来的结果都是一样的，因此可以用记忆话搜索来优化：</p>
+<ul>
+<li>如果一个状态（递归入参）是第一次遇到，那么可以在返回前，把状态及其结果记到一个memo数组中。</li>
+<li>如果一个状态不是第一次遇到（memo中保存的结果不等于memo的初始值），那么可以返回memo中保存的结果。</li>
+</ul>
+<p><strong>Code:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">countArrangement</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">memo</span><span class="hljs-params">(<span class="hljs-number">1</span> &lt;&lt; n, <span class="hljs-number">-1</span>)</span></span>;<br>        function&lt;<span class="hljs-type">int</span>(<span class="hljs-type">int</span>)&gt; dfs = [&amp;](<span class="hljs-type">int</span> s) -&gt; <span class="hljs-type">int</span> &#123;<br>            <span class="hljs-keyword">if</span> (s == (<span class="hljs-number">1</span> &lt;&lt; n) - <span class="hljs-number">1</span>) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>            &#125;<br>            <span class="hljs-type">int</span> &amp;res = memo[s];<br>            <span class="hljs-keyword">if</span> (res != <span class="hljs-number">-1</span>) &#123;<br>                <span class="hljs-keyword">return</span> res;<br>            &#125;<br>            res = <span class="hljs-number">0</span>;<br>            <span class="hljs-type">int</span> i = __builtin_popcount(s) + <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;<br>                <span class="hljs-keyword">if</span> ((s &gt;&gt; (j - <span class="hljs-number">1</span>) &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span> &amp;&amp; (i % j == <span class="hljs-number">0</span> || j % i == <span class="hljs-number">0</span>)) &#123;<br>                    res += <span class="hljs-built_in">dfs</span>(s | (<span class="hljs-number">1</span> &lt;&lt; (j - <span class="hljs-number">1</span>)));<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">return</span> res;<br>        &#125;;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">dfs</span>(<span class="hljs-number">0</span>);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/codeforces/" class="category-chain-item">codeforces</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/algorithm/" class="print-no-link">#algorithm</a>
+      
+        <a href="/tags/tea/" class="print-no-link">#tea</a>
+      
+        <a href="/tags/dfs/" class="print-no-link">#dfs</a>
+      
+        <a href="/tags/dp/" class="print-no-link">#dp</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>tea5.20-5.24</div>
+      <div>http://polaris3003.github.io/2024/05/24/tea5-20-5-24/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/05/24/scene-question-1/" title="scene-question-1">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">scene-question-1</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/17/tea5-13-5-17/" title="tea5.13-5.17">
+                        <span class="hidden-mobile">tea5.13-5.17</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

@@ -1,0 +1,960 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第八课：树索引 1 表索引 数据库系统内部可以使用多种不同的数据结构，例如内部元数据、核心数据存储、临时数据结构或表索引。对于可能设计范围扫描查询的表索引，哈希表可能不是最佳选择，因为它本质上是无序的。 表索引是表列子集的副本，它被组织和&#x2F;或排序以便使用这些属性的子集进行有效访问。因此，DBMS可以对表索引执行查找，以更快地找到某些元组，而不是执行顺序扫描。DBMS确保表和索引的内容始终在逻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CMU15445-lecture8">
+<meta property="og:url" content="http://polaris3003.github.io/2024/07/04/%E7%AC%AC%E5%85%AB%E8%AF%BE%EF%BC%9A%E6%A0%91%E7%B4%A2%E5%BC%95/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="第八课：树索引 1 表索引 数据库系统内部可以使用多种不同的数据结构，例如内部元数据、核心数据存储、临时数据结构或表索引。对于可能设计范围扫描查询的表索引，哈希表可能不是最佳选择，因为它本质上是无序的。 表索引是表列子集的副本，它被组织和&#x2F;或排序以便使用这些属性的子集进行有效访问。因此，DBMS可以对表索引执行查找，以更快地找到某些元组，而不是执行顺序扫描。DBMS确保表和索引的内容始终在逻">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://polaris3003.github.io/2024/07/04/%E7%AC%AC%E5%85%AB%E8%AF%BE%EF%BC%9A%E6%A0%91%E7%B4%A2%E5%BC%95/image-20240702174422330.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/07/04/%E7%AC%AC%E5%85%AB%E8%AF%BE%EF%BC%9A%E6%A0%91%E7%B4%A2%E5%BC%95/image-20240702193242102.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/07/04/%E7%AC%AC%E5%85%AB%E8%AF%BE%EF%BC%9A%E6%A0%91%E7%B4%A2%E5%BC%95/image-20240703155322520.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/07/04/%E7%AC%AC%E5%85%AB%E8%AF%BE%EF%BC%9A%E6%A0%91%E7%B4%A2%E5%BC%95/image-20240703162033096.png">
+<meta property="article:published_time" content="2024-07-04T12:47:51.000Z">
+<meta property="article:modified_time" content="2025-02-11T09:24:54.000Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="B+树">
+<meta property="article:tag" content="表索引">
+<meta property="article:tag" content="插入">
+<meta property="article:tag" content="删除">
+<meta property="article:tag" content="选型条件">
+<meta property="article:tag" content="复制键">
+<meta property="article:tag" content="聚集索引">
+<meta property="article:tag" content="堆聚类">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://polaris3003.github.io/2024/07/04/%E7%AC%AC%E5%85%AB%E8%AF%BE%EF%BC%9A%E6%A0%91%E7%B4%A2%E5%BC%95/image-20240702174422330.png">
+  
+  
+  
+  <title>CMU15445-lecture8 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"polaris3003.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CMU15445-lecture8"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-04 20:47" pubdate>
+          2024年7月4日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CMU15445-lecture8</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="第八课树索引">第八课：树索引</h1>
+<h2 id="表索引">1 表索引</h2>
+<p>数据库系统内部可以使用多种不同的数据结构，例如内部元数据、核心数据存储、临时数据结构或表索引。对于可能设计范围扫描查询的表索引，哈希表可能不是最佳选择，因为它本质上是无序的。</p>
+<p>表索引是表列子集的副本，它被组织和/或排序以便使用这些属性的子集进行有效访问。因此，DBMS可以对表索引执行查找，以更快地找到某些元组，而不是执行顺序扫描。DBMS确保表和索引的内容始终在逻辑上同步。</p>
+<p>每个数据库创建的索引数量之间存在权衡。虽然索引越多查询速度越快，但索引也会占用内存并且需要维护。另外，保持它们同步还存在并发问题。DBMS的工作是找出用于执行查询的最佳索引。</p>
+<h2 id="b树">2 B+树</h2>
+<p>B+树是一种自平衡树数据结构，可保持数据排序并允许在O(log(n))中进行搜索、顺序访问、插入和删除。它针对读取/写入大数据块的面向磁盘的DBMS进行了优化。</p>
+<p>几乎每个支持保序索引的现代DBMS都使用B+树。有种特殊的数据结构叫做B-树，但人们也使用该术语来泛指一类数据结构。原始B-Tree和B+Tree之间的主要区别在于B-Tree在所有节点中存储键和值，而B+树仅在叶节点中存储值。现代
+B+Tree 实现结合了其他 B-Tree 变体的功能，例如 B
+链接树中使用的同级指针。</p>
+<p><img src="/2024/07/04/%E7%AC%AC%E5%85%AB%E8%AF%BE%EF%BC%9A%E6%A0%91%E7%B4%A2%E5%BC%95/image-20240702174422330.png" srcset="/img/loading.gif" lazyload alt="B+树形图" style="zoom:50%;"></p>
+<p>形式上，B+Tree 是一棵 M 路搜索树（其中 M
+表示节点可以拥有的子节点的最大数量），具有以下属性：</p>
+<ul>
+<li>它是完美平衡的（所有叶子结点都是同一个深度）。</li>
+<li>除根节点外的每个内部节点都至少是半满的（M/2 - 1 &lt;= 键数 &lt;=
+M-1)。</li>
+<li>每个有k个键的内部节点有k+1个非空子节点。</li>
+</ul>
+<p>B+Tree 中的每个节点都包含一个键/值对数组。</p>
+<p>对于叶节点，键是从索引所基于的属性派生的。虽然根据 B+Tree
+的定义没有必要，但每个节点的数组几乎总是按键排序。叶节点值的两种方法是记录
+ID 和元组数据。记录 ID
+是指指向元组位置的指针，通常是主键。具有元组数据的叶节点存储每个节点中元组的实际内容。</p>
+<p>对于内部节点，值包含指向其他节点的指针，并且键可以被认为是指南针。它们引导树遍历，但不表示叶节点上的键（以及它们的值）。这意味着您可能在内部节点（作为指南）中有一个在叶节点上找不到的键。尽管必须注意，传统上内部节点仅拥有叶节点中存在的那些键。</p>
+<p>根据索引类型（首先为 NULL，最后为
+NULL），空键将聚集在第一个叶节点或最后一个叶节点中。</p>
+<h3 id="插入">插入</h3>
+<p>要在 B+Tree
+中插入新条目，必须遍历树并使用内部节点来找出要将键插入到哪个叶节点。</p>
+<ol type="1">
+<li>找到正确的叶子L</li>
+<li>按排序顺序将新条目添加到 L 中：
+<ul>
+<li>如果L有足够空间，则操作完成。</li>
+<li>否则将叶子分为两个节点L和L2。均匀地重新分配条目并复制中间键。将指向
+L2 的条目插入到 L 的父级中。</li>
+</ul></li>
+<li>要分割内部节点，请均匀地重新分配条目，但向上推中间键。</li>
+</ol>
+<h3 id="删除">删除</h3>
+<p>在插入中，当树太满时，我们有时不得不分割叶子，如果删除导致树小于半满，我们必须合并以重新平衡树。</p>
+<ol type="1">
+<li>找到正确的叶子L</li>
+<li>删除条目：
+<ul>
+<li>如果 L 至少为半满，则操作完成。</li>
+<li>否则，您可以尝试从兄弟姐妹那里借用来重新分配。</li>
+<li>如果重新分配失败，则合并 L 和同级。</li>
+</ul></li>
+<li>如果发生合并，则必须删除父项中指向 L 的条目。</li>
+</ol>
+<h3 id="选型条件">选型条件</h3>
+<p>由于 B+Tree
+是按顺序排序的，因此查找遍历速度很快，并且不需要整个键。如果查询提供搜索键的任何属性，则
+DBMS 可以使用 B+Tree
+索引。这与哈希索引不同，哈希索引需要搜索键中的所有属性。</p>
+<p><img src="/2024/07/04/%E7%AC%AC%E5%85%AB%E8%AF%BE%EF%BC%9A%E6%A0%91%E7%B4%A2%E5%BC%95/image-20240702193242102.png" srcset="/img/loading.gif" lazyload alt="图2:要在 B+Tree 上执行前缀搜索，需要查看键上的第一个属性，沿着路径向下并在叶子上执行顺序扫描，以找到所需的所有键。"></p>
+<h3 id="复制键">复制键</h3>
+<p>有两种方法可以在 B+Tree 中复制键。</p>
+<p>第一种方法是附加记录 ID 作为键的一部分。由于每个元组的记录 ID
+都是唯一的，这将确保所有键都是可识别的。</p>
+<p>第二种方法是允许叶节点溢出到包含重复键的溢出节点。虽然没有存储冗余信息，但这种方式维护和修改比较复杂</p>
+<h3 id="聚集索引">聚集索引</h3>
+<p>表按主键指定的排序顺序存储，作为堆或索引组织的存储。由于某些 DBMS
+始终使用聚集索引，因此如果表没有显式主键，它们会自动创建隐藏的 row id
+主键，但其他 DBMS 根本无法使用它们。</p>
+<h3 id="堆聚类">堆聚类</h3>
+<p>元组按照聚类索引指定的顺序在堆页中排序。如果使用聚簇索引的属性来访问元组，DBMS可以直接跳转到页面。</p>
+<h3 id="索引扫描页面排序">索引扫描页面排序</h3>
+<p>由于直接从非聚集索引检索元组效率很低，因此 DBMS
+可以首先找出它需要的所有元组，然后根据它们的页 id
+对它们进行排序。这样，每个页面只需提取一次。</p>
+<h2 id="b树设计选择">3 B+树设计选择</h2>
+<h3 id="节点大小">3.1 节点大小</h3>
+<p>根据存储介质的不同，我们可能更喜欢更大或更小的节点大小。例如，存储在硬盘驱动器上的节点的大小通常约为兆字节，以减少查找数据所需的查找次数并分摊读取大量数据所需的昂贵磁盘成本，而内存数据库可能使用小至
+512 字节的页面大小，以便将整个页面放入 CPU
+缓存并减少数据碎片。这个选择还可以依赖于工作负载的类型。对于点查询而言，它会更喜欢尽可能小的页面，以减少加载不必要的额外信息的数量，而对于大规模顺序扫描而言，它可能更喜欢大页面以减少需要执行的获取次数。</p>
+<h3 id="合并阈值">3.2 合并阈值</h3>
+<p>虽然 B+Tree
+有删除后合并下溢节点的规则，但有时暂时违反该规则可能会有益于减少删除操作的次数。例如，急于合并可能会导致抖动，其中大量连续的删除和插入操作会导致不断的拆分和合并。它还允许批量合并，其中多个合并操作同时发生，从而减少了在树上花费昂贵的写入锁存器的时间。</p>
+<p>有一些合并策略会保留树中的小节点并在以后重建它，这使得树不平衡（如在
+Postgres 中）。我们不会在课上讨论这个问题。</p>
+<h3 id="可变长密钥">3.3 可变长密钥</h3>
+<p>目前我们只讨论了具有固定长度键的
+B+树。然而，我们可能还希望支持可变长度密钥，例如大密钥的一小部分子集导致大量空间浪费的情况。有几种方法可以做到这一点：</p>
+<ol type="1">
+<li><p><strong>指针</strong></p>
+<p>我们可以只存储指向键的指针，而不是直接存储键。</p></li>
+<li><p><strong>可变长节点</strong></p>
+<p>我们还可以像平常一样存储密钥并允许可变长度节点。由于处理可变长度节点的内存管理开销很大，这通常是不可行的并且基本上不被使用。</p></li>
+<li><p><strong>填充</strong></p>
+<p>我们可以将每个键的大小设置为最大键的大小，并填充所有较短的键，而不是改变键的大小。在大多数情况下，这是对内存的巨大浪费，因此也看不到任何人使用它。</p></li>
+<li><p><strong>键映射/间接</strong></p>
+<p>几乎每个人都使用的方法是将键替换为单独字典中键值对的索引。这提供了显着的空间节省和潜在的快捷点查询（因为索引指向的键值对与叶节点指向的键值对完全相同）。由于字典索引值的大小较小，可以在索引的旁边放置每个键的前缀，这样在索引搜索和叶节点扫描时，如果前缀与搜索键不完全相同，可能并不需要追踪指针。</p></li>
+</ol>
+<p><img src="/2024/07/04/%E7%AC%AC%E5%85%AB%E8%AF%BE%EF%BC%9A%E6%A0%91%E7%B4%A2%E5%BC%95/image-20240703155322520.png" srcset="/img/loading.gif" lazyload alt="图3:键映射/间接的示例。该映射存储键的一个小前缀，以及指向键值对的指针。"></p>
+<h3 id="节点内搜索">3.4 节点内搜索</h3>
+<p>一旦我们到达一个节点，我们仍然需要在该节点内搜索（要么从内部节点找到下一个节点，要么在叶节点中找到我们的键值）。虽然这相对简单，但仍然需要考虑一些权衡：</p>
+<ol type="1">
+<li><p><strong>线性</strong></p>
+<p>最简单的解决方案是扫描节点中的每个键，直到找到我们的键。一方面，我们不必担心对键进行排序，从而使插入和删除速度更快。另一方面，这是相对低效的，并且每次搜索的复杂度为
+O(n)。这可以使用 SIMD（或等效）指令进行矢量化。</p></li>
+<li><p><strong>二分</strong></p>
+<p>更有效的搜索解决方案是保持每个节点排序并使用二分搜索来查找键。这就像跳转到节点中间并根据键之间的比较向左或向右旋转一样简单。这种方式的搜索效率要高得多，因为这种方法每次搜索的复杂度仅为
+O(ln(n))。然而，插入变得更加昂贵，因为我们必须维护每个节点的排序。</p></li>
+<li><p><strong>插值法</strong></p>
+<p>这种方式的搜索效率要高得多，因为这种方法每次搜索的复杂度仅为
+O(ln(n))。然而，插入变得更加昂贵，因为我们必须维护每个节点的排序。此方法利用存储的有关节点的任何元数据（例如最大元素、最小元素、平均值等），并使用它来生成键的大致位置。例如，如果我们在节点中查找
+8，并且我们知道 10 是最大键，10−(n+ 1) 是最小键（其中 n
+是每个节点中键的数量），那么我们知道从最大键开始向下搜索 2
+个槽，因为在这种情况下，距离最大键 1 个槽的键必须是
+9。尽管这是我们给出的最快的方法，但由于它对具有某些属性（如整数）和复杂性的密钥的适用性有限，因此该方法仅在学术数据库中出现。</p></li>
+</ol>
+<h2 id="优化">4 优化</h2>
+<h3 id="指针swizzling">4.1 指针swizzling</h3>
+<p>因为B+Tree的每个节点都存储在缓冲池中的一个页面中，所以每次加载新页面时，我们都需要从缓冲池中获取它，需要锁存和查找。要完全跳过此步骤，我们可以存储实际的原始指针来代替页面
+ID（称为“swizzling”），从而完全防止缓冲池获取。我们可以在正常遍历索引时简单地存储页面查找的结果指针，而不是手动获取整个树并手动放置指针。请注意，我们必须跟踪哪些指针被混合，并在它们指向的页面被取消固定和受害时将它们解调回页面
+ID。</p>
+<h3 id="批量插入">4.2 批量插入</h3>
+<p>当 B+Tree
+最初构建时，必须以通常的方式插入每个键将导致不断的分裂操作。由于我们已经给出了叶子同级指针，因此如果我们构造叶节点的排序链表，然后使用每个叶节点的第一个键从下往上轻松构建索引，则数据的初始插入会更有效。请注意，根据我们的上下文，我们可能希望尽可能紧密地包装叶子以节省空间，或者在每个叶子中留出空间，以便在需要分割之前允许更多插入。</p>
+<h3 id="前缀压缩">4.3 前缀压缩</h3>
+<p>大多数时候，当我们在同一个节点中拥有键时，每个键的某些前缀都会有部分重叠（因为相似的键最终会在排序的
+B+Tree
+中紧邻彼此）。我们可以简单地将前缀存储在节点的开头一次，然后只在每个槽中包含每个键的唯一部分，而不是多次将此前缀存储为每个键的一部分。</p>
+<p><img src="/2024/07/04/%E7%AC%AC%E5%85%AB%E8%AF%BE%EF%BC%9A%E6%A0%91%E7%B4%A2%E5%BC%95/image-20240703162033096.png" srcset="/img/loading.gif" lazyload alt="图 4：前缀压缩的示例。由于键按字典顺序排列，因此它们可能共享一些前缀。"></p>
+<h3 id="删除重复数据">4.4 删除重复数据</h3>
+<p>在允许非唯一键的索引的情况下，我们最终可能会得到包含相同键并附加不同值的叶节点。对此的一种优化可能是只写入一次密钥，然后在其后面写入所有关联的值。</p>
+<h3 id="后缀截断">4.5 后缀截断</h3>
+<p>大多数情况下，内部节点中的键条目仅用作路标，而不是其实际键值（即使索引中存在某个键，我们仍然必须搜索到底部以确保它没有被删除）。我们可以通过仅存储将探测器正确路由到正确节点所需的最小前缀来利用这一点。</p>
+<h3 id="写入优化的-b-树">4.6 写入优化的 B+ 树</h3>
+<p>拆分/合并节点操作的成本很高。因此，B-Tree 的某些变体（例如
+Bε-Tree）会记录内部节点中的更改，并稍后将更新向下传播到叶节点。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/cmu15445/" class="category-chain-item">cmu15445</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/B-%E6%A0%91/" class="print-no-link">#B+树</a>
+      
+        <a href="/tags/%E8%A1%A8%E7%B4%A2%E5%BC%95/" class="print-no-link">#表索引</a>
+      
+        <a href="/tags/%E6%8F%92%E5%85%A5/" class="print-no-link">#插入</a>
+      
+        <a href="/tags/%E5%88%A0%E9%99%A4/" class="print-no-link">#删除</a>
+      
+        <a href="/tags/%E9%80%89%E5%9E%8B%E6%9D%A1%E4%BB%B6/" class="print-no-link">#选型条件</a>
+      
+        <a href="/tags/%E5%A4%8D%E5%88%B6%E9%94%AE/" class="print-no-link">#复制键</a>
+      
+        <a href="/tags/%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95/" class="print-no-link">#聚集索引</a>
+      
+        <a href="/tags/%E5%A0%86%E8%81%9A%E7%B1%BB/" class="print-no-link">#堆聚类</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CMU15445-lecture8</div>
+      <div>http://polaris3003.github.io/2024/07/04/第八课：树索引/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/08/%E8%8C%B67.8-7.12/" title="茶7.8-7.12">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">茶7.8-7.12</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/01/%E8%8C%B67.1-7.5/" title="茶7.1-7.5">
+                        <span class="hidden-mobile">茶7.1-7.5</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

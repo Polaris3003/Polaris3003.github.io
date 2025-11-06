@@ -1,0 +1,961 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第十二课：查询处理I 1 查询计划 DBMS将一个SQL语句转换成一个查询计划。查询计划中的操作被整理成一个树。数据从这颗树的叶子流向树根。树的根节点的输出是查询的结果。通常情况下，运算符都是二进制的（1-2 个子运算符）。同一个查询计划可以用多种方式执行。 2 处理模型 DBMS 处理模型定义了系统如何执行查询计划。它指定了诸如查询计划的评估方向以及沿途运算符之间传递的数据类型等内容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CMU15445-lecture12">
+<meta property="og:url" content="http://polaris3003.github.io/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="第十二课：查询处理I 1 查询计划 DBMS将一个SQL语句转换成一个查询计划。查询计划中的操作被整理成一个树。数据从这颗树的叶子流向树根。树的根节点的输出是查询的结果。通常情况下，运算符都是二进制的（1-2 个子运算符）。同一个查询计划可以用多种方式执行。 2 处理模型 DBMS 处理模型定义了系统如何执行查询计划。它指定了诸如查询计划的评估方向以及沿途运算符之间传递的数据类型等内容">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://polaris3003.github.io/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241121204121679.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241121210346219.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241123234749040.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241127205536313.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241127210523298.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241128155039980.png">
+<meta property="og:image" content="http://polaris3003.github.io/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241128160655862.png">
+<meta property="article:published_time" content="2024-11-21T11:36:40.000Z">
+<meta property="article:modified_time" content="2025-02-11T09:25:16.000Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="查询优化">
+<meta property="article:tag" content="查询处理">
+<meta property="article:tag" content="执行模型">
+<meta property="article:tag" content="迭代器模型">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://polaris3003.github.io/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241121204121679.png">
+  
+  
+  
+  <title>CMU15445-lecture12 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"polaris3003.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CMU15445-lecture12"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-21 19:36" pubdate>
+          2024年11月21日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CMU15445-lecture12</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="第十二课查询处理i">第十二课：查询处理I</h1>
+<h2 id="查询计划">1 查询计划</h2>
+<p>DBMS将一个SQL语句转换成一个查询计划。查询计划中的操作被整理成一个树。数据从这颗树的叶子流向树根。树的根节点的输出是查询的结果。通常情况下，运算符都是二进制的（1-2
+个子运算符）。同一个查询计划可以用多种方式执行。</p>
+<h2 id="处理模型">2 处理模型</h2>
+<p>DBMS
+处理模型定义了系统如何执行查询计划。它指定了诸如查询计划的评估方向以及沿途运算符之间传递的数据类型等内容。存在不同的处理模型，它们针对不同的工作负载有各种权衡。</p>
+<p>这些模型也可以从上到下或从下到上调用操作符来实现。尽管自上而下的方法更为常见，但自下而上的方法可以更严格地控制管道中的缓存/寄存器。</p>
+<p>我们考虑的三种执行模型是：</p>
+<ul>
+<li>迭代器模型</li>
+<li>实例化模型</li>
+<li>矢量化/批处理模型</li>
+</ul>
+<h3 id="迭代器模型">迭代器模型</h3>
+<p>迭代器模型，也称为 Volcano 或 Pipeline
+模型，是最常见的处理模型，几乎每个（基于行）DBMS 都使用这种模型。</p>
+<p>迭代器模型通过为数据库中的每个运算符实现一个 Next
+函数来工作。查询计划中的每个节点都会对其子节点调用
+Next，直到到达叶节点，叶节点开始向其父节点发出元组进行处理。然后，在检索下一个元组之前，尽可能按照计划处理每个元组。这在基于磁盘的系统中非常有用，因为它允许我们在访问下一个元组或页面之前充分利用内存中的每个元组。图
+1 显示了迭代器模型的示例图。</p>
+<p>迭代器模型中的查询计划运算符具有高度可组合性，并且易于推理。因为每个运算符都可以独立于查询计划树中的父运算符或子运算符实现，只要它实现如下的
+Next 函数：</p>
+<ul>
+<li>每次调用 Next
+时，如果没有更多元组可发出，则运算符将返回单个元组或空标记。</li>
+<li>该运算符实现一个循环，调用其子运算符上的 Next
+来检索它们的元组，然后处理它们。这样，对父节点调用 Next
+就会对其子节点调用
+Next。作为响应，子节点将返回父节点必须处理的下一个元组。</li>
+</ul>
+<p>迭代器模型允许流水线操作，其中 DBMS
+可以通过尽可能多的运算符处理一个元组，然后再检索下一个元组。查询计划中针对给定元组执行的一系列任务称为管道。</p>
+<p>某些运算符会阻塞，直到子运算符发出所有元组。此类运算符的示例包括连接、子查询和排序
+(ORDER BY)。此类运算符称为管道断路器。</p>
+<p>输出控制可以通过这种方法（LIMIT）轻松地工作，因为一旦操作员拥有了所需的所有元组，它就可以停止在其子操作员上调用
+Next。</p>
+<p><img src="/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241121204121679.png" srcset="/img/loading.gif" lazyload alt="图一：迭代器模型示例 – 每个运算符的不同 Next 函数的伪代码。Next 函数本质上是 for 循环，迭代其子运算符的输出。例如，根节点在其子节点上调用 Next，即连接运算符，这是一种循环遍历关系 R 并向上发出元组然后进行操作的访问方法。处理完所有元组后，将发送一个空指针（或另一个指示符），让父节点知道继续前进。"></p>
+<h3 id="实例化模型">实例化模型</h3>
+<p>实例化模型是迭代器模型的一种特殊化，其中每个运算符一次处理其输入，然后一次发出其输出。每个运算符每次到达时都会返回其所有元组，而不是使用返回单个元组的下一个函数。为了避免扫描太多元组，DBMS
+可以将需要多少元组的信息传播给后续操作符（例如
+LIMIT）。运算符将其输出“实例化”为单个结果。输出可以是整个元组 (NSM)
+或列的子集 (DSM)。图 2 显示了实例化模型的示意图。</p>
+<p>每个查询计划运算符都实现一个Output函数：</p>
+<ul>
+<li>操作立即处理子节点传来的所有元组</li>
+<li>此函数的返回结果是该运算符将发出的所有元组。当该运算符完成执行时，DBMS
+无需返回该函数来检索更多数据。</li>
+</ul>
+<p>这种方法更适合OLTP工作负载，因为查询通常一次只访问少量元组。因此，检索元组的函数调用较少。实例化模型不适合具有大量中间结果的
+OLAP 查询，因为 DBMS 可能必须在操作员之间将这些结果溢出到磁盘。</p>
+<p><img src="/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241121210346219.png" srcset="/img/loading.gif" lazyload alt="图二：实例化模型示例 - 从根开始，调用 child.Output() 函数，该函数调用下面的运算符，返回所有元组。"></p>
+<h3 id="矢量化模型">矢量化模型</h3>
+<p>与迭代器模型一样，矢量化模型中的每个运算符都实现一个 Next
+函数。但是，每个运算符都会发出一批数据（即向量），而不是单个元组。运算符的内循环实现针对处理批量数据（而不是一次处理单个数据）进行了优化。批次的大小可能因硬件或查询属性而异。请参阅图
+3 中的矢量化模型示例。</p>
+<p>矢量化模型方法非常适合需要扫描大量元组的 OLAP 查询，因为 Next
+函数的调用次数较少。</p>
+<p>矢量化模型使得操作能够更轻松地使用矢量化（SIMD）指令来处理批量元组。</p>
+<p><img src="/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241123234749040.png" srcset="/img/loading.gif" lazyload alt="图三：矢量化模型样例-矢量化模型与迭代器模型非常相似，不同之处在于，每个操作符都会将输出缓冲区与所需的发射大小进行比较。如果缓冲区较大，则发送元组批次。"></p>
+<h3 id="操作方向">操作方向</h3>
+<ul>
+<li>方式一：自顶向下
+<ul>
+<li>从根开始，将数据从子节点“拉”到父节点</li>
+<li>元组总是通过函数调用传输</li>
+</ul></li>
+<li>方式二：自底向上
+<ul>
+<li>从叶节点开始，将数据从子节点“推送”到父节点</li>
+<li>允许更严格地控制操作管道中的缓存/寄存器</li>
+</ul></li>
+</ul>
+<h2 id="访问方法">3 访问方法</h2>
+<p>访问方法是 DBMS
+访问表中存储的数据的方式。一般来说，访问模型有两种方法：要么从表中读取数据，要么通过顺序扫描从索引中读取数据。</p>
+<h3 id="顺序扫描">顺序扫描</h3>
+<p>顺序扫描运算符遍历表中的每个页面并从缓冲池中检索它。当扫描遍历每个页面上的所有元组时，它会评估谓词以决定是否将元组发送给下一个运算符。</p>
+<p>DBMS 维护一个内部游标，用于跟踪其检查的最后一页/槽。</p>
+<p>顺序表扫描几乎始终是 DBMS
+执行查询时效率最低的方法。有许多优化方法可帮助加快顺序扫描速度：</p>
+<ul>
+<li><strong>预读取</strong>：提前获取接下来的几页，以便 DBMS
+在访问每个页面时不必阻塞存储 I/O。</li>
+<li><strong>缓存池绕过</strong>：扫描操作符将从磁盘获取的页面存储在其本地内存中而不是缓冲池中，以避免顺序洪泛。</li>
+<li><strong>并行化</strong>：使用多个线程/进程并行执行扫描。</li>
+<li><strong>慢实例化</strong>：DBMS
+可以将元组的拼接延迟到查询计划的上部。这样每个操作符都可以将所需的最少信息传递给下一个操作符（例如记录
+ID、列中记录的偏移量）。这仅在列存储系统中有用。</li>
+<li><strong>堆聚类</strong>：元组按照聚类索引指定的顺序存储在堆页中。</li>
+<li><strong>近似查询（跳过有损数据）</strong>：对整个表的抽样子集执行查询以产生近似结果。这通常用于在允许低误差产生近乎准确的答案的场景中计算聚合。</li>
+<li><strong>区域图（无损数据跳过）</strong>：预先计算页面中每个元组属性的聚合。然后，DBMS
+可以通过首先检查区域图来决定是否需要访问页面。每个页面的区域图存储在单独的页面中，并且每个区域图页面中通常有多个条目。因此，可以减少连续扫描中检查的总页面数。区域图在云数据库系统中尤其有价值，因为通过网络传输数据会产生更大的成本。参见图
+4 的区域地图示例。</li>
+</ul>
+<p><img src="/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241127205536313.png" srcset="/img/loading.gif" lazyload alt="图四：区域图样例 – 区域图存储页面中值的预先计算的聚合。在上面的示例中，选择查询从区域图中得知，原始数据中的最大值只有 400.然后，查询就不必遍历页面中的每个元组，而是可以完全避免访问该页面，因为没有任何值大于 600。"></p>
+<h3 id="索引扫描">索引扫描</h3>
+<p>在索引扫描中，DBMS 选择一个索引来查找查询所需的元组。</p>
+<p><img src="/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241127210523298.png" srcset="/img/loading.gif" lazyload alt="图五：索引扫描样例 – 考虑一个包含 100 个元组和两个索引（年龄和部门）的单表。在第一种情况下，最好在扫描中使用部门索引，因为它只有两个元组需要匹配。选择 age 索引并不会比简单的顺序扫描好多少。在第二种情况下，age 索引会消除更多不必要的扫描，是最佳选择。"></p>
+<p>DBMS 的索引选择过程涉及许多因素，包括：</p>
+<ul>
+<li>索引包含哪些属性</li>
+<li>查询引用了哪些属性</li>
+<li>属性的值域</li>
+<li>谓词组合</li>
+<li>索引是否具有唯一键或非唯一键</li>
+</ul>
+<p>图 5 显示了索引扫描的一个简单示例。</p>
+<p>更高级的 DBMS 支持多索引扫描。当对查询使用多个索引时，DBMS
+会使用每个匹配的索引计算记录 ID
+集，根据查询的谓词组合这些集合，然后检索记录并应用可能保留的任何谓词。DBMS
+可以使用位图、哈希表或布隆过滤器通过集合交集计算记录 ID。请参阅图 6
+中利用多索引扫描的示例。</p>
+<p><img src="/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241128155039980.png" srcset="/img/loading.gif" lazyload alt="图六：多索引扫描示例 – 考虑图 5 中的同一张表。借助多索引扫描支持，我们首先使用相应的索引分别计算满足年龄和部门谓词的记录 ID 集。然后，我们计算两个集合的交集，获取相应的记录，并应用剩余的谓词 country=’US’。"></p>
+<h2 id="修改查询">4 修改查询</h2>
+<p>修改数据库（INSERT、UPDATE、DELETE）的操作员负责检查约束和更新索引。对于UPDATE/DELETE，子操作符传递目标元组的记录ID，并且必须跟踪先前看到的元组。</p>
+<p>关于如何处理 INSERT 运算符有两种实现选择：</p>
+<ul>
+<li>选择1：在运算符内部实现元组。</li>
+<li>选择2：运算符插入从子运算符传入的任何元组。</li>
+</ul>
+<h3 id="万圣节问题">万圣节问题</h3>
+<p>万圣节问题是一种异常现象，其中更新操作会更改元组的物理位置，从而导致扫描运算符多次访问该元组。这可能发生在聚簇表或索引扫描上。</p>
+<p>这一现象最初是由 IBM 研究人员在 1976 年万圣节当天构建 System R
+时发现的。解决此问题的方法是跟踪每个查询的修改记录 ID。</p>
+<h2 id="表达式求值">5 表达式求值</h2>
+<p>DBMS 将 WHERE 子句表示为表达式树（参见图 7
+中的示例）。树中的节点表示不同的表达式类型。</p>
+<p><img src="/2024/11/21/%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86I/image-20241128160655862.png" srcset="/img/loading.gif" lazyload alt="图 7：表达式求值示例 – WHERE 子句及其对应表达式的图表。"></p>
+<p>可以存储在树节点中的表达式类型的一些示例：</p>
+<ul>
+<li>比较（=、&lt;、&gt;、!=）</li>
+<li>连接 (AND)、分离 (OR)</li>
+<li>算术运算符（+、-、*、/、%）</li>
+<li>常量和参数值</li>
+<li>元组属性引用</li>
+</ul>
+<p>为了在运行时评估表达式树，DBMS
+维护一个上下文句柄，其中包含执行的元数据，例如当前元组、参数和表架构。然后，DBMS
+遍历树来评估其运算符并产生结果。</p>
+<p>以这种方式评估谓词很慢，因为 DBMS
+必须遍历整个树并确定每个运算符要采取的正确操作。更好的方法是直接评估表达式（想想
+JIT 编译）。基于内部成本模型，DBMS
+将确定是否采用代码生成来加速查询。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/cmu15445/" class="category-chain-item">cmu15445</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/" class="print-no-link">#查询优化</a>
+      
+        <a href="/tags/%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86/" class="print-no-link">#查询处理</a>
+      
+        <a href="/tags/%E6%89%A7%E8%A1%8C%E6%A8%A1%E5%9E%8B/" class="print-no-link">#执行模型</a>
+      
+        <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%9E%8B/" class="print-no-link">#迭代器模型</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CMU15445-lecture12</div>
+      <div>http://polaris3003.github.io/2024/11/21/第十二课：查询处理I/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/28/%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE%EF%BC%9A%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95/" title="CMU15445-lecture11">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CMU15445-lecture11</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/19/%E7%AC%AC%E5%8D%81%E8%AF%BE%EF%BC%9A%E6%8E%92%E5%BA%8F%E5%92%8C%E8%81%9A%E5%90%88%E7%AE%97%E6%B3%95/" title="CMU15445-lecture10">
+                        <span class="hidden-mobile">CMU15445-lecture10</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
