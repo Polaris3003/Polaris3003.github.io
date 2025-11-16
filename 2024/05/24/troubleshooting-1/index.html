@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="5.24-问题排查 RocketMQ消息堆积问题排查 问题现象 负责的业务中有一个应用因为特殊原因，需要修改消息配置（将Spring Cloud Stream 改为 RocketMQ native），修改前和修改后的配置项如下： 1234567891011121314spring.cloud.stream.bindings.consumerA.group&#x3D;CID_CONSUMER_Asp">
+    <meta name="description" content="5.24-问题排查  RocketMQ消息堆积问题排查  问题现象 负责的业务中有一个应用因为特殊原因，需要修改消息配置（将Spring Cloud Stream 改为 RocketMQ native），修改前和修改后的配置项如下： 1234567891011121314spring.cloud.stream.bindings.consumerA.group&#x3D;CID_CONSUMER_Aspri">
 <meta property="og:type" content="article">
 <meta property="og:title" content="troubleshooting-1">
 <meta property="og:url" content="http://polaris3003.github.io/2024/05/24/troubleshooting-1/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="5.24-问题排查 RocketMQ消息堆积问题排查 问题现象 负责的业务中有一个应用因为特殊原因，需要修改消息配置（将Spring Cloud Stream 改为 RocketMQ native），修改前和修改后的配置项如下： 1234567891011121314spring.cloud.stream.bindings.consumerA.group&#x3D;CID_CONSUMER_Asp">
+<meta property="og:description" content="5.24-问题排查  RocketMQ消息堆积问题排查  问题现象 负责的业务中有一个应用因为特殊原因，需要修改消息配置（将Spring Cloud Stream 改为 RocketMQ native），修改前和修改后的配置项如下： 1234567891011121314spring.cloud.stream.bindings.consumerA.group&#x3D;CID_CONSUMER_Aspri">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://polaris3003.github.io/img/smalleight.jpg">
 <meta property="article:published_time" content="2024-05-24T14:17:09.000Z">
@@ -344,48 +344,40 @@
             
               <div class="markdown-body">
                 
-                <h1 id="问题排查">5.24-问题排查</h1>
-<h2 id="rocketmq消息堆积问题排查">RocketMQ消息堆积问题排查</h2>
-<h3 id="问题现象">问题现象</h3>
-<p>负责的业务中有一个应用因为特殊原因，需要修改消息配置（将Spring Cloud
-Stream 改为 RocketMQ native），修改前和修改后的配置项如下：</p>
+                <h1 id="524-问题排查"><a class="markdownIt-Anchor" href="#524-问题排查"></a> 5.24-问题排查</h1>
+<h2 id="rocketmq消息堆积问题排查"><a class="markdownIt-Anchor" href="#rocketmq消息堆积问题排查"></a> RocketMQ消息堆积问题排查</h2>
+<h3 id="问题现象"><a class="markdownIt-Anchor" href="#问题现象"></a> 问题现象</h3>
+<p>负责的业务中有一个应用因为特殊原因，需要修改消息配置（将Spring Cloud Stream 改为 RocketMQ native），修改前和修改后的配置项如下：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.cloud.stream.bindings.consumerA.group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerA.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerA.destination</span>=<span class="hljs-string">CONSUMER_A_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerA.consumer.tags</span>=<span class="hljs-string">CONSUMER_A_TOPIC_TAG</span><br><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.destination</span>=<span class="hljs-string">CONSUMER_B_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerB.consumer.tags</span>=<span class="hljs-string">CONSUMER_B_TOPIC_TAG</span><br><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.destination</span>=<span class="hljs-string">CONSUMER_C_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerC.consumer.tags</span>=<span class="hljs-string">CONSUMER_C_TOPIC_TAG</span><br></code></pre></td></tr></table></figure>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.rocketmq.consumers[0].consumer-group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.rocketmq.consumers[0].topic</span>=<span class="hljs-string">CONSUMER_A_TOPIC</span><br><span class="hljs-attr">spring.rocketmq.consumers[0].sub-expression</span>=<span class="hljs-string">CONSUMER_A_TOPIC_TAG</span><br><span class="hljs-attr">spring.rocketmq.consumers[0].message-listener-ref</span>=<span class="hljs-string">consumerAListener</span><br><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.destination</span>=<span class="hljs-string">CONSUMER_B_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerB.consumer.tags</span>=<span class="hljs-string">CONSUMER_B_TOPIC_TAG</span><br><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.destination</span>=<span class="hljs-string">CONSUMER_C_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerC.consumer.tags</span>=<span class="hljs-string">CONSUMER_C_TOPIC_TAG</span><br></code></pre></td></tr></table></figure>
 <p>但是机器发布一半后开始灰度观察的时候，出现了消息堆积问题</p>
-<h3 id="问题原因">问题原因</h3>
-<h4 id="消息订阅关系不一致">消息订阅关系不一致</h4>
+<h3 id="问题原因"><a class="markdownIt-Anchor" href="#问题原因"></a> 问题原因</h3>
+<h4 id="消息订阅关系不一致"><a class="markdownIt-Anchor" href="#消息订阅关系不一致"></a> 消息订阅关系不一致</h4>
 <p>经过历史经验和踩坑，感觉有可能是订阅组机器订阅关系不一致导致的消息堆积问题（因为订阅组的机器有的订阅关系是A，有的是B，MQ不能确定是否要消费，就能只能先堆积到broker中），查看MQ控制台后发现，确实是消息订阅关系不一致，导致消息堆积</p>
-<h4 id="spring-cloud-stream-和-rocketmq-native">Spring Cloud Stream 和
-RocketMQ Native</h4>
-<p>所以就引申出了一个问题，为什么将Spring Cloud
-Stream修改为原生的MetaQ之后，同一个ConsumerId对应的订阅关系就会改变呢？</p>
-<p>更简单来说，就是为什么当RocketMQ和Spring Cloud Stream
-使用相同的ComsumerId之后，RocketMQ的订阅关系会把Spring Cloud
-Stream的订阅关系给冲掉呢？</p>
+<h4 id="spring-cloud-stream-和-rocketmq-native"><a class="markdownIt-Anchor" href="#spring-cloud-stream-和-rocketmq-native"></a> Spring Cloud Stream 和 RocketMQ Native</h4>
+<p>所以就引申出了一个问题，为什么将Spring Cloud Stream修改为原生的MetaQ之后，同一个ConsumerId对应的订阅关系就会改变呢？</p>
+<p>更简单来说，就是为什么当RocketMQ和Spring Cloud Stream 使用相同的ComsumerId之后，RocketMQ的订阅关系会把Spring Cloud Stream的订阅关系给冲掉呢？</p>
 <blockquote>
 <p>注意，一个consumerId是可以订阅多个topic的</p>
 </blockquote>
-<h5 id="rocketmq">RocketMQ</h5>
+<h5 id="rocketmq"><a class="markdownIt-Anchor" href="#rocketmq"></a> RocketMQ</h5>
 <p>client的类图如下：</p>
 <p><img src="/2024/05/24/troubleshooting-1/image-20240524222103739.png" srcset="/img/loading.gif" lazyload alt="RocketMQ client"></p>
 <ul>
 <li>MQConsumerInner：记录当前consumerGroup和服务端的交互方式，以及topic和tag的映射关系。默认的实现时DefaultMQPushConsumerImpl，和consumerGroup的对应关系是1:1</li>
 <li>MQClientInstance：统一管理网络连接等可以复用的对象，通过Map维护了ConsumerGroupId和MQConsumerInner的映射关系。简单来说，就是一个ConsumerGroup，只能对应一个MQConsumer</li>
 </ul>
-<h5 id="spring-cloud-stream">Spring Cloud Stream</h5>
+<h5 id="spring-cloud-stream"><a class="markdownIt-Anchor" href="#spring-cloud-stream"></a> Spring Cloud Stream</h5>
 <p><img src="/2024/05/24/troubleshooting-1/image-20240524222138611.png" srcset="/img/loading.gif" lazyload alt="Spring Cloud Stream"></p>
-<p>Spring Cloud Stream是连接Spring和中间件的一个胶水层，在Spring Cloud
-Stream启动的时候，也会注册一个ConsumerGourp</p>
-<h3 id="问题根因">问题根因</h3>
-<p>分析到这里，原因就已经很明显了。Spring Cloud
-Stream会在启动的时候自己new一个MetaPushConsumer（事实上就是一个新的MQConsumerInner），所以对于一个ConsumerGroup来说，就存在了两个MQConsumerInner，这显然是不符合RocketMQ要求的1:1的映射关系的，所以RocketMQ默认会用新的映射代替老的映射关系。显然，Spring
-Cloud Stream的被RocketMQ原生的给替代掉了。</p>
+<p>Spring Cloud Stream是连接Spring和中间件的一个胶水层，在Spring Cloud Stream启动的时候，也会注册一个ConsumerGourp</p>
+<h3 id="问题根因"><a class="markdownIt-Anchor" href="#问题根因"></a> 问题根因</h3>
+<p>分析到这里，原因就已经很明显了。Spring Cloud Stream会在启动的时候自己new一个MetaPushConsumer（事实上就是一个新的MQConsumerInner），所以对于一个ConsumerGroup来说，就存在了两个MQConsumerInner，这显然是不符合RocketMQ要求的1:1的映射关系的，所以RocketMQ默认会用新的映射代替老的映射关系。显然，Spring Cloud Stream的被RocketMQ原生的给替代掉了。</p>
 <p>这也就是为什么已经发布的机器中，对于ConsumerA来说，只剩下RocketMQ原生的那组订阅关系了</p>
-<h3 id="解决思路">解决思路</h3>
+<h3 id="解决思路"><a class="markdownIt-Anchor" href="#解决思路"></a> 解决思路</h3>
 <p>修改consumerId</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.rocketmq.consumers[0].consumer-group</span>=<span class="hljs-string">CID_CONSUMER_A</span><br><span class="hljs-attr">spring.rocketmq.consumers[0].topic</span>=<span class="hljs-string">CONSUMER_A_TOPIC</span><br><span class="hljs-attr">spring.rocketmq.consumers[0].sub-expression</span>=<span class="hljs-string">CONSUMER_A_TOPIC_TAG</span><br><span class="hljs-attr">spring.rocketmq.consumers[0].message-listener-ref</span>=<span class="hljs-string">consumerAListener</span><br><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.group</span>=<span class="hljs-string">CID_CONSUMER_B</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerB.destination</span>=<span class="hljs-string">CONSUMER_B_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerB.consumer.tags</span>=<span class="hljs-string">CONSUMER_B_TOPIC_TAG</span><br><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.group</span>=<span class="hljs-string">CID_CONSUMER_B</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.contentType</span>=<span class="hljs-string">text/plain</span><br><span class="hljs-attr">spring.cloud.stream.bindings.consumerC.destination</span>=<span class="hljs-string">CONSUMER_C_TOPIC</span><br><span class="hljs-attr">spring.cloud.stream.rocketmq.bindings.consumerC.consumer.tags</span>=<span class="hljs-string">CONSUMER_C_TOPIC_TAG</span><br></code></pre></td></tr></table></figure>
-<h3 id="思考与总结">思考与总结</h3>
-<ol type="1">
+<h3 id="思考与总结"><a class="markdownIt-Anchor" href="#思考与总结"></a> 思考与总结</h3>
+<ol>
 <li>问题原因并不复杂，但是很多人可能分析到第一层（订阅关系不一致导致消费堆积）就不会再往下分析了，但是我们还需要有更深入的探索精神的</li>
 <li>生产环境中尽量不要搞两套配置项，会额外增加理解成本。。。。</li>
 </ol>

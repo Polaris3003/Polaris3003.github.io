@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第二课：现代SQL 1 关系语言  埃德加·科德在20世纪70年代初发表了一篇关于关系模型的重要论文。起初，他只定义了数据库管理系统（DBMS）如何在关系模型上执行查询的数学表示。用户只需使用声明性语言（即SQL）指定他们想要的结果。DBMS负责确定生成该答案的最有效计划。关系代数基于集合（无序，无重复项）。SQL基于多重集（无序，允许重复项）。 2 SQL历史  关系数据库的声明式查">
+    <meta name="description" content="第二课：现代SQL  1 关系语言  埃德加·科德在20世纪70年代初发表了一篇关于关系模型的重要论文。起初，他只定义了数据库管理系统（DBMS）如何在关系模型上执行查询的数学表示。用户只需使用声明性语言（即SQL）指定他们想要的结果。DBMS负责确定生成该答案的最有效计划。关系代数基于集合（无序，无重复项）。SQL基于多重集（无序，允许重复项）。  2 SQL历史  关系数据库的声明式查询语言">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CMU15445-lecture2">
 <meta property="og:url" content="http://polaris3003.github.io/2024/06/06/%E7%AC%AC%E4%BA%8C%E8%AF%BE%EF%BC%9A%E7%8E%B0%E4%BB%A3SQL/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="第二课：现代SQL 1 关系语言  埃德加·科德在20世纪70年代初发表了一篇关于关系模型的重要论文。起初，他只定义了数据库管理系统（DBMS）如何在关系模型上执行查询的数学表示。用户只需使用声明性语言（即SQL）指定他们想要的结果。DBMS负责确定生成该答案的最有效计划。关系代数基于集合（无序，无重复项）。SQL基于多重集（无序，允许重复项）。 2 SQL历史  关系数据库的声明式查">
+<meta property="og:description" content="第二课：现代SQL  1 关系语言  埃德加·科德在20世纪70年代初发表了一篇关于关系模型的重要论文。起初，他只定义了数据库管理系统（DBMS）如何在关系模型上执行查询的数学表示。用户只需使用声明性语言（即SQL）指定他们想要的结果。DBMS负责确定生成该答案的最有效计划。关系代数基于集合（无序，无重复项）。SQL基于多重集（无序，允许重复项）。  2 SQL历史  关系数据库的声明式查询语言">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-06T12:47:51.000Z">
 <meta property="article:modified_time" content="2025-02-11T09:24:56.000Z">
@@ -351,16 +351,15 @@
             
               <div class="markdown-body">
                 
-                <h1 id="第二课现代sql">第二课：现代SQL</h1>
-<h2 id="关系语言">1 关系语言</h2>
+                <h1 id="第二课现代sql"><a class="markdownIt-Anchor" href="#第二课现代sql"></a> 第二课：现代SQL</h1>
+<h2 id="1-关系语言"><a class="markdownIt-Anchor" href="#1-关系语言"></a> 1 关系语言</h2>
 <hr>
 <p>埃德加·科德在20世纪70年代初发表了一篇关于关系模型的重要论文。起初，他只定义了数据库管理系统（DBMS）如何在关系模型上执行查询的数学表示。用户只需使用声明性语言（即SQL）指定他们想要的结果。DBMS负责确定生成该答案的最有效计划。关系代数基于集合（无序，无重复项）。SQL基于多重集（无序，允许重复项）。</p>
-<h2 id="sql历史">2 SQL历史</h2>
+<h2 id="2-sql历史"><a class="markdownIt-Anchor" href="#2-sql历史"></a> 2 SQL历史</h2>
 <hr>
-<p>关系数据库的声明式查询语言。它最初在1970年代作为IBM System
-R项目的一部分进行开发。IBM最初将其命名为“SEQUEL”（结构化英语查询语言）。该名称在1980年代更改为“SQL”（结构化查询语言）。</p>
+<p>关系数据库的声明式查询语言。它最初在1970年代作为IBM System R项目的一部分进行开发。IBM最初将其命名为“SEQUEL”（结构化英语查询语言）。该名称在1980年代更改为“SQL”（结构化查询语言）。</p>
 <p>该语言由不同类型的命令组成：</p>
-<ol type="1">
+<ol>
 <li>数据操作语言（DML）：SELECT、INSERT、UPDATE和DELETE语句。</li>
 <li>数据定义语言（DDL）：用于定义表、索引、视图和其他对象的模式定义。</li>
 <li>数据控制语言（DCL）：用于安全性和访问控制。</li>
@@ -374,7 +373,7 @@ R项目的一部分进行开发。IBM最初将其命名为“SEQUEL”（结构�
 <li>SQL:2011 时态数据库、通道化DML</li>
 <li>SQL:2016 JSON、多态表</li>
 </ul>
-<h2 id="joins">3 Joins</h2>
+<h2 id="3-joins"><a class="markdownIt-Anchor" href="#3-joins"></a> 3 Joins</h2>
 <hr>
 <p>合并一个或多个表的列，生成一个新的表。用于表示涉及跨多个表的数据的查询。</p>
 <p>例如：哪些学生在15-721课程中得到了A？</p>
@@ -382,7 +381,7 @@ R项目的一部分进行开发。IBM最初将其命名为“SEQUEL”（结构�
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE TABLE</span> student ( <br>	sid <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY KEY</span>, <br>	name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">16</span>), <br>	login <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">32</span>) <span class="hljs-keyword">UNIQUE</span>, <br>	age <span class="hljs-type">SMALLINT</span>, <br>	gpa <span class="hljs-type">FLOAT</span> <br>); <br><span class="hljs-keyword">CREATE TABLE</span> course ( <br>	cid <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">32</span>) <span class="hljs-keyword">PRIMARY KEY</span>, <br>	name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">32</span>) <span class="hljs-keyword">NOT NULL</span> <br>); <br><span class="hljs-keyword">CREATE TABLE</span> enrolled ( <br>	sid <span class="hljs-type">INT</span> <span class="hljs-keyword">REFERENCES</span> student (sid), <br>	cid <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">32</span>) <span class="hljs-keyword">REFERENCES</span> course (cid), <br>	grade <span class="hljs-type">CHAR</span>(<span class="hljs-number">1</span>) <br>); <br></code></pre></td></tr></table></figure>
 <p>查询：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> s.name<br><span class="hljs-keyword">FROM</span> enrolled <span class="hljs-keyword">AS</span> e, student <span class="hljs-keyword">AS</span> s<br><span class="hljs-keyword">WHERE</span> e.grade <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;A&#x27;</span> <span class="hljs-keyword">AND</span> e.cid <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;15-721&#x27;</span><br><span class="hljs-keyword">AND</span> e.sid <span class="hljs-operator">=</span> s.sid;<br></code></pre></td></tr></table></figure>
-<h2 id="聚合">4 聚合</h2>
+<h2 id="4-聚合"><a class="markdownIt-Anchor" href="#4-聚合"></a> 4 聚合</h2>
 <hr>
 <p>聚合函数以元组的包作为输入，然后产生一个标量值作为输出。聚合函数几乎只能在SELECT输出列表中使用。</p>
 <ul>
@@ -391,54 +390,50 @@ R项目的一部分进行开发。IBM最初将其命名为“SEQUEL”（结构�
 <li>MAX（COL）：COL中的最大值</li>
 <li>COUNT（COL）：关系中元组的数量</li>
 </ul>
-<p>示例：获取以‘<span class="citation" data-cites="cs">@cs</span>’登录名的学生人数。</p>
+<p>示例：获取以‘@cs’登录名的学生人数。</p>
 <p>以下三个查询是等价的：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">WHERE</span> login <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%@cs&#x27;</span>; <br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(login) <span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">WHERE</span> login <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%@cs&#x27;</span>; <br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-number">1</span>) <span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">WHERE</span> login <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%@cs&#x27;</span>; <br></code></pre></td></tr></table></figure>
 <p>单个 SELECT 语句可以包含多个聚合：</p>
-<p>示例：使用“<span class="citation" data-cites="cs">@cs</span>”登录获取学生数量及其平均 GPA。</p>
+<p>示例：使用“@cs”登录获取学生数量及其平均 GPA。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(gpa), <span class="hljs-built_in">COUNT</span>(sid) <br>	<span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">WHERE</span> login <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%@cs&#x27;</span>; <br></code></pre></td></tr></table></figure>
 <p>一些聚合函数（例如COUNT,SUM,AVG）支持DISTINCT关键字：</p>
-<p>示例：<a href="mailto:通过&#39;@cs" class="email">通过'@cs</a>'登录获取独特学生数量和他们的平均GPA。</p>
+<p>示例：通过’@cs’登录获取独特学生数量和他们的平均GPA。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> login) <br>	<span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">WHERE</span> login <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%@cs&#x27;</span>; <br></code></pre></td></tr></table></figure>
 <p>聚合操作之外的其他列输出未定义（在下面的示例中e.cid未定义）。</p>
 <p>示例：获取每门课程中学生的平均GPA。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(s.gpa), e.cid <br>	<span class="hljs-keyword">FROM</span> enrolled <span class="hljs-keyword">AS</span> e, student <span class="hljs-keyword">AS</span> s <br>	<span class="hljs-keyword">WHERE</span> e.sid <span class="hljs-operator">=</span> s.sid; <br></code></pre></td></tr></table></figure>
 <p>在SELECT输出子句中的非聚合值必须出现在GROUP BY子句中。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(s.gpa), e.cid <br>	<span class="hljs-keyword">FROM</span> enrolled <span class="hljs-keyword">AS</span> e, student <span class="hljs-keyword">AS</span> s <br>	<span class="hljs-keyword">WHERE</span> e.sid <span class="hljs-operator">=</span> s.sid <br>	<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> e.cid; <br></code></pre></td></tr></table></figure>
-<p>HAVING子句根据聚合计算结果对输出结果进行过滤。这使得HAVING的行为类似于GROUP
-BY的WHERE子句。示例：获取平均学生GPA大于3.9的课程集合。</p>
+<p>HAVING子句根据聚合计算结果对输出结果进行过滤。这使得HAVING的行为类似于GROUP BY的WHERE子句。示例：获取平均学生GPA大于3.9的课程集合。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(s.gpa) <span class="hljs-keyword">AS</span> avg_gpa, e.cid <br>	<span class="hljs-keyword">FROM</span> enrolled <span class="hljs-keyword">AS</span> e, student <span class="hljs-keyword">AS</span> s <br>	<span class="hljs-keyword">WHERE</span> e.sid <span class="hljs-operator">=</span> s.sid <br>	<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> e.cid <br><span class="hljs-keyword">HAVING</span> avg_gpa <span class="hljs-operator">&gt;</span> <span class="hljs-number">3.9</span>; <br></code></pre></td></tr></table></figure>
 <p>上述查询语法被许多主要的数据库系统支持，但不符合SQL标准。要使查询符合标准，我们必须在HAVING子句的主体中重复使用AVG(S.GPA)。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(s.gpa), e.cid <br>	<span class="hljs-keyword">FROM</span> enrolled <span class="hljs-keyword">AS</span> e, student <span class="hljs-keyword">AS</span> s <br>	<span class="hljs-keyword">WHERE</span> e.sid <span class="hljs-operator">=</span> s.sid <br>	<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> e.cid <br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">AVG</span>(s.gpa) <span class="hljs-operator">&gt;</span> <span class="hljs-number">3.9</span>; <br></code></pre></td></tr></table></figure>
-<h2 id="字符串操作">5 字符串操作</h2>
+<h2 id="5-字符串操作"><a class="markdownIt-Anchor" href="#5-字符串操作"></a> 5 字符串操作</h2>
 <hr>
 <p>SQL标准规定字符串是区分大小写且只能用单引号括起来。在查询的任何部分中可以使用用于操作字符串的函数。模式匹配：LIKE关键字用于谓词中的字符串匹配。</p>
 <ul>
 <li>“%”匹配任何子字符串（包括空字符串）。</li>
 <li>“_”匹配任何一个字符。</li>
 </ul>
-<p><strong>字符串函数</strong>
-SQL-92定义了字符串函数。许多数据库系统除了标准函数外还实现了其他函数。标准字符串函数的例子包括SUBSTRING(S,
-B, E)和UPPER(S)。</p>
-<p><strong>连接：</strong>两个竖杠（“||”）将两个或多个字符串连接成一个字符串。</p>
-<h2 id="日期和时间">6 日期和时间</h2>
+<p><strong>字符串函数</strong> SQL-92定义了字符串函数。许多数据库系统除了标准函数外还实现了其他函数。标准字符串函数的例子包括SUBSTRING(S, B, E)和UPPER(S)。</p>
+<p>**连接：**两个竖杠（“||”）将两个或多个字符串连接成一个字符串。</p>
+<h2 id="6-日期和时间"><a class="markdownIt-Anchor" href="#6-日期和时间"></a> 6 日期和时间</h2>
 <hr>
 <p>操作日期和时间属性的操作。可用于输出或谓词。关于日期和时间操作的具体语法在不同的系统之间差异很大。</p>
-<h2 id="输出重定向">7 输出重定向</h2>
+<h2 id="7-输出重定向"><a class="markdownIt-Anchor" href="#7-输出重定向"></a> 7 输出重定向</h2>
 <hr>
 <p>可以让数据库管理系统将查询结果存储到另一个表中，而不是将结果返回给客户端（例如终端）。然后，您可以在后续查询中访问这些数据。</p>
 <ul>
-<li><strong>新表：</strong>将查询的输出存入一个新表中</li>
+<li>**新表：**将查询的输出存入一个新表中</li>
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> cid <span class="hljs-keyword">INTO</span> CourseIds <span class="hljs-keyword">FROM</span> enrolled; <br></code></pre></td></tr></table></figure>
 <ul>
-<li><strong>已存在的表：</strong>将查询的输出存储到数据库中已存在的表中。目标表必须与目标表具有相同数量的列和相同的数据类型，但是输出查询中的列名不必匹配。</li>
+<li>**已存在的表：**将查询的输出存储到数据库中已存在的表中。目标表必须与目标表具有相同数量的列和相同的数据类型，但是输出查询中的列名不必匹配。</li>
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT INTO</span> CourseIds (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> cid <span class="hljs-keyword">FROM</span> enrolled); <br></code></pre></td></tr></table></figure>
-<h2 id="输出控制">8 输出控制</h2>
+<h2 id="8-输出控制"><a class="markdownIt-Anchor" href="#8-输出控制"></a> 8 输出控制</h2>
 <hr>
-<p>由于结果集中的SQL是无序的，我们必须使用ORDER
-BY子句来对元组进行排序：</p>
+<p>由于结果集中的SQL是无序的，我们必须使用ORDER BY子句来对元组进行排序：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> sid, grade <span class="hljs-keyword">FROM</span> enrolled <span class="hljs-keyword">WHERE</span> cid <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;15-721&#x27;</span> <br>	<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> grade; <br></code></pre></td></tr></table></figure>
 <p>默认的排序顺序是升序（ASC）。我们可以手动指定DESC来反转顺序。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> sid, grade <span class="hljs-keyword">FROM</span> enrolled <span class="hljs-keyword">WHERE</span> cid <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;15-721&#x27;</span> <br>	<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> grade <span class="hljs-keyword">DESC</span>; <br></code></pre></td></tr></table></figure>
@@ -446,25 +441,29 @@ BY子句来对元组进行排序：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> sid, grade <span class="hljs-keyword">FROM</span> enrolled <span class="hljs-keyword">WHERE</span> cid <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;15-721&#x27;</span> <br>	<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> grade <span class="hljs-keyword">DESC</span>, sid <span class="hljs-keyword">ASC</span>; <br></code></pre></td></tr></table></figure>
 <p>在ORDER BY子句中，我们还可以使用任意的表达式。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> sid <span class="hljs-keyword">FROM</span> enrolled <span class="hljs-keyword">WHERE</span> cid <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;15-721&#x27;</span> <br>	<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-built_in">UPPER</span>(grade) <span class="hljs-keyword">DESC</span>, sid <span class="hljs-operator">+</span> <span class="hljs-number">1</span> <span class="hljs-keyword">ASC</span>; <br></code></pre></td></tr></table></figure>
-<p>默认情况下，DBMS 将返回查询生成的所有元组。我们可以使用 LIMIT
-子句来限制结果元组的数量：</p>
+<p>默认情况下，DBMS 将返回查询生成的所有元组。我们可以使用 LIMIT 子句来限制结果元组的数量：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> sid, name <span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">WHERE</span> login <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%@cs&#x27;</span> <br>	LIMIT <span class="hljs-number">10</span>; <br></code></pre></td></tr></table></figure>
 <p>我们还可以提供一个偏移量来返回结果中的一段范围：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> sid, name <span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">WHERE</span> login <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%@cs&#x27;</span> <br>	LIMIT <span class="hljs-number">20</span> <span class="hljs-keyword">OFFSET</span> <span class="hljs-number">10</span>; <br></code></pre></td></tr></table></figure>
-<p>除非我们在LIMIT中使用ORDER
-BY子句，否则数据库管理系统在每次调用查询时可能会产生不同的结果元组，因为关系模型不强制排序。</p>
-<h2 id="嵌套查询">9 嵌套查询</h2>
+<p>除非我们在LIMIT中使用ORDER BY子句，否则数据库管理系统在每次调用查询时可能会产生不同的结果元组，因为关系模型不强制排序。</p>
+<h2 id="9-嵌套查询"><a class="markdownIt-Anchor" href="#9-嵌套查询"></a> 9 嵌套查询</h2>
 <hr>
 <p>在单个查询中调用其他查询来执行更复杂的逻辑。嵌套查询通常很难优化。</p>
 <p>外部查询的范围包括内部查询（即内部查询可以访问外部查询的属性），但反过来则不行。</p>
 <p>内部查询可以出现在查询的几乎任何部分中：</p>
-<ol type="1">
-<li><p>选择输出目标</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span>) <span class="hljs-keyword">AS</span> one <span class="hljs-keyword">FROM</span> student; <br></code></pre></td></tr></table></figure></li>
-<li><p>FROM从句</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name <br>	<span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">AS</span> s, (<span class="hljs-keyword">SELECT</span> sid <span class="hljs-keyword">FROM</span> enrolled) <span class="hljs-keyword">AS</span> e <br>	<span class="hljs-keyword">WHERE</span> s.sid <span class="hljs-operator">=</span> e.sid; <br></code></pre></td></tr></table></figure></li>
-<li><p>WHERE从句</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name <span class="hljs-keyword">FROM</span> student <br>	<span class="hljs-keyword">WHERE</span> sid <span class="hljs-keyword">IN</span> ( <span class="hljs-keyword">SELECT</span> sid <span class="hljs-keyword">FROM</span> enrolled ); <br></code></pre></td></tr></table></figure></li>
+<ol>
+<li>
+<p>选择输出目标</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span>) <span class="hljs-keyword">AS</span> one <span class="hljs-keyword">FROM</span> student; <br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>FROM从句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name <br>	<span class="hljs-keyword">FROM</span> student <span class="hljs-keyword">AS</span> s, (<span class="hljs-keyword">SELECT</span> sid <span class="hljs-keyword">FROM</span> enrolled) <span class="hljs-keyword">AS</span> e <br>	<span class="hljs-keyword">WHERE</span> s.sid <span class="hljs-operator">=</span> e.sid; <br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>WHERE从句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name <span class="hljs-keyword">FROM</span> student <br>	<span class="hljs-keyword">WHERE</span> sid <span class="hljs-keyword">IN</span> ( <span class="hljs-keyword">SELECT</span> sid <span class="hljs-keyword">FROM</span> enrolled ); <br></code></pre></td></tr></table></figure>
+</li>
 </ol>
 <p>在“15-445”课程中注册的学生的姓名。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name <span class="hljs-keyword">FROM</span> student <br>	<span class="hljs-keyword">WHERE</span> sid <span class="hljs-keyword">IN</span> ( <br>		<span class="hljs-keyword">SELECT</span> sid <span class="hljs-keyword">FROM</span> enrolled <br>		<span class="hljs-keyword">WHERE</span> cid <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;15-445&#x27;</span> <br>);<br></code></pre></td></tr></table></figure>
@@ -480,32 +479,25 @@ BY子句，否则数据库管理系统在每次调用查询时可能会产生不
 </ul>
 <p>例子：找出所有没有学生注册的课程。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> course <br>	<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span>( <br>		<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> enrolled <br>			<span class="hljs-keyword">WHERE</span> course.cid <span class="hljs-operator">=</span> enrolled.cid <br>); <br></code></pre></td></tr></table></figure>
-<h2 id="窗口函数">10 窗口函数</h2>
+<h2 id="10-窗口函数"><a class="markdownIt-Anchor" href="#10-窗口函数"></a> 10 窗口函数</h2>
 <hr>
 <p>一个窗口函数在一组相关的元组上执行“滑动”计算，类似于聚合，但是元组并不被分组为单个输出元组。</p>
 <p>函数：窗口函数可以是我们上面讨论过的任何聚合函数。还有一些特殊的窗口函数：</p>
-<ol type="1">
+<ol>
 <li>ROW NUMBER：当前行的编号。</li>
 <li>RANK：当前行的顺序位置。</li>
 </ol>
-<p>分组：通过OVER子句指定在计算窗口函数时如何将元组分组在一起。使用PARTITION
-BY来指定分组。</p>
+<p>分组：通过OVER子句指定在计算窗口函数时如何将元组分组在一起。使用PARTITION BY来指定分组。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> cid, sid, <span class="hljs-built_in">ROW_NUMBER</span>() <span class="hljs-keyword">OVER</span> (<span class="hljs-keyword">PARTITION</span> <span class="hljs-keyword">BY</span> cid) <br>	<span class="hljs-keyword">FROM</span> enrolled <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> cid; <br></code></pre></td></tr></table></figure>
-<p>即使数据库在内部进行更改，我们也可以在OVER函数中添加ORDER
-BY来确保结果的确定性排序。</p>
+<p>即使数据库在内部进行更改，我们也可以在OVER函数中添加ORDER BY来确保结果的确定性排序。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>, <span class="hljs-built_in">ROW_NUMBER</span>() <span class="hljs-keyword">OVER</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> cid) <br>	<span class="hljs-keyword">FROM</span> enrolled <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> cid; <br></code></pre></td></tr></table></figure>
-<p>重要提示：在窗口函数排序之后，DBMS会计算排名（RANK），而在排序之前，它会计算行号（ROW
-NUMBER）。</p>
+<p>重要提示：在窗口函数排序之后，DBMS会计算排名（RANK），而在排序之前，它会计算行号（ROW NUMBER）。</p>
 <p>例如：找到每门课程中成绩第二高的学生。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> ( <br>	<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>, <span class="hljs-built_in">RANK</span>() <span class="hljs-keyword">OVER</span> (<span class="hljs-keyword">PARTITION</span> <span class="hljs-keyword">BY</span> cid <br>					<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> grade <span class="hljs-keyword">ASC</span>) <span class="hljs-keyword">AS</span> rank <br>    <span class="hljs-keyword">FROM</span> enrolled) <span class="hljs-keyword">AS</span> ranking <br><span class="hljs-keyword">WHERE</span> ranking.rank <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; <br></code></pre></td></tr></table></figure>
-<h2 id="通用表表达式">11 通用表表达式</h2>
-<p>在编写更复杂的查询时，通用表表达式 （CTE）
-是窗口或嵌套查询的替代方法。它们提供了一种在更大的查询中为用户编写辅助语句的方法。CTE
-可以被视为范围限定为单个查询的临时表。</p>
+<h2 id="11-通用表表达式"><a class="markdownIt-Anchor" href="#11-通用表表达式"></a> 11 通用表表达式</h2>
+<p>在编写更复杂的查询时，通用表表达式 （CTE） 是窗口或嵌套查询的替代方法。它们提供了一种在更大的查询中为用户编写辅助语句的方法。CTE 可以被视为范围限定为单个查询的临时表。</p>
 <p>WITH 子句将内部查询的输出绑定到具有该名称的临时结果。</p>
-<p>示例：生成一个名为 cteName 的
-CTE，其中包含单个元组，且单个属性设置为“1”。选择此 CTE 中的所有属性。
-cteName。</p>
+<p>示例：生成一个名为 cteName 的 CTE，其中包含单个元组，且单个属性设置为“1”。选择此 CTE 中的所有属性。 cteName。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">WITH</span> cteName <span class="hljs-keyword">AS</span> ( <br>		<span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span> <br>) <br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> cteName; <br></code></pre></td></tr></table></figure>
 <p>我们可以在AS之前将输出列绑定到名称上。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">WITH</span> cteName (col1, col2) <span class="hljs-keyword">AS</span> ( <br>		<span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span>, <span class="hljs-number">2</span> <br>) <br><span class="hljs-keyword">SELECT</span> col1 <span class="hljs-operator">+</span> col2 <span class="hljs-keyword">FROM</span> cteName; <br></code></pre></td></tr></table></figure>

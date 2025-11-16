@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="每天100w次登陆请求，4C8G机器如何做JVM调优？ 典型回答 首先，我们需要问清楚，一天100w次的登陆，在一天内有没有某个时段是高峰的？高峰期的QPS大概可以达到多少。 如果没有高峰期，100w平均下来QPS只有10，这个量不需要做JVM优化。 一般业务场景中，都是有自己的业务高峰期的，比如电商业务基本上上午十点和下午两点是业务高峰期，基本上这时候的QPS是平时的20倍都不止。 我">
+    <meta name="description" content="每天100w次登陆请求，4C8G机器如何做JVM调优？  典型回答 首先，我们需要问清楚，一天100w次的登陆，在一天内有没有某个时段是高峰的？高峰期的QPS大概可以达到多少。 如果没有高峰期，100w平均下来QPS只有10，这个量不需要做JVM优化。 一般业务场景中，都是有自己的业务高峰期的，比如电商业务基本上上午十点和下午两点是业务高峰期，基本上这时候的QPS是平时的20倍都不止。 我们假设">
 <meta property="og:type" content="article">
 <meta property="og:title" content="scene-question-2">
 <meta property="og:url" content="http://polaris3003.github.io/2024/05/31/scene-question-2/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="每天100w次登陆请求，4C8G机器如何做JVM调优？ 典型回答 首先，我们需要问清楚，一天100w次的登陆，在一天内有没有某个时段是高峰的？高峰期的QPS大概可以达到多少。 如果没有高峰期，100w平均下来QPS只有10，这个量不需要做JVM优化。 一般业务场景中，都是有自己的业务高峰期的，比如电商业务基本上上午十点和下午两点是业务高峰期，基本上这时候的QPS是平时的20倍都不止。 我">
+<meta property="og:description" content="每天100w次登陆请求，4C8G机器如何做JVM调优？  典型回答 首先，我们需要问清楚，一天100w次的登陆，在一天内有没有某个时段是高峰的？高峰期的QPS大概可以达到多少。 如果没有高峰期，100w平均下来QPS只有10，这个量不需要做JVM优化。 一般业务场景中，都是有自己的业务高峰期的，比如电商业务基本上上午十点和下午两点是业务高峰期，基本上这时候的QPS是平时的20倍都不止。 我们假设">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-31T14:07:05.000Z">
 <meta property="article:modified_time" content="2025-02-11T09:26:10.000Z">
@@ -350,8 +350,8 @@
             
               <div class="markdown-body">
                 
-                <h1 id="每天100w次登陆请求4c8g机器如何做jvm调优">每天100w次登陆请求，4C8G机器如何做JVM调优？</h1>
-<h2 id="典型回答">典型回答</h2>
+                <h1 id="每天100w次登陆请求4c8g机器如何做jvm调优"><a class="markdownIt-Anchor" href="#每天100w次登陆请求4c8g机器如何做jvm调优"></a> 每天100w次登陆请求，4C8G机器如何做JVM调优？</h1>
+<h2 id="典型回答"><a class="markdownIt-Anchor" href="#典型回答"></a> 典型回答</h2>
 <p>首先，我们需要问清楚，一天100w次的登陆，在一天内有没有某个时段是高峰的？高峰期的QPS大概可以达到多少。</p>
 <p>如果没有高峰期，100w平均下来QPS只有10，这个量不需要做JVM优化。</p>
 <p>一般业务场景中，都是有自己的业务高峰期的，比如电商业务基本上上午十点和下午两点是业务高峰期，基本上这时候的QPS是平时的20倍都不止。</p>
@@ -359,32 +359,24 @@
 <blockquote>
 <p>作为一个登陆服务，一般来说我们在接收到请求之后，只需要给用户进行鉴权并把结果返回给前端就可以了。在这个过程中一般不太会去查询太多的数据，比如权限什么的也都是在后面访问页面再查询的。所以，峰值200左右的QPS，对于JVM的内存来说，最主要的就是会因为远程调用，而创建出很多请求参数和请求的响应。而这些对象基本都是朝生暮死的，接口调用结束之后就会被回收掉。并且通常来说这些对象也不会很大，因为登录并不是注册，其实并不携带特别多的信息，那么也就是说，会产生大量的小对象，即新生代会不断的创建对象，并被回收掉。</p>
 </blockquote>
-<h3 id="堆内存设置">堆内存设置</h3>
+<h3 id="堆内存设置"><a class="markdownIt-Anchor" href="#堆内存设置"></a> 堆内存设置</h3>
 <p>首先是堆内存大小的设置。当我们的机器只有4核8G的时候，堆内存的大小肯定不能太大，一般不建议设置的太大，因为我们需要给机器上的其他应用预留出一部分内容。所以我们一般建议都是把JVM的堆内存设置成操作系统内存的一半，也就是4G。至于初始内存和最大内存，我们这场景中建议设置成一样的。这样可以避免JVM在运行过程中频繁进行内存扩容和收缩操作，提高应用程序的性能和稳定性。即</p>
 <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-Xms4G -Xmx4G</span><br></code></pre></td></tr></table></figure>
-<h3 id="垃圾收集器选择">垃圾收集器选择</h3>
+<h3 id="垃圾收集器选择"><a class="markdownIt-Anchor" href="#垃圾收集器选择"></a> 垃圾收集器选择</h3>
 <p>在设置了堆空间的总大小之后，我们需要考虑用那种垃圾收集器。另外，我们前面分析过，这个业务中会频繁在新生代创建并销毁对象，那么，就意味着新生代的GC会比较频繁。所以我们需要选择一种在GC过程中STW时间短的，并且在年轻代的回收中也能发挥效果的。</p>
-<p>在新生代的垃圾收集器中，主要以Serial、ParNew、Parallel
-Scavenge以及支持整堆回收的G1了。</p>
+<p>在新生代的垃圾收集器中，主要以Serial、ParNew、Parallel Scavenge以及支持整堆回收的G1了。</p>
 <p>因为新生代采用的都是复制算法，所以不太需要考虑碎片的问题，我们主要考虑吞吐量和STW的时长就行了。</p>
-<p>首先排除单线程的Serial，剩下ParNew是一个并发的收集器，Parallel
-Scavenge更加关注吞吐量，而G1作为JDK
-9中默认垃圾收集器，他不仅同时具有低暂停时间和高吞吐量的优点，但是他对内存有要求，最小要4G，</p>
+<p>首先排除单线程的Serial，剩下ParNew是一个并发的收集器，Parallel Scavenge更加关注吞吐量，而G1作为JDK 9中默认垃圾收集器，他不仅同时具有低暂停时间和高吞吐量的优点，但是他对内存有要求，最小要4G，</p>
 <p>从使用门槛上来说，G1是可以用的，因为一般来说，内存要大于等于4G的话，才适合使用G1进行GC。</p>
 <p>所以，我们采用G1作为垃圾收集器：</p>
 <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-XX: +UseG1GC</span><br></code></pre></td></tr></table></figure>
 <p>在使用了G1之后，其实他自己是有一套自动的预测和调优机制的。我们只需要通过-XX:MaxGCPauseMillis参数来设置最大停顿时间就行了。一般建议设置到100-200之间，一般这个时长对用户来说基本无感知</p>
 <p>其次，我们还可以自己调节一些G1的配置，比如设置GC线程数</p>
-<h3 id="各区大小设置">各区大小设置</h3>
+<h3 id="各区大小设置"><a class="markdownIt-Anchor" href="#各区大小设置"></a> 各区大小设置</h3>
 <p>G1的内存划分是自适应的，它会根据堆的大小和使用情况来动态调整各个区域的大小和比例。但是，我们也可以通过一些JVM参数来手动设置G1的各个分代内存配置。</p>
-<p>G1
-中的分代和其他垃圾回收器不太一样，它不是严格按照年轻代和老年代划分的，而是通过划分各个区域的存活对象数量来实现垃圾回收的。因此，G1
-中不需要像其他垃圾回收器那样设置新生代和老年代的大小比例，而是需要设置一些区域的内存配置。</p>
-<p>-XX:G1NewSizePercent 和
--XX:G1MaxNewSizePercent分别用于设置年轻代的初始大小和最大大小，它们的默认值分别为
-5% 和
-60%。针对我们的业务场景，我们其实可以适当的调高一下年轻代的初始大小，5%的比例太小了，我们可以调整到30%。</p>
-<h3 id="添加必要的日志">添加必要的日志</h3>
+<p>G1 中的分代和其他垃圾回收器不太一样，它不是严格按照年轻代和老年代划分的，而是通过划分各个区域的存活对象数量来实现垃圾回收的。因此，G1 中不需要像其他垃圾回收器那样设置新生代和老年代的大小比例，而是需要设置一些区域的内存配置。</p>
+<p>-XX:G1NewSizePercent 和 -XX:G1MaxNewSizePercent分别用于设置年轻代的初始大小和最大大小，它们的默认值分别为 5% 和 60%。针对我们的业务场景，我们其实可以适当的调高一下年轻代的初始大小，5%的比例太小了，我们可以调整到30%。</p>
+<h3 id="添加必要的日志"><a class="markdownIt-Anchor" href="#添加必要的日志"></a> 添加必要的日志</h3>
 <p>因为以上配置都是根据业务大致分析出来的初始配置，所以我们一定是需要不断地调优的，那么必要的日志相关参数就要添加。如：</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:MaxGCPauseMillis=</span><span class="hljs-number">100</span>：最大 <span class="hljs-variable constant_">GC</span> 暂停时间为 <span class="hljs-number">100</span> 毫秒，可以根据实际情况调整；<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+HeapDumpOnOutOfMemoryError</span>：当出现内存溢出时，自动生成堆内存快照文件；<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:HeapDumpPath=/path/to/heap/dump/file</span>.hprof：堆内存快照文件的存储路径；<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+PrintGC</span>：输出 <span class="hljs-variable constant_">GC</span> 信息；<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+PrintGCDateStamps</span>：输出 <span class="hljs-variable constant_">GC</span> 发生时间；<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+PrintGCTimeStamps</span>：输出 <span class="hljs-variable constant_">GC</span> 发生时 <span class="hljs-variable constant_">JVM</span> 的运行时间；<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+PrintGCDetails</span>：输出 <span class="hljs-variable constant_">GC</span> 的详细信息；<br>-<span class="hljs-title class_">Xlog</span><span class="hljs-symbol">:gc*</span><span class="hljs-symbol">:file=/path/to/gc</span>.<span class="hljs-symbol">log:</span>time,<span class="hljs-symbol">uptime:</span>filecount=<span class="hljs-number">10</span>,filesize=100M：将 <span class="hljs-variable constant_">GC</span> 日志输出到指定文件中，可以根据需要调整日志文件路径、数量和大小<br></code></pre></td></tr></table></figure>
 

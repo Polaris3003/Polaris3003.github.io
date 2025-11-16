@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="茶7.1-7.5 Mon. Wooden Toy Festival_878D 输入 T(≤1e4) 表示 T 组数据。所有数据的 n 之和 ≤2e5。 每组数据输入 n(1≤n≤2e5) 和长为 n 的数组 a(1≤a[i]≤1e9)。 一条街道上有 n 个工厂，第 i 个工厂的位置是 a[i]。 你需要建造 3 个仓库，仓库的位置由你决定，必须是整数。 每个工厂生产的物品要运到离">
+    <meta name="description" content="茶7.1-7.5  Mon. Wooden Toy Festival_878D 输入 T(≤1e4) 表示 T 组数据。所有数据的 n 之和 ≤2e5。 每组数据输入 n(1≤n≤2e5) 和长为 n 的数组 a(1≤a[i]≤1e9)。 一条街道上有 n 个工厂，第 i 个工厂的位置是 a[i]。 你需要建造 3 个仓库，仓库的位置由你决定，必须是整数。 每个工厂生产的物品要运到离其最近的仓库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="茶7.1-7.5">
 <meta property="og:url" content="http://polaris3003.github.io/2024/07/01/%E8%8C%B67.1-7.5/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="茶7.1-7.5 Mon. Wooden Toy Festival_878D 输入 T(≤1e4) 表示 T 组数据。所有数据的 n 之和 ≤2e5。 每组数据输入 n(1≤n≤2e5) 和长为 n 的数组 a(1≤a[i]≤1e9)。 一条街道上有 n 个工厂，第 i 个工厂的位置是 a[i]。 你需要建造 3 个仓库，仓库的位置由你决定，必须是整数。 每个工厂生产的物品要运到离">
+<meta property="og:description" content="茶7.1-7.5  Mon. Wooden Toy Festival_878D 输入 T(≤1e4) 表示 T 组数据。所有数据的 n 之和 ≤2e5。 每组数据输入 n(1≤n≤2e5) 和长为 n 的数组 a(1≤a[i]≤1e9)。 一条街道上有 n 个工厂，第 i 个工厂的位置是 a[i]。 你需要建造 3 个仓库，仓库的位置由你决定，必须是整数。 每个工厂生产的物品要运到离其最近的仓库">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://polaris3003.github.io/2024/07/01/%E8%8C%B67.1-7.5/image-20240705143418240.png">
 <meta property="og:image" content="http://polaris3003.github.io/2024/07/01/%E8%8C%B67.1-7.5/image-20240705143402152.png">
@@ -353,10 +353,9 @@
             
               <div class="markdown-body">
                 
-                <h1 id="茶7.1-7.5">茶7.1-7.5</h1>
-<h2 id="mon.">Mon.</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1840/D">Wooden Toy
-Festival_878D</a></p>
+                <h1 id="茶71-75"><a class="markdownIt-Anchor" href="#茶71-75"></a> 茶7.1-7.5</h1>
+<h2 id="mon"><a class="markdownIt-Anchor" href="#mon"></a> Mon.</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1840/D">Wooden Toy Festival_878D</a></p>
 <p>输入 T(≤1e4) 表示 T 组数据。所有数据的 n 之和 ≤2e5。<br>
 每组数据输入 n(1≤n≤2e5) 和长为 n 的数组 a(1≤a[i]≤1e9)。</p>
 <p>一条街道上有 n 个工厂，第 i 个工厂的位置是 a[i]。<br>
@@ -390,30 +389,22 @@ Festival_878D</a></p>
 <p><strong>Sol:</strong></p>
 <p>二分答案+贪心。</p>
 <p>把 a 从小到大排序。</p>
-<p>设答案为 m，那么第一段（第一个仓库对应的工厂）的范围是 [a[0],
-a[0]+2m]，</p>
-<p>二分找 a 中第一个大于 a[0]+2m 的数 a[i]，那么第二段的范围是 [a[i],
-a[i]+2m]。</p>
-<p>继续二分，找 a 中第一个大于 a[i]+2m 的数 a[j]，那么第三段的范围是
-[a[j], a[j]+2m]。</p>
-<p>如果 a[j]+2m &gt;= a[n-1]，那么 check 是 true，否则是 false。 注意
-i=n 和 j=n 的情况。</p>
+<p>设答案为 m，那么第一段（第一个仓库对应的工厂）的范围是 [a[0], a[0]+2m]，</p>
+<p>二分找 a 中第一个大于 a[0]+2m 的数 a[i]，那么第二段的范围是 [a[i], a[i]+2m]。</p>
+<p>继续二分，找 a 中第一个大于 a[i]+2m 的数 a[j]，那么第三段的范围是 [a[j], a[j]+2m]。</p>
+<p>如果 a[j]+2m &gt;= a[n-1]，那么 check 是 true，否则是 false。 注意 i=n 和 j=n 的情况。</p>
 <p>二分上界：可以直接写 1e9 或者 a[n-1]-a[0]，下面讨论更精细的上界。</p>
-<p>假设答案 x 一定成立，那么极限情况下第一段是 [a0, a0+2x]，第二段是
-[a0+2x+1, a0+4x+1]，第三段是 [a0+4x+2, a0+6x+2]，所以有 a[0]+6x+2 &lt;=
-a[n-1]</p>
-<p>解得 x &gt;= ceil((a[n-1]-a[0]-2) / 6) = floor((a[n-1]-a[0]+3) /
-6)</p>
+<p>假设答案 x 一定成立，那么极限情况下第一段是 [a0, a0+2x]，第二段是 [a0+2x+1, a0+4x+1]，第三段是 [a0+4x+2, a0+6x+2]，所以有 a[0]+6x+2 &lt;= a[n-1]</p>
+<p>解得 x &gt;= ceil((a[n-1]-a[0]-2) / 6) = floor((a[n-1]-a[0]+3) / 6)</p>
 <p>所以（开区间的）二分上界是 floor((a[n-1]-a[0]+3) / 6)。</p>
 <p><strong>Code:</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> n;<br>    cin&gt;&gt;n;<br>    <span class="hljs-function">vi <span class="hljs-title">a</span><span class="hljs-params">(n)</span></span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++) cin&gt;&gt;a[i];<br>    <span class="hljs-built_in">sort</span>(a);<br>    <span class="hljs-type">int</span> l=<span class="hljs-number">-1</span>,r=(a[n<span class="hljs-number">-1</span>] - a[<span class="hljs-number">0</span>] + <span class="hljs-number">3</span>) / <span class="hljs-number">6</span>;<br>    <span class="hljs-keyword">while</span>(r-l&gt;<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-type">int</span> m=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>        <span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(i<span class="hljs-number">+1</span>&lt;a.<span class="hljs-built_in">size</span>()&amp;&amp;a[i<span class="hljs-number">+1</span>]-a[<span class="hljs-number">0</span>]&lt;=<span class="hljs-number">2</span>*m)&#123;<br>            ++i;<br>        &#125;<br>        <span class="hljs-type">int</span> j=n<span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">while</span>(j<span class="hljs-number">-1</span>&gt;=<span class="hljs-number">0</span>&amp;&amp;a.<span class="hljs-built_in">back</span>()-a[j<span class="hljs-number">-1</span>]&lt;=<span class="hljs-number">2</span>*m)&#123;<br>            --j;<br>        &#125;<br>        ++i;--j;<br>        <span class="hljs-keyword">if</span> (i &gt; j || a[j] - a[i] &lt;= <span class="hljs-number">2</span> * m) &#123;<br>            r = m;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            l = m;<br>        &#125;<br>    &#125;<br>    cout&lt;&lt;r&lt;&lt;endl;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="tue">Tue</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1903/C">Theofanis'
-Nightmare_912C</a></p>
+<h2 id="tue"><a class="markdownIt-Anchor" href="#tue"></a> Tue</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1903/C">Theofanis’ Nightmare_912C</a></p>
 <p>输入 T(≤1e4) 表示 T 组数据。所有数据的 n 之和 ≤2e5。<br>
 每组数据输入 n(1≤n≤1e5) 和长为 n 的数组 a(-1e8≤a[i]≤1e8)。</p>
 <p>你需要把 a 分割成若干非空段，假设分割成了 k 段，那么得分为：<br>
-第一段的元素和 * 1 + 第二段的元素和 * 2 + ... + 第 k 段的元素和 * k</p>
+第一段的元素和 * 1 + 第二段的元素和 * 2 + … + 第 k 段的元素和 * k</p>
 <p>例如 [1,2,3,4] 分成两段 [1,2] 和 [3,4]，得分为<br>
 (1+2) * 1 + (3+4) * 2</p>
 <p>输出最大得分。</p>
@@ -437,20 +428,20 @@ Nightmare_912C</a></p>
 <p>和式可以视作 a 的若干后缀和之和。</p>
 <p>例如 [1,2,3,4] 分成两段 [1,2] 和 [3,4]，得分为</p>
 <p>(1+2) * 1 + (3+4) * 2 = (1+2+3+4) + (3+4)</p>
-<p>所以计算 a 的所有后缀和，取其中大于 0
-的后缀和相加，即为答案。注意整个数组的和一定要加进答案。</p>
+<p>所以计算 a 的所有后缀和，取其中大于 0 的后缀和相加，即为答案。注意整个数组的和一定要加进答案。</p>
 <p>注意用 64 位整数。</p>
 <p><strong>Code:</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> n;<br>    cin &gt;&gt; n;<br>    <span class="hljs-function">vi <span class="hljs-title">a</span><span class="hljs-params">(n)</span></span>;<br>    <span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">0</span>, n<span class="hljs-number">-1</span>) cin &gt;&gt; a[i];<br>    ll ans = <span class="hljs-number">0</span>;<br>    ll s = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = n<span class="hljs-number">-1</span>;i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>        s += a[i];<br>        <span class="hljs-keyword">if</span> (i == <span class="hljs-number">0</span> || s &gt; <span class="hljs-number">0</span>) &#123;<br>            ans += s;<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; ans &lt;&lt; endl;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="wed">Wed</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1849/D" class="uri">https://codeforces.com/problemset/problem/1849/D</a></p>
+<h2 id="wed"><a class="markdownIt-Anchor" href="#wed"></a> Wed</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1849/D">https://codeforces.com/problemset/problem/1849/D</a></p>
 <p>输入 n(1≤n≤2e5) 和长为 n 的数组 a(0≤a[i]≤2)。</p>
 <p>最初，数组的每个元素都是蓝色的。<br>
-有两种类型的操作：<br>
-- 支付一枚硬币，选择一个蓝色元素，将其涂成红色。<br>
-- 选择一个不等于 0 的红色元素和与其相邻的蓝色元素，将红色元素的数值减少
-1，然后将蓝色元素涂成红色。<br>
-把每个元素都涂成红色，最少要支付多少金币？</p>
+有两种类型的操作：</p>
+<ul>
+<li>支付一枚硬币，选择一个蓝色元素，将其涂成红色。</li>
+<li>选择一个不等于 0 的红色元素和与其相邻的蓝色元素，将红色元素的数值减少 1，然后将蓝色元素涂成红色。<br>
+把每个元素都涂成红色，最少要支付多少金币？</li>
+</ul>
 <p>输入<br>
 3<br>
 0 2 0<br>
@@ -464,26 +455,21 @@ Nightmare_912C</a></p>
 0 1 0 0 1 0 2<br>
 输出 4</p>
 <p><strong>Sol:</strong></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-even-odd-subarray-with-threshold/solution/jiao-ni-yi-ci-xing-ba-dai-ma-xie-dui-on-zuspx/">分组循环</a>
-+贪心。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-even-odd-subarray-with-threshold/solution/jiao-ni-yi-ci-xing-ba-dai-ma-xie-dui-on-zuspx/">分组循环</a> +贪心。</p>
 <p>内层循环寻找非 0 的段（连续子数组）。</p>
-<p>对于非 0 的段（下标从 i 到 j），把端点 i 或者 j
-涂成红色后，最终整个段都会变成红色。 如果段中没有 2，那么 i-1 或者 j+1
-会变成红色，取决于一开始涂的是哪个端点。</p>
-<p>贪心来说，优先把左边的变成红色，即如果 i&gt;0 且 i-1 不是红色，那么把
-i-1 变成红色，否则把 j+1 变成红色。</p>
+<p>对于非 0 的段（下标从 i 到 j），把端点 i 或者 j 涂成红色后，最终整个段都会变成红色。 如果段中没有 2，那么 i-1 或者 j+1 会变成红色，取决于一开始涂的是哪个端点。</p>
+<p>贪心来说，优先把左边的变成红色，即如果 i&gt;0 且 i-1 不是红色，那么把 i-1 变成红色，否则把 j+1 变成红色。</p>
 <p>如果段中有 2，那么把 2 涂成红色，最终 i-1 和 j+1 都会变成红色。</p>
 <p>答案为段的个数，加上最后剩下的蓝色 0 的个数。</p>
 <p><strong>Code：</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> n;<br>    cin &gt;&gt; n;<br>    <span class="hljs-function">vi <span class="hljs-title">a</span><span class="hljs-params">(n)</span></span>;<br>    <span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">0</span>, n<span class="hljs-number">-1</span>) cin &gt;&gt; a[i];<br>    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ) &#123;<br>        <span class="hljs-keyword">if</span> (a[i] == <span class="hljs-number">0</span>) &#123;<br>            ans++;<br>            i++;<br>            <span class="hljs-keyword">continue</span>;<br>        &#125;<br>        <span class="hljs-type">int</span> st = i;<br>        <span class="hljs-type">bool</span> h2 = <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">for</span>(; i &lt; n &amp;&amp; a[i]&gt;<span class="hljs-number">0</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span>(a[i]==<span class="hljs-number">2</span>) &#123;<br>                h2=<span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>        ans++;<br>        <span class="hljs-keyword">if</span> (st&gt;<span class="hljs-number">0</span> &amp;&amp; a[st<span class="hljs-number">-1</span>]==<span class="hljs-number">0</span>) &#123;<br>            ans--;<br>            <span class="hljs-keyword">if</span> (!h2) &#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(i &lt; n) &#123;<br>            a[i] = <span class="hljs-number">1</span>;<br>            i++;<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; ans &lt;&lt; endl;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="thu">Thu</h2>
+<h2 id="thu"><a class="markdownIt-Anchor" href="#thu"></a> Thu</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/455/C">Civilization_260C</a></p>
 <p>输入 n m(0≤m&lt;n≤3e5) 和 q(1≤q≤3e5)。<br>
 然后输入一个森林的 m 条边。注：森林由多棵树组成。<br>
 然后输入 q 个询问，格式如下：<br>
-"1 x"：输出节点 x 所在的树的直径。<br>
-"2 x y"：如果节点 x 和节点 y
-在同一棵树，什么也不做；否则在这两棵树之间连一条边，要求连边后，得到的新树的直径最小。<br>
+“1 x”：输出节点 x 所在的树的直径。<br>
+“2 x y”：如果节点 x 和节点 y 在同一棵树，什么也不做；否则在这两棵树之间连一条边，要求连边后，得到的新树的直径最小。<br>
 所有输入的节点编号均从 1 开始。</p>
 <p>输入<br>
 6 0 6<br>
@@ -496,18 +482,13 @@ i-1 变成红色，否则把 j+1 变成红色。</p>
 输出<br>
 4</p>
 <p><strong>Sol:</strong></p>
-<p>在 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-minimum-diameter-after-merging-two-trees/solutions/2826587/lian-jie-zhi-jing-zhong-dian-pythonjavac-0e1c/">周赛第四题</a>
-的基础上，套一个带权并查集。</p>
-<p>初始化：跑树形 DP 的同时，把树上的每个节点 x 和根节点 i
-合并。在根节点 i 处记录直径信息 d[i]。</p>
-<p>合并：按照周赛第四题的做法更新直径，如果要把 y 合并到 x 上，那么更新
-d[x] = max(d[x], d[y], (d[x]+1)/2+(d[y]+1)/2+1)</p>
+<p>在 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-minimum-diameter-after-merging-two-trees/solutions/2826587/lian-jie-zhi-jing-zhong-dian-pythonjavac-0e1c/">周赛第四题</a> 的基础上，套一个带权并查集。</p>
+<p>初始化：跑树形 DP 的同时，把树上的每个节点 x 和根节点 i 合并。在根节点 i 处记录直径信息 d[i]。</p>
+<p>合并：按照周赛第四题的做法更新直径，如果要把 y 合并到 x 上，那么更新 d[x] = max(d[x], d[y], (d[x]+1)/2+(d[y]+1)/2+1)</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-type">const</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> inf = numeric_limits&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt;::<span class="hljs-built_in">max</span>();<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">dsu</span><br>&#123;<br>    vector&lt;<span class="hljs-type">int</span>&gt; fa, siz;<br>    <span class="hljs-built_in">dsu</span>(<span class="hljs-type">int</span> n)<br>    &#123;<br>        <span class="hljs-built_in">init</span>(n);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span></span><br><span class="hljs-function">    </span>&#123;<br>        fa.<span class="hljs-built_in">resize</span>(n);<br>        siz.<span class="hljs-built_in">resize</span>(n, <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>        &#123;<br>            fa[i] = i;<br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-type">int</span> t = x;<br>        <span class="hljs-keyword">while</span> (fa[x] != x)<br>        &#123;<br>            x = fa[x];<br>        &#125;<br>        <span class="hljs-keyword">while</span> (t != x)<br>        &#123;<br>            <span class="hljs-type">int</span> p = t;<br>            fa[p] = x;<br>            t = fa[t];<br>        &#125;<br>        <span class="hljs-keyword">return</span> fa[x];<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">same</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">find</span>(x) == <span class="hljs-built_in">find</span>(y);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-type">int</span> root1 = <span class="hljs-built_in">find</span>(x);<br>        <span class="hljs-type">int</span> root2 = <span class="hljs-built_in">find</span>(y);<br>        <span class="hljs-keyword">if</span> (root1 != root2)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (root1 &lt; root2)<br>            &#123;<br>                fa[root2] = root1;<br>                siz[root2] += siz[root1];<br>            &#125;<br>            <span class="hljs-keyword">else</span><br>            &#123;<br>                fa[root1] = root2;<br>                siz[root1] += siz[root2];<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">size</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-type">int</span> root = <span class="hljs-built_in">find</span>(x);<br>        <span class="hljs-keyword">return</span> siz[root];<br>    &#125;<br>&#125;;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> n, m, q;<br>    cin &gt;&gt; n &gt;&gt; m &gt;&gt; q;<br>    <span class="hljs-function">dsu <span class="hljs-title">dsu</span><span class="hljs-params">(n<span class="hljs-number">+1</span>)</span></span>;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">g</span>(n + <span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">while</span> (m--) &#123;<br>        <span class="hljs-type">int</span> a,b;<br>        cin &gt;&gt; a &gt;&gt; b;<br>        g[a].<span class="hljs-built_in">pb</span>(b);<br>        g[b].<span class="hljs-built_in">pb</span>(a);<br>        dsu.<span class="hljs-built_in">merge</span>(a, b);<br>    &#125;<br>    vector&lt;array&lt;<span class="hljs-type">int</span>, 2&gt; &gt; <span class="hljs-built_in">st</span>(n + <span class="hljs-number">1</span>);<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dis</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>    &#123;<br>        dis[i] = <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-keyword">auto</span> bfs = [&amp;](<span class="hljs-type">int</span> x) -&gt; <span class="hljs-type">int</span><br>    &#123;<br>        queue&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt; pq;<br>        st[x][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>        pq.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">make_pair</span>(x, <span class="hljs-number">0</span>));<br>        pair&lt;ll, ll&gt; tag = <span class="hljs-built_in">make_pair</span>(-inf, <span class="hljs-number">-1</span>);<br>        <span class="hljs-keyword">while</span> (!pq.<span class="hljs-built_in">empty</span>())<br>        &#123;<br>            <span class="hljs-keyword">auto</span> t = pq.<span class="hljs-built_in">front</span>();<br>            pq.<span class="hljs-built_in">pop</span>();<br>            <span class="hljs-type">int</span> a = t.first, dis = t.second;<br>            <span class="hljs-keyword">if</span> (dis &gt; tag.first)<br>            &#123;<br>                tag.first = dis;<br>                tag.second = a;<br>            &#125;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> b : g[a])<br>            &#123;<br>                <span class="hljs-keyword">if</span> (st[b][<span class="hljs-number">0</span>] == <span class="hljs-number">0</span>)<br>                &#123;<br>                    st[b][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>                    pq.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">make_pair</span>(b, dis + <span class="hljs-number">1</span>));<br>                &#125;<br>            &#125;<br>        &#125;<br>        ll ans = -inf;<br>        st[tag.second][<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>        pq.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">make_pair</span>(tag.second, <span class="hljs-number">0</span>));<br>        <span class="hljs-keyword">while</span> (!pq.<span class="hljs-built_in">empty</span>())<br>        &#123;<br>            <span class="hljs-keyword">auto</span> t = pq.<span class="hljs-built_in">front</span>();<br>            pq.<span class="hljs-built_in">pop</span>();<br>            ll a = t.first, dis = t.second;<br>            ans = <span class="hljs-built_in">max</span>(ans, dis);<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> b : g[a])<br>            &#123;<br>                <span class="hljs-keyword">if</span> (st[b][<span class="hljs-number">1</span>] == <span class="hljs-number">0</span>)<br>                &#123;<br>                    st[b][<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>                    pq.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">make_pair</span>(b, dis + <span class="hljs-number">1</span>));<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (st[i][<span class="hljs-number">0</span>] == <span class="hljs-number">0</span>)<br>        &#123;<br>            dis[i] = <span class="hljs-built_in">bfs</span>(i);<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// for (int i = 1; i &lt;= n; i++)</span><br>    <span class="hljs-comment">// &#123;</span><br>    <span class="hljs-comment">//     cout &lt;&lt; i &lt;&lt; &quot; this dis &quot; &lt;&lt; dis[i] &lt;&lt; endl;</span><br>    <span class="hljs-comment">// &#125;</span><br>    <span class="hljs-keyword">while</span> (q--)<br>    &#123;<br>        <span class="hljs-type">int</span> t;<br>        cin &gt;&gt; t;<br>        <span class="hljs-keyword">if</span> (t == <span class="hljs-number">1</span>)<br>        &#123;<br>            <span class="hljs-type">int</span> x;<br>            cin &gt;&gt; x;<br>            cout &lt;&lt; dis[dsu.<span class="hljs-built_in">find</span>(x)] &lt;&lt; endl;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-type">int</span> x, y;<br>            cin &gt;&gt; x &gt;&gt; y;<br>            <span class="hljs-keyword">if</span> (!dsu.<span class="hljs-built_in">same</span>(x, y))<br>            &#123;<br>                <br>                <span class="hljs-type">int</span> fa1 = dsu.<span class="hljs-built_in">find</span>(x);<br>                <span class="hljs-type">int</span> fa2 = dsu.<span class="hljs-built_in">find</span>(y);<br>                <span class="hljs-type">int</span> d1 = dis[fa1];<br>                <span class="hljs-type">int</span> d2 = dis[fa2];<br>                dsu.<span class="hljs-built_in">merge</span>(x, y);<br>                <span class="hljs-type">int</span> d = <span class="hljs-built_in">max</span>(&#123;d1, d2, (d1 + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span> + (d2 + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span> + <span class="hljs-number">1</span>&#125;);<br>                <span class="hljs-keyword">if</span> (fa1 &lt; fa2)<br>                &#123;<br>                    dis[fa1] = d;<br>                &#125;<br>                <span class="hljs-keyword">else</span><br>                &#123;<br>                    dis[fa2] = d;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125; <br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="fri">Fri</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/633/F">The
-Chocolate Spree</a></p>
-<p>输入 n(2≤n≤1e5) 和长为 n 的数组
-a(1≤a[i]≤1e9)，表示每个节点的点权。<br>
+<h2 id="fri"><a class="markdownIt-Anchor" href="#fri"></a> Fri</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/633/F">The Chocolate Spree</a></p>
+<p>输入 n(2≤n≤1e5) 和长为 n 的数组 a(1≤a[i]≤1e9)，表示每个节点的点权。<br>
 然后输入一棵树的 n-1 条边，节点编号从 1 开始。</p>
 <p>你需要从这棵树中，选出两条不相交的路径，也就是没有节点会同时出现在两条路径中。<br>
 输出这两条路径的节点点权之和的最大值。</p>
@@ -529,17 +510,13 @@ a(1≤a[i]≤1e9)，表示每个节点的点权。<br>
 1 2<br>
 输出 30</p>
 <p><strong>Sol:</strong></p>
-<p>如果只有一条路径，做法类似求 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17o4y187h1/">树的直径</a>
-，把路径分解成左右两条链，dfs 返回从叶子到当前节点的最长链。</p>
+<p>如果只有一条路径，做法类似求 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17o4y187h1/">树的直径</a> ，把路径分解成左右两条链，dfs 返回从叶子到当前节点的最长链。</p>
 <p><strong>方法一：两次 DFS（换根 DP）</strong></p>
 <p>提示：枚举边，删除这条边，把这棵树一分为二，每部分只需要计算一条最大路径和。</p>
 <p>分类讨论：</p>
-<p>如果两条路径分别在两棵不相交子树中，那么做法和求直径是一样的，设当前节点为
-v，维护前面遍历的 v
-的儿子子树的最大路径和，加上当前儿子子树的最大路径和。</p>
+<p>如果两条路径分别在两棵不相交子树中，那么做法和求直径是一样的，设当前节点为 v，维护前面遍历的 v 的儿子子树的最大路径和，加上当前儿子子树的最大路径和。</p>
 <p>dfs 除了返回最长链，还要返回子树最大路径和。</p>
-<p>如果两条路径分别在两棵相交子树中，考虑换根 DP，一条路径在子树 w
-中，另一条路径从 v 开始的以下三条链中选两条：</p>
+<p>如果两条路径分别在两棵相交子树中，考虑换根 DP，一条路径在子树 w 中，另一条路径从 v 开始的以下三条链中选两条：</p>
 <p>v - w1 子树中的最长链（其中 w1 != w）</p>
 <p>v - w2 子树中的最长链（其中 w2 != w）</p>
 <p>v - 从父节点过来的最长链（在换根的过程中计算）</p>
@@ -550,10 +527,7 @@ v，维护前面遍历的 v
 <p>由两条链拼成的路径叫做「路」。</p>
 <p>由链 + 路组成的复合结构叫做「链路」。</p>
 <p>注意链路中的链和路不一定在一起，可能间隔很远。</p>
-<p>分类讨论，遍历 v 的子树列表时，假设当前遍历到子树 w，得到其「w
-链」「w 路」「w 链路」，同时维护遍历过的子树的「最大链」「含 v
-最大路」「不含 v 最大路」「最大链路」。其中「最大链」「最大链路」已经把
-a[v] 算进去了。</p>
+<p>分类讨论，遍历 v 的子树列表时，假设当前遍历到子树 w，得到其「w 链」「w 路」「w 链路」，同时维护遍历过的子树的「最大链」「含 v 最大路」「不含 v 最大路」「最大链路」。其中「最大链」「最大链路」已经把 a[v] 算进去了。</p>
 <p>如图，答案是以下三种情况的最大值： <img src="/2024/07/01/%E8%8C%B67.1-7.5/image-20240705143402152.png" srcset="/img/loading.gif" lazyload alt="dfs"></p>
 <p>max(含 v 最大路, 不含 v 最大路) + w 路</p>
 <p>最大链 + w 链路</p>
@@ -562,8 +536,7 @@ a[v] 算进去了。</p>
 <p>w 链路 + a[v]</p>
 <p>不含 v 最大路 + w 链 + a[v]</p>
 <p>最大链 + w 路</p>
-<p>注意链路这一复合结构，一定是链在上，路在下，不然无法往上加点。
-不能是【含 v 最大路 + w 链】。</p>
+<p>注意链路这一复合结构，一定是链在上，路在下，不然无法往上加点。 不能是【含 v 最大路 + w 链】。</p>
 <p>这也是为什么我们要区分这两种最大路。</p>
 <p>含 v 最大路的计算方式同直径，取最大链 + w 链的最大值。</p>
 <p>而最大链又是 w 链 + a[v] 的最大值。注意变量更新的顺序。</p>

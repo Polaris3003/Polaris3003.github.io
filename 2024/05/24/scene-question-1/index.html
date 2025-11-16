@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="5.24-场景题 订单到期关闭如何实现 典型回答 在电商、支付等系统中，一般都是先创建订单（支付单），再给用户一定的时间进行支付，如果没有按时支付的话，就需要把之前的订单（支付单）取消掉。这种类似的场景很多，比如到期自动收货、超时自动退款、下单后自动发送短信等等都是类似的业务问题。 订单到期关闭的实现有很多种方式，分别有：  被动关闭（不推荐） 定时任务（推荐，适合时间精确度要求不高">
+    <meta name="description" content="5.24-场景题  订单到期关闭如何实现  典型回答 在电商、支付等系统中，一般都是先创建订单（支付单），再给用户一定的时间进行支付，如果没有按时支付的话，就需要把之前的订单（支付单）取消掉。这种类似的场景很多，比如到期自动收货、超时自动退款、下单后自动发送短信等等都是类似的业务问题。 订单到期关闭的实现有很多种方式，分别有：  被动关闭（不推荐） 定时任务（推荐，适合时间精确度要求不高的场景）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="scene-question-1">
 <meta property="og:url" content="http://polaris3003.github.io/2024/05/24/scene-question-1/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="5.24-场景题 订单到期关闭如何实现 典型回答 在电商、支付等系统中，一般都是先创建订单（支付单），再给用户一定的时间进行支付，如果没有按时支付的话，就需要把之前的订单（支付单）取消掉。这种类似的场景很多，比如到期自动收货、超时自动退款、下单后自动发送短信等等都是类似的业务问题。 订单到期关闭的实现有很多种方式，分别有：  被动关闭（不推荐） 定时任务（推荐，适合时间精确度要求不高">
+<meta property="og:description" content="5.24-场景题  订单到期关闭如何实现  典型回答 在电商、支付等系统中，一般都是先创建订单（支付单），再给用户一定的时间进行支付，如果没有按时支付的话，就需要把之前的订单（支付单）取消掉。这种类似的场景很多，比如到期自动收货、超时自动退款、下单后自动发送短信等等都是类似的业务问题。 订单到期关闭的实现有很多种方式，分别有：  被动关闭（不推荐） 定时任务（推荐，适合时间精确度要求不高的场景）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-24T14:14:24.000Z">
 <meta property="article:modified_time" content="2025-02-11T09:26:06.000Z">
@@ -343,12 +343,12 @@
             
               <div class="markdown-body">
                 
-                <h1 id="场景题">5.24-场景题</h1>
-<h2 id="订单到期关闭如何实现">订单到期关闭如何实现</h2>
-<h3 id="典型回答">典型回答</h3>
+                <h1 id="524-场景题"><a class="markdownIt-Anchor" href="#524-场景题"></a> 5.24-场景题</h1>
+<h2 id="订单到期关闭如何实现"><a class="markdownIt-Anchor" href="#订单到期关闭如何实现"></a> 订单到期关闭如何实现</h2>
+<h3 id="典型回答"><a class="markdownIt-Anchor" href="#典型回答"></a> 典型回答</h3>
 <p>在电商、支付等系统中，一般都是先创建订单（支付单），再给用户一定的时间进行支付，如果没有按时支付的话，就需要把之前的订单（支付单）取消掉。这种类似的场景很多，比如到期自动收货、超时自动退款、下单后自动发送短信等等都是类似的业务问题。</p>
 <p>订单到期关闭的实现有很多种方式，分别有：</p>
-<ol type="1">
+<ol>
 <li>被动关闭（不推荐）</li>
 <li>定时任务（<strong>推荐</strong>，适合时间精确度要求不高的场景）</li>
 <li>DelayQueue（不推荐，基于内存，无法持久化）</li>
@@ -361,11 +361,8 @@
 <li>Redis的ZSet（不推荐，可能会重复消费）</li>
 <li>Redisson（<strong>推荐</strong>，可以用）</li>
 </ol>
-<h3 id="实现复杂度包含用到的框架的依赖及部署">实现复杂度（包含用到的框架的依赖及部署）</h3>
-<p>Redisson &gt; RabbitMQ插件 &gt; RabbitMQ死信队列 &gt;
-RocketMQ延迟消费 <span class="math inline">\(\approx\)</span>
-Redis的zset &gt; Redis过期监听 <span class="math inline">\(\approx\)</span> kafka时间轮 &gt; 定时任务 &gt;
-Netty的时间轮 &gt; JDK自带的DelayQueue &gt; 被动关闭</p>
+<h3 id="实现复杂度包含用到的框架的依赖及部署"><a class="markdownIt-Anchor" href="#实现复杂度包含用到的框架的依赖及部署"></a> 实现复杂度（包含用到的框架的依赖及部署）</h3>
+<p>Redisson &gt; RabbitMQ插件 &gt; RabbitMQ死信队列 &gt; RocketMQ延迟消费 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≈</mo></mrow><annotation encoding="application/x-tex">\approx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.48312em;vertical-align:0em;"></span><span class="mrel">≈</span></span></span></span> Redis的zset &gt;  Redis过期监听 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≈</mo></mrow><annotation encoding="application/x-tex">\approx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.48312em;vertical-align:0em;"></span><span class="mrel">≈</span></span></span></span> kafka时间轮 &gt; 定时任务 &gt; Netty的时间轮 &gt; JDK自带的DelayQueue &gt; 被动关闭</p>
 <p>不同场景中也适合不同方案:</p>
 <ul>
 <li>自己玩：被动关闭</li>
@@ -376,26 +373,25 @@ Netty的时间轮 &gt; JDK自带的DelayQueue &gt; 被动关闭</p>
 </ul>
 <p>总体考虑到成本、方案完整性、以及方案的复杂度，还有用到的第三方框架的流行度，优先考虑定时任务、Redisson+Redis、RabbitMQ插件、RocketMQ延迟消息等方案</p>
 <p>但是，如果考虑到订单到期关闭的业务特点，如果在订单量特别大的时候，MQ其实并不适合：</p>
-<p><a href="#为什么不建议使用MQ实现订单到期关闭？">为什么不建议使用MQ实现订单到期关闭?</a>
-//todo</p>
-<h2 id="扩展知识">扩展知识</h2>
-<h3 id="i被动关闭">I、被动关闭</h3>
+<p><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8MQ%E5%AE%9E%E7%8E%B0%E8%AE%A2%E5%8D%95%E5%88%B0%E6%9C%9F%E5%85%B3%E9%97%AD%EF%BC%9F">为什么不建议使用MQ实现订单到期关闭?</a> //todo</p>
+<h2 id="扩展知识"><a class="markdownIt-Anchor" href="#扩展知识"></a> 扩展知识</h2>
+<h3 id="i-被动关闭"><a class="markdownIt-Anchor" href="#i-被动关闭"></a> I、被动关闭</h3>
 <p>简单来说，就是订单创建好之后。我们系统上不做主动关单，什么时候用户来访问这个订单了，再去判断时间是不是超过了过期时间，如果过了时间就进行关单操作，然后再提示用户。</p>
 <p>这种做法是最简单的，基本不需要开发定时关闭的功能，但是他的缺点也很明显，那就是如果用户一直不来查看这个订单，那么就会有很多脏数据冗余在数据库中一直无法被关单。</p>
 <p>还有一个缺点，那就是需要在用户的查询过程中进行写的操作，一般写操作都会比读操作更耗时，而且有失败的可能，一旦关单失败了，就会导致系统处理起来比较复杂。</p>
-<h3 id="ii定时任务">II、定时任务</h3>
+<h3 id="ii-定时任务"><a class="markdownIt-Anchor" href="#ii-定时任务"></a> II、定时任务</h3>
 <p>具体实现细节就是我们通过一些调度平台来实现定时执行任务，任务就是去扫描所有到期的订单，然后执行关单动作。</p>
 <p>这个方案的有点也是比较简单，实现起来很容易，基于Timer、ScheduledThreadPoolExecutor、或者像xxl-job这类调度框架都能实现，但是有以下几个问题：</p>
-<ol type="1">
-<li><strong>时间不精确：</strong>一般定时任务基于固定的频率、按照时间定时执行的，那么就可能会发生很多订单已经到了超时时间，但是定时任务的调度时间还没到，那么就会导致这些订单的实际关闭时间要比应该关闭的时间晚一些。</li>
-<li><strong>无法处理大量订单：</strong>定时任务的方式是会把本来比较分散的关闭时间集中到任务调度的那一段时间，如果订单量比较大的话，那么就会导致任务执行时间很长，整个任务的时间越长，订单被扫描到时间可能就很晚，那么就会导致关闭时间更晚。</li>
-<li><strong>对数据库造成压力：</strong>定时任务集中扫表，这会使得数据库IO在短时间内被大量占用和消耗，如果没有做好隔离，并且业务量比较大的话，就可能会影响到线上的正常业务。</li>
-<li><strong>分库分表问题：</strong>订单系统，一旦订单量大就可能会考虑分库分表，在分库分表中进行全表扫描，这是一个极不推荐的方案。</li>
+<ol>
+<li>**时间不精确：**一般定时任务基于固定的频率、按照时间定时执行的，那么就可能会发生很多订单已经到了超时时间，但是定时任务的调度时间还没到，那么就会导致这些订单的实际关闭时间要比应该关闭的时间晚一些。</li>
+<li>**无法处理大量订单：**定时任务的方式是会把本来比较分散的关闭时间集中到任务调度的那一段时间，如果订单量比较大的话，那么就会导致任务执行时间很长，整个任务的时间越长，订单被扫描到时间可能就很晚，那么就会导致关闭时间更晚。</li>
+<li>**对数据库造成压力：**定时任务集中扫表，这会使得数据库IO在短时间内被大量占用和消耗，如果没有做好隔离，并且业务量比较大的话，就可能会影响到线上的正常业务。</li>
+<li>**分库分表问题：**订单系统，一旦订单量大就可能会考虑分库分表，在分库分表中进行全表扫描，这是一个极不推荐的方案。</li>
 </ol>
 <p>解决方案如下：</p>
-<p><a href="#定时任务扫表的问题解决方案">定时任务扫表的问题解决方案</a></p>
+<p><a href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%89%AB%E8%A1%A8%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">定时任务扫表的问题解决方案</a></p>
 <p>所以，定时任务的方案，适合对时间精确度要求不高、并且业务量不是很大的场景中。如果对时间精度要求比较高，这种方案不适用。（但是一般来说，订单的到期关闭这种业务，对时间精确度要求并不高，所以定时任务也是使用的最广泛的一种方案）</p>
-<h3 id="iiijdk自带的delayqueue">III、JDK自带的DelayQueue</h3>
+<h3 id="iii-jdk自带的delayqueue"><a class="markdownIt-Anchor" href="#iii-jdk自带的delayqueue"></a> III、JDK自带的DelayQueue</h3>
 <p>有这样一种方案，他不需要借助任何外部的资源，直接基于应用自身就能实现，那就是基于JDK自带的DelayQueue来实现。</p>
 <blockquote>
 <p><strong>DelayQueue是一个无界的BlockingQueue，用于放置实现了Delayed接口的对象，其中的对象只能在其到期时才能从队列中取走。</strong></p>
@@ -405,93 +401,74 @@ Netty的时间轮 &gt; JDK自带的DelayQueue &gt; 被动关闭</p>
 使用DelayQueue实现超时关单的方案，实现起来简单，不须要依赖第三方的框架和类库，JDK原生就支持了。</p>
 <p>当然这个方案也不是没有缺点的，首先，基于DelayQueue的话，需要把订单放进去，那如果订单量太大的话，可能会导致OOM的问题；另外，DelayQueue是基于JVM内存的，一旦机器重启了，里面的数据就都没有了。虽然我们可以配合数据库的持久化一起使用。而且现在很多应用都是集群部署的，那么集群中多个实例上的多个DelayQueue如何配合是一个很大的问题。</p>
 <p>所以，基于JDK的DelayQueue方案只适合在单机场景、并且数据量不大的场景中使用，如果涉及到分布式场景，那还是不建议使用。</p>
-<h3 id="ivnetty的时间轮">IV、Netty的时间轮</h3>
+<h3 id="iv-netty的时间轮"><a class="markdownIt-Anchor" href="#iv-netty的时间轮"></a> IV、Netty的时间轮</h3>
 <p>还有一种方式，和上面我们提到的JDK自带的DelayQueue类似的方式，那就是基于时间轮实现。</p>
 <p>为什么要有时间轮呢？主要是因为DelayQueue插入和删除操作的平均时间复杂度——O(nlog(n))，虽然已经挺好的了，但是时间轮的方案可以将插入和删除操作的时间复杂度都降为O(1)。</p>
 <blockquote>
-<p><strong>时间轮可以理解为一种环形结构，像钟表一样被分为多个 slot。每个
-slot 代表一个时间段，每个 slot
-中可以存放多个任务，使用的是链表结构保存该时间段到期的所有任务。时间轮通过一个时针随着时间一个个
-slot 转动，并执行 slot 中的所有到期任务。</strong></p>
+<p><strong>时间轮可以理解为一种环形结构，像钟表一样被分为多个 slot。每个 slot 代表一个时间段，每个 slot 中可以存放多个任务，使用的是链表结构保存该时间段到期的所有任务。时间轮通过一个时针随着时间一个个 slot 转动，并执行 slot 中的所有到期任务。</strong></p>
 </blockquote>
 <p>基于Netty的HashedWheelTimer可以帮助我们快速的实现一个时间轮，这种方式和DelayQueue类似，缺点都是基于内存、集群扩展麻烦、内存有限制等等。</p>
 <p>但是他相比DelayQueue的话，效率更高一些，任务触发的延迟更低。代码实现上面也更加精简。</p>
 <p>所以，基于Netty的时间轮方案比基于JDK的DelayQueue效率更高，实现起来更简单，但是同样的，只适合在单机场景、并且数据量不大的场景中使用，如果涉及到分布式场景，那还是不建议使用。</p>
-<h3 id="vkafka的时间轮">V、Kafka的时间轮</h3>
+<h3 id="v-kafka的时间轮"><a class="markdownIt-Anchor" href="#v-kafka的时间轮"></a> V、Kafka的时间轮</h3>
 <p>既然基于Netty的时间轮存在一些问题，那么有没有其他的时间轮的实现呢？</p>
 <p>还真有的，那就是Kafka的时间轮，Kafka内部有很多延时性的操作，如延时生产，延时拉取，延时数据删除等，这些延时功能由内部的延时操作管理器来做专门的处理，其底层是采用时间轮实现的。</p>
-<p>而且，为了解决有一些时间跨度大的延时任务，Kafka
-还引入了层级时间轮，能更好控制时间粒度，可以应对更加复杂的定时任务处理场景；</p>
-<p>Kafka 中的时间轮的实现是 TimingWheel 类，位于 kafka.utils.timer
-包中。基于Kafka的时间轮同样可以得到O(1)时间复杂度，性能上还是不错的。</p>
+<p>而且，为了解决有一些时间跨度大的延时任务，Kafka 还引入了层级时间轮，能更好控制时间粒度，可以应对更加复杂的定时任务处理场景；</p>
+<p>Kafka 中的时间轮的实现是 TimingWheel 类，位于 kafka.utils.timer 包中。基于Kafka的时间轮同样可以得到O(1)时间复杂度，性能上还是不错的。</p>
 <p>基于Kafka的时间轮的实现方式，在实现方式上有点复杂，需要依赖kafka，但是他的稳定性和性能都要更高一些，而且适合用在分布式场景中。</p>
-<h3 id="virocketmq延迟消息">VI、RocketMQ延迟消息</h3>
+<h3 id="vi-rocketmq延迟消息"><a class="markdownIt-Anchor" href="#vi-rocketmq延迟消息"></a> VI、RocketMQ延迟消息</h3>
 <p>相比于Kafka来说，RocketMQ中有一个强大的功能，那就是支持延迟消息</p>
 <blockquote>
 <p>延迟消息，当消息写入Broker后，不会立刻被消费者消费，需要等待指定的时长后才可被消费处理的消息，称为延迟消息</p>
 </blockquote>
 <p>有了延迟消息，我们就可以在订单创建好之后，发送一个延迟消息，比如20分钟取消订单，那就发一个延迟20分钟的延迟消息，然后在20分钟之后，消息就会被消费者消费，消费者在接收到消息之后，去关单就行了。</p>
-<p>但是，RocketMQ的延迟消息并不是支持任意时长的延迟的，它只支持：1s 5s
-10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h
-2h这几个时长。（商业版支持任意时长）</p>
+<p>但是，RocketMQ的延迟消息并不是支持任意时长的延迟的，它只支持：1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h这几个时长。（商业版支持任意时长）</p>
 <p>可以看到，有了RocketMQ延迟消息之后，我们处理上就简单很多，只需要发消息，和接收消息就行了，系统之间完全解耦了。但是因为延迟消息的时长受到了限制，所以并不是很灵活。</p>
-<p>如果我们的业务上，关单时长刚好和RocketMQ延迟消息支持的时长匹配的话，那么是可以基于RocketMQ延迟消息来实现的。否则，这种方式并不是最佳的。（但是在RocketMQ
-5.0中新增了基于时间轮实现的定时消息，可以解决这个问题）</p>
-<h3 id="viirabbitmq死信队列">VII、RabbitMQ死信队列</h3>
+<p>如果我们的业务上，关单时长刚好和RocketMQ延迟消息支持的时长匹配的话，那么是可以基于RocketMQ延迟消息来实现的。否则，这种方式并不是最佳的。（但是在RocketMQ 5.0中新增了基于时间轮实现的定时消息，可以解决这个问题）</p>
+<h3 id="vii-rabbitmq死信队列"><a class="markdownIt-Anchor" href="#vii-rabbitmq死信队列"></a> VII、RabbitMQ死信队列</h3>
 <p>延迟消息不仅在RocketMQ中支持，其实在RabbitMQ中也是可以实现的，只不过其底层是基于死信队列实现的。</p>
-<p>当RabbitMQ中的一条正常的消息，因为过了存活时间（TTL过期）、队列长度超限、被消费者拒绝等原因无法被消费时，就会变成Dead
-Message，即死信。</p>
+<p>当RabbitMQ中的一条正常的消息，因为过了存活时间（TTL过期）、队列长度超限、被消费者拒绝等原因无法被消费时，就会变成Dead Message，即死信。</p>
 <p>当一个消息变成死信之后，他就能被重新发送到死信队列中（其实是交换机-exchange）。<br>
 那么基于这样的机制，就可以实现延迟消息了。那就是我们给一个消息设定TTL，但是并不消费这个消息，等他过期，过期后就会进入到死信队列，然后我们再监听死信队列的消息消费就行了。<br>
 而且，RabbitMQ中的这个TTL是可以设置任意时长的，这就解决了RocketMQ的不灵活的问题。</p>
 <p>但是，死信队列的实现方式存在一个问题，那就是可能造成队头阻塞，如果死信队列中的队头的消息一直无法消费成功，那么就会阻塞整个队列，这时候即使排在他后面的消息过期需要处理了，那么也会被一直阻塞。</p>
 <p>基于RabbitMQ的死信队列，可以实现延迟消息，非常灵活的实现定时关单，并且借助RabbitMQ的集群扩展性，可以实现高可用，以及处理大并发量。他的缺点第一是可能存在消息阻塞的问题，还有就是方案比较复杂，不仅要依赖RabbitMQ，而且还需要声明很多队列(exchange)出来，增加系统的复杂度。</p>
-<h3 id="viiirabbitmq插件">VIII、RabbitMQ插件</h3>
+<h3 id="viii-rabbitmq插件"><a class="markdownIt-Anchor" href="#viii-rabbitmq插件"></a> VIII、RabbitMQ插件</h3>
 <p>其实，基于RabbitMQ的话，可以不用死信队列也能实现延迟消息，那就是基于rabbitmq_delayed_message_exchange插件，这种方案能够解决通过死信队列实现延迟消息出现的消息阻塞问题。但是该插件从RabbitMQ的3.6.12开始支持的，所以对版本有要求。</p>
 <p>这个插件是官方出的，可以放心使用，安装并启用这个插件之后，就可以创建x-delayed-message类型的队列了。</p>
 <p>前面我们提到的基于死信队列的方式，是消息先会投递到一个正常队列，在TTL过期后进入死信队列。但是基于插件的这种方式，消息并不会立即进入队列，而是先把他们保存在一个基于Erlang开发的Mnesia数据库中，然后通过一个定时器去查询需要被投递的消息，再把他们投递到x-delayed-message队列中。</p>
-<p>基于RabbitMQ插件的方式可以实现延迟消息，并且不存在消息阻塞的问题，但是因为是基于插件的，而这个插件支持的最大延长时间是(2<sup>32</sup>)-1
-毫秒，大约49天，超过这个时间就会被立即消费。但是他基于RabbitMQ实现，所以在可用性、性能方便都很不错</p>
-<h3 id="ixredis过期监听">IX、Redis过期监听</h3>
-<p>在 redis.conf 中，加入一条配置notify-keyspace-events
-Ex开启过期监听，然后再代码中实现一个KeyExpirationEventMessageListener，就可以监听key的过期消息了。</p>
+<p>基于RabbitMQ插件的方式可以实现延迟消息，并且不存在消息阻塞的问题，但是因为是基于插件的，而这个插件支持的最大延长时间是(2^32)-1 毫秒，大约49天，超过这个时间就会被立即消费。但是他基于RabbitMQ实现，所以在可用性、性能方便都很不错</p>
+<h3 id="ix-redis过期监听"><a class="markdownIt-Anchor" href="#ix-redis过期监听"></a> IX、Redis过期监听</h3>
+<p>在 redis.conf 中，加入一条配置notify-keyspace-events Ex开启过期监听，然后再代码中实现一个KeyExpirationEventMessageListener，就可以监听key的过期消息了。</p>
 <p>这样就可以在接收到过期消息的时候，进行订单的关单操作。</p>
 <p>这个方案不建议大家使用，是因为Redis官网上明确的说过，Redis并不保证Key在过期的时候就能被立即删除，更不保证这个消息能被立即发出。所以，消息延迟是必然存在的，随着数据量越大延迟越长，延迟个几分钟都是常事儿。</p>
-<p>而且，在Redis
-5.0之前，这个消息是通过PUB/SUB模式发出的，他不会做持久化，至于你有没有接到，有没有消费成功，他不管。也就是说，如果发消息的时候，你的客户端挂了，之后再恢复的话，这个消息你就彻底丢失了。（在Redis
-5.0之后，因为引入了Stream，是可以用来做延迟消息队列的。）</p>
-<h3 id="xredis的zset">X、Redis的zset</h3>
+<p>而且，在Redis 5.0之前，这个消息是通过PUB/SUB模式发出的，他不会做持久化，至于你有没有接到，有没有消费成功，他不管。也就是说，如果发消息的时候，你的客户端挂了，之后再恢复的话，这个消息你就彻底丢失了。（在Redis 5.0之后，因为引入了Stream，是可以用来做延迟消息队列的。）</p>
+<h3 id="x-redis的zset"><a class="markdownIt-Anchor" href="#x-redis的zset"></a> X、Redis的zset</h3>
 <p>我们可以借助Redis中的有序集合——zset来实现这个功能。</p>
-<p>zset是一个有序集合，每一个元素(member)都关联了一个 score，可以通过
-score 排序来取集合中的值。</p>
-<p>我们将订单超时时间的时间戳（下单时间+超时时长）与订单号分别设置为
-score 和
-member。这样redis会对zset按照score延时时间进行排序。然后我们再开启redis扫描任务，获取"当前时间
-&gt;
-score"的延时任务，扫描到之后取出订单号，然后查询到订单进行关单操作即可。</p>
-<p>使用redis
-zset来实现订单关闭的功能的优点是可以借助redis的持久化、高可用机制。避免数据丢失。但是这个方案也有缺点，那就是在高并发场景中，有可能有多个消费者同时获取到同一个订单号，一般采用加分布式锁解决，但是这样做也会降低吞吐型。</p>
+<p>zset是一个有序集合，每一个元素(member)都关联了一个 score，可以通过 score 排序来取集合中的值。</p>
+<p>我们将订单超时时间的时间戳（下单时间+超时时长）与订单号分别设置为 score 和 member。这样redis会对zset按照score延时时间进行排序。然后我们再开启redis扫描任务，获取&quot;当前时间 &gt; score&quot;的延时任务，扫描到之后取出订单号，然后查询到订单进行关单操作即可。</p>
+<p>使用redis zset来实现订单关闭的功能的优点是可以借助redis的持久化、高可用机制。避免数据丢失。但是这个方案也有缺点，那就是在高并发场景中，有可能有多个消费者同时获取到同一个订单号，一般采用加分布式锁解决，但是这样做也会降低吞吐型。</p>
 <p>但是，在大多数业务场景下，如果幂等性做得好的，多个消费者取到同一个订单号也无妨。</p>
-<h3 id="xiredisson-redis">XI、Redisson + Redis</h3>
+<h3 id="xi-redisson-redis"><a class="markdownIt-Anchor" href="#xi-redisson-redis"></a> XI、Redisson + Redis</h3>
 <blockquote>
 <p>Redisson时一个在Redis的基础上实现的框架，它不仅提供了一系列的分布式的Java常用对象，还提供了许多分布式服务。</p>
 </blockquote>
 <p>Redisson中定义了分布式延迟队列RDelayedQueue，这是一种基于我们前面介绍过的zset结构实现的延时队列，它允许以指定的延迟时长将元素放到目标队列中。</p>
 <p>其实就是在zset的基础上增加了一个基于内存的延迟队列。当我们要添加一个数据到延迟队列的时候，redisson会把数据+超时时间放到zset中，并且起一个延时任务，当任务到期的时候，再去zset中把数据取出来，返回给客户端使用。</p>
-<p><a href="#如何基于Redisson实现一个延迟队列">如何基于Redisson实现一个延迟队列</a></p>
+<p><a href="#%E5%A6%82%E4%BD%95%E5%9F%BA%E4%BA%8ERedisson%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%BB%B6%E8%BF%9F%E9%98%9F%E5%88%97">如何基于Redisson实现一个延迟队列</a></p>
 <p>基于Redisson的实现方式，是可以解决基于zset方案中的并发重复问题的，而且还能实现方式也比较简单，稳定性、性能都比较高。</p>
 <hr>
-<h2 id="为什么不建议使用mq实现订单到期关闭">为什么不建议使用MQ实现订单到期关闭？</h2>
-<ol type="1">
-<li><strong>资源占用与成本：</strong>如果系统中存在大量订单，为每个订单都创建一个延迟消息可能会导致消息队列中积压大量的消息，这不仅增加了消息队列的资源消耗，也可能导致增加成本，尤其是在使用云服务提供商的消息队列服务时。</li>
-<li><strong>延迟消息的限制：</strong>首先并不是所有的消息队列服务都支持延迟消息，及时有一些支持，也可能对消息的延迟时间有限制。例如，某些服务可能限制延迟时间的最大值，这可能无法满足所有订单的到期关闭需求。</li>
-<li><strong>可靠性问题：</strong>虽然消息队列一般来说可靠性较高，但是也没办法做到100%不丢消息，所以在极端情况下，会有丢消息的风险。</li>
-<li><strong>精确性问题：</strong>消息的投递延迟是比较常见的一种情况，这可能会导致订单关闭操作不够精确。</li>
-<li><strong>大量无效消息：</strong>使用MQ实现订单到期关闭就要把订单放到MQ中，但是大部分订单会提前取消或者完成支付，这就会导致很多无效的消息。</li>
-<li><strong>扩展性问题：</strong>随着系统规模的扩大，依赖于消息队列的延迟消息来处理订单到期可能遇到扩展性问题。系统可能需要更复杂的消息队列管理策略和更高效的资源利用策略来应对不断增长的订单量。</li>
+<h2 id="为什么不建议使用mq实现订单到期关闭"><a class="markdownIt-Anchor" href="#为什么不建议使用mq实现订单到期关闭"></a> 为什么不建议使用MQ实现订单到期关闭？</h2>
+<ol>
+<li>**资源占用与成本：**如果系统中存在大量订单，为每个订单都创建一个延迟消息可能会导致消息队列中积压大量的消息，这不仅增加了消息队列的资源消耗，也可能导致增加成本，尤其是在使用云服务提供商的消息队列服务时。</li>
+<li>**延迟消息的限制：**首先并不是所有的消息队列服务都支持延迟消息，及时有一些支持，也可能对消息的延迟时间有限制。例如，某些服务可能限制延迟时间的最大值，这可能无法满足所有订单的到期关闭需求。</li>
+<li>**可靠性问题：**虽然消息队列一般来说可靠性较高，但是也没办法做到100%不丢消息，所以在极端情况下，会有丢消息的风险。</li>
+<li>**精确性问题：**消息的投递延迟是比较常见的一种情况，这可能会导致订单关闭操作不够精确。</li>
+<li>**大量无效消息：**使用MQ实现订单到期关闭就要把订单放到MQ中，但是大部分订单会提前取消或者完成支付，这就会导致很多无效的消息。</li>
+<li>**扩展性问题：**随着系统规模的扩大，依赖于消息队列的延迟消息来处理订单到期可能遇到扩展性问题。系统可能需要更复杂的消息队列管理策略和更高效的资源利用策略来应对不断增长的订单量。</li>
 </ol>
-<h2 id="定时任务扫表的问题解决方案">定时任务扫表的问题解决方案</h2>
-<h3 id="数据量多扫表慢">数据量多，扫表慢</h3>
+<h2 id="定时任务扫表的问题解决方案"><a class="markdownIt-Anchor" href="#定时任务扫表的问题解决方案"></a> 定时任务扫表的问题解决方案</h2>
+<h3 id="数据量多扫表慢"><a class="markdownIt-Anchor" href="#数据量多扫表慢"></a> 数据量多，扫表慢</h3>
 <p>随着需要扫描的表中的数据量越来越大，通过定时任务扫表的方式会越来越慢，那么想要解决这个问题，首先可以考虑加索引。</p>
 <p>我们可以在state字段上增加一个索引，虽然这个字段的区分度不高，但是一般来说，这张表中，SUCCESS的数据量占90%，而INIT的数据量只占10%，而我们扫表的时候只关心INIT即可，所以增加索引后，扫表的效率是可以大大提升的。</p>
 <p>其次，可以考虑多线程并发扫表，这里可以考虑采用线程池，在任务中开多个线程并发的从数据库中扫描数据进行处理。</p>
@@ -507,23 +484,23 @@ zset来实现订单关闭的功能的优点是可以借助redis的持久化、�
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> RETRY_MESSAGE <span class="hljs-keyword">WHERE</span><br>STATE <span class="hljs-operator">=</span> &quot;INIT&quot;<br><span class="hljs-keyword">AND</span> BIZ_ID <span class="hljs-keyword">LIKE</span> &quot;$&#123;frontNumber&#125;$&quot;;<br></code></pre></td></tr></table></figure>
 <p>那么，不同线程执行的SQL就不一样了，分别是：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> RETRY_MESSAGE <span class="hljs-keyword">WHERE</span><br>STATE <span class="hljs-operator">=</span> &quot;INIT&quot;<br><span class="hljs-keyword">AND</span> BIZ_D <span class="hljs-keyword">LIKE</span> &quot;1%&quot;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> RETRY_MESSAGE <span class="hljs-keyword">WHERE</span><br>STATE <span class="hljs-operator">=</span> &quot;INIT&quot;<br><span class="hljs-keyword">AND</span> BIZ_D <span class="hljs-keyword">LIKE</span> &quot;2%&quot;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> RETRY_MESSAGE <span class="hljs-keyword">WHERE</span><br>STATE <span class="hljs-operator">=</span> &quot;INIT&quot;<br><span class="hljs-keyword">AND</span> BIZ_D <span class="hljs-keyword">LIKE</span> &quot;3%&quot;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> RETRY_MESSAGE <span class="hljs-keyword">WHERE</span><br>STATE <span class="hljs-operator">=</span> &quot;INIT&quot;<br><span class="hljs-keyword">AND</span> BIZ_D <span class="hljs-keyword">LIKE</span> &quot;4%&quot;<br></code></pre></td></tr></table></figure>
-<h3 id="集中式扫表会影响正常业务">集中式扫表会影响正常业务</h3>
+<h3 id="集中式扫表会影响正常业务"><a class="markdownIt-Anchor" href="#集中式扫表会影响正常业务"></a> 集中式扫表会影响正常业务</h3>
 <p>如果业务量比较大的话，集中式的扫描数据库势必给数据库带来一定的压力，那么就会影响到正常的业务。</p>
 <p>那么想要解决这个问题，首先可以考虑，不扫主库，而是扫描备库。之所以能这么做，是因为这个业务场景一般都是可以接受一定的数据延迟的，那么备库带来延迟就可以忽略，但是备库是没有业务操作的，所以对备库的扫描是不会对业务造成影响的。</p>
 <p>当然，这里还要考虑一个问题，那就是备库扫描数据之后的执行，执行完该如何同步到主库，这里可以直接修改主库，主备库数据ID一致的，直接去修改主库的就行了。不建议直接在备库上修改。</p>
 <p>但是不管怎么样，备库还是可以分担扫表的这个大量高峰请求的。</p>
 <p>除了扫备库，还有一个方案，那就是做分库。把原来集中在同一个数据库的数据分散到不同的数据库中，这样用集群代替单库来整体对外提供服务，可以大大的提升吞吐量。</p>
 <p>因为多个数据库的话，每个库提供的连接数就会多，并且多个实例的话，CPU、IO、LOAD这些指标也可以互相分担。</p>
-<h3 id="定时扫表存在延迟问题">定时扫表存在延迟问题</h3>
+<h3 id="定时扫表存在延迟问题"><a class="markdownIt-Anchor" href="#定时扫表存在延迟问题"></a> 定时扫表存在延迟问题</h3>
 <p>定时任务都是集中式的定时执行的，那么就会存在延迟的问题。随着数据库越来越大，延迟会越来越长。</p>
 <p>想要降低延迟，那就要抛弃定时任务的方案，可以考虑延迟消息，基于延迟消息来做定时执行。</p>
 <p>用了延迟消息之后，还可以缓解数据库的压力。也能比定时扫表的性能要好，实时性也更高。</p>
 <p>当然，引入另外一个中间件也需要考虑成本的。</p>
-<h3 id="同步转异步">同步转异步</h3>
+<h3 id="同步转异步"><a class="markdownIt-Anchor" href="#同步转异步"></a> 同步转异步</h3>
 <p>就是同步先执行，失败了的话，再异步执行。如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">ThreadFactory</span> <span class="hljs-variable">namedThreadFactory</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadFactoryBuilder</span>()<br>    .setNameFormat(<span class="hljs-string">&quot;hollis-pool-%d&quot;</span>).build();<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">ExecutorService</span> <span class="hljs-variable">pool</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadPoolExecutor</span>(<span class="hljs-number">5</span>, <span class="hljs-number">200</span>,<br>    <span class="hljs-number">0L</span>, TimeUnit.MILLISECONDS,<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedBlockingQueue</span>&lt;Runnable&gt;(<span class="hljs-number">1024</span>), namedThreadFactory, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadPoolExecutor</span>.AbortPolicy());<br><span class="hljs-meta">@Transactional(rollbackFor = Exception.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">pay</span><span class="hljs-params">(PayRequest payRequest)</span>&#123;<br>	<span class="hljs-comment">//在同一个事务中做本地业务操作和记录消息</span><br>	payService.doPay(payRequest);<br>    retryMessageService.init(payRequest);<br>	<span class="hljs-comment">//同步执行一次外部调用</span><br>    <span class="hljs-keyword">try</span>&#123;<br>        <span class="hljs-type">Result</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> outerService.doSth(payRequest);<br>        <span class="hljs-keyword">if</span>(result.isSuccess())&#123;<br>            retryMessageService.success(payRequest);<br>        &#125;<br>    &#125;<span class="hljs-keyword">catch</span>(Exception e)&#123;<br>        <span class="hljs-comment">// 捕获异常，失败依赖异步重试</span><br>    &#125;<br>	<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>如上，在同步接口中，先尝试执行一次要可能会失败的任务，如果成功了，那就把事件推进到成功。如果失败了也无所谓，因为会有异步定时任务捞起来重试。</p>
-<h2 id="如何基于redisson实现一个延迟队列">如何基于Redisson实现一个延迟队列</h2>
+<h2 id="如何基于redisson实现一个延迟队列"><a class="markdownIt-Anchor" href="#如何基于redisson实现一个延迟队列"></a> 如何基于Redisson实现一个延迟队列</h2>
 <p>Redisson中定义了分布式延迟队列RDelayedQueue，这是一种基于我们前面介绍过的zset结构实现的延时队列，它允许以指定的延迟时长将元素放到目标队列中。</p>
 <p>其实就是在zset的基础上增加了一个基于内存的延迟队列。当我们要添加一个数据到延迟队列的时候，redisson会把数据+超时时间放到zset中，并且起一个延时任务，当任务到期的时候，再去zset中把数据取出来，返回给客户端使用。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;dependency&gt;<br>    &lt;groupId&gt;org.redisson&lt;/groupId&gt;<br>    &lt;artifactId&gt;redisson&lt;/artifactId&gt;<br>    &lt;version&gt;最新版&lt;/version&gt; <br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
@@ -532,14 +509,9 @@ zset来实现订单关闭的功能的优点是可以借助redis的持久化、�
 <p>接下来，在想要使用延迟队列的地方做如下方式：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">import</span> org.redisson.api.RBlockingDeque;<br><span class="hljs-keyword">import</span> org.redisson.api.RDelayedQueue;<br><span class="hljs-keyword">import</span> org.redisson.api.RedissonClient;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><span class="hljs-keyword">import</span> java.time.LocalDateTime;<br><span class="hljs-keyword">import</span> java.time.format.DateTimeFormatter;<br><span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;<br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RedissonOrderDelayQueue</span> &#123;<br>    <span class="hljs-meta">@Autowired</span><br>    RedissonClient redisson;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addTaskToDelayQueue</span><span class="hljs-params">(String orderId)</span> &#123;<br>      <br>        RBlockingDeque&lt;String&gt; blockingDeque = redisson.getBlockingDeque(<span class="hljs-string">&quot;orderQueue&quot;</span>);<br>        RDelayedQueue&lt;String&gt; delayedQueue = redisson.getDelayedQueue(blockingDeque);<br>        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>)) + <span class="hljs-string">&quot;添加任务到延时队列里面&quot;</span>);<br>        delayedQueue.offer(orderId, <span class="hljs-number">3</span>, TimeUnit.SECONDS);<br>        delayedQueue.offer(orderId, <span class="hljs-number">6</span>, TimeUnit.SECONDS);<br>        delayedQueue.offer(orderId, <span class="hljs-number">9</span>, TimeUnit.SECONDS);<br>    &#125;<br>   <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getOrderFromDelayQueue</span><span class="hljs-params">()</span> &#123;<br>        RBlockingDeque&lt;String&gt; blockingDeque = redisson.getBlockingDeque(<span class="hljs-string">&quot;orderQueue&quot;</span>);<br>        RDelayedQueue&lt;String&gt; delayedQueue = redisson.getDelayedQueue(blockingDeque);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">orderId</span> <span class="hljs-operator">=</span> blockingDeque.take();<br>        <span class="hljs-keyword">return</span> orderId;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>使用offer方法将两条延迟消息添加到RDelayedQueue中，使用take方法从RQueue中获取消息，如果没有消息可用，该方法会阻塞等待，直到消息到达。</p>
-<p>我们使用 RDelayedQueue 的 offer
-方法将元素添加到延迟队列，并指定延迟的时间。当元素的延迟时间到达时，Redisson
-会将元素从 RDelayedQueue 转移到关联的 RBlockingDeque 中。</p>
-<p>使用 RBlockingDeque 的 take 方法从关联的 RBlockingDeque
-中获取元素。这是一个阻塞操作，如果没有元素可用，它会等待直到有元素可用。</p>
-<p>所以，为了从延迟队列中取出元素，使用 RBlockingDeque 的 take
-方法，因为 Redisson 的 RDelayedQueue 实际上是通过转移元素到关联的
-RBlockingDeque 来实现延迟队列的。</p>
+<p>我们使用 RDelayedQueue 的 offer 方法将元素添加到延迟队列，并指定延迟的时间。当元素的延迟时间到达时，Redisson 会将元素从 RDelayedQueue 转移到关联的 RBlockingDeque 中。</p>
+<p>使用 RBlockingDeque 的 take 方法从关联的 RBlockingDeque 中获取元素。这是一个阻塞操作，如果没有元素可用，它会等待直到有元素可用。</p>
+<p>所以，为了从延迟队列中取出元素，使用 RBlockingDeque 的 take 方法，因为 Redisson 的 RDelayedQueue 实际上是通过转移元素到关联的 RBlockingDeque 来实现延迟队列的。</p>
 
                 
               </div>
