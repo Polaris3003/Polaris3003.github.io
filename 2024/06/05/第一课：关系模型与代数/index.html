@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第一课：关系模型与代数  1 数据库  数据库是相互关联的数据的有组织的集合，它对现实世界的某些方面进行建模（例如，在课堂或数字音乐商店中为学生建模）。人们经常将“数据库”与“数据库管理系统”（例如 MySQL、Oracle、MongoDB、Snowflake）混淆。数据库管理系统（DBMS）是管理数据库的软件。 考虑一个对数字音乐商店（例如 Spotify）进行建模的数据库。让数据库保存有关艺">
+    <meta name="description" content="第一课：关系模型与代数 1 数据库  数据库是相互关联的数据的有组织的集合，它对现实世界的某些方面进行建模（例如，在课堂或数字音乐商店中为学生建模）。人们经常将“数据库”与“数据库管理系统”（例如 MySQL、Oracle、MongoDB、Snowflake）混淆。数据库管理系统（DBMS）是管理数据库的软件。 考虑一个对数字音乐商店（例如 Spotify）进行建模的数据库。让数据库保">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CMU15445-lecture1">
 <meta property="og:url" content="http://polaris3003.github.io/2024/06/05/%E7%AC%AC%E4%B8%80%E8%AF%BE%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B8%8E%E4%BB%A3%E6%95%B0/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="第一课：关系模型与代数  1 数据库  数据库是相互关联的数据的有组织的集合，它对现实世界的某些方面进行建模（例如，在课堂或数字音乐商店中为学生建模）。人们经常将“数据库”与“数据库管理系统”（例如 MySQL、Oracle、MongoDB、Snowflake）混淆。数据库管理系统（DBMS）是管理数据库的软件。 考虑一个对数字音乐商店（例如 Spotify）进行建模的数据库。让数据库保存有关艺">
+<meta property="og:description" content="第一课：关系模型与代数 1 数据库  数据库是相互关联的数据的有组织的集合，它对现实世界的某些方面进行建模（例如，在课堂或数字音乐商店中为学生建模）。人们经常将“数据库”与“数据库管理系统”（例如 MySQL、Oracle、MongoDB、Snowflake）混淆。数据库管理系统（DBMS）是管理数据库的软件。 考虑一个对数字音乐商店（例如 Spotify）进行建模的数据库。让数据库保">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-05T12:47:51.000Z">
 <meta property="article:modified_time" content="2025-02-11T09:25:34.000Z">
@@ -287,7 +287,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k 字
+          2.4k 字
         
       </span>
     
@@ -298,7 +298,7 @@
         
         
         
-          21 分钟
+          20 分钟
         
       </span>
     
@@ -348,41 +348,51 @@
             
               <div class="markdown-body">
                 
-                <h1 id="第一课关系模型与代数"><a class="markdownIt-Anchor" href="#第一课关系模型与代数"></a> 第一课：关系模型与代数</h1>
-<h2 id="1-数据库"><a class="markdownIt-Anchor" href="#1-数据库"></a> 1 数据库</h2>
+                <h1 id="第一课关系模型与代数">第一课：关系模型与代数</h1>
+<h2 id="数据库">1 数据库</h2>
 <hr>
-<p>数据库是相互关联的数据的有组织的集合，它对现实世界的某些方面进行建模（例如，在课堂或数字音乐商店中为学生建模）。人们经常将“数据库”与“数据库管理系统”（例如 MySQL、Oracle、MongoDB、Snowflake）混淆。数据库管理系统（DBMS）是管理数据库的软件。</p>
-<p>考虑一个对数字音乐商店（例如 Spotify）进行建模的数据库。让数据库保存有关艺术家以及这些艺术家发行的专辑的信息。</p>
-<h2 id="2-平面文件实例"><a class="markdownIt-Anchor" href="#2-平面文件实例"></a> 2 平面文件实例</h2>
+<p>数据库是相互关联的数据的有组织的集合，它对现实世界的某些方面进行建模（例如，在课堂或数字音乐商店中为学生建模）。人们经常将“数据库”与“数据库管理系统”（例如
+MySQL、Oracle、MongoDB、Snowflake）混淆。数据库管理系统（DBMS）是管理数据库的软件。</p>
+<p>考虑一个对数字音乐商店（例如
+Spotify）进行建模的数据库。让数据库保存有关艺术家以及这些艺术家发行的专辑的信息。</p>
+<h2 id="平面文件实例">2 平面文件实例</h2>
 <hr>
-<p>数据库存储为 DBMS 管理的逗号分隔值 (CSV) 文件。每个实体将存储在其自己的文件中。应用程序每次想要读取或更新记录时都必须解析文件。</p>
+<p>数据库存储为 DBMS 管理的逗号分隔值 (CSV)
+文件。每个实体将存储在其自己的文件中。应用程序每次想要读取或更新记录时都必须解析文件。</p>
 <p>按照数字音乐商店的示例，将有两个文件：一个用于艺术家，另一个用于专辑。</p>
 <p>每个实体都有自己的一组属性，因此在每个文件中，不同的记录由换行符分隔，而记录中的每个相应属性由逗号分隔。</p>
 <p>示例：艺术家可以具有姓名、年份和国家/地区属性，而专辑则具有姓名、艺术家和年份属性。</p>
-<p>以下是一个 CSV 文件示例，其中包含有关具有架构（姓名、年份、国家/地区）的艺术家的信息：</p>
+<p>以下是一个 CSV
+文件示例，其中包含有关具有架构（姓名、年份、国家/地区）的艺术家的信息：</p>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">&quot;Wu-Tang Clan&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-number">1992</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;USA&quot;</span> <br><span class="hljs-string">&quot;Notorious BIG&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-number">1992</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;USA&quot;</span> <br><span class="hljs-string">&quot;GZA&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-number">1990</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;USA&quot;</span> <br></code></pre></td></tr></table></figure>
 <p>平面文件的问题：</p>
 <ul>
-<li><strong>效率</strong> 需要扫描整个文件并存储在内存中才能找到特定的记录。</li>
-<li><strong>灵活性</strong> 很难进行架构更改，即添加新字段。需要重写整个文件。</li>
-<li><strong>数据完整性</strong> 很难强制执行约束条件，例如年份必须为数字。同时，在专辑文件中可能引用不存在的艺术家。</li>
-<li><strong>持久性</strong> 如果我们的程序正在更新记录时，机器崩溃了，会怎么样？</li>
-<li><strong>并发</strong> 如果两个线程同时尝试更新同一条记录会怎么样？</li>
+<li><strong>效率</strong>
+需要扫描整个文件并存储在内存中才能找到特定的记录。</li>
+<li><strong>灵活性</strong>
+很难进行架构更改，即添加新字段。需要重写整个文件。</li>
+<li><strong>数据完整性</strong>
+很难强制执行约束条件，例如年份必须为数字。同时，在专辑文件中可能引用不存在的艺术家。</li>
+<li><strong>持久性</strong>
+如果我们的程序正在更新记录时，机器崩溃了，会怎么样？</li>
+<li><strong>并发</strong>
+如果两个线程同时尝试更新同一条记录会怎么样？</li>
 <li><strong>抽象</strong> 这个程序与物理存储（CSV文件）紧密耦合。</li>
 </ul>
-<h2 id="3-数据库管理系统"><a class="markdownIt-Anchor" href="#3-数据库管理系统"></a> 3 数据库管理系统</h2>
+<h2 id="数据库管理系统">3 数据库管理系统</h2>
 <hr>
 <p>一个数据库管理系统（DBMS）是一种允许应用程序在数据库中存储和分析信息的软件。</p>
 <p>通用的DBMS旨在根据某种数据模型，允许数据库的定义、创建、查询、更新和管理。</p>
 <p>数据模型是用于描述数据库中数据的一组概念。</p>
 <p>例如：例如：关系型（最常见的）、NoSQL（键/值、文档、图形）、数组/矩阵/向量（用于机器学习）。</p>
 <p>模式是基于数据模型的特定数据集合的描述。</p>
-<h3 id="早期dbms"><a class="markdownIt-Anchor" href="#早期dbms"></a> 早期DBMS</h3>
+<h3 id="早期dbms">早期DBMS</h3>
 <p>早期的数据库管理系统（DBMS）由于逻辑和物理层之间的紧密耦合，所以构建和维护都很困难。</p>
 <p>逻辑层描述了数据库中有哪些实体和属性，而物理层描述了这些实体和属性是如何存储的。在早期，物理层是在应用程序代码中定义的，所以如果我们想要更改应用程序正在使用的物理层，我们必须改变所有的代码以适应新的物理层。</p>
-<h2 id="4-关系模型"><a class="markdownIt-Anchor" href="#4-关系模型"></a> 4 关系模型</h2>
+<h2 id="关系模型">4 关系模型</h2>
 <hr>
-<p>特德·科德（Ted Codd）注意到每当人们想要改变物理层时，就需要重新编写数据库管理系统（DBMS），因此他在1969年提出了关系模型以避免这种情况发生。</p>
+<p>特德·科德（Ted
+Codd）注意到每当人们想要改变物理层时，就需要重新编写数据库管理系统（DBMS），因此他在1969年提出了关系模型以避免这种情况发生。</p>
 <p>关系模型基于关系定义了一个数据库抽象，以避免维护开销。它有三个关键点：</p>
 <ul>
 <li>将数据库存储在简单的数据结构（关系）中。</li>
@@ -391,62 +401,67 @@
 </ul>
 <p>关系数据模型定义了三个概念：</p>
 <ul>
-<li>**结构：**关系及其内容的定义。这是关系具有的属性和这些属性可以容纳的值。</li>
-<li>**完整性：**确保数据库的内容满足约束条件。一个例子是：年份属性的任何值都必须是一个数字。</li>
-<li>**操作：**如何访问和修改数据库内容。</li>
+<li><strong>结构：</strong>关系及其内容的定义。这是关系具有的属性和这些属性可以容纳的值。</li>
+<li><strong>完整性：</strong>确保数据库的内容满足约束条件。一个例子是：年份属性的任何值都必须是一个数字。</li>
+<li><strong>操作：</strong>如何访问和修改数据库内容。</li>
 </ul>
 <p>一个关系是一个无序集合，其中包含表示实体关系的属性。由于关系是无序的，数据库管理系统可以以任何方式存储它们，以实现优化。关系中可能存在重复的元素。</p>
 <p>一个元组是关系中属性值(也称为其域)的集合。起初，值必须是原子式的或者标量的，但现在值也可以是列表或嵌套数据结构。每个属性都可以是特殊值NULL，它表示对于给定的元组，属性是未定义的。</p>
 <p>具有n个属性的关系被称为n元关系。在本课程中，我们会交替使用关系和表。一个n元关系等同于具有n列的表。</p>
-<h3 id="键"><a class="markdownIt-Anchor" href="#键"></a> 键</h3>
+<h3 id="键">键</h3>
 <p>关系的主键唯一标识一个元组。如果您没有定义主键，一些数据库管理系统会自动创建一个内部主键。许多数据库管理系统支持自动生成的键，因此应用程序不必手动递增键，但某些数据库管理系统仍然需要主键。</p>
 <p>外键指定一个关系中的属性必须映射到另一个关系中的元组。例如，我们可以在专辑表中包含艺术家ID（引用艺术家表的外键）。</p>
-<h3 id="约束"><a class="markdownIt-Anchor" href="#约束"></a> 约束</h3>
+<h3 id="约束">约束</h3>
 <p>约束是用户定义的必须满足数据库任何实例的条件</p>
-<h2 id="5-数据操作语言dmls"><a class="markdownIt-Anchor" href="#5-数据操作语言dmls"></a> 5 数据操作语言（DMLs）</h2>
+<h2 id="数据操作语言dmls">5 数据操作语言（DMLs）</h2>
 <hr>
 <p>存储和检索数据库中的信息的方法。对此有两类语言：</p>
 <ul>
 <li>过程性语言：查询指定了DBMS应使用哪种（高级）策略基于集合/包找到所需结果。例如，使用for循环扫描所有记录并计算记录数以检索表中的记录数。</li>
-<li>非过程性语言（声明性语言）：查询仅指定所需的数据而不指定如何查找它。例如，使用SQL select count(*) from artist来计算表中有多少条记录。</li>
+<li>非过程性语言（声明性语言）：查询仅指定所需的数据而不指定如何查找它。例如，使用SQL
+select count(*) from artist来计算表中有多少条记录。</li>
 </ul>
-<h2 id="6-关系代数"><a class="markdownIt-Anchor" href="#6-关系代数"></a> 6 关系代数</h2>
+<h2 id="关系代数">6 关系代数</h2>
 <hr>
 <p>关系代数是一组检索和操作关系中元组的基本操作。每个操作符都接受一个或多个关系作为输入，并输出一个新的关系。为了编写查询，我们可以“链接”这些操作符以创建更复杂的操作。</p>
-<h3 id="select"><a class="markdownIt-Anchor" href="#select"></a> Select</h3>
+<h3 id="select">Select</h3>
 <p>Select接受一个关系，并输出满足选择谓词的关系中的一部分元组。谓词的作用类似于过滤器，并且我们可以使用合取和析取来组合多个谓词。</p>
-<p>语法：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>d</mi><mi>i</mi><mi>c</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_{predicate}(R)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose">)</span></span></span></span>.</p>
-<p>例子：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mrow><mi>a</mi><mi mathvariant="normal">.</mi><mi>i</mi><mi>d</mi><msup><mo>=</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi>a</mi><msup><mn>2</mn><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_{a.id=&#x27;a2&#x27;}(R)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">d</span><span class="mrel mtight"><span class="mrel mtight">=</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mathnormal mtight">a</span><span class="mord mtight"><span class="mord mtight">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose">)</span></span></span></span></p>
-<p>SQL:SELECT * FROM R WHERE a_id = ‘a2’.</p>
-<h3 id="projection"><a class="markdownIt-Anchor" href="#projection"></a> Projection</h3>
+<p>语法：<span class="math inline">\(\sigma_{predicate}(R)\)</span>.</p>
+<p>例子：<span class="math inline">\(\sigma_{a.id=&#39;a2&#39;}(R)\)</span></p>
+<p>SQL:SELECT * FROM R WHERE a_id = 'a2'.</p>
+<h3 id="projection">Projection</h3>
 <p>投影会接收一个关系，并输出一个只包含指定属性的关系。您可以重新安排输入关系中属性的顺序，并操纵其值。</p>
-<p>语法:<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mrow><mi>A</mi><mn>1</mn><mo separator="true">,</mo><mi>A</mi><mn>2</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><mi>A</mi><mi>n</mi></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_{A1,A2,...,An}(R)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">A</span><span class="mord mtight">2</span><span class="mpunct mtight">,</span><span class="mord mtight">.</span><span class="mord mtight">.</span><span class="mord mtight">.</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">A</span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose">)</span></span></span></span>.</p>
-<p>例子：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mrow><mi>b</mi><mi mathvariant="normal">.</mi><mi>i</mi><mi>d</mi><mo>−</mo><mn>100</mn><mo separator="true">,</mo><mi>a</mi><mi mathvariant="normal">.</mi><mi>i</mi><mi>d</mi></mrow></msub><mo stretchy="false">(</mo><msub><mi>σ</mi><mrow><mi>a</mi><mi mathvariant="normal">.</mi><mi>i</mi><mi>d</mi><msup><mo>=</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi>a</mi><msup><mn>2</mn><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_{b.id-100,a.id}(\sigma_{a.id=&#x27;a2&#x27;}(R))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">d</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">a</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">d</span><span class="mrel mtight"><span class="mrel mtight">=</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mathnormal mtight">a</span><span class="mord mtight"><span class="mord mtight">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>.</p>
-<p>SQL:SELECT b.id-100, <a target="_blank" rel="noopener" href="http://a.id">a.id</a> FROM R WHERE <a target="_blank" rel="noopener" href="http://a.id">a.id</a> = ‘a2’.</p>
-<h3 id="union"><a class="markdownIt-Anchor" href="#union"></a> Union</h3>
+<p>语法:<span class="math inline">\(\pi_{A1,A2,...,An}(R)\)</span>.</p>
+<p>例子：<span class="math inline">\(\pi_{b.id-100,a.id}(\sigma_{a.id=&#39;a2&#39;}(R))\)</span>.</p>
+<p>SQL:SELECT b.id-100, a.id FROM R WHERE a.id = 'a2'.</p>
+<h3 id="union">Union</h3>
 <p>Union接收两个关系，并输出一个包含所有出现在至少一个输入关系中的元组的关系。注意：两个输入必须具有完全相同的属性。</p>
-<p>语法：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>∪</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R \cup S)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span>.</p>
+<p>语法：<span class="math inline">\((R \cup S)\)</span>.</p>
 <p>SQL:(SELECT * FROM R) UNION ALL (SELECT * FROM S).</p>
-<h3 id="intersection"><a class="markdownIt-Anchor" href="#intersection"></a> Intersection</h3>
+<h3 id="intersection">Intersection</h3>
 <p>交集操作接收两个关系，并输出包含出现在两个输入关系中的所有元组的关系。注意：两个输入关系必须具有完全相同的属性。</p>
-<p>语法：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>∩</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R \cap S)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span>.</p>
+<p>语法：<span class="math inline">\((R \cap S)\)</span>.</p>
 <p>SQL:(SELECT * FROM R) INTERSECT (SELECT * FROM S).</p>
-<h3 id="difference"><a class="markdownIt-Anchor" href="#difference"></a> Difference</h3>
+<h3 id="difference">Difference</h3>
 <p>差异操作接受两个关系，输出一个包含在第一个关系中出现但不在第二个关系中出现的所有元组的关系。注意：两个输入关系必须具有完全相同的属性。</p>
-<p>语法：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>−</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R - S)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span>.</p>
+<p>语法：<span class="math inline">\((R - S)\)</span>.</p>
 <p>SQL:(SELECT * FROM R) EXCEPT (SELECT * FROM S).</p>
-<h3 id="product"><a class="markdownIt-Anchor" href="#product"></a> Product</h3>
+<h3 id="product">Product</h3>
 <p>Product接收两个关系作为输入，并输出一个包含来自输入关系的所有可能组合的关系。</p>
-<p>语法：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>×</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R \times S)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span>.</p>
-<p>SQL:(SELECT * FROM R) CROSS JOIN (SELECT * FROM S),或者简单的 SELECT * FROM R, S.</p>
-<h3 id="join"><a class="markdownIt-Anchor" href="#join"></a> Join</h3>
+<p>语法：<span class="math inline">\((R \times S)\)</span>.</p>
+<p>SQL:(SELECT * FROM R) CROSS JOIN (SELECT * FROM S),或者简单的 SELECT
+* FROM R, S.</p>
+<h3 id="join">Join</h3>
 <p>Join操作接收两个关系，并输出包含所有元组的关系，这些元组是来自于两个元组的组合，其中对于两个关系共享的每个属性，两个元组在该属性上的值相同。</p>
-<p>语法：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>⋈</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R \Join S)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span>.</p>
-<p>SQL: SELECT * FROM R JOIN S USING (ATTRIBUTE1, ATTRIBUTE2…).</p>
-<h3 id="observation"><a class="markdownIt-Anchor" href="#observation"></a> Observation</h3>
-<p>关系代数是一种过程性语言，因为它定义了计算查询的高级步骤。例如，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mrow><mi>b</mi><mi mathvariant="normal">.</mi><mi>i</mi><mi>d</mi><mo>=</mo><mn>102</mn></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo>⋈</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_{b.id=102}(R \Join S)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">d</span><span class="mrel mtight">=</span><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span>表示首先进行R和S的连接，然后进行选择操作，而<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>⋈</mo><mo stretchy="false">(</mo><msub><mi>σ</mi><mrow><mi>b</mi><mi mathvariant="normal">.</mi><mi>i</mi><mi>d</mi><mo>=</mo><mn>102</mn></mrow></msub><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R \Join (\sigma_{b.id=102}(S)))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">d</span><span class="mrel mtight">=</span><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>将首先在S上进行选择操作，然后进行连接。这两个语句实际上会产生相同的答案，但是如果在十亿个元组中只有一个具有b.id=102的元组，则<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>⋈</mo><mo stretchy="false">(</mo><msub><mi>σ</mi><mrow><mi>b</mi><mi mathvariant="normal">.</mi><mi>i</mi><mi>d</mi><mo>=</mo><mn>102</mn></mrow></msub><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R \Join (\sigma_{b.id=102}(S)))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">d</span><span class="mrel mtight">=</span><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>的速度将显著快于<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mrow><mi>b</mi><mi mathvariant="normal">.</mi><mi>i</mi><mi>d</mi><mo>=</mo><mn>102</mn></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo>⋈</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_{b.id=102}(R \Join S)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">d</span><span class="mrel mtight">=</span><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span>。</p>
+<p>语法：<span class="math inline">\((R \Join S)\)</span>.</p>
+<p>SQL: SELECT * FROM R JOIN S USING (ATTRIBUTE1, ATTRIBUTE2...).</p>
+<h3 id="observation">Observation</h3>
+<p>关系代数是一种过程性语言，因为它定义了计算查询的高级步骤。例如，<span class="math inline">\(\sigma_{b.id=102}(R \Join
+S)\)</span>表示首先进行R和S的连接，然后进行选择操作，而<span class="math inline">\((R \Join
+(\sigma_{b.id=102}(S)))\)</span>将首先在S上进行选择操作，然后进行连接。这两个语句实际上会产生相同的答案，但是如果在十亿个元组中只有一个具有b.id=102的元组，则<span class="math inline">\((R \Join
+(\sigma_{b.id=102}(S)))\)</span>的速度将显著快于<span class="math inline">\(\sigma_{b.id=102}(R \Join S)\)</span>。</p>
 <p>更好的方法是说出你想要的结果（从R和S中检索到bid等于102的连接元组），然后让数据库管理系统决定计算查询所需的步骤。SQL会完全做到这点，它是在关系模型数据库上编写查询的事实标准。</p>
-<h2 id="7-数据模型"><a class="markdownIt-Anchor" href="#7-数据模型"></a> 7 数据模型</h2>
+<h2 id="数据模型">7 数据模型</h2>
 <hr>
 <ul>
 <li>文档模型：包含命名字段/值对的记录文档的集合.</li>

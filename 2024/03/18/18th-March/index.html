@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1 简介 晚上收到字节周五约面，所以专心准备项目八股和算法，今天先抠一下项目的细节，从6.824开始  2 6.824  可能会问的问题  mapreduce Q&amp;A 1.简单介绍一下mapreduce（开始乱吹） 在二十年以前，分布式系统和分布式计算并不普及，很多公司只是用一台计算机进行操作，但是随着互联网的飞速发展，一台机器的算力已经不足以支撑起快速的计算了，所以就有了分布式这个概念">
+    <meta name="description" content="1 简介 晚上收到字节周五约面，所以专心准备项目八股和算法，今天先抠一下项目的细节，从6.824开始 2 6.824 可能会问的问题 mapreduce Q&amp;A 1.简单介绍一下mapreduce（开始乱吹） 在二十年以前，分布式系统和分布式计算并不普及，很多公司只是用一台计算机进行操作，但是随着互联网的飞速发展，一台机器的算力已经不足以支撑起快速的计算了，所以就有了分布式这个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="18th-March">
 <meta property="og:url" content="http://polaris3003.github.io/2024/03/18/18th-March/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="1 简介 晚上收到字节周五约面，所以专心准备项目八股和算法，今天先抠一下项目的细节，从6.824开始  2 6.824  可能会问的问题  mapreduce Q&amp;A 1.简单介绍一下mapreduce（开始乱吹） 在二十年以前，分布式系统和分布式计算并不普及，很多公司只是用一台计算机进行操作，但是随着互联网的飞速发展，一台机器的算力已经不足以支撑起快速的计算了，所以就有了分布式这个概念">
+<meta property="og:description" content="1 简介 晚上收到字节周五约面，所以专心准备项目八股和算法，今天先抠一下项目的细节，从6.824开始 2 6.824 可能会问的问题 mapreduce Q&amp;A 1.简单介绍一下mapreduce（开始乱吹） 在二十年以前，分布式系统和分布式计算并不普及，很多公司只是用一台计算机进行操作，但是随着互联网的飞速发展，一台机器的算力已经不足以支撑起快速的计算了，所以就有了分布式这个">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-18T13:56:53.000Z">
 <meta property="article:modified_time" content="2025-02-11T09:26:50.000Z">
@@ -342,26 +342,30 @@
             
               <div class="markdown-body">
                 
-                <h1 id="1-简介"><a class="markdownIt-Anchor" href="#1-简介"></a> 1 简介</h1>
+                <h1 id="简介">1 简介</h1>
 <p>晚上收到字节周五约面，所以专心准备项目八股和算法，今天先抠一下项目的细节，从6.824开始</p>
-<h1 id="2-6824"><a class="markdownIt-Anchor" href="#2-6824"></a> 2 6.824</h1>
-<h2 id="可能会问的问题"><a class="markdownIt-Anchor" href="#可能会问的问题"></a> 可能会问的问题</h2>
-<h3 id="mapreduce-qa"><a class="markdownIt-Anchor" href="#mapreduce-qa"></a> mapreduce Q&amp;A</h3>
+<h1 id="section">2 6.824</h1>
+<h2 id="可能会问的问题">可能会问的问题</h2>
+<h3 id="mapreduce-qa">mapreduce Q&amp;A</h3>
 <p><font color="red">1.简单介绍一下mapreduce（开始乱吹）</font></p>
 <p>在二十年以前，分布式系统和分布式计算并不普及，很多公司只是用一台计算机进行操作，但是随着互联网的飞速发展，一台机器的算力已经不足以支撑起快速的计算了，所以就有了分布式这个概念，多台电脑一起完成一个工作。谷歌作为一个国际大公司也是对这方面有着很深刻的研究，他们也会经常要使用并行的计算，而计算必须分布在数百台或者上千台机器，以便在合理的时间内完成，如何并行化计算、分布数据和处理故障等问题，使得单机变成多机的问题十分的复杂。所以就这样，他们受到了map和reduce原语的启发，也就有了mapreduce这么一个简单但强大的支持大规模计算的自动并行化和分布的接口</p>
 <p><font color="red">2.mapreduce是怎么操作的</font></p>
-<p>首先mapreduce库将输入文件分成m个16-64mb的小文件 然后再一个机器集群上启动该程序的副本</p>
+<p>首先mapreduce库将输入文件分成m个16-64mb的小文件
+然后再一个机器集群上启动该程序的副本</p>
 <p>这些副本中有一份是特别的就是master，其余的就是master分配工作的worker。</p>
 <p>被分配map任务的worker线程读取相应输入分割的内容。它们从输入数据中解析键值对，并将每对传递给用户定义的map函数，map产生中间键值对再内存中进行缓冲</p>
-<p>周期性地将缓冲对写入本地磁盘，并通过分区函数划分R个区域。这些缓冲对再本地磁盘上的位置被传递回主服务器，然后再将位置转发给reduce worker</p>
-<p>它使用远程过程调用从map worker的本地磁盘读取缓冲数据。当reduce工作程序读取了所有中间数据后，它按中间键对数据进行排序，以便将所有出现的相同键分组在一起。排序是必要的，因为通常有许多不同的键映射到相同的reduce任务。如果中间数据量太大，内存无法容纳，则使用外部排序。</p>
-<p>reduce worker遍历已排序的中间数据，对于遇到的每个唯一的中间键，它将键和相应的中间值集传递给用户的reduce函数。Reduce函数的输出被附加到这个Reduce分区的最终输出文件中。</p>
+<p>周期性地将缓冲对写入本地磁盘，并通过分区函数划分R个区域。这些缓冲对再本地磁盘上的位置被传递回主服务器，然后再将位置转发给reduce
+worker</p>
+<p>它使用远程过程调用从map
+worker的本地磁盘读取缓冲数据。当reduce工作程序读取了所有中间数据后，它按中间键对数据进行排序，以便将所有出现的相同键分组在一起。排序是必要的，因为通常有许多不同的键映射到相同的reduce任务。如果中间数据量太大，内存无法容纳，则使用外部排序。</p>
+<p>reduce
+worker遍历已排序的中间数据，对于遇到的每个唯一的中间键，它将键和相应的中间值集传递给用户的reduce函数。Reduce函数的输出被附加到这个Reduce分区的最终输出文件中。</p>
 <p>当所有map任务和reduce任务完成后，主程序唤醒用户程序。此时，用户程序中的MapReduce调用返回到用户代码。</p>
 <p><font color="red">3.mapreduce的优化点？</font></p>
 <p>combiner</p>
 <p>状态信息</p>
 <p>我们从这项工作中学到了一些东西。首先，限制编程模型使其易于并行化和分布计算，并使此类计算具有容错性。第二，网络带宽是一种稀缺资源。因此，我们系统中的许多优化都以减少通过网络发送的数据量为目标:局域优化允许我们从本地磁盘读取数据，并将中间数据的单个副本写入本地磁盘以节省网络带宽。第三，冗余执行可用于减少慢机的影响，并处理机器故障和数据丢失</p>
-<h3 id="raft-qa"><a class="markdownIt-Anchor" href="#raft-qa"></a> Raft Q&amp;A</h3>
+<h3 id="raft-qa">Raft Q&amp;A</h3>
 <p><font color="red">简单讲讲Raft？</font></p>
 <p>他是从多副本状态机的角度提出来的，用于管理多副本状态机的日志复制，分为多个子问题：Leader选举，日志同步，安全性，日志压缩，成员变更等</p>
 <p>raft将系统中的角色分为leader，follower，和candidate</p>
@@ -369,24 +373,31 @@
 <p>Follower：接受并持久化Leader同步的日志，再Leader告知日志可以提交之后便提交</p>
 <p>Candidate：Leader选举过程中的临时角色</p>
 <p><font color="red">Raft选举过程 日志复制？</font></p>
-<p>Raft 使用心跳（heartbeat）触发Leader选举。当服务器启动时，初始化为Follower。Leader向所有Followers周期性发送heartbeat。如果Follower在选举超时时间内没有收到Leader的heartbeat，就会等待一段随机的时间后发起一次Leader选举。</p>
-<p>Follower将其当前term加一然后转换为Candidate。它首先给自己投票并且给集群中的其他服务器发送 RequestVote RPC （RPC细节参见八、Raft算法总结）。结果有以下三种情况：</p>
+<p>Raft
+使用心跳（heartbeat）触发Leader选举。当服务器启动时，初始化为Follower。Leader向所有Followers周期性发送heartbeat。如果Follower在选举超时时间内没有收到Leader的heartbeat，就会等待一段随机的时间后发起一次Leader选举。</p>
+<p>Follower将其当前term加一然后转换为Candidate。它首先给自己投票并且给集群中的其他服务器发送
+RequestVote RPC
+（RPC细节参见八、Raft算法总结）。结果有以下三种情况：</p>
 <ul>
 <li>赢得了多数的选票，成功选举为Leader；</li>
 <li>收到了Leader的消息，表示有其它服务器已经抢先当选了Leader；</li>
 <li>没有服务器赢得多数的选票，Leader选举失败，等待选举时间超时后发起下一次选举。</li>
 </ul>
-<p>Leader选出后，就开始接收客户端的请求。Leader把请求作为日志条目（Log entries）加入到它的日志中，然后并行的向其他服务器发起 AppendEntries RPC 复制日志条目。当这条日志被复制到大多数服务器上，Leader将这条日志应用到它的状态机并向客户端返回执行结果。</p>
+<p>Leader选出后，就开始接收客户端的请求。Leader把请求作为日志条目（Log
+entries）加入到它的日志中，然后并行的向其他服务器发起 AppendEntries RPC
+复制日志条目。当这条日志被复制到大多数服务器上，Leader将这条日志应用到它的状态机并向客户端返回执行结果。</p>
 <p>快照 持久化 快速恢复</p>
 <p>可以让Follower在回复Leader的AppendEntries消息中，携带3个额外的信息，来加速日志的恢复。这里的回复是指，Follower因为Log信息不匹配，拒绝了Leader的AppendEntries之后的回复。这里的三个信息是指：</p>
 <ul>
-<li>XTerm：这个是Follower中与Leader冲突的Log对应的任期号。在之前（7.1）有介绍Leader会在prevLogTerm中带上本地Log记录中，前一条Log的任期号。如果Follower在对应位置的任期号不匹配，它会拒绝Leader的AppendEntries消息，并将自己的任期号放在XTerm中。如果Follower在对应位置没有Log，那么这里会返回 -1。</li>
+<li>XTerm：这个是Follower中与Leader冲突的Log对应的任期号。在之前（7.1）有介绍Leader会在prevLogTerm中带上本地Log记录中，前一条Log的任期号。如果Follower在对应位置的任期号不匹配，它会拒绝Leader的AppendEntries消息，并将自己的任期号放在XTerm中。如果Follower在对应位置没有Log，那么这里会返回
+-1。</li>
 <li>XIndex：这个是Follower中，对应任期号为XTerm的第一条Log条目的槽位号。</li>
 <li>XLen：如果Follower在对应位置没有Log，那么XTerm会返回-1，XLen表示空白的Log槽位数。</li>
 </ul>
 <p>线性一致</p>
-<p>目前看完2B 看明天怎么看一下2C和2D 争取把这个干完有时间再看其他两个</p>
-<h1 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h1>
+<p>目前看完2B 看明天怎么看一下2C和2D
+争取把这个干完有时间再看其他两个</p>
+<h1 id="总结">总结</h1>
 <p>算法 八股 项目 都得看看</p>
 <p>算法把那几个dp干完看csview上的 但是记得字节应该是得自己new样例的</p>
 <p>八股 先小林 然后再看其他的怎么说</p>

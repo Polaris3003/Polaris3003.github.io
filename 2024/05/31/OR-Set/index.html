@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="优化的无冲突复制集 补充：CRDT 解决最终一致问题的利器 摘要： 复制数据的最终一致性支持并发更新，减少延迟并提高容错能力，但放弃了强一致性。因此，一些云计算平台实现了最终一致的数据类型。 该集合是一种广泛且有用的抽象，并且已经提出了许多复制集设计。我们提出了一种推理抽象，即排列等价，它系统化了并发类型的预期并发语义的表征。在此框架下，我们提出了现有的无冲突复制数据类型之一：Observed-">
+    <meta name="description" content="优化的无冲突复制集 补充：CRDT 解决最终一致问题的利器 摘要： 复制数据的最终一致性支持并发更新，减少延迟并提高容错能力，但放弃了强一致性。因此，一些云计算平台实现了最终一致的数据类型。 该集合是一种广泛且有用的抽象，并且已经提出了许多复制集设计。我们提出了一种推理抽象，即排列等价，它系统化了并发类型的预期并发语义的表征。在此框架下，我们提出了现有的无冲突复制数据类型之一：Obser">
 <meta property="og:type" content="article">
 <meta property="og:title" content="An Optimized Conflict-free Replicated Set">
 <meta property="og:url" content="http://polaris3003.github.io/2024/05/31/OR-Set/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="优化的无冲突复制集 补充：CRDT 解决最终一致问题的利器 摘要： 复制数据的最终一致性支持并发更新，减少延迟并提高容错能力，但放弃了强一致性。因此，一些云计算平台实现了最终一致的数据类型。 该集合是一种广泛且有用的抽象，并且已经提出了许多复制集设计。我们提出了一种推理抽象，即排列等价，它系统化了并发类型的预期并发语义的表征。在此框架下，我们提出了现有的无冲突复制数据类型之一：Observed-">
+<meta property="og:description" content="优化的无冲突复制集 补充：CRDT 解决最终一致问题的利器 摘要： 复制数据的最终一致性支持并发更新，减少延迟并提高容错能力，但放弃了强一致性。因此，一些云计算平台实现了最终一致的数据类型。 该集合是一种广泛且有用的抽象，并且已经提出了许多复制集设计。我们提出了一种推理抽象，即排列等价，它系统化了并发类型的预期并发语义的表征。在此框架下，我们提出了现有的无冲突复制数据类型之一：Obser">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://polaris3003.github.io/2024/05/31/OR-Set/image-20240529150255370.png">
 <meta property="og:image" content="http://polaris3003.github.io/2024/05/31/OR-Set/image-20240529150326490.png">
@@ -306,7 +306,7 @@
         
         
         
-          29 分钟
+          28 分钟
         
       </span>
     
@@ -356,53 +356,130 @@
             
               <div class="markdown-body">
                 
-                <h1 id="优化的无冲突复制集"><a class="markdownIt-Anchor" href="#优化的无冲突复制集"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1210.3368">优化的无冲突复制集</a></h1>
-<p><strong>补充：</strong><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/635632">CRDT 解决最终一致问题的利器</a></p>
+                <h1 id="优化的无冲突复制集"><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1210.3368">优化的无冲突复制集</a></h1>
+<p><strong>补充：</strong><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/635632">CRDT
+解决最终一致问题的利器</a></p>
 <p><strong>摘要：</strong></p>
 <p>复制数据的最终一致性支持并发更新，减少延迟并提高容错能力，但放弃了强一致性。因此，一些云计算平台实现了最终一致的数据类型。</p>
-<p>该集合是一种广泛且有用的抽象，并且已经提出了许多复制集设计。我们提出了一种推理抽象，即排列等价，它系统化了并发类型的预期并发语义的表征。在此框架下，我们提出了现有的无冲突复制数据类型之一：Observed-Remove Set(OR Set)。</p>
+<p>该集合是一种广泛且有用的抽象，并且已经提出了许多复制集设计。我们提出了一种推理抽象，即排列等价，它系统化了并发类型的预期并发语义的表征。在此框架下，我们提出了现有的无冲突复制数据类型之一：Observed-Remove
+Set(OR Set)。</p>
 <p>此外，为了减少元数据的大小，我们提出了一种新的优化来避免墓碑。这种方法可以转换为其他数据类型，例如地图、图形或序列。</p>
-<p>**关键词：**数据复制、乐观复制、交换操作</p>
-<h2 id="1介绍"><a class="markdownIt-Anchor" href="#1介绍"></a> 1.介绍</h2>
+<p><strong>关键词：</strong>数据复制、乐观复制、交换操作</p>
+<h2 id="介绍">1.介绍</h2>
 <p>复制数据的最终一致性支持并发更新，减少延迟并提高容错能力，但放弃了强一致性（例如，线性化）。因此，一些云计算平台实现了最终一致的复制集。最终一致性，允许在不同的副本上并发更新，并期望副本最终会收敛。然而，解决并发更新的解决方案往往要么有限，要么非常复杂且容易出错。</p>
-<p>我们遵循不同的方法：强最终一致性（SEC）要求任何一对并发更新都有确定的结果。因此，不同的副本可以并行更新，并发更新在本地解决，无需达成共识。一些简单的条件（例如，并发更新相互交换）足以确保 SEC。满足这些条件的数据类型称为无冲突复制数据类型 (CRDT)。CRDT 对象的副本可以在不同步的情况下进行更新，并且保证收敛。这种方法已在多个工作中采用。</p>
+<p>我们遵循不同的方法：强最终一致性（SEC）要求任何一对并发更新都有确定的结果。因此，不同的副本可以并行更新，并发更新在本地解决，无需达成共识。一些简单的条件（例如，并发更新相互交换）足以确保
+SEC。满足这些条件的数据类型称为无冲突复制数据类型 (CRDT)。CRDT
+对象的副本可以在不同步的情况下进行更新，并且保证收敛。这种方法已在多个工作中采用。</p>
 <p>该集是一种普遍的数据类型，可直接使用，也可以作为更复杂的数据类型（如地图或图形）的组件使用。本文重点介绍了最终一致性下集合的语义，并介绍了优化的集合实现，即优化的观察删除集。</p>
-<h2 id="2排列等价原理"><a class="markdownIt-Anchor" href="#2排列等价原理"></a> 2.排列等价原理</h2>
-<p>集合的顺序语义是众所周知的，并且由单独的更新定义，比如，{true}add(e){e <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∈</span></span></span></span> S} (in “{pre-condition} computation {post-condition}” notation),其中S表示其抽象状态。然而，并发修改的语义尚未明确或由实现驱动。我们提出以下置换等价原理[2]来表达并发行为符合顺序规范：“<em>如果更新的所有顺序排列都会导致等效状态，那么还应该认为更新的并发执行会导致等效状态。</em>“对于某些更新 u 和 u<sup>'</sup> ，它意味着以下行为：</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mo fence="true">{</mo><mi>P</mi><mo fence="true">}</mo></mrow><mi>u</mi><mo separator="true">;</mo><msup><mi>u</mi><mi mathvariant="normal">‘</mi></msup><mrow><mo fence="true">{</mo><mi>Q</mi><mo fence="true">}</mo></mrow><mo>⋀</mo><mrow><mo fence="true">{</mo><mi>P</mi><mo fence="true">}</mo></mrow><mo separator="true">;</mo><mi>u</mi><mrow><mo fence="true">{</mo><msup><mi>Q</mi><mi mathvariant="normal">‘</mi></msup><mo fence="true">}</mo></mrow><mo>⋀</mo><mrow><mo fence="true">{</mo><mi>Q</mi><mo fence="true">}</mo></mrow><mo>⇔</mo><msup><mi>Q</mi><mi mathvariant="normal">‘</mi></msup><mo>⇒</mo><mrow><mo fence="true">{</mo><mi>P</mi><mo fence="true">}</mo></mrow><mi>u</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><msup><mi>u</mi><mi mathvariant="normal">‘</mi></msup><mrow><mo fence="true">{</mo><mi>Q</mi><mo fence="true">}</mo></mrow></mrow><annotation encoding="application/x-tex">\left\{ P \right\}u;u^`\left\{ Q \right\}\bigwedge \left\{ P \right\};u\left\{ Q^` \right\}\bigwedge \left\{ Q \right\} \Leftrightarrow Q^` \Rightarrow \left\{ P \right\}u || u^`\left\{ Q \right\}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.6000100000000002em;vertical-align:-0.55001em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">{</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mclose delimcenter" style="top:0em;">}</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">u</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">‘</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">{</span><span class="mord mathnormal">Q</span><span class="mclose delimcenter" style="top:0em;">}</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-symbol large-op" style="position:relative;top:-0.000004999999999977245em;">⋀</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">{</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mclose delimcenter" style="top:0em;">}</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">u</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">{</span></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">‘</span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">}</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-symbol large-op" style="position:relative;top:-0.000004999999999977245em;">⋀</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">{</span><span class="mord mathnormal">Q</span><span class="mclose delimcenter" style="top:0em;">}</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⇔</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.093548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">‘</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⇒</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">{</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mclose delimcenter" style="top:0em;">}</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">u</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">‘</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">{</span><span class="mord mathnormal">Q</span><span class="mclose delimcenter" style="top:0em;">}</span></span></span></span></span></span></p>
-<p>特别是对于复制集，置换等价原理要求 {e != f}add(e) || remove(f) {e <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∈</span></span></span></span> S <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋀</mo></mrow><annotation encoding="application/x-tex">\bigwedge</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⋀</span></span></span></span> f <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo mathvariant="normal">∉</mo></mrow><annotation encoding="application/x-tex">\notin</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mrel"><span class="mord"><span class="mrel">∈</span></span><span class="mord vbox"><span class="thinbox"><span class="llap"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="inner"><span class="mord"><span class="mord">/</span><span class="mspace" style="margin-right:0.05555555555555555em;"></span></span></span><span class="fix"></span></span></span></span></span></span></span></span> S},对于不同元素的操作或幂等操作也类似。只有 add(e) || remove(e) 对在原则上未指定，因为 add(e);remove(e) 与 remove(e);add(e) 不同。以下任何后置条件均可确保确定性结果：</p>
+<h2 id="排列等价原理">2.排列等价原理</h2>
+<p>集合的顺序语义是众所周知的，并且由单独的更新定义，比如，{true}add(e){e
+<span class="math inline">\(\in\)</span> S} (in "{pre-condition}
+computation {post-condition}"
+notation),其中S表示其抽象状态。然而，并发修改的语义尚未明确或由实现驱动。我们提出以下置换等价原理[2]来表达并发行为符合顺序规范：“<em>如果更新的所有顺序排列都会导致等效状态，那么还应该认为更新的并发执行会导致等效状态。</em>“对于某些更新
+u 和 u<sup>'</sup> ，它意味着以下行为：<br>
+<span class="math display">\[
+\left\{ P \right\}u;u^`\left\{ Q \right\}\bigwedge \left\{ P
+\right\};u\left\{ Q^` \right\}\bigwedge \left\{ Q \right\}
+\Leftrightarrow Q^` \Rightarrow \left\{ P \right\}u || u^`\left\{ Q
+\right\}
+\]</span><br>
+特别是对于复制集，置换等价原理要求 {e != f}add(e) || remove(f) {e <span class="math inline">\(\in\)</span> S <span class="math inline">\(\bigwedge\)</span> f <span class="math inline">\(\notin\)</span>
+S},对于不同元素的操作或幂等操作也类似。只有 add(e) || remove(e)
+对在原则上未指定，因为 add(e);remove(e) 与 remove(e);add(e)
+不同。以下任何后置条件均可确保确定性结果：</p>
 <p><img src="/2024/05/31/OR-Set/image-20240529150255370.png" srcset="/img/loading.gif" lazyload alt="result"></p>
 <p><img src="/2024/05/31/OR-Set/image-20240529150326490.png" srcset="/img/loading.gif" lazyload alt="图一：异常和正确设计的示例"></p>
-<p>其中 &lt;CLK 比较与操作相关的唯一时钟。请注意，并非所有并发语义都可以解释为顺序排列；例如，任何顺序执行都不会导致错误标记。</p>
-<h2 id="3现有复制集设计的回顾"><a class="markdownIt-Anchor" href="#3现有复制集设计的回顾"></a> 3.现有复制集设计的回顾</h2>
-<p>过去，已经提出了几种用于维护复制集的设计。其中大多数都违反了排列等价原理（图1）。例如，Amazon Dynamo 购物车 [3] 是使用支持读写（分配）操作的寄存器实现的，提供标准的顺序语义。当两个写入同时发生时，下一次读取将返回它们的并集。正如作者自己所指出的，如果并发更新，即使是在不相关的元素上，删除也可能会被撤消（图 1(a)）</p>
-<p>Sovran等人。和Asian等人。提出了一个集合变体，C-Set，其中对于每个元素，关联的添加和删除更新都被计数。如果它们的差异为正，则该元素处于抽象状态。 C-Set 违反了排列等价原理（图 1(b)）。当按照草图将更新传递到两个副本时，添加和删除计数相等，即 e 不在抽象中，即使每个副本的最后更新是 add(e)。</p>
-<h2 id="4add-wins复制集"><a class="markdownIt-Anchor" href="#4add-wins复制集"></a> 4.Add-wins复制集</h2>
-<p>在第 2 节中，我们已经表明，当考虑对同一元素进行并发添加和删除操作时，可以选择多个后置条件之一。考虑到添加获胜语义的情况，我们现在回顾观察删除集或OR集的CRDT设计，然后引入保留OR集行为并大大提高其空间复杂度的优化设计。</p>
-<p><img src="/2024/05/31/OR-Set/image-20240529153647765.png" srcset="/img/loading.gif" lazyload alt="图2: OR-Set: Add-wins replicated set "></p>
-<p>这些 CRDT 规范遵循一种新的表示法，具有基于状态和操作的混合更新传播。尽管这种混合模型的形式化以及检查是否符合 CRDT 要求的相关证明义务超出了本报告的范围，但从标准 CRDT 模型中很容易推断出符号。</p>
-<p>**系统模型简介：**我们考虑在给定的一组进程/副本上复制的单个对象。对象的客户端可以在其选择的某个副本上调用操作，该副本称为操作的源。查询完全在源处执行。更新首先将其副作用应用于源副本，然后（最终）应用于该更新下游的所有副本。为此，更新被建模为更新对（p，u），其中包括两个操作，其中p是无副作用的prepare（-update）操作，u是effect（-update）操作；源原子地执行准备和效果；下游副本仅执行效果u。在基于状态和操作的混合建模中，副本状态可以通过应用效果操作或合并来自同一对象的另一个副本的状态来更改。副本状态的单调演化由每个 CRDT 规范提供的比较操作来描述。</p>
-<h3 id="41-observed-remove-set"><a class="markdownIt-Anchor" href="#41-observed-remove-set"></a> 4.1 Observed Remove Set</h3>
-<p>图 2 显示了我们对 add-wins 复制集 CRDT 的规范。其并发规范{P}u<sub>0</sub> || … || u<sub>n−1</sub>{Q} 对于每个元素 e 定义如下：</p>
+<p>其中 &lt;CLK
+比较与操作相关的唯一时钟。请注意，并非所有并发语义都可以解释为顺序排列；例如，任何顺序执行都不会导致错误标记。</p>
+<h2 id="现有复制集设计的回顾">3.现有复制集设计的回顾</h2>
+<p>过去，已经提出了几种用于维护复制集的设计。其中大多数都违反了排列等价原理（图1）。例如，Amazon
+Dynamo 购物车 [3]
+是使用支持读写（分配）操作的寄存器实现的，提供标准的顺序语义。当两个写入同时发生时，下一次读取将返回它们的并集。正如作者自己所指出的，如果并发更新，即使是在不相关的元素上，删除也可能会被撤消（图
+1(a)）</p>
+<p>Sovran等人。和Asian等人。提出了一个集合变体，C-Set，其中对于每个元素，关联的添加和删除更新都被计数。如果它们的差异为正，则该元素处于抽象状态。
+C-Set 违反了排列等价原理（图
+1(b)）。当按照草图将更新传递到两个副本时，添加和删除计数相等，即 e
+不在抽象中，即使每个副本的最后更新是 add(e)。</p>
+<h2 id="add-wins复制集">4.Add-wins复制集</h2>
+<p>在第 2
+节中，我们已经表明，当考虑对同一元素进行并发添加和删除操作时，可以选择多个后置条件之一。考虑到添加获胜语义的情况，我们现在回顾观察删除集或OR集的CRDT设计，然后引入保留OR集行为并大大提高其空间复杂度的优化设计。</p>
+<p><img src="/2024/05/31/OR-Set/image-20240529153647765.png" srcset="/img/loading.gif" lazyload alt="图2: OR-Set: Add-wins replicated set"></p>
+<p>这些 CRDT
+规范遵循一种新的表示法，具有基于状态和操作的混合更新传播。尽管这种混合模型的形式化以及检查是否符合
+CRDT 要求的相关证明义务超出了本报告的范围，但从标准 CRDT
+模型中很容易推断出符号。</p>
+<p><strong>系统模型简介：</strong>我们考虑在给定的一组进程/副本上复制的单个对象。对象的客户端可以在其选择的某个副本上调用操作，该副本称为操作的源。查询完全在源处执行。更新首先将其副作用应用于源副本，然后（最终）应用于该更新下游的所有副本。为此，更新被建模为更新对（p，u），其中包括两个操作，其中p是无副作用的prepare（-update）操作，u是effect（-update）操作；源原子地执行准备和效果；下游副本仅执行效果u。在基于状态和操作的混合建模中，副本状态可以通过应用效果操作或合并来自同一对象的另一个副本的状态来更改。副本状态的单调演化由每个
+CRDT 规范提供的比较操作来描述。</p>
+<h3 id="observed-remove-set">4.1 Observed Remove Set</h3>
+<p>图 2 显示了我们对 add-wins 复制集 CRDT
+的规范。其并发规范{P}u<sub>0</sub> || ... || u<sub>n−1</sub>{Q}
+对于每个元素 e 定义如下：</p>
 <p><img src="/2024/05/31/OR-Set/image-20240529154416539.png" srcset="/img/loading.gif" lazyload alt="定义"></p>
-<p>为了实现 add-wins，其想法是通过添加一个隐藏的唯一标记 n 来区分 add(e) 的不同调用，并有效地存储 (e, n) 对。为了实现 add-wins，其想法是通过添加一个隐藏的唯一标记 n 来区分 add(e) 的不同调用，并有效地存储 (e, n) 对。通过将一对 (e, n) 添加到墓碑集来删除它。总是可以再次添加元素，因为新对 (e, n<sup>‘</sup> ) 始终使用新的标记，与旧的标记不同，n<sup>’</sup> != n。如果同时添加和删除相同的元素 e，则删除的更新准备仅涉及观察到的对 (e, n<sub>1</sub>),(e, n<sub>2</sub>), 。 。 。而不是同时添加的唯一对 (e, n<sup>'</sup> )。因此，add操作通过添加新对来获胜。我们将此对象称为“观察移除集”或“OR 集”。如图 1© 所示，OR-Set 不受困扰 C-Set 的异常影响。</p>
-<p>空间复杂度：OR-Set 的有效负载大小在任何时刻都受到所有应用的添加（效果更新）操作的数量的限制。</p>
-<h3 id="42-优化观察移除集"><a class="markdownIt-Anchor" href="#42-优化观察移除集"></a> 4.2 优化观察移除集</h3>
-<p>与其他 CRDT 一样，OR-Set 设计广泛使用唯一标识符和逻辑删除。我们现在展示如何通过最小化所需的元数据来使 CRDT 变得实用。</p>
-<p>立即丢弃逻辑删除：在比较两个有效载荷 P 和 P<sup>‘</sup> 时，分别包含一些元素 e 而另一个不包含元素，重要的是要知道 e 是最近添加到 P 中，还是最近从 P<sup>’</sup> 中删除。所呈现的 add-wins 集使用逻辑删除来明确回答这个问题，即使更新是无序传递的或多次传递的。</p>
-<p>墓碑堆积（由于单调半晶格要求）;如果无法丢弃它们，则内存需求会随着操作次数的增加而增加。为了解决这个问题，Wuu 的 2P-Set 垃圾收集已经到处传递的墓碑，基本上是通过等待每个进程对其他进程的确认。这会增加通信和处理开销，并要求所有进程都正确无误。我们设计了一种新技术来消除没有这些限制的墓碑，并以可承受的成本提供无冲突的语义。我们以add-wins为例介绍我们的解决方案。</p>
-<p>总而言之，在 OR-Set 中，添加元素 e 会为有效负载的 E 部分创建一个新的唯一 （e， n） 对。删除元素会将源中观察到的所有包含 e 的元素对从 E 移动到 T。请注意，在删除同一对 （e， n） 之前，添加一些对 （e， n） 总是会发生。如果仅按因果顺序传递更新，则添加始终在任何相关删除之前执行，并且在执行操作时不需要逻辑删除集 T。但是，我们还需要支持基于状态的合并，它连接了两个可能与 happens-before 无关的副本。合并两个副本时，其中只有一个副本具有某些对 （e， n），我们需要知道该对是否已添加到包含它的副本中，或者它是否在另一个副本中被删除。</p>
+<p>为了实现 add-wins，其想法是通过添加一个隐藏的唯一标记 n 来区分 add(e)
+的不同调用，并有效地存储 (e, n) 对。为了实现
+add-wins，其想法是通过添加一个隐藏的唯一标记 n 来区分 add(e)
+的不同调用，并有效地存储 (e, n) 对。通过将一对 (e, n)
+添加到墓碑集来删除它。总是可以再次添加元素，因为新对 (e, n<sup>'</sup> )
+始终使用新的标记，与旧的标记不同，n<sup>'</sup> !=
+n。如果同时添加和删除相同的元素 e，则删除的更新准备仅涉及观察到的对 (e,
+n<sub>1</sub>),(e, n<sub>2</sub>), 。 。 。而不是同时添加的唯一对 (e,
+n<sup>'</sup>
+)。因此，add操作通过添加新对来获胜。我们将此对象称为“观察移除集”或“OR
+集”。如图 1(c) 所示，OR-Set 不受困扰 C-Set 的异常影响。</p>
+<p>空间复杂度：OR-Set
+的有效负载大小在任何时刻都受到所有应用的添加（效果更新）操作的数量的限制。</p>
+<h3 id="优化观察移除集">4.2 优化观察移除集</h3>
+<p>与其他 CRDT 一样，OR-Set
+设计广泛使用唯一标识符和逻辑删除。我们现在展示如何通过最小化所需的元数据来使
+CRDT 变得实用。</p>
+<p>立即丢弃逻辑删除：在比较两个有效载荷 P 和 P<sup>'</sup>
+时，分别包含一些元素 e 而另一个不包含元素，重要的是要知道 e 是最近添加到
+P 中，还是最近从 P<sup>'</sup> 中删除。所呈现的 add-wins
+集使用逻辑删除来明确回答这个问题，即使更新是无序传递的或多次传递的。</p>
+<p>墓碑堆积（由于单调半晶格要求）;如果无法丢弃它们，则内存需求会随着操作次数的增加而增加。为了解决这个问题，Wuu
+的 2P-Set
+垃圾收集已经到处传递的墓碑，基本上是通过等待每个进程对其他进程的确认。这会增加通信和处理开销，并要求所有进程都正确无误。我们设计了一种新技术来消除没有这些限制的墓碑，并以可承受的成本提供无冲突的语义。我们以add-wins为例介绍我们的解决方案。</p>
+<p>总而言之，在 OR-Set 中，添加元素 e 会为有效负载的 E
+部分创建一个新的唯一 （e， n） 对。删除元素会将源中观察到的所有包含 e
+的元素对从 E 移动到 T。请注意，在删除同一对 （e， n） 之前，添加一些对
+（e， n）
+总是会发生。如果仅按因果顺序传递更新，则添加始终在任何相关删除之前执行，并且在执行操作时不需要逻辑删除集
+T。但是，我们还需要支持基于状态的合并，它连接了两个可能与 happens-before
+无关的副本。合并两个副本时，其中只有一个副本具有某些对 （e，
+n），我们需要知道该对是否已添加到包含它的副本中，或者它是否在另一个副本中被删除。</p>
 <p><img src="/2024/05/31/OR-Set/image-20240529155544674.png" srcset="/img/loading.gif" lazyload alt="图3:优化的OR-Set"></p>
-<p>我们利用这些观察结果提出了一种新颖的删除算法，该算法可以立即丢弃已删除的对，并安全地与合并一起使用。它紧凑地记录了发生前的信息，以总结已删除的元素。图 3 显示了基于此方法的优化 OR-Set （Opt-OR-Set）。</p>
-<p>每个副本 i 都维护一个向量 v [5] 来总结它已经观察到的唯一标识符。副本 i 处的条目 v[j] = n 表示该副本观察到在 j 处生成的 n 个连续标识符：（1， j），（2， j）， . . . ，（n， j）。副本 i 将其本地计数器作为向量 v[i] 中的第 i 个条目，最初是 0。副本通过递增其本地计数器来生成新的唯一标识符 （c， i）。请注意，要汇总向量中的连续标识符，OptORSet 需要因果传递更新。</p>
-<p>调用 add 时，源将其与由下一个本地计数器值和源副本标识符组成的唯一标识符相关联。当添加内容传递到下游副本时，仅当它之前未传递时，它才应该生效;为此，它会检查唯一标识符是否包含在下游副本的向量中。合并有效负载时，只有在以下情况下，元素才应处于合并状态：要么它在两个有效负载中（在图 3 中设置 M），要么它在本地有效负载中并且最近没有从远程有效负载中删除（设置 M<sup>‘</sup>），反之亦然（M<sup>’'</sup>），如果元素不在有效负载中，但其标识符反映在副本的向量中，则该元素已被删除。</p>
+<p>我们利用这些观察结果提出了一种新颖的删除算法，该算法可以立即丢弃已删除的对，并安全地与合并一起使用。它紧凑地记录了发生前的信息，以总结已删除的元素。图
+3 显示了基于此方法的优化 OR-Set （Opt-OR-Set）。</p>
+<p>每个副本 i 都维护一个向量 v [5] 来总结它已经观察到的唯一标识符。副本
+i 处的条目 v[j] = n 表示该副本观察到在 j 处生成的 n 个连续标识符：（1，
+j），（2， j）， . . . ，（n， j）。副本 i 将其本地计数器作为向量 v[i]
+中的第 i 个条目，最初是 0。副本通过递增其本地计数器来生成新的唯一标识符
+（c， i）。请注意，要汇总向量中的连续标识符，OptORSet
+需要因果传递更新。</p>
+<p>调用 add
+时，源将其与由下一个本地计数器值和源副本标识符组成的唯一标识符相关联。当添加内容传递到下游副本时，仅当它之前未传递时，它才应该生效;为此，它会检查唯一标识符是否包含在下游副本的向量中。合并有效负载时，只有在以下情况下，元素才应处于合并状态：要么它在两个有效负载中（在图
+3 中设置
+M），要么它在本地有效负载中并且最近没有从远程有效负载中删除（设置
+M<sup>'</sup>），反之亦然（M<sup>''</sup>），如果元素不在有效负载中，但其标识符反映在副本的向量中，则该元素已被删除。</p>
 <p>这个方法可以推广到任何添加和删除元素的CRDT中，比如序列或图。</p>
-<p>**合并重复添加：**原始 OR-Set 中内存增长的另一个来源是由于多次添加的元素。与墓碑类似，它们会为每个添加的唯一标识符污染状态。我们观察到，对于元素和源副本的每个组合，保留最新添加的标识符就足够了，该标识符包含以前添加的元素。OptORSet 规范通过丢弃不必要的标识符（集合 O）在添加和合并定义中利用了这一观察结果。</p>
-<p>**空间复杂度：**OptORSet 集的有效载荷大小在任何时刻都以 O（|elements|n+n） 为界，其中 n 是系统中的进程数，|elements|是集合中存在的元素数。第一个分量对应于集合 E 中的最大时间戳数，第二个分量捕获向量 v 的大小。在常见情况下，重复调用添加的进程数可以被视为常量，有效负载大小为 O（|elements|+n）。</p>
-<h2 id="5总结"><a class="markdownIt-Anchor" href="#5总结"></a> 5.总结</h2>
-<p>无冲突复制数据类型 （CRDT） 允许系统维护多个数据副本，这些副本无需同步即可更新，同时保证强最终一致性。例如，这允许云基础设施在分布在较远地理距离的数据中心中维护数据副本，并且通过选择离客户端最近的数据中心仍可提供低访问延迟。</p>
-<p>在本文中，我们回顾了现有的复制集设计，并在排列等效原则下与CRDT OR-Set设计进行了对比。考虑到基础 OR-Set 以牺牲可伸缩性为代价来支持简单性，我们引入了一种新的优化设计，即优化 OR-Set，它大大提高了其可伸缩性，并且应该有利于集和其他共享 OR-Set 设计技术的 CRDT 的高效实现。</p>
+<p><strong>合并重复添加：</strong>原始 OR-Set
+中内存增长的另一个来源是由于多次添加的元素。与墓碑类似，它们会为每个添加的唯一标识符污染状态。我们观察到，对于元素和源副本的每个组合，保留最新添加的标识符就足够了，该标识符包含以前添加的元素。OptORSet
+规范通过丢弃不必要的标识符（集合
+O）在添加和合并定义中利用了这一观察结果。</p>
+<p><strong>空间复杂度：</strong>OptORSet 集的有效载荷大小在任何时刻都以
+O（|elements|n+n） 为界，其中 n
+是系统中的进程数，|elements|是集合中存在的元素数。第一个分量对应于集合 E
+中的最大时间戳数，第二个分量捕获向量 v
+的大小。在常见情况下，重复调用添加的进程数可以被视为常量，有效负载大小为
+O（|elements|+n）。</p>
+<h2 id="总结">5.总结</h2>
+<p>无冲突复制数据类型 （CRDT）
+允许系统维护多个数据副本，这些副本无需同步即可更新，同时保证强最终一致性。例如，这允许云基础设施在分布在较远地理距离的数据中心中维护数据副本，并且通过选择离客户端最近的数据中心仍可提供低访问延迟。</p>
+<p>在本文中，我们回顾了现有的复制集设计，并在排列等效原则下与CRDT
+OR-Set设计进行了对比。考虑到基础 OR-Set
+以牺牲可伸缩性为代价来支持简单性，我们引入了一种新的优化设计，即优化
+OR-Set，它大大提高了其可伸缩性，并且应该有利于集和其他共享 OR-Set
+设计技术的 CRDT 的高效实现。</p>
 
                 
               </div>

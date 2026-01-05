@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="茶5.27-5.31  Mon Alternating Subsequence 输入 T(≤1e4) 表示 T 组数据。所有数据的 n 之和 ≤2e5。 每组数据输入 n(1≤n≤2e5) 和长为 n 的数组 a(-1e9≤a[i]≤1e9 且 a[i]≠0)。 选一个 a 的子序列，要求：  子序列是交替的（相邻元素一正一负）。 在满足 1 的前提下，子序列尽量长。 在满足 2 的前提下，子序">
+    <meta name="description" content="茶5.27-5.31 Mon Alternating Subsequence 输入 T(≤1e4) 表示 T 组数据。所有数据的 n 之和 ≤2e5。 每组数据输入 n(1≤n≤2e5) 和长为 n 的数组 a(-1e9≤a[i]≤1e9 且 a[i]≠0)。 选一个 a 的子序列，要求：  子序列是交替的（相邻元素一正一负）。 在满足 1 的前提下，子序列尽量长。 在满足 2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tea-5.27-5.31">
 <meta property="og:url" content="http://polaris3003.github.io/2024/05/31/tea-5-27-5-31/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="茶5.27-5.31  Mon Alternating Subsequence 输入 T(≤1e4) 表示 T 组数据。所有数据的 n 之和 ≤2e5。 每组数据输入 n(1≤n≤2e5) 和长为 n 的数组 a(-1e9≤a[i]≤1e9 且 a[i]≠0)。 选一个 a 的子序列，要求：  子序列是交替的（相邻元素一正一负）。 在满足 1 的前提下，子序列尽量长。 在满足 2 的前提下，子序">
+<meta property="og:description" content="茶5.27-5.31 Mon Alternating Subsequence 输入 T(≤1e4) 表示 T 组数据。所有数据的 n 之和 ≤2e5。 每组数据输入 n(1≤n≤2e5) 和长为 n 的数组 a(-1e9≤a[i]≤1e9 且 a[i]≠0)。 选一个 a 的子序列，要求：  子序列是交替的（相邻元素一正一负）。 在满足 1 的前提下，子序列尽量长。 在满足 2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-31T14:04:19.000Z">
 <meta property="article:modified_time" content="2025-02-11T09:26:16.000Z">
@@ -350,13 +350,14 @@
             
               <div class="markdown-body">
                 
-                <h1 id="茶527-531"><a class="markdownIt-Anchor" href="#茶527-531"></a> 茶5.27-5.31</h1>
-<h2 id="mon"><a class="markdownIt-Anchor" href="#mon"></a> Mon</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1343/C">Alternating Subsequence</a></p>
+                <h1 id="茶5.27-5.31">茶5.27-5.31</h1>
+<h2 id="mon">Mon</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1343/C">Alternating
+Subsequence</a></p>
 <p>输入 T(≤1e4) 表示 T 组数据。所有数据的 n 之和 ≤2e5。<br>
 每组数据输入 n(1≤n≤2e5) 和长为 n 的数组 a(-1e9≤a[i]≤1e9 且 a[i]≠0)。</p>
 <p>选一个 a 的子序列，要求：</p>
-<ol>
+<ol type="1">
 <li>子序列是交替的（相邻元素一正一负）。</li>
 <li>在满足 1 的前提下，子序列尽量长。</li>
 <li>在满足 2 的前提下，子序列元素和尽量大。<br>
@@ -379,21 +380,28 @@
 6<br>
 -2999999997</p>
 <p><strong>Sol:</strong></p>
-<p>首先，让我们通过包含由具有相同符号的数字组成的数组的包含段来提取最大值。例如，如果数组是 [1,1,2，−1，−5,2,1，−3]，则这些段是 [1,1,2]、[−1，−5]、[2,1] 和 [−3]。我们可以使用任何类似“双指针”的算法来做到这一点。这些段的数量是交替子序列的最大可能长度，因为我们只能从每个块中获取一个元素。当我们想最大化总和时，我们需要从每个块中获取最大元素。</p>
+<p>首先，让我们通过包含由具有相同符号的数字组成的数组的包含段来提取最大值。例如，如果数组是
+[1,1,2，−1，−5,2,1，−3]，则这些段是 [1,1,2]、[−1，−5]、[2,1] 和
+[−3]。我们可以使用任何类似“双指针”的算法来做到这一点。这些段的数量是交替子序列的最大可能长度，因为我们只能从每个块中获取一个元素。当我们想最大化总和时，我们需要从每个块中获取最大元素。</p>
 <p><strong>Code:</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> n;<br>    cin&gt;&gt;n;<br>    <span class="hljs-function">vi <span class="hljs-title">a</span><span class="hljs-params">(n)</span></span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;it : a) cin &gt;&gt; it;<br>    ll sum = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">auto</span> sgn = [&amp;](<span class="hljs-type">int</span> x) &#123;<br>        <span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-type">int</span> cur = a[i];<br>        <span class="hljs-type">int</span> j = i;<br>        <span class="hljs-keyword">while</span> (j &lt; n &amp;&amp; <span class="hljs-built_in">sgn</span>(a[i]) == <span class="hljs-built_in">sgn</span>(a[j])) &#123;<br>            cur = <span class="hljs-built_in">max</span>(cur, a[j]);<br>            j++;<br>        &#125;<br>        sum += cur;<br>        i = j - <span class="hljs-number">1</span>;<br>    &#125;<br>    cout &lt;&lt; sum &lt;&lt; endl;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="feb"><a class="markdownIt-Anchor" href="#feb"></a> Feb</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/608/B">https://codeforces.com/problemset/problem/608/B</a></p>
-<p>输入长度均 ≤2e5 的字符串 s 和 t，只包含 ‘0’ 和 ‘1’。并且 t 的长度大于等于 s 的长度。</p>
-<p>定义 D(a,b) = |a[0]-b[0]| + |a[1]-b[1]| + … + |a[n-1]-b[n-1]|。<br>
-例如 D(“0011”, “0110”) = |0-0| + |0-1| + |1-1| + |1-0| = 0 + 1 + 0 + 1 = 2。</p>
-<p>设 s 的长度为 n，对于 t 的所有长为 n 的连续子串 t’，计算 D(s,t’)。<br>
-输出所有 D(s,t’) 的和。</p>
+<h2 id="feb">Feb</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/608/B" class="uri">https://codeforces.com/problemset/problem/608/B</a></p>
+<p>输入长度均 ≤2e5 的字符串 s 和 t，只包含 '0' 和 '1'。并且 t
+的长度大于等于 s 的长度。</p>
+<p>定义 D(a,b) = |a[0]-b[0]| + |a[1]-b[1]| + ... +
+|a[n-1]-b[n-1]|。<br>
+例如 D("0011", "0110") = |0-0| + |0-1| + |1-1| + |1-0| = 0 + 1 + 0 + 1 =
+2。</p>
+<p>设 s 的长度为 n，对于 t 的所有长为 n 的连续子串 t'，计算
+D(s,t')。<br>
+输出所有 D(s,t') 的和。</p>
 <p>输入<br>
 01<br>
 00111<br>
 输出 3<br>
-解释 要计算的是 D(“01”, “00”) + D(“01”, “01”) + D(“01”, “11”) + D(“01”, “11”)</p>
+解释 要计算的是 D("01", "00") + D("01", "01") + D("01", "11") + D("01",
+"11")</p>
 <p>输入<br>
 0011<br>
 0110<br>
@@ -401,35 +409,41 @@
 <p><strong>Sol:</strong></p>
 <p>s[0] 对答案的贡献是多少？</p>
 <p>s[1] 对答案的贡献是多少？</p>
-<p>…</p>
+<p>...</p>
 <p>s[n-1] 对答案的贡献是多少？</p>
 <p>设 d = m - n + 1，其中 n 和 m 分别为 s 和 t 的长度。</p>
-<p>对于 s[0] 来说，它会与 t[0],t[1],…,t[d-1] 计算 D 值。</p>
-<p>也就是 t[0],t[1],…,t[d-1] 中的不等于 s[0] 的字符个数。</p>
-<p>对于 s[1] 来说，它会与 t[1],t[2],…,t[d] 计算 D 值。</p>
-<p>依此类推，问题变成一个长为 d 的定长滑窗。要统计的是窗口内的 ‘1’ 的个数（‘0’ 的个数等于 d 减去 ‘1’ 的个数）。</p>
+<p>对于 s[0] 来说，它会与 t[0],t[1],...,t[d-1] 计算 D 值。</p>
+<p>也就是 t[0],t[1],...,t[d-1] 中的不等于 s[0] 的字符个数。</p>
+<p>对于 s[1] 来说，它会与 t[1],t[2],...,t[d] 计算 D 值。</p>
+<p>依此类推，问题变成一个长为 d 的定长滑窗。要统计的是窗口内的 '1'
+的个数（'0' 的个数等于 d 减去 '1' 的个数）。</p>
 <p><strong>Code:</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    string s,t;<br>    cin&gt;&gt;s&gt;&gt;t;<br>    <span class="hljs-type">int</span> d = t.<span class="hljs-built_in">size</span>() - s.<span class="hljs-built_in">size</span>() + <span class="hljs-number">1</span>;<br>    <span class="hljs-type">int</span> c1 = <span class="hljs-built_in">count</span>(t.<span class="hljs-built_in">begin</span>(), t.<span class="hljs-built_in">begin</span>() + d - <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;1&#x27;</span>);<br>    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; s.<span class="hljs-built_in">size</span>(); i++) &#123;<br>        c1 += t[i + d - <span class="hljs-number">1</span>] &amp; <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span> (s[i] == <span class="hljs-string">&#x27;0&#x27;</span>) &#123;<br>            ans += c1;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            ans += d - c1;<br>        &#125;<br>        c1 -= t[i] &amp; <span class="hljs-number">1</span>;<br>    &#125;<br>    cout&lt;&lt;ans&lt;&lt;endl;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="wed"><a class="markdownIt-Anchor" href="#wed"></a> Wed</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1843/E">Tracking Segments_881E</a></p>
+<h2 id="wed">Wed</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1843/E">Tracking
+Segments_881E</a></p>
 <p>输入 T(≤1e4) 表示 T 组数据。所有数据的 n 之和 ≤1e5。<br>
 对于每组数据：<br>
 一开始，有一个长为 n 的全 0 数组 a，下标从 1 开始。<br>
 输入 n m(1≤m≤n≤1e5) 以及 m 个非空连续子数组的左右端点 L R。<br>
-然后输入 q(1≤q≤n) 和 q 个操作，每个操作输入一个下标 p，表示把 a[p] 变成 1。保证所有 p 互不相同。</p>
+然后输入 q(1≤q≤n) 和 q 个操作，每个操作输入一个下标 p，表示把 a[p] 变成
+1。保证所有 p 互不相同。</p>
 <p>如果一个子数组中的 1 的个数比 0 多，则称这个子数组是优美的。<br>
 输入的 q 个操作，按照输入顺序一个一个地执行。<br>
 至少执行多少个操作，可以使 m 个子数组中有优美子数组？<br>
 如果执行完了也没有优美子数组，输出 -1。</p>
 <p><strong>Sol:</strong></p>
 <p>二分答案，执行前 mid 个操作，用前缀和计算子数组和。</p>
-<p>如果 1 的个数比 0 多，也就是 1 的个数比子数组长度减去 1 的个数多，即子数组元素和 * 2 &gt; 子数组长度，则说明子数组是优美的。</p>
+<p>如果 1 的个数比 0 多，也就是 1 的个数比子数组长度减去 1
+的个数多，即子数组元素和 * 2 &gt; 子数组长度，则说明子数组是优美的。</p>
 <p><strong>Code:</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++ i) &#123;<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>, &amp;l[i], &amp;r[i]);<br>		&#125;<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;q);<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= q; ++ i) &#123;<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;pos[i]);<br>		&#125;<br>		<span class="hljs-type">int</span> ql = <span class="hljs-number">1</span>, qr = q, ans = <span class="hljs-number">-1</span>;<br>		<span class="hljs-keyword">while</span>(ql &lt;= qr) &#123;<br>			<span class="hljs-type">int</span> mid = (ql + qr) &gt;&gt; <span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++ i)<br>				sum[i] = <span class="hljs-number">0</span>;<br>			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= mid; ++ i)<br>				++ sum[pos[i]];<br>			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++ i)<br>				sum[i] += sum[i - <span class="hljs-number">1</span>];<br>			<span class="hljs-type">int</span> f = <span class="hljs-number">0</span>;<br>			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++ i) &#123;<br>				<span class="hljs-keyword">if</span>(sum[r[i]] - sum[l[i] - <span class="hljs-number">1</span>] &gt;= (r[i] - l[i] + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span> + <span class="hljs-number">1</span>) &#123;<br>					f = <span class="hljs-number">1</span>;<br>					<span class="hljs-keyword">break</span>;<br>				&#125;<br>			&#125;<br>			<span class="hljs-keyword">if</span>(f)<br>				ans = mid, qr = mid - <span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">else</span><br>				ql = mid + <span class="hljs-number">1</span>;<br>		&#125;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, ans);<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="thu"><a class="markdownIt-Anchor" href="#thu"></a> Thu</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1796/D">Maximum Subarray_144A</a></p>
+<h2 id="thu">Thu</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1796/D">Maximum
+Subarray_144A</a></p>
 <p>输入 T(≤1e4) 表示 T 组数据。所有数据的 n 之和 ≤2e5。<br>
-每组数据输入 n(1≤n≤2e5) k(0≤k≤min(20,n)) x(-1e9≤x≤1e9) 和长为 n 的数组 a(-1e9≤a[i]≤1e9)。</p>
+每组数据输入 n(1≤n≤2e5) k(0≤k≤min(20,n)) x(-1e9≤x≤1e9) 和长为 n 的数组
+a(-1e9≤a[i]≤1e9)。</p>
 <p>你需要把 a 中恰好 k 个数增加 x，其余数减少 x。<br>
 该操作必须恰好执行一次。<br>
 输出操作后，a 的最大连续子数组和。子数组可以是空的，元素和为 0。</p>
@@ -450,17 +464,25 @@
 44</p>
 <p><strong>Sol:</strong></p>
 <p>O(n) 做法。</p>
-<p>如果 x&lt;0，那么可以把 x 变成 -x，同时 k 变成 n-k。 下面的讨论满足 x&gt;=0。</p>
+<p>如果 x&lt;0，那么可以把 x 变成 -x，同时 k 变成 n-k。 下面的讨论满足
+x&gt;=0。</p>
 <p>为方便计算，先把所有数都减去 x，于是操作变成把 k 个数增加 2x。</p>
 <p>分类讨论：</p>
-<ol>
-<li>如果子数组长度超过 k，那么子数组内有 k 个数可以增加 2x，总和增加 2kx。我们计算的是长度有下限的最大子数组和。 用前缀和思考，s[right]-s[left] 最大，那么 s[left] 尽量小，且 right-left &gt; k，所以枚举 right 的同时，要维护 s[0] 到 s[right-k-1] 的最小值。 可以先看<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-subarray/solutions/2533977/qian-zhui-he-zuo-fa-ben-zhi-shi-mai-mai-abu71/">【题解】最大子数组和的前缀和做法</a></li>
-<li>如果子数组长度不超过 k，那么子数组内所有数都可以增加 2x。我们计算的是长度有上限的最大子数组和，这可以用前缀和+单调队列解决。关于单调队列，可以看 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bM411X72E/">【视频】单调队列</a></li>
+<ol type="1">
+<li>如果子数组长度超过 k，那么子数组内有 k 个数可以增加 2x，总和增加
+2kx。我们计算的是长度有下限的最大子数组和。
+用前缀和思考，s[right]-s[left] 最大，那么 s[left] 尽量小，且 right-left
+&gt; k，所以枚举 right 的同时，要维护 s[0] 到 s[right-k-1] 的最小值。
+可以先看<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-subarray/solutions/2533977/qian-zhui-he-zuo-fa-ben-zhi-shi-mai-mai-abu71/">【题解】最大子数组和的前缀和做法</a></li>
+<li>如果子数组长度不超过 k，那么子数组内所有数都可以增加
+2x。我们计算的是长度有上限的最大子数组和，这可以用前缀和+单调队列解决。关于单调队列，可以看
+<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bM411X72E/">【视频】单调队列</a></li>
 </ol>
 <p>总的来说，这题同时考察了最大子数组和的长度下限变体和长度上限变体，是一道不错的综合题目。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> n, k, x;<br>    cin &gt;&gt; n &gt;&gt; k &gt;&gt; x;<br>    <span class="hljs-keyword">if</span> (x &lt; <span class="hljs-number">0</span>) &#123;<br>        x = -x;<br>        k = n - k;<br>    &#125;<br>    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>, pre = <span class="hljs-number">0</span>, pre2 = <span class="hljs-number">0</span>, minS = <span class="hljs-number">0</span>;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n)</span></span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>        cin &gt;&gt; a[i];<br>        pre += a[i] - x;<br>        <span class="hljs-keyword">if</span> (i &gt;= k) &#123;<br>            ans = <span class="hljs-built_in">max</span>(ans, pre - minS + k * x * <span class="hljs-number">2</span>);<br>            pre2 += a[i - k] - x;<br>            minS = <span class="hljs-built_in">min</span>(minS, pre2);<br>        &#125;<br>    &#125;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">sum</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>        sum[i + <span class="hljs-number">1</span>] = sum[i] + a[i] + x;<br>    &#125;<br>    vector&lt;<span class="hljs-type">int</span>&gt; q;<br>    q.<span class="hljs-built_in">push_back</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>        <span class="hljs-keyword">if</span> (q[<span class="hljs-number">0</span>] &lt; i - k) &#123;<br>            q.<span class="hljs-built_in">erase</span>(q.<span class="hljs-built_in">begin</span>());<br>        &#125;<br>        <span class="hljs-keyword">while</span> (!q.<span class="hljs-built_in">empty</span>() &amp;&amp; sum[i] &lt;= sum[q.<span class="hljs-built_in">back</span>()]) &#123;<br>            q.<span class="hljs-built_in">pop_back</span>();<br>        &#125;<br>        q.<span class="hljs-built_in">push_back</span>(i);<br>        ans = <span class="hljs-built_in">max</span>(ans, sum[i] - sum[q[<span class="hljs-number">0</span>]]);<br>    &#125;<br>    cout &lt;&lt; ans &lt;&lt; endl;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="fri"><a class="markdownIt-Anchor" href="#fri"></a> Fri</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/486/E">LIS of Sequence_277E</a></p>
+<h2 id="fri">Fri</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/486/E">LIS of
+Sequence_277E</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lxt_Lucia/article/details/81206439">LIS相关知识例题</a></p>
 <p>输入 n(1≤n≤1e5) 和长为 n 的数组 a(1≤a[i]≤1e5)。</p>
 <p>定义 LIS 为 a 的最长严格递增子序列。<br>
@@ -469,7 +491,8 @@
 如果 a[i] 在 a 的一个 LIS，但不在所有 LIS 中，输出 2。<br>
 如果 a[i] 在 a 的所有 LIS 中，输出 3。<br>
 输出在同一行，不要加空格。</p>
-<p>注意，a=[1,2,2,3] 有两个相同的 LIS [1,2,3]，其中 1 和 3 都在这两个 LIS 中，但 2 只在其中一个 LIS 不在另一个 LIS 中，所以输出 3223。</p>
+<p>注意，a=[1,2,2,3] 有两个相同的 LIS [1,2,3]，其中 1 和 3 都在这两个
+LIS 中，但 2 只在其中一个 LIS 不在另一个 LIS 中，所以输出 3223。</p>
 <p>输入<br>
 1<br>
 4<br>
@@ -485,9 +508,14 @@
 <p><strong>Sol:</strong></p>
 <p>计算 a[0] 到 a[i] 的，以 a[i] 结尾的 LIS 长度，记作 pre[i]。</p>
 <p>计算 a[i] 到 a[n-1] 的，以 a[i] 开头的 LIS 长度，记作 suf[i]。</p>
-<p>如果 pre[i] + suf[i] - 1 ≠ 整个数组的 LIS 长度，那么 a[i] 一定不在任何 LIS 中。（减一是因为 a[i] 算重复了） 否则，a[i] 是否一定在所有 LIS 中呢？</p>
-<p>例如 a=[1,2,2,3]，这里的两个 2 对应的 pre[i] 是一样的，a[2]=2 虽然在 LIS 中，但不在所有 LIS 中。</p>
-<p>（在 pre[i] + suf[i] - 1 = 整个数组的 LIS 长度的前提下）统计 pre[i] 的出现次数，如果只出现一次，那么 a[i] 一定在所有 LIS 中，否则 a[i] 不在所有 LIS 中。<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/m4267u8v">详细证明</a></p>
+<p>如果 pre[i] + suf[i] - 1 ≠ 整个数组的 LIS 长度，那么 a[i]
+一定不在任何 LIS 中。（减一是因为 a[i] 算重复了） 否则，a[i]
+是否一定在所有 LIS 中呢？</p>
+<p>例如 a=[1,2,2,3]，这里的两个 2 对应的 pre[i] 是一样的，a[2]=2 虽然在
+LIS 中，但不在所有 LIS 中。</p>
+<p>（在 pre[i] + suf[i] - 1 = 整个数组的 LIS 长度的前提下）统计 pre[i]
+的出现次数，如果只出现一次，那么 a[i] 一定在所有 LIS 中，否则 a[i]
+不在所有 LIS 中。<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/m4267u8v">详细证明</a></p>
 <p>关于 LIS 的二分做法，见 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ub411Q7sB/">视频讲解</a></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-type">int</span> lis, a[N], lst[N], dp[N], dp2[N], cnt[N], tag[N];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">binary_search</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>    <span class="hljs-type">int</span> l = <span class="hljs-number">1</span>, r = lis, mid, ans = lis + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (l &lt;= r) &#123;<br>        mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span> (lst[mid] &gt;= x) &#123;<br>            ans = mid;<br>            r = mid - <span class="hljs-number">1</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            l = mid + <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> n;<br>    cin &gt;&gt; n;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) cin &gt;&gt; a[i];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>        dp[i] = <span class="hljs-built_in">binary_search</span>(a[i]);<br>        <span class="hljs-keyword">if</span> (dp[i] &gt; lis) <br>            lst[++lis] = a[i];<br>        <span class="hljs-keyword">else</span><br>            lst[dp[i]] = a[i];<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>        dp2[i] = dp[i];<br>        a[i] = -a[i];<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = n; i &gt;= <span class="hljs-number">1</span>; --i) &#123;<br>        dp[i] = <span class="hljs-built_in">binary_search</span>(a[i]);<br>        <span class="hljs-keyword">if</span> (dp[i] &gt; lis)<br>            lst[++lis] = a[i];<br>        <span class="hljs-keyword">else</span><br>            lst[dp[i]] = a[i];<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>		<span class="hljs-keyword">if</span> (dp[i] + dp2[i] - <span class="hljs-number">1</span> == lis)<br>			++cnt[dp[i]];<br>		<span class="hljs-keyword">else</span><br>			tag[i] = <span class="hljs-number">1</span>;<br>	&#125;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) &#123;<br>		<span class="hljs-keyword">if</span> (tag[i])<br>			<span class="hljs-keyword">continue</span>;<br>		<span class="hljs-keyword">if</span> (cnt[dp[i]] == <span class="hljs-number">1</span>)<br>			tag[i] = <span class="hljs-number">3</span>;<br>		<span class="hljs-keyword">else</span><br>			tag[i] = <span class="hljs-number">2</span>;<br>	&#125;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i)<br>		cout &lt;&lt; tag[i];<br>&#125;<br></code></pre></td></tr></table></figure>
 
