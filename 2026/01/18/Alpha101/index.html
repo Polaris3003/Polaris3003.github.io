@@ -1,0 +1,1213 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="001 123def alpha1(data):      return rank(          TS_ArgMax(SignedPower(stddev(data[&#x27;returns&#x27;], 20).mask(data[&#x27;returns&#x27;] &gt;&#x3D; 0, data[&#x27;adj_close&#x27;]), 2), 5)) - 0.5 1.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Alpha101">
+<meta property="og:url" content="http://polaris3003.github.io/2026/01/18/Alpha101/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="001 123def alpha1(data):      return rank(          TS_ArgMax(SignedPower(stddev(data[&#x27;returns&#x27;], 20).mask(data[&#x27;returns&#x27;] &gt;&#x3D; 0, data[&#x27;adj_close&#x27;]), 2), 5)) - 0.5 1.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-18T13:37:32.000Z">
+<meta property="article:modified_time" content="2026-01-18T16:03:02.153Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="因子">
+<meta property="article:tag" content="Finance">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Alpha101 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"polaris3003.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Alpha101"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-18 21:37" pubdate>
+          2026年1月18日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Alpha101</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="section">001</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">alpha1</span>(<span class="hljs-params">data</span>):  <br>    <span class="hljs-keyword">return</span> rank(  <br>        TS_ArgMax(SignedPower(stddev(data[<span class="hljs-string">&#x27;returns&#x27;</span>], <span class="hljs-number">20</span>).mask(data[<span class="hljs-string">&#x27;returns&#x27;</span>] &gt;= <span class="hljs-number">0</span>, data[<span class="hljs-string">&#x27;adj_close&#x27;</span>]), <span class="hljs-number">2</span>), <span class="hljs-number">5</span>)) - <span class="hljs-number">0.5</span><br></code></pre></td></tr></table></figure>
+<h3 id="公式来源">1. 公式来源</h3>
+<p>原文公式是这样的：</p>
+<p><span class="math display">\[Rank(Ts\_ArgMax(SignedPower(((returns
+&lt; 0) ? stddev(returns, 20) : close), 2.), 5)) - 0.5\]</span></p>
+<hr>
+<h3 id="代码拆解">2. 代码拆解</h3>
+<h4 id="第一步核心条件判断">第一步：核心条件判断</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">stddev(data[<span class="hljs-string">&#x27;returns&#x27;</span>], <span class="hljs-number">20</span>).mask(data[<span class="hljs-string">&#x27;returns&#x27;</span>] &gt;= <span class="hljs-number">0</span>, data[<span class="hljs-string">&#x27;adj_close&#x27;</span>])<br></code></pre></td></tr></table></figure>
+<p>这是最让初学者困惑的一步，利用了
+<code>pandas.mask</code>。它的逻辑是：<strong>混合数据源</strong>。</p>
+<ul>
+<li><p><strong>如果</strong> 今天股票是涨的
+(<code>returns &gt;= 0</code>)：取今天的<strong>收盘价</strong>
+(<code>adj_close</code>)。</p></li>
+<li><p><strong>如果</strong> 今天股票是跌的
+(<code>returns &lt; 0</code>)：取过去 20
+天的<strong>收益率标准差</strong>
+(<code>stddev</code>，即波动率)。</p></li>
+</ul>
+<blockquote>
+<p>💡 思考： 为什么要这么比？</p>
+<p>收盘价（比如 100 元）通常在数值上远大于波动率（比如 0.02 或
+2.0）。</p>
+<p>所以这一步本质上是在说：“只要股票涨了，我就给它一个巨大的数值（价格）；如果跌了，我就给它一个很小的数值（波动率）。”</p>
+</blockquote>
+<h4 id="第二步带符号平方-signedpower">第二步：带符号平方
+(SignedPower)</h4>
+<p>Python</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">SignedPower</span>(<span class="hljs-params">..., 2</span>)</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li><p>把第一步拿到的数值进行平方（保留符号）。</p></li>
+<li><p>由于价格和标准差通常都是正数，这里其实就是<strong>平方</strong>。</p></li>
+<li><p><strong>作用：</strong>
+放大差异。收盘价平方后会变得超级大，波动率平方后还是很小。这进一步确认了“涨的日子数值巨大，跌的日子数值渺小”。</p></li>
+</ul>
+<h4 id="第三步时序最大值位置-ts_argmax">第三步：时序最大值位置
+(TS_ArgMax)</h4>
+<p>Python</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">TS_ArgMax</span>(<span class="hljs-params">..., 5</span>)</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>TS</strong> = Time Series (时间序列)。</p></li>
+<li><p><strong>ArgMax</strong> = Argument of the Maximum
+(最大值发生的<strong>位置/索引</strong>)。</p></li>
+<li><p><strong>逻辑：</strong> 回看过去 <strong>5
+天</strong>，哪一天的数值最大？</p>
+<ul>
+<li>由于第二步的放大效应，这实际上是在问：<strong>“过去 5
+天里，哪一天的收盘价最高（且当天是涨的）？”</strong></li>
+</ul></li>
+<li><p><strong>输出：</strong> 通常是一个 0 到 4
+的数字（取决于具体实现，比如 4 代表今天，0 代表 5 天前）。</p>
+<ul>
+<li><p>如果输出大（靠近
+4）：说明<strong>最近</strong>发生了最大值（最近在涨）。</p></li>
+<li><p>如果输出小（靠近 0）：说明最大值是在 <strong>5
+天前</strong>（最近几天可能都在跌，只有 5 天前那个数值最大）。</p></li>
+</ul></li>
+</ul>
+<h4 id="第四步横截面排名-rank">第四步：横截面排名 (Rank)</h4>
+<p>Python</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">rank</span>(<span class="hljs-params">...</span>)</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li><p>把这只股票的 <code>TS_ArgMax</code>
+结果，和市场上<strong>所有其他股票</strong>在同一天进行比较。</p></li>
+<li><p><strong>输出：</strong> 一个 0 到 1 之间的百分比排名。</p></li>
+</ul>
+<h4 id="第五步中心化">第五步：中心化</h4>
+<p>Python</p>
+<figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><span class="hljs-meta prompt_">...</span> <span class="language-javascript">- <span class="hljs-number">0.5</span></span><br></code></pre></td></tr></table></figure>
+<ul>
+<li><p>把排名结果减去 0.5，使其变成 <strong>-0.5 到 +0.5</strong>
+之间。</p></li>
+<li><p>正数代表做多信号，负数代表做空信号。</p></li>
+</ul>
+<hr>
+<h3 id="翻译">3. 翻译</h3>
+<p>把上面所有步骤串起来，Alpha 1 的核心逻辑其实是在捕捉一种<strong>“反转
+vs 动量”</strong>的混合特征：</p>
+<ol type="1">
+<li><p><strong>它关注的是“最近一次上涨发生在什么时候”</strong>。</p></li>
+<li><p>因为“涨日用价格（大数），跌日用波动率（小数）”，所以只要过去 5
+天有一天是涨的，<code>TS_ArgMax</code> 就会指向那一天。</p></li>
+<li><p><strong>高分 (Alpha &gt; 0)：</strong> <code>ArgMax</code> 很大
+-&gt; 说明最大值发生在<strong>最近</strong>（比如昨天或今天） -&gt;
+意味着股票<strong>刚刚</strong>经历了大涨（或者是最高价）。</p></li>
+<li><p><strong>低分 (Alpha &lt; 0)：</strong> <code>ArgMax</code> 很小
+-&gt; 说明最大值发生在 <strong>5 天前</strong> -&gt; 意味着股票最近 4
+天可能都在跌（或者波动率很低），只有 5 天前那个价格是最高的。</p></li>
+</ol>
+<p>一般解释（均值回归）：</p>
+<p>Alpha 101 的大部分因子在短周期内是<strong>均值回归（Mean
+Reversion）</strong>属性。</p>
+<ul>
+<li><p>如果这只股票<strong>最近</strong>（ArgMax 大）处于高位，Alpha
+为正。但具体它是做多还是做空，取决于这个因子在你的回测框架里是正向还是负向收益。</p></li>
+<li><p><em>注意：在 WorldQuant
+原文中，许多因子是直接作为“预测值”使用的。如果用于 A 股，通常 Alpha 1
+表现出<strong>反转</strong>特性（即最近涨得好的，接下来可能要跌，需要做空/卖出）。</em></p></li>
+</ul>
+<h2 id="section-1">002</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">alpha2</span>(<span class="hljs-params">data</span>):  <br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span> * correlation(rank(delta(np.log(data[<span class="hljs-string">&#x27;volume&#x27;</span>]), <span class="hljs-number">2</span>)), rank(data[<span class="hljs-string">&#x27;adj_close&#x27;</span>] / data[<span class="hljs-string">&#x27;adj_open&#x27;</span>]), <span class="hljs-number">6</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="公式来源-1">公式来源</h3>
+<p><span class="math display">\[Alpha2 = -1 \times
+Correlation(Rank(\Delta(\log(Volume), 2)), \quad
+Rank(\frac{Close}{Open}), \quad 6)\]</span></p>
+<hr>
+<h3 id="代码拆解-1">1. 代码拆解</h3>
+<h4 id="a.-第一部分成交量的变化趋势">A. 第一部分：成交量的变化趋势</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">rank(delta(np.log(data[<span class="hljs-string">&#x27;volume&#x27;</span>]), <span class="hljs-number">2</span>))<br></code></pre></td></tr></table></figure>
+<ul>
+<li><p><strong><code>np.log(volume)</code></strong>:
+对成交量取对数。这是为了平滑数据，因为成交量有时会突然暴涨 10
+倍，取对数能让数据更“温和”，符合正态分布。</p></li>
+<li><p><strong><code>delta(..., 2)</code></strong>: 看 <strong>2
+天前</strong> 到 <strong>今天</strong> 的变化。</p>
+<ul>
+<li>这是一个“二阶”概念，看的是成交量的<strong>增长势头</strong>。</li>
+</ul></li>
+<li><p><strong><code>rank</code></strong>: 横向排名。</p>
+<ul>
+<li><p><strong>高分：</strong>
+说明这只股票最近成交量<strong>放大得比别人快</strong>。</p></li>
+<li><p><strong>低分：</strong> 说明这只股票最近缩量缩得很厉害。</p></li>
+</ul></li>
+</ul>
+<h4 id="b.-第二部分日内涨跌幅-k线实体">B. 第二部分：日内涨跌幅
+(K线实体)</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">rank(data[<span class="hljs-string">&#x27;adj_close&#x27;</span>] / data[<span class="hljs-string">&#x27;adj_open&#x27;</span>])<br></code></pre></td></tr></table></figure>
+<ul>
+<li><p><strong><code>close / open</code></strong>:
+注意，这里<strong>不是</strong>比起昨天的涨跌幅，而是<strong>今天这一根
+K 线是红还是绿</strong>（日内强度）。</p>
+<ul>
+<li>它剔除了“隔夜跳空”的影响，只关注开盘后资金是买入还是卖出。</li>
+</ul></li>
+<li><p><strong><code>rank</code></strong>: 横向排名。</p>
+<ul>
+<li><p><strong>高分：</strong> 今天是一根大阳线（日内强势）。</p></li>
+<li><p><strong>低分：</strong> 今天是一根大阴线（日内砸盘）。</p></li>
+</ul></li>
+</ul>
+<h4 id="c.-第三部分相关性-correlation">C. 第三部分：相关性
+(Correlation)</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">correlation(..., <span class="hljs-number">6</span>)<br></code></pre></td></tr></table></figure>
+<ul>
+<li><p>它在问：<strong>在过去 6
+天里，成交量的变化趋势和股价的日内走势，是不是“同进同退”的？</strong></p></li>
+<li><p><strong>正相关 (+1)：</strong>
+量增价涨（大阳线伴随放量），或者量缩价跌。</p></li>
+<li><p><strong>负相关 (-1)：</strong>
+量增价跌（大阴线伴随放量，恐慌抛售），或者量缩价涨（无量上涨）。</p></li>
+</ul>
+<h4 id="d.-第四部分取反--1">D. 第四部分：取反 (-1)</h4>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-1 * ...</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>这是灵魂所在！它把逻辑完全颠倒了。</li>
+</ul>
+<hr>
+<h3 id="翻译-人话版">2. 翻译 (人话版)</h3>
+<p>这个因子其实是在<strong>做空“量价配合”，做多“背离”</strong>。</p>
+<p>我们来看看两种极端情况，你就明白了：</p>
+<h4 id="场景一量价齐升-correlation-高-rightarrow-alpha-为负-rightarrow-做空">场景一：量价齐升
+(Correlation 高 <span class="math inline">\(\rightarrow\)</span> Alpha
+为负 <span class="math inline">\(\rightarrow\)</span> 做空)</h4>
+<ul>
+<li><p><strong>现象：</strong> 过去 6
+天，股价一直在涨（阳线），而且成交量一直在放大。</p></li>
+<li><p><strong>传统技术分析：</strong>
+认为这是“好事”，叫“量价配合完美”，趋势很强。</p></li>
+<li><p><strong>Alpha 2 的逻辑：</strong>
+<strong>这叫“过热”！</strong></p>
+<ul>
+<li><p>所有想买的人都买进去了，情绪极其高涨，买盘力量耗尽。</p></li>
+<li><p>既然相关性很高，Alpha 得分就是负数。</p></li>
+<li><p><strong>操作：卖出/做空。</strong> (赌它短期见顶)</p></li>
+</ul></li>
+</ul>
+<h4 id="场景二放量杀跌-correlation-负-rightarrow-alpha-为正-rightarrow-做多">场景二：放量杀跌
+(Correlation 负 <span class="math inline">\(\rightarrow\)</span> Alpha
+为正 <span class="math inline">\(\rightarrow\)</span> 做多)</h4>
+<ul>
+<li><p><strong>现象：</strong>
+股价暴跌（大阴线），同时成交量剧烈放大。</p></li>
+<li><p><strong>传统技术分析：</strong> 这叫“恐慌盘出逃”。</p></li>
+<li><p><strong>Alpha 2 的逻辑：</strong> <strong>这叫“绝望后的重生”
+(Capitulation)！</strong></p>
+<ul>
+<li><p>虽然价格在跌，但量在疯狂放，说明带血的筹码都被人接走了。</p></li>
+<li><p>这种时候，量和价是负相关的（价格 👇，量 👆）。</p></li>
+<li><p>Alpha = <span class="math inline">\(-1 \times (\text{负数}) =
+\text{正数}\)</span>。</p></li>
+<li><p><strong>操作：买入/抄底。</strong> (赌它超卖反弹)</p></li>
+</ul></li>
+</ul>
+<hr>
+<h3 id="总结图表">3. 总结图表</h3>
+<table style="width:100%;">
+
+<thead>
+<tr>
+<th><strong>市场现象</strong></th>
+<th><strong>量价关系</strong></th>
+<th><strong>Correlation</strong></th>
+<th><strong>Alpha 2 得分</strong></th>
+<th><strong>交易方向</strong></th>
+<th><strong>逻辑解释</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>放量大涨</strong></td>
+<td>正相关</td>
+<td>High (+)</td>
+<td><strong>Low (-)</strong></td>
+<td><strong>做空</strong></td>
+<td>买盘衰竭，主力诱多</td>
+</tr>
+<tr>
+<td><strong>放量大跌</strong></td>
+<td>负相关</td>
+<td>Low (-)</td>
+<td><strong>High (+)</strong></td>
+<td><strong>做多</strong></td>
+<td>恐慌见底，主力吸筹</td>
+</tr>
+<tr>
+<td><strong>无量阴跌</strong></td>
+<td>正相关</td>
+<td>High (+)</td>
+<td><strong>Low (-)</strong></td>
+<td><strong>做空</strong></td>
+<td>阴跌不止，没人抄底</td>
+</tr>
+<tr>
+<td><strong>无量上涨</strong></td>
+<td>负相关</td>
+<td>Low (-)</td>
+<td><strong>High (+)</strong></td>
+<td><strong>做多</strong></td>
+<td>锁仓拉升，抛压很轻</td>
+</tr>
+</tbody>
+</table>
+<h3 id="为什么-alpha-101-里要加--1">4. 为什么 Alpha 101 里要加
+<code>-1</code>？</h3>
+<p>WorldQuant 的这些 Alpha 大多是用于**短线（几天级别）的。</p>
+<p>在短线高频的世界里，<strong>“反转 (Mean Reversion)”</strong> 往往比
+<strong>“动量 (Momentum)”</strong> 更有效。</p>
+<ul>
+<li><p>如果大家都看好（量价齐升），往往就是短期高点。</p></li>
+<li><p>如果大家都在跑（放量杀跌），往往就是短期低点。</p></li>
+</ul>
+<p>所以 Alpha 2
+本质上是一个<strong>捕捉市场极端情绪的反转因子</strong>。</p>
+<h2 id="section-2">003</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">alpha3</span>(<span class="hljs-params">data</span>):  <br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span> * correlation(rank(data[<span class="hljs-string">&#x27;adj_open&#x27;</span>]), rank(data[<span class="hljs-string">&#x27;volume&#x27;</span>]), <span class="hljs-number">10</span>)<br></code></pre></td></tr></table></figure>
+<p><span class="math display">\[Alpha3 = -1 \times
+Correlation(Rank(Open), Rank(Volume), 10)\]</span></p>
+<hr>
+<h3 id="代码拆解-2">1. 代码拆解</h3>
+<h4 id="a.-rankdataadj_open-价格排位">A.
+<code>rank(data['adj_open'])</code> —— 价格排位</h4>
+<ul>
+<li><p>这里直接对 <strong>开盘价 (Open Price)</strong>
+进行排名。</p></li>
+<li><p><strong>高分：</strong>
+代表这只股票的股价很高（比如几百块一股的茅台/英伟达）。</p></li>
+<li><p><strong>低分：</strong>
+代表这只股票是“便宜货”或“低价股”（比如几块钱的银行股或垃圾股）。</p></li>
+<li><p><em>注意：这里比较的是绝对价格的相对排名，而不是涨跌幅。</em></p></li>
+</ul>
+<h4 id="b.-rankdatavolume-热度排位">B. <code>rank(data['volume'])</code>
+—— 热度排位</h4>
+<ul>
+<li><p>对 <strong>成交量</strong> 进行排名。</p></li>
+<li><p><strong>高分：</strong> 交易非常活跃，大家都在买卖。</p></li>
+<li><p><strong>低分：</strong> 门可罗雀，无人问津。</p></li>
+</ul>
+<h4 id="c.-correlation...-...-10-10天的联动性">C.
+<code>correlation(..., ..., 10)</code> —— 10天的联动性</h4>
+<ul>
+<li>它在问：<strong>在过去 10
+天里，是不是“股价越高的时候，成交量就越大”？</strong></li>
+</ul>
+<h4 id="d.--1-取反做反转">D. <code>-1</code> —— 取反（做反转）</h4>
+<ul>
+<li>再次出现 <code>-1</code>，说明我们要<strong>反着做</strong>。</li>
+</ul>
+<hr>
+<h3 id="金融逻辑为什么这么设计">2. 金融逻辑：为什么这么设计？</h3>
+<p>这个因子主要是在捕捉 <strong>“流动性溢价”</strong> 和
+<strong>“过度拥挤”</strong> 的现象。</p>
+<h4 id="场景一高价-高量-强相关-alpha-为负-rightarrow-做空">场景一：高价
++ 高量 = 强相关 (Alpha 为负 <span class="math inline">\(\rightarrow\)</span> 做空)</h4>
+<ul>
+<li><p><strong>现象：</strong>
+这只股票价格很高（通常是热门大白马或科技龙头），而且成交量巨大。</p></li>
+<li><p><strong>心理画像：</strong>
+<strong>“人声鼎沸的富人区”。</strong></p>
+<ul>
+<li><p>所有的资金都在追逐这些高价股，流动性极好。</p></li>
+<li><p>在量化交易中，<strong>流动性过剩往往意味着收益率偏低</strong>（因为没有流动性风险补偿）。</p></li>
+<li><p>大家都在里面，你想赚谁的钱？</p></li>
+</ul></li>
+<li><p><strong>操作：</strong> <strong>做空。</strong>
+(认为它被过度交易了，上升空间有限)。</p></li>
+</ul>
+<h4 id="场景二低价-高量-高价-低量-负相关-alpha-为正-rightarrow-做多">场景二：低价
++ 高量 / 高价 + 低量 = 负相关 (Alpha 为正 <span class="math inline">\(\rightarrow\)</span> 做多)</h4>
+<p>这里有两种情况会导致负相关，都是好的信号：</p>
+<ol type="1">
+<li><p><strong>高价 + 低量 (锁仓上涨)：</strong></p>
+<ul>
+<li><p>股价很高，但成交量不大。</p></li>
+<li><p><strong>含义：</strong>
+持有者惜售，不想卖，筹码很稳固。这通常是长牛股的特征（比如慢牛期的消费股）。</p></li>
+<li><p><strong>操作：</strong> <strong>做多。</strong></p></li>
+</ul></li>
+<li><p><strong>低价 + 高量 (底部放量)：</strong></p>
+<ul>
+<li><p>股价很便宜，但成交量突然变得巨大。</p></li>
+<li><p><strong>含义：</strong>
+这往往是“垃圾股”或“超跌股”在底部有主力进场吸筹，或者发生了剧烈的换手。</p></li>
+<li><p><strong>操作：</strong>
+<strong>做多</strong>（博取反弹或困境反转）。</p></li>
+</ul></li>
+</ol>
+<hr>
+<h3 id="形象的比喻去餐厅吃饭">3. 形象的比喻：去餐厅吃饭</h3>
+<p>想象你在选餐厅（股票）：</p>
+<ul>
+<li><p><strong>Type A (高价 + 人多)：</strong> 网红米其林餐厅。</p>
+<ul>
+<li><p>菜很贵（Open 高），排队的人巨多（Volume 大）。</p></li>
+<li><p><strong>体验：</strong> 溢价很高，性价比通常很低，容易踩雷（Alpha
+做空）。</p></li>
+</ul></li>
+<li><p><strong>Type B (高价 + 人少)：</strong> 顶级私房菜。</p>
+<ul>
+<li><p>菜很贵（Open 高），但很安静，没什么人进出（Volume 小）。</p></li>
+<li><p><strong>体验：</strong>
+说明这里不仅有逼格，而且都是老客，不喧闹，品质有保证（Alpha
+做多）。</p></li>
+</ul></li>
+<li><p><strong>Type C (低价 + 人多)：</strong> 苍蝇馆子/大排档。</p>
+<ul>
+<li><p>菜很便宜（Open 低），但人气爆棚（Volume 大）。</p></li>
+<li><p><strong>体验：</strong>
+性价比极高，味道肯定有独到之处，不然不会这么多人来（Alpha
+做多）。</p></li>
+</ul></li>
+</ul>
+<h3 id="总结图表-1">总结图表</h3>
+<table style="width:100%;">
+
+<thead>
+<tr>
+<th><strong>组合特征</strong></th>
+<th><strong>价格 (Open)</strong></th>
+<th><strong>人气 (Volume)</strong></th>
+<th><strong>Correlation</strong></th>
+<th><strong>Alpha 3 方向</strong></th>
+<th><strong>逻辑</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>热门大票</strong></td>
+<td>高</td>
+<td>高</td>
+<td>正 (+)</td>
+<td><strong>做空 (Short)</strong></td>
+<td>交易拥挤，缺乏溢价</td>
+</tr>
+<tr>
+<td><strong>冷门小票</strong></td>
+<td>低</td>
+<td>低</td>
+<td>正 (+)</td>
+<td><strong>做空 (Short)</strong></td>
+<td>既没价值也没人玩（死钱）</td>
+</tr>
+<tr>
+<td><strong>惜售牛股</strong></td>
+<td>高</td>
+<td>低</td>
+<td>负 (-)</td>
+<td><strong>做多 (Long)</strong></td>
+<td>筹码稳定，无抛压</td>
+</tr>
+<tr>
+<td><strong>底部妖股</strong></td>
+<td>低</td>
+<td>高</td>
+<td>负 (-)</td>
+<td><strong>做多 (Long)</strong></td>
+<td>廉价筹码被疯抢</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实战中的一个bug">4. 实战中的一个Bug</h3>
+<p>Alpha 3 有一个潜在的问题：<strong>它用的是绝对价格 (Rank
+Open)</strong>。</p>
+<p>这导致它会<strong>长期</strong>做空高价股（比如茅台），长期做多低价股（比如
+penny stocks）。</p>
+<ul>
+<li><p>在 A
+股市场，这个因子可能会变成“小市值因子”的变种（长期买小票）。</p></li>
+<li><p>在使用时，通常建议把 <code>Rank(Open)</code> 改为
+<code>Rank(Open / Close_prev)</code> （即<strong>高开</strong>），或者在
+Rank
+之前先对价格做行业中性化处理，否则它就变成了一个单纯风格因子（大小盘轮动），而不是真正的
+Alpha 因子。</p></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Quant/" class="category-chain-item">Quant</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%A0%E5%AD%90/" class="print-no-link">#因子</a>
+      
+        <a href="/tags/Finance/" class="print-no-link">#Finance</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Alpha101</div>
+      <div>http://polaris3003.github.io/2026/01/18/Alpha101/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/01/05/202601-Start/" title="202601-Start">
+                        <span class="hidden-mobile">202601-Start</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
