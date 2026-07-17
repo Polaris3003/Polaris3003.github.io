@@ -18,19 +18,21 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="因子投资-17-IC分层回测与因子评价 本节解决什么问题 因子评价不是找一个最好看的指标。同一信号可能 Rank IC 稳定，却因极端值导致 Pearson IC 差；可能分层单调，却因高换手扣费后无收益；也可能 H-L 显著，但覆盖率低且只来自微盘股。本讲建立多维验收表。 前置知识与学习目标 需要第 03、09、10 讲。学完后能区分 Pearson&#x2F;Spearman IC、ICIR、分层单调性">
+    <meta name="description" content="因子投资-17-IC分层回测与因子评价本节解决什么问题因子评价不是找一个最好看的指标。同一信号可能 Rank IC 稳定，却因极端值导致 Pearson IC 差；可能分层单调，却因高换手扣费后无收益；也可能 H-L 显著，但覆盖率低且只来自微盘股。本讲建立多维验收表。 前置知识与学习目标需要第 03、09、10 讲。学完后能区分 Pearson&#x2F;Spearman IC、ICIR、分层单调性、H-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="因子投资-17-IC分层回测与因子评价">
 <meta property="og:url" content="http://polaris3003.github.io/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-17-IC%E5%88%86%E5%B1%82%E5%9B%9E%E6%B5%8B%E4%B8%8E%E5%9B%A0%E5%AD%90%E8%AF%84%E4%BB%B7/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="因子投资-17-IC分层回测与因子评价 本节解决什么问题 因子评价不是找一个最好看的指标。同一信号可能 Rank IC 稳定，却因极端值导致 Pearson IC 差；可能分层单调，却因高换手扣费后无收益；也可能 H-L 显著，但覆盖率低且只来自微盘股。本讲建立多维验收表。 前置知识与学习目标 需要第 03、09、10 讲。学完后能区分 Pearson&#x2F;Spearman IC、ICIR、分层单调性">
+<meta property="og:description" content="因子投资-17-IC分层回测与因子评价本节解决什么问题因子评价不是找一个最好看的指标。同一信号可能 Rank IC 稳定，却因极端值导致 Pearson IC 差；可能分层单调，却因高换手扣费后无收益；也可能 H-L 显著，但覆盖率低且只来自微盘股。本讲建立多维验收表。 前置知识与学习目标需要第 03、09、10 讲。学完后能区分 Pearson&#x2F;Spearman IC、ICIR、分层单调性、H-">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://polaris3003.github.io/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-010-145971822.jpg">
 <meta property="article:published_time" content="2026-07-17T09:00:00.000Z">
 <meta property="article:modified_time" content="2026-07-17T15:45:32.309Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="因子投资">
 <meta property="article:tag" content="研究实践">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://polaris3003.github.io/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-010-145971822.jpg">
   
   
   
@@ -252,7 +254,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-010-145971822.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -342,45 +344,18 @@
             
               <div class="markdown-body">
                 
-                <h1 id="因子投资-17-ic分层回测与因子评价">因子投资-17-IC分层回测与因子评价</h1>
-<h2 id="本节解决什么问题">本节解决什么问题</h2>
-<p>因子评价不是找一个最好看的指标。同一信号可能 Rank IC
-稳定，却因极端值导致 Pearson IC
-差；可能分层单调，却因高换手扣费后无收益；也可能 H-L
-显著，但覆盖率低且只来自微盘股。本讲建立多维验收表。</p>
-<h2 id="前置知识与学习目标">前置知识与学习目标</h2>
-<p>需要第 03、09、10 讲。学完后能区分 Pearson/Spearman
-IC、ICIR、分层单调性、H-L、Alpha、换手和覆盖率，并能给冲突结果作出降级结论。</p>
-<h2 id="直觉与手算">直觉与手算</h2>
-<p>某月 5 只股票信号排名与下月收益排名完全一致，Rank
-IC=1。若最高信号股票数据错误、收益写成 100%，Pearson IC 会被它支配；Rank
-IC 仍只看顺序。两者回答不同问题：线性幅度关系与排序能力。</p>
+                <h1 id="因子投资-17-IC分层回测与因子评价"><a href="#因子投资-17-IC分层回测与因子评价" class="headerlink" title="因子投资-17-IC分层回测与因子评价"></a>因子投资-17-IC分层回测与因子评价</h1><h2 id="本节解决什么问题"><a href="#本节解决什么问题" class="headerlink" title="本节解决什么问题"></a>本节解决什么问题</h2><p>因子评价不是找一个最好看的指标。同一信号可能 Rank IC 稳定，却因极端值导致 Pearson IC 差；可能分层单调，却因高换手扣费后无收益；也可能 H-L 显著，但覆盖率低且只来自微盘股。本讲建立多维验收表。</p>
+<h2 id="前置知识与学习目标"><a href="#前置知识与学习目标" class="headerlink" title="前置知识与学习目标"></a>前置知识与学习目标</h2><p>需要第 03、09、10 讲。学完后能区分 Pearson/Spearman IC、ICIR、分层单调性、H-L、Alpha、换手和覆盖率，并能给冲突结果作出降级结论。</p>
+<h2 id="直觉与手算"><a href="#直觉与手算" class="headerlink" title="直觉与手算"></a>直觉与手算</h2><p>某月 5 只股票信号排名与下月收益排名完全一致，Rank IC=1。若最高信号股票数据错误、收益写成 100%，Pearson IC 会被它支配；Rank IC 仍只看顺序。两者回答不同问题：线性幅度关系与排序能力。</p>
 <p>若 60 个月 IC 均值 0.04、时间标准差 0.08：</p>
-<p><span class="math display">\[
-ICIR=\bar{IC}/s(IC)=0.5
-\]</span></p>
-<p>年化常写 0.5×√12≈1.73，但仍需报告自相关和均值标准误；ICIR 不是 t
-统计量。</p>
-<h2 id="定义与公式">定义与公式</h2>
-<h3 id="ic-与-rank-ic">IC 与 Rank IC</h3>
-<p><span class="math display">\[
-IC_t=corr_i(x_{i,t},R_{i,t+1})
-\]</span></p>
-<p>Pearson IC 对尺度和极端值敏感；Spearman Rank IC 是排名的 Pearson
-相关，对单调非线性更稳健。每月在当期覆盖股票横截面计算，再研究 IC
-时间序列。</p>
-<h3 id="icir-与显著性">ICIR 与显著性</h3>
-<p><span class="math display">\[
-ICIR=\bar{IC}/s(IC)
-\]</span></p>
-<p>均值 t 值则是均值除以均值标准误；若 IC 自相关，用 HAC 标准误。不要用
-ICIR 冒充 t。</p>
-<h3 id="分层与单调性">分层与单调性</h3>
-<p>G 组未来收益应展示 Q1…QG 全路径，不只 H-L。可用组序号与组收益的
-Spearman
-相关、相邻组差为正的比例等描述单调性，但不要为了通过指标改变组数。</p>
-<h3 id="h-lalpha换手与覆盖">H-L、Alpha、换手与覆盖</h3>
-<ul>
+<script type="math/tex; mode=display">
+ICIR=\bar{IC}/s(IC)=0.5</script><p>年化常写 0.5×√12≈1.73，但仍需报告自相关和均值标准误；ICIR 不是 t 统计量。</p>
+<h2 id="定义与公式"><a href="#定义与公式" class="headerlink" title="定义与公式"></a>定义与公式</h2><h3 id="IC-与-Rank-IC"><a href="#IC-与-Rank-IC" class="headerlink" title="IC 与 Rank IC"></a>IC 与 Rank IC</h3><script type="math/tex; mode=display">
+IC_t=corr_i(x_{i,t},R_{i,t+1})</script><p>Pearson IC 对尺度和极端值敏感；Spearman Rank IC 是排名的 Pearson 相关，对单调非线性更稳健。每月在当期覆盖股票横截面计算，再研究 IC 时间序列。</p>
+<h3 id="ICIR-与显著性"><a href="#ICIR-与显著性" class="headerlink" title="ICIR 与显著性"></a>ICIR 与显著性</h3><script type="math/tex; mode=display">
+ICIR=\bar{IC}/s(IC)</script><p>均值 t 值则是均值除以均值标准误；若 IC 自相关，用 HAC 标准误。不要用 ICIR 冒充 t。</p>
+<h3 id="分层与单调性"><a href="#分层与单调性" class="headerlink" title="分层与单调性"></a>分层与单调性</h3><p>G 组未来收益应展示 Q1…QG 全路径，不只 H-L。可用组序号与组收益的 Spearman 相关、相邻组差为正的比例等描述单调性，但不要为了通过指标改变组数。</p>
+<h3 id="H-L、Alpha、换手与覆盖"><a href="#H-L、Alpha、换手与覆盖" class="headerlink" title="H-L、Alpha、换手与覆盖"></a>H-L、Alpha、换手与覆盖</h3><ul>
 <li>H-L：高组减低组毛收益；</li>
 <li>Alpha：H-L 对预定因子模型的截距；</li>
 <li>换手：漂移后权重到目标权重的交易量；</li>
@@ -388,6 +363,7 @@ Spearman
 <li>净收益：毛收益减佣金、税费、价差、冲击和借券融资成本。</li>
 </ul>
 <p>一个最低评价矩阵：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -429,13 +405,10 @@ Spearman
 </tr>
 </tbody>
 </table>
-<h2 id="python-最小实验">Python 最小实验</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br>frame = pd.DataFrame(&#123;<br>    <span class="hljs-string">&quot;month&quot;</span>: np.repeat(<span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>), <span class="hljs-number">6</span>),<br>    <span class="hljs-string">&quot;signal&quot;</span>: np.tile([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>], <span class="hljs-number">4</span>),<br>    <span class="hljs-string">&quot;future_return&quot;</span>: np.array([<br>        -<span class="hljs-number">0.02</span>, -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.03</span>,<br>        -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.03</span>, <span class="hljs-number">0.02</span>,<br>        -<span class="hljs-number">0.03</span>, -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.04</span>,<br>         <span class="hljs-number">0.00</span>, -<span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.03</span>,<br>    ]),<br>&#125;)<br>ics = frame.groupby(<span class="hljs-string">&quot;month&quot;</span>).apply(<br>    <span class="hljs-keyword">lambda</span> x: x[<span class="hljs-string">&quot;signal&quot;</span>].corr(x[<span class="hljs-string">&quot;future_return&quot;</span>], method=<span class="hljs-string">&quot;spearman&quot;</span>),<br>    include_groups=<span class="hljs-literal">False</span>,<br>)<br>frame[<span class="hljs-string">&quot;group&quot;</span>] = frame.groupby(<span class="hljs-string">&quot;month&quot;</span>)[<span class="hljs-string">&quot;signal&quot;</span>].transform(<br>    <span class="hljs-keyword">lambda</span> x: pd.qcut(x, <span class="hljs-number">3</span>, labels=<span class="hljs-literal">False</span>)<br>)<br>groups = frame.groupby([<span class="hljs-string">&quot;month&quot;</span>, <span class="hljs-string">&quot;group&quot;</span>])[<span class="hljs-string">&quot;future_return&quot;</span>].mean().unstack()<br>hl = groups[<span class="hljs-number">2</span>] - groups[<span class="hljs-number">0</span>]<br><br><span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(ics) == <span class="hljs-number">4</span><br><span class="hljs-keyword">assert</span> np.allclose(hl, groups[<span class="hljs-number">2</span>] - groups[<span class="hljs-number">0</span>])<br><span class="hljs-built_in">print</span>(ics.mean(), ics.std(ddof=<span class="hljs-number">1</span>), hl.mean())<br></code></pre></td></tr></table></figure>
-<h2 id="a-股实现注意事项">A 股实现注意事项</h2>
-<p>覆盖率必须相对历史合格股票池；财报缺失、停牌和退市不能按未来收益删除。并列信号、涨跌停不可成交、微盘权重、空头不可得和板块制度都要单独报告。行业中性后
-IC 与全市场 IC 回答不同问题，应并列而非选更好者。</p>
-<h2 id="常见错误与边界">常见错误与边界</h2>
-<ul>
+</div>
+<h2 id="Python-最小实验"><a href="#Python-最小实验" class="headerlink" title="Python 最小实验"></a>Python 最小实验</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br>frame = pd.DataFrame(&#123;<br>    <span class="hljs-string">&quot;month&quot;</span>: np.repeat(<span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>), <span class="hljs-number">6</span>),<br>    <span class="hljs-string">&quot;signal&quot;</span>: np.tile([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>], <span class="hljs-number">4</span>),<br>    <span class="hljs-string">&quot;future_return&quot;</span>: np.array([<br>        -<span class="hljs-number">0.02</span>, -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.03</span>,<br>        -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.03</span>, <span class="hljs-number">0.02</span>,<br>        -<span class="hljs-number">0.03</span>, -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.04</span>,<br>         <span class="hljs-number">0.00</span>, -<span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.03</span>,<br>    ]),<br>&#125;)<br>ics = frame.groupby(<span class="hljs-string">&quot;month&quot;</span>).apply(<br>    <span class="hljs-keyword">lambda</span> x: x[<span class="hljs-string">&quot;signal&quot;</span>].corr(x[<span class="hljs-string">&quot;future_return&quot;</span>], method=<span class="hljs-string">&quot;spearman&quot;</span>),<br>    include_groups=<span class="hljs-literal">False</span>,<br>)<br>frame[<span class="hljs-string">&quot;group&quot;</span>] = frame.groupby(<span class="hljs-string">&quot;month&quot;</span>)[<span class="hljs-string">&quot;signal&quot;</span>].transform(<br>    <span class="hljs-keyword">lambda</span> x: pd.qcut(x, <span class="hljs-number">3</span>, labels=<span class="hljs-literal">False</span>)<br>)<br>groups = frame.groupby([<span class="hljs-string">&quot;month&quot;</span>, <span class="hljs-string">&quot;group&quot;</span>])[<span class="hljs-string">&quot;future_return&quot;</span>].mean().unstack()<br>hl = groups[<span class="hljs-number">2</span>] - groups[<span class="hljs-number">0</span>]<br><br><span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(ics) == <span class="hljs-number">4</span><br><span class="hljs-keyword">assert</span> np.allclose(hl, groups[<span class="hljs-number">2</span>] - groups[<span class="hljs-number">0</span>])<br><span class="hljs-built_in">print</span>(ics.mean(), ics.std(ddof=<span class="hljs-number">1</span>), hl.mean())<br></code></pre></td></tr></table></figure>
+<h2 id="A-股实现注意事项"><a href="#A-股实现注意事项" class="headerlink" title="A 股实现注意事项"></a>A 股实现注意事项</h2><p>覆盖率必须相对历史合格股票池；财报缺失、停牌和退市不能按未来收益删除。并列信号、涨跌停不可成交、微盘权重、空头不可得和板块制度都要单独报告。行业中性后 IC 与全市场 IC 回答不同问题，应并列而非选更好者。</p>
+<h2 id="常见错误与边界"><a href="#常见错误与边界" class="headerlink" title="常见错误与边界"></a>常见错误与边界</h2><ul>
 <li>用同期收益算 IC；全样本标准化后再切时间。</li>
 <li>只报 IC 均值，不报分布、自相关和覆盖。</li>
 <li>只报 H-L，不展示各组和两腿。</li>
@@ -443,19 +416,15 @@ IC 与全市场 IC 回答不同问题，应并列而非选更好者。</p>
 <li>参数和股票池反复调到指标最好。</li>
 <li>IC 正就认为组合一定赚钱；权重、非线性和成本会改变结果。</li>
 </ul>
-<h2 id="原书与论文">原书与论文</h2>
-<p>原书第 3–5 章（PDF 文件页
-97–223）连接因子策略、组合与实践。Hou、Xue、Zhang（2020）显示微盘和实现口径可让大量异象失效：<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhy131">DOI</a>。McLean、Pontiff（2016）讨论样本外与发表后衰减：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/jofi.12365">DOI</a>。</p>
-<h2 id="练习">练习</h2>
-<ol type="1">
+<h2 id="原书与论文"><a href="#原书与论文" class="headerlink" title="原书与论文"></a>原书与论文</h2><p>原书第 3–5 章（PDF 文件页 97–223）连接因子策略、组合与实践。Hou、Xue、Zhang（2020）显示微盘和实现口径可让大量异象失效：<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhy131">DOI</a>。McLean、Pontiff（2016）讨论样本外与发表后衰减：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/jofi.12365">DOI</a>。</p>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><ol>
 <li>加一个极端收益，比较 Pearson 与 Rank IC。</li>
 <li>分别用 3、5、10 组，比较单调性与每组样本量。</li>
 <li>将 H-L 分成多头和空头贡献。</li>
 <li>按规模、行业、年份报告 IC、覆盖和净收益。</li>
 <li>写出因子“支持、证伪、证据不足”三类判定规则。</li>
 </ol>
-<h2 id="小结与下一步">小结与下一步</h2>
-<p>可信因子需要预测、排序、收益、稳定、实现和数据六个维度同时过关。指标冲突时应解释对象并降低结论强度，而不是挑最好看的数字。下一讲审计回测偏差、成本与容量。</p>
+<h2 id="小结与下一步"><a href="#小结与下一步" class="headerlink" title="小结与下一步"></a>小结与下一步</h2><p>可信因子需要预测、排序、收益、稳定、实现和数据六个维度同时过关。指标冲突时应解释对象并降低结论强度，而不是挑最好看的数字。下一讲审计回测偏差、成本与容量。</p>
 
                 
               </div>

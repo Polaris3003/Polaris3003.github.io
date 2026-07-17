@@ -18,19 +18,21 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="因子投资-20-因子动物园行为金融与机器学习 本节解决什么问题 已发表因子数远超经济机制数：部分是风险补偿，部分是行为与摩擦，部分是同一现象重命名，还有部分只是数据挖掘。机器学习能组合大量非线性特征，却不会自动消除未来函数、选择偏差或解释机制。 前置知识与学习目标 需要第 03、17、18 讲。学完后能解释 p-hacking、因子动物园、发表衰减、拥挤与套利限制；能区分风险&#x2F;错误定价；能设计严格">
+    <meta name="description" content="因子投资-20-因子动物园行为金融与机器学习本节解决什么问题已发表因子数远超经济机制数：部分是风险补偿，部分是行为与摩擦，部分是同一现象重命名，还有部分只是数据挖掘。机器学习能组合大量非线性特征，却不会自动消除未来函数、选择偏差或解释机制。 前置知识与学习目标需要第 03、17、18 讲。学完后能解释 p-hacking、因子动物园、发表衰减、拥挤与套利限制；能区分风险&#x2F;错误定价；能设计严格时间切">
 <meta property="og:type" content="article">
 <meta property="og:title" content="因子投资-20-因子动物园行为金融与机器学习">
 <meta property="og:url" content="http://polaris3003.github.io/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-20-%E5%9B%A0%E5%AD%90%E5%8A%A8%E7%89%A9%E5%9B%AD%E8%A1%8C%E4%B8%BA%E9%87%91%E8%9E%8D%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="因子投资-20-因子动物园行为金融与机器学习 本节解决什么问题 已发表因子数远超经济机制数：部分是风险补偿，部分是行为与摩擦，部分是同一现象重命名，还有部分只是数据挖掘。机器学习能组合大量非线性特征，却不会自动消除未来函数、选择偏差或解释机制。 前置知识与学习目标 需要第 03、17、18 讲。学完后能解释 p-hacking、因子动物园、发表衰减、拥挤与套利限制；能区分风险&#x2F;错误定价；能设计严格">
+<meta property="og:description" content="因子投资-20-因子动物园行为金融与机器学习本节解决什么问题已发表因子数远超经济机制数：部分是风险补偿，部分是行为与摩擦，部分是同一现象重命名，还有部分只是数据挖掘。机器学习能组合大量非线性特征，却不会自动消除未来函数、选择偏差或解释机制。 前置知识与学习目标需要第 03、17、18 讲。学完后能解释 p-hacking、因子动物园、发表衰减、拥挤与套利限制；能区分风险&#x2F;错误定价；能设计严格时间切">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://polaris3003.github.io/img/covers/pixiv-weekly/2026-06-27/pixiv-rank-008-146317762.jpg">
 <meta property="article:published_time" content="2026-07-17T10:00:00.000Z">
 <meta property="article:modified_time" content="2026-07-17T15:45:36.524Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="因子投资">
 <meta property="article:tag" content="研究前沿">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://polaris3003.github.io/img/covers/pixiv-weekly/2026-06-27/pixiv-rank-008-146317762.jpg">
   
   
   
@@ -252,7 +254,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-06-27/pixiv-rank-008-146317762.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -342,54 +344,29 @@
             
               <div class="markdown-body">
                 
-                <h1 id="因子投资-20-因子动物园行为金融与机器学习">因子投资-20-因子动物园行为金融与机器学习</h1>
-<h2 id="本节解决什么问题">本节解决什么问题</h2>
-<p>已发表因子数远超经济机制数：部分是风险补偿，部分是行为与摩擦，部分是同一现象重命名，还有部分只是数据挖掘。机器学习能组合大量非线性特征，却不会自动消除未来函数、选择偏差或解释机制。</p>
-<h2 id="前置知识与学习目标">前置知识与学习目标</h2>
-<p>需要第 03、17、18 讲。学完后能解释
-p-hacking、因子动物园、发表衰减、拥挤与套利限制；能区分风险/错误定价；能设计严格时间切分的机器学习研究，并拒绝把预测提升直接写成因果机制。</p>
-<h2 id="直觉与手算">直觉与手算</h2>
-<p>若研究者检验 1000 个无效信号，每个用 5% 门槛，独立近似下预期有 50
-个“显著”。即使论文只展示其中 3 个，读者也看不到隐藏试验。更高 t
-门槛能减少假发现，却不能修复未来数据、不可交易价格或事后选样本。</p>
+                <h1 id="因子投资-20-因子动物园行为金融与机器学习"><a href="#因子投资-20-因子动物园行为金融与机器学习" class="headerlink" title="因子投资-20-因子动物园行为金融与机器学习"></a>因子投资-20-因子动物园行为金融与机器学习</h1><h2 id="本节解决什么问题"><a href="#本节解决什么问题" class="headerlink" title="本节解决什么问题"></a>本节解决什么问题</h2><p>已发表因子数远超经济机制数：部分是风险补偿，部分是行为与摩擦，部分是同一现象重命名，还有部分只是数据挖掘。机器学习能组合大量非线性特征，却不会自动消除未来函数、选择偏差或解释机制。</p>
+<h2 id="前置知识与学习目标"><a href="#前置知识与学习目标" class="headerlink" title="前置知识与学习目标"></a>前置知识与学习目标</h2><p>需要第 03、17、18 讲。学完后能解释 p-hacking、因子动物园、发表衰减、拥挤与套利限制；能区分风险/错误定价；能设计严格时间切分的机器学习研究，并拒绝把预测提升直接写成因果机制。</p>
+<h2 id="直觉与手算"><a href="#直觉与手算" class="headerlink" title="直觉与手算"></a>直觉与手算</h2><p>若研究者检验 1000 个无效信号，每个用 5% 门槛，独立近似下预期有 50 个“显著”。即使论文只展示其中 3 个，读者也看不到隐藏试验。更高 t 门槛能减少假发现，却不能修复未来数据、不可交易价格或事后选样本。</p>
 <p>因子公开后收益下降可能来自两部分：原发现过拟合，或资金学习并套利掉机会。若样本外在发表前已衰减，更像统计偏差；若发表后进一步衰减，拥挤与学习是竞争解释，但日期定义仍需严格。</p>
-<h2 id="定义与公式">定义与公式</h2>
-<h3 id="从动物园到证据等级">从动物园到证据等级</h3>
-<ul>
-<li><strong>p-hacking：</strong>
-根据结果改变变量、样本、参数或报告选择。</li>
+<h2 id="定义与公式"><a href="#定义与公式" class="headerlink" title="定义与公式"></a>定义与公式</h2><h3 id="从动物园到证据等级"><a href="#从动物园到证据等级" class="headerlink" title="从动物园到证据等级"></a>从动物园到证据等级</h3><ul>
+<li><strong>p-hacking：</strong> 根据结果改变变量、样本、参数或报告选择。</li>
 <li><strong>多重假设：</strong> 同一研究族的错误率随试验数上升。</li>
-<li><strong>publication decay：</strong>
-论文样本结束、公开与实施之后的收益衰减。</li>
+<li><strong>publication decay：</strong> 论文样本结束、公开与实施之后的收益衰减。</li>
 <li><strong>样本外失效：</strong> 未参与发现的数据不再支持效应。</li>
-<li><strong>拥挤：</strong>
-多资金持有相似头寸，入场抬价、退出冲击相关。</li>
-<li><strong>套利限制：</strong>
-卖空、融资、委托代理、模型风险和噪声交易阻止价格立即修复。</li>
+<li><strong>拥挤：</strong> 多资金持有相似头寸，入场抬价、退出冲击相关。</li>
+<li><strong>套利限制：</strong> 卖空、融资、委托代理、模型风险和噪声交易阻止价格立即修复。</li>
 </ul>
-<p>因子至少经过：经济假设、点时复现、多重检验、独立样本、发表后、成本容量和机制竞争七关。单个样本内
-t 值只过了其中很小一部分。</p>
-<h3 id="风险补偿与错误定价">风险补偿与错误定价</h3>
-<p>风险解释预测因子在边际效用高、融资紧或宏观坏状态中亏损；错误定价解释预测效应在情绪高、关注低和套利限制强处更大，并在公开与套利后收敛。两者可以共存，状态预测比给平均收益贴标签更有辨识力。</p>
-<h3 id="投资者情绪与因子择时">投资者情绪与因子择时</h3>
-<p>因子择时试图根据估值、宏观、情绪、近期收益或拥挤调整暴露。它新增一层模型与换手，必须使用当时可得预测量，并与“始终持有”“等权多因子”做真正样本外比较。择时失败常来自信号弱、估计误差和拐点交易。</p>
-<h3 id="机器学习">机器学习</h3>
-<p>机器学习把特征 x 映射为预测：</p>
-<p><span class="math display">\[
-\hat R_{i,t+1}=g(x_{i,t};\theta)
-\]</span></p>
-<p>训练集拟合
-θ，验证集选择模型与超参数，最终测试集只能使用一次。面板必须按时间切分，且标准化、缺失填补、特征选择和调参都只在训练窗口拟合。随机打乱股票月份会让未来制度与横截面信息进入训练。</p>
-<p>预测 MSE 或 Rank IC
-改善不等于经济机制成立；还需特征贡献稳定性、替代机制、成本约束和压力情景。</p>
-<h2 id="python-最小实验">Python 最小实验</h2>
-<p>下面造一个结构翻转序列：前 80 期 y≈x，最后 40 期
-y≈-x。训练期拟合很好，时间样本外失败。</p>
+<p>因子至少经过：经济假设、点时复现、多重检验、独立样本、发表后、成本容量和机制竞争七关。单个样本内 t 值只过了其中很小一部分。</p>
+<h3 id="风险补偿与错误定价"><a href="#风险补偿与错误定价" class="headerlink" title="风险补偿与错误定价"></a>风险补偿与错误定价</h3><p>风险解释预测因子在边际效用高、融资紧或宏观坏状态中亏损；错误定价解释预测效应在情绪高、关注低和套利限制强处更大，并在公开与套利后收敛。两者可以共存，状态预测比给平均收益贴标签更有辨识力。</p>
+<h3 id="投资者情绪与因子择时"><a href="#投资者情绪与因子择时" class="headerlink" title="投资者情绪与因子择时"></a>投资者情绪与因子择时</h3><p>因子择时试图根据估值、宏观、情绪、近期收益或拥挤调整暴露。它新增一层模型与换手，必须使用当时可得预测量，并与“始终持有”“等权多因子”做真正样本外比较。择时失败常来自信号弱、估计误差和拐点交易。</p>
+<h3 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h3><p>机器学习把特征 x 映射为预测：</p>
+<script type="math/tex; mode=display">
+\hat R_{i,t+1}=g(x_{i,t};\theta)</script><p>训练集拟合 θ，验证集选择模型与超参数，最终测试集只能使用一次。面板必须按时间切分，且标准化、缺失填补、特征选择和调参都只在训练窗口拟合。随机打乱股票月份会让未来制度与横截面信息进入训练。</p>
+<p>预测 MSE 或 Rank IC 改善不等于经济机制成立；还需特征贡献稳定性、替代机制、成本约束和压力情景。</p>
+<h2 id="Python-最小实验"><a href="#Python-最小实验" class="headerlink" title="Python 最小实验"></a>Python 最小实验</h2><p>下面造一个结构翻转序列：前 80 期 y≈x，最后 40 期 y≈-x。训练期拟合很好，时间样本外失败。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>rng = np.random.default_rng(<span class="hljs-number">42</span>)<br>x = rng.normal(size=<span class="hljs-number">120</span>)<br>y = np.empty(<span class="hljs-number">120</span>)<br>y[:<span class="hljs-number">80</span>] = x[:<span class="hljs-number">80</span>] + rng.normal(<span class="hljs-number">0</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">80</span>)<br>y[<span class="hljs-number">80</span>:] = -x[<span class="hljs-number">80</span>:] + rng.normal(<span class="hljs-number">0</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">40</span>)<br><br>X_train = np.column_stack([np.ones(<span class="hljs-number">80</span>), x[:<span class="hljs-number">80</span>]])<br>coef = np.linalg.lstsq(X_train, y[:<span class="hljs-number">80</span>], rcond=<span class="hljs-literal">None</span>)[<span class="hljs-number">0</span>]<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">mse</span>(<span class="hljs-params">start, end</span>):<br>    pred = coef[<span class="hljs-number">0</span>] + coef[<span class="hljs-number">1</span>] * x[start:end]<br>    <span class="hljs-keyword">return</span> np.mean((y[start:end] - pred) ** <span class="hljs-number">2</span>)<br><br>train_mse = mse(<span class="hljs-number">0</span>, <span class="hljs-number">80</span>)<br>validation_mse = mse(<span class="hljs-number">80</span>, <span class="hljs-number">100</span>)<br>test_mse = mse(<span class="hljs-number">100</span>, <span class="hljs-number">120</span>)<br><br><span class="hljs-keyword">assert</span> train_mse &lt; validation_mse<br><span class="hljs-keyword">assert</span> train_mse &lt; test_mse<br><span class="hljs-built_in">print</span>(coef, train_mse, validation_mse, test_mse)<br></code></pre></td></tr></table></figure>
-<h2 id="a-股实现注意事项">A 股实现注意事项</h2>
-<p>注册制、退市、板块扩容、涨跌停、T+1、融券与投资者结构使分布随时间变化；随机交叉验证尤其危险。特征库要保存公告版本与可得时间，微盘和无法成交股票要做容量审计。情绪代理、搜索量和文本数据也有发布延迟、回填和供应商版本。</p>
-<h2 id="常见错误与边界">常见错误与边界</h2>
-<ul>
+<h2 id="A-股实现注意事项"><a href="#A-股实现注意事项" class="headerlink" title="A 股实现注意事项"></a>A 股实现注意事项</h2><p>注册制、退市、板块扩容、涨跌停、T+1、融券与投资者结构使分布随时间变化；随机交叉验证尤其危险。特征库要保存公告版本与可得时间，微盘和无法成交股票要做容量审计。情绪代理、搜索量和文本数据也有发布延迟、回填和供应商版本。</p>
+<h2 id="常见错误与边界"><a href="#常见错误与边界" class="headerlink" title="常见错误与边界"></a>常见错误与边界</h2><ul>
 <li>数百特征只报告最优模型；测试集反复调参。</li>
 <li>随机打乱时间做交叉验证。</li>
 <li>全样本标准化、缺失填补和行业编码。</li>
@@ -398,24 +375,21 @@ y≈-x。训练期拟合很好，时间样本外失败。</p>
 <li>因子择时用最终修订宏观数据。</li>
 <li>深模型胜线性基准一点就忽略复杂度和稳定性。</li>
 </ul>
-<h2 id="原书与论文">原书与论文</h2>
-<p>原书第 7 章（PDF 文件页 291–377）对应行为、前沿与展望。核心证据：</p>
+<h2 id="原书与论文"><a href="#原书与论文" class="headerlink" title="原书与论文"></a>原书与论文</h2><p>原书第 7 章（PDF 文件页 291–377）对应行为、前沿与展望。核心证据：</p>
 <ul>
 <li>Harvey、Liu、Zhu（2016），多重检验：<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhv059">DOI</a>。</li>
 <li>McLean、Pontiff（2016），样本外与发表后衰减：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/jofi.12365">DOI</a>。</li>
 <li>Hou、Xue、Zhang（2020），异象复现：<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhy131">DOI</a>。</li>
 <li>Gu、Kelly、Xiu（2020），机器学习资产定价：<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhaa009">DOI</a>。</li>
 </ul>
-<h2 id="练习">练习</h2>
-<ol type="1">
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><ol>
 <li>为 200 个相关检验设计 Bonferroni、FDR 与独立测试三套方案。</li>
 <li>列出发现日、样本结束日、发表日和交易实施日。</li>
 <li>用滚动训练/验证/测试替代随机切分。</li>
 <li>比较线性、树模型的 IC、净收益、稳定性和解释成本。</li>
 <li>为情绪或拥挤择时写出会推翻结论的状态预测。</li>
 </ol>
-<h2 id="小结与下一步">小结与下一步</h2>
-<p>因子动物园的核心不是“因子太多”，而是隐藏试验和证据等级不清。行为、风险和摩擦需要竞争预测；机器学习扩大函数空间，也扩大过拟合空间。最终研究应以点时数据、严格时间切分、成本容量、样本外和可证伪机制共同约束。</p>
+<h2 id="小结与下一步"><a href="#小结与下一步" class="headerlink" title="小结与下一步"></a>小结与下一步</h2><p>因子动物园的核心不是“因子太多”，而是隐藏试验和证据等级不清。行为、风险和摩擦需要竞争预测；机器学习扩大函数空间，也扩大过拟合空间。最终研究应以点时数据、严格时间切分、成本容量、样本外和可证伪机制共同约束。</p>
 
                 
               </div>
