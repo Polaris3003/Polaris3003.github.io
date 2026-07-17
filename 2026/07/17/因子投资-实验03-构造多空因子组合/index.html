@@ -1,0 +1,944 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="因子投资-实验03-构造多空因子组合 问题 把每月股票信号变成三分组，并计算等权和市值加权的高减低 H-L 收益。实验使用 3 个形成月、每月 6 只股票，最重要的不是 qcut，而是用明确的 signal_date 与 return_date 断言“收益发生在信号之后”。 最终实现接口： make_long_short(frame, signal, ret, groups&#x3D;3) → pd.Dat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="因子投资-实验03-构造多空因子组合">
+<meta property="og:url" content="http://polaris3003.github.io/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-%E5%AE%9E%E9%AA%8C03-%E6%9E%84%E9%80%A0%E5%A4%9A%E7%A9%BA%E5%9B%A0%E5%AD%90%E7%BB%84%E5%90%88/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="因子投资-实验03-构造多空因子组合 问题 把每月股票信号变成三分组，并计算等权和市值加权的高减低 H-L 收益。实验使用 3 个形成月、每月 6 只股票，最重要的不是 qcut，而是用明确的 signal_date 与 return_date 断言“收益发生在信号之后”。 最终实现接口： make_long_short(frame, signal, ret, groups&#x3D;3) → pd.Dat">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-17T06:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-17T15:45:41.284Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="因子投资">
+<meta property="article:tag" content="Python 实验">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>因子投资-实验03-构造多空因子组合 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"polaris3003.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="因子投资-实验03-构造多空因子组合"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-17 14:00" pubdate>
+          2026年7月17日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">因子投资-实验03-构造多空因子组合</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="因子投资-实验03-构造多空因子组合">因子投资-实验03-构造多空因子组合</h1>
+<h2 id="问题">问题</h2>
+<p>把每月股票信号变成三分组，并计算等权和市值加权的高减低 H-L
+收益。实验使用 3 个形成月、每月 6 只股票，最重要的不是
+qcut，而是用明确的 signal_date 与 return_date
+断言“收益发生在信号之后”。</p>
+<p>最终实现接口：</p>
+<p><strong>make_long_short(frame, signal, ret, groups=3) →
+pd.DataFrame</strong></p>
+<p>输入是长表；输出每个形成月的低组、高组和 H-L 收益。</p>
+<h2 id="输入数据">输入数据</h2>
+<p>每月包含
+asset、signal、market_cap、next_return，并同时保存两个日期：</p>
+<ul>
+<li>signal_date：信号和形成权重可得的日期；</li>
+<li>return_date：next_return 对应持有期结束日期。</li>
+</ul>
+<p>第一月沿用第 09
+讲六股票例子；第二月反转信号顺序；第三月让高组表现差于低组。这样能验证函数不会假设
+H-L 永远为正。</p>
+<table>
+<thead>
+<tr>
+<th>形成月</th>
+<th>signal 排列 A–F</th>
+<th>next_return 排列 A–F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-01-31</td>
+<td>1,2,3,4,5,6</td>
+<td>1%,-2%,0%,2%,4%,3%</td>
+</tr>
+<tr>
+<td>2026-02-28</td>
+<td>6,5,4,3,2,1</td>
+<td>-1%,3%,2%,0%,1%,-2%</td>
+</tr>
+<tr>
+<td>2026-03-31</td>
+<td>1,3,5,2,4,6</td>
+<td>2%,1%,-1%,3%,2%,4%</td>
+</tr>
+</tbody>
+</table>
+<p>市值固定为
+10、20、30、40、50、100，只用于演示权重差异，不代表真实市场规模。</p>
+<h2 id="逐步实现">逐步实现</h2>
+<h3 id="每期独立分组">1. 每期独立分组</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>ranked = block[signal].rank(method=<span class="hljs-string">&quot;first&quot;</span>)<br>block[<span class="hljs-string">&quot;group&quot;</span>] = pd.qcut(ranked, groups, labels=<span class="hljs-literal">False</span>)<br></code></pre></td></tr></table></figure>
+<p>rank(method="first")
+给并列信号一个稳定顺序，适合确定性测试；真实研究中相同信号的拆分会引入任意性，更好的做法是预先规定断点与并列规则，并报告各组数量。</p>
+<h3 id="计算两种组内权重">2. 计算两种组内权重</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>equal_high = high[ret].mean()<br>value_high = np.average(high[ret], weights=high[<span class="hljs-string">&quot;market_cap&quot;</span>])<br></code></pre></td></tr></table></figure>
+<p>等权回答平均股票表现，市值加权回答按资本规模配置的表现。market_cap
+必须在 signal_date 已知，不能用收益期末市值。</p>
+<h3 id="构造-h-l-并保留两腿">3. 构造 H-L 并保留两腿</h3>
+<p>输出不仅保存 H-L，还保留 high 与
+low。只看差值会掩盖收益究竟来自多头有效、空头暴跌还是两者共同贡献。</p>
+<h2 id="完整代码">完整代码</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">make_long_short</span>(<span class="hljs-params">frame, signal, ret, groups=<span class="hljs-number">3</span></span>):<br>    required = &#123;<br>        <span class="hljs-string">&quot;signal_date&quot;</span>, <span class="hljs-string">&quot;return_date&quot;</span>, <span class="hljs-string">&quot;asset&quot;</span>,<br>        signal, ret, <span class="hljs-string">&quot;market_cap&quot;</span>,<br>    &#125;<br>    missing = required.difference(frame.columns)<br>    <span class="hljs-keyword">if</span> missing:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">f&quot;missing columns: <span class="hljs-subst">&#123;<span class="hljs-built_in">sorted</span>(missing)&#125;</span>&quot;</span>)<br>    <span class="hljs-keyword">if</span> groups &lt; <span class="hljs-number">2</span>:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;groups must be at least 2&quot;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (frame[<span class="hljs-string">&quot;return_date&quot;</span>] &gt; frame[<span class="hljs-string">&quot;signal_date&quot;</span>]).<span class="hljs-built_in">all</span>():<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;every return_date must be later than signal_date&quot;</span>)<br>    <span class="hljs-keyword">if</span> frame.duplicated([<span class="hljs-string">&quot;signal_date&quot;</span>, <span class="hljs-string">&quot;asset&quot;</span>]).<span class="hljs-built_in">any</span>():<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;signal_date and asset must be unique&quot;</span>)<br><br>    records = []<br>    <span class="hljs-keyword">for</span> date, original <span class="hljs-keyword">in</span> frame.groupby(<span class="hljs-string">&quot;signal_date&quot;</span>, sort=<span class="hljs-literal">True</span>):<br>        block = original.copy()<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(block) &lt; groups:<br>            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;not enough assets for requested groups&quot;</span>)<br>        ranked = block[signal].rank(method=<span class="hljs-string">&quot;first&quot;</span>)<br>        block[<span class="hljs-string">&quot;group&quot;</span>] = pd.qcut(ranked, groups, labels=<span class="hljs-literal">False</span>)<br><br>        low = block.loc[block[<span class="hljs-string">&quot;group&quot;</span>] == <span class="hljs-number">0</span>]<br>        high = block.loc[block[<span class="hljs-string">&quot;group&quot;</span>] == groups - <span class="hljs-number">1</span>]<br>        equal_low = low[ret].mean()<br>        equal_high = high[ret].mean()<br>        value_low = np.average(low[ret], weights=low[<span class="hljs-string">&quot;market_cap&quot;</span>])<br>        value_high = np.average(high[ret], weights=high[<span class="hljs-string">&quot;market_cap&quot;</span>])<br><br>        records.append(&#123;<br>            <span class="hljs-string">&quot;signal_date&quot;</span>: date,<br>            <span class="hljs-string">&quot;return_date&quot;</span>: block[<span class="hljs-string">&quot;return_date&quot;</span>].iloc[<span class="hljs-number">0</span>],<br>            <span class="hljs-string">&quot;equal_low&quot;</span>: equal_low,<br>            <span class="hljs-string">&quot;equal_high&quot;</span>: equal_high,<br>            <span class="hljs-string">&quot;equal_hl&quot;</span>: equal_high - equal_low,<br>            <span class="hljs-string">&quot;value_low&quot;</span>: value_low,<br>            <span class="hljs-string">&quot;value_high&quot;</span>: value_high,<br>            <span class="hljs-string">&quot;value_hl&quot;</span>: value_high - value_low,<br>        &#125;)<br><br>    result = pd.DataFrame(records).sort_values(<span class="hljs-string">&quot;signal_date&quot;</span>).reset_index(drop=<span class="hljs-literal">True</span>)<br>    <span class="hljs-keyword">assert</span> (result[<span class="hljs-string">&quot;return_date&quot;</span>] &gt; result[<span class="hljs-string">&quot;signal_date&quot;</span>]).<span class="hljs-built_in">all</span>()<br>    <span class="hljs-keyword">assert</span> np.allclose(<br>        result[<span class="hljs-string">&quot;equal_hl&quot;</span>],<br>        result[<span class="hljs-string">&quot;equal_high&quot;</span>] - result[<span class="hljs-string">&quot;equal_low&quot;</span>],<br>    )<br>    <span class="hljs-keyword">assert</span> np.allclose(<br>        result[<span class="hljs-string">&quot;value_hl&quot;</span>],<br>        result[<span class="hljs-string">&quot;value_high&quot;</span>] - result[<span class="hljs-string">&quot;value_low&quot;</span>],<br>    )<br>    <span class="hljs-keyword">return</span> result<br><br><br>assets = <span class="hljs-built_in">list</span>(<span class="hljs-string">&quot;ABCDEF&quot;</span>)<br>caps = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>, <span class="hljs-number">100</span>]<br>signal_dates = pd.to_datetime([<span class="hljs-string">&quot;2026-01-31&quot;</span>, <span class="hljs-string">&quot;2026-02-28&quot;</span>, <span class="hljs-string">&quot;2026-03-31&quot;</span>])<br>return_dates = pd.to_datetime([<span class="hljs-string">&quot;2026-02-28&quot;</span>, <span class="hljs-string">&quot;2026-03-31&quot;</span>, <span class="hljs-string">&quot;2026-04-30&quot;</span>])<br>signals = [<br>    [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],<br>    [<span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>],<br>    [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>],<br>]<br>future_returns = [<br>    [<span class="hljs-number">0.01</span>, -<span class="hljs-number">0.02</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.04</span>, <span class="hljs-number">0.03</span>],<br>    [-<span class="hljs-number">0.01</span>, <span class="hljs-number">0.03</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.01</span>, -<span class="hljs-number">0.02</span>],<br>    [<span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span>, -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.03</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.04</span>],<br>]<br><br>rows = []<br><span class="hljs-keyword">for</span> s_date, r_date, sig, ret <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(<br>    signal_dates, return_dates, signals, future_returns<br>):<br>    <span class="hljs-keyword">for</span> asset, cap, value, next_return <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(assets, caps, sig, ret):<br>        rows.append(&#123;<br>            <span class="hljs-string">&quot;signal_date&quot;</span>: s_date,<br>            <span class="hljs-string">&quot;return_date&quot;</span>: r_date,<br>            <span class="hljs-string">&quot;asset&quot;</span>: asset,<br>            <span class="hljs-string">&quot;signal&quot;</span>: value,<br>            <span class="hljs-string">&quot;market_cap&quot;</span>: cap,<br>            <span class="hljs-string">&quot;next_return&quot;</span>: next_return,<br>        &#125;)<br><br>sample = pd.DataFrame(rows)<br>factor = make_long_short(sample, <span class="hljs-string">&quot;signal&quot;</span>, <span class="hljs-string">&quot;next_return&quot;</span>, groups=<span class="hljs-number">3</span>)<br><br><span class="hljs-keyword">assert</span> np.isclose(factor.loc[<span class="hljs-number">0</span>, <span class="hljs-string">&quot;equal_hl&quot;</span>], <span class="hljs-number">0.04</span>)<br><span class="hljs-keyword">assert</span> np.isclose(factor.loc[<span class="hljs-number">1</span>, <span class="hljs-string">&quot;equal_hl&quot;</span>], <span class="hljs-number">0.015</span>)<br><span class="hljs-keyword">assert</span> np.isclose(factor.loc[<span class="hljs-number">2</span>, <span class="hljs-string">&quot;equal_hl&quot;</span>], -<span class="hljs-number">0.01</span>)<br><span class="hljs-built_in">print</span>(factor.<span class="hljs-built_in">round</span>(<span class="hljs-number">6</span>).to_string(index=<span class="hljs-literal">False</span>))<br></code></pre></td></tr></table></figure>
+<h2 id="预期输出">预期输出</h2>
+<p>等权 H-L 依次为 4%、1.5%、-1%。第一月市值加权 H-L 为约
+4.333%。第三月为负很重要：函数只实现定义，不保证因子有效。</p>
+<p>输出列：</p>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signal_date</td>
+<td>分组与权重形成日期</td>
+</tr>
+<tr>
+<td>return_date</td>
+<td>持有期收益结束日期</td>
+</tr>
+<tr>
+<td>equal_low / equal_high</td>
+<td>两腿等权收益</td>
+</tr>
+<tr>
+<td>equal_hl</td>
+<td>等权高组减低组</td>
+</tr>
+<tr>
+<td>value_low / value_high</td>
+<td>两腿形成日市值加权收益</td>
+</tr>
+<tr>
+<td>value_hl</td>
+<td>市值加权高组减低组</td>
+</tr>
+</tbody>
+</table>
+<p>三个月太短，不能计算有意义的年化、Sharpe 或 t
+值。实验只验证组合形成逻辑。</p>
+<h2 id="断言">断言</h2>
+<ol type="1">
+<li>每一行 return_date 严格晚于 signal_date。</li>
+<li>signal_date、asset 联合唯一，防止同一股票重复计权。</li>
+<li>H-L 逐期精确等于 high-low。</li>
+<li>第一月 H-L 与第 09 讲手算一致。</li>
+<li>第三月 H-L 为负，证明实现没有强制输出正收益。</li>
+</ol>
+<p>真实项目还应断言每期组数、每组数量、权重和、权重非负、形成日市值可得、收益缺失原因和可交易状态。</p>
+<h2 id="结果解释">结果解释</h2>
+<p>等权与市值加权不同，不是实现误差，而是研究对象不同。市值加权降低小股票影响，但可能由少数大股票决定；等权展示平均股票效应，却隐含频繁再平衡和更高容量压力。</p>
+<p>H-L 只是因子模拟组合。A
+股空头组不必然可卖空，所以它可以用来做资产定价解释，却不能直接当作可执行策略收益。落地多头组合时，应分别评价
+high 相对基准的主动收益、换手和约束。</p>
+<p>每月只使用当月 signal 排名，收益发生在下一日期。若把 next_return
+放入分组或使用期末市值加权，代码仍可能运行，却会产生未来函数；日期和列级断言比肉眼看净值更可靠。</p>
+<h2 id="常见故障">常见故障</h2>
+<ul>
+<li>qcut 因大量并列值无法形成指定组数；先定义并列与断点规则。</li>
+<li>每月股票数少于 groups，或某组为空。</li>
+<li>市值为零、负数或缺失，导致权重无意义。</li>
+<li>用 return_date 的市值加权，偷偷引入收益本身。</li>
+<li>merge 后一只股票出现多行，权重被重复计算。</li>
+<li>收盘信号用同一收盘收益，日期虽相同但日内顺序错误。</li>
+<li>只存 H-L，无法诊断哪条腿和哪些股票贡献结果。</li>
+<li>将研究多空组合直接视为可卖空 A 股组合。</li>
+</ul>
+<h2 id="练习">练习</h2>
+<ol type="1">
+<li>把 groups 改为 2 和 6，比较 H-L 与每组样本数。</li>
+<li>给两只股票相同 signal，分别使用 first、average 和固定证券 ID
+规则，观察分组。</li>
+<li>加入 available_to_buy 与
+available_to_sell，模拟涨停买不到、跌停卖不出后的实际持仓。</li>
+<li>计算每月目标权重与漂移后权重的单边换手。</li>
+<li>扩展函数支持参考断点，而非每期 qcut。</li>
+<li>对多头 High
+组选择可比基准，计算主动收益，不使用不可实现空头腿。</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Quant/" class="category-chain-item">Quant</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84/" class="print-no-link">#因子投资</a>
+      
+        <a href="/tags/Python-%E5%AE%9E%E9%AA%8C/" class="print-no-link">#Python 实验</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>因子投资-实验03-构造多空因子组合</div>
+      <div>http://polaris3003.github.io/2026/07/17/因子投资-实验03-构造多空因子组合/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-%E5%AE%9E%E9%AA%8C04-%E5%AE%9E%E7%8E%B0FamaMacBeth%E5%9B%9E%E5%BD%92/" title="因子投资-实验04-实现FamaMacBeth回归">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">因子投资-实验04-实现FamaMacBeth回归</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-10-%E6%97%B6%E5%BA%8F%E6%88%AA%E9%9D%A2%E5%9B%9E%E5%BD%92%E4%B8%8E%E7%BB%9F%E8%AE%A1%E6%8E%A8%E6%96%AD/" title="因子投资-10-时序截面回归与统计推断">
+                        <span class="hidden-mobile">因子投资-10-时序截面回归与统计推断</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

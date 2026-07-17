@@ -1,0 +1,970 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="因子投资-实验01-从价格到收益率 问题 给定一列按交易日排序的价格，怎样得到简单收益、对数收益、累计净值和年化波动率？这个实验只用 6 个确定性价格，不依赖网络或数据库，目的是把第 01、02 讲的公式变成一条最小可审计的数据管道。 完成后你应当能解释每一行为什么出现缺失值、为什么最终净值是 1.06、为什么简单收益与对数收益不能逐项相等，以及为什么 5 个日收益估出的年化波动率几乎没有决策价值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="因子投资-实验01-从价格到收益率">
+<meta property="og:url" content="http://polaris3003.github.io/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-%E5%AE%9E%E9%AA%8C01-%E4%BB%8E%E4%BB%B7%E6%A0%BC%E5%88%B0%E6%94%B6%E7%9B%8A%E7%8E%87/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="因子投资-实验01-从价格到收益率 问题 给定一列按交易日排序的价格，怎样得到简单收益、对数收益、累计净值和年化波动率？这个实验只用 6 个确定性价格，不依赖网络或数据库，目的是把第 01、02 讲的公式变成一条最小可审计的数据管道。 完成后你应当能解释每一行为什么出现缺失值、为什么最终净值是 1.06、为什么简单收益与对数收益不能逐项相等，以及为什么 5 个日收益估出的年化波动率几乎没有决策价值">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-17T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-17T15:45:38.989Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="因子投资">
+<meta property="article:tag" content="Python 实验">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>因子投资-实验01-从价格到收益率 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"polaris3003.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="因子投资-实验01-从价格到收益率"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-17 12:00" pubdate>
+          2026年7月17日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">因子投资-实验01-从价格到收益率</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="因子投资-实验01-从价格到收益率">因子投资-实验01-从价格到收益率</h1>
+<h2 id="问题">问题</h2>
+<p>给定一列按交易日排序的价格，怎样得到简单收益、对数收益、累计净值和年化波动率？这个实验只用
+6 个确定性价格，不依赖网络或数据库，目的是把第 01、02
+讲的公式变成一条最小可审计的数据管道。</p>
+<p>完成后你应当能解释每一行为什么出现缺失值、为什么最终净值是
+1.06、为什么简单收益与对数收益不能逐项相等，以及为什么 5
+个日收益估出的年化波动率几乎没有决策价值。</p>
+<h2 id="输入数据">输入数据</h2>
+<p>假设价格已经按日期升序、口径一致并代表总回报价格：</p>
+<table>
+<thead>
+<tr>
+<th>date</th>
+<th style="text-align: right;">price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-01-05</td>
+<td style="text-align: right;">100.0</td>
+</tr>
+<tr>
+<td>2026-01-06</td>
+<td style="text-align: right;">102.0</td>
+</tr>
+<tr>
+<td>2026-01-07</td>
+<td style="text-align: right;">101.0</td>
+</tr>
+<tr>
+<td>2026-01-08</td>
+<td style="text-align: right;">104.0</td>
+</tr>
+<tr>
+<td>2026-01-09</td>
+<td style="text-align: right;">103.0</td>
+</tr>
+<tr>
+<td>2026-01-12</td>
+<td style="text-align: right;">106.0</td>
+</tr>
+</tbody>
+</table>
+<p>第一行没有前一期价格，所以一期收益必须是缺失，而不是 0。只有在计算“从
+1 开始的净值”时，才把这一行的增长因子设为 1。</p>
+<h2 id="逐步实现">逐步实现</h2>
+<h3 id="第一步建立有日期索引的表">第一步：建立有日期索引的表</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>dates = pd.to_datetime([<br>    <span class="hljs-string">&quot;2026-01-05&quot;</span>, <span class="hljs-string">&quot;2026-01-06&quot;</span>, <span class="hljs-string">&quot;2026-01-07&quot;</span>,<br>    <span class="hljs-string">&quot;2026-01-08&quot;</span>, <span class="hljs-string">&quot;2026-01-09&quot;</span>, <span class="hljs-string">&quot;2026-01-12&quot;</span>,<br>])<br>data = pd.DataFrame(&#123;<span class="hljs-string">&quot;price&quot;</span>: prices.to_numpy()&#125;, index=dates)<br></code></pre></td></tr></table></figure>
+<p>日期不是装饰。真实研究必须先排序、去重、校验交易日，再计算相邻变化；否则
+pct_change 会忠实地计算错误顺序。</p>
+<h3 id="第二步计算两类收益">第二步：计算两类收益</h3>
+<p>简单收益直接用当前价除以前价减一；对数收益用价格对数的一阶差分：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>data[<span class="hljs-string">&quot;simple&quot;</span>] = data[<span class="hljs-string">&quot;price&quot;</span>].pct_change(fill_method=<span class="hljs-literal">None</span>)<br>data[<span class="hljs-string">&quot;log_return&quot;</span>] = np.log(data[<span class="hljs-string">&quot;price&quot;</span>]).diff()<br></code></pre></td></tr></table></figure>
+<p>对每个非缺失观测，都应满足
+exp(log_return)-1=simple。这个恒等式是检查收益实现是否一致的好断言。</p>
+<h3 id="第三步累计净值与年化波动">第三步：累计净值与年化波动</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>data[<span class="hljs-string">&quot;wealth&quot;</span>] = (<span class="hljs-number">1</span> + data[<span class="hljs-string">&quot;simple&quot;</span>].fillna(<span class="hljs-number">0</span>)).cumprod()<br>annual_volatility = data[<span class="hljs-string">&quot;simple&quot;</span>].dropna().std(ddof=<span class="hljs-number">1</span>) * np.sqrt(<span class="hljs-number">252</span>)<br></code></pre></td></tr></table></figure>
+<p>净值使用简单收益连乘。日波动乘根号 252
+只是在日收益独立、分布相对稳定时的尺度近似；本实验只有 5
+个收益观测，数值只用于验证公式。</p>
+<h2 id="完整代码">完整代码</h2>
+<p>复制下面代码即可独立运行。完整程序不读取或写入本地文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br>dates = pd.to_datetime([<br>    <span class="hljs-string">&quot;2026-01-05&quot;</span>, <span class="hljs-string">&quot;2026-01-06&quot;</span>, <span class="hljs-string">&quot;2026-01-07&quot;</span>,<br>    <span class="hljs-string">&quot;2026-01-08&quot;</span>, <span class="hljs-string">&quot;2026-01-09&quot;</span>, <span class="hljs-string">&quot;2026-01-12&quot;</span>,<br>])<br>prices = pd.Series([<span class="hljs-number">100.0</span>, <span class="hljs-number">102.0</span>, <span class="hljs-number">101.0</span>, <span class="hljs-number">104.0</span>, <span class="hljs-number">103.0</span>, <span class="hljs-number">106.0</span>])<br><br>data = pd.DataFrame(&#123;<span class="hljs-string">&quot;price&quot;</span>: prices.to_numpy()&#125;, index=dates)<br>simple = prices.pct_change(fill_method=<span class="hljs-literal">None</span>)<br>log_return = np.log(prices).diff()<br>wealth = (<span class="hljs-number">1</span> + simple.fillna(<span class="hljs-number">0</span>)).cumprod()<br>annual_volatility = simple.dropna().std(ddof=<span class="hljs-number">1</span>) * np.sqrt(<span class="hljs-number">252</span>)<br><br>data[<span class="hljs-string">&quot;simple&quot;</span>] = simple.to_numpy()<br>data[<span class="hljs-string">&quot;log_return&quot;</span>] = log_return.to_numpy()<br>data[<span class="hljs-string">&quot;wealth&quot;</span>] = wealth.to_numpy()<br><br><span class="hljs-keyword">assert</span> np.isclose(wealth.iloc[-<span class="hljs-number">1</span>], <span class="hljs-number">1.06</span>)<br><span class="hljs-keyword">assert</span> np.allclose(<br>    np.exp(log_return.dropna()).values - <span class="hljs-number">1</span>,<br>    simple.dropna().values,<br>)<br><span class="hljs-keyword">assert</span> data.index.is_monotonic_increasing<br><span class="hljs-keyword">assert</span> data.index.is_unique<br><br><span class="hljs-built_in">print</span>(data.<span class="hljs-built_in">round</span>(<span class="hljs-number">6</span>).to_string())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;annual_volatility=<span class="hljs-subst">&#123;annual_volatility:<span class="hljs-number">.6</span>f&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="预期输出">预期输出</h2>
+<p>核心数值应为：</p>
+<table>
+<thead>
+<tr>
+<th>date</th>
+<th style="text-align: right;">simple</th>
+<th style="text-align: right;">log_return</th>
+<th style="text-align: right;">wealth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-01-05</td>
+<td style="text-align: right;">缺失</td>
+<td style="text-align: right;">缺失</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>2026-01-06</td>
+<td style="text-align: right;">0.020000</td>
+<td style="text-align: right;">0.019803</td>
+<td style="text-align: right;">1.02</td>
+</tr>
+<tr>
+<td>2026-01-07</td>
+<td style="text-align: right;">-0.009804</td>
+<td style="text-align: right;">-0.009852</td>
+<td style="text-align: right;">1.01</td>
+</tr>
+<tr>
+<td>2026-01-08</td>
+<td style="text-align: right;">0.029703</td>
+<td style="text-align: right;">0.029270</td>
+<td style="text-align: right;">1.04</td>
+</tr>
+<tr>
+<td>2026-01-09</td>
+<td style="text-align: right;">-0.009615</td>
+<td style="text-align: right;">-0.009662</td>
+<td style="text-align: right;">1.03</td>
+</tr>
+<tr>
+<td>2026-01-12</td>
+<td style="text-align: right;">0.029126</td>
+<td style="text-align: right;">0.028710</td>
+<td style="text-align: right;">1.06</td>
+</tr>
+</tbody>
+</table>
+<p>年化波动率约为 0.318804，即 31.88%。它很高的一部分原因是样本只有 5
+个日收益；不要把教学输出写成对未来波动的估计。</p>
+<h2 id="断言">断言</h2>
+<p>实验用四类断言保护研究口径：</p>
+<ol type="1">
+<li><strong>财富恒等式：</strong> 最终价格 106 相对初始
+100，因此最终净值必须为 1.06。</li>
+<li><strong>收益变换恒等式：</strong> 每一期 exp(r)-1 必须等于简单收益
+R。</li>
+<li><strong>时间顺序：</strong> 日期索引必须单调递增。</li>
+<li><strong>唯一性：</strong> 每个日期只能出现一次；真实个股面板还应断言
+date、asset 联合唯一。</li>
+</ol>
+<p>断言不是为了证明研究结论，而是尽早阻止数据管道静默地产生错误结果。真实项目还应检查价格为正、复权因子可用、异常跳变对应公司行动，以及股票代码没有被错误复用。</p>
+<h2 id="结果解释">结果解释</h2>
+<p>价格从 100 到 106，所以累计总回报是
+6%。中间有两次下跌，净值路径不是直线。简单收益与对数收益在幅度小时接近，但正收益时对数值略小，负收益时对数值更负；经过
+exp(r)-1 后两者完全一致。</p>
+<p>第一行收益保留缺失，是因为“没有上期数据”和“收益为零”具有不同含义。计算净值时将第一行缺失填
+0，只是人为规定初始增长因子为
+1，不应反向污染用于估计均值、波动或回归的收益样本。</p>
+<p>年化波动使用样本标准差和根号
+252。它没有考虑自相关、周末跨期、涨跌停或条件波动，也没有置信区间。正确的结论是“代码按这个近似得到
+31.88%”，而不是“资产真实年风险为 31.88%”。</p>
+<h2 id="常见故障">常见故障</h2>
+<ul>
+<li><strong>pct_change 警告或隐式填充：</strong> 显式指定
+fill_method=None，避免缺失价格被自动前向填充后制造零收益。</li>
+<li><strong>日期未排序：</strong>
+先排序再计算；排序后检查是否有重复日期，而不是让后出现的行覆盖前一行。</li>
+<li><strong>复权与分红重复：</strong> 若 price
+已是总回报复权价，不再单独加入分红。</li>
+<li><strong>对数价格非正：</strong>
+正常股价应大于零；出现零或负数通常是缺失编码、单位或数据错误，应停止而非强行取对数。</li>
+<li><strong>首行填零过早：</strong>
+只在净值连乘时填零；统计估计必须丢弃没有定义的第一期收益。</li>
+<li><strong>根号年化滥用：</strong>
+交易日数量、收益自相关和样本长度需要单独报告。</li>
+<li><strong>浮点精度：</strong> 不用 simple == exact
+做严格相等判断，应使用 np.isclose 或 np.allclose。</li>
+</ul>
+<h2 id="练习">练习</h2>
+<ol type="1">
+<li>把最后价格改为 95，重新计算累计收益、最大回撤和年化波动。</li>
+<li>在输入中复制一个日期，编写断言让程序立刻失败。</li>
+<li>插入一个缺失价格，比较 fill_method=None
+与先前向填充的结果，并解释哪一步可以用于持仓估值、哪一步不能代表成交。</li>
+<li>新增一列每股现金分红，使用未复权价格手工构造总回报；再与供应商复权价收益交叉核对。</li>
+<li>将频率改为月度，把年化因子从 252 改为
+12；解释为什么这只是单位变换而非信息增加。</li>
+</ol>
+<p>完成练习后，把数据表扩展为 date、asset、price
+三列的长表。后续实验都将沿用“日期与资产联合唯一、信号先于未来收益”的结构。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Quant/" class="category-chain-item">Quant</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84/" class="print-no-link">#因子投资</a>
+      
+        <a href="/tags/Python-%E5%AE%9E%E9%AA%8C/" class="print-no-link">#Python 实验</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>因子投资-实验01-从价格到收益率</div>
+      <div>http://polaris3003.github.io/2026/07/17/因子投资-实验01-从价格到收益率/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-%E5%AE%9E%E9%AA%8C02-%E7%94%A8%E5%9B%9E%E5%BD%92%E4%BC%B0%E8%AE%A1Alpha%E5%92%8CBeta/" title="因子投资-实验02-用回归估计Alpha和Beta">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">因子投资-实验02-用回归估计Alpha和Beta</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-05-%E6%8A%95%E8%B5%84%E7%BB%84%E5%90%88%E5%9F%BA%E5%87%86%E4%B8%8E%E7%BB%A9%E6%95%88%E6%8C%87%E6%A0%87/" title="因子投资-05-投资组合基准与绩效指标">
+                        <span class="hidden-mobile">因子投资-05-投资组合基准与绩效指标</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

@@ -1,0 +1,1003 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="因子投资-实验02-用回归估计Alpha和Beta 问题 给定一列市场超额收益和一列资产超额收益，怎样用时序回归估计月度 Alpha、市场 Beta、置信区间和残差？本实验先用已知生成过程造数据，再用 OLS 反向估计。因为真参数已知，我们能判断代码是否恢复了正确对象。 数据生成式是： \[ R_{asset,t}&#x3D;0.001+1.2R_{market,t}+\varepsilon_t \] 0.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="因子投资-实验02-用回归估计Alpha和Beta">
+<meta property="og:url" content="http://polaris3003.github.io/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-%E5%AE%9E%E9%AA%8C02-%E7%94%A8%E5%9B%9E%E5%BD%92%E4%BC%B0%E8%AE%A1Alpha%E5%92%8CBeta/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="因子投资-实验02-用回归估计Alpha和Beta 问题 给定一列市场超额收益和一列资产超额收益，怎样用时序回归估计月度 Alpha、市场 Beta、置信区间和残差？本实验先用已知生成过程造数据，再用 OLS 反向估计。因为真参数已知，我们能判断代码是否恢复了正确对象。 数据生成式是： \[ R_{asset,t}&#x3D;0.001+1.2R_{market,t}+\varepsilon_t \] 0.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-17T04:05:00.000Z">
+<meta property="article:modified_time" content="2026-07-17T15:45:40.023Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="因子投资">
+<meta property="article:tag" content="Python 实验">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>因子投资-实验02-用回归估计Alpha和Beta - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"polaris3003.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="因子投资-实验02-用回归估计Alpha和Beta"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-17 12:05" pubdate>
+          2026年7月17日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">因子投资-实验02-用回归估计Alpha和Beta</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="因子投资-实验02-用回归估计alpha和beta">因子投资-实验02-用回归估计Alpha和Beta</h1>
+<h2 id="问题">问题</h2>
+<p>给定一列市场超额收益和一列资产超额收益，怎样用时序回归估计月度
+Alpha、市场 Beta、置信区间和残差？本实验先用已知生成过程造数据，再用 OLS
+反向估计。因为真参数已知，我们能判断代码是否恢复了正确对象。</p>
+<p>数据生成式是：</p>
+<p><span class="math display">\[
+R_{asset,t}=0.001+1.2R_{market,t}+\varepsilon_t
+\]</span></p>
+<p>0.001 是真实月度 Alpha，1.2 是真实 Beta，ε
+是人为给定的小噪声。真实研究看不到这些真值，所以更需要时间对齐、模型诊断和稳健标准误。</p>
+<h2 id="输入数据">输入数据</h2>
+<p>使用 12 个月确定性市场收益与噪声，全部用小数：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">月份</th>
+<th style="text-align: right;">market</th>
+<th style="text-align: right;">epsilon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-0.030</td>
+<td style="text-align: right;">0.0010</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">-0.0010</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.010</td>
+<td style="text-align: right;">0.0005</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">-0.010</td>
+<td style="text-align: right;">-0.0005</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.0010</td>
+</tr>
+<tr>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">-0.0010</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">-0.025</td>
+<td style="text-align: right;">0.0005</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">-0.0005</td>
+</tr>
+<tr>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.010</td>
+<td style="text-align: right;">0.0005</td>
+</tr>
+<tr>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">-0.015</td>
+<td style="text-align: right;">-0.0005</td>
+</tr>
+<tr>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0.025</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+</tbody>
+</table>
+<p>asset 由已知公式计算，不从外部下载。这里 market 与 asset
+都被解释为超额收益；若输入的是原始收益，截距含义会不同。</p>
+<h2 id="逐步实现">逐步实现</h2>
+<h3 id="第一步构造可审计数据">第一步：构造可审计数据</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>frame = pd.DataFrame(&#123;<span class="hljs-string">&quot;market&quot;</span>: market, <span class="hljs-string">&quot;epsilon&quot;</span>: epsilon&#125;)<br>frame[<span class="hljs-string">&quot;asset&quot;</span>] = <span class="hljs-number">0.001</span> + <span class="hljs-number">1.2</span> * frame[<span class="hljs-string">&quot;market&quot;</span>] + frame[<span class="hljs-string">&quot;epsilon&quot;</span>]<br><span class="hljs-keyword">assert</span> frame.notna().<span class="hljs-built_in">all</span>().<span class="hljs-built_in">all</span>()<br></code></pre></td></tr></table></figure>
+<p>数据生成时保留 epsilon
+列只是教学需要。真实数据中残差只能在估计模型后得到，不能把未来残差当特征。</p>
+<h3 id="第二步显式加入常数项">第二步：显式加入常数项</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>X = sm.add_constant(frame[[<span class="hljs-string">&quot;market&quot;</span>]], has_constant=<span class="hljs-string">&quot;add&quot;</span>)<br>model = sm.OLS(frame[<span class="hljs-string">&quot;asset&quot;</span>], X).fit()<br></code></pre></td></tr></table></figure>
+<p>statsmodels 不会在所有接口里自动加常数。不加常数相当于强迫 Alpha
+为零，并会改变 Beta。X 的列是 const、market，维度为 12×2；y 是
+12×1。</p>
+<h3 id="第三步提取参数置信区间与残差">第三步：提取参数、置信区间与残差</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>alpha_hat = model.params[<span class="hljs-string">&quot;const&quot;</span>]<br>beta_hat = model.params[<span class="hljs-string">&quot;market&quot;</span>]<br>confidence = model.conf_int(alpha=<span class="hljs-number">0.05</span>)<br>frame[<span class="hljs-string">&quot;residual&quot;</span>] = model.resid<br></code></pre></td></tr></table></figure>
+<p>默认 fit
+使用经典同方差标准误。本教学噪声很小且人为确定，适合验证接口；金融月收益中仍应检查异方差和自相关，并考虑
+model.get_robustcov_results(cov_type="HAC", maxlags=L)。</p>
+<h2 id="完整代码">完整代码</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> statsmodels.api <span class="hljs-keyword">as</span> sm<br><br>market = np.array([<br>    -<span class="hljs-number">0.030</span>, <span class="hljs-number">0.020</span>, <span class="hljs-number">0.010</span>, -<span class="hljs-number">0.010</span>,<br>     <span class="hljs-number">0.040</span>, <span class="hljs-number">0.015</span>, -<span class="hljs-number">0.025</span>, <span class="hljs-number">0.030</span>,<br>     <span class="hljs-number">0.000</span>, <span class="hljs-number">0.010</span>, -<span class="hljs-number">0.015</span>, <span class="hljs-number">0.025</span>,<br>])<br>epsilon = np.array([<br>     <span class="hljs-number">0.0010</span>, -<span class="hljs-number">0.0010</span>, <span class="hljs-number">0.0005</span>, -<span class="hljs-number">0.0005</span>,<br>     <span class="hljs-number">0.0010</span>, -<span class="hljs-number">0.0010</span>, <span class="hljs-number">0.0005</span>, -<span class="hljs-number">0.0005</span>,<br>     <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0005</span>, -<span class="hljs-number">0.0005</span>, <span class="hljs-number">0.0000</span>,<br>])<br><br>frame = pd.DataFrame(&#123;<span class="hljs-string">&quot;market&quot;</span>: market, <span class="hljs-string">&quot;epsilon&quot;</span>: epsilon&#125;)<br>frame[<span class="hljs-string">&quot;asset&quot;</span>] = <span class="hljs-number">0.001</span> + <span class="hljs-number">1.2</span> * frame[<span class="hljs-string">&quot;market&quot;</span>] + frame[<span class="hljs-string">&quot;epsilon&quot;</span>]<br><br>X = sm.add_constant(frame[[<span class="hljs-string">&quot;market&quot;</span>]], has_constant=<span class="hljs-string">&quot;add&quot;</span>)<br>model = sm.OLS(frame[<span class="hljs-string">&quot;asset&quot;</span>], X).fit()<br><br>alpha_hat = <span class="hljs-built_in">float</span>(model.params[<span class="hljs-string">&quot;const&quot;</span>])<br>beta_hat = <span class="hljs-built_in">float</span>(model.params[<span class="hljs-string">&quot;market&quot;</span>])<br>confidence = model.conf_int(alpha=<span class="hljs-number">0.05</span>)<br>frame[<span class="hljs-string">&quot;residual&quot;</span>] = model.resid<br><br><span class="hljs-keyword">assert</span> <span class="hljs-number">1.1</span> &lt;= beta_hat &lt;= <span class="hljs-number">1.3</span><br><span class="hljs-keyword">assert</span> <span class="hljs-built_in">abs</span>(alpha_hat - <span class="hljs-number">0.001</span>) &lt; <span class="hljs-number">0.0002</span><br><span class="hljs-keyword">assert</span> np.isclose(frame[<span class="hljs-string">&quot;residual&quot;</span>].<span class="hljs-built_in">sum</span>(), <span class="hljs-number">0.0</span>, atol=<span class="hljs-number">1e-12</span>)<br><span class="hljs-keyword">assert</span> np.isclose(<br>    frame[<span class="hljs-string">&quot;market&quot;</span>] @ frame[<span class="hljs-string">&quot;residual&quot;</span>],<br>    <span class="hljs-number">0.0</span>,<br>    atol=<span class="hljs-number">1e-12</span>,<br>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;alpha=<span class="hljs-subst">&#123;alpha_hat:<span class="hljs-number">.9</span>f&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;beta=<span class="hljs-subst">&#123;beta_hat:<span class="hljs-number">.9</span>f&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;r_squared=<span class="hljs-subst">&#123;model.rsquared:<span class="hljs-number">.9</span>f&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(confidence.<span class="hljs-built_in">round</span>(<span class="hljs-number">9</span>).to_string())<br><span class="hljs-built_in">print</span>(frame[[<span class="hljs-string">&quot;market&quot;</span>, <span class="hljs-string">&quot;asset&quot;</span>, <span class="hljs-string">&quot;residual&quot;</span>]].<span class="hljs-built_in">round</span>(<span class="hljs-number">6</span>).to_string(index=<span class="hljs-literal">False</span>))<br></code></pre></td></tr></table></figure>
+<h2 id="预期输出">预期输出</h2>
+<p>关键结果允许最后几位随数值库版本略有差异：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">估计值</th>
+<th style="text-align: right;">95% 经典置信区间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>月度 Alpha</td>
+<td style="text-align: right;">0.001032458</td>
+<td style="text-align: right;">[0.000545274, 0.001519641]</td>
+</tr>
+<tr>
+<td>市场 Beta</td>
+<td style="text-align: right;">1.194435858</td>
+<td style="text-align: right;">[1.172275866, 1.216595850]</td>
+</tr>
+<tr>
+<td>R²</td>
+<td style="text-align: right;">0.999307168</td>
+<td style="text-align: right;">不适用</td>
+</tr>
+</tbody>
+</table>
+<p>估计 Alpha 接近真值 0.001，Beta 接近真值 1.2。R² 接近 1
+是因为我们刻意设置了很小噪声，不代表现实资产回归应有如此高拟合。</p>
+<p>残差约为
+0.000801、-0.000921、0.000523、-0.000588、0.001190、-0.000949、0.000328、-0.000366、-0.000032、0.000523、-0.000616、0.000107。它们不是原始
+epsilon 的逐项复制，因为 OLS 会重新选择截距与斜率，使样本残差与常数和
+market 正交。</p>
+<h2 id="断言">断言</h2>
+<ol type="1">
+<li><strong>Beta 范围：</strong> 估计值必须落在
+[1.1,1.3]；这能捕捉漏加常数、列顺序错位或收益单位错误等大问题。</li>
+<li><strong>Alpha 邻域：</strong> 估计月 Alpha 与 0.001 的差小于
+0.0002。</li>
+<li><strong>残差和为零：</strong> 含截距 OLS
+的样本残差与常数列正交。</li>
+<li><strong>残差与市场正交：</strong> market
+与残差内积在浮点误差内为零。</li>
+</ol>
+<p>这些是代数和实现断言，不证明 CAPM
+正确。真实研究还要断言日期完全对齐、收益频率一致、市场因子定义可追溯、样本长度足够以及数据没有未来函数。</p>
+<h2 id="结果解释">结果解释</h2>
+<p>Beta 约 1.194 表示：在这个线性模型和样本中，市场超额收益每增加 1
+个百分点，资产超额收益条件均值约增加 1.194
+个百分点。它是敏感度，不表示资产“有 119.4% 的风险”，也不是相关系数。</p>
+<p>月度 Alpha 约 0.1032%。精确复合年化为：</p>
+<p><span class="math display">\[
+(1+0.001032458)^{12}-1\approx1.246\%
+\]</span></p>
+<p>年化不增加统计证据；月度 Alpha
+的标准误和置信区间也必须按正确方法变换。不能只把置信区间端点乘 12
+后声称是精确年区间。</p>
+<p>默认 95% 区间在本例不包含零，但数据是人为按正 Alpha
+生成且噪声极小。现实中显著 Alpha
+还可能来自遗漏规模、价值、动量、行业或流动性暴露；更丰富因子模型会改变截距。</p>
+<p>残差是模型没有线性解释的样本部分。它可能包含真正特质冲击、遗漏因子、测量误差和非线性；“特质”不等于“可忽略”。</p>
+<h2 id="常见故障">常见故障</h2>
+<ul>
+<li><strong>没有常数项：</strong> Beta 会吸收平均收益差异，模型无法估计
+Alpha。</li>
+<li><strong>原始收益与超额收益混用：</strong> CAPM
+左右两边应使用同期限无风险收益调整后的口径。</li>
+<li><strong>百分数和小数混用：</strong> 2 表示 200% 还是 2%
+必须统一；Beta 可能因两边单位不一致放大 100 倍。</li>
+<li><strong>日期错一位：</strong> market(t) 与 asset(t+1)
+错位会把同期风险暴露回归变成预测回归。</li>
+<li><strong>看错 params 顺序：</strong> 使用列名访问，不要默认 params[0]
+永远是 Alpha。</li>
+<li><strong>把高 R² 当成高收益：</strong> R² 衡量样本内线性拟合，和
+Alpha 大小、未来收益不是同一对象。</li>
+<li><strong>默认标准误万能：</strong>
+月度收益若有异方差或自相关，应使用与研究设计一致的稳健协方差。</li>
+<li><strong>样本太短：</strong> 12 个月只有 10
+个残差自由度，置信区间对假设敏感；真实估计应报告更长样本与滚动稳定性。</li>
+</ul>
+<h2 id="练习">练习</h2>
+<ol type="1">
+<li>删除常数项重新回归，比较 Beta、残差和
+R²，解释模型问题发生了什么变化。</li>
+<li>把 epsilon 放大 10 倍，观察参数置信区间和
+R²；点估计与精度谁变化更明显？</li>
+<li>将 asset 和 market 都乘 100，再回归。Alpha 和 Beta
+分别如何变化？只乘一边又会怎样？</li>
+<li>加入一个与 market
+高度相关的第二因子，观察共线性对两个斜率标准误的影响。</li>
+<li>把 12 个月复制成 10 年但加入序列相关噪声，比较经典标准误与
+Newey–West 标准误。</li>
+<li>在真实 A 股实验设计中写出 market 的候选定义：全市场价值加权、沪深
+300 或 CH-3 市场因子。说明每个定义对应的投资总体。</li>
+</ol>
+<p>完成练习后，你应能把回归输出翻译成经济语言，同时明确它没有回答的因果、模型遗漏和可交易性问题。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Quant/" class="category-chain-item">Quant</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84/" class="print-no-link">#因子投资</a>
+      
+        <a href="/tags/Python-%E5%AE%9E%E9%AA%8C/" class="print-no-link">#Python 实验</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>因子投资-实验02-用回归估计Alpha和Beta</div>
+      <div>http://polaris3003.github.io/2026/07/17/因子投资-实验02-用回归估计Alpha和Beta/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-06-CAPM-Alpha-Beta%E4%B8%8E%E5%9B%A0%E5%AD%90/" title="因子投资-06-CAPM-Alpha-Beta与因子">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">因子投资-06-CAPM-Alpha-Beta与因子</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-%E5%AE%9E%E9%AA%8C01-%E4%BB%8E%E4%BB%B7%E6%A0%BC%E5%88%B0%E6%94%B6%E7%9B%8A%E7%8E%87/" title="因子投资-实验01-从价格到收益率">
+                        <span class="hidden-mobile">因子投资-实验01-从价格到收益率</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

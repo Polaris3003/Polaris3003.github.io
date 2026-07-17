@@ -1,0 +1,917 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="因子投资-17-IC分层回测与因子评价 本节解决什么问题 因子评价不是找一个最好看的指标。同一信号可能 Rank IC 稳定，却因极端值导致 Pearson IC 差；可能分层单调，却因高换手扣费后无收益；也可能 H-L 显著，但覆盖率低且只来自微盘股。本讲建立多维验收表。 前置知识与学习目标 需要第 03、09、10 讲。学完后能区分 Pearson&#x2F;Spearman IC、ICIR、分层单调性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="因子投资-17-IC分层回测与因子评价">
+<meta property="og:url" content="http://polaris3003.github.io/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-17-IC%E5%88%86%E5%B1%82%E5%9B%9E%E6%B5%8B%E4%B8%8E%E5%9B%A0%E5%AD%90%E8%AF%84%E4%BB%B7/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="因子投资-17-IC分层回测与因子评价 本节解决什么问题 因子评价不是找一个最好看的指标。同一信号可能 Rank IC 稳定，却因极端值导致 Pearson IC 差；可能分层单调，却因高换手扣费后无收益；也可能 H-L 显著，但覆盖率低且只来自微盘股。本讲建立多维验收表。 前置知识与学习目标 需要第 03、09、10 讲。学完后能区分 Pearson&#x2F;Spearman IC、ICIR、分层单调性">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-17T09:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-17T15:45:32.309Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="因子投资">
+<meta property="article:tag" content="研究实践">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>因子投资-17-IC分层回测与因子评价 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"polaris3003.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="因子投资-17-IC分层回测与因子评价"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-17 17:00" pubdate>
+          2026年7月17日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">因子投资-17-IC分层回测与因子评价</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="因子投资-17-ic分层回测与因子评价">因子投资-17-IC分层回测与因子评价</h1>
+<h2 id="本节解决什么问题">本节解决什么问题</h2>
+<p>因子评价不是找一个最好看的指标。同一信号可能 Rank IC
+稳定，却因极端值导致 Pearson IC
+差；可能分层单调，却因高换手扣费后无收益；也可能 H-L
+显著，但覆盖率低且只来自微盘股。本讲建立多维验收表。</p>
+<h2 id="前置知识与学习目标">前置知识与学习目标</h2>
+<p>需要第 03、09、10 讲。学完后能区分 Pearson/Spearman
+IC、ICIR、分层单调性、H-L、Alpha、换手和覆盖率，并能给冲突结果作出降级结论。</p>
+<h2 id="直觉与手算">直觉与手算</h2>
+<p>某月 5 只股票信号排名与下月收益排名完全一致，Rank
+IC=1。若最高信号股票数据错误、收益写成 100%，Pearson IC 会被它支配；Rank
+IC 仍只看顺序。两者回答不同问题：线性幅度关系与排序能力。</p>
+<p>若 60 个月 IC 均值 0.04、时间标准差 0.08：</p>
+<p><span class="math display">\[
+ICIR=\bar{IC}/s(IC)=0.5
+\]</span></p>
+<p>年化常写 0.5×√12≈1.73，但仍需报告自相关和均值标准误；ICIR 不是 t
+统计量。</p>
+<h2 id="定义与公式">定义与公式</h2>
+<h3 id="ic-与-rank-ic">IC 与 Rank IC</h3>
+<p><span class="math display">\[
+IC_t=corr_i(x_{i,t},R_{i,t+1})
+\]</span></p>
+<p>Pearson IC 对尺度和极端值敏感；Spearman Rank IC 是排名的 Pearson
+相关，对单调非线性更稳健。每月在当期覆盖股票横截面计算，再研究 IC
+时间序列。</p>
+<h3 id="icir-与显著性">ICIR 与显著性</h3>
+<p><span class="math display">\[
+ICIR=\bar{IC}/s(IC)
+\]</span></p>
+<p>均值 t 值则是均值除以均值标准误；若 IC 自相关，用 HAC 标准误。不要用
+ICIR 冒充 t。</p>
+<h3 id="分层与单调性">分层与单调性</h3>
+<p>G 组未来收益应展示 Q1…QG 全路径，不只 H-L。可用组序号与组收益的
+Spearman
+相关、相邻组差为正的比例等描述单调性，但不要为了通过指标改变组数。</p>
+<h3 id="h-lalpha换手与覆盖">H-L、Alpha、换手与覆盖</h3>
+<ul>
+<li>H-L：高组减低组毛收益；</li>
+<li>Alpha：H-L 对预定因子模型的截距；</li>
+<li>换手：漂移后权重到目标权重的交易量；</li>
+<li>覆盖率：有效信号股票数/合格股票池数，也应报告市值覆盖；</li>
+<li>净收益：毛收益减佣金、税费、价差、冲击和借券融资成本。</li>
+</ul>
+<p>一个最低评价矩阵：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>指标</th>
+<th>失败警报</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预测</td>
+<td>Pearson/Rank IC</td>
+<td>只靠极端值或少数月</td>
+</tr>
+<tr>
+<td>排序</td>
+<td>组收益、单调性</td>
+<td>只有两端、组内过少</td>
+</tr>
+<tr>
+<td>收益</td>
+<td>H-L、Alpha</td>
+<td>仅空头腿、模型敏感</td>
+</tr>
+<tr>
+<td>稳定</td>
+<td>子期、行业、规模</td>
+<td>符号翻转</td>
+</tr>
+<tr>
+<td>实现</td>
+<td>换手、成本、容量</td>
+<td>净收益归零</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>数量/市值覆盖</td>
+<td>缺失选择、微盘支配</td>
+</tr>
+</tbody>
+</table>
+<h2 id="python-最小实验">Python 最小实验</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br>frame = pd.DataFrame(&#123;<br>    <span class="hljs-string">&quot;month&quot;</span>: np.repeat(<span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>), <span class="hljs-number">6</span>),<br>    <span class="hljs-string">&quot;signal&quot;</span>: np.tile([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>], <span class="hljs-number">4</span>),<br>    <span class="hljs-string">&quot;future_return&quot;</span>: np.array([<br>        -<span class="hljs-number">0.02</span>, -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.03</span>,<br>        -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.03</span>, <span class="hljs-number">0.02</span>,<br>        -<span class="hljs-number">0.03</span>, -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.04</span>,<br>         <span class="hljs-number">0.00</span>, -<span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.03</span>,<br>    ]),<br>&#125;)<br>ics = frame.groupby(<span class="hljs-string">&quot;month&quot;</span>).apply(<br>    <span class="hljs-keyword">lambda</span> x: x[<span class="hljs-string">&quot;signal&quot;</span>].corr(x[<span class="hljs-string">&quot;future_return&quot;</span>], method=<span class="hljs-string">&quot;spearman&quot;</span>),<br>    include_groups=<span class="hljs-literal">False</span>,<br>)<br>frame[<span class="hljs-string">&quot;group&quot;</span>] = frame.groupby(<span class="hljs-string">&quot;month&quot;</span>)[<span class="hljs-string">&quot;signal&quot;</span>].transform(<br>    <span class="hljs-keyword">lambda</span> x: pd.qcut(x, <span class="hljs-number">3</span>, labels=<span class="hljs-literal">False</span>)<br>)<br>groups = frame.groupby([<span class="hljs-string">&quot;month&quot;</span>, <span class="hljs-string">&quot;group&quot;</span>])[<span class="hljs-string">&quot;future_return&quot;</span>].mean().unstack()<br>hl = groups[<span class="hljs-number">2</span>] - groups[<span class="hljs-number">0</span>]<br><br><span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(ics) == <span class="hljs-number">4</span><br><span class="hljs-keyword">assert</span> np.allclose(hl, groups[<span class="hljs-number">2</span>] - groups[<span class="hljs-number">0</span>])<br><span class="hljs-built_in">print</span>(ics.mean(), ics.std(ddof=<span class="hljs-number">1</span>), hl.mean())<br></code></pre></td></tr></table></figure>
+<h2 id="a-股实现注意事项">A 股实现注意事项</h2>
+<p>覆盖率必须相对历史合格股票池；财报缺失、停牌和退市不能按未来收益删除。并列信号、涨跌停不可成交、微盘权重、空头不可得和板块制度都要单独报告。行业中性后
+IC 与全市场 IC 回答不同问题，应并列而非选更好者。</p>
+<h2 id="常见错误与边界">常见错误与边界</h2>
+<ul>
+<li>用同期收益算 IC；全样本标准化后再切时间。</li>
+<li>只报 IC 均值，不报分布、自相关和覆盖。</li>
+<li>只报 H-L，不展示各组和两腿。</li>
+<li>用毛 H-L 推断可交易收益。</li>
+<li>参数和股票池反复调到指标最好。</li>
+<li>IC 正就认为组合一定赚钱；权重、非线性和成本会改变结果。</li>
+</ul>
+<h2 id="原书与论文">原书与论文</h2>
+<p>原书第 3–5 章（PDF 文件页
+97–223）连接因子策略、组合与实践。Hou、Xue、Zhang（2020）显示微盘和实现口径可让大量异象失效：<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhy131">DOI</a>。McLean、Pontiff（2016）讨论样本外与发表后衰减：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/jofi.12365">DOI</a>。</p>
+<h2 id="练习">练习</h2>
+<ol type="1">
+<li>加一个极端收益，比较 Pearson 与 Rank IC。</li>
+<li>分别用 3、5、10 组，比较单调性与每组样本量。</li>
+<li>将 H-L 分成多头和空头贡献。</li>
+<li>按规模、行业、年份报告 IC、覆盖和净收益。</li>
+<li>写出因子“支持、证伪、证据不足”三类判定规则。</li>
+</ol>
+<h2 id="小结与下一步">小结与下一步</h2>
+<p>可信因子需要预测、排序、收益、稳定、实现和数据六个维度同时过关。指标冲突时应解释对象并降低结论强度，而不是挑最好看的数字。下一讲审计回测偏差、成本与容量。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Quant/" class="category-chain-item">Quant</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84/" class="print-no-link">#因子投资</a>
+      
+        <a href="/tags/%E7%A0%94%E7%A9%B6%E5%AE%9E%E8%B7%B5/" class="print-no-link">#研究实践</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>因子投资-17-IC分层回测与因子评价</div>
+      <div>http://polaris3003.github.io/2026/07/17/因子投资-17-IC分层回测与因子评价/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-18-%E5%9B%9E%E6%B5%8B%E5%81%8F%E5%B7%AE%E4%BA%A4%E6%98%93%E6%88%90%E6%9C%AC%E4%B8%8E%E5%AE%B9%E9%87%8F/" title="因子投资-18-回测偏差交易成本与容量">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">因子投资-18-回测偏差交易成本与容量</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-16-%E4%B8%AD%E5%9B%BDA%E8%82%A1%E4%B8%8ECH3%E6%A8%A1%E5%9E%8B/" title="因子投资-16-中国A股与CH3模型">
+                        <span class="hidden-mobile">因子投资-16-中国A股与CH3模型</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

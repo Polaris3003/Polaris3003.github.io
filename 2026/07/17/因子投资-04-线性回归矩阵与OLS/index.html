@@ -1,0 +1,976 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="因子投资-04-线性回归矩阵与OLS 本节解决什么问题 “市场涨 1%，这只股票通常涨多少？”“控制规模以后，价值信号还能预测收益吗？”这两类问题都可以从线性回归开始。回归把一个变量的变化分解为可由解释变量线性描述的部分和残差，但它本身不自动提供因果解释。 前置知识与学习目标 前置知识是收益率、均值、方差、协方差，以及第 03 讲的标准误和假设检验。学完后你应该能：  从一元直线理解截距、斜率、拟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="因子投资-04-线性回归矩阵与OLS">
+<meta property="og:url" content="http://polaris3003.github.io/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-04-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9F%A9%E9%98%B5%E4%B8%8EOLS/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="因子投资-04-线性回归矩阵与OLS 本节解决什么问题 “市场涨 1%，这只股票通常涨多少？”“控制规模以后，价值信号还能预测收益吗？”这两类问题都可以从线性回归开始。回归把一个变量的变化分解为可由解释变量线性描述的部分和残差，但它本身不自动提供因果解释。 前置知识与学习目标 前置知识是收益率、均值、方差、协方差，以及第 03 讲的标准误和假设检验。学完后你应该能：  从一元直线理解截距、斜率、拟">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-17T03:15:00.000Z">
+<meta property="article:modified_time" content="2026-07-17T15:45:07.437Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="因子投资">
+<meta property="article:tag" content="量化入门">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>因子投资-04-线性回归矩阵与OLS - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"polaris3003.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="因子投资-04-线性回归矩阵与OLS"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-17 11:15" pubdate>
+          2026年7月17日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">因子投资-04-线性回归矩阵与OLS</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="因子投资-04-线性回归矩阵与ols">因子投资-04-线性回归矩阵与OLS</h1>
+<h2 id="本节解决什么问题">本节解决什么问题</h2>
+<p>“市场涨
+1%，这只股票通常涨多少？”“控制规模以后，价值信号还能预测收益吗？”这两类问题都可以从线性回归开始。回归把一个变量的变化分解为可由解释变量线性描述的部分和残差，但它本身不自动提供因果解释。</p>
+<h2 id="前置知识与学习目标">前置知识与学习目标</h2>
+<p>前置知识是收益率、均值、方差、协方差，以及第 03
+讲的标准误和假设检验。学完后你应该能：</p>
+<ul>
+<li>从一元直线理解截距、斜率、拟合值和残差；</li>
+<li>手算三个点的 OLS 系数与 R²；</li>
+<li>读懂矩阵形式中 T、K、N 的维度；</li>
+<li>解释共线性为何使系数不稳定；</li>
+<li>区分回归拟合、预测和因果三种目标。</li>
+</ul>
+<h2 id="直觉与手算">直觉与手算</h2>
+<p>观察三个点：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">x</th>
+<th style="text-align: right;">y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+</tr>
+</tbody>
+</table>
+<p>模型是：</p>
+<p><span class="math display">\[
+y_i=\alpha+\beta x_i+\varepsilon_i
+\]</span></p>
+<p>x 均值为 0，y 均值为 4/3。含截距的一元 OLS 斜率等于样本协方差分子除以
+x 的离差平方和：</p>
+<p><span class="math display">\[
+\hat\beta=
+\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}
+{\sum_i(x_i-\bar x)^2}
+=\frac{3}{2}=1.5
+\]</span></p>
+<p>截距为 4/3-1.5×0=4/3。三个拟合值约为 -0.167、1.333、2.833，残差约为
+0.167、-0.333、0.167。残差和为零，且与 x 的内积为零，这是含截距 OLS
+的正交条件。</p>
+<p>残差平方和 SSE=1/6，y 相对均值的总平方和 SST=14/3，所以：</p>
+<p><span class="math display">\[
+R^2=1-SSE/SST=27/28\approx96.43\%
+\]</span></p>
+<p>高 R² 只是这三个样本点接近直线。它没有证明 x 导致
+y，也没有保证第四个点仍接近直线。</p>
+<h2 id="定义与公式">定义与公式</h2>
+<h3 id="从损失函数得到-ols">从损失函数得到 OLS</h3>
+<p>OLS 选择 α、β，使残差平方和最小：</p>
+<p><span class="math display">\[
+\min_{\alpha,\beta}\sum_{i=1}^{n}(y_i-\alpha-\beta x_i)^2
+\]</span></p>
+<p>对 α、β 求一阶条件得到残差分别与常数列和 x 正交。一元含截距解为：</p>
+<p><span class="math display">\[
+\hat\beta=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}
+{\sum_i(x_i-\bar x)^2}
+\]</span></p>
+<p><span class="math display">\[
+\hat\alpha=\bar y-\hat\beta\bar x
+\]</span></p>
+<p>斜率单位是“y 单位/x 单位”；截距和残差与 y 同单位。若 x 是市场收益、y
+是股票收益，两者都以百分比计，Beta 无量纲，Alpha 是每期收益率。</p>
+<h3 id="矩阵形式">矩阵形式</h3>
+<p>T 个观测、K 个回归系数：</p>
+<p><span class="math display">\[
+y=X\beta+\varepsilon
+\]</span></p>
+<ul>
+<li>y：T×1 因变量向量；</li>
+<li>X：T×K 设计矩阵；含截距时第一列全为 1；</li>
+<li>β：K×1 系数向量；</li>
+<li>ε：T×1 误差向量。</li>
+</ul>
+<p>若 X 满列秩：</p>
+<p><span class="math display">\[
+\hat\beta=(X^{\prime}X)^{-1}X^{\prime}y
+\]</span></p>
+<p>维度检查：X'X 是 K×K，X'y 是 K×1，所以结果是
+K×1。实际计算不应显式求逆，数值库通常用 QR、SVD 或最小二乘求解。</p>
+<h3 id="拟合值残差与-r²">拟合值、残差与 R²</h3>
+<p><span class="math display">\[
+\hat y=X\hat\beta,\qquad e=y-\hat y
+\]</span></p>
+<p><span class="math display">\[
+R^2=1-\frac{\sum e_i^2}{\sum(y_i-\bar y)^2}
+\]</span></p>
+<p>含截距的样本内 R² 通常在 0 与 1
+之间；无截距或样本外定义可能为负。加入解释变量不会降低样本内
+R²，所以比较不同复杂度模型应同时看调整 R²、样本外误差和经济合理性。</p>
+<h3 id="系数标准误">系数标准误</h3>
+<p>在经典同方差、无相关误差假设下：</p>
+<p><span class="math display">\[
+Var(\hat\beta|X)=\sigma_\varepsilon^2(X^{\prime}X)^{-1}
+\]</span></p>
+<p>现实金融收益常有异方差、序列相关和横截面相关，需要
+White、Newey–West、聚类或其他与研究设计匹配的协方差估计。改变标准误不会改变
+OLS 点估计，但会改变 t 值和置信区间。</p>
+<h3 id="共线性">共线性</h3>
+<p>当 X 的两列几乎是彼此线性组合时，X'X
+接近奇异。模型仍可能整体拟合很好，但单个系数对小数据扰动非常敏感、标准误很大。共线性不是“相关超过某个固定阈值”才突然发生；应检查变量定义、条件数、系数稳定性和是否真的需要分别解释。</p>
+<h2 id="python-最小实验">Python 最小实验</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>x = np.array([-<span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>])<br>y = np.array([<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>])<br>X = np.column_stack([np.ones_like(x), x])<br><br>coef, _, _, _ = np.linalg.lstsq(X, y, rcond=<span class="hljs-literal">None</span>)<br>fitted = X @ coef<br>residual = y - fitted<br>sse = residual @ residual<br>sst = ((y - y.mean()) ** <span class="hljs-number">2</span>).<span class="hljs-built_in">sum</span>()<br>r_squared = <span class="hljs-number">1</span> - sse / sst<br><br><span class="hljs-keyword">assert</span> np.allclose(coef, [<span class="hljs-number">4</span> / <span class="hljs-number">3</span>, <span class="hljs-number">1.5</span>])<br><span class="hljs-keyword">assert</span> np.isclose(residual.<span class="hljs-built_in">sum</span>(), <span class="hljs-number">0</span>)<br><span class="hljs-keyword">assert</span> np.isclose(x @ residual, <span class="hljs-number">0</span>)<br><span class="hljs-keyword">assert</span> np.isclose(r_squared, <span class="hljs-number">27</span> / <span class="hljs-number">28</span>)<br><span class="hljs-built_in">print</span>(coef, residual, r_squared)<br></code></pre></td></tr></table></figure>
+<p>代码返回的系数顺序与 X
+列顺序一致。研究中必须保存列名，不能只保留一个没有标签的系数数组。</p>
+<h2 id="a-股实现注意事项">A 股实现注意事项</h2>
+<ol type="1">
+<li><strong>时间对齐。</strong> 用 t 期收盘后已知特征解释 t+1
+收益；财务特征按实际公告日进入 X，而不是按报告期末。</li>
+<li><strong>同日共同冲击。</strong>
+横截面残差受市场和行业共同影响，普通独立误差标准误往往过于乐观。</li>
+<li><strong>停牌与涨跌停。</strong>
+未来收益缺失或无法成交不是普通随机缺失。删除这些观测可能选择性留下流动性好的股票。</li>
+<li><strong>行业与规模控制。</strong>
+加入行业哑变量和规模并非自动“更正确”；它改变了问题为“在行业、规模相同条件下的边际关系”。报告必须说明控制前后各回答什么。</li>
+<li><strong>极端值。</strong>
+微盘股收益和财务比率可能极端。先核验单位、分母与数据错误，再采用点时横截面去极值；不要利用全样本分位数。</li>
+<li><strong>标准化。</strong> 截面 z-score
+使系数可比较，但系数单位变成“信号提高一个当期横截面标准差对应的未来收益变化”。每期标准化也改变了跨期含义。</li>
+</ol>
+<h2 id="常见错误与边界">常见错误与边界</h2>
+<ul>
+<li>忘记常数列，却把第一个斜率解释为 Alpha。</li>
+<li>先标准化整个数据集再做时间切分，导致测试期均值和标准差泄露。</li>
+<li>看到 R²
+高就声称模型有预测力；同一时期的市场共同波动很容易产生高拟合。</li>
+<li>看到系数显著就声称因果；遗漏变量、反向因果和选择偏差仍可能存在。</li>
+<li>用价格水平回归价格水平，得到趋势驱动的伪回归。</li>
+<li>在强共线性下逐个解释符号，忽略系数可能因样本微调而翻转。</li>
+<li>显式计算矩阵逆，遇到数值不稳定仍相信输出的巨大系数。</li>
+</ul>
+<p>线性模型也有表达边界：真实关系可能非线性、有交互或随状态变化。先用线性模型不是因为世界线性，而是因为它透明、可诊断，是复杂模型是否真正增加信息的基准。</p>
+<h2 id="原书与论文">原书与论文</h2>
+<p>原书第 2 章（PDF 文件页 27–96）系统讨论因子模型与实证方法，附录
+A（381–388）可用于复习矩阵和统计基础。</p>
+<p>Fama 与
+MacBeth（1973）把回归用于资产定价的时间与横截面两步检验，是后续第 10
+讲和实验 04 的核心来源：<a target="_blank" rel="noopener" href="https://doi.org/10.1086/260061">DOI
+10.1086/260061</a>。阅读时先识别每一步的 y、X、T 与
+N，不急于记结论。</p>
+<p>Newey 与
+West（1987）说明为什么金融时间序列中需要对异方差和自相关稳健的协方差估计：<a target="_blank" rel="noopener" href="https://doi.org/10.2307/1913610">DOI 10.2307/1913610</a>。</p>
+<h2 id="练习">练习</h2>
+<ol type="1">
+<li>对三个点 (0,1)、(1,3)、(2,5) 手算 Alpha、Beta、残差和 R²。</li>
+<li>若 x 用小数收益、y 用百分点收益，Beta
+的数值和单位如何变化？这说明为什么数据字典必须记录单位？</li>
+<li>构造两列几乎相同的
+X，逐步加入微小噪声，观察最小二乘系数和两列系数之和。</li>
+<li>写出“个股月超额收益对市场月超额收益回归”的矩阵维度，假设 120
+个月且含截距。</li>
+<li>找一个“高 R²
+但没有样本外预测价值”的例子，并说明拟合与预测的差别。</li>
+</ol>
+<p>校验：第 1 题直线为 y=1+2x，残差全为零，R²=1。第 4 题 y 为 120×1，X
+为 120×2，β 为 2×1。</p>
+<h2 id="小结与下一步">小结与下一步</h2>
+<p>OLS 用最小残差平方把 y 投影到 X 的列空间。截距、斜率、拟合值、残差和
+R²
+都是这个几何过程的产物；系数的可信度还依赖正确标准误、数据时点和模型设定。回归能描述条件线性关系，不自动提供因果。</p>
+<p>下一讲把收益与协方差放进投资组合，建立基准、Sharpe、信息比率、最大回撤等绩效评价语言。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Quant/" class="category-chain-item">Quant</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84/" class="print-no-link">#因子投资</a>
+      
+        <a href="/tags/%E9%87%8F%E5%8C%96%E5%85%A5%E9%97%A8/" class="print-no-link">#量化入门</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>因子投资-04-线性回归矩阵与OLS</div>
+      <div>http://polaris3003.github.io/2026/07/17/因子投资-04-线性回归矩阵与OLS/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-05-%E6%8A%95%E8%B5%84%E7%BB%84%E5%90%88%E5%9F%BA%E5%87%86%E4%B8%8E%E7%BB%A9%E6%95%88%E6%8C%87%E6%A0%87/" title="因子投资-05-投资组合基准与绩效指标">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">因子投资-05-投资组合基准与绩效指标</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-03-%E6%A6%82%E7%8E%87%E6%8A%BD%E6%A0%B7%E6%98%BE%E8%91%97%E6%80%A7%E4%B8%8E%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4/" title="因子投资-03-概率抽样显著性与置信区间">
+                        <span class="hidden-mobile">因子投资-03-概率抽样显著性与置信区间</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

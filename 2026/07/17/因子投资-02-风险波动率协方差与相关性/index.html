@@ -1,0 +1,924 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="因子投资-02-风险波动率协方差与相关性 本节解决什么问题 两只股票都可能平均赚 5%，但一只每次上下剧烈波动，另一只较平稳；它们显然不是同一种投资。更重要的是，组合风险不只由每只股票自身波动决定，还取决于它们是否同时涨跌。本讲从两个经济状态手算期望、方差、协方差和相关系数。 前置知识与学习目标 前置知识是第 01 讲的简单收益和百分比。学完后你应该能：  从离散状态计算期望、方差和标准差； 解释">
+<meta property="og:type" content="article">
+<meta property="og:title" content="因子投资-02-风险波动率协方差与相关性">
+<meta property="og:url" content="http://polaris3003.github.io/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-02-%E9%A3%8E%E9%99%A9%E6%B3%A2%E5%8A%A8%E7%8E%87%E5%8D%8F%E6%96%B9%E5%B7%AE%E4%B8%8E%E7%9B%B8%E5%85%B3%E6%80%A7/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="因子投资-02-风险波动率协方差与相关性 本节解决什么问题 两只股票都可能平均赚 5%，但一只每次上下剧烈波动，另一只较平稳；它们显然不是同一种投资。更重要的是，组合风险不只由每只股票自身波动决定，还取决于它们是否同时涨跌。本讲从两个经济状态手算期望、方差、协方差和相关系数。 前置知识与学习目标 前置知识是第 01 讲的简单收益和百分比。学完后你应该能：  从离散状态计算期望、方差和标准差； 解释">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-17T03:05:00.000Z">
+<meta property="article:modified_time" content="2026-07-17T15:45:05.525Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="因子投资">
+<meta property="article:tag" content="量化入门">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>因子投资-02-风险波动率协方差与相关性 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"polaris3003.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="因子投资-02-风险波动率协方差与相关性"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-17 11:05" pubdate>
+          2026年7月17日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">因子投资-02-风险波动率协方差与相关性</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="因子投资-02-风险波动率协方差与相关性">因子投资-02-风险波动率协方差与相关性</h1>
+<h2 id="本节解决什么问题">本节解决什么问题</h2>
+<p>两只股票都可能平均赚
+5%，但一只每次上下剧烈波动，另一只较平稳；它们显然不是同一种投资。更重要的是，组合风险不只由每只股票自身波动决定，还取决于它们是否同时涨跌。本讲从两个经济状态手算期望、方差、协方差和相关系数。</p>
+<h2 id="前置知识与学习目标">前置知识与学习目标</h2>
+<p>前置知识是第 01 讲的简单收益和百分比。学完后你应该能：</p>
+<ul>
+<li>从离散状态计算期望、方差和标准差；</li>
+<li>解释协方差与相关系数的区别；</li>
+<li>用协方差矩阵计算组合风险；</li>
+<li>说明相关不等于因果、波动不等于全部风险；</li>
+<li>判断何时可以近似做平方根年化。</li>
+</ul>
+<h2 id="直觉与手算">直觉与手算</h2>
+<p>假设未来只有繁荣和衰退两种状态，各有 50% 概率。股票 A
+在两种状态的收益分别为 20%、-10%；股票 B 分别为 -5%、15%。</p>
+<p>两只股票的期望收益都为 5%：</p>
+<p><span class="math display">\[
+E[R_A]=0.5\times20\%+0.5\times(-10\%)=5\%
+\]</span></p>
+<p>A 相对均值的偏差是 +15%、-15%，所以方差是
+0.5×0.15²+0.5×(-0.15)²=0.0225，标准差为 15%。B 的偏差是
+-10%、+10%，方差为 0.01，标准差为 10%。</p>
+<p>两者在每个状态的偏差乘积都是 -0.015，因此协方差为 -0.015。除以
+0.15×0.10 后，相关系数为 -1：它们在这个两状态模型里完全反向。</p>
+<p>若各投一半，组合在繁荣和衰退的收益分别为 7.5% 与 2.5%，期望仍是
+5%，标准差却只有
+2.5%。分散化不是因为持有数量变多，而是因为不同资产的共同变化不完全一致。</p>
+<h2 id="定义与公式">定义与公式</h2>
+<h3 id="期望方差与标准差">期望、方差与标准差</h3>
+<p>离散状态 s 的概率为 p(s)，收益为 R(s)：</p>
+<p><span class="math display">\[
+E[R]=\sum_s p_sR_s
+\]</span></p>
+<p><span class="math display">\[
+Var(R)=\sum_s p_s(R_s-E[R])^2
+\]</span></p>
+<p><span class="math display">\[
+\sigma=\sqrt{Var(R)}
+\]</span></p>
+<p>收益与标准差单位相同，方差单位是收益率平方。期望描述分布中心，标准差描述围绕中心的总离散程度；它不区分上涨和下跌。</p>
+<h3 id="协方差与相关系数">协方差与相关系数</h3>
+<p><span class="math display">\[
+Cov(X,Y)=E[(X-E[X])(Y-E[Y])]
+\]</span></p>
+<p><span class="math display">\[
+\rho_{XY}=Cov(X,Y)/(\sigma_X\sigma_Y)
+\]</span></p>
+<p>协方差保留两者尺度，相关系数消除尺度并限制在 -1 到
+1。若某变量标准差为零，相关系数没有定义。相关为零只表示无线性共同变化，并不保证独立。</p>
+<h3 id="组合风险">组合风险</h3>
+<p>两资产权重分别为 w 与 1-w：</p>
+<p><span class="math display">\[
+\sigma_p^2=w^2\sigma_A^2+(1-w)^2\sigma_B^2
++2w(1-w)Cov(A,B)
+\]</span></p>
+<p>一般 N 资产写成：</p>
+<p><span class="math display">\[
+\sigma_p^2=w^{\prime}\Sigma w
+\]</span></p>
+<p>w 是 N×1 权重，Σ 是 N×N
+协方差矩阵。对角线是各资产方差，非对角线是两两协方差。分散化效果来自非对角线，而不只是资产数量。</p>
+<h3 id="下行风险">下行风险</h3>
+<p>如果投资者只关心低于目标 MAR 的结果，可定义下行偏差：</p>
+<p><span class="math display">\[
+DD=\sqrt{E[\min(R-MAR,0)^2]}
+\]</span></p>
+<p>目标可以是零、无风险收益或负债要求。下行风险更贴近“坏波动”，但结果依赖目标选择，且仍不能完整描述尾部、流动性和永久损失。</p>
+<h2 id="python-最小实验">Python 最小实验</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>prob = np.array([<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>])<br>a = np.array([<span class="hljs-number">0.20</span>, -<span class="hljs-number">0.10</span>])<br>b = np.array([-<span class="hljs-number">0.05</span>, <span class="hljs-number">0.15</span>])<br><br>mean_a = prob @ a<br>mean_b = prob @ b<br>var_a = prob @ (a - mean_a) ** <span class="hljs-number">2</span><br>var_b = prob @ (b - mean_b) ** <span class="hljs-number">2</span><br>cov_ab = prob @ ((a - mean_a) * (b - mean_b))<br>corr_ab = cov_ab / np.sqrt(var_a * var_b)<br><br>portfolio = <span class="hljs-number">0.5</span> * a + <span class="hljs-number">0.5</span> * b<br>mean_p = prob @ portfolio<br>std_p = np.sqrt(prob @ (portfolio - mean_p) ** <span class="hljs-number">2</span>)<br><br><span class="hljs-keyword">assert</span> np.isclose(corr_ab, -<span class="hljs-number">1.0</span>)<br><span class="hljs-keyword">assert</span> np.isclose(std_p, <span class="hljs-number">0.025</span>)<br><span class="hljs-built_in">print</span>(mean_a, np.sqrt(var_a), mean_b, np.sqrt(var_b), std_p)<br></code></pre></td></tr></table></figure>
+<p>代码使用的是已知状态概率，因此除以概率总和；从历史样本估计方差时，常使用
+T-1 分母修正自由度。这两种对象不要混写。</p>
+<h2 id="a-股实现注意事项">A 股实现注意事项</h2>
+<ol type="1">
+<li><strong>日收益不是独立同分布。</strong>
+涨跌停、停牌、波动聚集和政策事件会造成自相关与条件波动变化；日波动乘根号
+252 只是近似。</li>
+<li><strong>停牌与零收益。</strong>
+向前填价得到的零收益会机械压低波动率，但复牌跳跃和无法交易的风险仍存在。应同时报告停牌比例和可成交口径。</li>
+<li><strong>涨跌停截断。</strong>
+日收益被制度上限截断不等于真实经济价值只变化到该幅度，连续封板还会把调整分散到多日。</li>
+<li><strong>协方差估计。</strong>
+股票多、历史窗口短时，样本协方差矩阵噪声大、甚至不可逆；组合优化通常需要收缩、因子风险模型或更长但不过时的窗口。</li>
+<li><strong>不同交易历史。</strong>
+新股、退市股和长期停牌使收益面板不齐。用成对可得样本估协方差可能得到非半正定矩阵，必须检查特征值和统一样本规则。</li>
+<li><strong>相关结构会变。</strong>
+市场压力期资产相关性常上升，平静期估出的分散化不能当作危机期保证。</li>
+</ol>
+<h2 id="常见错误与边界">常见错误与边界</h2>
+<ul>
+<li>把方差与标准差混用：0.04 的方差对应 20% 标准差，不是 4%。</li>
+<li>用价格水平计算相关性，得到共同趋势；资产研究通常关注同频收益相关。</li>
+<li>看到相关为 0.8 就宣称 A 导致
+B。共同市场暴露、行业或宏观变量都可能解释相关。</li>
+<li>只按个股波动率选“低风险”组合，忽略高正相关使组合风险集中。</li>
+<li>用全样本协方差优化历史每个时点，泄露未来相关结构。</li>
+<li>把低波动等同于安全。负债、流动性、跳跃、信用和永久资本损失可能不体现在日标准差中。</li>
+</ul>
+<p>标准差对厚尾和异常值很敏感，但这不是删除极端日的理由。极端收益可能是风险最重要的部分；应该核验数据错误，并并列报告分位数、最大损失、回撤和压力情景。</p>
+<h2 id="原书与论文">原书与论文</h2>
+<p>原书第 1 章（PDF 文件页 7–26）讨论风险收益权衡，第 2
+章（27–96）进入模型和实证方法。本讲补足组合风险所需的概率语言。</p>
+<p>经典起点是 Harry Markowitz（1952）Portfolio
+Selection，论文把组合选择明确写成期望与方差问题：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/j.1540-6261.1952.tb01525.x">DOI
+10.1111/j.1540-6261.1952.tb01525.x</a>。阅读时重点问：方差是投资者真正关心的风险，还是一个可计算的代理？</p>
+<h2 id="练习">练习</h2>
+<ol type="1">
+<li>资产 C 在两状态收益为
+30%、-20%，概率仍各半。计算期望、方差和标准差。</li>
+<li>A 与另一资产 D 的收益分别为 20%、-10% 和 5%、5%。D
+的标准差为零，为什么相关系数无定义？它还能分散风险吗？</li>
+<li>两资产标准差均为 20%、权重各半，分别在相关系数 1、0、-1
+下计算组合标准差。</li>
+<li>使用一个月 A
+股日收益，比较“停牌日缺失”“停牌日填零”两种口径的波动率，并解释哪个数字适合估值、哪个不能代表可交易风险。</li>
+</ol>
+<p>校验：第 3 题组合标准差依次为 20%、约
+14.14%、0%。最后一种结果依赖参数完全稳定，现实中几乎不会永久成立。</p>
+<h2 id="小结与下一步">小结与下一步</h2>
+<p>期望告诉我们平均方向，方差和标准差描述总离散，协方差决定资产如何共同变化，相关系数提供无尺度比较。组合风险是权重与整个协方差矩阵的函数；分散化的前提是共同变化不完全一致。</p>
+<p>这些都是总体概念，但现实中我们只能看到有限样本。下一讲将讨论样本如何产生估计不确定性，以及显著性检验为什么很容易被误读。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Quant/" class="category-chain-item">Quant</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84/" class="print-no-link">#因子投资</a>
+      
+        <a href="/tags/%E9%87%8F%E5%8C%96%E5%85%A5%E9%97%A8/" class="print-no-link">#量化入门</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>因子投资-02-风险波动率协方差与相关性</div>
+      <div>http://polaris3003.github.io/2026/07/17/因子投资-02-风险波动率协方差与相关性/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-03-%E6%A6%82%E7%8E%87%E6%8A%BD%E6%A0%B7%E6%98%BE%E8%91%97%E6%80%A7%E4%B8%8E%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4/" title="因子投资-03-概率抽样显著性与置信区间">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">因子投资-03-概率抽样显著性与置信区间</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-01-%E6%94%B6%E7%9B%8A%E7%8E%87%E5%A4%8D%E5%88%A9%E4%B8%8E%E8%B6%85%E9%A2%9D%E6%94%B6%E7%9B%8A/" title="因子投资-01-收益率复利与超额收益">
+                        <span class="hidden-mobile">因子投资-01-收益率复利与超额收益</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

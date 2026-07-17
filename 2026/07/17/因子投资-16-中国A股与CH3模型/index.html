@@ -1,0 +1,974 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="因子投资-16-中国A股与CH3模型 本节解决什么问题 把美国 FF3 原样搬到 A 股，会把中国特有的上市制度、壳价值和估值口径当作噪声。Liu、Stambaugh、Yuan（2019）提出 CH-3：先排除最小 30% 壳价值污染股票，再用 EP 构造价值因子。它是“制度进入模型定义”的典型案例。 前置知识与学习目标 需要第 08、11、15 讲。学完后你应该能：  精确写出 CH-3 的股票">
+<meta property="og:type" content="article">
+<meta property="og:title" content="因子投资-16-中国A股与CH3模型">
+<meta property="og:url" content="http://polaris3003.github.io/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-16-%E4%B8%AD%E5%9B%BDA%E8%82%A1%E4%B8%8ECH3%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="因子投资-16-中国A股与CH3模型 本节解决什么问题 把美国 FF3 原样搬到 A 股，会把中国特有的上市制度、壳价值和估值口径当作噪声。Liu、Stambaugh、Yuan（2019）提出 CH-3：先排除最小 30% 壳价值污染股票，再用 EP 构造价值因子。它是“制度进入模型定义”的典型案例。 前置知识与学习目标 需要第 08、11、15 讲。学完后你应该能：  精确写出 CH-3 的股票">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-17T08:05:00.000Z">
+<meta property="article:modified_time" content="2026-07-17T15:45:23.336Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="因子投资">
+<meta property="article:tag" content="多因子模型">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>因子投资-16-中国A股与CH3模型 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"polaris3003.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/April.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="因子投资-16-中国A股与CH3模型"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-17 16:05" pubdate>
+          2026年7月17日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">因子投资-16-中国A股与CH3模型</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="因子投资-16-中国a股与ch3模型">因子投资-16-中国A股与CH3模型</h1>
+<h2 id="本节解决什么问题">本节解决什么问题</h2>
+<p>把美国 FF3 原样搬到 A
+股，会把中国特有的上市制度、壳价值和估值口径当作噪声。Liu、Stambaugh、Yuan（2019）提出
+CH-3：先排除最小 30% 壳价值污染股票，再用 EP
+构造价值因子。它是“制度进入模型定义”的典型案例。</p>
+<h2 id="前置知识与学习目标">前置知识与学习目标</h2>
+<p>需要第 08、11、15 讲。学完后你应该能：</p>
+<ul>
+<li>精确写出 CH-3 的股票池与 2×3 构造；</li>
+<li>解释排除最小 30% 与壳价值的关系；</li>
+<li>说明 EP 相对 BM 的中国样本动机；</li>
+<li>区分 CH-3 与机械复制 FF3；</li>
+<li>判断 2019 年论文证据为什么不能自动外推到 2026 年。</li>
+</ul>
+<h2 id="直觉与手算">直觉与手算</h2>
+<p>在审核制 IPO
+稀缺时期，已上市小公司可能具有被借壳重组的期权价值。一个经营很差、盈利为负的微型公司，市值却因“壳”而不低；低
+EP 会把它归为成长股，但其收益受壳交易而非成长基本面驱动。</p>
+<p>若这些股票数量多但总市值小：</p>
+<ul>
+<li>等权小盘收益会被壳溢价抬高；</li>
+<li>低 EP 成长组会混入经营差但壳价值高的公司；</li>
+<li>SMB 与价值因子同时被扭曲；</li>
+<li>用这些因子解释普通经营公司时，模型反而变差。</li>
+</ul>
+<p>因此 CH-3
+的第一步不是改变回归，而是改变要建模的经济总体：对“常规经营股票”构造因子，排除最小市值
+30%。</p>
+<h2 id="定义与公式">定义与公式</h2>
+<h3 id="原论文形成池">原论文形成池</h3>
+<p>原论文的关键过滤包括：</p>
+<ol type="1">
+<li>排除上市不足 6 个月股票；</li>
+<li>排除过去 12 个月交易记录少于 120 天的股票；</li>
+<li>排除最近月交易少于 15 天的股票；</li>
+<li>按上月末总市值排序，排除最小 30%；</li>
+<li>用剩余 70% 构造市场、规模和价值因子。</li>
+</ol>
+<p>总市值使用收盘价×全部 A
+股股数，包括当时不可交易股。现代复现必须核对数据字段与论文口径，不能用自由流通市值悄悄替换。</p>
+<h3 id="独立排序">2×3 独立排序</h3>
+<p>在剩余 70% 股票中：</p>
+<ul>
+<li>按市值中位数分 Small 与 Big；</li>
+<li>按 EP 分 top 30% Value、中间 40% Middle、bottom 30% Growth；</li>
+<li>独立交叉成 S/V、S/M、S/G、B/V、B/M、B/G 六个价值加权组合。</li>
+</ul>
+<p>规模因子：</p>
+<p><span class="math display">\[
+SMB=\frac{1}{3}(R_{S/V}+R_{S/M}+R_{S/G})
+-\frac{1}{3}(R_{B/V}+R_{B/M}+R_{B/G})
+\]</span></p>
+<p>价值因子 VMG：</p>
+<p><span class="math display">\[
+VMG=\frac{1}{2}(R_{S/V}+R_{B/V})
+-\frac{1}{2}(R_{S/G}+R_{B/G})
+\]</span></p>
+<p>市场因子是剩余 70%
+股票价值加权市场收益减原论文采用的一年期存款利率。现代研究应说明继续沿用该无风险代理，还是用与持有期一致的其他利率。</p>
+<h3 id="ep">EP</h3>
+<p><span class="math display">\[
+EP_{i,t}=Earnings_{i,available}^{TTM}/ME_{i,t}
+\]</span></p>
+<p>原论文在截面检验中还将正 EP 和负 EP
+指示变量分开，避免把负盈利当作连续估值比率的一端。因子排序的精确盈利字段、公告滞后和负值处理应按原文与数据附录复现。</p>
+<h3 id="ch-3-与机械-ff3-的差异">CH-3 与机械 FF3 的差异</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>机械 FF3 本地复制</th>
+<th>CH-3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最小股票</td>
+<td>通常纳入</td>
+<td>排除底部 30%</td>
+</tr>
+<tr>
+<td>价值指标</td>
+<td>BM</td>
+<td>EP</td>
+</tr>
+<tr>
+<td>制度动机</td>
+<td>沿用美国经验</td>
+<td>壳价值与中国估值证据</td>
+</tr>
+<tr>
+<td>价值因子名</td>
+<td>HML</td>
+<td>VMG</td>
+</tr>
+<tr>
+<td>目标</td>
+<td>复刻通用构造</td>
+<td>解释常规 A 股的本地共同收益</td>
+</tr>
+</tbody>
+</table>
+<p>CH-3
+仍是三因子线性模型，不意味着中国市场只有三个风险/错误定价维度。</p>
+<h2 id="python-最小实验">Python 最小实验</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br>portfolios = pd.Series(&#123;<br>    <span class="hljs-string">&quot;S/V&quot;</span>: <span class="hljs-number">0.030</span>,<br>    <span class="hljs-string">&quot;S/M&quot;</span>: <span class="hljs-number">0.020</span>,<br>    <span class="hljs-string">&quot;S/G&quot;</span>: <span class="hljs-number">0.010</span>,<br>    <span class="hljs-string">&quot;B/V&quot;</span>: <span class="hljs-number">0.020</span>,<br>    <span class="hljs-string">&quot;B/M&quot;</span>: <span class="hljs-number">0.015</span>,<br>    <span class="hljs-string">&quot;B/G&quot;</span>: <span class="hljs-number">0.005</span>,<br>&#125;)<br>small = portfolios[[<span class="hljs-string">&quot;S/V&quot;</span>, <span class="hljs-string">&quot;S/M&quot;</span>, <span class="hljs-string">&quot;S/G&quot;</span>]].mean()<br>big = portfolios[[<span class="hljs-string">&quot;B/V&quot;</span>, <span class="hljs-string">&quot;B/M&quot;</span>, <span class="hljs-string">&quot;B/G&quot;</span>]].mean()<br>value = portfolios[[<span class="hljs-string">&quot;S/V&quot;</span>, <span class="hljs-string">&quot;B/V&quot;</span>]].mean()<br>growth = portfolios[[<span class="hljs-string">&quot;S/G&quot;</span>, <span class="hljs-string">&quot;B/G&quot;</span>]].mean()<br><br>smb = small - big<br>vmg = value - growth<br><br><span class="hljs-keyword">assert</span> np.isclose(smb, <span class="hljs-number">0.0066666666666667</span>)<br><span class="hljs-keyword">assert</span> np.isclose(vmg, <span class="hljs-number">0.0175</span>)<br><span class="hljs-built_in">print</span>(smb, vmg)<br></code></pre></td></tr></table></figure>
+<p>这段代码从六组合收益合成因子，没有实现股票筛选和权重。真正复现的难点在上游点时数据，而不是最后两行平均。</p>
+<h2 id="a-股实现注意事项">A 股实现注意事项</h2>
+<ol type="1">
+<li><strong>壳价值并非常数。</strong>
+注册制、退市常态化与并购重组规则会改变壳期权。2019
+年论文识别的机制必须在新时期重新测量。</li>
+<li><strong>散户与机构结构。</strong> 历史 A
+股个人投资者参与度较高，但账户、成交额和持仓占比不是一个指标，且随年份变化；不能用一个静态比例解释所有时期。</li>
+<li><strong>涨跌停与板块。</strong>
+主板、创业板、科创板、北交所及特殊股票的价格限制随制度和上市阶段不同，回测应使用历史规则表。</li>
+<li><strong>T+1。</strong>
+当日买入通常不能同日卖出，短期信号与止损执行受约束；ETF、可转债等品种规则又不同。</li>
+<li><strong>做空限制。</strong> 融券标的、券源、保证金和费用使 VMG、SMB
+空头腿不等于可执行策略。</li>
+<li><strong>ST 与退市。</strong> 排除 ST
+会改变研究总体；纳入则必须模拟价格限制、停牌和退市损失。</li>
+<li><strong>板块差异。</strong> 上市门槛、行业与盈利结构不同，统一
+EP/规模断点可能把板块制度当因子。</li>
+<li><strong>非流通股历史。</strong>
+股权分置改革前后，总市值与可交易资本含义变化，长样本需分段。</li>
+<li><strong>公告与累计利润。</strong> EP 分子必须按首次公告日和 TTM
+口径构造，不能用报告期末。</li>
+</ol>
+<h2 id="常见错误与边界">常见错误与边界</h2>
+<ul>
+<li>只排除当前最小 30%，而不是每月点时重排。</li>
+<li>用自由流通市值却声称精确复现原论文。</li>
+<li>EP 用未来年报或最终修订值。</li>
+<li>把底部 30%
+简称“壳公司”；论文是按污染概率排除，不是逐只确认壳身份。</li>
+<li>看到 CH-3 优于本地 FF3，就宣称风险机制已证明。</li>
+<li>以 2019 年发表结论直接解释 2026 年注册制与退市环境。</li>
+<li>构造因子用常规股票池，测试策略却包含被排除微盘股，模型总体不一致。</li>
+<li>忽略空头不可交易，直接把 VMG 当现实收益。</li>
+</ul>
+<p>排除底部 30%
+是研究问题的一部分：若目标就是研究微盘与壳价值，就不应排除，而应单独构造壳因子或状态模型。CH-3
+的选择适合“给常规经营股票定价”，不是所有 A 股研究的普遍清洗规则。</p>
+<h2 id="原书与论文">原书与论文</h2>
+<p>原书第 6 章（PDF 文件页 224–290）是中国因子实证主线，第 5
+章（192–223）提供实践问题背景。</p>
+<p>核心原文：Liu、Stambaugh、Yuan（2019），Size and Value in
+China，Journal of Financial Economics 134(1)，48–69，<a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.jfineco.2019.03.008">DOI
+10.1016/j.jfineco.2019.03.008</a>。阅读时把作者样本期、过滤条件和制度背景与当前研究期逐项对照。</p>
+<h2 id="练习">练习</h2>
+<ol type="1">
+<li>每月排除最小 0%、10%、20%、30%、40%，比较 SMB、VMG 与市值覆盖。</li>
+<li>用 BM 和 EP 分别构造价值因子，比较相关、Alpha
+和组内负盈利占比。</li>
+<li>复现六组合并逐月断言每个组合非空、权重和为一。</li>
+<li>设计壳价值代理：IPO
+排队、借壳事件、最小市值与盈利惊喜相关，写出可证伪预测。</li>
+<li>将样本按制度阶段分段，检验底部 30%
+的收益与经营基本面关系是否变化。</li>
+<li>说明目标为微盘策略时，为什么不能把 CH-3
+过滤规则当普通数据清洗。</li>
+</ol>
+<h2 id="小结与下一步">小结与下一步</h2>
+<p>CH-3 用两个本地化选择改变 FF3：排除壳价值污染最强的最小 30%，以 EP
+替代 BM，再在剩余股票中构造
+MKT、SMB、VMG。它说明资产定价模型必须对应制度和研究总体。</p>
+<p>论文证据来自特定历史样本。进入 2026
+年研究前，应重新验证壳机制、交易制度、板块结构和无风险代理，而不是把
+CH-3 当永久真理。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Quant/" class="category-chain-item">Quant</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84/" class="print-no-link">#因子投资</a>
+      
+        <a href="/tags/%E5%A4%9A%E5%9B%A0%E5%AD%90%E6%A8%A1%E5%9E%8B/" class="print-no-link">#多因子模型</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>因子投资-16-中国A股与CH3模型</div>
+      <div>http://polaris3003.github.io/2026/07/17/因子投资-16-中国A股与CH3模型/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-17-IC%E5%88%86%E5%B1%82%E5%9B%9E%E6%B5%8B%E4%B8%8E%E5%9B%A0%E5%AD%90%E8%AF%84%E4%BB%B7/" title="因子投资-17-IC分层回测与因子评价">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">因子投资-17-IC分层回测与因子评价</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-15-%E4%B8%BB%E6%B5%81%E5%A4%9A%E5%9B%A0%E5%AD%90%E6%A8%A1%E5%9E%8B/" title="因子投资-15-主流多因子模型">
+                        <span class="hidden-mobile">因子投资-15-主流多因子模型</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
