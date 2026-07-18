@@ -80,6 +80,7 @@
 <link rel="stylesheet" href="/css/mac.css">
 <link rel="stylesheet" href="/css/scrollAnimation.css">
 <link rel="stylesheet" href="/css/quantDoc.css">
+<link rel="stylesheet" href="/css/dailyBriefing.css">
 
 
 
@@ -359,9 +360,9 @@
         <div><span>阅读</span><strong>约 8 分钟</strong></div>
         <div><span>材料</span><strong>10 节 · 1 段代码</strong></div>
       </div>
-    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题">本节解决什么问题</h2>
 <p>回测最危险的错误通常不是公式，而是“在过去使用了后来才知道的信息”。今天下载的价格、财报、指数成分和公司状态往往是最终修订版本。点时研究要求在每个决策日重建：当时有哪些股票、哪些数据已经公开、哪些价格可成交。</p>
-</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
+</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标">前置知识与学习目标</h2>
 <p>需要第 01 讲收益口径和基本表格操作。学完后你应该能：</p>
 <ul>
 <li>设计 prices、fundamentals、universe 三张点时核心表；</li>
@@ -370,18 +371,22 @@
 <li>画出信号形成、下单、成交、持有和收益计量的时间轴；</li>
 <li>用断言阻止未来信息进入特征。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
-<p>某公司一季报报告期为 3 月 31 日，但 4 月 28 日收盘后才公告净利润。研究者今天能在数据表看到“2026-03-31 净利润”，不代表 3 月 31 日投资者已经知道它。</p>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算">直觉与手算</h2>
+<p>某公司一季报报告期为 3 月 31 日，但 4 月 28
+日收盘后才公告净利润。研究者今天能在数据表看到“2026-03-31
+净利润”，不代表 3 月 31 日投资者已经知道它。</p>
 <p>若公告在 4 月 28 日盘后：</p>
 <ul>
 <li>3 月 31 日至 4 月 28 日的信号不能使用该数字；</li>
 <li>最早可把它用于 4 月 29 日开盘后的决策；</li>
-<li>若策略只在月末调仓，可能在 4 月 30 日收盘后形成信号、5 月首个可交易时点成交；</li>
+<li>若策略只在月末调仓，可能在 4 月 30 日收盘后形成信号、5
+月首个可交易时点成交；</li>
 <li>收益必须从成交之后开始计量。</li>
 </ul>
-<p>把 report_period 直接与月末收益连接，相当于提前约一个月知道财报。这样的回测可以很漂亮，但现实中无法执行。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
-<h3 id="三张核心点时表"><a class="markdownIt-Anchor" href="#三张核心点时表"></a> 三张核心点时表</h3>
+<p>把 report_period
+直接与月末收益连接，相当于提前约一个月知道财报。这样的回测可以很漂亮，但现实中无法执行。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式">定义与公式</h2>
+<h3 id="三张核心点时表">三张核心点时表</h3>
 <p><strong>价格表 prices(date, asset, close, adj_factor)</strong></p>
 <div class="quant-table-shell">
       <div class="quant-table-caption">
@@ -418,8 +423,10 @@
 </tr>
 </tbody>
 </table></div></div>
-<p>研究价格可定义为 close×adj_factor，但总回报应与分红送转事件交叉核对。成交模拟仍需要未复权价格、涨跌停价和最小交易单位。</p>
-<p><strong>财报表 fundamentals(report_period, announce_date, asset, field, value)</strong></p>
+<p>研究价格可定义为
+close×adj_factor，但总回报应与分红送转事件交叉核对。成交模拟仍需要未复权价格、涨跌停价和最小交易单位。</p>
+<p><strong>财报表 fundamentals(report_period, announce_date, asset,
+field, value)</strong></p>
 <div class="quant-table-shell">
       <div class="quant-table-caption">
         <span>定义与公式</span>
@@ -460,16 +467,20 @@
 </tr>
 </tbody>
 </table></div></div>
-<p>若同一报告期多次修订，严格点时库还要保存 revision_time 和版本。任意决策日 d 使用的数据必须满足：</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mi>n</mi><mi>n</mi><mi>o</mi><mi>u</mi><mi>n</mi><mi>c</mi><mi>e</mi><mi mathvariant="normal">_</mi><mi>t</mi><mi>i</mi><mi>m</mi><mi>e</mi><mo>&lt;</mo><mi>d</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>s</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi mathvariant="normal">_</mi><mi>t</mi><mi>i</mi><mi>m</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">announce\_time &lt; decision\_time
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9695199999999999em;vertical-align:-0.31em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">n</span><span class="mord mathnormal">n</span><span class="mord mathnormal">o</span><span class="mord mathnormal">u</span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mord mathnormal">e</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">m</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.00444em;vertical-align:-0.31em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mord mathnormal">c</span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">m</span><span class="mord mathnormal">e</span></span></span></span></span></p>
+<p>若同一报告期多次修订，严格点时库还要保存 revision_time
+和版本。任意决策日 d 使用的数据必须满足：</p>
+<p><span class="math display">\[
+announce\_time &lt; decision\_time
+\]</span></p>
 <p>等号能否使用取决于公告和决策的日内顺序，只有日期而无时间时应采取保守滞后。</p>
 <p><strong>股票池表 universe(date, asset, eligible)</strong></p>
-<p>eligible 是在 date 时是否满足策略可投资规则，而不是今天是否仍上市。建议同时保存 reason 列，例如上市不足、ST、停牌、涨停不可买、跌停不可卖、板块不在范围或数据不足。</p>
-<h3 id="一条无歧义时间轴"><a class="markdownIt-Anchor" href="#一条无歧义时间轴"></a> 一条无歧义时间轴</h3>
+<p>eligible 是在 date
+时是否满足策略可投资规则，而不是今天是否仍上市。建议同时保存 reason
+列，例如上市不足、ST、停牌、涨停不可买、跌停不可卖、板块不在范围或数据不足。</p>
+<h3 id="一条无歧义时间轴">一条无歧义时间轴</h3>
 <p>数据公开 → 信号形成 → 下单 → 成交 → 持有 → 收益结束</p>
 <p>每一步都应有时间戳。月末收盘特征若包含当日收盘价，最早只能在收盘后形成；默认用同一收盘价成交就是未来函数。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验">Python 最小实验</h2>
 <p>下面在决策日只选择已经公告的最新财报。</p>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
@@ -477,21 +488,34 @@
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br>fundamentals = pd.DataFrame(&#123;<br>    <span class="hljs-string">&quot;asset&quot;</span>: [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>],<br>    <span class="hljs-string">&quot;report_period&quot;</span>: pd.to_datetime([<br>        <span class="hljs-string">&quot;2025-12-31&quot;</span>, <span class="hljs-string">&quot;2026-03-31&quot;</span>, <span class="hljs-string">&quot;2025-12-31&quot;</span>, <span class="hljs-string">&quot;2026-03-31&quot;</span>,<br>    ]),<br>    <span class="hljs-string">&quot;announce_date&quot;</span>: pd.to_datetime([<br>        <span class="hljs-string">&quot;2026-03-20&quot;</span>, <span class="hljs-string">&quot;2026-04-28&quot;</span>, <span class="hljs-string">&quot;2026-03-25&quot;</span>, <span class="hljs-string">&quot;2026-05-05&quot;</span>,<br>    ]),<br>    <span class="hljs-string">&quot;value&quot;</span>: [<span class="hljs-number">10.0</span>, <span class="hljs-number">12.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">11.0</span>],<br>&#125;)<br>decision_date = pd.Timestamp(<span class="hljs-string">&quot;2026-04-30&quot;</span>)<br><br>available = fundamentals.loc[<br>    fundamentals[<span class="hljs-string">&quot;announce_date&quot;</span>] &lt;= decision_date<br>].sort_values([<span class="hljs-string">&quot;asset&quot;</span>, <span class="hljs-string">&quot;announce_date&quot;</span>])<br>latest = available.groupby(<span class="hljs-string">&quot;asset&quot;</span>, as_index=<span class="hljs-literal">False</span>).tail(<span class="hljs-number">1</span>)<br><br><span class="hljs-keyword">assert</span> (latest[<span class="hljs-string">&quot;announce_date&quot;</span>] &lt;= decision_date).<span class="hljs-built_in">all</span>()<br><span class="hljs-keyword">assert</span> latest.set_index(<span class="hljs-string">&quot;asset&quot;</span>).loc[<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;value&quot;</span>] == <span class="hljs-number">12.0</span><br><span class="hljs-keyword">assert</span> latest.set_index(<span class="hljs-string">&quot;asset&quot;</span>).loc[<span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;value&quot;</span>] == <span class="hljs-number">8.0</span><br><span class="hljs-built_in">print</span>(latest[[<span class="hljs-string">&quot;asset&quot;</span>, <span class="hljs-string">&quot;report_period&quot;</span>, <span class="hljs-string">&quot;announce_date&quot;</span>, <span class="hljs-string">&quot;value&quot;</span>]])<br></code></pre></td></tr></table></figure>
-<p>B 的一季报在 5 月 5 日才公告，所以 4 月 30 日只能使用年报值 8。这个“看起来旧”的值才是当时真实信息集。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
-<ol>
-<li><strong>历史股票池。</strong> 每日重建上市、退市、板块、ST 和指数成分，不能用当前证券列表回看历史。</li>
-<li><strong>复权。</strong> 保存原始价、公司行动和复权因子版本。前复权序列会随未来分红改变历史数值，适合展示但不天然是点时数据。</li>
-<li><strong>公告日。</strong> 以首次公告时间为可得边界；报告期末、预约披露日和数据库入库日都不能互相替代。盘后公告至少滞后到下一可交易时点。</li>
-<li><strong>停牌。</strong> 持仓估值可按规则沿用旧价，但买卖能力为零；复牌跳跃必须进入收益。不能删除停牌期后只保留顺利成交样本。</li>
-<li><strong>涨跌停。</strong> 根据板块和日期应用 5%、10%、20%、30% 等不同制度。触及价格不必然无法成交，一字板、成交量和订单方向要另行判断。</li>
-<li><strong>ST。</strong> 是否排除 ST 是投资规则，不是数据清洗。使用历史 ST 生效与解除日期，并报告排除造成的选择效应。</li>
-<li><strong>IPO 等待期。</strong> 新股上市初期价格限制、无历史特征和高换手会造成特殊分布。等待 60、120 或 180 个交易日应在研究前规定并做敏感性。</li>
-<li><strong>退市收益。</strong> 退市股票不能在最后正常交易日无损消失。应纳入退市整理期、现金补偿或保守损失假设，并报告缺失处理。</li>
-<li><strong>代码与公司映射。</strong> 公司重组、换代码和借壳会让“证券”“上市公司”“经济实体”不是同一 ID；因子定义要选择正确主键。</li>
-<li><strong>财报口径。</strong> 累计利润需转换单季时注意上一版本；TTM、合并报表、币种、单位和负分母必须有数据字典。</li>
+<p>B 的一季报在 5 月 5 日才公告，所以 4 月 30 日只能使用年报值
+8。这个“看起来旧”的值才是当时真实信息集。</p>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项">A 股实现注意事项</h2>
+<ol type="1">
+<li><strong>历史股票池。</strong> 每日重建上市、退市、板块、ST
+和指数成分，不能用当前证券列表回看历史。</li>
+<li><strong>复权。</strong>
+保存原始价、公司行动和复权因子版本。前复权序列会随未来分红改变历史数值，适合展示但不天然是点时数据。</li>
+<li><strong>公告日。</strong>
+以首次公告时间为可得边界；报告期末、预约披露日和数据库入库日都不能互相替代。盘后公告至少滞后到下一可交易时点。</li>
+<li><strong>停牌。</strong>
+持仓估值可按规则沿用旧价，但买卖能力为零；复牌跳跃必须进入收益。不能删除停牌期后只保留顺利成交样本。</li>
+<li><strong>涨跌停。</strong> 根据板块和日期应用 5%、10%、20%、30%
+等不同制度。触及价格不必然无法成交，一字板、成交量和订单方向要另行判断。</li>
+<li><strong>ST。</strong> 是否排除 ST 是投资规则，不是数据清洗。使用历史
+ST 生效与解除日期，并报告排除造成的选择效应。</li>
+<li><strong>IPO 等待期。</strong>
+新股上市初期价格限制、无历史特征和高换手会造成特殊分布。等待 60、120 或
+180 个交易日应在研究前规定并做敏感性。</li>
+<li><strong>退市收益。</strong>
+退市股票不能在最后正常交易日无损消失。应纳入退市整理期、现金补偿或保守损失假设，并报告缺失处理。</li>
+<li><strong>代码与公司映射。</strong>
+公司重组、换代码和借壳会让“证券”“上市公司”“经济实体”不是同一
+ID；因子定义要选择正确主键。</li>
+<li><strong>财报口径。</strong>
+累计利润需转换单季时注意上一版本；TTM、合并报表、币种、单位和负分母必须有数据字典。</li>
 </ol>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界">常见错误与边界</h2>
 <ul>
 <li>用 2026 年仍上市股票回测 2010 年，制造幸存者偏差。</li>
 <li>以 report_period 连接当期收益，提前使用财报。</li>
@@ -503,20 +527,30 @@
 <li>对全样本计算去极值阈值和标准化参数。</li>
 </ul>
 <p>点时数据也不能保证数据正确。供应商可能漏公告、错误映射公司行动或回填退市收益。应以样本抽查、跨源对账、事件计数和会计恒等式做独立验证。</p>
-</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
-<p>原书第 5 章（PDF 文件页 192–223）集中讨论因子实践问题，第 6 章（224–290）进入中国市场实证。这里把散落的实现风险整理为可执行数据模型。</p>
-<p>Hou、Xue 与 Zhang（2020）复现大量异象时强调微盘、样本和实现选择对结论的影响：<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhy131">DOI 10.1093/rfs/hhy131</a>。McLean 与 Pontiff（2016）区分样本外与发表后衰减，也要求严格定义时间边界：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/jofi.12365">DOI 10.1111/jofi.12365</a>。</p>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
-<ol>
+</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文">原书与论文</h2>
+<p>原书第 5 章（PDF 文件页 192–223）集中讨论因子实践问题，第 6
+章（224–290）进入中国市场实证。这里把散落的实现风险整理为可执行数据模型。</p>
+<p>Hou、Xue 与
+Zhang（2020）复现大量异象时强调微盘、样本和实现选择对结论的影响：<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhy131">DOI
+10.1093/rfs/hhy131</a>。McLean 与
+Pontiff（2016）区分样本外与发表后衰减，也要求严格定义时间边界：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/jofi.12365">DOI
+10.1111/jofi.12365</a>。</p>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习">练习</h2>
+<ol type="1">
 <li>画出“月末收盘计算价值信号、次日开盘成交、持有一个月”的完整时间轴。</li>
-<li>给 fundamentals 加 revision_time，同一报告期有初始值和修订值；写查询返回决策时最新可得版本。</li>
-<li>设计 universe 的 reason 编码，至少覆盖未上市、已退市、ST、停牌、涨停不可买、跌停不可卖和 IPO 等待期。</li>
+<li>给 fundamentals 加
+revision_time，同一报告期有初始值和修订值；写查询返回决策时最新可得版本。</li>
+<li>设计 universe 的 reason
+编码，至少覆盖未上市、已退市、ST、停牌、涨停不可买、跌停不可卖和 IPO
+等待期。</li>
 <li>对一只发生分红送转的股票，用未复权价加现金流与复权价两种方法计算总回报并对账。</li>
 <li>给出退市末端价格缺失的乐观、中性、保守三种假设，说明策略结论是否敏感。</li>
 </ol>
-<p>最低验收断言应包括：键唯一、日期有序、价格为正、announce_time 早于 decision_time、收益日期晚于信号日期、每次股票池变化有原因。</p>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
-<p>点时研究不是“给财报滞后几个月”这一条规则，而是完整保留当时可得的数据版本、历史股票池和交易状态。prices、fundamentals、universe 三张表加一条明确时间轴，是后续所有回测的地基。</p>
+<p>最低验收断言应包括：键唯一、日期有序、价格为正、announce_time 早于
+decision_time、收益日期晚于信号日期、每次股票池变化有原因。</p>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步">小结与下一步</h2>
+<p>点时研究不是“给财报滞后几个月”这一条规则，而是完整保留当时可得的数据版本、历史股票池和交易状态。prices、fundamentals、universe
+三张表加一条明确时间轴，是后续所有回测的地基。</p>
 <p>下一讲将在这个地基上做投资组合排序：把截面信号变成高组、低组和多空因子收益。</p>
 </section></div>
                 

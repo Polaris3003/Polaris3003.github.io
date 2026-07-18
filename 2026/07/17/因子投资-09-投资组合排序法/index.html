@@ -80,6 +80,7 @@
 <link rel="stylesheet" href="/css/mac.css">
 <link rel="stylesheet" href="/css/scrollAnimation.css">
 <link rel="stylesheet" href="/css/quantDoc.css">
+<link rel="stylesheet" href="/css/dailyBriefing.css">
 
 
 
@@ -359,9 +360,9 @@
         <div><span>阅读</span><strong>约 7 分钟</strong></div>
         <div><span>材料</span><strong>10 节 · 1 段代码</strong></div>
       </div>
-    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题">本节解决什么问题</h2>
 <p>一个因子值怎样变成收益证据？投资组合排序先按当期特征把股票分组，再比较各组未来收益。它透明、接近可交易组合、能发现非线性，但结果会被断点、权重、股票池、持有期和重叠方式显著改变。</p>
-</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
+</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标">前置知识与学习目标</h2>
 <p>需要第 05 讲组合权重和第 08 讲点时数据。学完后你应该能：</p>
 <ul>
 <li>手算单变量三分组与高减低 H-L 收益；</li>
@@ -370,8 +371,9 @@
 <li>正确处理持有期、重叠组合和 Newey–West 滞后；</li>
 <li>判断排序收益是否被微盘股或不可交易股票支配。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
-<p>在 t 月末有 6 只合格股票，signal 越高代表预测收益越高；next_return 是 t+1 月可实现收益：</p>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算">直觉与手算</h2>
+<p>在 t 月末有 6 只合格股票，signal 越高代表预测收益越高；next_return 是
+t+1 月可实现收益：</p>
 <div class="quant-table-shell">
       <div class="quant-table-caption">
         <span>直觉与手算</span>
@@ -380,47 +382,47 @@
 <thead>
 <tr>
 <th>股票</th>
-<th style="text-align:right">signal</th>
-<th style="text-align:right">市值</th>
-<th style="text-align:right">next_return</th>
+<th style="text-align: right;">signal</th>
+<th style="text-align: right;">市值</th>
+<th style="text-align: right;">next_return</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>A</td>
-<td style="text-align:right">1</td>
-<td style="text-align:right">10</td>
-<td style="text-align:right">1%</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1%</td>
 </tr>
 <tr>
 <td>B</td>
-<td style="text-align:right">2</td>
-<td style="text-align:right">20</td>
-<td style="text-align:right">-2%</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">-2%</td>
 </tr>
 <tr>
 <td>C</td>
-<td style="text-align:right">3</td>
-<td style="text-align:right">30</td>
-<td style="text-align:right">0%</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0%</td>
 </tr>
 <tr>
 <td>D</td>
-<td style="text-align:right">4</td>
-<td style="text-align:right">40</td>
-<td style="text-align:right">2%</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">2%</td>
 </tr>
 <tr>
 <td>E</td>
-<td style="text-align:right">5</td>
-<td style="text-align:right">50</td>
-<td style="text-align:right">4%</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">4%</td>
 </tr>
 <tr>
 <td>F</td>
-<td style="text-align:right">6</td>
-<td style="text-align:right">100</td>
-<td style="text-align:right">3%</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">3%</td>
 </tr>
 </tbody>
 </table></div></div>
@@ -432,10 +434,10 @@
 <li>H-L：3.5%-(-0.5%)=4%。</li>
 </ul>
 <p>若组内按市值加权，Low=-1%，High=3.333%，H-L=4.333%。同一股票与同一信号，仅改变权重就得到不同因子收益，因为问题从“平均股票”变成“平均资金”。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
-<h3 id="单变量排序"><a class="markdownIt-Anchor" href="#单变量排序"></a> 单变量排序</h3>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式">定义与公式</h2>
+<h3 id="单变量排序">单变量排序</h3>
 <p>每个形成日 t：</p>
-<ol>
+<ol type="1">
 <li>在当期合格股票池内计算信号 x(i,t)；</li>
 <li>用预先规定断点划分 G 组；</li>
 <li>以等权或价值权重形成组合；</li>
@@ -443,40 +445,61 @@
 <li>构造高组减低组。</li>
 </ol>
 <p>组 g 的收益：</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>R</mi><mrow><mi>g</mi><mo separator="true">,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><msub><mi>g</mi><mi>t</mi></msub></mrow></munder><msub><mi>w</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow></msub><msub><mi>R</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">R_{g,t+1}=\sum_{i\in g_t}w_{i,t}R_{i,t+1}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.463782em;vertical-align:-1.413777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8723309999999997em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">∈</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.29634285714285713em;"><span style="top:-2.357em;margin-left:-0.03588em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.413777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>R</mi><mrow><mi>H</mi><mo>−</mo><mi>L</mi><mo separator="true">,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>R</mi><mrow><mi>H</mi><mi>i</mi><mi>g</mi><mi>h</mi><mo separator="true">,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>R</mi><mrow><mi>L</mi><mi>o</mi><mi>w</mi><mo separator="true">,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">R_{H-L,t+1}=R_{High,t+1}-R_{Low,t+1}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.08125em;">H</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">L</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.08125em;">H</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mord mathnormal mtight">h</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">L</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<p>分组成员和权重在 t 已知，收益发生在未来。H-L 是零净投资模拟组合时，还要报告多空两腿总敞口、融资和做空成本。</p>
-<h3 id="独立双排序"><a class="markdownIt-Anchor" href="#独立双排序"></a> 独立双排序</h3>
-<p>分别用变量 X、Z 的边际断点独立分组，再取交叉单元。例如规模 2 组×价值 3 组得到 6 个组合。它能观察交互，但某些单元可能很小；两个信号相关时，极端组合的经济含义会混合。</p>
-<h3 id="条件双排序"><a class="markdownIt-Anchor" href="#条件双排序"></a> 条件双排序</h3>
-<p>先按 X 分组，再在每个 X 组内部按 Z 分组。它回答“控制 X 的组内相对 Z 效应”，每个 X 组都有 Z 的高低股票，但不同 X 组的 Z 绝对水平可能不同。先 X 后 Z 与先 Z 后 X 不是同一问题。</p>
-<h3 id="断点"><a class="markdownIt-Anchor" href="#断点"></a> 断点</h3>
-<p>全市场分位数会被数量庞大的微盘股决定。Fama–French 常用 NYSE 参考断点，使断点代表更可投资股票的分布。A 股可以预先定义大中盘参考集合，但必须报告参考市场、日期和覆盖率，不能为提高结果事后选择。</p>
-<h3 id="等权与价值加权"><a class="markdownIt-Anchor" href="#等权与价值加权"></a> 等权与价值加权</h3>
-<p>等权 w=1/n 强调平均股票，对小盘股、换手和成本敏感；价值加权 w(i)∝ME(i) 更接近资金可扩展组合，但大股票支配结果。两者应并列而非互相替代。</p>
-<h3 id="持有期与重叠组合"><a class="markdownIt-Anchor" href="#持有期与重叠组合"></a> 持有期与重叠组合</h3>
-<p>若每月形成信号、持有 K 个月，常同时持有 K 个不同形成月的子组合。月 t 总收益是存续子组合的平均。重叠使收益至少呈现机械序列相关，传统标准误偏小；Newey–West 滞后可从 K-1 起做基线，并对更大滞后做敏感性，而非把 K-1 当万能规则。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
+<p><span class="math display">\[
+R_{g,t+1}=\sum_{i\in g_t}w_{i,t}R_{i,t+1}
+\]</span></p>
+<p><span class="math display">\[
+R_{H-L,t+1}=R_{High,t+1}-R_{Low,t+1}
+\]</span></p>
+<p>分组成员和权重在 t 已知，收益发生在未来。H-L
+是零净投资模拟组合时，还要报告多空两腿总敞口、融资和做空成本。</p>
+<h3 id="独立双排序">独立双排序</h3>
+<p>分别用变量 X、Z 的边际断点独立分组，再取交叉单元。例如规模 2 组×价值
+3 组得到 6
+个组合。它能观察交互，但某些单元可能很小；两个信号相关时，极端组合的经济含义会混合。</p>
+<h3 id="条件双排序">条件双排序</h3>
+<p>先按 X 分组，再在每个 X 组内部按 Z 分组。它回答“控制 X 的组内相对 Z
+效应”，每个 X 组都有 Z 的高低股票，但不同 X 组的 Z 绝对水平可能不同。先
+X 后 Z 与先 Z 后 X 不是同一问题。</p>
+<h3 id="断点">断点</h3>
+<p>全市场分位数会被数量庞大的微盘股决定。Fama–French 常用 NYSE
+参考断点，使断点代表更可投资股票的分布。A
+股可以预先定义大中盘参考集合，但必须报告参考市场、日期和覆盖率，不能为提高结果事后选择。</p>
+<h3 id="等权与价值加权">等权与价值加权</h3>
+<p>等权 w=1/n 强调平均股票，对小盘股、换手和成本敏感；价值加权
+w(i)∝ME(i)
+更接近资金可扩展组合，但大股票支配结果。两者应并列而非互相替代。</p>
+<h3 id="持有期与重叠组合">持有期与重叠组合</h3>
+<p>若每月形成信号、持有 K 个月，常同时持有 K 个不同形成月的子组合。月 t
+总收益是存续子组合的平均。重叠使收益至少呈现机械序列相关，传统标准误偏小；Newey–West
+滞后可从 K-1 起做基线，并对更大滞后做敏感性，而非把 K-1 当万能规则。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验">Python 最小实验</h2>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>frame = pd.DataFrame(&#123;<br>    <span class="hljs-string">&quot;asset&quot;</span>: <span class="hljs-built_in">list</span>(<span class="hljs-string">&quot;ABCDEF&quot;</span>),<br>    <span class="hljs-string">&quot;signal&quot;</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],<br>    <span class="hljs-string">&quot;market_cap&quot;</span>: [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>, <span class="hljs-number">100</span>],<br>    <span class="hljs-string">&quot;next_return&quot;</span>: [<span class="hljs-number">0.01</span>, -<span class="hljs-number">0.02</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.04</span>, <span class="hljs-number">0.03</span>],<br>&#125;)<br>frame[<span class="hljs-string">&quot;group&quot;</span>] = pd.qcut(frame[<span class="hljs-string">&quot;signal&quot;</span>], <span class="hljs-number">3</span>, labels=[<span class="hljs-string">&quot;Low&quot;</span>, <span class="hljs-string">&quot;Mid&quot;</span>, <span class="hljs-string">&quot;High&quot;</span>])<br><br>equal = frame.groupby(<span class="hljs-string">&quot;group&quot;</span>, observed=<span class="hljs-literal">True</span>)[<span class="hljs-string">&quot;next_return&quot;</span>].mean()<br>weighted_return = frame[<span class="hljs-string">&quot;next_return&quot;</span>] * frame[<span class="hljs-string">&quot;market_cap&quot;</span>]<br>value = (<br>    weighted_return.groupby(frame[<span class="hljs-string">&quot;group&quot;</span>], observed=<span class="hljs-literal">True</span>).<span class="hljs-built_in">sum</span>()<br>    / frame[<span class="hljs-string">&quot;market_cap&quot;</span>].groupby(frame[<span class="hljs-string">&quot;group&quot;</span>], observed=<span class="hljs-literal">True</span>).<span class="hljs-built_in">sum</span>()<br>)<br><br><span class="hljs-keyword">assert</span> np.isclose(equal[<span class="hljs-string">&quot;High&quot;</span>] - equal[<span class="hljs-string">&quot;Low&quot;</span>], <span class="hljs-number">0.04</span>)<br><span class="hljs-keyword">assert</span> np.isclose(value[<span class="hljs-string">&quot;High&quot;</span>] - value[<span class="hljs-string">&quot;Low&quot;</span>], <span class="hljs-number">0.0433333333333333</span>)<br><span class="hljs-built_in">print</span>(equal, value)<br></code></pre></td></tr></table></figure>
-<p>真实数据中 qcut 遇到大量相同信号可能减少组数或报错。应事先定义并记录并列值规则，不要随机拆分相同经济信号。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
-<ol>
-<li><strong>形成股票池。</strong> 在信号日使用历史上市、ST、停牌和板块状态；收益期发生的退市不能从形成池回删。</li>
-<li><strong>微盘与壳价值。</strong> 等权尾组可能集中极小市值和壳公司，需报告排除最小市值比例后的结果。</li>
-<li><strong>可成交延迟。</strong> 收盘信号最早下一可交易时点成交；涨停高信号买不到、跌停低信号卖不出会形成方向性偏差。</li>
-<li><strong>权重基准。</strong> 市值使用形成日点时总市值或自由流通市值，二者对应不同资本组合。</li>
-<li><strong>断点稳定。</strong> 全市场分位数会随新股数量和板块扩容变化；保存每期断点、组内数量和市值覆盖。</li>
-<li><strong>做空腿。</strong> A 股 H-L 常是研究因子而非直接可交易策略。融券范围、借券费、召回和数量约束必须单列。</li>
-<li><strong>退市与停牌收益。</strong> 组合在持有期遇到事件时继续按真实规则计价，不能把该股票从历史组合重算删除。</li>
+<p>真实数据中 qcut
+遇到大量相同信号可能减少组数或报错。应事先定义并记录并列值规则，不要随机拆分相同经济信号。</p>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项">A 股实现注意事项</h2>
+<ol type="1">
+<li><strong>形成股票池。</strong>
+在信号日使用历史上市、ST、停牌和板块状态；收益期发生的退市不能从形成池回删。</li>
+<li><strong>微盘与壳价值。</strong>
+等权尾组可能集中极小市值和壳公司，需报告排除最小市值比例后的结果。</li>
+<li><strong>可成交延迟。</strong>
+收盘信号最早下一可交易时点成交；涨停高信号买不到、跌停低信号卖不出会形成方向性偏差。</li>
+<li><strong>权重基准。</strong>
+市值使用形成日点时总市值或自由流通市值，二者对应不同资本组合。</li>
+<li><strong>断点稳定。</strong>
+全市场分位数会随新股数量和板块扩容变化；保存每期断点、组内数量和市值覆盖。</li>
+<li><strong>做空腿。</strong> A 股 H-L
+常是研究因子而非直接可交易策略。融券范围、借券费、召回和数量约束必须单列。</li>
+<li><strong>退市与停牌收益。</strong>
+组合在持有期遇到事件时继续按真实规则计价，不能把该股票从历史组合重算删除。</li>
 </ol>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界">常见错误与边界</h2>
 <ul>
 <li>用 t+1 收益或市值决定 t 期分组。</li>
 <li>形成日收盘信号按同一收盘成交。</li>
@@ -488,21 +511,30 @@
 <li>参考断点随结果改变，构成研究者自由度。</li>
 </ul>
 <p>排序的边界是离散化：组内信号差异被丢弃，断点附近股票因微小测量误差换组，统计功效可能低于回归。优点是非线性透明、结果接近组合收益。排序与回归应互相验证。</p>
-</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
-<p>原书第 2、3 章（PDF 文件页 27–157）涵盖因子模型、实证方法和因子策略。第 6 章（224–290）可对照中国市场的排序实现。</p>
-<p>Fama 与 French（1993）是规模—价值组合构造的核心来源：<a target="_blank" rel="noopener" href="https://doi.org/10.1016/0304-405X(93)90023-5">DOI 10.1016/0304-405X(93)90023-5</a>。Jegadeesh 与 Titman（1993）展示形成期、跳过期、持有期和重叠动量组合：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/j.1540-6261.1993.tb04702.x">DOI 10.1111/j.1540-6261.1993.tb04702.x</a>。</p>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
-<ol>
+</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文">原书与论文</h2>
+<p>原书第 2、3 章（PDF 文件页
+27–157）涵盖因子模型、实证方法和因子策略。第 6
+章（224–290）可对照中国市场的排序实现。</p>
+<p>Fama 与 French（1993）是规模—价值组合构造的核心来源：<a target="_blank" rel="noopener" href="https://doi.org/10.1016/0304-405X(93)90023-5">DOI
+10.1016/0304-405X(93)90023-5</a>。Jegadeesh 与
+Titman（1993）展示形成期、跳过期、持有期和重叠动量组合：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/j.1540-6261.1993.tb04702.x">DOI
+10.1111/j.1540-6261.1993.tb04702.x</a>。</p>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习">练习</h2>
+<ol type="1">
 <li>用六只股票手算五分组为什么不可取；每组样本太少会带来什么不稳定？</li>
-<li>将 F 的 next_return 改为 -10%，比较等权与价值加权 H-L，解释大市值极端收益的影响。</li>
-<li>设计规模 2×价值 3 的独立双排序，并写出价值因子如何跨规模组平均。</li>
+<li>将 F 的 next_return 改为 -10%，比较等权与价值加权
+H-L，解释大市值极端收益的影响。</li>
+<li>设计规模 2×价值 3
+的独立双排序，并写出价值因子如何跨规模组平均。</li>
 <li>把排序顺序改为“先规模后价值”与“先价值后规模”，说明条件问题不同。</li>
-<li>每月形成、持有 6 个月时画出第 8 月同时存续的子组合，并给 Newey–West 滞后设置基线。</li>
+<li>每月形成、持有 6 个月时画出第 8 月同时存续的子组合，并给 Newey–West
+滞后设置基线。</li>
 </ol>
 <p>校验：原始小样本等权 H-L=4%，价值加权 H-L≈4.333%。</p>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步">小结与下一步</h2>
 <p>组合排序把当期特征映射为未来组合收益。断点、权重、双排序顺序、持有期和重叠规则都是研究问题的一部分，不是无关实现细节。至少并列报告组别单调性、等权/价值权重、两腿收益、换手和可交易性。</p>
-<p>下一讲用时序与截面回归估计 Alpha、暴露和风险价格，并把 Newey–West、GRS 与多重检验放进同一推断框架。</p>
+<p>下一讲用时序与截面回归估计 Alpha、暴露和风险价格，并把
+Newey–West、GRS 与多重检验放进同一推断框架。</p>
 </section></div>
                 
               </div>

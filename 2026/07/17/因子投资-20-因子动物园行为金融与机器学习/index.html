@@ -80,6 +80,7 @@
 <link rel="stylesheet" href="/css/mac.css">
 <link rel="stylesheet" href="/css/scrollAnimation.css">
 <link rel="stylesheet" href="/css/quantDoc.css">
+<link rel="stylesheet" href="/css/dailyBriefing.css">
 
 
 
@@ -359,45 +360,57 @@
         <div><span>阅读</span><strong>约 5 分钟</strong></div>
         <div><span>材料</span><strong>10 节 · 1 段代码</strong></div>
       </div>
-    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题">本节解决什么问题</h2>
 <p>已发表因子数远超经济机制数：部分是风险补偿，部分是行为与摩擦，部分是同一现象重命名，还有部分只是数据挖掘。机器学习能组合大量非线性特征，却不会自动消除未来函数、选择偏差或解释机制。</p>
-</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
-<p>需要第 03、17、18 讲。学完后能解释 p-hacking、因子动物园、发表衰减、拥挤与套利限制；能区分风险/错误定价；能设计严格时间切分的机器学习研究，并拒绝把预测提升直接写成因果机制。</p>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
-<p>若研究者检验 1000 个无效信号，每个用 5% 门槛，独立近似下预期有 50 个“显著”。即使论文只展示其中 3 个，读者也看不到隐藏试验。更高 t 门槛能减少假发现，却不能修复未来数据、不可交易价格或事后选样本。</p>
+</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标">前置知识与学习目标</h2>
+<p>需要第 03、17、18 讲。学完后能解释
+p-hacking、因子动物园、发表衰减、拥挤与套利限制；能区分风险/错误定价；能设计严格时间切分的机器学习研究，并拒绝把预测提升直接写成因果机制。</p>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算">直觉与手算</h2>
+<p>若研究者检验 1000 个无效信号，每个用 5% 门槛，独立近似下预期有 50
+个“显著”。即使论文只展示其中 3 个，读者也看不到隐藏试验。更高 t
+门槛能减少假发现，却不能修复未来数据、不可交易价格或事后选样本。</p>
 <p>因子公开后收益下降可能来自两部分：原发现过拟合，或资金学习并套利掉机会。若样本外在发表前已衰减，更像统计偏差；若发表后进一步衰减，拥挤与学习是竞争解释，但日期定义仍需严格。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
-<h3 id="从动物园到证据等级"><a class="markdownIt-Anchor" href="#从动物园到证据等级"></a> 从动物园到证据等级</h3>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式">定义与公式</h2>
+<h3 id="从动物园到证据等级">从动物园到证据等级</h3>
 <ul>
-<li><strong>p-hacking：</strong> 根据结果改变变量、样本、参数或报告选择。</li>
+<li><strong>p-hacking：</strong>
+根据结果改变变量、样本、参数或报告选择。</li>
 <li><strong>多重假设：</strong> 同一研究族的错误率随试验数上升。</li>
-<li><strong>publication decay：</strong> 论文样本结束、公开与实施之后的收益衰减。</li>
+<li><strong>publication decay：</strong>
+论文样本结束、公开与实施之后的收益衰减。</li>
 <li><strong>样本外失效：</strong> 未参与发现的数据不再支持效应。</li>
-<li><strong>拥挤：</strong> 多资金持有相似头寸，入场抬价、退出冲击相关。</li>
-<li><strong>套利限制：</strong> 卖空、融资、委托代理、模型风险和噪声交易阻止价格立即修复。</li>
+<li><strong>拥挤：</strong>
+多资金持有相似头寸，入场抬价、退出冲击相关。</li>
+<li><strong>套利限制：</strong>
+卖空、融资、委托代理、模型风险和噪声交易阻止价格立即修复。</li>
 </ul>
-<p>因子至少经过：经济假设、点时复现、多重检验、独立样本、发表后、成本容量和机制竞争七关。单个样本内 t 值只过了其中很小一部分。</p>
-<h3 id="风险补偿与错误定价"><a class="markdownIt-Anchor" href="#风险补偿与错误定价"></a> 风险补偿与错误定价</h3>
+<p>因子至少经过：经济假设、点时复现、多重检验、独立样本、发表后、成本容量和机制竞争七关。单个样本内
+t 值只过了其中很小一部分。</p>
+<h3 id="风险补偿与错误定价">风险补偿与错误定价</h3>
 <p>风险解释预测因子在边际效用高、融资紧或宏观坏状态中亏损；错误定价解释预测效应在情绪高、关注低和套利限制强处更大，并在公开与套利后收敛。两者可以共存，状态预测比给平均收益贴标签更有辨识力。</p>
-<h3 id="投资者情绪与因子择时"><a class="markdownIt-Anchor" href="#投资者情绪与因子择时"></a> 投资者情绪与因子择时</h3>
+<h3 id="投资者情绪与因子择时">投资者情绪与因子择时</h3>
 <p>因子择时试图根据估值、宏观、情绪、近期收益或拥挤调整暴露。它新增一层模型与换手，必须使用当时可得预测量，并与“始终持有”“等权多因子”做真正样本外比较。择时失败常来自信号弱、估计误差和拐点交易。</p>
-<h3 id="机器学习"><a class="markdownIt-Anchor" href="#机器学习"></a> 机器学习</h3>
+<h3 id="机器学习">机器学习</h3>
 <p>机器学习把特征 x 映射为预测：</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mover accent="true"><mi>R</mi><mo>^</mo></mover><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow></msub><mo separator="true">;</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat R_{i,t+1}=g(x_{i,t};\theta)
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.232878em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9467699999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span><span style="top:-3.25233em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;"><span class="mord">^</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span></span></span></p>
-<p>训练集拟合 θ，验证集选择模型与超参数，最终测试集只能使用一次。面板必须按时间切分，且标准化、缺失填补、特征选择和调参都只在训练窗口拟合。随机打乱股票月份会让未来制度与横截面信息进入训练。</p>
-<p>预测 MSE 或 Rank IC 改善不等于经济机制成立；还需特征贡献稳定性、替代机制、成本约束和压力情景。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
-<p>下面造一个结构翻转序列：前 80 期 y≈x，最后 40 期 y≈-x。训练期拟合很好，时间样本外失败。</p>
+<p><span class="math display">\[
+\hat R_{i,t+1}=g(x_{i,t};\theta)
+\]</span></p>
+<p>训练集拟合
+θ，验证集选择模型与超参数，最终测试集只能使用一次。面板必须按时间切分，且标准化、缺失填补、特征选择和调参都只在训练窗口拟合。随机打乱股票月份会让未来制度与横截面信息进入训练。</p>
+<p>预测 MSE 或 Rank IC
+改善不等于经济机制成立；还需特征贡献稳定性、替代机制、成本约束和压力情景。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验">Python 最小实验</h2>
+<p>下面造一个结构翻转序列：前 80 期 y≈x，最后 40 期
+y≈-x。训练期拟合很好，时间样本外失败。</p>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>rng = np.random.default_rng(<span class="hljs-number">42</span>)<br>x = rng.normal(size=<span class="hljs-number">120</span>)<br>y = np.empty(<span class="hljs-number">120</span>)<br>y[:<span class="hljs-number">80</span>] = x[:<span class="hljs-number">80</span>] + rng.normal(<span class="hljs-number">0</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">80</span>)<br>y[<span class="hljs-number">80</span>:] = -x[<span class="hljs-number">80</span>:] + rng.normal(<span class="hljs-number">0</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">40</span>)<br><br>X_train = np.column_stack([np.ones(<span class="hljs-number">80</span>), x[:<span class="hljs-number">80</span>]])<br>coef = np.linalg.lstsq(X_train, y[:<span class="hljs-number">80</span>], rcond=<span class="hljs-literal">None</span>)[<span class="hljs-number">0</span>]<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">mse</span>(<span class="hljs-params">start, end</span>):<br>    pred = coef[<span class="hljs-number">0</span>] + coef[<span class="hljs-number">1</span>] * x[start:end]<br>    <span class="hljs-keyword">return</span> np.mean((y[start:end] - pred) ** <span class="hljs-number">2</span>)<br><br>train_mse = mse(<span class="hljs-number">0</span>, <span class="hljs-number">80</span>)<br>validation_mse = mse(<span class="hljs-number">80</span>, <span class="hljs-number">100</span>)<br>test_mse = mse(<span class="hljs-number">100</span>, <span class="hljs-number">120</span>)<br><br><span class="hljs-keyword">assert</span> train_mse &lt; validation_mse<br><span class="hljs-keyword">assert</span> train_mse &lt; test_mse<br><span class="hljs-built_in">print</span>(coef, train_mse, validation_mse, test_mse)<br></code></pre></td></tr></table></figure>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项">A 股实现注意事项</h2>
 <p>注册制、退市、板块扩容、涨跌停、T+1、融券与投资者结构使分布随时间变化；随机交叉验证尤其危险。特征库要保存公告版本与可得时间，微盘和无法成交股票要做容量审计。情绪代理、搜索量和文本数据也有发布延迟、回填和供应商版本。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界">常见错误与边界</h2>
 <ul>
 <li>数百特征只报告最优模型；测试集反复调参。</li>
 <li>随机打乱时间做交叉验证。</li>
@@ -407,7 +420,7 @@
 <li>因子择时用最终修订宏观数据。</li>
 <li>深模型胜线性基准一点就忽略复杂度和稳定性。</li>
 </ul>
-</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
+</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文">原书与论文</h2>
 <p>原书第 7 章（PDF 文件页 291–377）对应行为、前沿与展望。核心证据：</p>
 <ul>
 <li>Harvey、Liu、Zhu（2016），多重检验：<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhv059">DOI</a>。</li>
@@ -415,15 +428,15 @@
 <li>Hou、Xue、Zhang（2020），异象复现：<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhy131">DOI</a>。</li>
 <li>Gu、Kelly、Xiu（2020），机器学习资产定价：<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhaa009">DOI</a>。</li>
 </ul>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
-<ol>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习">练习</h2>
+<ol type="1">
 <li>为 200 个相关检验设计 Bonferroni、FDR 与独立测试三套方案。</li>
 <li>列出发现日、样本结束日、发表日和交易实施日。</li>
 <li>用滚动训练/验证/测试替代随机切分。</li>
 <li>比较线性、树模型的 IC、净收益、稳定性和解释成本。</li>
 <li>为情绪或拥挤择时写出会推翻结论的状态预测。</li>
 </ol>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步">小结与下一步</h2>
 <p>因子动物园的核心不是“因子太多”，而是隐藏试验和证据等级不清。行为、风险和摩擦需要竞争预测；机器学习扩大函数空间，也扩大过拟合空间。最终研究应以点时数据、严格时间切分、成本容量、样本外和可证伪机制共同约束。</p>
 </section></div>
                 
