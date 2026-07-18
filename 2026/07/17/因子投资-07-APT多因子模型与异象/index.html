@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-011-147051939.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-06-27/pixiv-rank-008-146317762.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -285,7 +285,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          2.2k 字
         
       </span>
     
@@ -296,7 +296,7 @@
         
         
         
-          18 分钟
+          19 分钟
         
       </span>
     
@@ -357,13 +357,12 @@
       <div class="quant-doc-tape" aria-label="文章阅读信息">
         <div><span>类型</span><strong>核心课程</strong></div>
         <div><span>模块</span><strong>研究方法</strong></div>
-        <div><span>阅读</span><strong>约 6 分钟</strong></div>
+        <div><span>阅读</span><strong>约 7 分钟</strong></div>
         <div><span>材料</span><strong>10 节 · 1 段代码</strong></div>
       </div>
-    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题">本节解决什么问题</h2>
-<p>市场风险不可能解释所有股票共同变化。利率、盈利、投资、价值和流动性等力量也可能系统性影响资产。APT
-提供多因子定价的理论骨架，但它不自动告诉我们因子是谁。实证研究必须同时证明一个候选因子“造成共同运动”并且“在横截面被定价”。</p>
-</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标">前置知识与学习目标</h2>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
+<p>市场风险不可能解释所有股票共同变化。利率、盈利、投资、价值和流动性等力量也可能系统性影响资产。APT 提供多因子定价的理论骨架，但它不自动告诉我们因子是谁。实证研究必须同时证明一个候选因子“造成共同运动”并且“在横截面被定价”。</p>
+</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
 <p>需要第 06 讲的 Beta、Alpha 和风险溢价。学完后你应该能：</p>
 <ul>
 <li>写出多因子收益生成式和期望收益式；</li>
@@ -372,80 +371,55 @@
 <li>判断经验规律何时只能称为异象；</li>
 <li>用“共同运动 + 被定价”两道门槛审查候选因子。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算">直觉与手算</h2>
-<p>假设模型只有市场 M 和流动性 L 两个因子，预期因子溢价分别为每月 0.5%
-与 0.3%。股票 A 的暴露为 β(M)=1.2、β(L)=0.5，股票 B 为
-0.8、-0.2。忽略截距时：</p>
-<p><span class="math display">\[
-E[R_A^e]=1.2\times0.5\%+0.5\times0.3\%=0.75\%
-\]</span></p>
-<p><span class="math display">\[
-E[R_B^e]=0.8\times0.5\%-0.2\times0.3\%=0.34\%
-\]</span></p>
-<p>A 的更高预期收益来自更高的已定价暴露。若 A 实际样本平均超额收益为
-1%，模型定价误差为 0.25%。这个差异可能是真
-Alpha、有限样本噪声、遗漏因子、错误暴露或数据问题，不能仅凭正数决定解释。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式">定义与公式</h2>
-<h3 id="多因子收益生成式">多因子收益生成式</h3>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
+<p>假设模型只有市场 M 和流动性 L 两个因子，预期因子溢价分别为每月 0.5% 与 0.3%。股票 A 的暴露为 β(M)=1.2、β(L)=0.5，股票 B 为 0.8、-0.2。忽略截距时：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo stretchy="false">[</mo><msubsup><mi>R</mi><mi>A</mi><mi>e</mi></msubsup><mo stretchy="false">]</mo><mo>=</mo><mn>1.2</mn><mo>×</mo><mn>0.5</mn><mi mathvariant="normal">%</mi><mo>+</mo><mn>0.5</mn><mo>×</mo><mn>0.3</mn><mi mathvariant="normal">%</mi><mo>=</mo><mn>0.75</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">E[R_A^e]=1.2\times0.5\%+0.5\times0.3\%=0.75\%
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mord">%</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mord">%</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">7</span><span class="mord">5</span><span class="mord">%</span></span></span></span></span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo stretchy="false">[</mo><msubsup><mi>R</mi><mi>B</mi><mi>e</mi></msubsup><mo stretchy="false">]</mo><mo>=</mo><mn>0.8</mn><mo>×</mo><mn>0.5</mn><mi mathvariant="normal">%</mi><mo>−</mo><mn>0.2</mn><mo>×</mo><mn>0.3</mn><mi mathvariant="normal">%</mi><mo>=</mo><mn>0.34</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">E[R_B^e]=0.8\times0.5\%-0.2\times0.3\%=0.34\%
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mord">%</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mord">%</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mord">4</span><span class="mord">%</span></span></span></span></span></p>
+<p>A 的更高预期收益来自更高的已定价暴露。若 A 实际样本平均超额收益为 1%，模型定价误差为 0.25%。这个差异可能是真 Alpha、有限样本噪声、遗漏因子、错误暴露或数据问题，不能仅凭正数决定解释。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
+<h3 id="多因子收益生成式"><a class="markdownIt-Anchor" href="#多因子收益生成式"></a> 多因子收益生成式</h3>
 <p>对资产 i：</p>
-<p><span class="math display">\[
-R_{i,t}^e=\alpha_i+\beta_i^{\prime}f_t+\varepsilon_{i,t}
-\]</span></p>
-<p>f(t) 是 K×1 共同因子收益，β(i) 是 K×1
-暴露。共同因子使很多资产一起变化；ε
-是给定因子后的特质部分。若模型正确定价测试资产，Alpha 向量应接近零。</p>
-<h3 id="多因子期望收益">多因子期望收益</h3>
-<p>APT
-的无套利直觉是：在资产很多、特质风险可分散时，两个具有相同因子暴露的充分分散组合不应有不同价格；否则可构造近似无风险套利。因此：</p>
-<p><span class="math display">\[
-E[R_i^e]=\beta_i^{\prime}\lambda
-\]</span></p>
-<p>λ 是 K×1 因子风险价格或溢价。APT 依赖无套利和因子结构，不像 CAPM
-那样要求市场组合是唯一均值—方差有效组合；代价是理论本身没有唯一指定因子身份。</p>
-<h3 id="定价误差">定价误差</h3>
-<p><span class="math display">\[
-\alpha_i=E[R_i^e]-\beta_i^{\prime}\lambda
-\]</span></p>
-<p>Alpha 是相对模型的误差。模型增加高度相关因子可能机械降低样本
-Alpha，却未必增加经济解释；评价需要样本外、联合检验和简约性。</p>
-<h3 id="因子的两道门槛">因子的两道门槛</h3>
-<ol type="1">
-<li><strong>共同运动：</strong>
-因子收益应解释一组资产的协方差，暴露在经济上和统计上可辨识。</li>
-<li><strong>被定价：</strong> 暴露更高的资产应有系统性不同的平均收益，λ
-在稳健推断和样本外仍有意义。</li>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi>R</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow><mi>e</mi></msubsup><mo>=</mo><msub><mi>α</mi><mi>i</mi></msub><mo>+</mo><msubsup><mi>β</mi><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><msub><mi>f</mi><mi>t</mi></msub><mo>+</mo><msub><mi>ε</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">R_{i,t}^e=\alpha_i+\beta_i^{\prime}f_t+\varepsilon_{i,t}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0975000000000001em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.714392em;"><span style="top:-2.4530000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.048892em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8018919999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">ε</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>f(t) 是 K×1 共同因子收益，β(i) 是 K×1 暴露。共同因子使很多资产一起变化；ε 是给定因子后的特质部分。若模型正确定价测试资产，Alpha 向量应接近零。</p>
+<h3 id="多因子期望收益"><a class="markdownIt-Anchor" href="#多因子期望收益"></a> 多因子期望收益</h3>
+<p>APT 的无套利直觉是：在资产很多、特质风险可分散时，两个具有相同因子暴露的充分分散组合不应有不同价格；否则可构造近似无风险套利。因此：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo stretchy="false">[</mo><msubsup><mi>R</mi><mi>i</mi><mi>e</mi></msubsup><mo stretchy="false">]</mo><mo>=</mo><msubsup><mi>β</mi><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mi>λ</mi></mrow><annotation encoding="application/x-tex">E[R_i^e]=\beta_i^{\prime}\lambda
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.048892em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8018919999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord mathnormal">λ</span></span></span></span></span></p>
+<p>λ 是 K×1 因子风险价格或溢价。APT 依赖无套利和因子结构，不像 CAPM 那样要求市场组合是唯一均值—方差有效组合；代价是理论本身没有唯一指定因子身份。</p>
+<h3 id="定价误差"><a class="markdownIt-Anchor" href="#定价误差"></a> 定价误差</h3>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>α</mi><mi>i</mi></msub><mo>=</mo><mi>E</mi><mo stretchy="false">[</mo><msubsup><mi>R</mi><mi>i</mi><mi>e</mi></msubsup><mo stretchy="false">]</mo><mo>−</mo><msubsup><mi>β</mi><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mi>λ</mi></mrow><annotation encoding="application/x-tex">\alpha_i=E[R_i^e]-\beta_i^{\prime}\lambda
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.048892em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8018919999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord mathnormal">λ</span></span></span></span></span></p>
+<p>Alpha 是相对模型的误差。模型增加高度相关因子可能机械降低样本 Alpha，却未必增加经济解释；评价需要样本外、联合检验和简约性。</p>
+<h3 id="因子的两道门槛"><a class="markdownIt-Anchor" href="#因子的两道门槛"></a> 因子的两道门槛</h3>
+<ol>
+<li><strong>共同运动：</strong> 因子收益应解释一组资产的协方差，暴露在经济上和统计上可辨识。</li>
+<li><strong>被定价：</strong> 暴露更高的资产应有系统性不同的平均收益，λ 在稳健推断和样本外仍有意义。</li>
 </ol>
 <p>一个宏观变量可能影响所有股票但没有风险价格；一个股票特征可能预测个股收益却不形成共同协方差。两者都不能在不说明定义的情况下直接叫“风险因子”。</p>
-<h3 id="异象风险与错误定价">异象、风险与错误定价</h3>
+<h3 id="异象-风险与错误定价"><a class="markdownIt-Anchor" href="#异象-风险与错误定价"></a> 异象、风险与错误定价</h3>
 <p><strong>异象</strong>是相对既定模型难以解释的稳定经验模式。风险解释认为高平均收益是坏状态下损失的补偿；行为解释认为投资者认知偏差导致价格偏离基本面；制度与摩擦解释强调卖空、融资、委托代理和交易限制。</p>
 <p>竞争解释应给出不同可检验预测。例如风险补偿应与宏观坏状态、边际效用或系统损失相关；错误定价常预测在套利限制强、关注低或情绪极端处更强，并可能在公开和套利后衰减。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验">Python 最小实验</h2>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>factor_premia = np.array([<span class="hljs-number">0.005</span>, <span class="hljs-number">0.003</span>])<br>exposures = np.array([<br>    [<span class="hljs-number">1.2</span>, <span class="hljs-number">0.5</span>],<br>    [<span class="hljs-number">0.8</span>, -<span class="hljs-number">0.2</span>],<br>])<br>expected = exposures @ factor_premia<br>sample_means = np.array([<span class="hljs-number">0.0100</span>, <span class="hljs-number">0.0030</span>])<br>pricing_errors = sample_means - expected<br><br><span class="hljs-keyword">assert</span> np.allclose(expected, [<span class="hljs-number">0.0075</span>, <span class="hljs-number">0.0034</span>])<br><span class="hljs-built_in">print</span>(expected, pricing_errors)<br></code></pre></td></tr></table></figure>
-<p>矩阵维度为 2 只资产×2 个因子，乘以 2×1 溢价，得到 2×1
-预期超额收益。这里的 λ
-是人为给定真值；实证中需要截面回归估计，并处理暴露测量误差。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项">A 股实现注意事项</h2>
-<ol type="1">
-<li><strong>共同因子要可投资或可复制。</strong>
-宏观序列公布滞后、修订且不可交易，和股票模拟组合因子有不同解释。</li>
-<li><strong>卖空限制削弱套利。</strong>
-多空异象的空头腿可能融券不可得或成本极高，样本 Alpha
-未必能转化为套利。</li>
-<li><strong>壳价值与制度。</strong>
-极小市值股票可能受上市资格、重组和退市制度影响，不应直接套用美国规模因子解释。</li>
-<li><strong>状态与结构变化。</strong>
-注册制、外资流入、融资融券扩容会改变因子暴露、风险价格和套利能力。</li>
-<li><strong>因子构造重叠。</strong> 市值、流动性、波动和价格在 A
-股高度相关；应检查相关、暴露、正交化顺序与经济定义。</li>
-<li><strong>微盘权重。</strong>
-等权多空收益可能主要来自难交易微盘股。使用价值权重、排除极小股票和加入容量是必要稳健性。</li>
+<p>矩阵维度为 2 只资产×2 个因子，乘以 2×1 溢价，得到 2×1 预期超额收益。这里的 λ 是人为给定真值；实证中需要截面回归估计，并处理暴露测量误差。</p>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
+<ol>
+<li><strong>共同因子要可投资或可复制。</strong> 宏观序列公布滞后、修订且不可交易，和股票模拟组合因子有不同解释。</li>
+<li><strong>卖空限制削弱套利。</strong> 多空异象的空头腿可能融券不可得或成本极高，样本 Alpha 未必能转化为套利。</li>
+<li><strong>壳价值与制度。</strong> 极小市值股票可能受上市资格、重组和退市制度影响，不应直接套用美国规模因子解释。</li>
+<li><strong>状态与结构变化。</strong> 注册制、外资流入、融资融券扩容会改变因子暴露、风险价格和套利能力。</li>
+<li><strong>因子构造重叠。</strong> 市值、流动性、波动和价格在 A 股高度相关；应检查相关、暴露、正交化顺序与经济定义。</li>
+<li><strong>微盘权重。</strong> 等权多空收益可能主要来自难交易微盘股。使用价值权重、排除极小股票和加入容量是必要稳健性。</li>
 </ol>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界">常见错误与边界</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
 <ul>
 <li>候选变量与收益相关就直接叫风险因子，没有检验共同协方差。</li>
 <li>因子能解释协方差就声称它有正风险溢价，没有横截面证据。</li>
@@ -454,29 +428,21 @@ Alpha，却未必增加经济解释；评价需要样本外、联合检验和简
 <li>看到异象就二选一地归因风险或行为，未给竞争预测。</li>
 <li>认为无套利意味着现实中不存在价格偏离；有限资本和交易约束允许偏离长期存在。</li>
 </ul>
-<p>APT
-是框架而非因子清单。任何一组统计主成分都能描述共同运动，但旋转后的因子不一定有稳定经济身份；任何一组股票特征也可能拟合平均收益，但不一定代表系统风险。</p>
-</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文">原书与论文</h2>
-<p>原书第 2 章（PDF 文件页 27–96）讨论多因子模型和实证方法，第 7
-章（291–377）进一步触及行为解释和前沿。</p>
-<p>Ross（1976）是 APT 原始文献：<a target="_blank" rel="noopener" href="https://doi.org/10.1016/0022-0531(76)90046-6">DOI
-10.1016/0022-0531(76)90046-6</a>。Fama 与
-French（1993）展示如何用可交易模拟组合描述股票与债券的共同收益变化：<a target="_blank" rel="noopener" href="https://doi.org/10.1016/0304-405X(93)90023-5">DOI
-10.1016/0304-405X(93)90023-5</a>。</p>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习">练习</h2>
-<ol type="1">
-<li>三因子溢价为 0.4%、0.2%、-0.1%，某资产暴露为
-1.1、0.5、-0.3，计算预期超额收益。</li>
+<p>APT 是框架而非因子清单。任何一组统计主成分都能描述共同运动，但旋转后的因子不一定有稳定经济身份；任何一组股票特征也可能拟合平均收益，但不一定代表系统风险。</p>
+</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
+<p>原书第 2 章（PDF 文件页 27–96）讨论多因子模型和实证方法，第 7 章（291–377）进一步触及行为解释和前沿。</p>
+<p>Ross（1976）是 APT 原始文献：<a target="_blank" rel="noopener" href="https://doi.org/10.1016/0022-0531(76)90046-6">DOI 10.1016/0022-0531(76)90046-6</a>。Fama 与 French（1993）展示如何用可交易模拟组合描述股票与债券的共同收益变化：<a target="_blank" rel="noopener" href="https://doi.org/10.1016/0304-405X(93)90023-5">DOI 10.1016/0304-405X(93)90023-5</a>。</p>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
+<ol>
+<li>三因子溢价为 0.4%、0.2%、-0.1%，某资产暴露为 1.1、0.5、-0.3，计算预期超额收益。</li>
 <li>给出一个“解释共同运动但未必被定价”的变量，以及一个“预测收益但未必是风险因子”的特征。</li>
-<li>两个充分分散组合暴露完全相同，预期收益却相差
-2%。写出近似套利的多空方向和现实约束。</li>
+<li>两个充分分散组合暴露完全相同，预期收益却相差 2%。写出近似套利的多空方向和现实约束。</li>
 <li>设计一组能区分“低流动性收益是风险补偿”与“投资者忽略”的状态检验。</li>
 <li>比较统计主成分因子与价值多空组合：可解释性、可交易性和稳定性各有什么差异？</li>
 </ol>
 <p>校验：第 1 题为 1.1×0.4%+0.5×0.2%+(-0.3)×(-0.1%)=0.57%。</p>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步">小结与下一步</h2>
-<p>APT
-用无套利把预期收益写成多因子暴露与风险价格的内积。有效因子至少要解释共同运动并在横截面被定价。定价误差是相对模型的对象，异象则需要风险、行为、制度和数据问题之间的竞争检验。</p>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
+<p>APT 用无套利把预期收益写成多因子暴露与风险价格的内积。有效因子至少要解释共同运动并在横截面被定价。定价误差是相对模型的对象，异象则需要风险、行为、制度和数据问题之间的竞争检验。</p>
 <p>理论关系只有在输入数据尊重历史可得信息时才有意义。下一讲将建立点时股票池、价格、复权和财报表，解决量化研究最常见也最致命的未来信息问题。</p>
 </section></div>
                 

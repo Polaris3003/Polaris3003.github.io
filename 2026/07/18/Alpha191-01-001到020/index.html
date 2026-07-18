@@ -258,7 +258,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-011-147051939.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-06-27/pixiv-rank-008-146317762.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -364,18 +364,14 @@
       </div>
     </header><div class="quant-doc-intro"><p>本章逐一解释 Alpha191 的第 001 至 020 号因子，共 20 个。</p>
 <p>返回：<a href="/2026/07/18/Alpha191/" title="Alpha191 逐因子全解">Alpha191 总览</a>　|　<a href="/2026/07/18/Alpha101%E4%B8%8EAlpha191-%E9%80%90%E5%9B%A0%E5%AD%90%E7%9F%A5%E8%AF%86%E5%BA%93%E6%80%BB%E8%A7%88/" title="Alpha101 与 Alpha191 逐因子知识库总览">总知识库</a></p>
-</div><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-001">Alpha191-001</h2>
+</div><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-001"><a class="markdownIt-Anchor" href="#alpha191-001"></a> Alpha191-001</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 量价相关与背离　 <strong>核心问题：</strong>
-观察价格和成交活跃度是否同步；异常背离可能反映拥挤、吸筹或卖压衰竭。</p>
+<p><strong>类型：</strong> 量价相关与背离　 <strong>核心问题：</strong> 观察价格和成交活跃度是否同步；异常背离可能反映拥挤、吸筹或卖压衰竭。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 6
-日等尺度上处理开盘价、收盘价、成交量，主要链路是“滚动相关 → 横截面排序 →
-差分 →
-对数变换”，最后形成一个量价相关与背离信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 6 日等尺度上处理开盘价、收盘价、成交量，主要链路是“滚动相关 → 横截面排序 → 差分 → 对数变换”，最后形成一个量价相关与背离信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
 </blockquote>
-<h3 id="公式">公式</h3>
+<h3 id="公式"><a class="markdownIt-Anchor" href="#公式"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -385,44 +381,36 @@
 <ul>
 <li><strong>输入字段：</strong> 开盘价、收盘价、成交量</li>
 <li><strong>识别窗口：</strong> 6 日</li>
-<li><strong>主要算子：</strong>
-滚动相关：衡量两个序列在窗口内是否同步变化；横截面排序：比较同一天不同股票的相对位置；差分：当前值减去历史值；对数变换：压缩偏态和极端值</li>
+<li><strong>主要算子：</strong> 滚动相关：衡量两个序列在窗口内是否同步变化；横截面排序：比较同一天不同股票的相对位置；差分：当前值减去历史值；对数变换：压缩偏态和极端值</li>
 </ul>
-<h3 id="计算拆解">计算拆解</h3>
-<ol type="1">
-<li>准备
-开盘价、收盘价、成交量，所有价格字段必须采用同一种复权口径。</li>
+<h3 id="计算拆解"><a class="markdownIt-Anchor" href="#计算拆解"></a> 计算拆解</h3>
+<ol>
+<li>准备 开盘价、收盘价、成交量，所有价格字段必须采用同一种复权口径。</li>
 <li>先做对数变换，降低成交量等右偏变量的极端值影响。</li>
 <li>计算滞后值或差分，把绝对水平转换成变化速度和方向。</li>
 <li>估计序列之间的相关、协方差或回归关系；有效样本不足时必须返回缺失值。</li>
 <li>最后进行横截面/时序排序、尺度归一化或行业中性化，使不同股票之间可比较。</li>
 <li>公式含显式负号，最终方向被翻转：原始子信号越强，因子值可能越低。</li>
 </ol>
-<h3 id="经济直觉与高低值">经济直觉与高低值</h3>
-<p>量价同步往往代表趋势确认，量价背离可能代表趋势衰竭、换手结构变化或短期反转。因子通过排序和负号选择其中一侧。
-若其他变换不改变符号，高值对应更强的负相关/背离，低值对应更强的正相关/同步。
-公式包含方向翻转，阅读高低值时必须结合负号。</p>
+<h3 id="经济直觉与高低值"><a class="markdownIt-Anchor" href="#经济直觉与高低值"></a> 经济直觉与高低值</h3>
+<p>量价同步往往代表趋势确认，量价背离可能代表趋势衰竭、换手结构变化或短期反转。因子通过排序和负号选择其中一侧。 若其他变换不改变符号，高值对应更强的负相关/背离，低值对应更强的正相关/同步。 公式包含方向翻转，阅读高低值时必须结合负号。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证">实现与验证</h3>
+<h3 id="实现与验证"><a class="markdownIt-Anchor" href="#实现与验证"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>成交量/成交额要统一单位，并处理停牌、零成交、涨跌停和拆并股造成的跳变。</li>
 <li>横截面股票池、缺失值门槛和并列排名规则会显著改变结果，研究与生产必须共用同一实现。</li>
 <li>所有分母应设置接近零保护；不能用无限值参与排序或相关计算。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-002">Alpha191-002</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-002"><a class="markdownIt-Anchor" href="#alpha191-002"></a> Alpha191-002</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 波动与价格区间　 <strong>核心问题：</strong>
-衡量振幅、波动率或收盘价在日内区间中的位置。</p>
+<p><strong>类型：</strong> 波动与价格区间　 <strong>核心问题：</strong> 衡量振幅、波动率或收盘价在日内区间中的位置。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong>
-这个因子使用当日及必要滞后期的收盘价、最高价、最低价，主要链路是“差分”，最后形成一个波动与价格区间信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
+<p><strong>一句话翻译：</strong> 这个因子使用当日及必要滞后期的收盘价、最高价、最低价，主要链路是“差分”，最后形成一个波动与价格区间信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
 </blockquote>
-<h3 id="公式-1">公式</h3>
+<h3 id="公式-2"><a class="markdownIt-Anchor" href="#公式-2"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -434,40 +422,30 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <li><strong>识别窗口：</strong> 无显式滚动窗口或窗口由实现约定决定</li>
 <li><strong>主要算子：</strong> 差分：当前值减去历史值</li>
 </ul>
-<h3 id="计算拆解-1">计算拆解</h3>
-<ol type="1">
-<li>准备
-收盘价、最高价、最低价，所有价格字段必须采用同一种复权口径。</li>
+<h3 id="计算拆解-2"><a class="markdownIt-Anchor" href="#计算拆解-2"></a> 计算拆解</h3>
+<ol>
+<li>准备 收盘价、最高价、最低价，所有价格字段必须采用同一种复权口径。</li>
 <li>计算滞后值或差分，把绝对水平转换成变化速度和方向。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 <li>公式含显式负号，最终方向被翻转：原始子信号越强，因子值可能越低。</li>
 </ol>
-<h3 id="经济直觉与高低值-1">经济直觉与高低值</h3>
-<p>振幅、波动率以及收盘价在高低区间的位置共同反映盘中买卖力量和风险状态。
-若差分项占主导，高值代表窗口内上升或改善，低值代表下降或恶化；条件分支可能例外。
-公式包含方向翻转，阅读高低值时必须结合负号。</p>
+<h3 id="经济直觉与高低值-2"><a class="markdownIt-Anchor" href="#经济直觉与高低值-2"></a> 经济直觉与高低值</h3>
+<p>振幅、波动率以及收盘价在高低区间的位置共同反映盘中买卖力量和风险状态。 若差分项占主导，高值代表窗口内上升或改善，低值代表下降或恶化；条件分支可能例外。 公式包含方向翻转，阅读高低值时必须结合负号。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-1">实现与验证</h3>
+<h3 id="实现与验证-2"><a class="markdownIt-Anchor" href="#实现与验证-2"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>所有分母应设置接近零保护；不能用无限值参与排序或相关计算。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-003">Alpha191-003</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-003"><a class="markdownIt-Anchor" href="#alpha191-003"></a> Alpha191-003</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 条件状态与事件频率　
-<strong>核心问题：</strong>
-根据涨跌、突破或极值条件切换计算分支，刻画市场状态。</p>
+<p><strong>类型：</strong> 条件状态与事件频率　 <strong>核心问题：</strong> 根据涨跌、突破或极值条件切换计算分支，刻画市场状态。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 6
-日等尺度上处理收盘价、最高价、最低价，主要链路是“滚动求和 → 滞后 →
-最小值 →
-最大值”，最后形成一个条件状态与事件频率信号。它依赖条件分支，必须先判断落在哪个状态，再解释输出。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 6 日等尺度上处理收盘价、最高价、最低价，主要链路是“滚动求和 → 滞后 → 最小值 → 最大值”，最后形成一个条件状态与事件频率信号。它依赖条件分支，必须先判断落在哪个状态，再解释输出。</p>
 </blockquote>
-<h3 id="公式-2">公式</h3>
+<h3 id="公式-3"><a class="markdownIt-Anchor" href="#公式-3"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -477,41 +455,32 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <ul>
 <li><strong>输入字段：</strong> 收盘价、最高价、最低价</li>
 <li><strong>识别窗口：</strong> 6 日</li>
-<li><strong>主要算子：</strong>
-滚动求和：累计窗口内的方向或强度；滞后：取若干交易日前的值；最小值：选择多个候选值中较小者；最大值：选择多个候选值中较大者</li>
+<li><strong>主要算子：</strong> 滚动求和：累计窗口内的方向或强度；滞后：取若干交易日前的值；最小值：选择多个候选值中较小者；最大值：选择多个候选值中较大者</li>
 </ul>
-<h3 id="计算拆解-2">计算拆解</h3>
-<ol type="1">
-<li>准备
-收盘价、最高价、最低价，所有价格字段必须采用同一种复权口径。</li>
+<h3 id="计算拆解-3"><a class="markdownIt-Anchor" href="#计算拆解-3"></a> 计算拆解</h3>
+<ol>
+<li>准备 收盘价、最高价、最低价，所有价格字段必须采用同一种复权口径。</li>
 <li>计算滞后值或差分，把绝对水平转换成变化速度和方向。</li>
 <li>按公式中的条件判断或事件计数区分不同市场状态；边界值的等号处理必须与定义一致。</li>
 <li>在 6 日等窗口上做滚动聚合，获得局部水平、极值或波动强度。</li>
 </ol>
-<h3 id="经济直觉与高低值-2">经济直觉与高低值</h3>
-<p>条件分支不是平滑打分，而是在不同市场状态下选择不同规则，适合表达突破、连续涨跌和极端事件。
-高低值应按触发分支分别解释；阈值附近可能发生离散跳变。
-公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
+<h3 id="经济直觉与高低值-3"><a class="markdownIt-Anchor" href="#经济直觉与高低值-3"></a> 经济直觉与高低值</h3>
+<p>条件分支不是平滑打分，而是在不同市场状态下选择不同规则，适合表达突破、连续涨跌和极端事件。 高低值应按触发分支分别解释；阈值附近可能发生离散跳变。 公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-2">实现与验证</h3>
+<h3 id="实现与验证-3"><a class="markdownIt-Anchor" href="#实现与验证-3"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>条件分支在阈值附近不连续，需显式定义等号、缺失值和连续停牌时的行为。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-004">Alpha191-004</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-004"><a class="markdownIt-Anchor" href="#alpha191-004"></a> Alpha191-004</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 波动与价格区间　 <strong>核心问题：</strong>
-衡量振幅、波动率或收盘价在日内区间中的位置。</p>
+<p><strong>类型：</strong> 波动与价格区间　 <strong>核心问题：</strong> 衡量振幅、波动率或收盘价在日内区间中的位置。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 2、8、20
-日等尺度上处理收盘价、成交量，主要链路是“滚动求和 → 波动率 →
-滚动均值”，最后形成一个波动与价格区间信号。它依赖条件分支，必须先判断落在哪个状态，再解释输出。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 2、8、20 日等尺度上处理收盘价、成交量，主要链路是“滚动求和 → 波动率 → 滚动均值”，最后形成一个波动与价格区间信号。它依赖条件分支，必须先判断落在哪个状态，再解释输出。</p>
 </blockquote>
-<h3 id="公式-3">公式</h3>
+<h3 id="公式-4"><a class="markdownIt-Anchor" href="#公式-4"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -521,44 +490,35 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <ul>
 <li><strong>输入字段：</strong> 收盘价、成交量</li>
 <li><strong>识别窗口：</strong> 2 日、8 日、20 日</li>
-<li><strong>主要算子：</strong>
-滚动求和：累计窗口内的方向或强度；滚动标准差：度量波动和不稳定性；滚动均值：过滤日度噪声，提取局部水平</li>
+<li><strong>主要算子：</strong> 滚动求和：累计窗口内的方向或强度；滚动标准差：度量波动和不稳定性；滚动均值：过滤日度噪声，提取局部水平</li>
 </ul>
-<h3 id="计算拆解-3">计算拆解</h3>
-<ol type="1">
+<h3 id="计算拆解-4"><a class="markdownIt-Anchor" href="#计算拆解-4"></a> 计算拆解</h3>
+<ol>
 <li>准备 收盘价、成交量，所有价格字段必须采用同一种复权口径。</li>
 <li>按公式中的条件判断或事件计数区分不同市场状态；边界值的等号处理必须与定义一致。</li>
-<li>在 2、8、20
-日等窗口上做滚动聚合，获得局部水平、极值或波动强度。</li>
+<li>在 2、8、20 日等窗口上做滚动聚合，获得局部水平、极值或波动强度。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 <li>公式含显式负号，最终方向被翻转：原始子信号越强，因子值可能越低。</li>
 </ol>
-<h3 id="经济直觉与高低值-3">经济直觉与高低值</h3>
-<p>振幅、波动率以及收盘价在高低区间的位置共同反映盘中买卖力量和风险状态。
-若波动项占主导，高值偏向高波动状态，低值偏向低波动状态；外层负号会反转这一关系。
-公式包含方向翻转，阅读高低值时必须结合负号。</p>
+<h3 id="经济直觉与高低值-4"><a class="markdownIt-Anchor" href="#经济直觉与高低值-4"></a> 经济直觉与高低值</h3>
+<p>振幅、波动率以及收盘价在高低区间的位置共同反映盘中买卖力量和风险状态。 若波动项占主导，高值偏向高波动状态，低值偏向低波动状态；外层负号会反转这一关系。 公式包含方向翻转，阅读高低值时必须结合负号。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-3">实现与验证</h3>
+<h3 id="实现与验证-4"><a class="markdownIt-Anchor" href="#实现与验证-4"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>成交量/成交额要统一单位，并处理停牌、零成交、涨跌停和拆并股造成的跳变。</li>
 <li>所有分母应设置接近零保护；不能用无限值参与排序或相关计算。</li>
 <li>条件分支在阈值附近不连续，需显式定义等号、缺失值和连续停牌时的行为。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-005">Alpha191-005</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-005"><a class="markdownIt-Anchor" href="#alpha191-005"></a> Alpha191-005</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 量价相关与背离　 <strong>核心问题：</strong>
-观察价格和成交活跃度是否同步；异常背离可能反映拥挤、吸筹或卖压衰竭。</p>
+<p><strong>类型：</strong> 量价相关与背离　 <strong>核心问题：</strong> 观察价格和成交活跃度是否同步；异常背离可能反映拥挤、吸筹或卖压衰竭。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 3、5
-日等尺度上处理最高价、成交量，主要链路是“窗口最大值 → 滚动相关 →
-时序排序”，最后形成一个量价相关与背离信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 3、5 日等尺度上处理最高价、成交量，主要链路是“窗口最大值 → 滚动相关 → 时序排序”，最后形成一个量价相关与背离信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
 </blockquote>
-<h3 id="公式-4">公式</h3>
+<h3 id="公式-5"><a class="markdownIt-Anchor" href="#公式-5"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -568,42 +528,34 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <ul>
 <li><strong>输入字段：</strong> 最高价、成交量</li>
 <li><strong>识别窗口：</strong> 3 日、5 日</li>
-<li><strong>主要算子：</strong>
-窗口最大值：寻找局部极端高点；滚动相关：衡量两个序列在窗口内是否同步变化；时序排序：比较当前值在自身历史窗口中的位置</li>
+<li><strong>主要算子：</strong> 窗口最大值：寻找局部极端高点；滚动相关：衡量两个序列在窗口内是否同步变化；时序排序：比较当前值在自身历史窗口中的位置</li>
 </ul>
-<h3 id="计算拆解-4">计算拆解</h3>
-<ol type="1">
+<h3 id="计算拆解-5"><a class="markdownIt-Anchor" href="#计算拆解-5"></a> 计算拆解</h3>
+<ol>
 <li>准备 最高价、成交量，所有价格字段必须采用同一种复权口径。</li>
 <li>在 3、5 日等窗口上做滚动聚合，获得局部水平、极值或波动强度。</li>
 <li>估计序列之间的相关、协方差或回归关系；有效样本不足时必须返回缺失值。</li>
 <li>最后进行横截面/时序排序、尺度归一化或行业中性化，使不同股票之间可比较。</li>
 <li>公式含显式负号，最终方向被翻转：原始子信号越强，因子值可能越低。</li>
 </ol>
-<h3 id="经济直觉与高低值-4">经济直觉与高低值</h3>
-<p>量价同步往往代表趋势确认，量价背离可能代表趋势衰竭、换手结构变化或短期反转。因子通过排序和负号选择其中一侧。
-若相关项是主要驱动，高值对应更强的正相关，低值对应负相关；乘法和排序可能进一步改变幅度。
-公式包含方向翻转，阅读高低值时必须结合负号。</p>
+<h3 id="经济直觉与高低值-5"><a class="markdownIt-Anchor" href="#经济直觉与高低值-5"></a> 经济直觉与高低值</h3>
+<p>量价同步往往代表趋势确认，量价背离可能代表趋势衰竭、换手结构变化或短期反转。因子通过排序和负号选择其中一侧。 若相关项是主要驱动，高值对应更强的正相关，低值对应负相关；乘法和排序可能进一步改变幅度。 公式包含方向翻转，阅读高低值时必须结合负号。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-4">实现与验证</h3>
+<h3 id="实现与验证-5"><a class="markdownIt-Anchor" href="#实现与验证-5"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>成交量/成交额要统一单位，并处理停牌、零成交、涨跌停和拆并股造成的跳变。</li>
 <li>横截面股票池、缺失值门槛和并列排名规则会显著改变结果，研究与生产必须共用同一实现。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-006">Alpha191-006</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-006"><a class="markdownIt-Anchor" href="#alpha191-006"></a> Alpha191-006</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 价格相对位置　 <strong>核心问题：</strong>
-比较当前价格在自身历史及当日股票池中的相对位置。</p>
+<p><strong>类型：</strong> 价格相对位置　 <strong>核心问题：</strong> 比较当前价格在自身历史及当日股票池中的相对位置。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 4
-日等尺度上处理开盘价、最高价，主要链路是“横截面排序 → 方向符号 →
-差分”，最后形成一个价格相对位置信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 4 日等尺度上处理开盘价、最高价，主要链路是“横截面排序 → 方向符号 → 差分”，最后形成一个价格相对位置信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
 </blockquote>
-<h3 id="公式-5">公式</h3>
+<h3 id="公式-6"><a class="markdownIt-Anchor" href="#公式-6"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -613,42 +565,33 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <ul>
 <li><strong>输入字段：</strong> 开盘价、最高价</li>
 <li><strong>识别窗口：</strong> 4 日</li>
-<li><strong>主要算子：</strong>
-横截面排序：比较同一天不同股票的相对位置；符号函数：只保留上涨、下跌或不变；差分：当前值减去历史值</li>
+<li><strong>主要算子：</strong> 横截面排序：比较同一天不同股票的相对位置；符号函数：只保留上涨、下跌或不变；差分：当前值减去历史值</li>
 </ul>
-<h3 id="计算拆解-5">计算拆解</h3>
-<ol type="1">
+<h3 id="计算拆解-6"><a class="markdownIt-Anchor" href="#计算拆解-6"></a> 计算拆解</h3>
+<ol>
 <li>准备 开盘价、最高价，所有价格字段必须采用同一种复权口径。</li>
 <li>计算滞后值或差分，把绝对水平转换成变化速度和方向。</li>
 <li>最后进行横截面/时序排序、尺度归一化或行业中性化，使不同股票之间可比较。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 <li>公式含显式负号，最终方向被翻转：原始子信号越强，因子值可能越低。</li>
 </ol>
-<h3 id="经济直觉与高低值-5">经济直觉与高低值</h3>
-<p>价格的横截面排名回答“今天相对其他股票高不高”，时序排名回答“相对自己的过去高不高”；两者不可混用。
-高值通常意味着公式偏好的横截面或历史位置更靠前，低值更靠后；显式负号会反转这一读法。
-公式包含方向翻转，阅读高低值时必须结合负号。</p>
+<h3 id="经济直觉与高低值-6"><a class="markdownIt-Anchor" href="#经济直觉与高低值-6"></a> 经济直觉与高低值</h3>
+<p>价格的横截面排名回答“今天相对其他股票高不高”，时序排名回答“相对自己的过去高不高”；两者不可混用。 高值通常意味着公式偏好的横截面或历史位置更靠前，低值更靠后；显式负号会反转这一读法。 公式包含方向翻转，阅读高低值时必须结合负号。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-5">实现与验证</h3>
+<h3 id="实现与验证-6"><a class="markdownIt-Anchor" href="#实现与验证-6"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>横截面股票池、缺失值门槛和并列排名规则会显著改变结果，研究与生产必须共用同一实现。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-007">Alpha191-007</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-007"><a class="markdownIt-Anchor" href="#alpha191-007"></a> Alpha191-007</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> VWAP 偏离　 <strong>核心问题：</strong>
-比较成交重心与开收盘价，刻画日内资金成本和价格偏离。</p>
+<p><strong>类型：</strong> VWAP 偏离　 <strong>核心问题：</strong> 比较成交重心与开收盘价，刻画日内资金成本和价格偏离。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 3
-日等尺度上处理收盘价、成交量、成交量加权平均价，主要链路是“横截面排序 →
-最大值 → 最小值 → 差分”，最后形成一个VWAP
-偏离信号。输出强调相对名次，不代表绝对价格或绝对收益高低。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 3 日等尺度上处理收盘价、成交量、成交量加权平均价，主要链路是“横截面排序 → 最大值 → 最小值 → 差分”，最后形成一个VWAP 偏离信号。输出强调相对名次，不代表绝对价格或绝对收益高低。</p>
 </blockquote>
-<h3 id="公式-6">公式</h3>
+<h3 id="公式-7"><a class="markdownIt-Anchor" href="#公式-7"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -658,46 +601,34 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <ul>
 <li><strong>输入字段：</strong> 收盘价、成交量、成交量加权平均价</li>
 <li><strong>识别窗口：</strong> 3 日</li>
-<li><strong>主要算子：</strong>
-横截面排序：比较同一天不同股票的相对位置；最大值：选择多个候选值中较大者；最小值：选择多个候选值中较小者；差分：当前值减去历史值</li>
+<li><strong>主要算子：</strong> 横截面排序：比较同一天不同股票的相对位置；最大值：选择多个候选值中较大者；最小值：选择多个候选值中较小者；差分：当前值减去历史值</li>
 </ul>
-<h3 id="计算拆解-6">计算拆解</h3>
-<ol type="1">
-<li>准备
-收盘价、成交量、成交量加权平均价，所有价格字段必须采用同一种复权口径。</li>
+<h3 id="计算拆解-7"><a class="markdownIt-Anchor" href="#计算拆解-7"></a> 计算拆解</h3>
+<ol>
+<li>准备 收盘价、成交量、成交量加权平均价，所有价格字段必须采用同一种复权口径。</li>
 <li>计算滞后值或差分，把绝对水平转换成变化速度和方向。</li>
 <li>最后进行横截面/时序排序、尺度归一化或行业中性化，使不同股票之间可比较。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 </ol>
-<h3 id="经济直觉与高低值-6">经济直觉与高低值</h3>
-<p>VWAP
-近似当天平均成交成本。价格偏离成交重心，可能反映日内追涨杀跌、流动性冲击或均值回归压力。
-高值通常表示价格相对成交重心的正向或标准化偏离更强，低值表示反向偏离；负号可能交换两者。
-公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
+<h3 id="经济直觉与高低值-7"><a class="markdownIt-Anchor" href="#经济直觉与高低值-7"></a> 经济直觉与高低值</h3>
+<p>VWAP 近似当天平均成交成本。价格偏离成交重心，可能反映日内追涨杀跌、流动性冲击或均值回归压力。 高值通常表示价格相对成交重心的正向或标准化偏离更强，低值表示反向偏离；负号可能交换两者。 公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-6">实现与验证</h3>
+<h3 id="实现与验证-7"><a class="markdownIt-Anchor" href="#实现与验证-7"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>成交量/成交额要统一单位，并处理停牌、零成交、涨跌停和拆并股造成的跳变。</li>
-<li>VWAP
-应优先使用成交额/成交量构造；若用典型价格替代，必须单独标注并重新验证。</li>
+<li>VWAP 应优先使用成交额/成交量构造；若用典型价格替代，必须单独标注并重新验证。</li>
 <li>横截面股票池、缺失值门槛和并列排名规则会显著改变结果，研究与生产必须共用同一实现。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-008">Alpha191-008</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-008"><a class="markdownIt-Anchor" href="#alpha191-008"></a> Alpha191-008</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> VWAP 偏离　 <strong>核心问题：</strong>
-比较成交重心与开收盘价，刻画日内资金成本和价格偏离。</p>
+<p><strong>类型：</strong> VWAP 偏离　 <strong>核心问题：</strong> 比较成交重心与开收盘价，刻画日内资金成本和价格偏离。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 4
-日等尺度上处理最高价、最低价、成交量加权平均价，主要链路是“横截面排序 →
-差分”，最后形成一个VWAP
-偏离信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 4 日等尺度上处理最高价、最低价、成交量加权平均价，主要链路是“横截面排序 → 差分”，最后形成一个VWAP 偏离信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
 </blockquote>
-<h3 id="公式-7">公式</h3>
+<h3 id="公式-8"><a class="markdownIt-Anchor" href="#公式-8"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -707,47 +638,36 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <ul>
 <li><strong>输入字段：</strong> 最高价、最低价、成交量加权平均价</li>
 <li><strong>识别窗口：</strong> 4 日</li>
-<li><strong>主要算子：</strong>
-横截面排序：比较同一天不同股票的相对位置；差分：当前值减去历史值</li>
+<li><strong>主要算子：</strong> 横截面排序：比较同一天不同股票的相对位置；差分：当前值减去历史值</li>
 </ul>
-<h3 id="计算拆解-7">计算拆解</h3>
-<ol type="1">
-<li>准备
-最高价、最低价、成交量加权平均价，所有价格字段必须采用同一种复权口径。</li>
+<h3 id="计算拆解-8"><a class="markdownIt-Anchor" href="#计算拆解-8"></a> 计算拆解</h3>
+<ol>
+<li>准备 最高价、最低价、成交量加权平均价，所有价格字段必须采用同一种复权口径。</li>
 <li>计算滞后值或差分，把绝对水平转换成变化速度和方向。</li>
 <li>最后进行横截面/时序排序、尺度归一化或行业中性化，使不同股票之间可比较。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 <li>公式含显式负号，最终方向被翻转：原始子信号越强，因子值可能越低。</li>
 </ol>
-<h3 id="经济直觉与高低值-7">经济直觉与高低值</h3>
-<p>VWAP
-近似当天平均成交成本。价格偏离成交重心，可能反映日内追涨杀跌、流动性冲击或均值回归压力。
-高值通常表示价格相对成交重心的正向或标准化偏离更强，低值表示反向偏离；负号可能交换两者。
-公式包含方向翻转，阅读高低值时必须结合负号。</p>
+<h3 id="经济直觉与高低值-8"><a class="markdownIt-Anchor" href="#经济直觉与高低值-8"></a> 经济直觉与高低值</h3>
+<p>VWAP 近似当天平均成交成本。价格偏离成交重心，可能反映日内追涨杀跌、流动性冲击或均值回归压力。 高值通常表示价格相对成交重心的正向或标准化偏离更强，低值表示反向偏离；负号可能交换两者。 公式包含方向翻转，阅读高低值时必须结合负号。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-7">实现与验证</h3>
+<h3 id="实现与验证-8"><a class="markdownIt-Anchor" href="#实现与验证-8"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>成交量/成交额要统一单位，并处理停牌、零成交、涨跌停和拆并股造成的跳变。</li>
-<li>VWAP
-应优先使用成交额/成交量构造；若用典型价格替代，必须单独标注并重新验证。</li>
+<li>VWAP 应优先使用成交额/成交量构造；若用典型价格替代，必须单独标注并重新验证。</li>
 <li>横截面股票池、缺失值门槛和并列排名规则会显著改变结果，研究与生产必须共用同一实现。</li>
 <li>所有分母应设置接近零保护；不能用无限值参与排序或相关计算。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-009">Alpha191-009</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-009"><a class="markdownIt-Anchor" href="#alpha191-009"></a> Alpha191-009</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 波动与价格区间　 <strong>核心问题：</strong>
-衡量振幅、波动率或收盘价在日内区间中的位置。</p>
+<p><strong>类型：</strong> 波动与价格区间　 <strong>核心问题：</strong> 衡量振幅、波动率或收盘价在日内区间中的位置。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 7
-日等尺度上处理最高价、最低价、成交量，主要链路是“递归平滑 →
-滞后”，最后形成一个波动与价格区间信号。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 7 日等尺度上处理最高价、最低价、成交量，主要链路是“递归平滑 → 滞后”，最后形成一个波动与价格区间信号。</p>
 </blockquote>
-<h3 id="公式-8">公式</h3>
+<h3 id="公式-9"><a class="markdownIt-Anchor" href="#公式-9"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -757,42 +677,33 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <ul>
 <li><strong>输入字段：</strong> 最高价、最低价、成交量</li>
 <li><strong>识别窗口：</strong> 7 日</li>
-<li><strong>主要算子：</strong>
-递归平滑均线：保留历史状态并降低短期噪声；滞后：取若干交易日前的值</li>
+<li><strong>主要算子：</strong> 递归平滑均线：保留历史状态并降低短期噪声；滞后：取若干交易日前的值</li>
 </ul>
-<h3 id="计算拆解-8">计算拆解</h3>
-<ol type="1">
-<li>准备
-最高价、最低价、成交量，所有价格字段必须采用同一种复权口径。</li>
+<h3 id="计算拆解-9"><a class="markdownIt-Anchor" href="#计算拆解-9"></a> 计算拆解</h3>
+<ol>
+<li>准备 最高价、最低价、成交量，所有价格字段必须采用同一种复权口径。</li>
 <li>计算滞后值或差分，把绝对水平转换成变化速度和方向。</li>
 <li>在 7 日等窗口上做滚动聚合，获得局部水平、极值或波动强度。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 </ol>
-<h3 id="经济直觉与高低值-8">经济直觉与高低值</h3>
-<p>振幅、波动率以及收盘价在高低区间的位置共同反映盘中买卖力量和风险状态。
-高值通常表示波动更强、靠近某一端点或相关状态更突出；需要结合公式是否取反判断方向。
-公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
+<h3 id="经济直觉与高低值-9"><a class="markdownIt-Anchor" href="#经济直觉与高低值-9"></a> 经济直觉与高低值</h3>
+<p>振幅、波动率以及收盘价在高低区间的位置共同反映盘中买卖力量和风险状态。 高值通常表示波动更强、靠近某一端点或相关状态更突出；需要结合公式是否取反判断方向。 公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-8">实现与验证</h3>
+<h3 id="实现与验证-9"><a class="markdownIt-Anchor" href="#实现与验证-9"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>成交量/成交额要统一单位，并处理停牌、零成交、涨跌停和拆并股造成的跳变。</li>
 <li>所有分母应设置接近零保护；不能用无限值参与排序或相关计算。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-010">Alpha191-010</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-010"><a class="markdownIt-Anchor" href="#alpha191-010"></a> Alpha191-010</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 波动与价格区间　 <strong>核心问题：</strong>
-衡量振幅、波动率或收盘价在日内区间中的位置。</p>
+<p><strong>类型：</strong> 波动与价格区间　 <strong>核心问题：</strong> 衡量振幅、波动率或收盘价在日内区间中的位置。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 20
-日等尺度上处理日收益率、收盘价，主要链路是“横截面排序 → 最大值 →
-波动率”，最后形成一个波动与价格区间信号。它依赖条件分支，必须先判断落在哪个状态，再解释输出。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 20 日等尺度上处理日收益率、收盘价，主要链路是“横截面排序 → 最大值 → 波动率”，最后形成一个波动与价格区间信号。它依赖条件分支，必须先判断落在哪个状态，再解释输出。</p>
 </blockquote>
-<h3 id="公式-9">公式</h3>
+<h3 id="公式-10"><a class="markdownIt-Anchor" href="#公式-10"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -802,40 +713,33 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <ul>
 <li><strong>输入字段：</strong> 日收益率、收盘价</li>
 <li><strong>识别窗口：</strong> 20 日</li>
-<li><strong>主要算子：</strong>
-横截面排序：比较同一天不同股票的相对位置；最大值：选择多个候选值中较大者；滚动标准差：度量波动和不稳定性</li>
+<li><strong>主要算子：</strong> 横截面排序：比较同一天不同股票的相对位置；最大值：选择多个候选值中较大者；滚动标准差：度量波动和不稳定性</li>
 </ul>
-<h3 id="计算拆解-9">计算拆解</h3>
-<ol type="1">
+<h3 id="计算拆解-10"><a class="markdownIt-Anchor" href="#计算拆解-10"></a> 计算拆解</h3>
+<ol>
 <li>准备 日收益率、收盘价，所有价格字段必须采用同一种复权口径。</li>
 <li>按公式中的条件判断或事件计数区分不同市场状态；边界值的等号处理必须与定义一致。</li>
 <li>在 20 日等窗口上做滚动聚合，获得局部水平、极值或波动强度。</li>
 <li>最后进行横截面/时序排序、尺度归一化或行业中性化，使不同股票之间可比较。</li>
 </ol>
-<h3 id="经济直觉与高低值-9">经济直觉与高低值</h3>
-<p>振幅、波动率以及收盘价在高低区间的位置共同反映盘中买卖力量和风险状态。
-若波动项占主导，高值偏向高波动状态，低值偏向低波动状态；外层负号会反转这一关系。
-公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
+<h3 id="经济直觉与高低值-10"><a class="markdownIt-Anchor" href="#经济直觉与高低值-10"></a> 经济直觉与高低值</h3>
+<p>振幅、波动率以及收盘价在高低区间的位置共同反映盘中买卖力量和风险状态。 若波动项占主导，高值偏向高波动状态，低值偏向低波动状态；外层负号会反转这一关系。 公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-9">实现与验证</h3>
+<h3 id="实现与验证-10"><a class="markdownIt-Anchor" href="#实现与验证-10"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>横截面股票池、缺失值门槛和并列排名规则会显著改变结果，研究与生产必须共用同一实现。</li>
 <li>条件分支在阈值附近不连续，需显式定义等号、缺失值和连续停牌时的行为。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-011">Alpha191-011</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-011"><a class="markdownIt-Anchor" href="#alpha191-011"></a> Alpha191-011</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 波动与价格区间　 <strong>核心问题：</strong>
-衡量振幅、波动率或收盘价在日内区间中的位置。</p>
+<p><strong>类型：</strong> 波动与价格区间　 <strong>核心问题：</strong> 衡量振幅、波动率或收盘价在日内区间中的位置。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 6
-日等尺度上处理收盘价、最高价、最低价、成交量，主要链路是“滚动求和”，最后形成一个波动与价格区间信号。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 6 日等尺度上处理收盘价、最高价、最低价、成交量，主要链路是“滚动求和”，最后形成一个波动与价格区间信号。</p>
 </blockquote>
-<h3 id="公式-10">公式</h3>
+<h3 id="公式-11"><a class="markdownIt-Anchor" href="#公式-11"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -847,39 +751,30 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <li><strong>识别窗口：</strong> 6 日</li>
 <li><strong>主要算子：</strong> 滚动求和：累计窗口内的方向或强度</li>
 </ul>
-<h3 id="计算拆解-10">计算拆解</h3>
-<ol type="1">
-<li>准备
-收盘价、最高价、最低价、成交量，所有价格字段必须采用同一种复权口径。</li>
+<h3 id="计算拆解-11"><a class="markdownIt-Anchor" href="#计算拆解-11"></a> 计算拆解</h3>
+<ol>
+<li>准备 收盘价、最高价、最低价、成交量，所有价格字段必须采用同一种复权口径。</li>
 <li>在 6 日等窗口上做滚动聚合，获得局部水平、极值或波动强度。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 </ol>
-<h3 id="经济直觉与高低值-10">经济直觉与高低值</h3>
-<p>振幅、波动率以及收盘价在高低区间的位置共同反映盘中买卖力量和风险状态。
-高值通常表示波动更强、靠近某一端点或相关状态更突出；需要结合公式是否取反判断方向。
-公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
+<h3 id="经济直觉与高低值-11"><a class="markdownIt-Anchor" href="#经济直觉与高低值-11"></a> 经济直觉与高低值</h3>
+<p>振幅、波动率以及收盘价在高低区间的位置共同反映盘中买卖力量和风险状态。 高值通常表示波动更强、靠近某一端点或相关状态更突出；需要结合公式是否取反判断方向。 公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-10">实现与验证</h3>
+<h3 id="实现与验证-11"><a class="markdownIt-Anchor" href="#实现与验证-11"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>成交量/成交额要统一单位，并处理停牌、零成交、涨跌停和拆并股造成的跳变。</li>
 <li>所有分母应设置接近零保护；不能用无限值参与排序或相关计算。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-012">Alpha191-012</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-012"><a class="markdownIt-Anchor" href="#alpha191-012"></a> Alpha191-012</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> VWAP 偏离　 <strong>核心问题：</strong>
-比较成交重心与开收盘价，刻画日内资金成本和价格偏离。</p>
+<p><strong>类型：</strong> VWAP 偏离　 <strong>核心问题：</strong> 比较成交重心与开收盘价，刻画日内资金成本和价格偏离。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 10
-日等尺度上处理开盘价、收盘价、成交量加权平均价，主要链路是“横截面排序 →
-滚动求和 → 绝对值”，最后形成一个VWAP
-偏离信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 10 日等尺度上处理开盘价、收盘价、成交量加权平均价，主要链路是“横截面排序 → 滚动求和 → 绝对值”，最后形成一个VWAP 偏离信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
 </blockquote>
-<h3 id="公式-11">公式</h3>
+<h3 id="公式-12"><a class="markdownIt-Anchor" href="#公式-12"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -889,47 +784,36 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <ul>
 <li><strong>输入字段：</strong> 开盘价、收盘价、成交量加权平均价</li>
 <li><strong>识别窗口：</strong> 10 日</li>
-<li><strong>主要算子：</strong>
-横截面排序：比较同一天不同股票的相对位置；滚动求和：累计窗口内的方向或强度；绝对值：只保留偏离强度，不区分方向</li>
+<li><strong>主要算子：</strong> 横截面排序：比较同一天不同股票的相对位置；滚动求和：累计窗口内的方向或强度；绝对值：只保留偏离强度，不区分方向</li>
 </ul>
-<h3 id="计算拆解-11">计算拆解</h3>
-<ol type="1">
-<li>准备
-开盘价、收盘价、成交量加权平均价，所有价格字段必须采用同一种复权口径。</li>
+<h3 id="计算拆解-12"><a class="markdownIt-Anchor" href="#计算拆解-12"></a> 计算拆解</h3>
+<ol>
+<li>准备 开盘价、收盘价、成交量加权平均价，所有价格字段必须采用同一种复权口径。</li>
 <li>在 10 日等窗口上做滚动聚合，获得局部水平、极值或波动强度。</li>
 <li>最后进行横截面/时序排序、尺度归一化或行业中性化，使不同股票之间可比较。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 <li>公式含显式负号，最终方向被翻转：原始子信号越强，因子值可能越低。</li>
 </ol>
-<h3 id="经济直觉与高低值-11">经济直觉与高低值</h3>
-<p>VWAP
-近似当天平均成交成本。价格偏离成交重心，可能反映日内追涨杀跌、流动性冲击或均值回归压力。
-高值通常表示价格相对成交重心的正向或标准化偏离更强，低值表示反向偏离；负号可能交换两者。
-公式包含方向翻转，阅读高低值时必须结合负号。</p>
+<h3 id="经济直觉与高低值-12"><a class="markdownIt-Anchor" href="#经济直觉与高低值-12"></a> 经济直觉与高低值</h3>
+<p>VWAP 近似当天平均成交成本。价格偏离成交重心，可能反映日内追涨杀跌、流动性冲击或均值回归压力。 高值通常表示价格相对成交重心的正向或标准化偏离更强，低值表示反向偏离；负号可能交换两者。 公式包含方向翻转，阅读高低值时必须结合负号。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-11">实现与验证</h3>
+<h3 id="实现与验证-12"><a class="markdownIt-Anchor" href="#实现与验证-12"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>成交量/成交额要统一单位，并处理停牌、零成交、涨跌停和拆并股造成的跳变。</li>
-<li>VWAP
-应优先使用成交额/成交量构造；若用典型价格替代，必须单独标注并重新验证。</li>
+<li>VWAP 应优先使用成交额/成交量构造；若用典型价格替代，必须单独标注并重新验证。</li>
 <li>横截面股票池、缺失值门槛和并列排名规则会显著改变结果，研究与生产必须共用同一实现。</li>
 <li>所有分母应设置接近零保护；不能用无限值参与排序或相关计算。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-013">Alpha191-013</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-013"><a class="markdownIt-Anchor" href="#alpha191-013"></a> Alpha191-013</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> VWAP 偏离　 <strong>核心问题：</strong>
-比较成交重心与开收盘价，刻画日内资金成本和价格偏离。</p>
+<p><strong>类型：</strong> VWAP 偏离　 <strong>核心问题：</strong> 比较成交重心与开收盘价，刻画日内资金成本和价格偏离。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong>
-这个因子使用当日及必要滞后期的最高价、最低价、成交量加权平均价，最后形成一个VWAP
-偏离信号。</p>
+<p><strong>一句话翻译：</strong> 这个因子使用当日及必要滞后期的最高价、最低价、成交量加权平均价，最后形成一个VWAP 偏离信号。</p>
 </blockquote>
-<h3 id="公式-12">公式</h3>
+<h3 id="公式-13"><a class="markdownIt-Anchor" href="#公式-13"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -941,38 +825,29 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <li><strong>识别窗口：</strong> 无显式滚动窗口或窗口由实现约定决定</li>
 <li><strong>主要算子：</strong> 基础算术与条件组合</li>
 </ul>
-<h3 id="计算拆解-12">计算拆解</h3>
-<ol type="1">
-<li>准备
-最高价、最低价、成交量加权平均价，所有价格字段必须采用同一种复权口径。</li>
+<h3 id="计算拆解-13"><a class="markdownIt-Anchor" href="#计算拆解-13"></a> 计算拆解</h3>
+<ol>
+<li>准备 最高价、最低价、成交量加权平均价，所有价格字段必须采用同一种复权口径。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 </ol>
-<h3 id="经济直觉与高低值-12">经济直觉与高低值</h3>
-<p>VWAP
-近似当天平均成交成本。价格偏离成交重心，可能反映日内追涨杀跌、流动性冲击或均值回归压力。
-高值通常表示价格相对成交重心的正向或标准化偏离更强，低值表示反向偏离；负号可能交换两者。
-公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
+<h3 id="经济直觉与高低值-13"><a class="markdownIt-Anchor" href="#经济直觉与高低值-13"></a> 经济直觉与高低值</h3>
+<p>VWAP 近似当天平均成交成本。价格偏离成交重心，可能反映日内追涨杀跌、流动性冲击或均值回归压力。 高值通常表示价格相对成交重心的正向或标准化偏离更强，低值表示反向偏离；负号可能交换两者。 公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-12">实现与验证</h3>
+<h3 id="实现与验证-13"><a class="markdownIt-Anchor" href="#实现与验证-13"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>成交量/成交额要统一单位，并处理停牌、零成交、涨跌停和拆并股造成的跳变。</li>
-<li>VWAP
-应优先使用成交额/成交量构造；若用典型价格替代，必须单独标注并重新验证。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>VWAP 应优先使用成交额/成交量构造；若用典型价格替代，必须单独标注并重新验证。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-014">Alpha191-014</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-014"><a class="markdownIt-Anchor" href="#alpha191-014"></a> Alpha191-014</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 短期动量与反转　 <strong>核心问题：</strong>
-衡量价格变化的方向、持续性和相对历史位置。</p>
+<p><strong>类型：</strong> 短期动量与反转　 <strong>核心问题：</strong> 衡量价格变化的方向、持续性和相对历史位置。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 5
-日等尺度上处理收盘价，主要链路是“滞后”，最后形成一个短期动量与反转信号。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 5 日等尺度上处理收盘价，主要链路是“滞后”，最后形成一个短期动量与反转信号。</p>
 </blockquote>
-<h3 id="公式-13">公式</h3>
+<h3 id="公式-14"><a class="markdownIt-Anchor" href="#公式-14"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -984,34 +859,28 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <li><strong>识别窗口：</strong> 5 日</li>
 <li><strong>主要算子：</strong> 滞后：取若干交易日前的值</li>
 </ul>
-<h3 id="计算拆解-13">计算拆解</h3>
-<ol type="1">
+<h3 id="计算拆解-14"><a class="markdownIt-Anchor" href="#计算拆解-14"></a> 计算拆解</h3>
+<ol>
 <li>准备 收盘价，所有价格字段必须采用同一种复权口径。</li>
 <li>计算滞后值或差分，把绝对水平转换成变化速度和方向。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 </ol>
-<h3 id="经济直觉与高低值-13">经济直觉与高低值</h3>
-<p>近期价格变化可能延续，也可能因过度反应而反转。窗口、排序和符号决定因子押注哪一侧。
-高值通常表示公式定义的近期方向更强或历史位置更靠前；显式负号通常把动量读法翻成反转读法。
-公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
+<h3 id="经济直觉与高低值-14"><a class="markdownIt-Anchor" href="#经济直觉与高低值-14"></a> 经济直觉与高低值</h3>
+<p>近期价格变化可能延续，也可能因过度反应而反转。窗口、排序和符号决定因子押注哪一侧。 高值通常表示公式定义的近期方向更强或历史位置更靠前；显式负号通常把动量读法翻成反转读法。 公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-13">实现与验证</h3>
+<h3 id="实现与验证-14"><a class="markdownIt-Anchor" href="#实现与验证-14"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-015">Alpha191-015</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-015"><a class="markdownIt-Anchor" href="#alpha191-015"></a> Alpha191-015</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 短期动量与反转　 <strong>核心问题：</strong>
-衡量价格变化的方向、持续性和相对历史位置。</p>
+<p><strong>类型：</strong> 短期动量与反转　 <strong>核心问题：</strong> 衡量价格变化的方向、持续性和相对历史位置。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong>
-这个因子使用当日及必要滞后期的开盘价、收盘价，主要链路是“滞后”，最后形成一个短期动量与反转信号。</p>
+<p><strong>一句话翻译：</strong> 这个因子使用当日及必要滞后期的开盘价、收盘价，主要链路是“滞后”，最后形成一个短期动量与反转信号。</p>
 </blockquote>
-<h3 id="公式-14">公式</h3>
+<h3 id="公式-15"><a class="markdownIt-Anchor" href="#公式-15"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -1023,37 +892,29 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <li><strong>识别窗口：</strong> 无显式滚动窗口或窗口由实现约定决定</li>
 <li><strong>主要算子：</strong> 滞后：取若干交易日前的值</li>
 </ul>
-<h3 id="计算拆解-14">计算拆解</h3>
-<ol type="1">
+<h3 id="计算拆解-15"><a class="markdownIt-Anchor" href="#计算拆解-15"></a> 计算拆解</h3>
+<ol>
 <li>准备 开盘价、收盘价，所有价格字段必须采用同一种复权口径。</li>
 <li>计算滞后值或差分，把绝对水平转换成变化速度和方向。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 </ol>
-<h3 id="经济直觉与高低值-14">经济直觉与高低值</h3>
-<p>近期价格变化可能延续，也可能因过度反应而反转。窗口、排序和符号决定因子押注哪一侧。
-高值通常表示公式定义的近期方向更强或历史位置更靠前；显式负号通常把动量读法翻成反转读法。
-公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
+<h3 id="经济直觉与高低值-15"><a class="markdownIt-Anchor" href="#经济直觉与高低值-15"></a> 经济直觉与高低值</h3>
+<p>近期价格变化可能延续，也可能因过度反应而反转。窗口、排序和符号决定因子押注哪一侧。 高值通常表示公式定义的近期方向更强或历史位置更靠前；显式负号通常把动量读法翻成反转读法。 公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-14">实现与验证</h3>
+<h3 id="实现与验证-15"><a class="markdownIt-Anchor" href="#实现与验证-15"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>所有分母应设置接近零保护；不能用无限值参与排序或相关计算。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-016">Alpha191-016</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-016"><a class="markdownIt-Anchor" href="#alpha191-016"></a> Alpha191-016</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 量价相关与背离　 <strong>核心问题：</strong>
-观察价格和成交活跃度是否同步；异常背离可能反映拥挤、吸筹或卖压衰竭。</p>
+<p><strong>类型：</strong> 量价相关与背离　 <strong>核心问题：</strong> 观察价格和成交活跃度是否同步；异常背离可能反映拥挤、吸筹或卖压衰竭。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 5
-日等尺度上处理成交量、成交量加权平均价，主要链路是“窗口最大值 →
-横截面排序 →
-滚动相关”，最后形成一个量价相关与背离信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 5 日等尺度上处理成交量、成交量加权平均价，主要链路是“窗口最大值 → 横截面排序 → 滚动相关”，最后形成一个量价相关与背离信号。公式中的负号把原始子信号方向翻转，因此高值偏好的是原始指标较低或反向的一侧。</p>
 </blockquote>
-<h3 id="公式-15">公式</h3>
+<h3 id="公式-16"><a class="markdownIt-Anchor" href="#公式-16"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -1063,46 +924,35 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <ul>
 <li><strong>输入字段：</strong> 成交量、成交量加权平均价</li>
 <li><strong>识别窗口：</strong> 5 日</li>
-<li><strong>主要算子：</strong>
-窗口最大值：寻找局部极端高点；横截面排序：比较同一天不同股票的相对位置；滚动相关：衡量两个序列在窗口内是否同步变化</li>
+<li><strong>主要算子：</strong> 窗口最大值：寻找局部极端高点；横截面排序：比较同一天不同股票的相对位置；滚动相关：衡量两个序列在窗口内是否同步变化</li>
 </ul>
-<h3 id="计算拆解-15">计算拆解</h3>
-<ol type="1">
-<li>准备
-成交量、成交量加权平均价，所有价格字段必须采用同一种复权口径。</li>
+<h3 id="计算拆解-16"><a class="markdownIt-Anchor" href="#计算拆解-16"></a> 计算拆解</h3>
+<ol>
+<li>准备 成交量、成交量加权平均价，所有价格字段必须采用同一种复权口径。</li>
 <li>在 5 日等窗口上做滚动聚合，获得局部水平、极值或波动强度。</li>
 <li>估计序列之间的相关、协方差或回归关系；有效样本不足时必须返回缺失值。</li>
 <li>最后进行横截面/时序排序、尺度归一化或行业中性化，使不同股票之间可比较。</li>
 <li>公式含显式负号，最终方向被翻转：原始子信号越强，因子值可能越低。</li>
 </ol>
-<h3 id="经济直觉与高低值-15">经济直觉与高低值</h3>
-<p>量价同步往往代表趋势确认，量价背离可能代表趋势衰竭、换手结构变化或短期反转。因子通过排序和负号选择其中一侧。
-若相关项是主要驱动，高值对应更强的正相关，低值对应负相关；乘法和排序可能进一步改变幅度。
-公式包含方向翻转，阅读高低值时必须结合负号。</p>
+<h3 id="经济直觉与高低值-16"><a class="markdownIt-Anchor" href="#经济直觉与高低值-16"></a> 经济直觉与高低值</h3>
+<p>量价同步往往代表趋势确认，量价背离可能代表趋势衰竭、换手结构变化或短期反转。因子通过排序和负号选择其中一侧。 若相关项是主要驱动，高值对应更强的正相关，低值对应负相关；乘法和排序可能进一步改变幅度。 公式包含方向翻转，阅读高低值时必须结合负号。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-15">实现与验证</h3>
+<h3 id="实现与验证-16"><a class="markdownIt-Anchor" href="#实现与验证-16"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>成交量/成交额要统一单位，并处理停牌、零成交、涨跌停和拆并股造成的跳变。</li>
-<li>VWAP
-应优先使用成交额/成交量构造；若用典型价格替代，必须单独标注并重新验证。</li>
+<li>VWAP 应优先使用成交额/成交量构造；若用典型价格替代，必须单独标注并重新验证。</li>
 <li>横截面股票池、缺失值门槛和并列排名规则会显著改变结果，研究与生产必须共用同一实现。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-017">Alpha191-017</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-017"><a class="markdownIt-Anchor" href="#alpha191-017"></a> Alpha191-017</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> VWAP 偏离　 <strong>核心问题：</strong>
-比较成交重心与开收盘价，刻画日内资金成本和价格偏离。</p>
+<p><strong>类型：</strong> VWAP 偏离　 <strong>核心问题：</strong> 比较成交重心与开收盘价，刻画日内资金成本和价格偏离。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 5、15
-日等尺度上处理收盘价、成交量加权平均价，主要链路是“横截面排序 → 最大值 →
-差分”，最后形成一个VWAP
-偏离信号。输出强调相对名次，不代表绝对价格或绝对收益高低。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 5、15 日等尺度上处理收盘价、成交量加权平均价，主要链路是“横截面排序 → 最大值 → 差分”，最后形成一个VWAP 偏离信号。输出强调相对名次，不代表绝对价格或绝对收益高低。</p>
 </blockquote>
-<h3 id="公式-16">公式</h3>
+<h3 id="公式-17"><a class="markdownIt-Anchor" href="#公式-17"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -1112,44 +962,34 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <ul>
 <li><strong>输入字段：</strong> 收盘价、成交量加权平均价</li>
 <li><strong>识别窗口：</strong> 5 日、15 日</li>
-<li><strong>主要算子：</strong>
-横截面排序：比较同一天不同股票的相对位置；最大值：选择多个候选值中较大者；差分：当前值减去历史值</li>
+<li><strong>主要算子：</strong> 横截面排序：比较同一天不同股票的相对位置；最大值：选择多个候选值中较大者；差分：当前值减去历史值</li>
 </ul>
-<h3 id="计算拆解-16">计算拆解</h3>
-<ol type="1">
-<li>准备
-收盘价、成交量加权平均价，所有价格字段必须采用同一种复权口径。</li>
+<h3 id="计算拆解-17"><a class="markdownIt-Anchor" href="#计算拆解-17"></a> 计算拆解</h3>
+<ol>
+<li>准备 收盘价、成交量加权平均价，所有价格字段必须采用同一种复权口径。</li>
 <li>计算滞后值或差分，把绝对水平转换成变化速度和方向。</li>
 <li>最后进行横截面/时序排序、尺度归一化或行业中性化，使不同股票之间可比较。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 </ol>
-<h3 id="经济直觉与高低值-16">经济直觉与高低值</h3>
-<p>VWAP
-近似当天平均成交成本。价格偏离成交重心，可能反映日内追涨杀跌、流动性冲击或均值回归压力。
-高值通常表示价格相对成交重心的正向或标准化偏离更强，低值表示反向偏离；负号可能交换两者。
-公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
+<h3 id="经济直觉与高低值-17"><a class="markdownIt-Anchor" href="#经济直觉与高低值-17"></a> 经济直觉与高低值</h3>
+<p>VWAP 近似当天平均成交成本。价格偏离成交重心，可能反映日内追涨杀跌、流动性冲击或均值回归压力。 高值通常表示价格相对成交重心的正向或标准化偏离更强，低值表示反向偏离；负号可能交换两者。 公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-16">实现与验证</h3>
+<h3 id="实现与验证-17"><a class="markdownIt-Anchor" href="#实现与验证-17"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>成交量/成交额要统一单位，并处理停牌、零成交、涨跌停和拆并股造成的跳变。</li>
-<li>VWAP
-应优先使用成交额/成交量构造；若用典型价格替代，必须单独标注并重新验证。</li>
+<li>VWAP 应优先使用成交额/成交量构造；若用典型价格替代，必须单独标注并重新验证。</li>
 <li>横截面股票池、缺失值门槛和并列排名规则会显著改变结果，研究与生产必须共用同一实现。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-018">Alpha191-018</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-018"><a class="markdownIt-Anchor" href="#alpha191-018"></a> Alpha191-018</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 短期动量与反转　 <strong>核心问题：</strong>
-衡量价格变化的方向、持续性和相对历史位置。</p>
+<p><strong>类型：</strong> 短期动量与反转　 <strong>核心问题：</strong> 衡量价格变化的方向、持续性和相对历史位置。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 5
-日等尺度上处理收盘价，主要链路是“滞后”，最后形成一个短期动量与反转信号。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 5 日等尺度上处理收盘价，主要链路是“滞后”，最后形成一个短期动量与反转信号。</p>
 </blockquote>
-<h3 id="公式-17">公式</h3>
+<h3 id="公式-18"><a class="markdownIt-Anchor" href="#公式-18"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -1161,36 +1001,29 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <li><strong>识别窗口：</strong> 5 日</li>
 <li><strong>主要算子：</strong> 滞后：取若干交易日前的值</li>
 </ul>
-<h3 id="计算拆解-17">计算拆解</h3>
-<ol type="1">
+<h3 id="计算拆解-18"><a class="markdownIt-Anchor" href="#计算拆解-18"></a> 计算拆解</h3>
+<ol>
 <li>准备 收盘价，所有价格字段必须采用同一种复权口径。</li>
 <li>计算滞后值或差分，把绝对水平转换成变化速度和方向。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 </ol>
-<h3 id="经济直觉与高低值-17">经济直觉与高低值</h3>
-<p>近期价格变化可能延续，也可能因过度反应而反转。窗口、排序和符号决定因子押注哪一侧。
-高值通常表示公式定义的近期方向更强或历史位置更靠前；显式负号通常把动量读法翻成反转读法。
-公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
+<h3 id="经济直觉与高低值-18"><a class="markdownIt-Anchor" href="#经济直觉与高低值-18"></a> 经济直觉与高低值</h3>
+<p>近期价格变化可能延续，也可能因过度反应而反转。窗口、排序和符号决定因子押注哪一侧。 高值通常表示公式定义的近期方向更强或历史位置更靠前；显式负号通常把动量读法翻成反转读法。 公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-17">实现与验证</h3>
+<h3 id="实现与验证-18"><a class="markdownIt-Anchor" href="#实现与验证-18"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>所有分母应设置接近零保护；不能用无限值参与排序或相关计算。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-019">Alpha191-019</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-019"><a class="markdownIt-Anchor" href="#alpha191-019"></a> Alpha191-019</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 条件状态与事件频率　
-<strong>核心问题：</strong>
-根据涨跌、突破或极值条件切换计算分支，刻画市场状态。</p>
+<p><strong>类型：</strong> 条件状态与事件频率　 <strong>核心问题：</strong> 根据涨跌、突破或极值条件切换计算分支，刻画市场状态。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 5
-日等尺度上处理收盘价，主要链路是“滞后”，最后形成一个条件状态与事件频率信号。它依赖条件分支，必须先判断落在哪个状态，再解释输出。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 5 日等尺度上处理收盘价，主要链路是“滞后”，最后形成一个条件状态与事件频率信号。它依赖条件分支，必须先判断落在哪个状态，再解释输出。</p>
 </blockquote>
-<h3 id="公式-18">公式</h3>
+<h3 id="公式-19"><a class="markdownIt-Anchor" href="#公式-19"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -1202,37 +1035,31 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <li><strong>识别窗口：</strong> 5 日</li>
 <li><strong>主要算子：</strong> 滞后：取若干交易日前的值</li>
 </ul>
-<h3 id="计算拆解-18">计算拆解</h3>
-<ol type="1">
+<h3 id="计算拆解-19"><a class="markdownIt-Anchor" href="#计算拆解-19"></a> 计算拆解</h3>
+<ol>
 <li>准备 收盘价，所有价格字段必须采用同一种复权口径。</li>
 <li>计算滞后值或差分，把绝对水平转换成变化速度和方向。</li>
 <li>按公式中的条件判断或事件计数区分不同市场状态；边界值的等号处理必须与定义一致。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 </ol>
-<h3 id="经济直觉与高低值-18">经济直觉与高低值</h3>
-<p>条件分支不是平滑打分，而是在不同市场状态下选择不同规则，适合表达突破、连续涨跌和极端事件。
-高低值应按触发分支分别解释；阈值附近可能发生离散跳变。
-公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
+<h3 id="经济直觉与高低值-19"><a class="markdownIt-Anchor" href="#经济直觉与高低值-19"></a> 经济直觉与高低值</h3>
+<p>条件分支不是平滑打分，而是在不同市场状态下选择不同规则，适合表达突破、连续涨跌和极端事件。 高低值应按触发分支分别解释；阈值附近可能发生离散跳变。 公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-18">实现与验证</h3>
+<h3 id="实现与验证-19"><a class="markdownIt-Anchor" href="#实现与验证-19"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>所有分母应设置接近零保护；不能用无限值参与排序或相关计算。</li>
 <li>条件分支在阈值附近不连续，需显式定义等号、缺失值和连续停牌时的行为。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-020">Alpha191-020</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="alpha191-020"><a class="markdownIt-Anchor" href="#alpha191-020"></a> Alpha191-020</h2>
 <blockquote class="quant-quote">
-<p><strong>类型：</strong> 短期动量与反转　 <strong>核心问题：</strong>
-衡量价格变化的方向、持续性和相对历史位置。</p>
+<p><strong>类型：</strong> 短期动量与反转　 <strong>核心问题：</strong> 衡量价格变化的方向、持续性和相对历史位置。</p>
 </blockquote>
 <blockquote class="quant-quote">
-<p><strong>一句话翻译：</strong> 这个因子在 6
-日等尺度上处理收盘价，主要链路是“滞后”，最后形成一个短期动量与反转信号。</p>
+<p><strong>一句话翻译：</strong> 这个因子在 6 日等尺度上处理收盘价，主要链路是“滞后”，最后形成一个短期动量与反转信号。</p>
 </blockquote>
-<h3 id="公式-19">公式</h3>
+<h3 id="公式-20"><a class="markdownIt-Anchor" href="#公式-20"></a> 公式</h3>
 <figure class="highlight text quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -1244,28 +1071,23 @@ IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 <li><strong>识别窗口：</strong> 6 日</li>
 <li><strong>主要算子：</strong> 滞后：取若干交易日前的值</li>
 </ul>
-<h3 id="计算拆解-19">计算拆解</h3>
-<ol type="1">
+<h3 id="计算拆解-20"><a class="markdownIt-Anchor" href="#计算拆解-20"></a> 计算拆解</h3>
+<ol>
 <li>准备 收盘价，所有价格字段必须采用同一种复权口径。</li>
 <li>计算滞后值或差分，把绝对水平转换成变化速度和方向。</li>
 <li>按公式的加减乘除合成最终值；乘法通常表示两个条件必须同时强，除法则表示相对强度。</li>
 </ol>
-<h3 id="经济直觉与高低值-19">经济直觉与高低值</h3>
-<p>近期价格变化可能延续，也可能因过度反应而反转。窗口、排序和符号决定因子押注哪一侧。
-高值通常表示公式定义的近期方向更强或历史位置更靠前；显式负号通常把动量读法翻成反转读法。
-公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
+<h3 id="经济直觉与高低值-20"><a class="markdownIt-Anchor" href="#经济直觉与高低值-20"></a> 经济直觉与高低值</h3>
+<p>近期价格变化可能延续，也可能因过度反应而反转。窗口、排序和符号决定因子押注哪一侧。 高值通常表示公式定义的近期方向更强或历史位置更靠前；显式负号通常把动量读法翻成反转读法。 公式未检测到最外层显式取反，但复合项仍可能改变方向。</p>
 <p>这里的“可能有效”是待检验的市场机制解释，不是论文对收益方向的保证。实际使用时，应分别检验原始值和取反值，而不是根据故事选择方向。</p>
-<h3 id="实现与验证-19">实现与验证</h3>
+<h3 id="实现与验证-20"><a class="markdownIt-Anchor" href="#实现与验证-20"></a> 实现与验证</h3>
 <ul>
-<li>信号方向必须通过截面
-IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
+<li>信号方向必须通过截面 IC、分组收益和换手成本验证，不能把公式高值直接当作买入指令。</li>
 <li>所有分母应设置接近零保护；不能用无限值参与排序或相关计算。</li>
-<li>最低验收：覆盖率、缺失率、极值分布、截面
-IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
+<li>最低验收：覆盖率、缺失率、极值分布、截面 IC/RankIC、分组单调性、月度换手和扣费后收益都应留档。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="章节导航">章节导航</h2>
-<a href="/2026/07/18/Alpha191-02-021%E5%88%B0040/" title="Alpha191 全解 02：021-040">下一章</a>
-<p>　|　<a href="/2026/07/18/Alpha191/" title="Alpha191 逐因子全解">返回总览</a></p>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="章节导航"><a class="markdownIt-Anchor" href="#章节导航"></a> 章节导航</h2>
+<a href="/2026/07/18/Alpha191-02-021%E5%88%B0040/" title="Alpha191 全解 02：021-040">下一章</a>　|　<a href="/2026/07/18/Alpha191/" title="Alpha191 逐因子全解">返回总览</a>
 </section></div>
                 
               </div>

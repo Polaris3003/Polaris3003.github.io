@@ -18,14 +18,14 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Discovery under Hypothesis Redundancy 研读报告 论文链接：arXiv:2606.14386 PDF：https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2606.14386 标题：Discovery under Hypothesis Redundancy: A Geometric Theory of Discovery Bottlenecks 作者：Li Xia, B">
+    <meta name="description" content="Discovery under Hypothesis Redundancy 研读报告 论文链接：arXiv:2606.14386 PDF：https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2606.14386 标题：Discovery under Hypothesis Redundancy: A Geometric Theory of Discovery Bottlenecks 作者：Li Xia,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Discovery under Hypothesis Redundancy 研读报告">
 <meta property="og:url" content="https://www.polarishaw.top/2026/06/19/Discovery-under-Hypothesis-Redundancy-%E7%A0%94%E8%AF%BB%E6%8A%A5%E5%91%8A/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="Discovery under Hypothesis Redundancy 研读报告 论文链接：arXiv:2606.14386 PDF：https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2606.14386 标题：Discovery under Hypothesis Redundancy: A Geometric Theory of Discovery Bottlenecks 作者：Li Xia, B">
+<meta property="og:description" content="Discovery under Hypothesis Redundancy 研读报告 论文链接：arXiv:2606.14386 PDF：https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2606.14386 标题：Discovery under Hypothesis Redundancy: A Geometric Theory of Discovery Bottlenecks 作者：Li Xia,">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-006-147092182.jpg">
+<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-004-147092236.jpg">
 <meta property="article:published_time" content="2026-06-18T16:00:00.000Z">
 <meta property="article:modified_time" content="2026-06-19T15:25:50.264Z">
 <meta property="article:author" content="Polaris">
@@ -35,7 +35,7 @@
 <meta property="article:tag" content="quant">
 <meta property="article:tag" content="symbolic-regression">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-006-147092182.jpg">
+<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-004-147092236.jpg">
   
   
   
@@ -259,7 +259,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-011-147051939.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-06-27/pixiv-rank-008-146317762.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -288,7 +288,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.4k 字
+          5.7k 字
         
       </span>
     
@@ -299,7 +299,7 @@
         
         
         
-          45 分钟
+          48 分钟
         
       </span>
     
@@ -349,206 +349,155 @@
             
               <div class="markdown-body">
                 
-                <h1 id="discovery-under-hypothesis-redundancy-研读报告">Discovery under
-Hypothesis Redundancy 研读报告</h1>
+                <h1 id="discovery-under-hypothesis-redundancy-研读报告"><a class="markdownIt-Anchor" href="#discovery-under-hypothesis-redundancy-研读报告"></a> Discovery under Hypothesis Redundancy 研读报告</h1>
 <p>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.14386">arXiv:2606.14386</a><br>
 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.14386">https://arxiv.org/pdf/2606.14386</a><br>
-标题：Discovery under Hypothesis Redundancy: A Geometric Theory of
-Discovery Bottlenecks<br>
+标题：Discovery under Hypothesis Redundancy: A Geometric Theory of Discovery Bottlenecks<br>
 作者：Li Xia, Baoxun Wang<br>
 提交时间：2026-06-12<br>
-领域：Machine Learning, Artificial Intelligence, Portfolio
-Management<br>
+领域：Machine Learning, Artificial Intelligence, Portfolio Management<br>
 篇幅：23 页，1 张图，27 张表</p>
-<h2 id="一句话总结">1. 一句话总结</h2>
-<p>这篇论文研究的是：当一个发现系统已经生成了很多高度相关的假设时，继续做本地枚举会很快进入收益递减；LLM
-生成的非局部候选只有在同时满足“搜索空间被压缩”“候选能逃出已有张成空间”“逃出去的方向仍然和目标信号对齐”这三个几何条件时，才真正有用。</p>
-<p>作者把这个观点命名为 <strong>Search Compression
-Hypothesis</strong>。它不是在说“LLM 生成的新东西天然更好”，而是在说：LLM
-的价值来自 <strong>directed non-local
-exploration</strong>，即有方向的非局部跳跃。单纯随机地跳到一个正交方向，只会增加覆盖面积，不会增加发现收益。</p>
-<h2 id="论文要解决什么问题">2. 论文要解决什么问题</h2>
+<h2 id="1-一句话总结"><a class="markdownIt-Anchor" href="#1-一句话总结"></a> 1. 一句话总结</h2>
+<p>这篇论文研究的是：当一个发现系统已经生成了很多高度相关的假设时，继续做本地枚举会很快进入收益递减；LLM 生成的非局部候选只有在同时满足“搜索空间被压缩”“候选能逃出已有张成空间”“逃出去的方向仍然和目标信号对齐”这三个几何条件时，才真正有用。</p>
+<p>作者把这个观点命名为 <strong>Search Compression Hypothesis</strong>。它不是在说“LLM 生成的新东西天然更好”，而是在说：LLM 的价值来自 <strong>directed non-local exploration</strong>，即有方向的非局部跳跃。单纯随机地跳到一个正交方向，只会增加覆盖面积，不会增加发现收益。</p>
+<h2 id="2-论文要解决什么问题"><a class="markdownIt-Anchor" href="#2-论文要解决什么问题"></a> 2. 论文要解决什么问题</h2>
 <p>很多自动发现系统都会遇到一个共同瓶颈：候选假设数量越来越多，但新增候选之间高度相关，真正独立的信息方向并没有同步增长。比如：</p>
 <ul>
 <li>量化因子发现里，大量表达式看似不同，但最终都在描述相似的动量、成交量、反转或波动结构。</li>
 <li>符号回归里，很多表达式形式不同，但在样本上的预测向量高度相关。</li>
 <li>神经架构搜索、遗传编程、自动化科学发现也会出现类似的候选坍缩。</li>
 </ul>
-<p>作者认为，这种瓶颈可以用一个谱几何概念描述：<strong>spectral
-compression</strong>，也就是候选假设相关矩阵的有效维度远低于名义维度。</p>
-<p>直觉上，假设库里有 100 个候选，但相关矩阵的有效秩只有 28，那么这 100
-个候选实际上只覆盖了大约 28
-个独立方向。继续在这些候选附近做本地搜索，大概率只是生成更多相似方向。</p>
-<h2 id="核心概念">3. 核心概念</h2>
-<h3 id="hypothesis-archive">3.1 Hypothesis archive</h3>
+<p>作者认为，这种瓶颈可以用一个谱几何概念描述：<strong>spectral compression</strong>，也就是候选假设相关矩阵的有效维度远低于名义维度。</p>
+<p>直觉上，假设库里有 100 个候选，但相关矩阵的有效秩只有 28，那么这 100 个候选实际上只覆盖了大约 28 个独立方向。继续在这些候选附近做本地搜索，大概率只是生成更多相似方向。</p>
+<h2 id="3-核心概念"><a class="markdownIt-Anchor" href="#3-核心概念"></a> 3. 核心概念</h2>
+<h3 id="31-hypothesis-archive"><a class="markdownIt-Anchor" href="#31-hypothesis-archive"></a> 3.1 Hypothesis archive</h3>
 <p>论文把已有候选假设组成的集合称为 archive，记作：</p>
-<p><span class="math display">\[
-\mathcal{A} = \{f_1, \ldots, f_N\}
-\]</span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="script">A</mi><mo>=</mo><mo stretchy="false">{</mo><msub><mi>f</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>f</mi><mi>N</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathcal{A} = \{f_1, \ldots, f_N\}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal">A</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span></span></p>
 <p>每个候选假设可以看成一个向量。以量化因子为例，一个因子在多个日期和资产上的取值可以拉平成一个标准化向量。</p>
-<h3 id="spectral-compression">3.2 Spectral compression</h3>
+<h3 id="32-spectral-compression"><a class="markdownIt-Anchor" href="#32-spectral-compression"></a> 3.2 Spectral compression</h3>
 <p>对 archive 中候选向量计算相关矩阵：</p>
-<p><span class="math display">\[
-\Sigma_\mathcal{A}
-\]</span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">Σ</mi><mi mathvariant="script">A</mi></msub></mrow><annotation encoding="application/x-tex">\Sigma_\mathcal{A}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord">Σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathcal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
 <p>设其特征值为：</p>
-<p><span class="math display">\[
-\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_N \geq 0
-\]</span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>λ</mi><mn>1</mn></msub><mo>≥</mo><msub><mi>λ</mi><mn>2</mn></msub><mo>≥</mo><mo>⋯</mo><mo>≥</mo><msub><mi>λ</mi><mi>N</mi></msub><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_N \geq 0
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></span></p>
 <p>作者用 effective rank 衡量有效维度：</p>
-<p><span class="math display">\[
-r_{\text{eff}}(\Sigma_\mathcal{A}) =
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mo stretchy="false">(</mo><msub><mi mathvariant="normal">Σ</mi><mi mathvariant="script">A</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mi>exp</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mo>−</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>p</mi><mi>i</mi></msub><mi>log</mi><mo>⁡</mo><msub><mi>p</mi><mi>i</mi></msub><mo fence="true">)</mo></mrow><mo separator="true">,</mo><mspace width="1em"><msub><mi>p</mi><mi>i</mi></msub><mo>=</mo><mfrac><msub><mi>λ</mi><mi>i</mi></msub><mrow><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>λ</mi><mi>j</mi></msub></mrow></mfrac></mspace></mrow><annotation encoding="application/x-tex">r_{\text{eff}}(\Sigma_\mathcal{A}) =
 \exp\left(-\sum_i p_i \log p_i\right),
 \quad
 p_i = \frac{\lambda_i}{\sum_j \lambda_j}
-\]</span></p>
-<p>如果 <span class="math inline">\(r_{\text{eff}} \ll
-N\)</span>，说明名义上有很多候选，但方差主要集中在少数特征方向上，搜索空间发生了谱压缩。</p>
-<h3 id="discovery-yield">3.3 Discovery yield</h3>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord">Σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathcal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.027669em;vertical-align:-1.277669em;"></span><span class="mop">exp</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">(</span></span><span class="mord">−</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0500050000000003em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size4">)</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.493258em;vertical-align:-1.1218180000000002em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16195399999999993em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.43581800000000004em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1218180000000002em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mo>≪</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">r_{\text{eff}} \ll N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6891em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≪</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>，说明名义上有很多候选，但方差主要集中在少数特征方向上，搜索空间发生了谱压缩。</p>
+<h3 id="33-discovery-yield"><a class="markdownIt-Anchor" href="#33-discovery-yield"></a> 3.3 Discovery yield</h3>
 <p>作者定义 discovery yield 时同时考虑两件事：</p>
-<ol type="1">
+<ol>
 <li>候选是否有足够预测能力，例如因子的 ICIR 是否超过阈值。</li>
 <li>候选是否足够新，即和 archive 里已有候选的最大相关性不能太高。</li>
 </ol>
-<p>形式上，给定 ICIR 阈值 <span class="math inline">\(\tau\)</span>
-和冗余限制 <span class="math inline">\(\rho\)</span>：</p>
-<p><span class="math display">\[
-N_{\tau,\rho}(\mathcal{H}; \mathcal{A})
+<p>形式上，给定 ICIR 阈值 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span></span></span></span> 和冗余限制 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi></mrow><annotation encoding="application/x-tex">\rho</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">ρ</span></span></span></span>：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>N</mi><mrow><mi>τ</mi><mo separator="true">,</mo><mi>ρ</mi></mrow></msub><mo stretchy="false">(</mo><mi mathvariant="script">H</mi><mo separator="true">;</mo><mi mathvariant="script">A</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>f</mi><mo>∈</mo><mi mathvariant="script">H</mi></mrow></munder><mn mathvariant="bold">1</mn><mo stretchy="false">{</mo><mi mathvariant="normal">∣</mi><mi mathvariant="normal">ICIR</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi><mo>≥</mo><mi>τ</mi><mo separator="true">,</mo><munder><mo><mi>max</mi><mo>⁡</mo></mo><mrow><mi>g</mi><mo>∈</mo><mi mathvariant="script">A</mi></mrow></munder><mi mathvariant="normal">∣</mi><mi mathvariant="normal">corr</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>f</mi><mo separator="true">,</mo><mi>g</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi><mo>≤</mo><mi>ρ</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">N_{\tau,\rho}(\mathcal{H}; \mathcal{A})
 =
 \sum_{f \in \mathcal{H}}
 \mathbf{1}\{
 |\operatorname{ICIR}(f)| \geq \tau,
 \max_{g \in \mathcal{A}} |\operatorname{corr}(f,g)| \leq \rho
 \}
-\]</span></p>
-<p>这比只看“生成多少候选”更合理，因为发现系统真正需要的是
-<strong>有预测力且不冗余</strong> 的候选。</p>
-<h3 id="escape-distance">3.4 Escape distance</h3>
-<p>结构化本地搜索只能在已有候选张成空间附近活动。设结构化空间为 <span class="math inline">\(\mathcal{S}\)</span>，LLM 生成的 seed 为 <span class="math inline">\(z\)</span>，其逃逸距离定义为：</p>
-<p><span class="math display">\[
-d_\perp(z, \mathcal{S}) = \|(I - P_\mathcal{S})z\|_2
-\]</span></p>
-<p>如果 <span class="math inline">\(d_\perp\)</span> 很小，说明这个 seed
-实际上没有离开已有结构化空间；如果很大，说明它提供了新的几何方向。</p>
-<h3 id="residual-signal-alignment-和-predictive-novelty">3.5 Residual
-signal alignment 和 Predictive Novelty</h3>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.1132em;">τ</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">ρ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathcal" style="margin-right:0.00965em;">H</span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathcal">A</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.488226em;vertical-align:-1.438221em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8478869999999998em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mrel mtight">∈</span><span class="mord mtight"><span class="mord mathcal mtight" style="margin-right:0.00965em;">H</span></span></span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.438221em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathbf">1</span></span><span class="mopen">{</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mord mathrm">I</span><span class="mord mathrm">C</span><span class="mord mathrm">I</span><span class="mord mathrm">R</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.630439em;vertical-align:-0.880439em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.43055999999999994em;"><span style="top:-2.3556690000000002em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mrel mtight">∈</span><span class="mord mtight"><span class="mord mathcal mtight">A</span></span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">max</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.880439em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∣</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mord mathrm">c</span><span class="mord mathrm">o</span><span class="mord mathrm">r</span><span class="mord mathrm">r</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mclose">)</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ρ</span><span class="mclose">}</span></span></span></span></span></p>
+<p>这比只看“生成多少候选”更合理，因为发现系统真正需要的是 <strong>有预测力且不冗余</strong> 的候选。</p>
+<h3 id="34-escape-distance"><a class="markdownIt-Anchor" href="#34-escape-distance"></a> 3.4 Escape distance</h3>
+<p>结构化本地搜索只能在已有候选张成空间附近活动。设结构化空间为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">S</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.075em;">S</span></span></span></span></span>，LLM 生成的 seed 为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span>，其逃逸距离定义为：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>d</mi><mo>⊥</mo></msub><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">,</mo><mi mathvariant="script">S</mi><mo stretchy="false">)</mo><mo>=</mo><mi mathvariant="normal">∥</mi><mo stretchy="false">(</mo><mi>I</mi><mo>−</mo><msub><mi>P</mi><mi mathvariant="script">S</mi></msub><mo stretchy="false">)</mo><mi>z</mi><msub><mi mathvariant="normal">∥</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">d_\perp(z, \mathcal{S}) = \|(I - P_\mathcal{S})z\|_2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">⊥</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.075em;">S</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∥</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathcal mtight" style="margin-right:0.075em;">S</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord"><span class="mord">∥</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mo>⊥</mo></msub></mrow><annotation encoding="application/x-tex">d_\perp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">⊥</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 很小，说明这个 seed 实际上没有离开已有结构化空间；如果很大，说明它提供了新的几何方向。</p>
+<h3 id="35-residual-signal-alignment-和-predictive-novelty"><a class="markdownIt-Anchor" href="#35-residual-signal-alignment-和-predictive-novelty"></a> 3.5 Residual signal alignment 和 Predictive Novelty</h3>
 <p>仅仅正交还不够。随机方向也可以很正交，但它可能完全不含目标信号。</p>
 <p>因此作者定义残差信号对齐：</p>
-<p><span class="math display">\[
-\operatorname{RSA}(f)
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">RSA</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mo stretchy="false">⟨</mo><msub><mi>f</mi><mo>⊥</mo></msub><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">⟩</mo></mrow><mrow><mi mathvariant="normal">∥</mi><msub><mi>f</mi><mo>⊥</mo></msub><mi mathvariant="normal">∥</mi><mi mathvariant="normal">∥</mi><mi>y</mi><mi mathvariant="normal">∥</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\operatorname{RSA}(f)
 =
 \frac{\langle f_\perp, y \rangle}
 {\|f_\perp\|\|y\|}
-\]</span></p>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">R</span><span class="mord mathrm">S</span><span class="mord mathrm">A</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∥</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">⊥</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∥</span><span class="mord">∥</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord">∥</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">⟨</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">⊥</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">⟩</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <p>其中：</p>
-<p><span class="math display">\[
-f_\perp = f - \operatorname{proj}_\mathcal{A}(f)
-\]</span></p>
-<p>也就是说，把候选中能被 archive
-解释的部分去掉，只看剩余的逃逸部分是否还和目标 <span class="math inline">\(y\)</span> 对齐。</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>f</mi><mo>⊥</mo></msub><mo>=</mo><mi>f</mi><mo>−</mo><msub><mo><mi mathvariant="normal">proj</mi><mo>⁡</mo></mo><mi mathvariant="script">A</mi></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_\perp = f - \operatorname{proj}_\mathcal{A}(f)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">⊥</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mop"><span class="mord mathrm">p</span><span class="mord mathrm">r</span><span class="mord mathrm">o</span><span class="mord mathrm">j</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.23419099999999995em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathcal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">)</span></span></span></span></span></p>
+<p>也就是说，把候选中能被 archive 解释的部分去掉，只看剩余的逃逸部分是否还和目标 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span> 对齐。</p>
 <p>实际估计中，作者用 Predictive Novelty 近似 RSA：</p>
-<p><span class="math display">\[
-\operatorname{PredNovelty}(f)
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">PredNovelty</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mi mathvariant="normal">ICIR</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>f</mi><mo>−</mo><msub><mo><mi mathvariant="normal">proj</mi><mo>⁡</mo></mo><mi mathvariant="script">A</mi></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\operatorname{PredNovelty}(f)
 =
 \operatorname{ICIR}(f - \operatorname{proj}_\mathcal{A}(f))
-\]</span></p>
-<p>这也是论文最重要的概念之一：<strong>novelty 本身不够，predictive
-novelty 才有用。</strong></p>
-<h2 id="论文的理论主张">4. 论文的理论主张</h2>
-<h3 id="本地搜索收益受有效秩限制">4.1 本地搜索收益受有效秩限制</h3>
-<p>作者给出一个 stylized proposition：在若干 bounded leverage、bounded
-dependence、stable rank 等假设下，结构化候选的期望发现收益满足：</p>
-<p><span class="math display">\[
-\mathbb{E}[N_{\tau,\rho}(\mathcal{F}_{\text{str}}; \mathcal{A})]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">P</span><span class="mord mathrm">r</span><span class="mord mathrm">e</span><span class="mord mathrm">d</span><span class="mord mathrm">N</span><span class="mord mathrm">o</span><span class="mord mathrm" style="margin-right:0.01389em;">v</span><span class="mord mathrm">e</span><span class="mord mathrm">l</span><span class="mord mathrm">t</span><span class="mord mathrm" style="margin-right:0.01389em;">y</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">I</span><span class="mord mathrm">C</span><span class="mord mathrm">I</span><span class="mord mathrm">R</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mop"><span class="mord mathrm">p</span><span class="mord mathrm">r</span><span class="mord mathrm">o</span><span class="mord mathrm">j</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.23419099999999995em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathcal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
+<p>这也是论文最重要的概念之一：<strong>novelty 本身不够，predictive novelty 才有用。</strong></p>
+<h2 id="4-论文的理论主张"><a class="markdownIt-Anchor" href="#4-论文的理论主张"></a> 4. 论文的理论主张</h2>
+<h3 id="41-本地搜索收益受有效秩限制"><a class="markdownIt-Anchor" href="#41-本地搜索收益受有效秩限制"></a> 4.1 本地搜索收益受有效秩限制</h3>
+<p>作者给出一个 stylized proposition：在若干 bounded leverage、bounded dependence、stable rank 等假设下，结构化候选的期望发现收益满足：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><msub><mi>N</mi><mrow><mi>τ</mi><mo separator="true">,</mo><mi>ρ</mi></mrow></msub><mo stretchy="false">(</mo><msub><mi mathvariant="script">F</mi><mtext>str</mtext></msub><mo separator="true">;</mo><mi mathvariant="script">A</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>≤</mo><mi>C</mi><mo>⋅</mo><msub><mi>q</mi><mi>τ</mi></msub><mo>⋅</mo><msub><mi>r</mi><mtext>stable</mtext></msub><mo stretchy="false">(</mo><msub><mi mathvariant="normal">Σ</mi><mi mathvariant="script">A</mi></msub><mo stretchy="false">)</mo><mo>⋅</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msup><mi>ρ</mi><mn>2</mn></msup><mo stretchy="false">)</mo><mo>≤</mo><mi>C</mi><mo>⋅</mo><msub><mi>q</mi><mi>τ</mi></msub><mo>⋅</mo><msub><mi>r</mi><mtext>eff</mtext></msub><mo stretchy="false">(</mo><msub><mi mathvariant="normal">Σ</mi><mi mathvariant="script">A</mi></msub><mo stretchy="false">)</mo><mo>⋅</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msup><mi>ρ</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbb{E}[N_{\tau,\rho}(\mathcal{F}_{\text{str}}; \mathcal{A})]
 \leq
-C \cdot q_\tau \cdot r_{\text{stable}}(\Sigma_\mathcal{A}) \cdot
-(1-\rho^2)
+C \cdot q_\tau \cdot r_{\text{stable}}(\Sigma_\mathcal{A}) \cdot (1-\rho^2)
 \leq
 C \cdot q_\tau \cdot r_{\text{eff}}(\Sigma_\mathcal{A}) \cdot (1-\rho^2)
-\]</span></p>
-<p>意思是：本地结构化搜索的有效收益会随有效秩下降而下降。archive
-越压缩，局部枚举越容易重复已有方向。</p>
-<p>作者自己也强调，这不是一个紧的普适数值界，而是解释性的 scaling
-law。</p>
-<h3 id="混合搜索有用的三个必要条件">4.2 混合搜索有用的三个必要条件</h3>
-<p>论文的核心定理是：Hybrid search 相对 pure structured search 的收益
-<span class="math inline">\(\Delta_{\text{yield}}\)</span>
-想要为正，至少需要三个条件同时存在：</p>
-<ol type="1">
-<li><strong>Compression</strong>：空间确实被压缩，即 <span class="math inline">\(1 - r_{\text{eff}}/N\)</span> 不能趋近于 0。</li>
-<li><strong>Escape</strong>：seed 确实逃出了已有结构化空间，即 <span class="math inline">\(d_\perp\)</span> 不能趋近于 0。</li>
-<li><strong>Alignment</strong>：逃逸方向仍然与目标信号对齐，即 RSA
-不能趋近于 0。</li>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathbb">E</span></span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.1132em;">τ</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">ρ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord mathcal" style="margin-right:0.09931em;">F</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">str</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathcal">A</span></span><span class="mclose">)</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.63889em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.1132em;">τ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">stable</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord">Σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathcal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.63889em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.1132em;">τ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord">Σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathcal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p>意思是：本地结构化搜索的有效收益会随有效秩下降而下降。archive 越压缩，局部枚举越容易重复已有方向。</p>
+<p>作者自己也强调，这不是一个紧的普适数值界，而是解释性的 scaling law。</p>
+<h3 id="42-混合搜索有用的三个必要条件"><a class="markdownIt-Anchor" href="#42-混合搜索有用的三个必要条件"></a> 4.2 混合搜索有用的三个必要条件</h3>
+<p>论文的核心定理是：Hybrid search 相对 pure structured search 的收益 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mtext>yield</mtext></msub></mrow><annotation encoding="application/x-tex">\Delta_{\text{yield}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">yield</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 想要为正，至少需要三个条件同时存在：</p>
+<ol>
+<li><strong>Compression</strong>：空间确实被压缩，即 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>−</mo><msub><mi>r</mi><mtext>eff</mtext></msub><mi mathvariant="normal">/</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">1 - r_{\text{eff}}/N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> 不能趋近于 0。</li>
+<li><strong>Escape</strong>：seed 确实逃出了已有结构化空间，即 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mo>⊥</mo></msub></mrow><annotation encoding="application/x-tex">d_\perp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">⊥</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 不能趋近于 0。</li>
+<li><strong>Alignment</strong>：逃逸方向仍然与目标信号对齐，即 RSA 不能趋近于 0。</li>
 </ol>
 <p>如果任意一个条件消失，则：</p>
-<p><span class="math display">\[
-\Delta_{\text{yield}} \to 0
-\]</span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mtext>yield</mtext></msub><mo>→</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Delta_{\text{yield}} \to 0
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">yield</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></span></p>
 <p>这给出一个很实用的判断：</p>
 <ul>
 <li>如果已有结构化搜索已经接近满秩，LLM seed 没什么必要。</li>
 <li>如果 LLM seed 只是已有方向的改写，没什么必要。</li>
 <li>如果 LLM seed 虽然新但不预测目标，也没什么必要。</li>
 </ul>
-<h3 id="search-compression-principle">4.3 Search Compression
-Principle</h3>
+<h3 id="43-search-compression-principle"><a class="markdownIt-Anchor" href="#43-search-compression-principle"></a> 4.3 Search Compression Principle</h3>
 <p>作者把三个条件合成一个原则：</p>
-<p><span class="math display">\[
-\operatorname{UsefulExploration}(z)
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">UsefulExploration</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>∝</mo><mrow><mo fence="true">(</mo><mn>1</mn><mo>−</mo><mfrac><msub><mi>r</mi><mtext>eff</mtext></msub><mi>N</mi></mfrac><mo fence="true">)</mo></mrow><mo>⋅</mo><msub><mi>d</mi><mo>⊥</mo></msub><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">,</mo><mi mathvariant="script">S</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi mathvariant="normal">RSA</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\operatorname{UsefulExploration}(z)
 \propto
 \left(1 - \frac{r_{\text{eff}}}{N}\right)
 \cdot d_\perp(z,\mathcal{S})
 \cdot \operatorname{RSA}(z)
-\]</span></p>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">U</span><span class="mord mathrm">s</span><span class="mord mathrm">e</span><span class="mord mathrm" style="margin-right:0.07778em;">f</span><span class="mord mathrm">u</span><span class="mord mathrm">l</span><span class="mord mathrm">E</span><span class="mord mathrm">x</span><span class="mord mathrm">p</span><span class="mord mathrm">l</span><span class="mord mathrm">o</span><span class="mord mathrm">r</span><span class="mord mathrm">a</span><span class="mord mathrm">t</span><span class="mord mathrm">i</span><span class="mord mathrm">o</span><span class="mord mathrm">n</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∝</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.8359999999999999em;vertical-align:-0.686em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1075599999999999em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">⊥</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.075em;">S</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">R</span><span class="mord mathrm">S</span><span class="mord mathrm">A</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span></span></p>
 <p>这条式子的直觉非常清晰：</p>
 <ul>
 <li>有压缩，才有必要探索。</li>
 <li>有逃逸，才不是重复。</li>
 <li>有对齐，才不是随机噪声。</li>
 </ul>
-<p>我的理解是，这个原则可以当成一个 <strong>LLM
-探索预算分配的诊断器</strong>。不是“遇到搜索就上 LLM”，而是先测 archive
-是否压缩，再测 LLM seed 是否真正带来有预测力的新方向。</p>
-<h2 id="方法框架hybridfactor">5. 方法框架：HybridFactor</h2>
+<p>我的理解是，这个原则可以当成一个 <strong>LLM 探索预算分配的诊断器</strong>。不是“遇到搜索就上 LLM”，而是先测 archive 是否压缩，再测 LLM seed 是否真正带来有预测力的新方向。</p>
+<h2 id="5-方法框架hybridfactor"><a class="markdownIt-Anchor" href="#5-方法框架hybridfactor"></a> 5. 方法框架：HybridFactor</h2>
 <p>论文把混合发现系统表示成三个算子的组合：</p>
-<p><span class="math display">\[
-\mathcal{A}_{t+1}
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="script">A</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi mathvariant="script">T</mi><mtext>verify</mtext></msub><mo>∘</mo><msub><mi mathvariant="script">T</mi><mtext>local</mtext></msub><mo>∘</mo><msub><mi mathvariant="script">T</mi><mtext>jump</mtext></msub><mo stretchy="false">(</mo><msub><mi mathvariant="script">A</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{A}_{t+1}
 =
 \mathcal{T}_{\text{verify}}
 \circ
 \mathcal{T}_{\text{local}}
 \circ
 \mathcal{T}_{\text{jump}}(\mathcal{A}_t)
-\]</span></p>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">A</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord"><span class="mord mathcal" style="margin-right:0.25417em;">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">verify</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal" style="margin-right:0.25417em;">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">local</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord"><span class="mord mathcal" style="margin-right:0.25417em;">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.317502em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">jump</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord mathcal">A</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
 <p>三个算子分别是：</p>
 <ul>
-<li><span class="math inline">\(\mathcal{T}_{\text{jump}}\)</span>：由
-LLM 生成非局部 seed。</li>
-<li><span class="math inline">\(\mathcal{T}_{\text{local}}\)</span>：围绕 seed
-做结构化局部枚举。</li>
-<li><span class="math inline">\(\mathcal{T}_{\text{verify}}\)</span>：验证候选的预测能力、冗余度、正交覆盖和复杂度。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">T</mi><mtext>jump</mtext></msub></mrow><annotation encoding="application/x-tex">\mathcal{T}_{\text{jump}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord"><span class="mord mathcal" style="margin-right:0.25417em;">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.317502em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">jump</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>：由 LLM 生成非局部 seed。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">T</mi><mtext>local</mtext></msub></mrow><annotation encoding="application/x-tex">\mathcal{T}_{\text{local}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal" style="margin-right:0.25417em;">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">local</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：围绕 seed 做结构化局部枚举。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">T</mi><mtext>verify</mtext></msub></mrow><annotation encoding="application/x-tex">\mathcal{T}_{\text{verify}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord"><span class="mord mathcal" style="margin-right:0.25417em;">T</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">verify</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>：验证候选的预测能力、冗余度、正交覆盖和复杂度。</li>
 </ul>
 <p>在量化因子实验里，具体流程是：</p>
-<ol type="1">
-<li>LLM 使用因子 taxonomy 和已接受因子的知识库生成 Python
-候选表达式。</li>
+<ol>
+<li>LLM 使用因子 taxonomy 和已接受因子的知识库生成 Python 候选表达式。</li>
 <li>解析表达式中的 base factors 和 operators。</li>
-<li>结构化引擎围绕这些 base factors 枚举 pairwise combination，包括
-product、ratio、difference、20-day rolling correlation，以及 market-cap
-segment 条件变体。</li>
-<li>候选按市场市值分段评估，用 Pearson IC 对 weekly forward returns
-计算表现。</li>
-<li>接受条件包括 <span class="math inline">\(|\text{ICIR}| &gt;
-0.3\)</span> 和 <span class="math inline">\(|\text{IC}| &lt;
-0.95\)</span>。</li>
+<li>结构化引擎围绕这些 base factors 枚举 pairwise combination，包括 product、ratio、difference、20-day rolling correlation，以及 market-cap segment 条件变体。</li>
+<li>候选按市场市值分段评估，用 Pearson IC 对 weekly forward returns 计算表现。</li>
+<li>接受条件包括 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mtext>ICIR</mtext><mi mathvariant="normal">∣</mi><mo>&gt;</mo><mn>0.3</mn></mrow><annotation encoding="application/x-tex">|\text{ICIR}| &gt; 0.3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord text"><span class="mord">ICIR</span></span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mtext>IC</mtext><mi mathvariant="normal">∣</mi><mo>&lt;</mo><mn>0.95</mn></mrow><annotation encoding="application/x-tex">|\text{IC}| &lt; 0.95</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord text"><span class="mord">IC</span></span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">9</span><span class="mord">5</span></span></span></span>。</li>
 </ol>
-<p>这里的重点不是作者提出了一个特别复杂的因子工程 pipeline，而是把 LLM
-的角色限定为“生成可能逃出压缩空间的
-seed”，再交给结构化枚举和验证机制筛掉无效 novelty。</p>
-<h2 id="实验设计和主要结果">6. 实验设计和主要结果</h2>
-<h3 id="a-股因子发现设置">6.1 A 股因子发现设置</h3>
-<p>数据来自 Tushare Pro API，覆盖 5,647 只 A 股，时间为 2010-01 到
-2026-05。</p>
+<p>这里的重点不是作者提出了一个特别复杂的因子工程 pipeline，而是把 LLM 的角色限定为“生成可能逃出压缩空间的 seed”，再交给结构化枚举和验证机制筛掉无效 novelty。</p>
+<h2 id="6-实验设计和主要结果"><a class="markdownIt-Anchor" href="#6-实验设计和主要结果"></a> 6. 实验设计和主要结果</h2>
+<h3 id="61-a-股因子发现设置"><a class="markdownIt-Anchor" href="#61-a-股因子发现设置"></a> 6.1 A 股因子发现设置</h3>
+<p>数据来自 Tushare Pro API，覆盖 5,647 只 A 股，时间为 2010-01 到 2026-05。</p>
 <p>数据切分：</p>
 <ul>
 <li>2010-2018：训练</li>
@@ -564,8 +513,7 @@ seed”，再交给结构化枚举和验证机制筛掉无效 novelty。</p>
 <p>对比方法：</p>
 <ul>
 <li>Pure LLM：100 个 LLM 生成表达式，直接评估，不做结构化扩展。</li>
-<li>Pure Structured：11 个 base factors 做 55 个 pairwise product
-组合。</li>
+<li>Pure Structured：11 个 base factors 做 55 个 pairwise product 组合。</li>
 <li>Hybrid：LLM seed 加结构化扩展。</li>
 </ul>
 <p>指标：</p>
@@ -577,64 +525,63 @@ seed”，再交给结构化枚举和验证机制筛掉无效 novelty。</p>
 <li>best per-segment ICIR</li>
 <li>novelty，也就是和 archive 的相关性</li>
 </ul>
-<h3 id="合成谱压缩实验">6.2 合成谱压缩实验</h3>
+<h3 id="62-合成谱压缩实验"><a class="markdownIt-Anchor" href="#62-合成谱压缩实验"></a> 6.2 合成谱压缩实验</h3>
 <p>作者构造了可控有效秩的合成因子-收益数据，设置：</p>
-<p><span class="math display">\[
-r_{\text{eff}}/N \in \{0.1, 0.3, 0.5, 0.8, 0.95, 0.98\}
-\]</span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mi mathvariant="normal">/</mi><mi>N</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>0.1</mn><mo separator="true">,</mo><mn>0.3</mn><mo separator="true">,</mo><mn>0.5</mn><mo separator="true">,</mo><mn>0.8</mn><mo separator="true">,</mo><mn>0.95</mn><mo separator="true">,</mo><mn>0.98</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">r_{\text{eff}}/N \in \{0.1, 0.3, 0.5, 0.8, 0.95, 0.98\}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">0</span><span class="mord">.</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">8</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">9</span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">9</span><span class="mord">8</span><span class="mclose">}</span></span></span></span></span></p>
 <p>结果如下：</p>
 <table>
 <thead>
 <tr>
-<th><span class="math inline">\(r_{\text{eff}}/N\)</span></th>
-<th style="text-align: right;">Structured</th>
-<th style="text-align: right;">Random</th>
-<th style="text-align: right;">LLM-style</th>
-<th style="text-align: right;">Hybrid</th>
+<th><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mi mathvariant="normal">/</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">r_{\text{eff}}/N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span></th>
+<th style="text-align:right">Structured</th>
+<th style="text-align:right">Random</th>
+<th style="text-align:right">LLM-style</th>
+<th style="text-align:right">Hybrid</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>0.1</td>
-<td style="text-align: right;">15.5</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">6.6</td>
-<td style="text-align: right;">20.3</td>
+<td style="text-align:right">15.5</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">6.6</td>
+<td style="text-align:right">20.3</td>
 </tr>
 <tr>
 <td>0.3</td>
-<td style="text-align: right;">9.4</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">1.6</td>
-<td style="text-align: right;">10.4</td>
+<td style="text-align:right">9.4</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">1.6</td>
+<td style="text-align:right">10.4</td>
 </tr>
 <tr>
 <td>0.5</td>
-<td style="text-align: right;">5.7</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.1</td>
-<td style="text-align: right;">5.5</td>
+<td style="text-align:right">5.7</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">0.1</td>
+<td style="text-align:right">5.5</td>
 </tr>
 <tr>
 <td>0.8</td>
-<td style="text-align: right;">2.5</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">2.4</td>
+<td style="text-align:right">2.5</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">2.4</td>
 </tr>
 <tr>
 <td>0.95</td>
-<td style="text-align: right;">1.8</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">1.9</td>
+<td style="text-align:right">1.8</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">1.9</td>
 </tr>
 <tr>
 <td>0.98</td>
-<td style="text-align: right;">1.7</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">1.8</td>
+<td style="text-align:right">1.7</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">1.8</td>
 </tr>
 </tbody>
 </table>
@@ -642,12 +589,10 @@ r_{\text{eff}}/N \in \{0.1, 0.3, 0.5, 0.8, 0.95, 0.98\}
 <ul>
 <li>高压缩时，Hybrid 明显优于 Structured。</li>
 <li>接近满秩时，Hybrid 优势消失。</li>
-<li>Random 在所有 regime 中 yield 为
-0，说明随机正交跳跃不能替代有方向的探索。</li>
+<li>Random 在所有 regime 中 yield 为 0，说明随机正交跳跃不能替代有方向的探索。</li>
 </ul>
-<p>这个实验是论文最干净的证据之一，因为它直接控制了 <span class="math inline">\(r_{\text{eff}}/N\)</span>。</p>
-<h3 id="signal-planting信号到底在哪个特征空间">6.3 Signal
-planting：信号到底在哪个特征空间</h3>
+<p>这个实验是论文最干净的证据之一，因为它直接控制了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mi mathvariant="normal">/</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">r_{\text{eff}}/N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>。</p>
+<h3 id="63-signal-planting信号到底在哪个特征空间"><a class="markdownIt-Anchor" href="#63-signal-planting信号到底在哪个特征空间"></a> 6.3 Signal planting：信号到底在哪个特征空间</h3>
 <p>作者进一步把目标信号人为种到不同 eigenspace：</p>
 <ul>
 <li>top eigenspace</li>
@@ -656,94 +601,90 @@ planting：信号到底在哪个特征空间</h3>
 </ul>
 <p>主文表格报告 top 和 weak：</p>
 <table>
-
 <thead>
 <tr>
-<th><span class="math inline">\(r_{\text{eff}}/N\)</span></th>
+<th><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mi mathvariant="normal">/</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">r_{\text{eff}}/N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span></th>
 <th>Signal</th>
-<th style="text-align: right;">Structured</th>
-<th style="text-align: right;">Random</th>
-<th style="text-align: right;">Hybrid</th>
-<th style="text-align: right;"><span class="math inline">\(\Delta_{\text{yield}}\)</span></th>
+<th style="text-align:right">Structured</th>
+<th style="text-align:right">Random</th>
+<th style="text-align:right">Hybrid</th>
+<th style="text-align:right"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mtext>yield</mtext></msub></mrow><annotation encoding="application/x-tex">\Delta_{\text{yield}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">yield</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>0.15</td>
 <td>Top</td>
-<td style="text-align: right;">24.6</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">22.7</td>
-<td style="text-align: right;">-1.9</td>
+<td style="text-align:right">24.6</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">22.7</td>
+<td style="text-align:right">-1.9</td>
 </tr>
 <tr>
 <td>0.15</td>
 <td>Weak</td>
-<td style="text-align: right;">20.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">22.6</td>
-<td style="text-align: right;">+2.5</td>
+<td style="text-align:right">20.0</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">22.6</td>
+<td style="text-align:right">+2.5</td>
 </tr>
 <tr>
 <td>0.30</td>
 <td>Top</td>
-<td style="text-align: right;">17.3</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">15.6</td>
-<td style="text-align: right;">-1.7</td>
+<td style="text-align:right">17.3</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">15.6</td>
+<td style="text-align:right">-1.7</td>
 </tr>
 <tr>
 <td>0.30</td>
 <td>Weak</td>
-<td style="text-align: right;">12.5</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">15.3</td>
-<td style="text-align: right;">+2.8</td>
+<td style="text-align:right">12.5</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">15.3</td>
+<td style="text-align:right">+2.8</td>
 </tr>
 <tr>
 <td>0.50</td>
 <td>Top</td>
-<td style="text-align: right;">12.9</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">11.2</td>
-<td style="text-align: right;">-1.7</td>
+<td style="text-align:right">12.9</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">11.2</td>
+<td style="text-align:right">-1.7</td>
 </tr>
 <tr>
 <td>0.50</td>
 <td>Weak</td>
-<td style="text-align: right;">8.7</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">11.2</td>
-<td style="text-align: right;">+2.6</td>
+<td style="text-align:right">8.7</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">11.2</td>
+<td style="text-align:right">+2.6</td>
 </tr>
 <tr>
 <td>0.80</td>
 <td>Top</td>
-<td style="text-align: right;">9.2</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">7.7</td>
-<td style="text-align: right;">-1.5</td>
+<td style="text-align:right">9.2</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">7.7</td>
+<td style="text-align:right">-1.5</td>
 </tr>
 <tr>
 <td>0.80</td>
 <td>Weak</td>
-<td style="text-align: right;">6.2</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">9.1</td>
-<td style="text-align: right;">+2.8</td>
+<td style="text-align:right">6.2</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">9.1</td>
+<td style="text-align:right">+2.8</td>
 </tr>
 </tbody>
 </table>
 <p>这组实验很有说服力，因为它显示：</p>
 <ul>
-<li>如果信号已经在 top
-eigenspace，即结构化本地搜索容易覆盖的位置，Hybrid 反而可能拖累。</li>
-<li>如果信号在 weak eigenspace，即局部搜索不容易覆盖的位置，Hybrid
-才有正收益。</li>
+<li>如果信号已经在 top eigenspace，即结构化本地搜索容易覆盖的位置，Hybrid 反而可能拖累。</li>
+<li>如果信号在 weak eigenspace，即局部搜索不容易覆盖的位置，Hybrid 才有正收益。</li>
 </ul>
-<p>也就是说，LLM
-非局部探索不是万能增强器，而是针对“弱表示但含信号方向”的补充。</p>
-<h3 id="directed-vs-random-escape">6.4 Directed vs random escape</h3>
+<p>也就是说，LLM 非局部探索不是万能增强器，而是针对“弱表示但含信号方向”的补充。</p>
+<h3 id="64-directed-vs-random-escape"><a class="markdownIt-Anchor" href="#64-directed-vs-random-escape"></a> 6.4 Directed vs random escape</h3>
 <p>这是全篇最关键的机制验证实验。作者比较四种 seed：</p>
 <ul>
 <li>Random：纯随机方向，高逃逸距离，无目标引导。</li>
@@ -756,35 +697,35 @@ eigenspace，即结构化本地搜索容易覆盖的位置，Hybrid 反而可能
 <thead>
 <tr>
 <th>Seed strategy</th>
-<th style="text-align: right;">Yield</th>
-<th style="text-align: right;">RSA / PN</th>
-<th style="text-align: right;">Mean <span class="math inline">\(d_\perp\)</span></th>
+<th style="text-align:right">Yield</th>
+<th style="text-align:right">RSA / PN</th>
+<th style="text-align:right">Mean <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mo>⊥</mo></msub></mrow><annotation encoding="application/x-tex">d_\perp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">⊥</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Random</td>
-<td style="text-align: right;">0.01</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">0.969</td>
+<td style="text-align:right">0.01</td>
+<td style="text-align:right">0.046</td>
+<td style="text-align:right">0.969</td>
 </tr>
 <tr>
 <td>Shuffled</td>
-<td style="text-align: right;">8.03</td>
-<td style="text-align: right;">0.254</td>
-<td style="text-align: right;">0.692</td>
+<td style="text-align:right">8.03</td>
+<td style="text-align:right">0.254</td>
+<td style="text-align:right">0.692</td>
 </tr>
 <tr>
 <td>Retrieval-guided</td>
-<td style="text-align: right;">12.30</td>
-<td style="text-align: right;">0.470</td>
-<td style="text-align: right;">0.688</td>
+<td style="text-align:right">12.30</td>
+<td style="text-align:right">0.470</td>
+<td style="text-align:right">0.688</td>
 </tr>
 <tr>
 <td>Oracle</td>
-<td style="text-align: right;">15.00</td>
-<td style="text-align: right;">0.894</td>
-<td style="text-align: right;">0.699</td>
+<td style="text-align:right">15.00</td>
+<td style="text-align:right">0.894</td>
+<td style="text-align:right">0.699</td>
 </tr>
 </tbody>
 </table>
@@ -794,108 +735,103 @@ eigenspace，即结构化本地搜索容易覆盖的位置，Hybrid 反而可能
 <li>Retrieval-guided 的 yield 高 53%。</li>
 <li>Retrieval-guided 的 PN/RSA 高 85%。</li>
 </ul>
-<p>这说明真正驱动收益的不是“更远的逃逸”，而是“逃逸方向和目标有关系”。Random
-的 <span class="math inline">\(d_\perp\)</span> 最高，但 yield 接近
-0，也直接反驳了“只要正交就有用”的想法。</p>
-<h3 id="真实-a-股因子压缩-sweep">6.5 真实 A 股因子压缩 sweep</h3>
-<p>作者用 3,638 个真实 A 股因子和预计算 IC
-评估构造不同压缩程度的因子子集。</p>
+<p>这说明真正驱动收益的不是“更远的逃逸”，而是“逃逸方向和目标有关系”。Random 的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mo>⊥</mo></msub></mrow><annotation encoding="application/x-tex">d_\perp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">⊥</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 最高，但 yield 接近 0，也直接反驳了“只要正交就有用”的想法。</p>
+<h3 id="65-真实-a-股因子压缩-sweep"><a class="markdownIt-Anchor" href="#65-真实-a-股因子压缩-sweep"></a> 6.5 真实 A 股因子压缩 sweep</h3>
+<p>作者用 3,638 个真实 A 股因子和预计算 IC 评估构造不同压缩程度的因子子集。</p>
 <p>结果：</p>
 <table>
-
 <thead>
 <tr>
 <th>Subset</th>
-<th style="text-align: right;">Structured</th>
-<th style="text-align: right;">Random</th>
-<th style="text-align: right;">LLM-style</th>
-<th style="text-align: right;">Hybrid</th>
-<th style="text-align: right;"><span class="math inline">\(\Delta_{\text{yield}}\)</span></th>
+<th style="text-align:right">Structured</th>
+<th style="text-align:right">Random</th>
+<th style="text-align:right">LLM-style</th>
+<th style="text-align:right">Hybrid</th>
+<th style="text-align:right"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mtext>yield</mtext></msub></mrow><annotation encoding="application/x-tex">\Delta_{\text{yield}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">yield</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>All factors (<span class="math inline">\(r_{\text{eff}}/N=0.003\)</span>)</td>
-<td style="text-align: right;">25.2</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">5.0</td>
-<td style="text-align: right;">31.2</td>
-<td style="text-align: right;">+6.0</td>
+<td>All factors (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mi mathvariant="normal">/</mi><mi>N</mi><mo>=</mo><mn>0.003</mn></mrow><annotation encoding="application/x-tex">r_{\text{eff}}/N=0.003</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span></span></span></span>)</td>
+<td style="text-align:right">25.2</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">5.0</td>
+<td style="text-align:right">31.2</td>
+<td style="text-align:right">+6.0</td>
 </tr>
 <tr>
-<td>High-corr (<span class="math inline">\(r_{\text{eff}}/N=0.003\)</span>)</td>
-<td style="text-align: right;">38.8</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">9.1</td>
-<td style="text-align: right;">49.8</td>
-<td style="text-align: right;">+11.0</td>
+<td>High-corr (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mi mathvariant="normal">/</mi><mi>N</mi><mo>=</mo><mn>0.003</mn></mrow><annotation encoding="application/x-tex">r_{\text{eff}}/N=0.003</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span></span></span></span>)</td>
+<td style="text-align:right">38.8</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">9.1</td>
+<td style="text-align:right">49.8</td>
+<td style="text-align:right">+11.0</td>
 </tr>
 <tr>
-<td>Random 50% (<span class="math inline">\(r_{\text{eff}}/N=0.006\)</span>)</td>
-<td style="text-align: right;">23.3</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">5.2</td>
-<td style="text-align: right;">29.8</td>
-<td style="text-align: right;">+6.5</td>
+<td>Random 50% (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mi mathvariant="normal">/</mi><mi>N</mi><mo>=</mo><mn>0.006</mn></mrow><annotation encoding="application/x-tex">r_{\text{eff}}/N=0.006</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">6</span></span></span></span>)</td>
+<td style="text-align:right">23.3</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">5.2</td>
+<td style="text-align:right">29.8</td>
+<td style="text-align:right">+6.5</td>
 </tr>
 <tr>
-<td>Low-corr (<span class="math inline">\(r_{\text{eff}}/N=0.025\)</span>)</td>
-<td style="text-align: right;">21.9</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.6</td>
-<td style="text-align: right;">22.7</td>
-<td style="text-align: right;">+0.8</td>
+<td>Low-corr (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mi mathvariant="normal">/</mi><mi>N</mi><mo>=</mo><mn>0.025</mn></mrow><annotation encoding="application/x-tex">r_{\text{eff}}/N=0.025</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">2</span><span class="mord">5</span></span></span></span>)</td>
+<td style="text-align:right">21.9</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">0.6</td>
+<td style="text-align:right">22.7</td>
+<td style="text-align:right">+0.8</td>
 </tr>
 <tr>
-<td>Decorrelated (<span class="math inline">\(r_{\text{eff}}/N=0.086\)</span>)</td>
-<td style="text-align: right;">23.2</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">2.6</td>
-<td style="text-align: right;">26.4</td>
-<td style="text-align: right;">+3.1</td>
+<td>Decorrelated (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mi mathvariant="normal">/</mi><mi>N</mi><mo>=</mo><mn>0.086</mn></mrow><annotation encoding="application/x-tex">r_{\text{eff}}/N=0.086</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">8</span><span class="mord">6</span></span></span></span>)</td>
+<td style="text-align:right">23.2</td>
+<td style="text-align:right">0.0</td>
+<td style="text-align:right">2.6</td>
+<td style="text-align:right">26.4</td>
+<td style="text-align:right">+3.1</td>
 </tr>
 </tbody>
 </table>
-<p>作者报告 Hybrid advantage 和 <span class="math inline">\(r_{\text{eff}}/N\)</span> 负相关，Spearman <span class="math inline">\(\rho=-0.72\)</span>。</p>
-<p>这和理论一致：越压缩，越有空间让 directed non-local seed
-带来收益。</p>
-<h3 id="完整因子发现结果">6.6 完整因子发现结果</h3>
+<p>作者报告 Hybrid advantage 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mi mathvariant="normal">/</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">r_{\text{eff}}/N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> 负相关，Spearman <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mo>−</mo><mn>0.72</mn></mrow><annotation encoding="application/x-tex">\rho=-0.72</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">ρ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">0</span><span class="mord">.</span><span class="mord">7</span><span class="mord">2</span></span></span></span>。</p>
+<p>这和理论一致：越压缩，越有空间让 directed non-local seed 带来收益。</p>
+<h3 id="66-完整因子发现结果"><a class="markdownIt-Anchor" href="#66-完整因子发现结果"></a> 6.6 完整因子发现结果</h3>
 <p>完整 HybridFactor 运行中：</p>
 <table>
 <thead>
 <tr>
 <th>Method</th>
-<th style="text-align: right;">Candidates</th>
-<th style="text-align: right;">Accepted</th>
-<th style="text-align: right;">Rate</th>
-<th style="text-align: right;">Best ICIR</th>
-<th style="text-align: right;">Breadth</th>
+<th style="text-align:right">Candidates</th>
+<th style="text-align:right">Accepted</th>
+<th style="text-align:right">Rate</th>
+<th style="text-align:right">Best ICIR</th>
+<th style="text-align:right">Breadth</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Pure LLM</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">9%</td>
-<td style="text-align: right;">0.52</td>
-<td style="text-align: right;">9</td>
+<td style="text-align:right">100</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">9%</td>
+<td style="text-align:right">0.52</td>
+<td style="text-align:right">9</td>
 </tr>
 <tr>
 <td>Pure Structured</td>
-<td style="text-align: right;">55</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">18%</td>
-<td style="text-align: right;">0.42</td>
-<td style="text-align: right;">10</td>
+<td style="text-align:right">55</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">18%</td>
+<td style="text-align:right">0.42</td>
+<td style="text-align:right">10</td>
 </tr>
 <tr>
 <td>HybridFactor</td>
-<td style="text-align: right;">155</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">12%</td>
-<td style="text-align: right;">0.52</td>
-<td style="text-align: right;">19</td>
+<td style="text-align:right">155</td>
+<td style="text-align:right">19</td>
+<td style="text-align:right">12%</td>
+<td style="text-align:right">0.52</td>
+<td style="text-align:right">19</td>
 </tr>
 </tbody>
 </table>
@@ -906,98 +842,93 @@ eigenspace，即结构化本地搜索容易覆盖的位置，Hybrid 反而可能
 <li>best ICIR 不低于 pure LLM。</li>
 <li>相比 pure structured，能找到更多非冗余方向。</li>
 </ul>
-<p>不过这个结果也要谨慎看：Hybrid 候选数是 155，而 structured 是
-55，pure LLM 是 100。虽然 accepted breadth
-提升明显，但候选预算不完全一致。作者后面用 OpenML 和 policy ablation
-讨论预算分配，但因子主实验本身更像 supporting evidence。</p>
-<h3 id="symbolic-regression-泛化验证">6.7 Symbolic regression
-泛化验证</h3>
-<p>作者把框架也用于符号回归。主文使用 LLM-SRBench 的 158 个问题，对比
-GP-only、LLM-only、Hybrid。</p>
+<p>不过这个结果也要谨慎看：Hybrid 候选数是 155，而 structured 是 55，pure LLM 是 100。虽然 accepted breadth 提升明显，但候选预算不完全一致。作者后面用 OpenML 和 policy ablation 讨论预算分配，但因子主实验本身更像 supporting evidence。</p>
+<h3 id="67-symbolic-regression-泛化验证"><a class="markdownIt-Anchor" href="#67-symbolic-regression-泛化验证"></a> 6.7 Symbolic regression 泛化验证</h3>
+<p>作者把框架也用于符号回归。主文使用 LLM-SRBench 的 158 个问题，对比 GP-only、LLM-only、Hybrid。</p>
 <p>结果：</p>
 <table>
 <thead>
 <tr>
 <th>Category</th>
 <th>Method</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: right;">Median R2</th>
-<th style="text-align: right;">Recovery</th>
-<th style="text-align: right;">Wins</th>
+<th style="text-align:right">n</th>
+<th style="text-align:right">Median R2</th>
+<th style="text-align:right">Recovery</th>
+<th style="text-align:right">Wins</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Synthetic</td>
 <td>GP-only</td>
-<td style="text-align: right;">72</td>
-<td style="text-align: right;">0.980</td>
-<td style="text-align: right;">96%</td>
-<td style="text-align: right;">34/72</td>
+<td style="text-align:right">72</td>
+<td style="text-align:right">0.980</td>
+<td style="text-align:right">96%</td>
+<td style="text-align:right">34/72</td>
 </tr>
 <tr>
 <td>Synthetic</td>
 <td>LLM-only</td>
-<td style="text-align: right;">72</td>
-<td style="text-align: right;">0.757</td>
-<td style="text-align: right;">71%</td>
-<td style="text-align: right;">0/72</td>
+<td style="text-align:right">72</td>
+<td style="text-align:right">0.757</td>
+<td style="text-align:right">71%</td>
+<td style="text-align:right">0/72</td>
 </tr>
 <tr>
 <td>Synthetic</td>
 <td>Hybrid</td>
-<td style="text-align: right;">72</td>
-<td style="text-align: right;">0.984</td>
-<td style="text-align: right;">99%</td>
-<td style="text-align: right;">38/72</td>
+<td style="text-align:right">72</td>
+<td style="text-align:right">0.984</td>
+<td style="text-align:right">99%</td>
+<td style="text-align:right">38/72</td>
 </tr>
 <tr>
 <td>Transform</td>
 <td>GP-only</td>
-<td style="text-align: right;">86</td>
-<td style="text-align: right;">-0.011</td>
-<td style="text-align: right;">37%</td>
-<td style="text-align: right;">48/86</td>
+<td style="text-align:right">86</td>
+<td style="text-align:right">-0.011</td>
+<td style="text-align:right">37%</td>
+<td style="text-align:right">48/86</td>
 </tr>
 <tr>
 <td>Transform</td>
 <td>LLM-only</td>
-<td style="text-align: right;">86</td>
-<td style="text-align: right;">-1.253</td>
-<td style="text-align: right;">12%</td>
-<td style="text-align: right;">0/86</td>
+<td style="text-align:right">86</td>
+<td style="text-align:right">-1.253</td>
+<td style="text-align:right">12%</td>
+<td style="text-align:right">0/86</td>
 </tr>
 <tr>
 <td>Transform</td>
 <td>Hybrid</td>
-<td style="text-align: right;">86</td>
-<td style="text-align: right;">-0.065</td>
-<td style="text-align: right;">34%</td>
-<td style="text-align: right;">38/86</td>
+<td style="text-align:right">86</td>
+<td style="text-align:right">-0.065</td>
+<td style="text-align:right">34%</td>
+<td style="text-align:right">38/86</td>
 </tr>
 <tr>
 <td>Overall</td>
 <td>GP-only</td>
-<td style="text-align: right;">158</td>
-<td style="text-align: right;">0.875</td>
-<td style="text-align: right;">64%</td>
-<td style="text-align: right;">79/158</td>
+<td style="text-align:right">158</td>
+<td style="text-align:right">0.875</td>
+<td style="text-align:right">64%</td>
+<td style="text-align:right">79/158</td>
 </tr>
 <tr>
 <td>Overall</td>
 <td>LLM-only</td>
-<td style="text-align: right;">158</td>
-<td style="text-align: right;">0.120</td>
-<td style="text-align: right;">39%</td>
-<td style="text-align: right;">3/158</td>
+<td style="text-align:right">158</td>
+<td style="text-align:right">0.120</td>
+<td style="text-align:right">39%</td>
+<td style="text-align:right">3/158</td>
 </tr>
 <tr>
 <td>Overall</td>
 <td>Hybrid</td>
-<td style="text-align: right;">158</td>
-<td style="text-align: right;">0.838</td>
-<td style="text-align: right;">63%</td>
-<td style="text-align: right;">76/158</td>
+<td style="text-align:right">158</td>
+<td style="text-align:right">0.838</td>
+<td style="text-align:right">63%</td>
+<td style="text-align:right">76/158</td>
 </tr>
 </tbody>
 </table>
@@ -1005,19 +936,13 @@ GP-only、LLM-only、Hybrid。</p>
 <ul>
 <li>Overall 上 Hybrid 并没有超过 GP-only。</li>
 <li>Synthetic 类别上 Hybrid 与 GP 接近，略高。</li>
-<li>Transform 类别上所有方法都差，Hybrid 的主要价值是 rescue 一部分 GP
-catastrophic failure。</li>
+<li>Transform 类别上所有方法都差，Hybrid 的主要价值是 rescue 一部分 GP catastrophic failure。</li>
 <li>作者报告 Hybrid rescue 25/46 个 GP catastrophic failures。</li>
 </ul>
-<p>所以符号回归实验不是“Hybrid 全面碾压 GP”，而是“当 GP
-局部搜索陷入灾难失败时，Hybrid
-有一定救援能力”。这和论文理论比较一致。</p>
-<h3 id="openml-tabular-check">6.8 OpenML tabular check</h3>
-<p>作者还做了 OpenML tabular panel，共 12 个公开数据集、19 个 held-out
-splits、48 次 provider calls。</p>
-<p>但作者明确说：这不是第三个 compression-law validation，而是
-operational sanity check。它测试的是，能否用诊断信号分配 LLM proposal
-budget。</p>
+<p>所以符号回归实验不是“Hybrid 全面碾压 GP”，而是“当 GP 局部搜索陷入灾难失败时，Hybrid 有一定救援能力”。这和论文理论比较一致。</p>
+<h3 id="68-openml-tabular-check"><a class="markdownIt-Anchor" href="#68-openml-tabular-check"></a> 6.8 OpenML tabular check</h3>
+<p>作者还做了 OpenML tabular panel，共 12 个公开数据集、19 个 held-out splits、48 次 provider calls。</p>
+<p>但作者明确说：这不是第三个 compression-law validation，而是 operational sanity check。它测试的是，能否用诊断信号分配 LLM proposal budget。</p>
 <p>结果里 diagnostic validation-proxy：</p>
 <ul>
 <li>test score 0.411</li>
@@ -1026,38 +951,28 @@ budget。</p>
 <li>always-LLM 为 0.191</li>
 <li>random nonlocal 为 0.228</li>
 </ul>
-<p>结论是：强迫使用非局部探索反而不好；用验证可见信号判断是否值得花 LLM
-预算更合理。</p>
-<h2 id="论文的主要贡献">7. 论文的主要贡献</h2>
+<p>结论是：强迫使用非局部探索反而不好；用验证可见信号判断是否值得花 LLM 预算更合理。</p>
+<h2 id="7-论文的主要贡献"><a class="markdownIt-Anchor" href="#7-论文的主要贡献"></a> 7. 论文的主要贡献</h2>
 <p>我认为这篇论文有四个值得记住的贡献。</p>
-<h3 id="把发现瓶颈从候选数量问题改写成谱压缩问题">7.1
-把“发现瓶颈”从候选数量问题改写成谱压缩问题</h3>
-<p>很多自动发现系统的问题不是候选太少，而是候选太像。作者用 effective
-rank 把这个现象形式化，提供了一个可测量的诊断指标。</p>
-<p>这对工程实践很有用。比如在因子挖掘系统里，不要只看每天生成了多少
-alpha，也要看 alpha correlation matrix 的 effective rank
-是否还在增长。</p>
-<h3 id="明确区分-novelty-和-predictive-novelty">7.2 明确区分 novelty 和
-predictive novelty</h3>
+<h3 id="71-把发现瓶颈从候选数量问题改写成谱压缩问题"><a class="markdownIt-Anchor" href="#71-把发现瓶颈从候选数量问题改写成谱压缩问题"></a> 7.1 把“发现瓶颈”从候选数量问题改写成谱压缩问题</h3>
+<p>很多自动发现系统的问题不是候选太少，而是候选太像。作者用 effective rank 把这个现象形式化，提供了一个可测量的诊断指标。</p>
+<p>这对工程实践很有用。比如在因子挖掘系统里，不要只看每天生成了多少 alpha，也要看 alpha correlation matrix 的 effective rank 是否还在增长。</p>
+<h3 id="72-明确区分-novelty-和-predictive-novelty"><a class="markdownIt-Anchor" href="#72-明确区分-novelty-和-predictive-novelty"></a> 7.2 明确区分 novelty 和 predictive novelty</h3>
 <p>这是本文最有价值的概念区分。</p>
-<p>很多 LLM 科学发现系统容易把“新颖”当成目标，但一个方向即使和已有
-archive 正交，也可能完全没有预测力。作者通过 RSA/PredNovelty 强调：</p>
+<p>很多 LLM 科学发现系统容易把“新颖”当成目标，但一个方向即使和已有 archive 正交，也可能完全没有预测力。作者通过 RSA/PredNovelty 强调：</p>
 <blockquote>
 <p>有用的新方向必须同时新颖且带目标信号。</p>
 </blockquote>
 <p>这对 LLM agent、自动研究系统、量化因子挖掘都非常重要。</p>
-<h3 id="给出-llm-探索的停止规则">7.3 给出 LLM 探索的停止规则</h3>
-<p>论文给出一个实用判断：当下面任意一项接近失效时，可以停止 LLM
-非局部探索：</p>
+<h3 id="73-给出-llm-探索的停止规则"><a class="markdownIt-Anchor" href="#73-给出-llm-探索的停止规则"></a> 7.3 给出 LLM 探索的停止规则</h3>
+<p>论文给出一个实用判断：当下面任意一项接近失效时，可以停止 LLM 非局部探索：</p>
 <ul>
-<li><span class="math inline">\(r_{\text{eff}}/N \approx 1\)</span></li>
-<li><span class="math inline">\(\bar{d}_\perp \approx 0\)</span></li>
-<li><span class="math inline">\(\overline{\operatorname{RSA}} \approx
-0\)</span></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mi mathvariant="normal">/</mi><mi>N</mi><mo>≈</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">r_{\text{eff}}/N \approx 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover accent="true"><mi>d</mi><mo>ˉ</mo></mover><mo>⊥</mo></msub><mo>≈</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\bar{d}_\perp \approx 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9812199999999999em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8312199999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span></span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.08332999999999999em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">⊥</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi mathvariant="normal">RSA</mi><mo>⁡</mo><mo stretchy="true">‾</mo></mover><mo>≈</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\overline{\operatorname{RSA}} \approx 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833300000000001em;vertical-align:0em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mord mathrm">R</span><span class="mord mathrm">S</span><span class="mord mathrm">A</span></span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></li>
 </ul>
-<p>换句话说，LLM 不是默认一直调用，而是当 archive 显示本地搜索已压缩、且
-LLM seed 仍能给出 predictive residual coverage 时才调用。</p>
-<h3 id="用多种实验隔离机制">7.4 用多种实验隔离机制</h3>
+<p>换句话说，LLM 不是默认一直调用，而是当 archive 显示本地搜索已压缩、且 LLM seed 仍能给出 predictive residual coverage 时才调用。</p>
+<h3 id="74-用多种实验隔离机制"><a class="markdownIt-Anchor" href="#74-用多种实验隔离机制"></a> 7.4 用多种实验隔离机制</h3>
 <p>论文不只报告一个 end-to-end 提升，而是做了：</p>
 <ul>
 <li>合成压缩 sweep</li>
@@ -1068,13 +983,10 @@ LLM seed 仍能给出 predictive residual coverage 时才调用。</p>
 <li>symbolic regression</li>
 <li>OpenML budget allocation sanity check</li>
 </ul>
-<p>其中 signal planting 和 directed-vs-random escape
-是最强的机制证据。</p>
-<h2 id="论文的局限和需要警惕的地方">8. 论文的局限和需要警惕的地方</h2>
-<h3 id="理论是必要条件不是充分条件">8.1
-理论是必要条件，不是充分条件</h3>
-<p>作者自己说得很清楚：三个条件同时成立，不保证 Hybrid
-一定有正收益；它们只是必要条件。</p>
+<p>其中 signal planting 和 directed-vs-random escape 是最强的机制证据。</p>
+<h2 id="8-论文的局限和需要警惕的地方"><a class="markdownIt-Anchor" href="#8-论文的局限和需要警惕的地方"></a> 8. 论文的局限和需要警惕的地方</h2>
+<h3 id="81-理论是必要条件不是充分条件"><a class="markdownIt-Anchor" href="#81-理论是必要条件不是充分条件"></a> 8.1 理论是必要条件，不是充分条件</h3>
+<p>作者自己说得很清楚：三个条件同时成立，不保证 Hybrid 一定有正收益；它们只是必要条件。</p>
 <p>所以这篇论文不能被解读为：</p>
 <blockquote>
 <p>只要空间压缩、seed 正交、有 PN，就一定有收益。</p>
@@ -1083,39 +995,24 @@ LLM seed 仍能给出 predictive residual coverage 时才调用。</p>
 <blockquote>
 <p>如果缺少任何一个条件，收益大概率消失；如果都有，才值得尝试。</p>
 </blockquote>
-<h3 id="proposition-的假设较强更多是解释性-scaling">8.2 Proposition
-的假设较强，更多是解释性 scaling</h3>
-<p>本地搜索收益界依赖 bounded leverage、bounded dependence、stable rank
-等假设，并且作者多次强调这是 stylized and explanatory，不是 tight
-universal bound。</p>
+<h3 id="82-proposition-的假设较强更多是解释性-scaling"><a class="markdownIt-Anchor" href="#82-proposition-的假设较强更多是解释性-scaling"></a> 8.2 Proposition 的假设较强，更多是解释性 scaling</h3>
+<p>本地搜索收益界依赖 bounded leverage、bounded dependence、stable rank 等假设，并且作者多次强调这是 stylized and explanatory，不是 tight universal bound。</p>
 <p>也就是说，它提供的是理论语言和方向，而不是可以直接拿来精确预测收益的公式。</p>
-<h3 id="因子实验有预算和数据可复现问题">8.3
-因子实验有预算和数据可复现问题</h3>
-<p>主因子实验中，Hybrid 的候选数量更大；虽然作者提供了预算分配和
-ablation，但 end-to-end 表格不能单独证明“方法质量更高”。</p>
-<p>另外 A 股数据来自 Tushare Pro，原始数据不可随论文直接再分发。作者说会
-release scripts、cached
-outputs、prompts、manifests，但在论文提交版本里还没有实际开源链接。因此当前复现性还要打一个问号。</p>
-<h3 id="symbolic-regression-结果并非全面胜出">8.4 Symbolic regression
-结果并非全面胜出</h3>
+<h3 id="83-因子实验有预算和数据可复现问题"><a class="markdownIt-Anchor" href="#83-因子实验有预算和数据可复现问题"></a> 8.3 因子实验有预算和数据可复现问题</h3>
+<p>主因子实验中，Hybrid 的候选数量更大；虽然作者提供了预算分配和 ablation，但 end-to-end 表格不能单独证明“方法质量更高”。</p>
+<p>另外 A 股数据来自 Tushare Pro，原始数据不可随论文直接再分发。作者说会 release scripts、cached outputs、prompts、manifests，但在论文提交版本里还没有实际开源链接。因此当前复现性还要打一个问号。</p>
+<h3 id="84-symbolic-regression-结果并非全面胜出"><a class="markdownIt-Anchor" href="#84-symbolic-regression-结果并非全面胜出"></a> 8.4 Symbolic regression 结果并非全面胜出</h3>
 <p>LLM-SRBench 上 Overall：</p>
 <ul>
 <li>GP-only median R2 = 0.875</li>
 <li>Hybrid median R2 = 0.838</li>
 </ul>
-<p>所以不能说 Hybrid 在符号回归上整体优于 GP。更合理的解读是：Hybrid
-对一部分 GP catastrophic failures 有 rescue 效果，但不是主导方法。</p>
-<h3 id="cross-domain-scaling-不可迁移">8.5 Cross-domain scaling
-不可迁移</h3>
-<p>附录里 leave-one-domain-out validation 的 held-out R2
-全为负，作者也承认 quantitative exponents 是 domain-specific and
-non-transferable。</p>
-<p>这说明 Search Compression Principle
-更像定性诊断框架，而不是跨领域统一数值定律。</p>
-<h3 id="llm-seed-的语义引导来源需要更细拆">8.6 LLM seed
-的“语义引导”来源需要更细拆</h3>
-<p>Directed-vs-random escape 实验证明 retrieval-guided 比 shuffled
-更好，但在真实 LLM 场景中，LLM 的语义引导到底来自：</p>
+<p>所以不能说 Hybrid 在符号回归上整体优于 GP。更合理的解读是：Hybrid 对一部分 GP catastrophic failures 有 rescue 效果，但不是主导方法。</p>
+<h3 id="85-cross-domain-scaling-不可迁移"><a class="markdownIt-Anchor" href="#85-cross-domain-scaling-不可迁移"></a> 8.5 Cross-domain scaling 不可迁移</h3>
+<p>附录里 leave-one-domain-out validation 的 held-out R2 全为负，作者也承认 quantitative exponents 是 domain-specific and non-transferable。</p>
+<p>这说明 Search Compression Principle 更像定性诊断框架，而不是跨领域统一数值定律。</p>
+<h3 id="86-llm-seed-的语义引导来源需要更细拆"><a class="markdownIt-Anchor" href="#86-llm-seed-的语义引导来源需要更细拆"></a> 8.6 LLM seed 的“语义引导”来源需要更细拆</h3>
+<p>Directed-vs-random escape 实验证明 retrieval-guided 比 shuffled 更好，但在真实 LLM 场景中，LLM 的语义引导到底来自：</p>
 <ul>
 <li>训练语料中的领域先验</li>
 <li>prompt 中的 factor taxonomy</li>
@@ -1124,10 +1021,9 @@ non-transferable。</p>
 <li>表达式 parser 和 verifier 的选择偏差</li>
 </ul>
 <p>这些因素还没有被完全分离。</p>
-<h2 id="对量化研究的启发">9. 对量化研究的启发</h2>
+<h2 id="9-对量化研究的启发"><a class="markdownIt-Anchor" href="#9-对量化研究的启发"></a> 9. 对量化研究的启发</h2>
 <p>这篇论文对量化因子挖掘非常直接。</p>
-<h3 id="因子库应该监控-effective-rank">9.1 因子库应该监控 effective
-rank</h3>
+<h3 id="91-因子库应该监控-effective-rank"><a class="markdownIt-Anchor" href="#91-因子库应该监控-effective-rank"></a> 9.1 因子库应该监控 effective rank</h3>
 <p>不要只看因子数量，应该持续监控：</p>
 <ul>
 <li>pairwise correlation</li>
@@ -1136,48 +1032,36 @@ rank</h3>
 <li>accepted factors 的 residual ICIR</li>
 <li>新因子相对 archive 的 projection residual</li>
 </ul>
-<p>如果新因子越来越多，但 effective rank
-不涨，说明系统在重复挖同一类模式。</p>
-<h3 id="llm-更适合做-seed-generator不适合直接替代验证">9.2 LLM 更适合做
-seed generator，不适合直接替代验证</h3>
+<p>如果新因子越来越多，但 effective rank 不涨，说明系统在重复挖同一类模式。</p>
+<h3 id="92-llm-更适合做-seed-generator不适合直接替代验证"><a class="markdownIt-Anchor" href="#92-llm-更适合做-seed-generator不适合直接替代验证"></a> 9.2 LLM 更适合做 seed generator，不适合直接替代验证</h3>
 <p>论文里的 HybridFactor 不是让 LLM 直接给最终 alpha，而是：</p>
-<ol type="1">
+<ol>
 <li>让 LLM 提供非局部 seed。</li>
 <li>让结构化引擎扩展。</li>
 <li>让 verifier 过滤。</li>
 </ol>
-<p>这和实际量化系统更匹配。LLM
-的优势是提出人类可理解、结构上可能跳出局部空间的候选；最终是否有效仍必须靠严肃回测、去冗余、稳健性和交易成本检验。</p>
-<h3 id="随机探索不是便宜版-llm">9.3 随机探索不是便宜版 LLM</h3>
-<p>论文多次显示 random non-local search 几乎没有
-yield。对因子挖掘而言，简单随机拼表达式、随机加噪声、随机正交化，不太可能替代有领域先验的
-seed。</p>
+<p>这和实际量化系统更匹配。LLM 的优势是提出人类可理解、结构上可能跳出局部空间的候选；最终是否有效仍必须靠严肃回测、去冗余、稳健性和交易成本检验。</p>
+<h3 id="93-随机探索不是便宜版-llm"><a class="markdownIt-Anchor" href="#93-随机探索不是便宜版-llm"></a> 9.3 随机探索不是便宜版 LLM</h3>
+<p>论文多次显示 random non-local search 几乎没有 yield。对因子挖掘而言，简单随机拼表达式、随机加噪声、随机正交化，不太可能替代有领域先验的 seed。</p>
 <p>真正值得探索的是：</p>
 <ul>
 <li>基于历史失败案例的 retrieval-guided seed</li>
 <li>针对 weak eigenspace 的 directed generation</li>
 <li>先诊断 archive 缺失方向，再让 LLM 生成对应表达式</li>
 </ul>
-<h3 id="可以设计一个更工程化的因子发现-loop">9.4
-可以设计一个更工程化的因子发现 loop</h3>
+<h3 id="94-可以设计一个更工程化的因子发现-loop"><a class="markdownIt-Anchor" href="#94-可以设计一个更工程化的因子发现-loop"></a> 9.4 可以设计一个更工程化的因子发现 loop</h3>
 <p>一个可落地系统可以这样做：</p>
-<ol type="1">
+<ol>
 <li>维护 archive 的相关矩阵和 effective rank。</li>
 <li>对每轮新增因子计算 projection residual。</li>
-<li>当 <span class="math inline">\(r_{\text{eff}}/N\)</span>
-下降或增长停滞时，触发 LLM jump。</li>
-<li>让 LLM 根据 weak eigenspace、失败表达式、行业/市值分段残差生成
-seed。</li>
+<li>当 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mtext>eff</mtext></msub><mi mathvariant="normal">/</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">r_{\text{eff}}/N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">eff</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> 下降或增长停滞时，触发 LLM jump。</li>
+<li>让 LLM 根据 weak eigenspace、失败表达式、行业/市值分段残差生成 seed。</li>
 <li>对 seed 做 local expansion。</li>
 <li>验证 ICIR、相关性、残差 ICIR、稳定性、换手和成本。</li>
-<li>如果 PN/RSA 下降，则停止 LLM exploration 或换 prompt/retrieval
-source。</li>
+<li>如果 PN/RSA 下降，则停止 LLM exploration 或换 prompt/retrieval source。</li>
 </ol>
-<h2 id="和-alphaevolve-funsearch-一类方法的关系">10. 和 AlphaEvolve /
-FunSearch 一类方法的关系</h2>
-<p>这篇论文和 FunSearch、AlphaEvolve 一类 LLM-guided discovery
-系统的关系是：它不是提出一个更大的搜索系统，而是在解释 <strong>什么时候
-LLM-guided search 值得用</strong>。</p>
+<h2 id="10-和-alphaevolve-funsearch-一类方法的关系"><a class="markdownIt-Anchor" href="#10-和-alphaevolve-funsearch-一类方法的关系"></a> 10. 和 AlphaEvolve / FunSearch 一类方法的关系</h2>
+<p>这篇论文和 FunSearch、AlphaEvolve 一类 LLM-guided discovery 系统的关系是：它不是提出一个更大的搜索系统，而是在解释 <strong>什么时候 LLM-guided search 值得用</strong>。</p>
 <p>FunSearch/AlphaEvolve 的主线是：</p>
 <ul>
 <li>LLM 生成候选程序。</li>
@@ -1191,51 +1075,42 @@ LLM-guided search 值得用</strong>。</p>
 <li>LLM 生成的候选是否真的逃出 archive span？</li>
 <li>逃出去的部分是否仍与目标信号对齐？</li>
 </ul>
-<p>如果把本文思想嵌入这类系统，应该不是盲目让 LLM 继续生成，而是给
-archive 加一个 spectral diagnostic layer，用于决定：</p>
+<p>如果把本文思想嵌入这类系统，应该不是盲目让 LLM 继续生成，而是给 archive 加一个 spectral diagnostic layer，用于决定：</p>
 <ul>
 <li>是否继续本地变异</li>
 <li>是否请求 LLM 做非局部跳跃</li>
 <li>是否丢弃 novelty-only 候选</li>
 <li>是否停止当前方向的探索</li>
 </ul>
-<h2 id="我对论文可信度的判断">11. 我对论文可信度的判断</h2>
-<p>整体看，这篇论文的论证质量比较高，尤其因为它没有只靠一个大表格讲故事，而是用
-signal planting 和 directed-vs-random escape
-去隔离机制。它最可信的部分是：</p>
+<h2 id="11-我对论文可信度的判断"><a class="markdownIt-Anchor" href="#11-我对论文可信度的判断"></a> 11. 我对论文可信度的判断</h2>
+<p>整体看，这篇论文的论证质量比较高，尤其因为它没有只靠一个大表格讲故事，而是用 signal planting 和 directed-vs-random escape 去隔离机制。它最可信的部分是：</p>
 <ul>
 <li>novelty 不等于 predictive novelty。</li>
-<li>混合搜索的收益集中在 compressed 且 weak target-bearing
-directions。</li>
+<li>混合搜索的收益集中在 compressed 且 weak target-bearing directions。</li>
 <li>random orthogonal exploration 基本无效。</li>
 <li>当结构化空间接近 full rank，Hybrid advantage 消失。</li>
 </ul>
 <p>需要保留怀疑的部分是：</p>
 <ul>
-<li>Search Compression Principle
-目前更像候选定律，不是已证明的普适定律。</li>
+<li>Search Compression Principle 目前更像候选定律，不是已证明的普适定律。</li>
 <li>跨领域定量指数不可迁移。</li>
 <li>因子发现的真实可复现性受数据和未发布代码影响。</li>
 <li>LLM 语义引导在真实系统中的来源仍需更细拆分。</li>
 </ul>
-<p>所以我的结论是：<strong>这是一篇概念框架很强、机制实验比较扎实、工程启发很大的论文，但不应被当成“LLM
-混合搜索必胜”的实证证明。</strong></p>
-<h2 id="最值得记住的几个结论">12. 最值得记住的几个结论</h2>
-<ol type="1">
+<p>所以我的结论是：<strong>这是一篇概念框架很强、机制实验比较扎实、工程启发很大的论文，但不应被当成“LLM 混合搜索必胜”的实证证明。</strong></p>
+<h2 id="12-最值得记住的几个结论"><a class="markdownIt-Anchor" href="#12-最值得记住的几个结论"></a> 12. 最值得记住的几个结论</h2>
+<ol>
 <li>自动发现系统的瓶颈常常不是候选数量不足，而是假设空间被相关性压缩。</li>
 <li>本地结构化搜索的收益受 effective rank 限制。</li>
 <li>LLM 的价值不是生成“新东西”，而是生成有目标对齐的新方向。</li>
 <li>正交逃逸不等于有效发现，随机方向通常没有预测力。</li>
-<li>Hybrid search
-有用需要三个条件同时成立：compression、escape、alignment。</li>
+<li>Hybrid search 有用需要三个条件同时成立：compression、escape、alignment。</li>
 <li>如果任意条件失效，就应该减少或停止 LLM 非局部探索。</li>
-<li>在量化因子挖掘里，应该把 effective rank、residual ICIR、archive
-correlation 作为核心监控指标。</li>
+<li>在量化因子挖掘里，应该把 effective rank、residual ICIR、archive correlation 作为核心监控指标。</li>
 </ol>
-<h2 id="可复现和延展建议">13. 可复现和延展建议</h2>
+<h2 id="13-可复现和延展建议"><a class="markdownIt-Anchor" href="#13-可复现和延展建议"></a> 13. 可复现和延展建议</h2>
 <p>如果后续想基于这篇论文做实验，我建议从三个小实验开始：</p>
-<h3 id="在现有因子库上测-spectral-compression">13.1 在现有因子库上测
-spectral compression</h3>
+<h3 id="131-在现有因子库上测-spectral-compression"><a class="markdownIt-Anchor" href="#131-在现有因子库上测-spectral-compression"></a> 13.1 在现有因子库上测 spectral compression</h3>
 <p>输入一个因子矩阵，计算：</p>
 <ul>
 <li>correlation matrix</li>
@@ -1245,16 +1120,15 @@ spectral compression</h3>
 <li>mean absolute pairwise correlation</li>
 </ul>
 <p>观察随着新增因子进入，effective rank 是否继续增长。</p>
-<h3 id="对每个新因子计算-residual-icir">13.2 对每个新因子计算 residual
-ICIR</h3>
-<p>对候选因子 <span class="math inline">\(f\)</span>：</p>
-<ol type="1">
-<li>用 archive 里的因子回归解释 <span class="math inline">\(f\)</span>。</li>
-<li>得到 residual <span class="math inline">\(f_\perp\)</span>。</li>
-<li>对 <span class="math inline">\(f_\perp\)</span> 计算 ICIR。</li>
+<h3 id="132-对每个新因子计算-residual-icir"><a class="markdownIt-Anchor" href="#132-对每个新因子计算-residual-icir"></a> 13.2 对每个新因子计算 residual ICIR</h3>
+<p>对候选因子 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span>：</p>
+<ol>
+<li>用 archive 里的因子回归解释 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span>。</li>
+<li>得到 residual <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mo>⊥</mo></msub></mrow><annotation encoding="application/x-tex">f_\perp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">⊥</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。</li>
+<li>对 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mo>⊥</mo></msub></mrow><annotation encoding="application/x-tex">f_\perp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">⊥</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 计算 ICIR。</li>
 </ol>
 <p>如果原始 ICIR 高但 residual ICIR 低，说明它可能只是旧因子的变体。</p>
-<h3 id="做-directed-seed-ablation">13.3 做 directed seed ablation</h3>
+<h3 id="133-做-directed-seed-ablation"><a class="markdownIt-Anchor" href="#133-做-directed-seed-ablation"></a> 13.3 做 directed seed ablation</h3>
 <p>比较四种 seed：</p>
 <ul>
 <li>random symbolic seed</li>
@@ -1265,22 +1139,17 @@ ICIR</h3>
 <p>同时测：</p>
 <ul>
 <li>yield</li>
-<li><span class="math inline">\(d_\perp\)</span></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mo>⊥</mo></msub></mrow><annotation encoding="application/x-tex">d_\perp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">⊥</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
 <li>residual ICIR / PN</li>
 <li>与 archive 的最大相关性</li>
 </ul>
-<p>这样可以验证自己的系统里，LLM
-到底是在提供方向，还是只是生成看起来新颖的表达式。</p>
-<h2 id="总结">14. 总结</h2>
-<p>这篇论文最核心的价值，是把 LLM-guided discovery
-从“多生成一些候选”推进到“诊断何时需要有方向的非局部探索”。它提出的压缩、逃逸、对齐三元组非常适合做工程系统中的监控指标。</p>
-<p>对量化研究来说，它尤其有启发：因子挖掘不应该只追求表达式数量和单因子
-ICIR，而应该追踪新增因子是否提高 archive
-的有效维度，以及它在去掉已有因子解释部分之后是否仍然有预测力。</p>
+<p>这样可以验证自己的系统里，LLM 到底是在提供方向，还是只是生成看起来新颖的表达式。</p>
+<h2 id="14-总结"><a class="markdownIt-Anchor" href="#14-总结"></a> 14. 总结</h2>
+<p>这篇论文最核心的价值，是把 LLM-guided discovery 从“多生成一些候选”推进到“诊断何时需要有方向的非局部探索”。它提出的压缩、逃逸、对齐三元组非常适合做工程系统中的监控指标。</p>
+<p>对量化研究来说，它尤其有启发：因子挖掘不应该只追求表达式数量和单因子 ICIR，而应该追踪新增因子是否提高 archive 的有效维度，以及它在去掉已有因子解释部分之后是否仍然有预测力。</p>
 <p>最终可以把这篇论文压缩成一句工程原则：</p>
 <blockquote>
-<p>当本地搜索陷入相关性压缩时，让 LLM 生成能逃出 archive 且仍然对目标有
-residual signal 的 seed；否则，继续生成只是在浪费预算。</p>
+<p>当本地搜索陷入相关性压缩时，让 LLM 生成能逃出 archive 且仍然对目标有 residual signal 的 seed；否则，继续生成只是在浪费预算。</p>
 </blockquote>
 
                 

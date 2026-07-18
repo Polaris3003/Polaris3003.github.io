@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-011-147051939.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-06-27/pixiv-rank-008-146317762.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -285,7 +285,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          2.2k 字
         
       </span>
     
@@ -296,7 +296,7 @@
         
         
         
-          18 分钟
+          19 分钟
         
       </span>
     
@@ -357,13 +357,12 @@
       <div class="quant-doc-tape" aria-label="文章阅读信息">
         <div><span>类型</span><strong>核心课程</strong></div>
         <div><span>模块</span><strong>基础语言</strong></div>
-        <div><span>阅读</span><strong>约 6 分钟</strong></div>
+        <div><span>阅读</span><strong>约 7 分钟</strong></div>
         <div><span>材料</span><strong>10 节 · 1 段代码</strong></div>
       </div>
-    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题">本节解决什么问题</h2>
-<p>两只股票都可能平均赚
-5%，但一只每次上下剧烈波动，另一只较平稳；它们显然不是同一种投资。更重要的是，组合风险不只由每只股票自身波动决定，还取决于它们是否同时涨跌。本讲从两个经济状态手算期望、方差、协方差和相关系数。</p>
-</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标">前置知识与学习目标</h2>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
+<p>两只股票都可能平均赚 5%，但一只每次上下剧烈波动，另一只较平稳；它们显然不是同一种投资。更重要的是，组合风险不只由每只股票自身波动决定，还取决于它们是否同时涨跌。本讲从两个经济状态手算期望、方差、协方差和相关系数。</p>
+</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
 <p>前置知识是第 01 讲的简单收益和百分比。学完后你应该能：</p>
 <ul>
 <li>从离散状态计算期望、方差和标准差；</li>
@@ -372,117 +371,103 @@
 <li>说明相关不等于因果、波动不等于全部风险；</li>
 <li>判断何时可以近似做平方根年化。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算">直觉与手算</h2>
-<p>假设未来只有繁荣和衰退两种状态，各有 50% 概率。股票 A
-在两种状态的收益分别为 20%、-10%；股票 B 分别为 -5%、15%。</p>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
+<p>假设未来只有繁荣和衰退两种状态，各有 50% 概率。股票 A 在两种状态的收益分别为 20%、-10%；股票 B 分别为 -5%、15%。</p>
 <p>两只股票的期望收益都为 5%：</p>
-<p><span class="math display">\[
-E[R_A]=0.5\times20\%+0.5\times(-10\%)=5\%
-\]</span></p>
-<p>A 相对均值的偏差是 +15%、-15%，所以方差是
-0.5×0.15²+0.5×(-0.15)²=0.0225，标准差为 15%。B 的偏差是
--10%、+10%，方差为 0.01，标准差为 10%。</p>
-<p>两者在每个状态的偏差乘积都是 -0.015，因此协方差为 -0.015。除以
-0.15×0.10 后，相关系数为 -1：它们在这个两状态模型里完全反向。</p>
-<p>若各投一半，组合在繁荣和衰退的收益分别为 7.5% 与 2.5%，期望仍是
-5%，标准差却只有
-2.5%。分散化不是因为持有数量变多，而是因为不同资产的共同变化不完全一致。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式">定义与公式</h2>
-<h3 id="期望方差与标准差">期望、方差与标准差</h3>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo stretchy="false">[</mo><msub><mi>R</mi><mi>A</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mn>0.5</mn><mo>×</mo><mn>20</mn><mi mathvariant="normal">%</mi><mo>+</mo><mn>0.5</mn><mo>×</mo><mo stretchy="false">(</mo><mo>−</mo><mn>10</mn><mi mathvariant="normal">%</mi><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">E[R_A]=0.5\times20\%+0.5\times(-10\%)=5\%
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">%</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mord">0</span><span class="mord">%</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">5</span><span class="mord">%</span></span></span></span></span></p>
+<p>A 相对均值的偏差是 +15%、-15%，所以方差是 0.5×0.15²+0.5×(-0.15)²=0.0225，标准差为 15%。B 的偏差是 -10%、+10%，方差为 0.01，标准差为 10%。</p>
+<p>两者在每个状态的偏差乘积都是 -0.015，因此协方差为 -0.015。除以 0.15×0.10 后，相关系数为 -1：它们在这个两状态模型里完全反向。</p>
+<p>若各投一半，组合在繁荣和衰退的收益分别为 7.5% 与 2.5%，期望仍是 5%，标准差却只有 2.5%。分散化不是因为持有数量变多，而是因为不同资产的共同变化不完全一致。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
+<h3 id="期望-方差与标准差"><a class="markdownIt-Anchor" href="#期望-方差与标准差"></a> 期望、方差与标准差</h3>
 <p>离散状态 s 的概率为 p(s)，收益为 R(s)：</p>
-<p><span class="math display">\[
-E[R]=\sum_s p_sR_s
-\]</span></p>
-<p><span class="math display">\[
-Var(R)=\sum_s p_s(R_s-E[R])^2
-\]</span></p>
-<p><span class="math display">\[
-\sigma=\sqrt{Var(R)}
-\]</span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo stretchy="false">[</mo><mi>R</mi><mo stretchy="false">]</mo><mo>=</mo><munder><mo>∑</mo><mi>s</mi></munder><msub><mi>p</mi><mi>s</mi></msub><msub><mi>R</mi><mi>s</mi></msub></mrow><annotation encoding="application/x-tex">E[R]=\sum_s p_sR_s
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.3000100000000003em;vertical-align:-1.250005em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8999949999999999em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.250005em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>V</mi><mi>a</mi><mi>r</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mi>s</mi></munder><msub><mi>p</mi><mi>s</mi></msub><mo stretchy="false">(</mo><msub><mi>R</mi><mi>s</mi></msub><mo>−</mo><mi>E</mi><mo stretchy="false">[</mo><mi>R</mi><mo stretchy="false">]</mo><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">Var(R)=\sum_s p_s(R_s-E[R])^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.3000100000000003em;vertical-align:-1.250005em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8999949999999999em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.250005em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose">]</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>σ</mi><mo>=</mo><msqrt><mrow><mi>V</mi><mi>a</mi><mi>r</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sigma=\sqrt{Var(R)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.25612499999999994em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.983875em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose">)</span></span></span><span style="top:-2.9438750000000002em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg width="400em" height="1.28em" viewbox="0 0 400000 1296" preserveaspectratio="xMinYMin slice"><path d="M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25612499999999994em;"><span></span></span></span></span></span></span></span></span></span></p>
 <p>收益与标准差单位相同，方差单位是收益率平方。期望描述分布中心，标准差描述围绕中心的总离散程度；它不区分上涨和下跌。</p>
-<h3 id="协方差与相关系数">协方差与相关系数</h3>
-<p><span class="math display">\[
-Cov(X,Y)=E[(X-E[X])(Y-E[Y])]
-\]</span></p>
-<p><span class="math display">\[
-\rho_{XY}=Cov(X,Y)/(\sigma_X\sigma_Y)
-\]</span></p>
-<p>协方差保留两者尺度，相关系数消除尺度并限制在 -1 到
-1。若某变量标准差为零，相关系数没有定义。相关为零只表示无线性共同变化，并不保证独立。</p>
-<h3 id="组合风险">组合风险</h3>
+<h3 id="协方差与相关系数"><a class="markdownIt-Anchor" href="#协方差与相关系数"></a> 协方差与相关系数</h3>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>C</mi><mi>o</mi><mi>v</mi><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">,</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>E</mi><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>E</mi><mo stretchy="false">[</mo><mi>X</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>Y</mi><mo>−</mo><mi>E</mi><mo stretchy="false">[</mo><mi>Y</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">Cov(X,Y)=E[(X-E[X])(Y-E[Y])]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">]</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mclose">]</span><span class="mclose">)</span><span class="mclose">]</span></span></span></span></span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>ρ</mi><mrow><mi>X</mi><mi>Y</mi></mrow></msub><mo>=</mo><mi>C</mi><mi>o</mi><mi>v</mi><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">,</mo><mi>Y</mi><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><msub><mi>σ</mi><mi>X</mi></msub><msub><mi>σ</mi><mi>Y</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\rho_{XY}=Cov(X,Y)/(\sigma_X\sigma_Y)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mclose">)</span><span class="mord">/</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p>协方差保留两者尺度，相关系数消除尺度并限制在 -1 到 1。若某变量标准差为零，相关系数没有定义。相关为零只表示无线性共同变化，并不保证独立。</p>
+<h3 id="组合风险"><a class="markdownIt-Anchor" href="#组合风险"></a> 组合风险</h3>
 <p>两资产权重分别为 w 与 1-w：</p>
-<p><span class="math display">\[
-\sigma_p^2=w^2\sigma_A^2+(1-w)^2\sigma_B^2
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi>σ</mi><mi>p</mi><mn>2</mn></msubsup><mo>=</mo><msup><mi>w</mi><mn>2</mn></msup><msubsup><mi>σ</mi><mi>A</mi><mn>2</mn></msubsup><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>w</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><msubsup><mi>σ</mi><mi>B</mi><mn>2</mn></msubsup><mo>+</mo><mn>2</mn><mi>w</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>w</mi><mo stretchy="false">)</mo><mi>C</mi><mi>o</mi><mi>v</mi><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_p^2=w^2\sigma_A^2+(1-w)^2\sigma_B^2
 +2w(1-w)Cov(A,B)
-\]</span></p>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2472159999999999em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1111079999999998em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span></span></p>
 <p>一般 N 资产写成：</p>
-<p><span class="math display">\[
-\sigma_p^2=w^{\prime}\Sigma w
-\]</span></p>
-<p>w 是 N×1 权重，Σ 是 N×N
-协方差矩阵。对角线是各资产方差，非对角线是两两协方差。分散化效果来自非对角线，而不只是资产数量。</p>
-<h3 id="下行风险">下行风险</h3>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi>σ</mi><mi>p</mi><mn>2</mn></msubsup><mo>=</mo><msup><mi>w</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi mathvariant="normal">Σ</mi><mi>w</mi></mrow><annotation encoding="application/x-tex">\sigma_p^2=w^{\prime}\Sigma w
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2472159999999999em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.801892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.801892em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord">Σ</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span></span></span></p>
+<p>w 是 N×1 权重，Σ 是 N×N 协方差矩阵。对角线是各资产方差，非对角线是两两协方差。分散化效果来自非对角线，而不只是资产数量。</p>
+<h3 id="下行风险"><a class="markdownIt-Anchor" href="#下行风险"></a> 下行风险</h3>
 <p>如果投资者只关心低于目标 MAR 的结果，可定义下行偏差：</p>
-<p><span class="math display">\[
-DD=\sqrt{E[\min(R-MAR,0)^2]}
-\]</span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>D</mi><mi>D</mi><mo>=</mo><msqrt><mrow><mi>E</mi><mo stretchy="false">[</mo><mi>min</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>R</mi><mo>−</mo><mi>M</mi><mi>A</mi><mi>R</mi><mo separator="true">,</mo><mn>0</mn><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo stretchy="false">]</mo></mrow></msqrt></mrow><annotation encoding="application/x-tex">DD=\sqrt{E[\min(R-MAR,0)^2]}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.25612499999999994em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.983875em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mop">min</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">]</span></span></span><span style="top:-2.9438750000000002em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg width="400em" height="1.28em" viewbox="0 0 400000 1296" preserveaspectratio="xMinYMin slice"><path d="M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25612499999999994em;"><span></span></span></span></span></span></span></span></span></span></p>
 <p>目标可以是零、无风险收益或负债要求。下行风险更贴近“坏波动”，但结果依赖目标选择，且仍不能完整描述尾部、流动性和永久损失。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验">Python 最小实验</h2>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>prob = np.array([<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>])<br>a = np.array([<span class="hljs-number">0.20</span>, -<span class="hljs-number">0.10</span>])<br>b = np.array([-<span class="hljs-number">0.05</span>, <span class="hljs-number">0.15</span>])<br><br>mean_a = prob @ a<br>mean_b = prob @ b<br>var_a = prob @ (a - mean_a) ** <span class="hljs-number">2</span><br>var_b = prob @ (b - mean_b) ** <span class="hljs-number">2</span><br>cov_ab = prob @ ((a - mean_a) * (b - mean_b))<br>corr_ab = cov_ab / np.sqrt(var_a * var_b)<br><br>portfolio = <span class="hljs-number">0.5</span> * a + <span class="hljs-number">0.5</span> * b<br>mean_p = prob @ portfolio<br>std_p = np.sqrt(prob @ (portfolio - mean_p) ** <span class="hljs-number">2</span>)<br><br><span class="hljs-keyword">assert</span> np.isclose(corr_ab, -<span class="hljs-number">1.0</span>)<br><span class="hljs-keyword">assert</span> np.isclose(std_p, <span class="hljs-number">0.025</span>)<br><span class="hljs-built_in">print</span>(mean_a, np.sqrt(var_a), mean_b, np.sqrt(var_b), std_p)<br></code></pre></td></tr></table></figure>
-<p>代码使用的是已知状态概率，因此除以概率总和；从历史样本估计方差时，常使用
-T-1 分母修正自由度。这两种对象不要混写。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项">A 股实现注意事项</h2>
-<ol type="1">
-<li><strong>日收益不是独立同分布。</strong>
-涨跌停、停牌、波动聚集和政策事件会造成自相关与条件波动变化；日波动乘根号
-252 只是近似。</li>
-<li><strong>停牌与零收益。</strong>
-向前填价得到的零收益会机械压低波动率，但复牌跳跃和无法交易的风险仍存在。应同时报告停牌比例和可成交口径。</li>
-<li><strong>涨跌停截断。</strong>
-日收益被制度上限截断不等于真实经济价值只变化到该幅度，连续封板还会把调整分散到多日。</li>
-<li><strong>协方差估计。</strong>
-股票多、历史窗口短时，样本协方差矩阵噪声大、甚至不可逆；组合优化通常需要收缩、因子风险模型或更长但不过时的窗口。</li>
-<li><strong>不同交易历史。</strong>
-新股、退市股和长期停牌使收益面板不齐。用成对可得样本估协方差可能得到非半正定矩阵，必须检查特征值和统一样本规则。</li>
-<li><strong>相关结构会变。</strong>
-市场压力期资产相关性常上升，平静期估出的分散化不能当作危机期保证。</li>
+<p>代码使用的是已知状态概率，因此除以概率总和；从历史样本估计方差时，常使用 T-1 分母修正自由度。这两种对象不要混写。</p>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
+<ol>
+<li><strong>日收益不是独立同分布。</strong> 涨跌停、停牌、波动聚集和政策事件会造成自相关与条件波动变化；日波动乘根号 252 只是近似。</li>
+<li><strong>停牌与零收益。</strong> 向前填价得到的零收益会机械压低波动率，但复牌跳跃和无法交易的风险仍存在。应同时报告停牌比例和可成交口径。</li>
+<li><strong>涨跌停截断。</strong> 日收益被制度上限截断不等于真实经济价值只变化到该幅度，连续封板还会把调整分散到多日。</li>
+<li><strong>协方差估计。</strong> 股票多、历史窗口短时，样本协方差矩阵噪声大、甚至不可逆；组合优化通常需要收缩、因子风险模型或更长但不过时的窗口。</li>
+<li><strong>不同交易历史。</strong> 新股、退市股和长期停牌使收益面板不齐。用成对可得样本估协方差可能得到非半正定矩阵，必须检查特征值和统一样本规则。</li>
+<li><strong>相关结构会变。</strong> 市场压力期资产相关性常上升，平静期估出的分散化不能当作危机期保证。</li>
 </ol>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界">常见错误与边界</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
 <ul>
 <li>把方差与标准差混用：0.04 的方差对应 20% 标准差，不是 4%。</li>
 <li>用价格水平计算相关性，得到共同趋势；资产研究通常关注同频收益相关。</li>
-<li>看到相关为 0.8 就宣称 A 导致
-B。共同市场暴露、行业或宏观变量都可能解释相关。</li>
+<li>看到相关为 0.8 就宣称 A 导致 B。共同市场暴露、行业或宏观变量都可能解释相关。</li>
 <li>只按个股波动率选“低风险”组合，忽略高正相关使组合风险集中。</li>
 <li>用全样本协方差优化历史每个时点，泄露未来相关结构。</li>
 <li>把低波动等同于安全。负债、流动性、跳跃、信用和永久资本损失可能不体现在日标准差中。</li>
 </ul>
 <p>标准差对厚尾和异常值很敏感，但这不是删除极端日的理由。极端收益可能是风险最重要的部分；应该核验数据错误，并并列报告分位数、最大损失、回撤和压力情景。</p>
-</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文">原书与论文</h2>
-<p>原书第 1 章（PDF 文件页 7–26）讨论风险收益权衡，第 2
-章（27–96）进入模型和实证方法。本讲补足组合风险所需的概率语言。</p>
-<p>经典起点是 Harry Markowitz（1952）Portfolio
-Selection，论文把组合选择明确写成期望与方差问题：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/j.1540-6261.1952.tb01525.x">DOI
-10.1111/j.1540-6261.1952.tb01525.x</a>。阅读时重点问：方差是投资者真正关心的风险，还是一个可计算的代理？</p>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习">练习</h2>
-<ol type="1">
-<li>资产 C 在两状态收益为
-30%、-20%，概率仍各半。计算期望、方差和标准差。</li>
-<li>A 与另一资产 D 的收益分别为 20%、-10% 和 5%、5%。D
-的标准差为零，为什么相关系数无定义？它还能分散风险吗？</li>
-<li>两资产标准差均为 20%、权重各半，分别在相关系数 1、0、-1
-下计算组合标准差。</li>
-<li>使用一个月 A
-股日收益，比较“停牌日缺失”“停牌日填零”两种口径的波动率，并解释哪个数字适合估值、哪个不能代表可交易风险。</li>
+</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
+<p>原书第 1 章（PDF 文件页 7–26）讨论风险收益权衡，第 2 章（27–96）进入模型和实证方法。本讲补足组合风险所需的概率语言。</p>
+<p>经典起点是 Harry Markowitz（1952）Portfolio Selection，论文把组合选择明确写成期望与方差问题：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/j.1540-6261.1952.tb01525.x">DOI 10.1111/j.1540-6261.1952.tb01525.x</a>。阅读时重点问：方差是投资者真正关心的风险，还是一个可计算的代理？</p>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
+<ol>
+<li>资产 C 在两状态收益为 30%、-20%，概率仍各半。计算期望、方差和标准差。</li>
+<li>A 与另一资产 D 的收益分别为 20%、-10% 和 5%、5%。D 的标准差为零，为什么相关系数无定义？它还能分散风险吗？</li>
+<li>两资产标准差均为 20%、权重各半，分别在相关系数 1、0、-1 下计算组合标准差。</li>
+<li>使用一个月 A 股日收益，比较“停牌日缺失”“停牌日填零”两种口径的波动率，并解释哪个数字适合估值、哪个不能代表可交易风险。</li>
 </ol>
-<p>校验：第 3 题组合标准差依次为 20%、约
-14.14%、0%。最后一种结果依赖参数完全稳定，现实中几乎不会永久成立。</p>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步">小结与下一步</h2>
+<p>校验：第 3 题组合标准差依次为 20%、约 14.14%、0%。最后一种结果依赖参数完全稳定，现实中几乎不会永久成立。</p>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
 <p>期望告诉我们平均方向，方差和标准差描述总离散，协方差决定资产如何共同变化，相关系数提供无尺度比较。组合风险是权重与整个协方差矩阵的函数；分散化的前提是共同变化不完全一致。</p>
 <p>这些都是总体概念，但现实中我们只能看到有限样本。下一讲将讨论样本如何产生估计不确定性，以及显著性检验为什么很容易被误读。</p>
 </section></div>
