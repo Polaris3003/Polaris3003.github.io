@@ -18,16 +18,16 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="因子投资-19-风险模型组合优化与归因  本节解决什么问题 信号给出想买什么，风险模型与优化决定买多少。机构组合需要控制行业、风格、个股、换手和相对基准风险，并解释收益来自因子暴露还是选股。本讲从 Barra 风格横截面模型到均值—方差目标和归因。  前置知识与学习目标 需要第 02、05、10、17、18 讲。学完后能写出因子协方差与特质风险，理解纯因子组合、风险厌恶和约束，区分风险&#x2F;收益归因">
+    <meta name="description" content="QUANT RESEARCH NOTE         &#x2F;         LESSON 19              信号给出想买什么，风险模型与优化决定买多少。机构组合需要控制行业、风格、个股、换手和相对基准风险，并解释收益来自因子暴露还是选股。本讲从 Barra 风格横截面模型到均值—方差目标和归因。                类型核心课程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="因子投资-19-风险模型组合优化与归因">
 <meta property="og:url" content="https://www.polarishaw.top/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-19-%E9%A3%8E%E9%99%A9%E6%A8%A1%E5%9E%8B%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96%E4%B8%8E%E5%BD%92%E5%9B%A0/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="因子投资-19-风险模型组合优化与归因  本节解决什么问题 信号给出想买什么，风险模型与优化决定买多少。机构组合需要控制行业、风格、个股、换手和相对基准风险，并解释收益来自因子暴露还是选股。本讲从 Barra 风格横截面模型到均值—方差目标和归因。  前置知识与学习目标 需要第 02、05、10、17、18 讲。学完后能写出因子协方差与特质风险，理解纯因子组合、风险厌恶和约束，区分风险&#x2F;收益归因">
+<meta property="og:description" content="QUANT RESEARCH NOTE         &#x2F;         LESSON 19              信号给出想买什么，风险模型与优化决定买多少。机构组合需要控制行业、风格、个股、换手和相对基准风险，并解释收益来自因子暴露还是选股。本讲从 Barra 风格横截面模型到均值—方差目标和归因。                类型核心课程">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-008-146057185.jpg">
 <meta property="article:published_time" content="2026-07-17T09:10:00.000Z">
-<meta property="article:modified_time" content="2026-07-17T15:45:36.523Z">
+<meta property="article:modified_time" content="2026-07-18T11:06:03.300Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="因子投资">
 <meta property="article:tag" content="研究实践">
@@ -79,6 +79,7 @@
 <link rel="stylesheet" href="/css/cloudedGlass.css">
 <link rel="stylesheet" href="/css/mac.css">
 <link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
 
 
 
@@ -283,7 +284,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.6k 字
         
       </span>
     
@@ -294,7 +295,7 @@
         
         
         
-          13 分钟
+          14 分钟
         
       </span>
     
@@ -344,15 +345,28 @@
             
               <div class="markdown-body">
                 
-                <h1 id="因子投资-19-风险模型组合优化与归因"><a class="markdownIt-Anchor" href="#因子投资-19-风险模型组合优化与归因"></a> 因子投资-19-风险模型组合优化与归因</h1>
-<h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
+                <div class="quant-doc quant-doc--course">
+    <header class="quant-doc-header quant-doc-header--course">
+      <div class="quant-doc-kicker">
+        <span>QUANT RESEARCH NOTE</span>
+        <span aria-hidden="true">/</span>
+        <strong>LESSON 19</strong>
+      </div>
+      <p class="quant-doc-summary">信号给出想买什么，风险模型与优化决定买多少。机构组合需要控制行业、风格、个股、换手和相对基准风险，并解释收益来自因子暴露还是选股。本讲从 Barra 风格横截面模型到均值—方差目标和归因。</p>
+      <div class="quant-doc-tape" aria-label="文章阅读信息">
+        <div><span>类型</span><strong>核心课程</strong></div>
+        <div><span>模块</span><strong>研究工程</strong></div>
+        <div><span>阅读</span><strong>约 6 分钟</strong></div>
+        <div><span>材料</span><strong>10 节 · 1 段代码</strong></div>
+      </div>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
 <p>信号给出想买什么，风险模型与优化决定买多少。机构组合需要控制行业、风格、个股、换手和相对基准风险，并解释收益来自因子暴露还是选股。本讲从 Barra 风格横截面模型到均值—方差目标和归因。</p>
-<h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
+</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
 <p>需要第 02、05、10、17、18 讲。学完后能写出因子协方差与特质风险，理解纯因子组合、风险厌恶和约束，区分风险/收益归因与 Smart Beta，并说明预期收益误差为何通常比协方差误差更危险。</p>
-<h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
 <p>三个股票预期月收益 1%、0.8%、0.6%。若只最大化预期收益，会把全部资金投第一只；但第一只估计误差只要 -0.3%，排序就改变。优化器会把微小均值差当确定事实并形成极端权重。</p>
 <p>协方差虽也有误差，但它利用波动和共同运动的二阶信息，通常比均值更容易估。实践中常对 Alpha 强缩减、对权重加约束、对风险模型做结构化估计。</p>
-<h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
 <h3 id="横截面风险模型"><a class="markdownIt-Anchor" href="#横截面风险模型"></a> 横截面风险模型</h3>
 <p>每天或每期：</p>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>r</mi><mi>t</mi></msub><mo>=</mo><msub><mi>B</mi><mi>t</mi></msub><msub><mi>f</mi><mi>t</mi></msub><mo>+</mo><msub><mi>ε</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">r_t=B_tf_t+\varepsilon_t
@@ -382,11 +396,16 @@
 <p>收益归因可拆为基准、行业、风格、选股和交易贡献；风险归因拆为因子与特质方差/边际风险。两者不能混用：某因子贡献正收益不等于贡献了最多风险。</p>
 <h3 id="smart-beta"><a class="markdownIt-Anchor" href="#smart-beta"></a> Smart Beta</h3>
 <p>Smart Beta 用透明规则系统暴露价值、质量、低波等因子，介于市值指数与主动管理。规则透明不意味着被动或无模型：股票池、权重、再平衡、缓冲、容量和因子定义仍是主动选择。</p>
-<h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> scipy.optimize <span class="hljs-keyword">import</span> minimize<br><br>mu = np.array([<span class="hljs-number">0.010</span>, <span class="hljs-number">0.008</span>, <span class="hljs-number">0.006</span>])<br>cov = np.array([<br>    [<span class="hljs-number">0.040</span>, <span class="hljs-number">0.010</span>, <span class="hljs-number">0.008</span>],<br>    [<span class="hljs-number">0.010</span>, <span class="hljs-number">0.025</span>, <span class="hljs-number">0.006</span>],<br>    [<span class="hljs-number">0.008</span>, <span class="hljs-number">0.006</span>, <span class="hljs-number">0.016</span>],<br>])<br>gamma = <span class="hljs-number">4.0</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">objective</span>(<span class="hljs-params">w</span>):<br>    <span class="hljs-keyword">return</span> -(mu @ w - <span class="hljs-number">0.5</span> * gamma * (w @ cov @ w))<br><br>result = minimize(<br>    objective,<br>    x0=np.repeat(<span class="hljs-number">1</span> / <span class="hljs-number">3</span>, <span class="hljs-number">3</span>),<br>    method=<span class="hljs-string">&quot;SLSQP&quot;</span>,<br>    bounds=[(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.6</span>)] * <span class="hljs-number">3</span>,<br>    constraints=[&#123;<span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;eq&quot;</span>, <span class="hljs-string">&quot;fun&quot;</span>: <span class="hljs-keyword">lambda</span> w: w.<span class="hljs-built_in">sum</span>() - <span class="hljs-number">1</span>&#125;],<br>)<br>weights = result.x<br><br><span class="hljs-keyword">assert</span> result.success<br><span class="hljs-keyword">assert</span> np.isclose(weights.<span class="hljs-built_in">sum</span>(), <span class="hljs-number">1.0</span>, atol=<span class="hljs-number">1e-8</span>)<br><span class="hljs-keyword">assert</span> np.<span class="hljs-built_in">all</span>(weights &gt;= -<span class="hljs-number">1e-8</span>)<br><span class="hljs-keyword">assert</span> np.<span class="hljs-built_in">all</span>(weights &lt;= <span class="hljs-number">0.6</span> + <span class="hljs-number">1e-8</span>)<br><span class="hljs-built_in">print</span>(weights, mu @ weights, np.sqrt(weights @ cov @ weights))<br></code></pre></td></tr></table></figure>
-<h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
+<figure class="highlight python quant-code-block">
+      <figcaption class="quant-code-label">
+        <span aria-hidden="true"></span>
+        <strong>PYTHON</strong>
+        <small>可复现实验</small>
+      </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> scipy.optimize <span class="hljs-keyword">import</span> minimize<br><br>mu = np.array([<span class="hljs-number">0.010</span>, <span class="hljs-number">0.008</span>, <span class="hljs-number">0.006</span>])<br>cov = np.array([<br>    [<span class="hljs-number">0.040</span>, <span class="hljs-number">0.010</span>, <span class="hljs-number">0.008</span>],<br>    [<span class="hljs-number">0.010</span>, <span class="hljs-number">0.025</span>, <span class="hljs-number">0.006</span>],<br>    [<span class="hljs-number">0.008</span>, <span class="hljs-number">0.006</span>, <span class="hljs-number">0.016</span>],<br>])<br>gamma = <span class="hljs-number">4.0</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">objective</span>(<span class="hljs-params">w</span>):<br>    <span class="hljs-keyword">return</span> -(mu @ w - <span class="hljs-number">0.5</span> * gamma * (w @ cov @ w))<br><br>result = minimize(<br>    objective,<br>    x0=np.repeat(<span class="hljs-number">1</span> / <span class="hljs-number">3</span>, <span class="hljs-number">3</span>),<br>    method=<span class="hljs-string">&quot;SLSQP&quot;</span>,<br>    bounds=[(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.6</span>)] * <span class="hljs-number">3</span>,<br>    constraints=[&#123;<span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;eq&quot;</span>, <span class="hljs-string">&quot;fun&quot;</span>: <span class="hljs-keyword">lambda</span> w: w.<span class="hljs-built_in">sum</span>() - <span class="hljs-number">1</span>&#125;],<br>)<br>weights = result.x<br><br><span class="hljs-keyword">assert</span> result.success<br><span class="hljs-keyword">assert</span> np.isclose(weights.<span class="hljs-built_in">sum</span>(), <span class="hljs-number">1.0</span>, atol=<span class="hljs-number">1e-8</span>)<br><span class="hljs-keyword">assert</span> np.<span class="hljs-built_in">all</span>(weights &gt;= -<span class="hljs-number">1e-8</span>)<br><span class="hljs-keyword">assert</span> np.<span class="hljs-built_in">all</span>(weights &lt;= <span class="hljs-number">0.6</span> + <span class="hljs-number">1e-8</span>)<br><span class="hljs-built_in">print</span>(weights, mu @ weights, np.sqrt(weights @ cov @ weights))<br></code></pre></td></tr></table></figure>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
 <p>行业分类和风格暴露必须用历史版本；停牌与涨跌停股票要冻结或设置方向约束。市值、非线性规模、Beta、波动和流动性暴露需点时估计。交易单位、整手、现金、申赎与指数跟踪会让连续权重解不可直接成交。风险模型应在 2015 类压力期和板块制度变化中做回测外压力测试。</p>
-<h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
 <ul>
 <li>直接把历史平均收益当精确 μ，得到极端权重。</li>
 <li>用全样本协方差回到过去。</li>
@@ -397,9 +416,9 @@
 <li>Smart Beta 名称掩盖微盘、行业或不可交易暴露。</li>
 </ul>
 <p>预期收益误差常比协方差误差危险，因为最优化会主动追逐最高估计值。稳健做法包括信号缩减、排名化、权重上限、跟踪误差预算、成本惩罚和多情景优化。</p>
-<h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
+</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
 <p>原书第 4、5 章（PDF 文件页 158–223）对应因子组合、择时与实践。GRS 原文提醒模型评价要看联合定价误差：<a target="_blank" rel="noopener" href="https://doi.org/10.2307/1913625">DOI</a>。BAB 展示融资约束进入组合构造：<a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.jfineco.2013.10.005">DOI</a>。</p>
-<h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
 <ol>
 <li>将 μ 第一项减 0.3%，观察权重敏感性。</li>
 <li>从 B、F、D 重建 Σ，并检查半正定性。</li>
@@ -407,9 +426,9 @@
 <li>比较收益贡献、方差贡献和边际风险贡献。</li>
 <li>为一个价值 Smart Beta 指数写出缓冲和容量规则。</li>
 </ol>
-<h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
 <p>风险模型用少量行业/风格因子和特质风险描述协方差，优化在预期收益、风险、成本与约束间权衡，归因解释事后来源。最危险的输入通常是被过度相信的预期收益。接下来的实验将直接制造偏差、加入约束并完成端到端报告。</p>
-
+</section></div>
                 
               </div>
             
@@ -571,12 +590,6 @@
   
 
 
-  
-  
-
-
-
-
 
 
 
@@ -650,6 +663,34 @@
 </div>
 
   
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
   
   
 </div>
@@ -793,49 +834,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

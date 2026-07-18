@@ -18,16 +18,16 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="因子投资-16-中国A股与CH3模型  本节解决什么问题 把美国 FF3 原样搬到 A 股，会把中国特有的上市制度、壳价值和估值口径当作噪声。Liu、Stambaugh、Yuan（2019）提出 CH-3：先排除最小 30% 壳价值污染股票，再用 EP 构造价值因子。它是“制度进入模型定义”的典型案例。  前置知识与学习目标 需要第 08、11、15 讲。学完后你应该能：  精确写出 CH-3">
+    <meta name="description" content="QUANT RESEARCH NOTE         &#x2F;         LESSON 16              把美国 FF3 原样搬到 A 股，会把中国特有的上市制度、壳价值和估值口径当作噪声。Liu、Stambaugh、Yuan（2019）提出 CH-3：先排除最小 30% 壳价值污染股票，再用 EP 构造价值因子。它是“制度进入模型定义”的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="因子投资-16-中国A股与CH3模型">
 <meta property="og:url" content="https://www.polarishaw.top/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-16-%E4%B8%AD%E5%9B%BDA%E8%82%A1%E4%B8%8ECH3%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="因子投资-16-中国A股与CH3模型  本节解决什么问题 把美国 FF3 原样搬到 A 股，会把中国特有的上市制度、壳价值和估值口径当作噪声。Liu、Stambaugh、Yuan（2019）提出 CH-3：先排除最小 30% 壳价值污染股票，再用 EP 构造价值因子。它是“制度进入模型定义”的典型案例。  前置知识与学习目标 需要第 08、11、15 讲。学完后你应该能：  精确写出 CH-3">
+<meta property="og:description" content="QUANT RESEARCH NOTE         &#x2F;         LESSON 16              把美国 FF3 原样搬到 A 股，会把中国特有的上市制度、壳价值和估值口径当作噪声。Liu、Stambaugh、Yuan（2019）提出 CH-3：先排除最小 30% 壳价值污染股票，再用 EP 构造价值因子。它是“制度进入模型定义”的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-006-146914345.jpg">
 <meta property="article:published_time" content="2026-07-17T08:05:00.000Z">
-<meta property="article:modified_time" content="2026-07-17T15:45:23.336Z">
+<meta property="article:modified_time" content="2026-07-18T11:06:03.300Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="因子投资">
 <meta property="article:tag" content="多因子模型">
@@ -79,6 +79,7 @@
 <link rel="stylesheet" href="/css/cloudedGlass.css">
 <link rel="stylesheet" href="/css/mac.css">
 <link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
 
 
 
@@ -283,7 +284,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          2.2k 字
         
       </span>
     
@@ -294,7 +295,7 @@
         
         
         
-          18 分钟
+          19 分钟
         
       </span>
     
@@ -344,10 +345,23 @@
             
               <div class="markdown-body">
                 
-                <h1 id="因子投资-16-中国a股与ch3模型"><a class="markdownIt-Anchor" href="#因子投资-16-中国a股与ch3模型"></a> 因子投资-16-中国A股与CH3模型</h1>
-<h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
+                <div class="quant-doc quant-doc--course">
+    <header class="quant-doc-header quant-doc-header--course">
+      <div class="quant-doc-kicker">
+        <span>QUANT RESEARCH NOTE</span>
+        <span aria-hidden="true">/</span>
+        <strong>LESSON 16</strong>
+      </div>
+      <p class="quant-doc-summary">把美国 FF3 原样搬到 A 股，会把中国特有的上市制度、壳价值和估值口径当作噪声。Liu、Stambaugh、Yuan（2019）提出 CH-3：先排除最小 30% 壳价值污染股票，再用 EP 构造价值因子。它是“制度进入模型定义”的典型案例。</p>
+      <div class="quant-doc-tape" aria-label="文章阅读信息">
+        <div><span>类型</span><strong>核心课程</strong></div>
+        <div><span>模块</span><strong>经典因子</strong></div>
+        <div><span>阅读</span><strong>约 7 分钟</strong></div>
+        <div><span>材料</span><strong>10 节 · 1 段代码</strong></div>
+      </div>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
 <p>把美国 FF3 原样搬到 A 股，会把中国特有的上市制度、壳价值和估值口径当作噪声。Liu、Stambaugh、Yuan（2019）提出 CH-3：先排除最小 30% 壳价值污染股票，再用 EP 构造价值因子。它是“制度进入模型定义”的典型案例。</p>
-<h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
+</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
 <p>需要第 08、11、15 讲。学完后你应该能：</p>
 <ul>
 <li>精确写出 CH-3 的股票池与 2×3 构造；</li>
@@ -356,7 +370,7 @@
 <li>区分 CH-3 与机械复制 FF3；</li>
 <li>判断 2019 年论文证据为什么不能自动外推到 2026 年。</li>
 </ul>
-<h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
 <p>在审核制 IPO 稀缺时期，已上市小公司可能具有被借壳重组的期权价值。一个经营很差、盈利为负的微型公司，市值却因“壳”而不低；低 EP 会把它归为成长股，但其收益受壳交易而非成长基本面驱动。</p>
 <p>若这些股票数量多但总市值小：</p>
 <ul>
@@ -366,7 +380,7 @@
 <li>用这些因子解释普通经营公司时，模型反而变差。</li>
 </ul>
 <p>因此 CH-3 的第一步不是改变回归，而是改变要建模的经济总体：对“常规经营股票”构造因子，排除最小市值 30%。</p>
-<h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
 <h3 id="原论文形成池"><a class="markdownIt-Anchor" href="#原论文形成池"></a> 原论文形成池</h3>
 <p>原论文的关键过滤包括：</p>
 <ol>
@@ -398,7 +412,11 @@
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.274439em;vertical-align:-0.383108em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">n</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.891331em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span></span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
 <p>原论文在截面检验中还将正 EP 和负 EP 指示变量分开，避免把负盈利当作连续估值比率的一端。因子排序的精确盈利字段、公告滞后和负值处理应按原文与数据附录复现。</p>
 <h3 id="ch-3-与机械-ff3-的差异"><a class="markdownIt-Anchor" href="#ch-3-与机械-ff3-的差异"></a> CH-3 与机械 FF3 的差异</h3>
-<table>
+<div class="quant-table-shell">
+      <div class="quant-table-caption">
+        <span>定义与公式</span>
+        <small>5 行 × 3 列</small>
+      </div><div class="quant-table-scroll" role="region" tabindex="0" aria-label="定义与公式"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -433,12 +451,17 @@
 <td>解释常规 A 股的本地共同收益</td>
 </tr>
 </tbody>
-</table>
+</table></div></div>
 <p>CH-3 仍是三因子线性模型，不意味着中国市场只有三个风险/错误定价维度。</p>
-<h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br>portfolios = pd.Series(&#123;<br>    <span class="hljs-string">&quot;S/V&quot;</span>: <span class="hljs-number">0.030</span>,<br>    <span class="hljs-string">&quot;S/M&quot;</span>: <span class="hljs-number">0.020</span>,<br>    <span class="hljs-string">&quot;S/G&quot;</span>: <span class="hljs-number">0.010</span>,<br>    <span class="hljs-string">&quot;B/V&quot;</span>: <span class="hljs-number">0.020</span>,<br>    <span class="hljs-string">&quot;B/M&quot;</span>: <span class="hljs-number">0.015</span>,<br>    <span class="hljs-string">&quot;B/G&quot;</span>: <span class="hljs-number">0.005</span>,<br>&#125;)<br>small = portfolios[[<span class="hljs-string">&quot;S/V&quot;</span>, <span class="hljs-string">&quot;S/M&quot;</span>, <span class="hljs-string">&quot;S/G&quot;</span>]].mean()<br>big = portfolios[[<span class="hljs-string">&quot;B/V&quot;</span>, <span class="hljs-string">&quot;B/M&quot;</span>, <span class="hljs-string">&quot;B/G&quot;</span>]].mean()<br>value = portfolios[[<span class="hljs-string">&quot;S/V&quot;</span>, <span class="hljs-string">&quot;B/V&quot;</span>]].mean()<br>growth = portfolios[[<span class="hljs-string">&quot;S/G&quot;</span>, <span class="hljs-string">&quot;B/G&quot;</span>]].mean()<br><br>smb = small - big<br>vmg = value - growth<br><br><span class="hljs-keyword">assert</span> np.isclose(smb, <span class="hljs-number">0.0066666666666667</span>)<br><span class="hljs-keyword">assert</span> np.isclose(vmg, <span class="hljs-number">0.0175</span>)<br><span class="hljs-built_in">print</span>(smb, vmg)<br></code></pre></td></tr></table></figure>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
+<figure class="highlight python quant-code-block">
+      <figcaption class="quant-code-label">
+        <span aria-hidden="true"></span>
+        <strong>PYTHON</strong>
+        <small>可复现实验</small>
+      </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br>portfolios = pd.Series(&#123;<br>    <span class="hljs-string">&quot;S/V&quot;</span>: <span class="hljs-number">0.030</span>,<br>    <span class="hljs-string">&quot;S/M&quot;</span>: <span class="hljs-number">0.020</span>,<br>    <span class="hljs-string">&quot;S/G&quot;</span>: <span class="hljs-number">0.010</span>,<br>    <span class="hljs-string">&quot;B/V&quot;</span>: <span class="hljs-number">0.020</span>,<br>    <span class="hljs-string">&quot;B/M&quot;</span>: <span class="hljs-number">0.015</span>,<br>    <span class="hljs-string">&quot;B/G&quot;</span>: <span class="hljs-number">0.005</span>,<br>&#125;)<br>small = portfolios[[<span class="hljs-string">&quot;S/V&quot;</span>, <span class="hljs-string">&quot;S/M&quot;</span>, <span class="hljs-string">&quot;S/G&quot;</span>]].mean()<br>big = portfolios[[<span class="hljs-string">&quot;B/V&quot;</span>, <span class="hljs-string">&quot;B/M&quot;</span>, <span class="hljs-string">&quot;B/G&quot;</span>]].mean()<br>value = portfolios[[<span class="hljs-string">&quot;S/V&quot;</span>, <span class="hljs-string">&quot;B/V&quot;</span>]].mean()<br>growth = portfolios[[<span class="hljs-string">&quot;S/G&quot;</span>, <span class="hljs-string">&quot;B/G&quot;</span>]].mean()<br><br>smb = small - big<br>vmg = value - growth<br><br><span class="hljs-keyword">assert</span> np.isclose(smb, <span class="hljs-number">0.0066666666666667</span>)<br><span class="hljs-keyword">assert</span> np.isclose(vmg, <span class="hljs-number">0.0175</span>)<br><span class="hljs-built_in">print</span>(smb, vmg)<br></code></pre></td></tr></table></figure>
 <p>这段代码从六组合收益合成因子，没有实现股票筛选和权重。真正复现的难点在上游点时数据，而不是最后两行平均。</p>
-<h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
 <ol>
 <li><strong>壳价值并非常数。</strong> 注册制、退市常态化与并购重组规则会改变壳期权。2019 年论文识别的机制必须在新时期重新测量。</li>
 <li><strong>散户与机构结构。</strong> 历史 A 股个人投资者参与度较高，但账户、成交额和持仓占比不是一个指标，且随年份变化；不能用一个静态比例解释所有时期。</li>
@@ -450,7 +473,7 @@
 <li><strong>非流通股历史。</strong> 股权分置改革前后，总市值与可交易资本含义变化，长样本需分段。</li>
 <li><strong>公告与累计利润。</strong> EP 分子必须按首次公告日和 TTM 口径构造，不能用报告期末。</li>
 </ol>
-<h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
 <ul>
 <li>只排除当前最小 30%，而不是每月点时重排。</li>
 <li>用自由流通市值却声称精确复现原论文。</li>
@@ -462,10 +485,10 @@
 <li>忽略空头不可交易，直接把 VMG 当现实收益。</li>
 </ul>
 <p>排除底部 30% 是研究问题的一部分：若目标就是研究微盘与壳价值，就不应排除，而应单独构造壳因子或状态模型。CH-3 的选择适合“给常规经营股票定价”，不是所有 A 股研究的普遍清洗规则。</p>
-<h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
+</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
 <p>原书第 6 章（PDF 文件页 224–290）是中国因子实证主线，第 5 章（192–223）提供实践问题背景。</p>
 <p>核心原文：Liu、Stambaugh、Yuan（2019），Size and Value in China，Journal of Financial Economics 134(1)，48–69，<a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.jfineco.2019.03.008">DOI 10.1016/j.jfineco.2019.03.008</a>。阅读时把作者样本期、过滤条件和制度背景与当前研究期逐项对照。</p>
-<h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
 <ol>
 <li>每月排除最小 0%、10%、20%、30%、40%，比较 SMB、VMG 与市值覆盖。</li>
 <li>用 BM 和 EP 分别构造价值因子，比较相关、Alpha 和组内负盈利占比。</li>
@@ -474,10 +497,10 @@
 <li>将样本按制度阶段分段，检验底部 30% 的收益与经营基本面关系是否变化。</li>
 <li>说明目标为微盘策略时，为什么不能把 CH-3 过滤规则当普通数据清洗。</li>
 </ol>
-<h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
 <p>CH-3 用两个本地化选择改变 FF3：排除壳价值污染最强的最小 30%，以 EP 替代 BM，再在剩余股票中构造 MKT、SMB、VMG。它说明资产定价模型必须对应制度和研究总体。</p>
 <p>论文证据来自特定历史样本。进入 2026 年研究前，应重新验证壳机制、交易制度、板块结构和无风险代理，而不是把 CH-3 当永久真理。</p>
-
+</section></div>
                 
               </div>
             
@@ -639,12 +662,6 @@
   
 
 
-  
-  
-
-
-
-
 
 
 
@@ -718,6 +735,34 @@
 </div>
 
   
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
   
   
 </div>
@@ -861,49 +906,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

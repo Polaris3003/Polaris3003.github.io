@@ -18,16 +18,16 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="因子投资-实验03-构造多空因子组合  问题 把每月股票信号变成三分组，并计算等权和市值加权的高减低 H-L 收益。实验使用 3 个形成月、每月 6 只股票，最重要的不是 qcut，而是用明确的 signal_date 与 return_date 断言“收益发生在信号之后”。 最终实现接口： make_long_short(frame, signal, ret, groups&#x3D;3) → pd.D">
+    <meta name="description" content="QUANT RESEARCH NOTE         &#x2F;         LAB 03              把每月股票信号变成三分组，并计算等权和市值加权的高减低 H-L 收益。实验使用 3 个形成月、每月 6 只股票，最重要的不是 qcut，而是用明确的 signal_date 与 return_date 断言“收益发生在信号之后”。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="因子投资-实验03-构造多空因子组合">
 <meta property="og:url" content="https://www.polarishaw.top/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-%E5%AE%9E%E9%AA%8C03-%E6%9E%84%E9%80%A0%E5%A4%9A%E7%A9%BA%E5%9B%A0%E5%AD%90%E7%BB%84%E5%90%88/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="因子投资-实验03-构造多空因子组合  问题 把每月股票信号变成三分组，并计算等权和市值加权的高减低 H-L 收益。实验使用 3 个形成月、每月 6 只股票，最重要的不是 qcut，而是用明确的 signal_date 与 return_date 断言“收益发生在信号之后”。 最终实现接口： make_long_short(frame, signal, ret, groups&#x3D;3) → pd.D">
+<meta property="og:description" content="QUANT RESEARCH NOTE         &#x2F;         LAB 03              把每月股票信号变成三分组，并计算等权和市值加权的高减低 H-L 收益。实验使用 3 个形成月、每月 6 只股票，最重要的不是 qcut，而是用明确的 signal_date 与 return_date 断言“收益发生在信号之后”。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-002-147052101.jpg">
 <meta property="article:published_time" content="2026-07-17T06:00:00.000Z">
-<meta property="article:modified_time" content="2026-07-17T15:45:41.284Z">
+<meta property="article:modified_time" content="2026-07-18T11:06:03.300Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="因子投资">
 <meta property="article:tag" content="Python 实验">
@@ -79,6 +79,7 @@
 <link rel="stylesheet" href="/css/cloudedGlass.css">
 <link rel="stylesheet" href="/css/mac.css">
 <link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
 
 
 
@@ -283,7 +284,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          1.8k 字
         
       </span>
     
@@ -294,7 +295,7 @@
         
         
         
-          15 分钟
+          16 分钟
         
       </span>
     
@@ -344,20 +345,37 @@
             
               <div class="markdown-body">
                 
-                <h1 id="因子投资-实验03-构造多空因子组合"><a class="markdownIt-Anchor" href="#因子投资-实验03-构造多空因子组合"></a> 因子投资-实验03-构造多空因子组合</h1>
-<h2 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h2>
+                <div class="quant-doc quant-doc--lab">
+    <header class="quant-doc-header quant-doc-header--lab">
+      <div class="quant-doc-kicker">
+        <span>QUANT RESEARCH NOTE</span>
+        <span aria-hidden="true">/</span>
+        <strong>LAB 03</strong>
+      </div>
+      <p class="quant-doc-summary">把每月股票信号变成三分组，并计算等权和市值加权的高减低 H-L 收益。实验使用 3 个形成月、每月 6 只股票，最重要的不是 qcut，而是用明确的 signal_date 与 return_date 断言“收益发生在信号之后”。</p>
+      <div class="quant-doc-tape" aria-label="文章阅读信息">
+        <div><span>类型</span><strong>动手实验</strong></div>
+        <div><span>模块</span><strong>研究实验</strong></div>
+        <div><span>阅读</span><strong>约 11 分钟</strong></div>
+        <div><span>材料</span><strong>9 节 · 3 段代码</strong></div>
+      </div>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h2>
 <p>把每月股票信号变成三分组，并计算等权和市值加权的高减低 H-L 收益。实验使用 3 个形成月、每月 6 只股票，最重要的不是 qcut，而是用明确的 signal_date 与 return_date 断言“收益发生在信号之后”。</p>
 <p>最终实现接口：</p>
 <p><strong>make_long_short(frame, signal, ret, groups=3) → pd.DataFrame</strong></p>
 <p>输入是长表；输出每个形成月的低组、高组和 H-L 收益。</p>
-<h2 id="输入数据"><a class="markdownIt-Anchor" href="#输入数据"></a> 输入数据</h2>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="输入数据"><a class="markdownIt-Anchor" href="#输入数据"></a> 输入数据</h2>
 <p>每月包含 asset、signal、market_cap、next_return，并同时保存两个日期：</p>
 <ul>
 <li>signal_date：信号和形成权重可得的日期；</li>
 <li>return_date：next_return 对应持有期结束日期。</li>
 </ul>
 <p>第一月沿用第 09 讲六股票例子；第二月反转信号顺序；第三月让高组表现差于低组。这样能验证函数不会假设 H-L 永远为正。</p>
-<table>
+<div class="quant-table-shell">
+      <div class="quant-table-caption">
+        <span>输入数据</span>
+        <small>3 行 × 3 列</small>
+      </div><div class="quant-table-scroll" role="region" tabindex="0" aria-label="输入数据"><table>
 <thead>
 <tr>
 <th>形成月</th>
@@ -382,23 +400,42 @@
 <td>2%,1%,-1%,3%,2%,4%</td>
 </tr>
 </tbody>
-</table>
+</table></div></div>
 <p>市值固定为 10、20、30、40、50、100，只用于演示权重差异，不代表真实市场规模。</p>
-<h2 id="逐步实现"><a class="markdownIt-Anchor" href="#逐步实现"></a> 逐步实现</h2>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="逐步实现"><a class="markdownIt-Anchor" href="#逐步实现"></a> 逐步实现</h2>
 <h3 id="1-每期独立分组"><a class="markdownIt-Anchor" href="#1-每期独立分组"></a> 1. 每期独立分组</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>ranked = block[signal].rank(method=<span class="hljs-string">&quot;first&quot;</span>)<br>block[<span class="hljs-string">&quot;group&quot;</span>] = pd.qcut(ranked, groups, labels=<span class="hljs-literal">False</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python quant-code-block">
+      <figcaption class="quant-code-label">
+        <span aria-hidden="true"></span>
+        <strong>PYTHON</strong>
+        <small>可复现实验</small>
+      </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>ranked = block[signal].rank(method=<span class="hljs-string">&quot;first&quot;</span>)<br>block[<span class="hljs-string">&quot;group&quot;</span>] = pd.qcut(ranked, groups, labels=<span class="hljs-literal">False</span>)<br></code></pre></td></tr></table></figure>
 <p>rank(method=“first”) 给并列信号一个稳定顺序，适合确定性测试；真实研究中相同信号的拆分会引入任意性，更好的做法是预先规定断点与并列规则，并报告各组数量。</p>
 <h3 id="2-计算两种组内权重"><a class="markdownIt-Anchor" href="#2-计算两种组内权重"></a> 2. 计算两种组内权重</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>equal_high = high[ret].mean()<br>value_high = np.average(high[ret], weights=high[<span class="hljs-string">&quot;market_cap&quot;</span>])<br></code></pre></td></tr></table></figure>
+<figure class="highlight python quant-code-block">
+      <figcaption class="quant-code-label">
+        <span aria-hidden="true"></span>
+        <strong>PYTHON</strong>
+        <small>可复现实验</small>
+      </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>equal_high = high[ret].mean()<br>value_high = np.average(high[ret], weights=high[<span class="hljs-string">&quot;market_cap&quot;</span>])<br></code></pre></td></tr></table></figure>
 <p>等权回答平均股票表现，市值加权回答按资本规模配置的表现。market_cap 必须在 signal_date 已知，不能用收益期末市值。</p>
 <h3 id="3-构造-h-l-并保留两腿"><a class="markdownIt-Anchor" href="#3-构造-h-l-并保留两腿"></a> 3. 构造 H-L 并保留两腿</h3>
 <p>输出不仅保存 H-L，还保留 high 与 low。只看差值会掩盖收益究竟来自多头有效、空头暴跌还是两者共同贡献。</p>
-<h2 id="完整代码"><a class="markdownIt-Anchor" href="#完整代码"></a> 完整代码</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">make_long_short</span>(<span class="hljs-params">frame, signal, ret, groups=<span class="hljs-number">3</span></span>):<br>    required = &#123;<br>        <span class="hljs-string">&quot;signal_date&quot;</span>, <span class="hljs-string">&quot;return_date&quot;</span>, <span class="hljs-string">&quot;asset&quot;</span>,<br>        signal, ret, <span class="hljs-string">&quot;market_cap&quot;</span>,<br>    &#125;<br>    missing = required.difference(frame.columns)<br>    <span class="hljs-keyword">if</span> missing:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">f&quot;missing columns: <span class="hljs-subst">&#123;<span class="hljs-built_in">sorted</span>(missing)&#125;</span>&quot;</span>)<br>    <span class="hljs-keyword">if</span> groups &lt; <span class="hljs-number">2</span>:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;groups must be at least 2&quot;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (frame[<span class="hljs-string">&quot;return_date&quot;</span>] &gt; frame[<span class="hljs-string">&quot;signal_date&quot;</span>]).<span class="hljs-built_in">all</span>():<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;every return_date must be later than signal_date&quot;</span>)<br>    <span class="hljs-keyword">if</span> frame.duplicated([<span class="hljs-string">&quot;signal_date&quot;</span>, <span class="hljs-string">&quot;asset&quot;</span>]).<span class="hljs-built_in">any</span>():<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;signal_date and asset must be unique&quot;</span>)<br><br>    records = []<br>    <span class="hljs-keyword">for</span> date, original <span class="hljs-keyword">in</span> frame.groupby(<span class="hljs-string">&quot;signal_date&quot;</span>, sort=<span class="hljs-literal">True</span>):<br>        block = original.copy()<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(block) &lt; groups:<br>            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;not enough assets for requested groups&quot;</span>)<br>        ranked = block[signal].rank(method=<span class="hljs-string">&quot;first&quot;</span>)<br>        block[<span class="hljs-string">&quot;group&quot;</span>] = pd.qcut(ranked, groups, labels=<span class="hljs-literal">False</span>)<br><br>        low = block.loc[block[<span class="hljs-string">&quot;group&quot;</span>] == <span class="hljs-number">0</span>]<br>        high = block.loc[block[<span class="hljs-string">&quot;group&quot;</span>] == groups - <span class="hljs-number">1</span>]<br>        equal_low = low[ret].mean()<br>        equal_high = high[ret].mean()<br>        value_low = np.average(low[ret], weights=low[<span class="hljs-string">&quot;market_cap&quot;</span>])<br>        value_high = np.average(high[ret], weights=high[<span class="hljs-string">&quot;market_cap&quot;</span>])<br><br>        records.append(&#123;<br>            <span class="hljs-string">&quot;signal_date&quot;</span>: date,<br>            <span class="hljs-string">&quot;return_date&quot;</span>: block[<span class="hljs-string">&quot;return_date&quot;</span>].iloc[<span class="hljs-number">0</span>],<br>            <span class="hljs-string">&quot;equal_low&quot;</span>: equal_low,<br>            <span class="hljs-string">&quot;equal_high&quot;</span>: equal_high,<br>            <span class="hljs-string">&quot;equal_hl&quot;</span>: equal_high - equal_low,<br>            <span class="hljs-string">&quot;value_low&quot;</span>: value_low,<br>            <span class="hljs-string">&quot;value_high&quot;</span>: value_high,<br>            <span class="hljs-string">&quot;value_hl&quot;</span>: value_high - value_low,<br>        &#125;)<br><br>    result = pd.DataFrame(records).sort_values(<span class="hljs-string">&quot;signal_date&quot;</span>).reset_index(drop=<span class="hljs-literal">True</span>)<br>    <span class="hljs-keyword">assert</span> (result[<span class="hljs-string">&quot;return_date&quot;</span>] &gt; result[<span class="hljs-string">&quot;signal_date&quot;</span>]).<span class="hljs-built_in">all</span>()<br>    <span class="hljs-keyword">assert</span> np.allclose(<br>        result[<span class="hljs-string">&quot;equal_hl&quot;</span>],<br>        result[<span class="hljs-string">&quot;equal_high&quot;</span>] - result[<span class="hljs-string">&quot;equal_low&quot;</span>],<br>    )<br>    <span class="hljs-keyword">assert</span> np.allclose(<br>        result[<span class="hljs-string">&quot;value_hl&quot;</span>],<br>        result[<span class="hljs-string">&quot;value_high&quot;</span>] - result[<span class="hljs-string">&quot;value_low&quot;</span>],<br>    )<br>    <span class="hljs-keyword">return</span> result<br><br><br>assets = <span class="hljs-built_in">list</span>(<span class="hljs-string">&quot;ABCDEF&quot;</span>)<br>caps = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>, <span class="hljs-number">100</span>]<br>signal_dates = pd.to_datetime([<span class="hljs-string">&quot;2026-01-31&quot;</span>, <span class="hljs-string">&quot;2026-02-28&quot;</span>, <span class="hljs-string">&quot;2026-03-31&quot;</span>])<br>return_dates = pd.to_datetime([<span class="hljs-string">&quot;2026-02-28&quot;</span>, <span class="hljs-string">&quot;2026-03-31&quot;</span>, <span class="hljs-string">&quot;2026-04-30&quot;</span>])<br>signals = [<br>    [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],<br>    [<span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>],<br>    [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>],<br>]<br>future_returns = [<br>    [<span class="hljs-number">0.01</span>, -<span class="hljs-number">0.02</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.04</span>, <span class="hljs-number">0.03</span>],<br>    [-<span class="hljs-number">0.01</span>, <span class="hljs-number">0.03</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.01</span>, -<span class="hljs-number">0.02</span>],<br>    [<span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span>, -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.03</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.04</span>],<br>]<br><br>rows = []<br><span class="hljs-keyword">for</span> s_date, r_date, sig, ret <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(<br>    signal_dates, return_dates, signals, future_returns<br>):<br>    <span class="hljs-keyword">for</span> asset, cap, value, next_return <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(assets, caps, sig, ret):<br>        rows.append(&#123;<br>            <span class="hljs-string">&quot;signal_date&quot;</span>: s_date,<br>            <span class="hljs-string">&quot;return_date&quot;</span>: r_date,<br>            <span class="hljs-string">&quot;asset&quot;</span>: asset,<br>            <span class="hljs-string">&quot;signal&quot;</span>: value,<br>            <span class="hljs-string">&quot;market_cap&quot;</span>: cap,<br>            <span class="hljs-string">&quot;next_return&quot;</span>: next_return,<br>        &#125;)<br><br>sample = pd.DataFrame(rows)<br>factor = make_long_short(sample, <span class="hljs-string">&quot;signal&quot;</span>, <span class="hljs-string">&quot;next_return&quot;</span>, groups=<span class="hljs-number">3</span>)<br><br><span class="hljs-keyword">assert</span> np.isclose(factor.loc[<span class="hljs-number">0</span>, <span class="hljs-string">&quot;equal_hl&quot;</span>], <span class="hljs-number">0.04</span>)<br><span class="hljs-keyword">assert</span> np.isclose(factor.loc[<span class="hljs-number">1</span>, <span class="hljs-string">&quot;equal_hl&quot;</span>], <span class="hljs-number">0.015</span>)<br><span class="hljs-keyword">assert</span> np.isclose(factor.loc[<span class="hljs-number">2</span>, <span class="hljs-string">&quot;equal_hl&quot;</span>], -<span class="hljs-number">0.01</span>)<br><span class="hljs-built_in">print</span>(factor.<span class="hljs-built_in">round</span>(<span class="hljs-number">6</span>).to_string(index=<span class="hljs-literal">False</span>))<br></code></pre></td></tr></table></figure>
-<h2 id="预期输出"><a class="markdownIt-Anchor" href="#预期输出"></a> 预期输出</h2>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="完整代码"><a class="markdownIt-Anchor" href="#完整代码"></a> 完整代码</h2>
+<figure class="highlight python quant-code-block">
+      <figcaption class="quant-code-label">
+        <span aria-hidden="true"></span>
+        <strong>PYTHON</strong>
+        <small>可复现实验</small>
+      </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">make_long_short</span>(<span class="hljs-params">frame, signal, ret, groups=<span class="hljs-number">3</span></span>):<br>    required = &#123;<br>        <span class="hljs-string">&quot;signal_date&quot;</span>, <span class="hljs-string">&quot;return_date&quot;</span>, <span class="hljs-string">&quot;asset&quot;</span>,<br>        signal, ret, <span class="hljs-string">&quot;market_cap&quot;</span>,<br>    &#125;<br>    missing = required.difference(frame.columns)<br>    <span class="hljs-keyword">if</span> missing:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">f&quot;missing columns: <span class="hljs-subst">&#123;<span class="hljs-built_in">sorted</span>(missing)&#125;</span>&quot;</span>)<br>    <span class="hljs-keyword">if</span> groups &lt; <span class="hljs-number">2</span>:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;groups must be at least 2&quot;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (frame[<span class="hljs-string">&quot;return_date&quot;</span>] &gt; frame[<span class="hljs-string">&quot;signal_date&quot;</span>]).<span class="hljs-built_in">all</span>():<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;every return_date must be later than signal_date&quot;</span>)<br>    <span class="hljs-keyword">if</span> frame.duplicated([<span class="hljs-string">&quot;signal_date&quot;</span>, <span class="hljs-string">&quot;asset&quot;</span>]).<span class="hljs-built_in">any</span>():<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;signal_date and asset must be unique&quot;</span>)<br><br>    records = []<br>    <span class="hljs-keyword">for</span> date, original <span class="hljs-keyword">in</span> frame.groupby(<span class="hljs-string">&quot;signal_date&quot;</span>, sort=<span class="hljs-literal">True</span>):<br>        block = original.copy()<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(block) &lt; groups:<br>            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;not enough assets for requested groups&quot;</span>)<br>        ranked = block[signal].rank(method=<span class="hljs-string">&quot;first&quot;</span>)<br>        block[<span class="hljs-string">&quot;group&quot;</span>] = pd.qcut(ranked, groups, labels=<span class="hljs-literal">False</span>)<br><br>        low = block.loc[block[<span class="hljs-string">&quot;group&quot;</span>] == <span class="hljs-number">0</span>]<br>        high = block.loc[block[<span class="hljs-string">&quot;group&quot;</span>] == groups - <span class="hljs-number">1</span>]<br>        equal_low = low[ret].mean()<br>        equal_high = high[ret].mean()<br>        value_low = np.average(low[ret], weights=low[<span class="hljs-string">&quot;market_cap&quot;</span>])<br>        value_high = np.average(high[ret], weights=high[<span class="hljs-string">&quot;market_cap&quot;</span>])<br><br>        records.append(&#123;<br>            <span class="hljs-string">&quot;signal_date&quot;</span>: date,<br>            <span class="hljs-string">&quot;return_date&quot;</span>: block[<span class="hljs-string">&quot;return_date&quot;</span>].iloc[<span class="hljs-number">0</span>],<br>            <span class="hljs-string">&quot;equal_low&quot;</span>: equal_low,<br>            <span class="hljs-string">&quot;equal_high&quot;</span>: equal_high,<br>            <span class="hljs-string">&quot;equal_hl&quot;</span>: equal_high - equal_low,<br>            <span class="hljs-string">&quot;value_low&quot;</span>: value_low,<br>            <span class="hljs-string">&quot;value_high&quot;</span>: value_high,<br>            <span class="hljs-string">&quot;value_hl&quot;</span>: value_high - value_low,<br>        &#125;)<br><br>    result = pd.DataFrame(records).sort_values(<span class="hljs-string">&quot;signal_date&quot;</span>).reset_index(drop=<span class="hljs-literal">True</span>)<br>    <span class="hljs-keyword">assert</span> (result[<span class="hljs-string">&quot;return_date&quot;</span>] &gt; result[<span class="hljs-string">&quot;signal_date&quot;</span>]).<span class="hljs-built_in">all</span>()<br>    <span class="hljs-keyword">assert</span> np.allclose(<br>        result[<span class="hljs-string">&quot;equal_hl&quot;</span>],<br>        result[<span class="hljs-string">&quot;equal_high&quot;</span>] - result[<span class="hljs-string">&quot;equal_low&quot;</span>],<br>    )<br>    <span class="hljs-keyword">assert</span> np.allclose(<br>        result[<span class="hljs-string">&quot;value_hl&quot;</span>],<br>        result[<span class="hljs-string">&quot;value_high&quot;</span>] - result[<span class="hljs-string">&quot;value_low&quot;</span>],<br>    )<br>    <span class="hljs-keyword">return</span> result<br><br><br>assets = <span class="hljs-built_in">list</span>(<span class="hljs-string">&quot;ABCDEF&quot;</span>)<br>caps = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>, <span class="hljs-number">100</span>]<br>signal_dates = pd.to_datetime([<span class="hljs-string">&quot;2026-01-31&quot;</span>, <span class="hljs-string">&quot;2026-02-28&quot;</span>, <span class="hljs-string">&quot;2026-03-31&quot;</span>])<br>return_dates = pd.to_datetime([<span class="hljs-string">&quot;2026-02-28&quot;</span>, <span class="hljs-string">&quot;2026-03-31&quot;</span>, <span class="hljs-string">&quot;2026-04-30&quot;</span>])<br>signals = [<br>    [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],<br>    [<span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>],<br>    [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>],<br>]<br>future_returns = [<br>    [<span class="hljs-number">0.01</span>, -<span class="hljs-number">0.02</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.04</span>, <span class="hljs-number">0.03</span>],<br>    [-<span class="hljs-number">0.01</span>, <span class="hljs-number">0.03</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.01</span>, -<span class="hljs-number">0.02</span>],<br>    [<span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span>, -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.03</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.04</span>],<br>]<br><br>rows = []<br><span class="hljs-keyword">for</span> s_date, r_date, sig, ret <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(<br>    signal_dates, return_dates, signals, future_returns<br>):<br>    <span class="hljs-keyword">for</span> asset, cap, value, next_return <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(assets, caps, sig, ret):<br>        rows.append(&#123;<br>            <span class="hljs-string">&quot;signal_date&quot;</span>: s_date,<br>            <span class="hljs-string">&quot;return_date&quot;</span>: r_date,<br>            <span class="hljs-string">&quot;asset&quot;</span>: asset,<br>            <span class="hljs-string">&quot;signal&quot;</span>: value,<br>            <span class="hljs-string">&quot;market_cap&quot;</span>: cap,<br>            <span class="hljs-string">&quot;next_return&quot;</span>: next_return,<br>        &#125;)<br><br>sample = pd.DataFrame(rows)<br>factor = make_long_short(sample, <span class="hljs-string">&quot;signal&quot;</span>, <span class="hljs-string">&quot;next_return&quot;</span>, groups=<span class="hljs-number">3</span>)<br><br><span class="hljs-keyword">assert</span> np.isclose(factor.loc[<span class="hljs-number">0</span>, <span class="hljs-string">&quot;equal_hl&quot;</span>], <span class="hljs-number">0.04</span>)<br><span class="hljs-keyword">assert</span> np.isclose(factor.loc[<span class="hljs-number">1</span>, <span class="hljs-string">&quot;equal_hl&quot;</span>], <span class="hljs-number">0.015</span>)<br><span class="hljs-keyword">assert</span> np.isclose(factor.loc[<span class="hljs-number">2</span>, <span class="hljs-string">&quot;equal_hl&quot;</span>], -<span class="hljs-number">0.01</span>)<br><span class="hljs-built_in">print</span>(factor.<span class="hljs-built_in">round</span>(<span class="hljs-number">6</span>).to_string(index=<span class="hljs-literal">False</span>))<br></code></pre></td></tr></table></figure>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="预期输出"><a class="markdownIt-Anchor" href="#预期输出"></a> 预期输出</h2>
 <p>等权 H-L 依次为 4%、1.5%、-1%。第一月市值加权 H-L 为约 4.333%。第三月为负很重要：函数只实现定义，不保证因子有效。</p>
 <p>输出列：</p>
-<table>
+<div class="quant-table-shell">
+      <div class="quant-table-caption">
+        <span>预期输出</span>
+        <small>6 行 × 2 列</small>
+      </div><div class="quant-table-scroll" role="region" tabindex="0" aria-label="预期输出"><table>
 <thead>
 <tr>
 <th>列</th>
@@ -431,9 +468,9 @@
 <td>市值加权高组减低组</td>
 </tr>
 </tbody>
-</table>
+</table></div></div>
 <p>三个月太短，不能计算有意义的年化、Sharpe 或 t 值。实验只验证组合形成逻辑。</p>
-<h2 id="断言"><a class="markdownIt-Anchor" href="#断言"></a> 断言</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="断言"><a class="markdownIt-Anchor" href="#断言"></a> 断言</h2>
 <ol>
 <li>每一行 return_date 严格晚于 signal_date。</li>
 <li>signal_date、asset 联合唯一，防止同一股票重复计权。</li>
@@ -442,11 +479,11 @@
 <li>第三月 H-L 为负，证明实现没有强制输出正收益。</li>
 </ol>
 <p>真实项目还应断言每期组数、每组数量、权重和、权重非负、形成日市值可得、收益缺失原因和可交易状态。</p>
-<h2 id="结果解释"><a class="markdownIt-Anchor" href="#结果解释"></a> 结果解释</h2>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="结果解释"><a class="markdownIt-Anchor" href="#结果解释"></a> 结果解释</h2>
 <p>等权与市值加权不同，不是实现误差，而是研究对象不同。市值加权降低小股票影响，但可能由少数大股票决定；等权展示平均股票效应，却隐含频繁再平衡和更高容量压力。</p>
 <p>H-L 只是因子模拟组合。A 股空头组不必然可卖空，所以它可以用来做资产定价解释，却不能直接当作可执行策略收益。落地多头组合时，应分别评价 high 相对基准的主动收益、换手和约束。</p>
 <p>每月只使用当月 signal 排名，收益发生在下一日期。若把 next_return 放入分组或使用期末市值加权，代码仍可能运行，却会产生未来函数；日期和列级断言比肉眼看净值更可靠。</p>
-<h2 id="常见故障"><a class="markdownIt-Anchor" href="#常见故障"></a> 常见故障</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见故障"><a class="markdownIt-Anchor" href="#常见故障"></a> 常见故障</h2>
 <ul>
 <li>qcut 因大量并列值无法形成指定组数；先定义并列与断点规则。</li>
 <li>每月股票数少于 groups，或某组为空。</li>
@@ -457,7 +494,7 @@
 <li>只存 H-L，无法诊断哪条腿和哪些股票贡献结果。</li>
 <li>将研究多空组合直接视为可卖空 A 股组合。</li>
 </ul>
-<h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
 <ol>
 <li>把 groups 改为 2 和 6，比较 H-L 与每组样本数。</li>
 <li>给两只股票相同 signal，分别使用 first、average 和固定证券 ID 规则，观察分组。</li>
@@ -466,7 +503,7 @@
 <li>扩展函数支持参考断点，而非每期 qcut。</li>
 <li>对多头 High 组选择可比基准，计算主动收益，不使用不可实现空头腿。</li>
 </ol>
-
+</section></div>
                 
               </div>
             
@@ -628,12 +665,6 @@
   
 
 
-  
-  
-
-
-
-
 
 
 
@@ -707,6 +738,34 @@
 </div>
 
   
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
   
   
 </div>
@@ -850,49 +909,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

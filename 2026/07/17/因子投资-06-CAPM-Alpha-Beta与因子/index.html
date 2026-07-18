@@ -18,16 +18,16 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="因子投资-06-CAPM-Alpha-Beta与因子  本节解决什么问题 为什么有些资产平均收益更高？CAPM 给出一个最简答案：只有不能通过持有市场组合分散掉的市场风险应获得风险补偿。它同时建立了 Beta、Alpha 和因子模型的基本语言，也是后续多因子研究的零号基准。  前置知识与学习目标 需要第 04 讲 OLS 和第 05 讲组合、基准。学完后你应该能：  写出 CAPM 期望收益关系">
+    <meta name="description" content="QUANT RESEARCH NOTE         &#x2F;         LESSON 06              为什么有些资产平均收益更高？CAPM 给出一个最简答案：只有不能通过持有市场组合分散掉的市场风险应获得风险补偿。它同时建立了 Beta、Alpha 和因子模型的基本语言，也是后续多因子研究的零号基准。                类型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="因子投资-06-CAPM-Alpha-Beta与因子">
 <meta property="og:url" content="https://www.polarishaw.top/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-06-CAPM-Alpha-Beta%E4%B8%8E%E5%9B%A0%E5%AD%90/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="因子投资-06-CAPM-Alpha-Beta与因子  本节解决什么问题 为什么有些资产平均收益更高？CAPM 给出一个最简答案：只有不能通过持有市场组合分散掉的市场风险应获得风险补偿。它同时建立了 Beta、Alpha 和因子模型的基本语言，也是后续多因子研究的零号基准。  前置知识与学习目标 需要第 04 讲 OLS 和第 05 讲组合、基准。学完后你应该能：  写出 CAPM 期望收益关系">
+<meta property="og:description" content="QUANT RESEARCH NOTE         &#x2F;         LESSON 06              为什么有些资产平均收益更高？CAPM 给出一个最简答案：只有不能通过持有市场组合分散掉的市场风险应获得风险补偿。它同时建立了 Beta、Alpha 和因子模型的基本语言，也是后续多因子研究的零号基准。                类型">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-004-146867131.jpg">
 <meta property="article:published_time" content="2026-07-17T05:00:00.000Z">
-<meta property="article:modified_time" content="2026-07-17T15:45:11.145Z">
+<meta property="article:modified_time" content="2026-07-18T11:06:03.300Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="因子投资">
 <meta property="article:tag" content="研究方法">
@@ -79,6 +79,7 @@
 <link rel="stylesheet" href="/css/cloudedGlass.css">
 <link rel="stylesheet" href="/css/mac.css">
 <link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
 
 
 
@@ -283,7 +284,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2k 字
         
       </span>
     
@@ -344,10 +345,23 @@
             
               <div class="markdown-body">
                 
-                <h1 id="因子投资-06-capm-alpha-beta与因子"><a class="markdownIt-Anchor" href="#因子投资-06-capm-alpha-beta与因子"></a> 因子投资-06-CAPM-Alpha-Beta与因子</h1>
-<h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
+                <div class="quant-doc quant-doc--course">
+    <header class="quant-doc-header quant-doc-header--course">
+      <div class="quant-doc-kicker">
+        <span>QUANT RESEARCH NOTE</span>
+        <span aria-hidden="true">/</span>
+        <strong>LESSON 06</strong>
+      </div>
+      <p class="quant-doc-summary">为什么有些资产平均收益更高？CAPM 给出一个最简答案：只有不能通过持有市场组合分散掉的市场风险应获得风险补偿。它同时建立了 Beta、Alpha 和因子模型的基本语言，也是后续多因子研究的零号基准。</p>
+      <div class="quant-doc-tape" aria-label="文章阅读信息">
+        <div><span>类型</span><strong>核心课程</strong></div>
+        <div><span>模块</span><strong>研究方法</strong></div>
+        <div><span>阅读</span><strong>约 7 分钟</strong></div>
+        <div><span>材料</span><strong>10 节 · 1 段代码</strong></div>
+      </div>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
 <p>为什么有些资产平均收益更高？CAPM 给出一个最简答案：只有不能通过持有市场组合分散掉的市场风险应获得风险补偿。它同时建立了 Beta、Alpha 和因子模型的基本语言，也是后续多因子研究的零号基准。</p>
-<h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
+</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
 <p>需要第 04 讲 OLS 和第 05 讲组合、基准。学完后你应该能：</p>
 <ul>
 <li>写出 CAPM 期望收益关系和时序回归；</li>
@@ -356,14 +370,14 @@
 <li>说明 Alpha 是“给定模型的定价误差”，不是天然利润；</li>
 <li>识别市场代理、无风险利率和交易约束对 A 股检验的影响。</li>
 </ul>
-<h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
 <p>先用一个类比建立方向：一顿饭有蛋白质、脂肪和碳水等营养暴露，身体对每种营养的“价格”不同；一只股票也可以有市场、价值、动量等风险暴露，市场给每类暴露某种预期补偿。</p>
 <p>类比到此为止。营养成分通常是可测物质，而金融因子是模型对象：定义依赖组合或回归，暴露会变化，因子收益可正可负，风险溢价也不是保证支付。不能因为给一个股票贴上“价值”标签，就认为发现了因果成分。</p>
 <p>假设年无风险收益 2%，市场预期收益 8%，一只股票 Beta=1.5。CAPM 给出的预期收益为：</p>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>2</mn><mi mathvariant="normal">%</mi><mo>+</mo><mn>1.5</mn><mo>×</mo><mo stretchy="false">(</mo><mn>8</mn><mi mathvariant="normal">%</mi><mo>−</mo><mn>2</mn><mi mathvariant="normal">%</mi><mo stretchy="false">)</mo><mo>=</mo><mn>11</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">2\%+1.5\times(8\%-2\%)=11\%
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord">%</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">8</span><span class="mord">%</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord">%</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">1</span><span class="mord">1</span><span class="mord">%</span></span></span></span></span></p>
 <p>Beta 较高意味着它对市场超额收益更敏感，不代表收益一定为正。若市场超额收益当年为 -10%，线性部分预计贡献 -15%。</p>
-<h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
 <h3 id="beta"><a class="markdownIt-Anchor" href="#beta"></a> Beta</h3>
 <p>资产 i 的市场 Beta：</p>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>β</mi><mi>i</mi></msub><mo>=</mo><mi>C</mi><mi>o</mi><mi>v</mi><mo stretchy="false">(</mo><msub><mi>R</mi><mi>i</mi></msub><mo>−</mo><msub><mi>R</mi><mi>f</mi></msub><mo separator="true">,</mo><msub><mi>R</mi><mi>m</mi></msub><mo>−</mo><msub><mi>R</mi><mi>f</mi></msub><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>V</mi><mi>a</mi><mi>r</mi><mo stretchy="false">(</mo><msub><mi>R</mi><mi>m</mi></msub><mo>−</mo><msub><mi>R</mi><mi>f</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\beta_i=Cov(R_i-R_f,R_m-R_f)/Var(R_m-R_f)
@@ -388,11 +402,16 @@
 <li><strong>风险溢价 risk premium：</strong> 因子暴露对应的条件期望补偿 λ(k)，维度 K×1。</li>
 </ol>
 <p>“高因子值”不等于“高回归暴露”；“本月因子收益为正”也不等于长期风险溢价已被证明。</p>
-<h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
 <p>下面直接从协方差估计 Beta，并验证它等于含截距 OLS 斜率。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>market = np.array([-<span class="hljs-number">0.04</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.05</span>, -<span class="hljs-number">0.02</span>, <span class="hljs-number">0.03</span>])<br>noise = np.array([<span class="hljs-number">0.001</span>, -<span class="hljs-number">0.002</span>, <span class="hljs-number">0.001</span>, <span class="hljs-number">0.000</span>, -<span class="hljs-number">0.001</span>, <span class="hljs-number">0.001</span>])<br>asset = <span class="hljs-number">0.002</span> + <span class="hljs-number">1.5</span> * market + noise<br><br>beta_cov = np.cov(asset, market, ddof=<span class="hljs-number">1</span>)[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>] / np.var(market, ddof=<span class="hljs-number">1</span>)<br>X = np.column_stack([np.ones_like(market), market])<br>alpha_hat, beta_ols = np.linalg.lstsq(X, asset, rcond=<span class="hljs-literal">None</span>)[<span class="hljs-number">0</span>]<br><br><span class="hljs-keyword">assert</span> np.isclose(beta_cov, beta_ols)<br><span class="hljs-keyword">assert</span> <span class="hljs-number">1.4</span> &lt; beta_ols &lt; <span class="hljs-number">1.6</span><br><span class="hljs-built_in">print</span>(alpha_hat, beta_ols)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python quant-code-block">
+      <figcaption class="quant-code-label">
+        <span aria-hidden="true"></span>
+        <strong>PYTHON</strong>
+        <small>可复现实验</small>
+      </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>market = np.array([-<span class="hljs-number">0.04</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.05</span>, -<span class="hljs-number">0.02</span>, <span class="hljs-number">0.03</span>])<br>noise = np.array([<span class="hljs-number">0.001</span>, -<span class="hljs-number">0.002</span>, <span class="hljs-number">0.001</span>, <span class="hljs-number">0.000</span>, -<span class="hljs-number">0.001</span>, <span class="hljs-number">0.001</span>])<br>asset = <span class="hljs-number">0.002</span> + <span class="hljs-number">1.5</span> * market + noise<br><br>beta_cov = np.cov(asset, market, ddof=<span class="hljs-number">1</span>)[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>] / np.var(market, ddof=<span class="hljs-number">1</span>)<br>X = np.column_stack([np.ones_like(market), market])<br>alpha_hat, beta_ols = np.linalg.lstsq(X, asset, rcond=<span class="hljs-literal">None</span>)[<span class="hljs-number">0</span>]<br><br><span class="hljs-keyword">assert</span> np.isclose(beta_cov, beta_ols)<br><span class="hljs-keyword">assert</span> <span class="hljs-number">1.4</span> &lt; beta_ols &lt; <span class="hljs-number">1.6</span><br><span class="hljs-built_in">print</span>(alpha_hat, beta_ols)<br></code></pre></td></tr></table></figure>
 <p>这里 market 和 asset 已被视为超额收益。若它们是原始收益，应先减去同期限 R(f)。</p>
-<h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
 <ol>
 <li><strong>市场组合不可直接观察。</strong> 沪深 300 只覆盖大盘股，全市场价值加权更接近股票市场，但仍遗漏非上市资本、人力资本和海外资产。Beta 依赖代理选择。</li>
 <li><strong>无风险利率口径。</strong> 需要币种、期限和频率一致；使用国债、同业存单或存款利率会对应不同含义。</li>
@@ -401,7 +420,7 @@
 <li><strong>非同步交易。</strong> 小盘股停牌或低频成交会使个股与市场收益时间错位，普通日回归可能低估 Beta。</li>
 <li><strong>极端时期。</strong> 牛熊转换、2015 年市场异常波动等阶段可能改变线性关系；全样本一个 Beta 会掩盖状态差异。</li>
 </ol>
-<h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
 <ul>
 <li>把 Beta 当相关系数；Beta 还包含两者波动率比例，可以大于 1。</li>
 <li>用价格水平而非收益回归，得到趋势伪关系。</li>
@@ -411,10 +430,10 @@
 <li>把低 Beta 等同于低损失；跳跃、流动性和特质风险仍存在。</li>
 </ul>
 <p>CAPM 可以被经验数据拒绝，但它仍有价值：它提供最简可证伪基准。一个新因子若连市场暴露调整后的增量解释都没有，就更难声称独立贡献。</p>
-<h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
+</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
 <p>原书第 1 章（PDF 文件页 7–26）介绍因子投资框架，第 2 章（27–96）进入因子模型和检验。本讲对应从单因子基准到实证回归的入口。</p>
 <p>Sharpe（1964）是 CAPM 的核心原始文献：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/j.1540-6261.1964.tb02865.x">DOI 10.1111/j.1540-6261.1964.tb02865.x</a>。阅读时把理论中的“市场组合”与实证中的“市场指数代理”分别标记，避免偷换对象。</p>
-<h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
 <ol>
 <li>R(f)=3%、E[R(m)]=9%，分别计算 Beta 为 0、0.5、1、1.5 的 CAPM 预期收益。</li>
 <li>两只股票相关系数相同，但个股波动率分别是市场的 0.5 倍和 2 倍，它们的 Beta 如何不同？</li>
@@ -423,10 +442,10 @@
 <li>一个策略 Alpha 月均 0.3%、t=2.2，加入动量因子后变为 0.05%、t=0.4。原 Alpha 更可能是什么？</li>
 </ol>
 <p>校验：第 1 题依次为 3%、6%、9%、12%。</p>
-<h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
 <p>CAPM 把预期超额收益压缩为市场 Beta 乘市场风险溢价。Beta 是协方差尺度下的敏感度，Alpha 是给定模型的截距。因子值、暴露、实现收益和预期溢价属于不同维度，必须分开。</p>
 <p>下一讲放松“只有一个市场因子”，进入 APT 与多因子模型，并讨论异象究竟是风险补偿还是错误定价。</p>
-
+</section></div>
                 
               </div>
             
@@ -588,12 +607,6 @@
   
 
 
-  
-  
-
-
-
-
 
 
 
@@ -667,6 +680,34 @@
 </div>
 
   
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
   
   
 </div>
@@ -810,49 +851,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

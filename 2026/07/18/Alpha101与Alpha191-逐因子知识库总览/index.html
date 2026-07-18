@@ -1,0 +1,1010 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QUANT RESEARCH NOTE         &#x2F;         REFERENCE              这套知识库共覆盖 292 个短周期价量因子：WorldQuant Alpha101 的 101 个公式，以及国泰君安 Alpha191 的 191 个公式。                类型研究工具         模块随手查阅">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Alpha101 与 Alpha191 逐因子知识库总览">
+<meta property="og:url" content="https://www.polarishaw.top/2026/07/18/Alpha101%E4%B8%8EAlpha191-%E9%80%90%E5%9B%A0%E5%AD%90%E7%9F%A5%E8%AF%86%E5%BA%93%E6%80%BB%E8%A7%88/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="QUANT RESEARCH NOTE         &#x2F;         REFERENCE              这套知识库共覆盖 292 个短周期价量因子：WorldQuant Alpha101 的 101 个公式，以及国泰君安 Alpha191 的 191 个公式。                类型研究工具         模块随手查阅">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-010-147051939.jpg">
+<meta property="article:published_time" content="2026-07-18T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-18T11:54:00.607Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="Alpha101">
+<meta property="article:tag" content="因子研究">
+<meta property="article:tag" content="量化入门">
+<meta property="article:tag" content="Alpha191">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-010-147051939.jpg">
+  
+  
+  
+  <title>Alpha101 与 Alpha191 逐因子知识库总览 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-011-147051939.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Alpha101 与 Alpha191 逐因子知识库总览"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-18 18:00" pubdate>
+          2026年7月18日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Alpha101 与 Alpha191 逐因子知识库总览</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="quant-doc quant-doc--reference">
+    <header class="quant-doc-header quant-doc-header--reference">
+      <div class="quant-doc-kicker">
+        <span>QUANT RESEARCH NOTE</span>
+        <span aria-hidden="true">/</span>
+        <strong>REFERENCE</strong>
+      </div>
+      <p class="quant-doc-summary">这套知识库共覆盖 292 个短周期价量因子：WorldQuant Alpha101 的 101 个公式，以及国泰君安 Alpha191 的 191 个公式。</p>
+      <div class="quant-doc-tape" aria-label="文章阅读信息">
+        <div><span>类型</span><strong>研究工具</strong></div>
+        <div><span>模块</span><strong>随手查阅</strong></div>
+        <div><span>阅读</span><strong>约 5 分钟</strong></div>
+        <div><span>材料</span><strong>7 节 · 0 段代码</strong></div>
+      </div>
+    </header><div class="quant-doc-intro"><p>这套知识库共覆盖 <strong>292 个短周期价量因子</strong>：WorldQuant Alpha101 的 101 个公式，以及国泰君安 Alpha191 的 191 个公式。</p>
+</div><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="两套因子有什么区别"><a class="markdownIt-Anchor" href="#两套因子有什么区别"></a> 两套因子有什么区别</h2>
+<div class="quant-table-shell">
+      <div class="quant-table-caption">
+        <span>两套因子有什么区别</span>
+        <small>2 行 × 4 列</small>
+      </div><div class="quant-table-scroll" role="region" tabindex="0" aria-label="两套因子有什么区别"><table>
+<thead>
+<tr>
+<th>系列</th>
+<th style="text-align:right">数量</th>
+<th>主要特征</th>
+<th>推荐入口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alpha101</td>
+<td style="text-align:right">101</td>
+<td>大量使用横截面排序、时序相关、VWAP、行业中性化和复合算子</td>
+<td><a href="/2026/07/18/Alpha101/" title="Alpha101 逐因子全解">Alpha101 总览</a></td>
+</tr>
+<tr>
+<td>Alpha191</td>
+<td style="text-align:right">191</td>
+<td>更贴近技术指标体系，包含量价、波动、趋势、基准指数和条件分支</td>
+<td><a href="/2026/07/18/Alpha191/" title="Alpha191 逐因子全解">Alpha191 总览</a></td>
+</tr>
+</tbody>
+</table></div></div>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="初学者阅读方法"><a class="markdownIt-Anchor" href="#初学者阅读方法"></a> 初学者阅读方法</h2>
+<ol>
+<li>先读公式字段和主要算子，不要急着猜买卖方向。</li>
+<li>根据“计算拆解”手工复算一个股票、一个日期，确认窗口和滞后没有前视。</li>
+<li>再看经济直觉，把它当作待证伪假设，而不是因子有效性的证据。</li>
+<li>最后完成覆盖率、IC、分组收益、换手成本、容量和子样本稳定性检验。</li>
+</ol>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="数据字段字典"><a class="markdownIt-Anchor" href="#数据字段字典"></a> 数据字段字典</h2>
+<div class="quant-table-shell">
+      <div class="quant-table-caption">
+        <span>数据字段字典</span>
+        <small>12 行 × 3 列</small>
+      </div><div class="quant-table-scroll" role="region" tabindex="0" aria-label="数据字段字典"><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>A 股实现要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OPEN/HIGH/LOW/CLOSE</code></td>
+<td>日线开高低收</td>
+<td>同一因子内必须统一前复权、后复权或不复权口径；研究与生产保持一致</td>
+</tr>
+<tr>
+<td><code>VOLUME/AMOUNT</code></td>
+<td>成交量/成交额</td>
+<td>明确股、手和货币单位；停牌日不能当作普通零成交日</td>
+</tr>
+<tr>
+<td><code>VWAP</code></td>
+<td>成交量加权平均价</td>
+<td>优先用成交额/成交量构造，并校验单位倍率</td>
+</tr>
+<tr>
+<td><code>RET/RETURNS</code></td>
+<td>收盘到收盘收益率</td>
+<td>明确简单收益或对数收益；原式通常使用简单收益</td>
+</tr>
+<tr>
+<td><code>ADVn</code></td>
+<td>过去 n 日平均日成交额</td>
+<td>WorldQuant 原文是 dollar volume，不应误写成单纯成交量</td>
+</tr>
+<tr>
+<td><code>CAP</code></td>
+<td>市值</td>
+<td>使用当时可得的流通/总市值版本并记录选择</td>
+</tr>
+<tr>
+<td><code>INDCLASS</code></td>
+<td>行业分类</td>
+<td>必须使用点时行业归属，不能用最新行业回填历史</td>
+</tr>
+<tr>
+<td><code>BENCHMARK_INDEX_*</code></td>
+<td>基准指数行情</td>
+<td>选择与股票池匹配的宽基并严格对齐交易日</td>
+</tr>
+<tr>
+<td><code>MKT/SMB/HML</code></td>
+<td>Fama-French 三因子收益</td>
+<td>Alpha191-030 需要额外构造，不能只靠 OHLCV 完成</td>
+</tr>
+<tr>
+<td><code>HD/LD/TR</code></td>
+<td>向上距离、向下距离、真实波幅</td>
+<td><code>HD=HIGH-DELAY(HIGH,1)</code>；<code>LD=DELAY(LOW,1)-LOW</code>；TR 取三种日内/跳空幅度最大值</td>
+</tr>
+<tr>
+<td><code>DTM/DBM</code></td>
+<td>开盘向上/向下变动量</td>
+<td>用于 Alpha191-069 等条件型动量指标，必须复现原始分支</td>
+</tr>
+<tr>
+<td><code>SELF</code></td>
+<td>上一期递归因子值</td>
+<td>Alpha191-143 不能按普通滚动窗口一次性计算</td>
+</tr>
+</tbody>
+</table></div></div>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="算子字典"><a class="markdownIt-Anchor" href="#算子字典"></a> 算子字典</h2>
+<div class="quant-table-shell">
+      <div class="quant-table-caption">
+        <span>算子字典</span>
+        <small>12 行 × 3 列</small>
+      </div><div class="quant-table-scroll" role="region" tabindex="0" aria-label="算子字典"><table>
+<thead>
+<tr>
+<th>算子</th>
+<th>人话解释</th>
+<th>最容易犯的错</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RANK(X)</code></td>
+<td>当日股票池横截面百分位</td>
+<td>股票池漂移、并列排名和缺失值规则不一致</td>
+</tr>
+<tr>
+<td><code>TSRANK(X,n)</code></td>
+<td>当前值在自身 n 日历史中的排名</td>
+<td>错写成横截面排名</td>
+</tr>
+<tr>
+<td><code>DELAY/DELTA</code></td>
+<td>滞后值/当前减历史值</td>
+<td><code>DELAY(X,1)</code> 对齐错一日，直接产生前视</td>
+</tr>
+<tr>
+<td><code>MEAN/SUM/STD</code></td>
+<td>滚动均值、和、标准差</td>
+<td>窗口不足时用未来数据补齐</td>
+</tr>
+<tr>
+<td><code>CORR/COVARIANCE</code></td>
+<td>窗口内相关和协方差</td>
+<td>有效样本太少仍输出数值</td>
+</tr>
+<tr>
+<td><code>SMA(X,N,M)</code></td>
+<td>递归平滑，常用系数 M/N</td>
+<td>误当作普通 N 日均线</td>
+</tr>
+<tr>
+<td><code>DECAYLINEAR</code></td>
+<td>近期权重更高的线性衰减</td>
+<td>权重方向写反</td>
+</tr>
+<tr>
+<td><code>TSMAX/TSMIN</code></td>
+<td>窗口极值</td>
+<td>与逐元素 <code>MAX/MIN</code> 混淆</td>
+</tr>
+<tr>
+<td><code>HIGHDAY/LOWDAY</code></td>
+<td>极值距离当前的天数</td>
+<td>不同实现从 0 还是 1 开始计数</td>
+</tr>
+<tr>
+<td><code>REGBETA/REGRESID</code></td>
+<td>回归斜率/残差</td>
+<td>回归窗口、截距和缺失样本约定不同</td>
+</tr>
+<tr>
+<td><code>COUNT/SUMIF/FILTER</code></td>
+<td>条件计数、条件求和、过滤</td>
+<td>等号边界和缺失值被静默当成 False</td>
+</tr>
+<tr>
+<td><code>INDNEUTRALIZE</code></td>
+<td>行业内去均值或回归中性化</td>
+<td>使用未来行业分类或行业样本过少</td>
+</tr>
+</tbody>
+</table></div></div>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="版本与歧义处理"><a class="markdownIt-Anchor" href="#版本与歧义处理"></a> 版本与歧义处理</h2>
+<ul>
+<li>文档保留公开公式的结构，只修复 <code>DELAT</code>、<code>COVIANCE</code>、<code>BANCHMARK</code> 等明显拼写错误。</li>
+<li>Alpha191 原研报有少量括号、算子和参数未完全定义；本文以 DolphinDB 公开实现作工程交叉核对，但明确标注它是实现版本。</li>
+<li>WorldQuant 的非整数窗口按原文约定向下取整；生产代码应把这一规则写进测试。</li>
+<li>所有分母统一做接近零保护，所有横截面算子统一股票池和缺失值门槛。</li>
+</ul>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="完整性声明"><a class="markdownIt-Anchor" href="#完整性声明"></a> 完整性声明</h2>
+<p>文档由结构化公式清单生成，并通过自动化测试检查连续编号、公式非空、逐因子章节和总数。任何平台对模糊公式的修订都应被视为实现版本，而不是唯一真理。</p>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="主要参考"><a class="markdownIt-Anchor" href="#主要参考"></a> 主要参考</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1601.00991">Kakushadze, 101 Formulaic Alphas</a></li>
+<li><a target="_blank" rel="noopener" href="https://guorn.com/static/upload/file/3/134065454575605.pdf">国泰君安：基于短周期价量特征的多因子选股体系</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dolphindb/DolphinDBModules/tree/master/wq101alpha">DolphinDB WorldQuant 101 实现</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dolphindb/DolphinDBModules/tree/master/gtja191Alpha">DolphinDB 国泰君安 191 实现</a></li>
+</ul>
+</section></div>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Quant/" class="category-chain-item">Quant</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Alpha101/" class="print-no-link">#Alpha101</a>
+      
+        <a href="/tags/%E5%9B%A0%E5%AD%90%E7%A0%94%E7%A9%B6/" class="print-no-link">#因子研究</a>
+      
+        <a href="/tags/%E9%87%8F%E5%8C%96%E5%85%A5%E9%97%A8/" class="print-no-link">#量化入门</a>
+      
+        <a href="/tags/Alpha191/" class="print-no-link">#Alpha191</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Alpha101 与 Alpha191 逐因子知识库总览</div>
+      <div>https://www.polarishaw.top/2026/07/18/Alpha101与Alpha191-逐因子知识库总览/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/18/Alpha101/" title="Alpha101 逐因子全解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Alpha101 逐因子全解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-20-%E5%9B%A0%E5%AD%90%E5%8A%A8%E7%89%A9%E5%9B%AD%E8%A1%8C%E4%B8%BA%E9%87%91%E8%9E%8D%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="因子投资-20-因子动物园行为金融与机器学习">
+                        <span class="hidden-mobile">因子投资-20-因子动物园行为金融与机器学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
