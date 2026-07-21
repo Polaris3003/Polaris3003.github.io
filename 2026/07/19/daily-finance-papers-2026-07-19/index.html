@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-19/pixiv-rank-002-147092182.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-011-147051939.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -346,229 +346,84 @@
             
               <div class="markdown-body">
                 
-                <p>今天独立收录 16 篇金融与金融方法论文，全部来自 arXiv，摘要页和 PDF
-均可免费直接打开。内容覆盖组合优化、风险度量、金融序列模型、金融文本、市场微观结构、衍生品定价与计量识别。下文结果均为论文报告的作者自述，不构成投资建议，也不代表独立复现。</p>
+                <p>今天独立收录 16 篇金融与金融方法论文，全部来自 arXiv，摘要页和 PDF 均可免费直接打开。内容覆盖组合优化、风险度量、金融序列模型、金融文本、市场微观结构、衍生品定价与计量识别。下文结果均为论文报告的作者自述，不构成投资建议，也不代表独立复现。</p>
 <span id="more"></span>
-<h2 id="今日论文概览">今日论文概览</h2>
+<h2 id="今日论文概览"><a class="markdownIt-Anchor" href="#今日论文概览"></a> 今日论文概览</h2>
 <ul>
-<li><strong>16 篇论文全部来自 arXiv</strong>：逐篇保留摘要页与开放
-PDF。</li>
+<li><strong>16 篇论文全部来自 arXiv</strong>：逐篇保留摘要页与开放 PDF。</li>
 <li><strong>阅读主线</strong>：最值得看的是“预测信号、风险偏好、执行成本”如何被分别建模。论文里的似然提升、历史回放和滚动窗口结果，都不能直接等同于真实可交易收益。</li>
 <li><strong>证据检查</strong>：明确区分相关性与因果、样本内与样本外、统计与经济显著性、模拟/回测与实盘；没有披露的点差、滑点、容量和多重检验不会被推断补齐。</li>
 </ul>
-<h2 id="重点关注">重点关注</h2>
-<h3 id="sciphy-reinforcement-learning-for-portfolio-optimization">1. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.15195">SciPhy Reinforcement Learning
-for Portfolio Optimization</a></h3>
-<p>作者：Igor Halperin、Andrey Itkin｜来源：arXiv
-2607.15195｜分类：q-fin.PM、q-fin.CP、q-fin.MF、math.AP、math.NA｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.15195">PDF</a>。<strong>已核对全文。</strong></p>
+<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
+<h3 id="1-sciphy-reinforcement-learning-for-portfolio-optimization"><a class="markdownIt-Anchor" href="#1-sciphy-reinforcement-learning-for-portfolio-optimization"></a> 1. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.15195">SciPhy Reinforcement Learning for Portfolio Optimization</a></h3>
+<p>作者：Igor Halperin、Andrey Itkin｜来源：arXiv 2607.15195｜分类：<a target="_blank" rel="noopener" href="http://q-fin.PM">q-fin.PM</a>、q-fin.CP、q-fin.MF、math.AP、math.NA｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.15195">PDF</a>。<strong>已核对全文。</strong></p>
 <ul>
 <li><strong>核心问题</strong>：离线组合强化学习如何在多期配置中同时处理累计成本、价格冲击、风险约束和有限历史轨迹，而不依赖反复的策略/价值迭代。</li>
-<li><strong>方法与基线</strong>：作者把扩展状态空间上的 HJB
-方程投影为观测轨迹上的 pathwise Hamilton–Jacobi 方程，用三层、每层 150
-个神经元的 PINN 一次性求解；控制量从交易速率改为目标持仓。实验使用
-2019–2025 年 14 只 ETF，比较 Gibbs
-策略、等权和行为策略，并用带未来收益信息的“工程化
-oracle”信号测试已知信号的配置效率。</li>
-<li><strong>关键结果</strong>：31 日窗口、实际 OOS R²=0.1147 时，Gibbs
-的样本外 Sharpe 为 1.489，等权为 1.074，行为基线为 0.937；相应年化收益
-12.3%、10.9%、9.6%，单程累计换手 1.1485、0.1971、1.2421。63 日窗口中
-Gibbs/等权样本外 Sharpe 为 0.526/0.126，但 120 个测试 episode 有 62/63
-天重叠，不能按独立样本解释显著性。</li>
-<li><strong>创新与限制</strong>：方法把微观结构成本和分布感知控制纳入同一离线框架，但核心信号由真实未来收益加噪构造；作者明确指出日频真实模型的样本外
-R² 通常低于 1%，实验的 5%–12% 明显更高。交易成本约 10bp
-来自模型校准，结果是历史路径上的反事实回放，不是实盘，也未检验 Sharpe
-的统计显著性。</li>
-<li><strong>适合谁读 / 建议章节</strong>：组合优化、离线 RL
-和执行成本研究者；优先读第 6.1 节 oracle 构造、表
-2–6、滚动窗口依赖说明以及第 8 节限制。</li>
+<li><strong>方法与基线</strong>：作者把扩展状态空间上的 HJB 方程投影为观测轨迹上的 pathwise Hamilton–Jacobi 方程，用三层、每层 150 个神经元的 PINN 一次性求解；控制量从交易速率改为目标持仓。实验使用 2019–2025 年 14 只 ETF，比较 Gibbs 策略、等权和行为策略，并用带未来收益信息的“工程化 oracle”信号测试已知信号的配置效率。</li>
+<li><strong>关键结果</strong>：31 日窗口、实际 OOS R²=0.1147 时，Gibbs 的样本外 Sharpe 为 1.489，等权为 1.074，行为基线为 0.937；相应年化收益 12.3%、10.9%、9.6%，单程累计换手 1.1485、0.1971、1.2421。63 日窗口中 Gibbs/等权样本外 Sharpe 为 0.526/0.126，但 120 个测试 episode 有 62/63 天重叠，不能按独立样本解释显著性。</li>
+<li><strong>创新与限制</strong>：方法把微观结构成本和分布感知控制纳入同一离线框架，但核心信号由真实未来收益加噪构造；作者明确指出日频真实模型的样本外 R² 通常低于 1%，实验的 5%–12% 明显更高。交易成本约 10bp 来自模型校准，结果是历史路径上的反事实回放，不是实盘，也未检验 Sharpe 的统计显著性。</li>
+<li><strong>适合谁读 / 建议章节</strong>：组合优化、离线 RL 和执行成本研究者；优先读第 6.1 节 oracle 构造、表 2–6、滚动窗口依赖说明以及第 8 节限制。</li>
 </ul>
-<h3 id="a-noise-robust-elicit-to-optimize-framework-for-distortion-riskmetrics-via-inverse-reinforcement-learning">2.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14373">A Noise-Robust
-Elicit-to-Optimize Framework for Distortion Riskmetrics via Inverse
-Reinforcement Learning</a></h3>
-<p>作者：Yang Liu、Yuhao Liu、Yunran Wei｜来源：arXiv
-2607.14373｜分类：cs.LG、q-fin.RM｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14373">PDF</a>。<strong>已核对全文。</strong></p>
+<h3 id="2-a-noise-robust-elicit-to-optimize-framework-for-distortion-riskmetrics-via-inverse-reinforcement-learning"><a class="markdownIt-Anchor" href="#2-a-noise-robust-elicit-to-optimize-framework-for-distortion-riskmetrics-via-inverse-reinforcement-learning"></a> 2. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14373">A Noise-Robust Elicit-to-Optimize Framework for Distortion Riskmetrics via Inverse Reinforcement Learning</a></h3>
+<p>作者：Yang Liu、Yuhao Liu、Yunran Wei｜来源：arXiv 2607.14373｜分类：cs.LG、q-fin.RM｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14373">PDF</a>。<strong>已核对全文。</strong></p>
 <ul>
-<li><strong>核心问题</strong>：投资者的风险目标可能是
-VaR、CVaR、RVaR、IQR
-或其混合，而且实际选择含噪；系统能否先从决策中识别偏好，再按该偏好优化策略。</li>
-<li><strong>方法与基线</strong>：前半部分用自适应贝叶斯 IRL
-选择二元问题，并允许随机、次优回答；后半部分把条件失真风险度量写成成本分位函数的积分，以
-policy、value、quantile 三类网络扩展 PPO。实证使用 WRDS 的 2005-01-03 至
-2026-03-27 S&amp;P 500 日收盘价，共 5,342 个观测，前 4,333 个训练、后
-1,009 个测试，并构造 1,000 条滚动测试路径。</li>
-<li><strong>关键结果</strong>：理论给出有限区分问题的存在性和指数型收敛界。数值实验中，即使最优选择概率仅
-0.6、接近随机，真实偏好约 100
-轮后仍可初步识别；候选集合遗漏真实风险度量时，后验会收敛到集合内邻近目标。策略实验显示不同风险度量和牛熊状态产生不同买卖区域，但全文没有报告扣除交易成本后的收益、Sharpe
-或相对 PPO 的统一经济效应量。</li>
+<li><strong>核心问题</strong>：投资者的风险目标可能是 VaR、CVaR、RVaR、IQR 或其混合，而且实际选择含噪；系统能否先从决策中识别偏好，再按该偏好优化策略。</li>
+<li><strong>方法与基线</strong>：前半部分用自适应贝叶斯 IRL 选择二元问题，并允许随机、次优回答；后半部分把条件失真风险度量写成成本分位函数的积分，以 policy、value、quantile 三类网络扩展 PPO。实证使用 WRDS 的 2005-01-03 至 2026-03-27 S&amp;P 500 日收盘价，共 5,342 个观测，前 4,333 个训练、后 1,009 个测试，并构造 1,000 条滚动测试路径。</li>
+<li><strong>关键结果</strong>：理论给出有限区分问题的存在性和指数型收敛界。数值实验中，即使最优选择概率仅 0.6、接近随机，真实偏好约 100 轮后仍可初步识别；候选集合遗漏真实风险度量时，后验会收敛到集合内邻近目标。策略实验显示不同风险度量和牛熊状态产生不同买卖区域，但全文没有报告扣除交易成本后的收益、Sharpe 或相对 PPO 的统一经济效应量。</li>
 <li><strong>创新与限制</strong>：亮点是把偏好识别与风险敏感控制连起来，并覆盖非凸、非一致风险度量。限制是二元提问模型、候选集合和人为牛熊阈值决定识别结果；测试是历史价格驱动的策略几何展示，未包含摩擦、容量、实际投资者实验或可交易性验证。</li>
-<li><strong>适合谁读 / 建议章节</strong>：风险管理、智能投顾和风险敏感
-RL 研究者；优先读第 3.5 节收敛证明、第 5.1 节错设实验、第 5.2
-节数据切分与图 10–11。</li>
+<li><strong>适合谁读 / 建议章节</strong>：风险管理、智能投顾和风险敏感 RL 研究者；优先读第 3.5 节收敛证明、第 5.1 节错设实验、第 5.2 节数据切分与图 10–11。</li>
 </ul>
-<h3 id="how-much-of-a-10-k-matters-aggregation-dependent-value-of-full-text-versus-risk-factor-sentiment">3.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14174">How Much of a 10-K Matters?
-Aggregation-Dependent Value of Full-Text versus Risk-Factor
-Sentiment</a></h3>
-<p>作者：Sanggyu Sean Choi｜来源：arXiv
-2607.14174｜分类：cs.LG、q-fin.CP、q-fin.MF、q-fin.ST｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14174">PDF</a>。<strong>已核对全文。</strong></p>
+<h3 id="3-how-much-of-a-10-k-matters-aggregation-dependent-value-of-full-text-versus-risk-factor-sentiment"><a class="markdownIt-Anchor" href="#3-how-much-of-a-10-k-matters-aggregation-dependent-value-of-full-text-versus-risk-factor-sentiment"></a> 3. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14174">How Much of a 10-K Matters? Aggregation-Dependent Value of Full-Text versus Risk-Factor Sentiment</a></h3>
+<p>作者：Sanggyu Sean Choi｜来源：arXiv 2607.14174｜分类：cs.LG、q-fin.CP、q-fin.MF、q-fin.ST｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14174">PDF</a>。<strong>已核对全文。</strong></p>
 <ul>
-<li><strong>核心问题</strong>：预测收益或波动时，应使用完整
-10-K，还是只用 Item 1A
-风险因素；答案是否随行业、组合、单公司聚合层级改变。</li>
-<li><strong>方法与基线</strong>：样本为 2006–2023 年 94 家 Nasdaq-100
-科技成分股的 1,383
-份文件；监督词典学习分别以收益和波动为标签，在行业、前十组合和 Nvidia
-单公司三层训练 12 个情绪指标，并与 Loughran–McDonald 词典比较。</li>
-<li><strong>关键结果</strong>：完整 10-K 在行业层的收益/波动分类准确率为
-78%/92%，Item 1A 为 73%/90%；前十组合为 76%/78% 对 71%/74%。到 Nvidia
-单公司时反转：Item 1A 为 76%/75%，完整文本为 75%/69%。</li>
-<li><strong>创新与限制</strong>：结果说明文档范围的价值依赖聚合层级，但这些主要是分类与相关性，不是交易回测。单公司只测
-Nvidia；模型是
-bag-of-words，组合未按真实指数权重聚合，强相关也不能给出因果解释或经济显著性。</li>
-<li><strong>适合谁读 / 建议章节</strong>：金融 NLP
-与基本面量化研究者；优先读第 5.2 节表 1、第 5.3 节相关性、第 6
-节结构偏差与限制。</li>
+<li><strong>核心问题</strong>：预测收益或波动时，应使用完整 10-K，还是只用 Item 1A 风险因素；答案是否随行业、组合、单公司聚合层级改变。</li>
+<li><strong>方法与基线</strong>：样本为 2006–2023 年 94 家 Nasdaq-100 科技成分股的 1,383 份文件；监督词典学习分别以收益和波动为标签，在行业、前十组合和 Nvidia 单公司三层训练 12 个情绪指标，并与 Loughran–McDonald 词典比较。</li>
+<li><strong>关键结果</strong>：完整 10-K 在行业层的收益/波动分类准确率为 78%/92%，Item 1A 为 73%/90%；前十组合为 76%/78% 对 71%/74%。到 Nvidia 单公司时反转：Item 1A 为 76%/75%，完整文本为 75%/69%。</li>
+<li><strong>创新与限制</strong>：结果说明文档范围的价值依赖聚合层级，但这些主要是分类与相关性，不是交易回测。单公司只测 Nvidia；模型是 bag-of-words，组合未按真实指数权重聚合，强相关也不能给出因果解释或经济显著性。</li>
+<li><strong>适合谁读 / 建议章节</strong>：金融 NLP 与基本面量化研究者；优先读第 5.2 节表 1、第 5.3 节相关性、第 6 节结构偏差与限制。</li>
 </ul>
-<h3 id="vaiom-continuous-input-discrete-output-decoder-only-financial-sequence-modeling">4.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13929">VAIOM: Continuous-Input,
-Discrete-Output Decoder-Only Financial Sequence Modeling</a></h3>
-<p>作者：Yiming Ma、Xinyu Chen｜来源：arXiv
-2607.13929｜分类：cs.LG、q-fin.CP｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13929">PDF</a>。<strong>仅依据摘要。</strong></p>
+<h3 id="4-vaiom-continuous-input-discrete-output-decoder-only-financial-sequence-modeling"><a class="markdownIt-Anchor" href="#4-vaiom-continuous-input-discrete-output-decoder-only-financial-sequence-modeling"></a> 4. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13929">VAIOM: Continuous-Input, Discrete-Output Decoder-Only Financial Sequence Modeling</a></h3>
+<p>作者：Yiming Ma、Xinyu Chen｜来源：arXiv 2607.13929｜分类：cs.LG、q-fin.CP｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13929">PDF</a>。<strong>仅依据摘要。</strong></p>
 <ul>
-<li><strong>核心问题</strong>：金融观测连续、异质且高噪，离散 token
-化可能损失数值结构；论文检验 decoder-only
-模型能否保留连续输入，同时输出下一期收益的离散概率分布。</li>
-<li><strong>方法与基线</strong>：0.9M 参数模型处理一小时外汇
-bar，以连续多变量事件向量和资产元数据为输入，以波动率标准化收益桶为输出。训练只用
-2024 年前数据，2024H2 选模，两个 2025 测试期不再拟合；与固定单 bar
-LightGBM 比较，运行三颗训练种子。</li>
-<li><strong>作者报告的结果</strong>：所有模型在两个测试半期均优于
-LightGBM；标准检查点的配对增益为每事件 0.029 和 0.043
-bits。连续输入、全序列监督和辅助目标在受控比较中改善似然。</li>
-<li><strong>创新与限制</strong>：严格时间切分值得肯定，但优化目标是概率似然，不是收益、Sharpe
-或
-PnL；摘要未披露货币对范围、点差、滑点、换手和更强时序基线，经济显著性无法判断。</li>
-<li><strong>适合谁读 /
-建议章节</strong>：金融基础模型与概率预测研究者；优先读数据切分、收益桶设计、LightGBM
-输入公平性、种子方差与容量消融。</li>
+<li><strong>核心问题</strong>：金融观测连续、异质且高噪，离散 token 化可能损失数值结构；论文检验 decoder-only 模型能否保留连续输入，同时输出下一期收益的离散概率分布。</li>
+<li><strong>方法与基线</strong>：0.9M 参数模型处理一小时外汇 bar，以连续多变量事件向量和资产元数据为输入，以波动率标准化收益桶为输出。训练只用 2024 年前数据，2024H2 选模，两个 2025 测试期不再拟合；与固定单 bar LightGBM 比较，运行三颗训练种子。</li>
+<li><strong>作者报告的结果</strong>：所有模型在两个测试半期均优于 LightGBM；标准检查点的配对增益为每事件 0.029 和 0.043 bits。连续输入、全序列监督和辅助目标在受控比较中改善似然。</li>
+<li><strong>创新与限制</strong>：严格时间切分值得肯定，但优化目标是概率似然，不是收益、Sharpe 或 PnL；摘要未披露货币对范围、点差、滑点、换手和更强时序基线，经济显著性无法判断。</li>
+<li><strong>适合谁读 / 建议章节</strong>：金融基础模型与概率预测研究者；优先读数据切分、收益桶设计、LightGBM 输入公平性、种子方差与容量消融。</li>
 </ul>
-<h2 id="金融论文">金融论文</h2>
-<h3 id="how-much-of-a-10-k-matters"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14174">How Much of a 10-K
-Matters?</a></h3>
-<p>作者：Sanggyu Sean Choi｜来源：arXiv
-2607.14174｜分类：cs.LG、q-fin.CP、q-fin.MF、q-fin.ST｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14174">PDF</a>。已在重点关注详述。作者报告完整文本在行业/组合层更准，Item
-1A 在单一 Nvidia
-层更准；证据是分类与相关性，而非交易结果。<strong>已核对全文。</strong></p>
-<h3 id="sciphy-reinforcement-learning-for-portfolio-optimization-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.15195">SciPhy Reinforcement Learning
-for Portfolio Optimization</a></h3>
-<p>作者：Igor Halperin、Andrey Itkin｜来源：arXiv
-2607.15195｜分类：q-fin.PM、q-fin.CP、q-fin.MF、math.AP、math.NA｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.15195">PDF</a>。已在重点关注详述。作者报告
-Gibbs 策略在 oracle
-信号下改善历史窗口中的风险调整表现；这验证的是“已知信号如何配置”，不是预测能力或真实可交易结果。<strong>已核对全文，非投资建议。</strong></p>
-<h3 id="a-noise-robust-elicit-to-optimize-framework-for-distortion-riskmetrics-via-inverse-reinforcement-learning-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14373">A Noise-Robust
-Elicit-to-Optimize Framework for Distortion Riskmetrics via Inverse
-Reinforcement Learning</a></h3>
-<p>作者：Yang Liu、Yuhao Liu、Yunran Wei｜来源：arXiv
-2607.14373｜分类：cs.LG、q-fin.RM｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14373">PDF</a>。已在重点关注详述。自适应贝叶斯
-IRL 识别含噪风险偏好，再由分位网络扩展
-PPO；理论和数值结果支持识别稳定性，但没有交易摩擦后的经济收益证据。<strong>已核对全文。</strong></p>
-<h3 id="vaiom"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13929">VAIOM</a></h3>
-<p>作者：Yiming Ma、Xinyu Chen｜来源：arXiv
-2607.13929｜分类：cs.LG、q-fin.CP｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13929">PDF</a>。已在重点关注详述。严格时间切分下，作者报告相对
-LightGBM 的似然提升为每事件 0.029/0.043
-bits；这不等于扣除摩擦后的交易优势。<strong>仅依据摘要。</strong></p>
-<h3 id="measuring-sentiment-news-with-transformer-based-language-models"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13968">Measuring Sentiment News with
-Transformer-Based Language Models</a></h3>
-<p>作者：Maria Saveria Mavillonio、Stefano Borgioli、Caterina
-Giannetti、Chiara Ongari、Giampiero M. Gallo｜来源：arXiv
-2607.13968｜分类：q-fin.GN｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13968">PDF</a>。研究用 FinBERT 对
-Factiva 的 143,755 篇金融新闻逐句分类，再聚合为日度情绪；444 名参与者对
-588 篇文章的激励式标注构成外部基准。作者报告 Transformer
-指标与人类判断的一致性以及正/中/负分类优于词典方法。人类验证增强测量效度，但不证明资产收益预测或因果关系；Factiva
-代表性、训练语料污染与聚合选择限制外推。<strong>仅依据摘要。</strong></p>
-<h3 id="detecting-unusual-trading-patterns-on-cryptocurrency-exchanges-by-means-of-complexity-measures"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13916">Detecting unusual trading
-patterns on cryptocurrency exchanges by means of complexity
-measures</a></h3>
-<p>作者：Jakub Zwydak、Marcin Wątorek、Jarosław Kwapień、Stanisław
-Drożdż｜来源：arXiv 2607.13916｜分类：q-fin.TR、econ.EM 等｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13916">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.3390/e28070804">DOI</a>。论文对 2025-04-01 至
-06-30 的 BTC、ETH、XRP
-在四家交易所的逐笔数据计算尾分布、自相关、多重分形、近似熵和去趋势交叉相关；作者发现
-Bitget 在 5
-月中旬后交易笔数激增，却没有相称成交量或价格波动。现象与噪声式人工交易一致，但作者明确承认不能直接证明刷量；三个月窗口、交易所数据质量和多重检验限制归因。<strong>仅依据摘要。</strong></p>
-<h3 id="a-noise-aware-quantum-algorithm-for-credit-valuation-adjustments-on-real-quantum-hardware"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.12990">A Noise-Aware Quantum Algorithm
-for Credit Valuation Adjustments on Real Quantum Hardware</a></h3>
-<p>作者：Guillem Borràs Espert、Francisco Gómez Casanova、Luis de Pedro
-Sánchez、Senaida Hernández Santana、Pablo Serrano Molinero｜来源：arXiv
-2607.12990｜分类：quant-ph、q-fin.CP｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.12990">PDF</a>。作者构建从市场校准、离散化、oracle
-到真实量子硬件的 CVA 流程，并提出把 Grover
-对比度损失纳入贝叶斯推断和线路深度选择的
-CABIQAE；报告其比无噪方案更有效利用有限放大，经典后处理时间也低于噪声感知
-BAE。贡献在端到端误差分解；完整 oracle
-仍受线路深度和离散分辨率限制，摘要未证明相对经典蒙特卡洛的总成本优势。<strong>仅依据摘要。</strong></p>
-<h3 id="structure-aware-variational-state-preparation-for-quantum-basket-option-pricing"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14518">Structure-Aware Variational
-State Preparation for Quantum Basket Option Pricing</a></h3>
-<p>作者：Dongwoo Kim、Zhenyu Cui、Daniel K. Park、Chihoon
-Lee｜来源：arXiv 2607.14518｜分类：quant-ph、q-fin.CP｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14518">PDF</a>。论文以 tensor-train
-秩设计浅层变分状态制备：独立资产删除不必要纠缠，相关资产以局部边际和紧凑潜块匹配篮子
-CDF。作者报告把精确幅度加载的深度从指数缩放降为线性，同时维持低百分比定价误差。结果来自数值与端到端
-QAE
-实验；训练误差、硬件噪声和总资源尚不足以证明现实量子优势。<strong>仅依据摘要。</strong></p>
-<h3 id="is-deep-hedging-reinforcement-learning"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13353">Is Deep Hedging Reinforcement
-Learning?</a></h3>
-<p>作者：Frédéric Godin｜来源：arXiv 2607.13353｜分类：q-fin.CP｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13353">PDF</a>。这是一篇概念论证：深度对冲以模拟价格路径、随机梯度和终端风险度量训练策略，即便没有中间奖励、价值函数、Bellman
-方程或 TD 学习，也可归入 Monte Carlo policy-gradient / actor-only policy
-search 的 RL
-范畴。价值在澄清术语边界；论文没有提出新策略、数据或经济效果，因此不能据此判断深度对冲是否优于随机控制基线。<strong>仅依据摘要。</strong></p>
-<h3 id="global-factors-for-local-shocks-in-a-data-scarce-environment-with-an-application-to-regional-fiscal-multipliers-in-italy"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13879">Global factors for local shocks
-in a data-scarce environment: with an application to regional fiscal
-multipliers in Italy</a></h3>
-<p>作者：Giuseppe Cavaliere、Luca Fanelli、Marco Mazzali｜来源：arXiv
-2607.13879｜分类：econ.EM｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13879">PDF</a>。作者提出面向强横截面相关、动态异质且本地工具变量稀缺面板的
-factor-augmented
-proxy-SVAR：用全局因子构造非政策冲击工具，再以最小距离估计各地区政策反应，并可加入本地工具形成可检验的过度识别。应用估计意大利
-NUTS-2
-地区政府支出乘数。方法针对因果识别，但可信度依赖工具变量外生性、因子结构和年度小样本；摘要未给乘数、置信区间或弱工具诊断。<strong>仅依据摘要。</strong></p>
-<h3 id="messy-research-certification-and-the-monetization-of-science"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13844">Messy Research, Certification
-and the Monetization of Science</a></h3>
-<p>作者：Johan Fourie｜来源：arXiv 2607.13844｜分类：econ.GN｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13844">PDF</a>。理论模型研究 AI
-降低论文包装成本后，认证与审稿为何变成稀缺环节：若认证者有市场势力，可捕获更高可信认证溢价；若审稿容量固定且承诺弱，标准可能稀释，投稿税与审稿容量影子价值上升。它与金融的连接是信号、认证定价和市场势力，而非资产定价；没有微观数据或因果估计，结论取决于模型假设。<strong>仅依据摘要。</strong></p>
-<h3 id="existence-and-convergence-of-discrete-time-kyle-models-with-multiple-insiders"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.15057">Existence and convergence of
-discrete-time Kyle models with multiple insiders</a></h3>
-<p>作者：Jin Hyuk Choi、Kasper Larsen｜来源：arXiv
-2607.15057｜分类：q-fin.TR、math.PR｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.15057">PDF</a>。<strong>已核对
-PDF；arXiv 摘要页当前误放了另一篇论文的摘要，以下以 PDF
-为准。</strong>论文解决 Foster–Viswanathan 多个部分知情交易者离散时间
-Kyle 模型的两个理论问题：证明 Nash
-均衡存在，并证明交易次数趋于无穷时离散均衡收敛到既有连续时间均衡。价值是补上长期理论缺口；这是模型存在性与收敛性证明，没有交易数据、因果识别或可交易结果，假设边界应结合正文定理阅读。</p>
-<h3 id="probability-of-worthwhile-effect-of-monotone-response-treatments"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14414">Probability of worthwhile effect
-of monotone-response treatments</a></h3>
-<p>作者：Benjamin Côté、Ruodu Wang｜来源：arXiv
-2607.14414｜分类：econ.EM｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14414">PDF</a>。在只观测处理与未处理边际分布、无法观测个体联合反事实时，作者加入“处理效果非负”的单调响应假设，显式构造处理效果超过阈值概率的最优与最劣界；同一结果也可解释为依赖不确定性下的风险聚合和带特定成本的最优传输。贡献是部分识别而非点估计；结论不自动获得因果效应分布，且对单调性假设敏感。<strong>仅依据摘要。</strong></p>
-<h3 id="neuralchaos-optimal-adapted-approximation-of-square-integrable-predictable-processes"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14361">NeuralChaos: Optimal Adapted
-Approximation of Square Integrable Predictable Processes</a></h3>
-<p>作者：Anastasis Kratsios、Giulia Livieri、Philipp
-Schmocker｜来源：arXiv
-2607.14361｜分类：math.PR、cs.LG、q-fin.CP、stat.ML｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14361">PDF</a>。NeuralChaos
-用有限次布朗运动求值生成可预测、平方可积过程；作者证明其在相应过程空间稠密，并对可压缩及
-Malliavin–Sobolev 正则过程达到最优 N 项 chaoslet 逼近率，同时指出有限维
-Markov 神经 SDE
-在该空间中并不典型。数值实验覆盖随机控制和动态对冲。理论表达力强，但摘要未给对冲误差、计算复杂度和与强神经算子基线的数字，实际优势尚不能从定理直接推出。<strong>仅依据摘要。</strong></p>
-<h3 id="estimation-and-inference-for-latent-dual-networks-using-high-dimensional-iv-screening"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13862">Estimation and Inference for
-Latent Dual Networks Using High-Dimensional IV Screening</a></h3>
-<p>作者：Arturas Juodis、George Kapetanios、Vasilis
-Sarafidis｜来源：arXiv 2607.13862｜分类：econ.EM｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13862">PDF</a>。论文在高维面板中同时建模强化与竞争/替代两类潜在网络，用序贯工具变量筛选直接从结构方程恢复网络，并声称给出精确支持恢复与
-oracle
-等价的选择后推断；美国公司杠杆率应用发现两类互动并存。方法试图支持结构识别，但因果解释依赖工具有效性、稀疏性和正则条件；摘要未提供样本范围、效应量与样本外稳定性。<strong>仅依据摘要。</strong></p>
-<h3 id="thermodynamic-theory-of-voting-and-eu-elections"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.15119">Thermodynamic theory of voting
-and EU elections</a></h3>
-<p>作者：Klaus M. Frahm、Dima L. Shepelyansky｜来源：arXiv
-2607.15119｜分类：cond-mat.stat-mech、econ.GN、q-fin.ST 等｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.15119">PDF</a>。作者用 Rayleigh–Jeans
-热化与低能态凝聚类比欧盟选举党派票数分布，并报告模型能够描述
-Lorenz/Pareto
-曲线及法国总统选举首轮候选人票数离散。它与金融的联系仅在统计物理、财富不平等和
-q-fin.ST
-分类，主题本身主要是选举；拟合描述不等于机制因果识别，摘要没有样本外检验、基线或不确定区间。<strong>仅依据摘要。</strong></p>
+<h2 id="金融论文"><a class="markdownIt-Anchor" href="#金融论文"></a> 金融论文</h2>
+<h3 id="how-much-of-a-10-k-matters"><a class="markdownIt-Anchor" href="#how-much-of-a-10-k-matters"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14174">How Much of a 10-K Matters?</a></h3>
+<p>作者：Sanggyu Sean Choi｜来源：arXiv 2607.14174｜分类：cs.LG、q-fin.CP、q-fin.MF、q-fin.ST｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14174">PDF</a>。已在重点关注详述。作者报告完整文本在行业/组合层更准，Item 1A 在单一 Nvidia 层更准；证据是分类与相关性，而非交易结果。<strong>已核对全文。</strong></p>
+<h3 id="sciphy-reinforcement-learning-for-portfolio-optimization"><a class="markdownIt-Anchor" href="#sciphy-reinforcement-learning-for-portfolio-optimization"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.15195">SciPhy Reinforcement Learning for Portfolio Optimization</a></h3>
+<p>作者：Igor Halperin、Andrey Itkin｜来源：arXiv 2607.15195｜分类：<a target="_blank" rel="noopener" href="http://q-fin.PM">q-fin.PM</a>、q-fin.CP、q-fin.MF、math.AP、math.NA｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.15195">PDF</a>。已在重点关注详述。作者报告 Gibbs 策略在 oracle 信号下改善历史窗口中的风险调整表现；这验证的是“已知信号如何配置”，不是预测能力或真实可交易结果。<strong>已核对全文，非投资建议。</strong></p>
+<h3 id="a-noise-robust-elicit-to-optimize-framework-for-distortion-riskmetrics-via-inverse-reinforcement-learning"><a class="markdownIt-Anchor" href="#a-noise-robust-elicit-to-optimize-framework-for-distortion-riskmetrics-via-inverse-reinforcement-learning"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14373">A Noise-Robust Elicit-to-Optimize Framework for Distortion Riskmetrics via Inverse Reinforcement Learning</a></h3>
+<p>作者：Yang Liu、Yuhao Liu、Yunran Wei｜来源：arXiv 2607.14373｜分类：cs.LG、q-fin.RM｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14373">PDF</a>。已在重点关注详述。自适应贝叶斯 IRL 识别含噪风险偏好，再由分位网络扩展 PPO；理论和数值结果支持识别稳定性，但没有交易摩擦后的经济收益证据。<strong>已核对全文。</strong></p>
+<h3 id="vaiom"><a class="markdownIt-Anchor" href="#vaiom"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13929">VAIOM</a></h3>
+<p>作者：Yiming Ma、Xinyu Chen｜来源：arXiv 2607.13929｜分类：cs.LG、q-fin.CP｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13929">PDF</a>。已在重点关注详述。严格时间切分下，作者报告相对 LightGBM 的似然提升为每事件 0.029/0.043 bits；这不等于扣除摩擦后的交易优势。<strong>仅依据摘要。</strong></p>
+<h3 id="measuring-sentiment-news-with-transformer-based-language-models"><a class="markdownIt-Anchor" href="#measuring-sentiment-news-with-transformer-based-language-models"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13968">Measuring Sentiment News with Transformer-Based Language Models</a></h3>
+<p>作者：Maria Saveria Mavillonio、Stefano Borgioli、Caterina Giannetti、Chiara Ongari、Giampiero M. Gallo｜来源：arXiv 2607.13968｜分类：q-fin.GN｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13968">PDF</a>。研究用 FinBERT 对 Factiva 的 143,755 篇金融新闻逐句分类，再聚合为日度情绪；444 名参与者对 588 篇文章的激励式标注构成外部基准。作者报告 Transformer 指标与人类判断的一致性以及正/中/负分类优于词典方法。人类验证增强测量效度，但不证明资产收益预测或因果关系；Factiva 代表性、训练语料污染与聚合选择限制外推。<strong>仅依据摘要。</strong></p>
+<h3 id="detecting-unusual-trading-patterns-on-cryptocurrency-exchanges-by-means-of-complexity-measures"><a class="markdownIt-Anchor" href="#detecting-unusual-trading-patterns-on-cryptocurrency-exchanges-by-means-of-complexity-measures"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13916">Detecting unusual trading patterns on cryptocurrency exchanges by means of complexity measures</a></h3>
+<p>作者：Jakub Zwydak、Marcin Wątorek、Jarosław Kwapień、Stanisław Drożdż｜来源：arXiv 2607.13916｜分类：<a target="_blank" rel="noopener" href="http://q-fin.TR">q-fin.TR</a>、econ.EM 等｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13916">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.3390/e28070804">DOI</a>。论文对 2025-04-01 至 06-30 的 BTC、ETH、XRP 在四家交易所的逐笔数据计算尾分布、自相关、多重分形、近似熵和去趋势交叉相关；作者发现 Bitget 在 5 月中旬后交易笔数激增，却没有相称成交量或价格波动。现象与噪声式人工交易一致，但作者明确承认不能直接证明刷量；三个月窗口、交易所数据质量和多重检验限制归因。<strong>仅依据摘要。</strong></p>
+<h3 id="a-noise-aware-quantum-algorithm-for-credit-valuation-adjustments-on-real-quantum-hardware"><a class="markdownIt-Anchor" href="#a-noise-aware-quantum-algorithm-for-credit-valuation-adjustments-on-real-quantum-hardware"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.12990">A Noise-Aware Quantum Algorithm for Credit Valuation Adjustments on Real Quantum Hardware</a></h3>
+<p>作者：Guillem Borràs Espert、Francisco Gómez Casanova、Luis de Pedro Sánchez、Senaida Hernández Santana、Pablo Serrano Molinero｜来源：arXiv 2607.12990｜分类：quant-ph、q-fin.CP｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.12990">PDF</a>。作者构建从市场校准、离散化、oracle 到真实量子硬件的 CVA 流程，并提出把 Grover 对比度损失纳入贝叶斯推断和线路深度选择的 CABIQAE；报告其比无噪方案更有效利用有限放大，经典后处理时间也低于噪声感知 BAE。贡献在端到端误差分解；完整 oracle 仍受线路深度和离散分辨率限制，摘要未证明相对经典蒙特卡洛的总成本优势。<strong>仅依据摘要。</strong></p>
+<h3 id="structure-aware-variational-state-preparation-for-quantum-basket-option-pricing"><a class="markdownIt-Anchor" href="#structure-aware-variational-state-preparation-for-quantum-basket-option-pricing"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14518">Structure-Aware Variational State Preparation for Quantum Basket Option Pricing</a></h3>
+<p>作者：Dongwoo Kim、Zhenyu Cui、Daniel K. Park、Chihoon Lee｜来源：arXiv 2607.14518｜分类：quant-ph、q-fin.CP｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14518">PDF</a>。论文以 tensor-train 秩设计浅层变分状态制备：独立资产删除不必要纠缠，相关资产以局部边际和紧凑潜块匹配篮子 CDF。作者报告把精确幅度加载的深度从指数缩放降为线性，同时维持低百分比定价误差。结果来自数值与端到端 QAE 实验；训练误差、硬件噪声和总资源尚不足以证明现实量子优势。<strong>仅依据摘要。</strong></p>
+<h3 id="is-deep-hedging-reinforcement-learning"><a class="markdownIt-Anchor" href="#is-deep-hedging-reinforcement-learning"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13353">Is Deep Hedging Reinforcement Learning?</a></h3>
+<p>作者：Frédéric Godin｜来源：arXiv 2607.13353｜分类：q-fin.CP｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13353">PDF</a>。这是一篇概念论证：深度对冲以模拟价格路径、随机梯度和终端风险度量训练策略，即便没有中间奖励、价值函数、Bellman 方程或 TD 学习，也可归入 Monte Carlo policy-gradient / actor-only policy search 的 RL 范畴。价值在澄清术语边界；论文没有提出新策略、数据或经济效果，因此不能据此判断深度对冲是否优于随机控制基线。<strong>仅依据摘要。</strong></p>
+<h3 id="global-factors-for-local-shocks-in-a-data-scarce-environment-with-an-application-to-regional-fiscal-multipliers-in-italy"><a class="markdownIt-Anchor" href="#global-factors-for-local-shocks-in-a-data-scarce-environment-with-an-application-to-regional-fiscal-multipliers-in-italy"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13879">Global factors for local shocks in a data-scarce environment: with an application to regional fiscal multipliers in Italy</a></h3>
+<p>作者：Giuseppe Cavaliere、Luca Fanelli、Marco Mazzali｜来源：arXiv 2607.13879｜分类：econ.EM｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13879">PDF</a>。作者提出面向强横截面相关、动态异质且本地工具变量稀缺面板的 factor-augmented proxy-SVAR：用全局因子构造非政策冲击工具，再以最小距离估计各地区政策反应，并可加入本地工具形成可检验的过度识别。应用估计意大利 NUTS-2 地区政府支出乘数。方法针对因果识别，但可信度依赖工具变量外生性、因子结构和年度小样本；摘要未给乘数、置信区间或弱工具诊断。<strong>仅依据摘要。</strong></p>
+<h3 id="messy-research-certification-and-the-monetization-of-science"><a class="markdownIt-Anchor" href="#messy-research-certification-and-the-monetization-of-science"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13844">Messy Research, Certification and the Monetization of Science</a></h3>
+<p>作者：Johan Fourie｜来源：arXiv 2607.13844｜分类：econ.GN｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13844">PDF</a>。理论模型研究 AI 降低论文包装成本后，认证与审稿为何变成稀缺环节：若认证者有市场势力，可捕获更高可信认证溢价；若审稿容量固定且承诺弱，标准可能稀释，投稿税与审稿容量影子价值上升。它与金融的连接是信号、认证定价和市场势力，而非资产定价；没有微观数据或因果估计，结论取决于模型假设。<strong>仅依据摘要。</strong></p>
+<h3 id="existence-and-convergence-of-discrete-time-kyle-models-with-multiple-insiders"><a class="markdownIt-Anchor" href="#existence-and-convergence-of-discrete-time-kyle-models-with-multiple-insiders"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.15057">Existence and convergence of discrete-time Kyle models with multiple insiders</a></h3>
+<p>作者：Jin Hyuk Choi、Kasper Larsen｜来源：arXiv 2607.15057｜分类：<a target="_blank" rel="noopener" href="http://q-fin.TR">q-fin.TR</a>、math.PR｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.15057">PDF</a>。**已核对 PDF；arXiv 摘要页当前误放了另一篇论文的摘要，以下以 PDF 为准。**论文解决 Foster–Viswanathan 多个部分知情交易者离散时间 Kyle 模型的两个理论问题：证明 Nash 均衡存在，并证明交易次数趋于无穷时离散均衡收敛到既有连续时间均衡。价值是补上长期理论缺口；这是模型存在性与收敛性证明，没有交易数据、因果识别或可交易结果，假设边界应结合正文定理阅读。</p>
+<h3 id="probability-of-worthwhile-effect-of-monotone-response-treatments"><a class="markdownIt-Anchor" href="#probability-of-worthwhile-effect-of-monotone-response-treatments"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14414">Probability of worthwhile effect of monotone-response treatments</a></h3>
+<p>作者：Benjamin Côté、Ruodu Wang｜来源：arXiv 2607.14414｜分类：econ.EM｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14414">PDF</a>。在只观测处理与未处理边际分布、无法观测个体联合反事实时，作者加入“处理效果非负”的单调响应假设，显式构造处理效果超过阈值概率的最优与最劣界；同一结果也可解释为依赖不确定性下的风险聚合和带特定成本的最优传输。贡献是部分识别而非点估计；结论不自动获得因果效应分布，且对单调性假设敏感。<strong>仅依据摘要。</strong></p>
+<h3 id="neuralchaos-optimal-adapted-approximation-of-square-integrable-predictable-processes"><a class="markdownIt-Anchor" href="#neuralchaos-optimal-adapted-approximation-of-square-integrable-predictable-processes"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.14361">NeuralChaos: Optimal Adapted Approximation of Square Integrable Predictable Processes</a></h3>
+<p>作者：Anastasis Kratsios、Giulia Livieri、Philipp Schmocker｜来源：arXiv 2607.14361｜分类：<a target="_blank" rel="noopener" href="http://math.PR">math.PR</a>、cs.LG、q-fin.CP、stat.ML｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.14361">PDF</a>。NeuralChaos 用有限次布朗运动求值生成可预测、平方可积过程；作者证明其在相应过程空间稠密，并对可压缩及 Malliavin–Sobolev 正则过程达到最优 N 项 chaoslet 逼近率，同时指出有限维 Markov 神经 SDE 在该空间中并不典型。数值实验覆盖随机控制和动态对冲。理论表达力强，但摘要未给对冲误差、计算复杂度和与强神经算子基线的数字，实际优势尚不能从定理直接推出。<strong>仅依据摘要。</strong></p>
+<h3 id="estimation-and-inference-for-latent-dual-networks-using-high-dimensional-iv-screening"><a class="markdownIt-Anchor" href="#estimation-and-inference-for-latent-dual-networks-using-high-dimensional-iv-screening"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.13862">Estimation and Inference for Latent Dual Networks Using High-Dimensional IV Screening</a></h3>
+<p>作者：Arturas Juodis、George Kapetanios、Vasilis Sarafidis｜来源：arXiv 2607.13862｜分类：econ.EM｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.13862">PDF</a>。论文在高维面板中同时建模强化与竞争/替代两类潜在网络，用序贯工具变量筛选直接从结构方程恢复网络，并声称给出精确支持恢复与 oracle 等价的选择后推断；美国公司杠杆率应用发现两类互动并存。方法试图支持结构识别，但因果解释依赖工具有效性、稀疏性和正则条件；摘要未提供样本范围、效应量与样本外稳定性。<strong>仅依据摘要。</strong></p>
+<h3 id="thermodynamic-theory-of-voting-and-eu-elections"><a class="markdownIt-Anchor" href="#thermodynamic-theory-of-voting-and-eu-elections"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.15119">Thermodynamic theory of voting and EU elections</a></h3>
+<p>作者：Klaus M. Frahm、Dima L. Shepelyansky｜来源：arXiv 2607.15119｜分类：cond-mat.stat-mech、<a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、<a target="_blank" rel="noopener" href="http://q-fin.ST">q-fin.ST</a> 等｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.15119">PDF</a>。作者用 Rayleigh–Jeans 热化与低能态凝聚类比欧盟选举党派票数分布，并报告模型能够描述 Lorenz/Pareto 曲线及法国总统选举首轮候选人票数离散。它与金融的联系仅在统计物理、财富不平等和 <a target="_blank" rel="noopener" href="http://q-fin.ST">q-fin.ST</a> 分类，主题本身主要是选举；拟合描述不等于机制因果识别，摘要没有样本外检验、基线或不确定区间。<strong>仅依据摘要。</strong></p>
 
                 
               </div>

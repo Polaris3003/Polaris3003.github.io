@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-19/pixiv-rank-002-147092182.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-011-147051939.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -360,57 +360,45 @@
         <div><span>阅读</span><strong>约 12 分钟</strong></div>
         <div><span>材料</span><strong>9 节 · 3 段代码</strong></div>
       </div>
-    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="问题">问题</h2>
-<p>实现一个最小 Fama–MacBeth 特征回归：第一阶段每月对股票横截面做
-OLS，第二阶段对月度系数求时间均值，并用 Newey–West 标准误做推断。</p>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h2>
+<p>实现一个最小 Fama–MacBeth 特征回归：第一阶段每月对股票横截面做 OLS，第二阶段对月度系数求时间均值，并用 Newey–West 标准误做推断。</p>
 <p>最终接口：</p>
 <p><strong>fama_macbeth(frame, y, xs) → pd.DataFrame</strong></p>
-<p>返回每个系数的 mean、hac_se、t_stat 和月份数；月度系数保存在返回表的
-attrs 中，便于诊断。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="输入数据">输入数据</h2>
-<p>使用 8 个月、每月 6 只股票。两个当期特征是 size 和
-value，未来一期收益 future_return 按以下过程生成：</p>
-<p><span class="math display">\[
-R_{i,t+1}=0.002+\lambda_{size,t}size_i+
+<p>返回每个系数的 mean、hac_se、t_stat 和月份数；月度系数保存在返回表的 attrs 中，便于诊断。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="输入数据"><a class="markdownIt-Anchor" href="#输入数据"></a> 输入数据</h2>
+<p>使用 8 个月、每月 6 只股票。两个当期特征是 size 和 value，未来一期收益 future_return 按以下过程生成：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>R</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>0.002</mn><mo>+</mo><msub><mi>λ</mi><mrow><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo separator="true">,</mo><mi>t</mi></mrow></msub><mi>s</mi><mi>i</mi><mi>z</mi><msub><mi>e</mi><mi>i</mi></msub><mo>+</mo><msub><mi>λ</mi><mrow><mi>v</mi><mi>a</mi><mi>l</mi><mi>u</mi><mi>e</mi><mo separator="true">,</mo><mi>t</mi></mrow></msub><mi>v</mi><mi>a</mi><mi>l</mi><mi>u</mi><msub><mi>e</mi><mi>i</mi></msub><mo>+</mo><msub><mi>ε</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">R_{i,t+1}=0.002+\lambda_{size,t}size_i+
 \lambda_{value,t}value_i+\varepsilon_{i,t+1}
-\]</span></p>
-<p>size 风险价格的 8 个月真值均值为 1%，value 为
-0.5%。噪声被构造成与当月常数、size、value 三列正交，因此每月 OLS
-能精确恢复生成系数；这只用于测试代数实现。</p>
-<p>真实输入长表至少包含 return_date、asset、future_return 和所有
-x；信号形成日期应另列，并断言早于
-return_date。本实验省略交易实现，只检验回归。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="逐步实现">逐步实现</h2>
-<h3 id="每月独立横截面回归">1. 每月独立横截面回归</h3>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mord mathnormal mtight">e</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">e</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">u</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">ε</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>size 风险价格的 8 个月真值均值为 1%，value 为 0.5%。噪声被构造成与当月常数、size、value 三列正交，因此每月 OLS 能精确恢复生成系数；这只用于测试代数实现。</p>
+<p>真实输入长表至少包含 return_date、asset、future_return 和所有 x；信号形成日期应另列，并断言早于 return_date。本实验省略交易实现，只检验回归。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="逐步实现"><a class="markdownIt-Anchor" href="#逐步实现"></a> 逐步实现</h2>
+<h3 id="1-每月独立横截面回归"><a class="markdownIt-Anchor" href="#1-每月独立横截面回归"></a> 1. 每月独立横截面回归</h3>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br><span class="hljs-keyword">for</span> date, block <span class="hljs-keyword">in</span> frame.groupby(<span class="hljs-string">&quot;return_date&quot;</span>):<br>    X = sm.add_constant(block[xs], has_constant=<span class="hljs-string">&quot;add&quot;</span>)<br>    fit = sm.OLS(block[y], X).fit()<br>    monthly_rows.append(&#123;<span class="hljs-string">&quot;return_date&quot;</span>: date, **fit.params.to_dict()&#125;)<br></code></pre></td></tr></table></figure>
-<p>一月有 N 个股票观测，得到一组当月
-λ。每个月重新估计允许风险价格随时间变化，也避免把股票数量误当作时间证据。</p>
-<h3 id="对月度系数做均值回归">2. 对月度系数做均值回归</h3>
+<p>一月有 N 个股票观测，得到一组当月 λ。每个月重新估计允许风险价格随时间变化，也避免把股票数量误当作时间证据。</p>
+<h3 id="2-对月度系数做均值回归"><a class="markdownIt-Anchor" href="#2-对月度系数做均值回归"></a> 2. 对月度系数做均值回归</h3>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>fit_mean = sm.OLS(values, np.ones((<span class="hljs-built_in">len</span>(values), <span class="hljs-number">1</span>))).fit(<br>    cov_type=<span class="hljs-string">&quot;HAC&quot;</span>,<br>    cov_kwds=&#123;<span class="hljs-string">&quot;maxlags&quot;</span>: lags&#125;,<br>)<br></code></pre></td></tr></table></figure>
-<p>只对常数回归的系数就是时间均值；HAC bse
-是该均值在允许有限自相关下的标准误。lags
-必须由持有期和误差结构决定。</p>
-<h3 id="保存中间结果">3. 保存中间结果</h3>
-<p>最终表只含摘要会隐藏不稳定月份。将 monthly 放在
-attrs，实际研究还应落盘保存每月股票数、R²、条件数、缺失比例和分位数。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="完整代码">完整代码</h2>
+<p>只对常数回归的系数就是时间均值；HAC bse 是该均值在允许有限自相关下的标准误。lags 必须由持有期和误差结构决定。</p>
+<h3 id="3-保存中间结果"><a class="markdownIt-Anchor" href="#3-保存中间结果"></a> 3. 保存中间结果</h3>
+<p>最终表只含摘要会隐藏不稳定月份。将 monthly 放在 attrs，实际研究还应落盘保存每月股票数、R²、条件数、缺失比例和分位数。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="完整代码"><a class="markdownIt-Anchor" href="#完整代码"></a> 完整代码</h2>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> statsmodels.api <span class="hljs-keyword">as</span> sm<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">fama_macbeth</span>(<span class="hljs-params">frame, y, xs, lags=<span class="hljs-number">1</span></span>):<br>    required = &#123;<span class="hljs-string">&quot;return_date&quot;</span>, <span class="hljs-string">&quot;asset&quot;</span>, y, *xs&#125;<br>    missing = required.difference(frame.columns)<br>    <span class="hljs-keyword">if</span> missing:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">f&quot;missing columns: <span class="hljs-subst">&#123;<span class="hljs-built_in">sorted</span>(missing)&#125;</span>&quot;</span>)<br>    <span class="hljs-keyword">if</span> frame.duplicated([<span class="hljs-string">&quot;return_date&quot;</span>, <span class="hljs-string">&quot;asset&quot;</span>]).<span class="hljs-built_in">any</span>():<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;return_date and asset must be unique&quot;</span>)<br>    <span class="hljs-keyword">if</span> frame[<span class="hljs-built_in">list</span>(required)].isna().<span class="hljs-built_in">any</span>().<span class="hljs-built_in">any</span>():<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;input contains missing values&quot;</span>)<br><br>    names = [<span class="hljs-string">&quot;const&quot;</span>, *xs]<br>    monthly_rows = []<br>    <span class="hljs-keyword">for</span> date, block <span class="hljs-keyword">in</span> frame.groupby(<span class="hljs-string">&quot;return_date&quot;</span>, sort=<span class="hljs-literal">True</span>):<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(block) &lt;= <span class="hljs-built_in">len</span>(names):<br>            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;each month needs more assets than coefficients&quot;</span>)<br>        X = sm.add_constant(block[xs], has_constant=<span class="hljs-string">&quot;add&quot;</span>)<br>        fit = sm.OLS(block[y], X).fit()<br>        monthly_rows.append(&#123;<br>            <span class="hljs-string">&quot;return_date&quot;</span>: date,<br>            **&#123;name: <span class="hljs-built_in">float</span>(fit.params[name]) <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> names&#125;,<br>        &#125;)<br><br>    monthly = pd.DataFrame(monthly_rows).sort_values(<span class="hljs-string">&quot;return_date&quot;</span>)<br>    summary_rows = []<br>    <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> names:<br>        values = monthly[name].to_numpy()<br>        mean_fit = sm.OLS(values, np.ones((<span class="hljs-built_in">len</span>(values), <span class="hljs-number">1</span>))).fit(<br>            cov_type=<span class="hljs-string">&quot;HAC&quot;</span>,<br>            cov_kwds=&#123;<span class="hljs-string">&quot;maxlags&quot;</span>: lags&#125;,<br>        )<br>        mean = <span class="hljs-built_in">float</span>(mean_fit.params[<span class="hljs-number">0</span>])<br>        se = <span class="hljs-built_in">float</span>(mean_fit.bse[<span class="hljs-number">0</span>])<br>        summary_rows.append(&#123;<br>            <span class="hljs-string">&quot;variable&quot;</span>: name,<br>            <span class="hljs-string">&quot;mean&quot;</span>: mean,<br>            <span class="hljs-string">&quot;hac_se&quot;</span>: se,<br>            <span class="hljs-string">&quot;t_stat&quot;</span>: mean / se <span class="hljs-keyword">if</span> se &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> np.nan,<br>            <span class="hljs-string">&quot;n_months&quot;</span>: <span class="hljs-built_in">len</span>(values),<br>        &#125;)<br><br>    summary = pd.DataFrame(summary_rows).set_index(<span class="hljs-string">&quot;variable&quot;</span>)<br>    summary.attrs[<span class="hljs-string">&quot;monthly&quot;</span>] = monthly<br>    <span class="hljs-keyword">return</span> summary<br><br><br>assets = <span class="hljs-built_in">list</span>(<span class="hljs-string">&quot;ABCDEF&quot;</span>)<br>dates = pd.date_range(<span class="hljs-string">&quot;2026-01-31&quot;</span>, periods=<span class="hljs-number">8</span>, freq=<span class="hljs-string">&quot;ME&quot;</span>)<br>size = np.array([-<span class="hljs-number">1.0</span>, -<span class="hljs-number">0.5</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.7</span>, <span class="hljs-number">1.0</span>])<br>value = np.array([<span class="hljs-number">0.3</span>, -<span class="hljs-number">0.8</span>, <span class="hljs-number">1.0</span>, -<span class="hljs-number">0.4</span>, <span class="hljs-number">0.5</span>, -<span class="hljs-number">0.2</span>])<br>lambda_size = np.array([<span class="hljs-number">0.010</span>, <span class="hljs-number">0.020</span>, -<span class="hljs-number">0.005</span>, <span class="hljs-number">0.015</span>, <span class="hljs-number">0.000</span>, <span class="hljs-number">0.025</span>, <span class="hljs-number">0.010</span>, <span class="hljs-number">0.005</span>])<br>lambda_value = np.array([<span class="hljs-number">0.005</span>, -<span class="hljs-number">0.010</span>, <span class="hljs-number">0.015</span>, <span class="hljs-number">0.000</span>, <span class="hljs-number">0.010</span>, <span class="hljs-number">0.005</span>, -<span class="hljs-number">0.005</span>, <span class="hljs-number">0.020</span>])<br><br>design = np.column_stack([np.ones(<span class="hljs-number">6</span>), size, value])<br>raw_noise = np.array([<span class="hljs-number">0.0010</span>, -<span class="hljs-number">0.0010</span>, <span class="hljs-number">0.0005</span>, -<span class="hljs-number">0.0005</span>, <span class="hljs-number">0.0008</span>, -<span class="hljs-number">0.0008</span>])<br>projection = design @ np.linalg.lstsq(design, raw_noise, rcond=<span class="hljs-literal">None</span>)[<span class="hljs-number">0</span>]<br>orthogonal_noise = raw_noise - projection<br><br>rows = []<br><span class="hljs-keyword">for</span> month, date <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(dates):<br>    future = (<br>        <span class="hljs-number">0.002</span><br>        + lambda_size[month] * size<br>        + lambda_value[month] * value<br>        + (<span class="hljs-number">1</span> + <span class="hljs-number">0.1</span> * month) * orthogonal_noise<br>    )<br>    <span class="hljs-keyword">for</span> asset, s, v, ret <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(assets, size, value, future):<br>        rows.append(&#123;<br>            <span class="hljs-string">&quot;return_date&quot;</span>: date,<br>            <span class="hljs-string">&quot;asset&quot;</span>: asset,<br>            <span class="hljs-string">&quot;size&quot;</span>: s,<br>            <span class="hljs-string">&quot;value&quot;</span>: v,<br>            <span class="hljs-string">&quot;future_return&quot;</span>: ret,<br>        &#125;)<br><br>sample = pd.DataFrame(rows)<br>summary = fama_macbeth(sample, <span class="hljs-string">&quot;future_return&quot;</span>, [<span class="hljs-string">&quot;size&quot;</span>, <span class="hljs-string">&quot;value&quot;</span>])<br>monthly = summary.attrs[<span class="hljs-string">&quot;monthly&quot;</span>]<br><br>first = sample.loc[sample[<span class="hljs-string">&quot;return_date&quot;</span>] == dates[<span class="hljs-number">0</span>]]<br>direct = sm.OLS(<br>    first[<span class="hljs-string">&quot;future_return&quot;</span>],<br>    sm.add_constant(first[[<span class="hljs-string">&quot;size&quot;</span>, <span class="hljs-string">&quot;value&quot;</span>]], has_constant=<span class="hljs-string">&quot;add&quot;</span>),<br>).fit()<br><br><span class="hljs-keyword">assert</span> np.allclose(<br>    monthly.loc[<span class="hljs-number">0</span>, [<span class="hljs-string">&quot;const&quot;</span>, <span class="hljs-string">&quot;size&quot;</span>, <span class="hljs-string">&quot;value&quot;</span>]].to_numpy(dtype=<span class="hljs-built_in">float</span>),<br>    direct.params.to_numpy(),<br>)<br><span class="hljs-keyword">assert</span> np.isclose(summary.loc[<span class="hljs-string">&quot;size&quot;</span>, <span class="hljs-string">&quot;mean&quot;</span>], lambda_size.mean())<br><span class="hljs-keyword">assert</span> np.isclose(summary.loc[<span class="hljs-string">&quot;value&quot;</span>, <span class="hljs-string">&quot;mean&quot;</span>], lambda_value.mean())<br><span class="hljs-keyword">assert</span> (summary[<span class="hljs-string">&quot;n_months&quot;</span>] == <span class="hljs-number">8</span>).<span class="hljs-built_in">all</span>()<br><br><span class="hljs-built_in">print</span>(summary.<span class="hljs-built_in">round</span>(<span class="hljs-number">6</span>).to_string())<br><span class="hljs-built_in">print</span>(monthly.<span class="hljs-built_in">round</span>(<span class="hljs-number">6</span>).to_string(index=<span class="hljs-literal">False</span>))<br></code></pre></td></tr></table></figure>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="预期输出">预期输出</h2>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="预期输出"><a class="markdownIt-Anchor" href="#预期输出"></a> 预期输出</h2>
 <p>核心均值：</p>
 <div class="quant-table-shell">
       <div class="quant-table-caption">
@@ -420,33 +408,31 @@ attrs，实际研究还应落盘保存每月股票数、R²、条件数、缺失
 <thead>
 <tr>
 <th>variable</th>
-<th style="text-align: right;">mean</th>
-<th style="text-align: right;">n_months</th>
+<th style="text-align:right">mean</th>
+<th style="text-align:right">n_months</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>const</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">8</td>
+<td style="text-align:right">0.002</td>
+<td style="text-align:right">8</td>
 </tr>
 <tr>
 <td>size</td>
-<td style="text-align: right;">0.010</td>
-<td style="text-align: right;">8</td>
+<td style="text-align:right">0.010</td>
+<td style="text-align:right">8</td>
 </tr>
 <tr>
 <td>value</td>
-<td style="text-align: right;">0.005</td>
-<td style="text-align: right;">8</td>
+<td style="text-align:right">0.005</td>
+<td style="text-align:right">8</td>
 </tr>
 </tbody>
 </table></div></div>
-<p>每月 size、value 系数应分别与代码中的 lambda_size、lambda_value
-相同。hac_se 和 t_stat 由这 8 个时间值及 maxlags=1 决定。8
-个月样本过短，数值只验证算法，不应解释为经济证据。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="断言">断言</h2>
-<ol type="1">
+<p>每月 size、value 系数应分别与代码中的 lambda_size、lambda_value 相同。hac_se 和 t_stat 由这 8 个时间值及 maxlags=1 决定。8 个月样本过短，数值只验证算法，不应解释为经济证据。</p>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="断言"><a class="markdownIt-Anchor" href="#断言"></a> 断言</h2>
+<ol>
 <li>return_date、asset 联合唯一。</li>
 <li>必需字段无缺失。</li>
 <li>每月股票数大于回归系数数，避免零残差自由度。</li>
@@ -454,22 +440,15 @@ attrs，实际研究还应落盘保存每月股票数、R²、条件数、缺失
 <li>第二阶段均值等于生成时 λ 的算术平均。</li>
 <li>每个摘要系数使用恰好 8 个月。</li>
 </ol>
-<p>真实点时研究应再加入
-signal_date&lt;return_date、每月秩、条件数、极端杠杆点、行业覆盖和股票池变化断言。</p>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="结果解释">结果解释</h2>
-<p>第一阶段回答：“在这个月的股票横截面中，size 或 value
-增加一个单位，对应多少未来收益差？”第二阶段回答：“这种月度关系的时间平均是否稳定偏离零？”</p>
-<p>Fama–MacBeth 的有效时间证据主要来自 8 个月，而不是 48
-个股票月份。股票数增加能提高每月截面系数精度，却不能把共同宏观冲击复制成独立月份。</p>
-<p>本例直接使用可观察特征。如果 x 是第一步时序回归估出的
-Beta，第二步还会继承 Beta 的测量误差，需要 Shanken
-型修正、联合估计或与设计匹配的自助法。</p>
-<p>HAC 只改变第二阶段均值的标准误，不改变月度系数或均值。若通过调整
-maxlags 来最大化 t 值，推断已经被研究者选择污染。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见故障">常见故障</h2>
+<p>真实点时研究应再加入 signal_date&lt;return_date、每月秩、条件数、极端杠杆点、行业覆盖和股票池变化断言。</p>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="结果解释"><a class="markdownIt-Anchor" href="#结果解释"></a> 结果解释</h2>
+<p>第一阶段回答：“在这个月的股票横截面中，size 或 value 增加一个单位，对应多少未来收益差？”第二阶段回答：“这种月度关系的时间平均是否稳定偏离零？”</p>
+<p>Fama–MacBeth 的有效时间证据主要来自 8 个月，而不是 48 个股票月份。股票数增加能提高每月截面系数精度，却不能把共同宏观冲击复制成独立月份。</p>
+<p>本例直接使用可观察特征。如果 x 是第一步时序回归估出的 Beta，第二步还会继承 Beta 的测量误差，需要 Shanken 型修正、联合估计或与设计匹配的自助法。</p>
+<p>HAC 只改变第二阶段均值的标准误，不改变月度系数或均值。若通过调整 maxlags 来最大化 t 值，推断已经被研究者选择污染。</p>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见故障"><a class="markdownIt-Anchor" href="#常见故障"></a> 常见故障</h2>
 <ul>
-<li>把 return_date 当信号日，导致 future_return
-与特征同期或反向错位。</li>
+<li>把 return_date 当信号日，导致 future_return 与特征同期或反向错位。</li>
 <li>全部股票月份池化 OLS 后用普通标准误。</li>
 <li>某月股票数过少、特征常数或高度共线，仍保留无意义系数。</li>
 <li>每月标准化使用全样本均值和标准差。</li>
@@ -478,17 +457,14 @@ maxlags 来最大化 t 值，推断已经被研究者选择污染。</p>
 <li>只保存摘要，无法检查系数是否由单个极端月份驱动。</li>
 <li>把特征斜率直接叫风险溢价，没有证明特征代表可定价暴露。</li>
 </ul>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习">练习</h2>
-<ol type="1">
-<li>把 lambda_size
-后四个月全部设为负，观察全样本均值怎样掩盖结构变化。</li>
-<li>将持有期改为 3 个月并构造重叠收益，比较 maxlags=0、2、6
-的标准误。</li>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
+<ol>
+<li>把 lambda_size 后四个月全部设为负，观察全样本均值怎样掩盖结构变化。</li>
+<li>将持有期改为 3 个月并构造重叠收益，比较 maxlags=0、2、6 的标准误。</li>
 <li>某个月把 value 设为 size 的两倍，添加条件数检查让函数失败。</li>
 <li>在每月先对 size、value 做当期 z-score，解释系数单位变化。</li>
 <li>加入行业哑变量，说明 const、特征系数和自由度如何变化。</li>
-<li>用两维聚类面板回归做对照，解释它和 Fama–MacBeth
-各允许什么相关结构。</li>
+<li>用两维聚类面板回归做对照，解释它和 Fama–MacBeth 各允许什么相关结构。</li>
 </ol>
 </section></div>
                 

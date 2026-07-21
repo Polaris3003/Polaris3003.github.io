@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-19/pixiv-rank-002-147092182.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-011-147051939.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -360,43 +360,34 @@
         <div><span>阅读</span><strong>约 7 分钟</strong></div>
         <div><span>材料</span><strong>9 节 · 1 段代码</strong></div>
       </div>
-    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="问题">问题</h2>
-<p>并排构造两条财报管线：错误管线按 report_period 连接，正确管线只允许
-announce_date
-不晚于决策日。再比较“只保留期末仍上市股票”和历史股票池收益。目标是让两类偏差变成可失败断言，而非抽象警告。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="输入数据">输入数据</h2>
-<p>两只股票 A、B 的年报报告期均为 2025-12-31；A 在 2026-03-20 公告，B 在
-2026-04-15 公告。决策日是 2026-03-31。错误表会提前使用 B。</p>
-<p>幸存者样本有 A、B、C 三只股票，C 在第二月亏损 50%
-后退市。期末名单只有 A、B；若回溯删除 C，历史等权收益被抬高。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="逐步实现">逐步实现</h2>
-<p>错误连接条件是
-report_period≤decision_date，它只检查会计期间，不检查市场知道时间。正确连接先过滤
-announce_date≤decision_date，再按股票取最新公告。</p>
-<p>幸存者测试不需要复杂回测：对每月历史 eligible 股票等权，与先筛选
-end_survivor 的结果比较即可。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="完整代码">完整代码</h2>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h2>
+<p>并排构造两条财报管线：错误管线按 report_period 连接，正确管线只允许 announce_date 不晚于决策日。再比较“只保留期末仍上市股票”和历史股票池收益。目标是让两类偏差变成可失败断言，而非抽象警告。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="输入数据"><a class="markdownIt-Anchor" href="#输入数据"></a> 输入数据</h2>
+<p>两只股票 A、B 的年报报告期均为 2025-12-31；A 在 2026-03-20 公告，B 在 2026-04-15 公告。决策日是 2026-03-31。错误表会提前使用 B。</p>
+<p>幸存者样本有 A、B、C 三只股票，C 在第二月亏损 50% 后退市。期末名单只有 A、B；若回溯删除 C，历史等权收益被抬高。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="逐步实现"><a class="markdownIt-Anchor" href="#逐步实现"></a> 逐步实现</h2>
+<p>错误连接条件是 report_period≤decision_date，它只检查会计期间，不检查市场知道时间。正确连接先过滤 announce_date≤decision_date，再按股票取最新公告。</p>
+<p>幸存者测试不需要复杂回测：对每月历史 eligible 股票等权，与先筛选 end_survivor 的结果比较即可。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="完整代码"><a class="markdownIt-Anchor" href="#完整代码"></a> 完整代码</h2>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br>decision_date = pd.Timestamp(<span class="hljs-string">&quot;2026-03-31&quot;</span>)<br>fundamentals = pd.DataFrame(&#123;<br>    <span class="hljs-string">&quot;asset&quot;</span>: [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>],<br>    <span class="hljs-string">&quot;report_period&quot;</span>: pd.to_datetime([<span class="hljs-string">&quot;2025-12-31&quot;</span>, <span class="hljs-string">&quot;2025-12-31&quot;</span>]),<br>    <span class="hljs-string">&quot;announce_date&quot;</span>: pd.to_datetime([<span class="hljs-string">&quot;2026-03-20&quot;</span>, <span class="hljs-string">&quot;2026-04-15&quot;</span>]),<br>    <span class="hljs-string">&quot;ep&quot;</span>: [<span class="hljs-number">0.08</span>, <span class="hljs-number">0.12</span>],<br>&#125;)<br><br>wrong = fundamentals.loc[<br>    fundamentals[<span class="hljs-string">&quot;report_period&quot;</span>] &lt;= decision_date<br>].copy()<br>wrong[<span class="hljs-string">&quot;decision_date&quot;</span>] = decision_date<br>wrong[<span class="hljs-string">&quot;future_announcement&quot;</span>] = wrong[<span class="hljs-string">&quot;announce_date&quot;</span>] &gt; wrong[<span class="hljs-string">&quot;decision_date&quot;</span>]<br><br>correct = fundamentals.loc[<br>    fundamentals[<span class="hljs-string">&quot;announce_date&quot;</span>] &lt;= decision_date<br>].copy()<br>correct[<span class="hljs-string">&quot;decision_date&quot;</span>] = decision_date<br>correct[<span class="hljs-string">&quot;future_announcement&quot;</span>] = (<br>    correct[<span class="hljs-string">&quot;announce_date&quot;</span>] &gt; correct[<span class="hljs-string">&quot;decision_date&quot;</span>]<br>)<br><br>returns = pd.DataFrame(&#123;<br>    <span class="hljs-string">&quot;month&quot;</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>],<br>    <span class="hljs-string">&quot;asset&quot;</span>: [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>],<br>    <span class="hljs-string">&quot;return&quot;</span>: [<span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span>, -<span class="hljs-number">0.05</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.02</span>, -<span class="hljs-number">0.50</span>, <span class="hljs-number">0.03</span>, <span class="hljs-number">0.01</span>],<br>    <span class="hljs-string">&quot;eligible&quot;</span>: [<span class="hljs-literal">True</span>] * <span class="hljs-number">8</span>,<br>&#125;)<br>end_survivors = &#123;<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>&#125;<br>historical = returns.loc[returns[<span class="hljs-string">&quot;eligible&quot;</span>]].groupby(<span class="hljs-string">&quot;month&quot;</span>)[<span class="hljs-string">&quot;return&quot;</span>].mean()<br>survivor_only = (<br>    returns.loc[returns[<span class="hljs-string">&quot;asset&quot;</span>].isin(end_survivors)]<br>    .groupby(<span class="hljs-string">&quot;month&quot;</span>)[<span class="hljs-string">&quot;return&quot;</span>].mean()<br>)<br>comparison = pd.DataFrame(&#123;<br>    <span class="hljs-string">&quot;historical&quot;</span>: historical,<br>    <span class="hljs-string">&quot;survivor_only&quot;</span>: survivor_only,<br>&#125;)<br><br><span class="hljs-keyword">assert</span> wrong[<span class="hljs-string">&quot;future_announcement&quot;</span>].<span class="hljs-built_in">sum</span>() &gt;= <span class="hljs-number">1</span><br><span class="hljs-keyword">assert</span> correct[<span class="hljs-string">&quot;future_announcement&quot;</span>].<span class="hljs-built_in">sum</span>() == <span class="hljs-number">0</span><br><span class="hljs-keyword">assert</span> <span class="hljs-built_in">set</span>(correct[<span class="hljs-string">&quot;asset&quot;</span>]) == &#123;<span class="hljs-string">&quot;A&quot;</span>&#125;<br><span class="hljs-keyword">assert</span> survivor_only.mean() &gt; historical.mean()<br><br><span class="hljs-built_in">print</span>(wrong[[<span class="hljs-string">&quot;asset&quot;</span>, <span class="hljs-string">&quot;future_announcement&quot;</span>]].to_string(index=<span class="hljs-literal">False</span>))<br><span class="hljs-built_in">print</span>(correct[[<span class="hljs-string">&quot;asset&quot;</span>, <span class="hljs-string">&quot;future_announcement&quot;</span>]].to_string(index=<span class="hljs-literal">False</span>))<br><span class="hljs-built_in">print</span>(comparison.<span class="hljs-built_in">round</span>(<span class="hljs-number">6</span>).to_string())<br></code></pre></td></tr></table></figure>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="预期输出">预期输出</h2>
-<p>错误管线 A、B 都出现，B 的 future_announcement=True；正确管线只有
-A，未来公告计数为零。历史股票池包含 C 的退市前损失，平均收益低于只保留
-A、B 的回溯样本。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="断言">断言</h2>
-<ol type="1">
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="预期输出"><a class="markdownIt-Anchor" href="#预期输出"></a> 预期输出</h2>
+<p>错误管线 A、B 都出现，B 的 future_announcement=True；正确管线只有 A，未来公告计数为零。历史股票池包含 C 的退市前损失，平均收益低于只保留 A、B 的回溯样本。</p>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="断言"><a class="markdownIt-Anchor" href="#断言"></a> 断言</h2>
+<ol>
 <li>错误管线至少使用一个未来公告。</li>
 <li>正确管线未来公告为零，且只保留 A。</li>
 <li>期末幸存股票回溯收益高于历史股票池。</li>
 <li>日期和股票键应唯一；真实管线还需断言首次公告版本与日内可用时间。</li>
 </ol>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="结果解释">结果解释</h2>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="结果解释"><a class="markdownIt-Anchor" href="#结果解释"></a> 结果解释</h2>
 <p>错误表不是因为数值错，而是因为“在未来才公开的正确数值”被放到了过去。幸存者管线也不是计算错，而是研究总体被期末名单重写。两者都无法靠稳健标准误修复。</p>
 <p>正确历史股票池并不一定收益更低；本例故意让退市股亏损以显露偏差。真实研究的断言应检查成员身份与日期，而不是规定收益方向。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见故障">常见故障</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见故障"><a class="markdownIt-Anchor" href="#常见故障"></a> 常见故障</h2>
 <ul>
 <li>announce_date 只有日期，盘后公告仍假设当日可用。</li>
 <li>修订财报覆盖首次公告。</li>
@@ -405,8 +396,8 @@ A、B 的回溯样本。</p>
 <li>指数历史成分用当前名单。</li>
 <li>用“结果应该更差”代替结构断言。</li>
 </ul>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习">练习</h2>
-<ol type="1">
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
+<ol>
 <li>加入盘中/盘后时间戳和次日开盘成交。</li>
 <li>同一报告期加入修订版本，做 point-in-time 版本选择。</li>
 <li>让 C 退市前上涨，验证结构断言仍通过而收益方向改变。</li>

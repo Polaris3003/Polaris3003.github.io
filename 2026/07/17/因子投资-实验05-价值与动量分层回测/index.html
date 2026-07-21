@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-19/pixiv-rank-002-147092182.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-011-147051939.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -360,72 +360,55 @@
         <div><span>阅读</span><strong>约 13 分钟</strong></div>
         <div><span>材料</span><strong>9 节 · 3 段代码</strong></div>
       </div>
-    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="问题">问题</h2>
-<p>构造 24 个形成月、30 只股票的确定性面板，计算 EP 和 12-1
-动量，分别做单变量三分组，再做独立 3×3 双排序。输出单因子
-H-L、控制另一因子后的价值与动量边际收益，以及等权多空目标组合的换手。</p>
-<p>这个实验重点验证三件事：信号只影响下一期收益；独立双排序每期 9
-个单元非空；联合控制后的边际收益与单变量收益不是同一个对象。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="输入数据">输入数据</h2>
-<p>代码先生成 37 个月收益历史。前 13 个月只用于建立动量窗口；从索引 12
-到 35 形成 24 个信号月，并把索引 t+1 作为未来收益。</p>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h2>
+<p>构造 24 个形成月、30 只股票的确定性面板，计算 EP 和 12-1 动量，分别做单变量三分组，再做独立 3×3 双排序。输出单因子 H-L、控制另一因子后的价值与动量边际收益，以及等权多空目标组合的换手。</p>
+<p>这个实验重点验证三件事：信号只影响下一期收益；独立双排序每期 9 个单元非空；联合控制后的边际收益与单变量收益不是同一个对象。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="输入数据"><a class="markdownIt-Anchor" href="#输入数据"></a> 输入数据</h2>
+<p>代码先生成 37 个月收益历史。前 13 个月只用于建立动量窗口；从索引 12 到 35 形成 24 个信号月，并把索引 t+1 作为未来收益。</p>
 <ul>
 <li>30 只股票分成三种基础趋势，保证动量横截面可识别；</li>
 <li>EP 组随月份轮换，产生持仓变化；</li>
-<li>future_return 由当期 EP
-状态、历史动量状态和小幅确定性噪声组成；</li>
+<li>future_return 由当期 EP 状态、历史动量状态和小幅确定性噪声组成；</li>
 <li>所有日期、股票、公式和参数都在代码中，不依赖外部数据。</li>
 </ul>
-<p>这是算法测试夹具，不是模拟真实 A
-股分布。人工嵌入的收益关系不能作为因子有效证据。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="逐步实现">逐步实现</h2>
-<h3 id="计算-12-1-动量">1. 计算 12-1 动量</h3>
+<p>这是算法测试夹具，不是模拟真实 A 股分布。人工嵌入的收益关系不能作为因子有效证据。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="逐步实现"><a class="markdownIt-Anchor" href="#逐步实现"></a> 逐步实现</h2>
+<h3 id="1-计算-12-1-动量"><a class="markdownIt-Anchor" href="#1-计算-12-1-动量"></a> 1. 计算 12-1 动量</h3>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>momentum = np.prod(<span class="hljs-number">1</span> + returns[t - <span class="hljs-number">12</span>:t - <span class="hljs-number">1</span>, :], axis=<span class="hljs-number">0</span>) - <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
-<p>切片包含 t-12 至 t-2，共 11 个月，排除 t-1 最近月。代码同时保存
-signal_date 和 return_date，并断言后者更晚。</p>
-<h3 id="独立三分组">2. 独立三分组</h3>
+<p>切片包含 t-12 至 t-2，共 11 个月，排除 t-1 最近月。代码同时保存 signal_date 和 return_date，并断言后者更晚。</p>
+<h3 id="2-独立三分组"><a class="markdownIt-Anchor" href="#2-独立三分组"></a> 2. 独立三分组</h3>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># kb-skip</span><br>block[<span class="hljs-string">&quot;ep_group&quot;</span>] = pd.qcut(<br>    block[<span class="hljs-string">&quot;ep&quot;</span>].rank(method=<span class="hljs-string">&quot;first&quot;</span>), <span class="hljs-number">3</span>, labels=<span class="hljs-literal">False</span><br>)<br>block[<span class="hljs-string">&quot;mom_group&quot;</span>] = pd.qcut(<br>    block[<span class="hljs-string">&quot;momentum&quot;</span>].rank(method=<span class="hljs-string">&quot;first&quot;</span>), <span class="hljs-number">3</span>, labels=<span class="hljs-literal">False</span><br>)<br></code></pre></td></tr></table></figure>
-<p>两个断点分别从各自边际分布产生，故为独立双排序。先 EP
-后在组内排动量会变成条件双排序，结果不能混称。</p>
-<h3 id="单因子与双排序边际收益">3. 单因子与双排序边际收益</h3>
-<p>单因子 EP H-L 直接比较 EP
-高低组。双排序价值边际收益先在每个动量组内算高 EP 减低
-EP，再对三个动量组等权平均；动量边际收益反之。</p>
-<h3 id="换手">4. 换手</h3>
+<p>两个断点分别从各自边际分布产生，故为独立双排序。先 EP 后在组内排动量会变成条件双排序，结果不能混称。</p>
+<h3 id="3-单因子与双排序边际收益"><a class="markdownIt-Anchor" href="#3-单因子与双排序边际收益"></a> 3. 单因子与双排序边际收益</h3>
+<p>单因子 EP H-L 直接比较 EP 高低组。双排序价值边际收益先在每个动量组内算高 EP 减低 EP，再对三个动量组等权平均；动量边际收益反之。</p>
+<h3 id="4-换手"><a class="markdownIt-Anchor" href="#4-换手"></a> 4. 换手</h3>
 <p>多空目标权重在高组为 +1/n(H)，低组为 -1/n(L)。从第二个月开始：</p>
-<p><span class="math display">\[
-TO_t=(1/2)\sum_i|w_{i,t}-w_{i,t-1}|
-\]</span></p>
-<p>这是目标权重直接比较，未考虑持有期收益造成的权重漂移；真实成本实验会在实验
-07 修正。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="完整代码">完整代码</h2>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>T</mi><msub><mi>O</mi><mi>t</mi></msub><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">)</mo><munder><mo>∑</mo><mi>i</mi></munder><mi mathvariant="normal">∣</mi><msub><mi>w</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow></msub><mo>−</mo><msub><mi>w</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">TO_t=(1/2)\sum_i|w_{i,t}-w_{i,t-1}|
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.327674em;vertical-align:-1.277669em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0500050000000003em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord">∣</span></span></span></span></span></p>
+<p>这是目标权重直接比较，未考虑持有期收益造成的权重漂移；真实成本实验会在实验 07 修正。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="完整代码"><a class="markdownIt-Anchor" href="#完整代码"></a> 完整代码</h2>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">target_weights</span>(<span class="hljs-params">block, group_col</span>):<br>    high = block[group_col] == <span class="hljs-number">2</span><br>    low = block[group_col] == <span class="hljs-number">0</span><br>    weights = pd.Series(<span class="hljs-number">0.0</span>, index=block[<span class="hljs-string">&quot;asset&quot;</span>])<br>    weights.loc[block.loc[high, <span class="hljs-string">&quot;asset&quot;</span>]] = <span class="hljs-number">1.0</span> / high.<span class="hljs-built_in">sum</span>()<br>    weights.loc[block.loc[low, <span class="hljs-string">&quot;asset&quot;</span>]] = -<span class="hljs-number">1.0</span> / low.<span class="hljs-built_in">sum</span>()<br>    <span class="hljs-keyword">return</span> weights.sort_index()<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">analyze_month</span>(<span class="hljs-params">block</span>):<br>    block = block.copy()<br>    block[<span class="hljs-string">&quot;ep_group&quot;</span>] = pd.qcut(<br>        block[<span class="hljs-string">&quot;ep&quot;</span>].rank(method=<span class="hljs-string">&quot;first&quot;</span>), <span class="hljs-number">3</span>, labels=<span class="hljs-literal">False</span><br>    )<br>    block[<span class="hljs-string">&quot;mom_group&quot;</span>] = pd.qcut(<br>        block[<span class="hljs-string">&quot;momentum&quot;</span>].rank(method=<span class="hljs-string">&quot;first&quot;</span>), <span class="hljs-number">3</span>, labels=<span class="hljs-literal">False</span><br>    )<br><br>    cells = block.groupby(<br>        [<span class="hljs-string">&quot;ep_group&quot;</span>, <span class="hljs-string">&quot;mom_group&quot;</span>], observed=<span class="hljs-literal">True</span><br>    )[<span class="hljs-string">&quot;next_return&quot;</span>].mean().unstack()<br>    <span class="hljs-keyword">if</span> cells.shape != (<span class="hljs-number">3</span>, <span class="hljs-number">3</span>) <span class="hljs-keyword">or</span> cells.isna().<span class="hljs-built_in">any</span>().<span class="hljs-built_in">any</span>():<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;all 3x3 cells must be non-empty&quot;</span>)<br><br>    ep_groups = block.groupby(<span class="hljs-string">&quot;ep_group&quot;</span>, observed=<span class="hljs-literal">True</span>)[<span class="hljs-string">&quot;next_return&quot;</span>].mean()<br>    mom_groups = block.groupby(<span class="hljs-string">&quot;mom_group&quot;</span>, observed=<span class="hljs-literal">True</span>)[<span class="hljs-string">&quot;next_return&quot;</span>].mean()<br><br>    <span class="hljs-keyword">return</span> &#123;<br>        <span class="hljs-string">&quot;ep_hl&quot;</span>: ep_groups.loc[<span class="hljs-number">2</span>] - ep_groups.loc[<span class="hljs-number">0</span>],<br>        <span class="hljs-string">&quot;mom_hl&quot;</span>: mom_groups.loc[<span class="hljs-number">2</span>] - mom_groups.loc[<span class="hljs-number">0</span>],<br>        <span class="hljs-string">&quot;double_ep&quot;</span>: (cells.loc[<span class="hljs-number">2</span>] - cells.loc[<span class="hljs-number">0</span>]).mean(),<br>        <span class="hljs-string">&quot;double_mom&quot;</span>: (cells[<span class="hljs-number">2</span>] - cells[<span class="hljs-number">0</span>]).mean(),<br>        <span class="hljs-string">&quot;ep_weights&quot;</span>: target_weights(block, <span class="hljs-string">&quot;ep_group&quot;</span>),<br>        <span class="hljs-string">&quot;mom_weights&quot;</span>: target_weights(block, <span class="hljs-string">&quot;mom_group&quot;</span>),<br>    &#125;<br><br><br>n_assets = <span class="hljs-number">30</span><br>assets = [<span class="hljs-string">f&quot;S<span class="hljs-subst">&#123;i:02d&#125;</span>&quot;</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_assets)]<br>dates = pd.date_range(<span class="hljs-string">&quot;2023-01-31&quot;</span>, periods=<span class="hljs-number">37</span>, freq=<span class="hljs-string">&quot;ME&quot;</span>)<br>returns = np.zeros((<span class="hljs-number">37</span>, n_assets))<br><br><span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">13</span>):<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_assets):<br>        trend = <span class="hljs-number">0.008</span> * ((i % <span class="hljs-number">3</span>) - <span class="hljs-number">1</span>)<br>        returns[t, i] = trend + <span class="hljs-number">0.001</span> * np.sin(<span class="hljs-number">0.7</span> * t + i)<br><br>rows = []<br><span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">12</span>, <span class="hljs-number">36</span>):<br>    momentum = np.prod(<span class="hljs-number">1</span> + returns[t - <span class="hljs-number">12</span>:t - <span class="hljs-number">1</span>, :], axis=<span class="hljs-number">0</span>) - <span class="hljs-number">1</span><br>    ep_state = np.array([((i // <span class="hljs-number">10</span>) + t) % <span class="hljs-number">3</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_assets)])<br>    market_cap = <span class="hljs-number">100</span> + <span class="hljs-number">5</span> * np.arange(n_assets) + <span class="hljs-number">2</span> * t<br>    ep = <span class="hljs-number">0.03</span> + <span class="hljs-number">0.02</span> * ep_state + <span class="hljs-number">0.00001</span> * np.arange(n_assets)<br>    earnings = ep * market_cap<br><br>    mom_state = np.array([(i % <span class="hljs-number">3</span>) - <span class="hljs-number">1</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_assets)])<br>    next_return = (<br>        <span class="hljs-number">0.002</span><br>        + <span class="hljs-number">0.006</span> * (ep_state - <span class="hljs-number">1</span>)<br>        + <span class="hljs-number">0.008</span> * mom_state<br>        + <span class="hljs-number">0.001</span> * np.sin(<span class="hljs-number">0.4</span> * t + np.arange(n_assets))<br>    )<br>    returns[t + <span class="hljs-number">1</span>, :] = next_return<br><br>    <span class="hljs-keyword">for</span> i, asset <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(assets):<br>        rows.append(&#123;<br>            <span class="hljs-string">&quot;signal_date&quot;</span>: dates[t],<br>            <span class="hljs-string">&quot;return_date&quot;</span>: dates[t + <span class="hljs-number">1</span>],<br>            <span class="hljs-string">&quot;asset&quot;</span>: asset,<br>            <span class="hljs-string">&quot;market_cap&quot;</span>: market_cap[i],<br>            <span class="hljs-string">&quot;earnings_ttm&quot;</span>: earnings[i],<br>            <span class="hljs-string">&quot;ep&quot;</span>: earnings[i] / market_cap[i],<br>            <span class="hljs-string">&quot;momentum&quot;</span>: momentum[i],<br>            <span class="hljs-string">&quot;next_return&quot;</span>: next_return[i],<br>        &#125;)<br><br>panel = pd.DataFrame(rows)<br><span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(panel) == <span class="hljs-number">24</span> * <span class="hljs-number">30</span><br><span class="hljs-keyword">assert</span> (panel[<span class="hljs-string">&quot;return_date&quot;</span>] &gt; panel[<span class="hljs-string">&quot;signal_date&quot;</span>]).<span class="hljs-built_in">all</span>()<br><span class="hljs-keyword">assert</span> <span class="hljs-keyword">not</span> panel.duplicated([<span class="hljs-string">&quot;signal_date&quot;</span>, <span class="hljs-string">&quot;asset&quot;</span>]).<span class="hljs-built_in">any</span>()<br><br>records = []<br>previous_ep = <span class="hljs-literal">None</span><br>previous_mom = <span class="hljs-literal">None</span><br><span class="hljs-keyword">for</span> date, block <span class="hljs-keyword">in</span> panel.groupby(<span class="hljs-string">&quot;signal_date&quot;</span>, sort=<span class="hljs-literal">True</span>):<br>    result = analyze_month(block)<br>    ep_turnover = np.nan<br>    mom_turnover = np.nan<br>    <span class="hljs-keyword">if</span> previous_ep <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>        ep_turnover = <span class="hljs-number">0.5</span> * (result[<span class="hljs-string">&quot;ep_weights&quot;</span>] - previous_ep).<span class="hljs-built_in">abs</span>().<span class="hljs-built_in">sum</span>()<br>        mom_turnover = <span class="hljs-number">0.5</span> * (result[<span class="hljs-string">&quot;mom_weights&quot;</span>] - previous_mom).<span class="hljs-built_in">abs</span>().<span class="hljs-built_in">sum</span>()<br>    records.append(&#123;<br>        <span class="hljs-string">&quot;signal_date&quot;</span>: date,<br>        <span class="hljs-string">&quot;ep_hl&quot;</span>: result[<span class="hljs-string">&quot;ep_hl&quot;</span>],<br>        <span class="hljs-string">&quot;mom_hl&quot;</span>: result[<span class="hljs-string">&quot;mom_hl&quot;</span>],<br>        <span class="hljs-string">&quot;double_ep&quot;</span>: result[<span class="hljs-string">&quot;double_ep&quot;</span>],<br>        <span class="hljs-string">&quot;double_mom&quot;</span>: result[<span class="hljs-string">&quot;double_mom&quot;</span>],<br>        <span class="hljs-string">&quot;ep_turnover&quot;</span>: ep_turnover,<br>        <span class="hljs-string">&quot;mom_turnover&quot;</span>: mom_turnover,<br>    &#125;)<br>    previous_ep = result[<span class="hljs-string">&quot;ep_weights&quot;</span>]<br>    previous_mom = result[<span class="hljs-string">&quot;mom_weights&quot;</span>]<br><br>monthly = pd.DataFrame(records)<br>summary = monthly.drop(columns=<span class="hljs-string">&quot;signal_date&quot;</span>).mean()<br><br><span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(monthly) == <span class="hljs-number">24</span><br><span class="hljs-keyword">assert</span> monthly[[<span class="hljs-string">&quot;ep_hl&quot;</span>, <span class="hljs-string">&quot;mom_hl&quot;</span>, <span class="hljs-string">&quot;double_ep&quot;</span>, <span class="hljs-string">&quot;double_mom&quot;</span>]].notna().<span class="hljs-built_in">all</span>().<span class="hljs-built_in">all</span>()<br><span class="hljs-keyword">assert</span> np.isfinite(summary).<span class="hljs-built_in">all</span>()<br><br><span class="hljs-built_in">print</span>(summary.<span class="hljs-built_in">round</span>(<span class="hljs-number">6</span>).to_string())<br><span class="hljs-built_in">print</span>(monthly.head().<span class="hljs-built_in">round</span>(<span class="hljs-number">6</span>).to_string(index=<span class="hljs-literal">False</span>))<br></code></pre></td></tr></table></figure>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="预期输出">预期输出</h2>
-<p>程序应生成 720 行点时面板、24
-行月度结果。ep_hl、mom_hl、double_ep、double_mom 均应为有限数，每期 3×3
-的 9 个单元都非空。</p>
-<p>由于生成过程给 EP
-状态和趋势状态分别加入正方向收益，四类平均收益应为正；具体小数由确定性正弦噪声决定。EP
-状态每月轮换，因此 ep_turnover 显著高于零；动量状态更稳定，mom_turnover
-应较低。</p>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="预期输出"><a class="markdownIt-Anchor" href="#预期输出"></a> 预期输出</h2>
+<p>程序应生成 720 行点时面板、24 行月度结果。ep_hl、mom_hl、double_ep、double_mom 均应为有限数，每期 3×3 的 9 个单元都非空。</p>
+<p>由于生成过程给 EP 状态和趋势状态分别加入正方向收益，四类平均收益应为正；具体小数由确定性正弦噪声决定。EP 状态每月轮换，因此 ep_turnover 显著高于零；动量状态更稳定，mom_turnover 应较低。</p>
 <p>不要把“预期为正”写成对程序的强制断言。真正的回测函数必须允许因子失效；这里只断言结构、日期、完整性和有限数。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="断言">断言</h2>
-<ol type="1">
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="断言"><a class="markdownIt-Anchor" href="#断言"></a> 断言</h2>
+<ol>
 <li>面板恰有 24×30=720 行。</li>
 <li>每行 return_date 严格晚于 signal_date。</li>
 <li>signal_date、asset 联合唯一。</li>
@@ -433,19 +416,13 @@ TO_t=(1/2)\sum_i|w_{i,t}-w_{i,t-1}|
 <li>四类月收益无缺失且为有限数。</li>
 <li>换手除首月外可计算，摘要均为有限数。</li>
 </ol>
-<p>真实数据还需断言财报公告早于 signal_date、动量月份连续、EP
-分母有效、每组市值覆盖、停牌和退市收益处理、权重和与成交可行性。</p>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="结果解释">结果解释</h2>
-<p>ep_hl 是不控制动量的价值差，double_ep
-是在三个动量组内分别比较价值后再平均。两者接近说明本样本中 EP
-与动量混杂较小；差异大则说明单变量价值收益包含动量暴露或交互。</p>
-<p>独立双排序保证 EP
-与动量各用自己的全市场断点，但不能保证每个交叉单元规模相同。真实样本应保存单元数量、权重、市值和行业覆盖；单个很小单元会让边际收益不稳定。</p>
-<p>换手使用目标权重，没有考虑收益漂移、无法成交和交易成本，因此是下界式教学指标。ep_state
-人工轮换导致高换手，说明一个统计关系即使为正，也可能在净收益层面失败。</p>
-<p>12-1 动量来自真实滚动历史，不是直接用 future_return 排序。收益 t+1
-写入后，只会在未来更晚的形成窗口中进入历史；跳过最近月进一步隔开同月机械关系。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见故障">常见故障</h2>
+<p>真实数据还需断言财报公告早于 signal_date、动量月份连续、EP 分母有效、每组市值覆盖、停牌和退市收益处理、权重和与成交可行性。</p>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="结果解释"><a class="markdownIt-Anchor" href="#结果解释"></a> 结果解释</h2>
+<p>ep_hl 是不控制动量的价值差，double_ep 是在三个动量组内分别比较价值后再平均。两者接近说明本样本中 EP 与动量混杂较小；差异大则说明单变量价值收益包含动量暴露或交互。</p>
+<p>独立双排序保证 EP 与动量各用自己的全市场断点，但不能保证每个交叉单元规模相同。真实样本应保存单元数量、权重、市值和行业覆盖；单个很小单元会让边际收益不稳定。</p>
+<p>换手使用目标权重，没有考虑收益漂移、无法成交和交易成本，因此是下界式教学指标。ep_state 人工轮换导致高换手，说明一个统计关系即使为正，也可能在净收益层面失败。</p>
+<p>12-1 动量来自真实滚动历史，不是直接用 future_return 排序。收益 t+1 写入后，只会在未来更晚的形成窗口中进入历史；跳过最近月进一步隔开同月机械关系。</p>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见故障"><a class="markdownIt-Anchor" href="#常见故障"></a> 常见故障</h2>
 <ul>
 <li>rolling 切片包含最近月或未来月。</li>
 <li>EP 使用 return_date 市值或尚未公告盈利。</li>
@@ -457,16 +434,14 @@ TO_t=(1/2)\sum_i|w_{i,t}-w_{i,t-1}|
 <li>双排序边际收益按股票数而非单元组合等权，改变定义。</li>
 <li>人工数据中的正收益被误解为经验发现。</li>
 </ul>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习">练习</h2>
-<ol type="1">
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
+<ol>
 <li>将独立双排序改为“先 EP、后组内动量”的条件排序，比较结果。</li>
 <li>将单元等权平均改为按单元市值加权，说明经济问题变化。</li>
-<li>让 EP 与动量完全相关，观察哪些 3×3
-单元为空，并解释独立识别失败。</li>
+<li>让 EP 与动量完全相关，观察哪些 3×3 单元为空，并解释独立识别失败。</li>
 <li>用收益漂移后的再平衡前权重重算换手。</li>
 <li>加入单边 20 基点成本，比较单因子和双排序净收益。</li>
-<li>把人工收益中的 EP
-系数设为零，验证程序仍能正常输出而不强制正收益。</li>
+<li>把人工收益中的 EP 系数设为零，验证程序仍能正常输出而不强制正收益。</li>
 </ol>
 </section></div>
                 
