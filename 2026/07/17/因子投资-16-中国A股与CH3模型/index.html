@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-012-146931602.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-06-27/pixiv-rank-008-146317762.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -285,7 +285,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          2.1k 字
         
       </span>
     
@@ -296,7 +296,7 @@
         
         
         
-          19 分钟
+          18 分钟
         
       </span>
     
@@ -360,9 +360,12 @@
         <div><span>阅读</span><strong>约 7 分钟</strong></div>
         <div><span>材料</span><strong>10 节 · 1 段代码</strong></div>
       </div>
-    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
-<p>把美国 FF3 原样搬到 A 股，会把中国特有的上市制度、壳价值和估值口径当作噪声。Liu、Stambaugh、Yuan（2019）提出 CH-3：先排除最小 30% 壳价值污染股票，再用 EP 构造价值因子。它是“制度进入模型定义”的典型案例。</p>
-</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题">本节解决什么问题</h2>
+<p>把美国 FF3 原样搬到 A
+股，会把中国特有的上市制度、壳价值和估值口径当作噪声。Liu、Stambaugh、Yuan（2019）提出
+CH-3：先排除最小 30% 壳价值污染股票，再用 EP
+构造价值因子。它是“制度进入模型定义”的典型案例。</p>
+</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标">前置知识与学习目标</h2>
 <p>需要第 08、11、15 讲。学完后你应该能：</p>
 <ul>
 <li>精确写出 CH-3 的股票池与 2×3 构造；</li>
@@ -371,8 +374,10 @@
 <li>区分 CH-3 与机械复制 FF3；</li>
 <li>判断 2019 年论文证据为什么不能自动外推到 2026 年。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
-<p>在审核制 IPO 稀缺时期，已上市小公司可能具有被借壳重组的期权价值。一个经营很差、盈利为负的微型公司，市值却因“壳”而不低；低 EP 会把它归为成长股，但其收益受壳交易而非成长基本面驱动。</p>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算">直觉与手算</h2>
+<p>在审核制 IPO
+稀缺时期，已上市小公司可能具有被借壳重组的期权价值。一个经营很差、盈利为负的微型公司，市值却因“壳”而不低；低
+EP 会把它归为成长股，但其收益受壳交易而非成长基本面驱动。</p>
 <p>若这些股票数量多但总市值小：</p>
 <ul>
 <li>等权小盘收益会被壳溢价抬高；</li>
@@ -380,19 +385,22 @@
 <li>SMB 与价值因子同时被扭曲；</li>
 <li>用这些因子解释普通经营公司时，模型反而变差。</li>
 </ul>
-<p>因此 CH-3 的第一步不是改变回归，而是改变要建模的经济总体：对“常规经营股票”构造因子，排除最小市值 30%。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
-<h3 id="原论文形成池"><a class="markdownIt-Anchor" href="#原论文形成池"></a> 原论文形成池</h3>
+<p>因此 CH-3
+的第一步不是改变回归，而是改变要建模的经济总体：对“常规经营股票”构造因子，排除最小市值
+30%。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式">定义与公式</h2>
+<h3 id="原论文形成池">原论文形成池</h3>
 <p>原论文的关键过滤包括：</p>
-<ol>
+<ol type="1">
 <li>排除上市不足 6 个月股票；</li>
 <li>排除过去 12 个月交易记录少于 120 天的股票；</li>
 <li>排除最近月交易少于 15 天的股票；</li>
 <li>按上月末总市值排序，排除最小 30%；</li>
 <li>用剩余 70% 构造市场、规模和价值因子。</li>
 </ol>
-<p>总市值使用收盘价×全部 A 股股数，包括当时不可交易股。现代复现必须核对数据字段与论文口径，不能用自由流通市值悄悄替换。</p>
-<h3 id="23-独立排序"><a class="markdownIt-Anchor" href="#23-独立排序"></a> 2×3 独立排序</h3>
+<p>总市值使用收盘价×全部 A
+股股数，包括当时不可交易股。现代复现必须核对数据字段与论文口径，不能用自由流通市值悄悄替换。</p>
+<h3 id="独立排序">2×3 独立排序</h3>
 <p>在剩余 70% 股票中：</p>
 <ul>
 <li>按市值中位数分 Small 与 Big；</li>
@@ -400,19 +408,24 @@
 <li>独立交叉成 S/V、S/M、S/G、B/V、B/M、B/G 六个价值加权组合。</li>
 </ul>
 <p>规模因子：</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>S</mi><mi>M</mi><mi>B</mi><mo>=</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><mo stretchy="false">(</mo><msub><mi>R</mi><mrow><mi>S</mi><mi mathvariant="normal">/</mi><mi>V</mi></mrow></msub><mo>+</mo><msub><mi>R</mi><mrow><mi>S</mi><mi mathvariant="normal">/</mi><mi>M</mi></mrow></msub><mo>+</mo><msub><mi>R</mi><mrow><mi>S</mi><mi mathvariant="normal">/</mi><mi>G</mi></mrow></msub><mo stretchy="false">)</mo><mo>−</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><mo stretchy="false">(</mo><msub><mi>R</mi><mrow><mi>B</mi><mi mathvariant="normal">/</mi><mi>V</mi></mrow></msub><mo>+</mo><msub><mi>R</mi><mrow><mi>B</mi><mi mathvariant="normal">/</mi><mi>M</mi></mrow></msub><mo>+</mo><msub><mi>R</mi><mrow><mi>B</mi><mi mathvariant="normal">/</mi><mi>G</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">SMB=\frac{1}{3}(R_{S/V}+R_{S/M}+R_{S/G})
+<p><span class="math display">\[
+SMB=\frac{1}{3}(R_{S/V}+R_{S/M}+R_{S/G})
 -\frac{1}{3}(R_{B/V}+R_{B/M}+R_{B/G})
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span><span class="mord mtight">/</span><span class="mord mathnormal mtight" style="margin-right:0.22222em;">V</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.03853em;vertical-align:-0.3551999999999999em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span><span class="mord mtight">/</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3551999999999999em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span><span class="mord mtight">/</span><span class="mord mathnormal mtight">G</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span><span class="mord mtight">/</span><span class="mord mathnormal mtight" style="margin-right:0.22222em;">V</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.03853em;vertical-align:-0.3551999999999999em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span><span class="mord mtight">/</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3551999999999999em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span><span class="mord mtight">/</span><span class="mord mathnormal mtight">G</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+\]</span></p>
 <p>价值因子 VMG：</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>V</mi><mi>M</mi><mi>G</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo stretchy="false">(</mo><msub><mi>R</mi><mrow><mi>S</mi><mi mathvariant="normal">/</mi><mi>V</mi></mrow></msub><mo>+</mo><msub><mi>R</mi><mrow><mi>B</mi><mi mathvariant="normal">/</mi><mi>V</mi></mrow></msub><mo stretchy="false">)</mo><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo stretchy="false">(</mo><msub><mi>R</mi><mrow><mi>S</mi><mi mathvariant="normal">/</mi><mi>G</mi></mrow></msub><mo>+</mo><msub><mi>R</mi><mrow><mi>B</mi><mi mathvariant="normal">/</mi><mi>G</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">VMG=\frac{1}{2}(R_{S/V}+R_{B/V})
+<p><span class="math display">\[
+VMG=\frac{1}{2}(R_{S/V}+R_{B/V})
 -\frac{1}{2}(R_{S/G}+R_{B/G})
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">G</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span><span class="mord mtight">/</span><span class="mord mathnormal mtight" style="margin-right:0.22222em;">V</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3551999999999999em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span><span class="mord mtight">/</span><span class="mord mathnormal mtight" style="margin-right:0.22222em;">V</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span><span class="mord mtight">/</span><span class="mord mathnormal mtight">G</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3551999999999999em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span><span class="mord mtight">/</span><span class="mord mathnormal mtight">G</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
-<p>市场因子是剩余 70% 股票价值加权市场收益减原论文采用的一年期存款利率。现代研究应说明继续沿用该无风险代理，还是用与持有期一致的其他利率。</p>
-<h3 id="ep"><a class="markdownIt-Anchor" href="#ep"></a> EP</h3>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><msub><mi>P</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow></msub><mo>=</mo><mi>E</mi><mi>a</mi><mi>r</mi><mi>n</mi><mi>i</mi><mi>n</mi><mi>g</mi><msubsup><mi>s</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>a</mi><mi>v</mi><mi>a</mi><mi>i</mi><mi>l</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi></mrow><mrow><mi>T</mi><mi>T</mi><mi>M</mi></mrow></msubsup><mi mathvariant="normal">/</mi><mi>M</mi><msub><mi>E</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">EP_{i,t}=Earnings_{i,available}^{TTM}/ME_{i,t}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.274439em;vertical-align:-0.383108em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">n</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.891331em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span></span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<p>原论文在截面检验中还将正 EP 和负 EP 指示变量分开，避免把负盈利当作连续估值比率的一端。因子排序的精确盈利字段、公告滞后和负值处理应按原文与数据附录复现。</p>
-<h3 id="ch-3-与机械-ff3-的差异"><a class="markdownIt-Anchor" href="#ch-3-与机械-ff3-的差异"></a> CH-3 与机械 FF3 的差异</h3>
+\]</span></p>
+<p>市场因子是剩余 70%
+股票价值加权市场收益减原论文采用的一年期存款利率。现代研究应说明继续沿用该无风险代理，还是用与持有期一致的其他利率。</p>
+<h3 id="ep">EP</h3>
+<p><span class="math display">\[
+EP_{i,t}=Earnings_{i,available}^{TTM}/ME_{i,t}
+\]</span></p>
+<p>原论文在截面检验中还将正 EP 和负 EP
+指示变量分开，避免把负盈利当作连续估值比率的一端。因子排序的精确盈利字段、公告滞后和负值处理应按原文与数据附录复现。</p>
+<h3 id="ch-3-与机械-ff3-的差异">CH-3 与机械 FF3 的差异</h3>
 <div class="quant-table-shell">
       <div class="quant-table-caption">
         <span>定义与公式</span>
@@ -453,8 +466,9 @@
 </tr>
 </tbody>
 </table></div></div>
-<p>CH-3 仍是三因子线性模型，不意味着中国市场只有三个风险/错误定价维度。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
+<p>CH-3
+仍是三因子线性模型，不意味着中国市场只有三个风险/错误定价维度。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验">Python 最小实验</h2>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -462,45 +476,69 @@
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br>portfolios = pd.Series(&#123;<br>    <span class="hljs-string">&quot;S/V&quot;</span>: <span class="hljs-number">0.030</span>,<br>    <span class="hljs-string">&quot;S/M&quot;</span>: <span class="hljs-number">0.020</span>,<br>    <span class="hljs-string">&quot;S/G&quot;</span>: <span class="hljs-number">0.010</span>,<br>    <span class="hljs-string">&quot;B/V&quot;</span>: <span class="hljs-number">0.020</span>,<br>    <span class="hljs-string">&quot;B/M&quot;</span>: <span class="hljs-number">0.015</span>,<br>    <span class="hljs-string">&quot;B/G&quot;</span>: <span class="hljs-number">0.005</span>,<br>&#125;)<br>small = portfolios[[<span class="hljs-string">&quot;S/V&quot;</span>, <span class="hljs-string">&quot;S/M&quot;</span>, <span class="hljs-string">&quot;S/G&quot;</span>]].mean()<br>big = portfolios[[<span class="hljs-string">&quot;B/V&quot;</span>, <span class="hljs-string">&quot;B/M&quot;</span>, <span class="hljs-string">&quot;B/G&quot;</span>]].mean()<br>value = portfolios[[<span class="hljs-string">&quot;S/V&quot;</span>, <span class="hljs-string">&quot;B/V&quot;</span>]].mean()<br>growth = portfolios[[<span class="hljs-string">&quot;S/G&quot;</span>, <span class="hljs-string">&quot;B/G&quot;</span>]].mean()<br><br>smb = small - big<br>vmg = value - growth<br><br><span class="hljs-keyword">assert</span> np.isclose(smb, <span class="hljs-number">0.0066666666666667</span>)<br><span class="hljs-keyword">assert</span> np.isclose(vmg, <span class="hljs-number">0.0175</span>)<br><span class="hljs-built_in">print</span>(smb, vmg)<br></code></pre></td></tr></table></figure>
 <p>这段代码从六组合收益合成因子，没有实现股票筛选和权重。真正复现的难点在上游点时数据，而不是最后两行平均。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
-<ol>
-<li><strong>壳价值并非常数。</strong> 注册制、退市常态化与并购重组规则会改变壳期权。2019 年论文识别的机制必须在新时期重新测量。</li>
-<li><strong>散户与机构结构。</strong> 历史 A 股个人投资者参与度较高，但账户、成交额和持仓占比不是一个指标，且随年份变化；不能用一个静态比例解释所有时期。</li>
-<li><strong>涨跌停与板块。</strong> 主板、创业板、科创板、北交所及特殊股票的价格限制随制度和上市阶段不同，回测应使用历史规则表。</li>
-<li><strong>T+1。</strong> 当日买入通常不能同日卖出，短期信号与止损执行受约束；ETF、可转债等品种规则又不同。</li>
-<li><strong>做空限制。</strong> 融券标的、券源、保证金和费用使 VMG、SMB 空头腿不等于可执行策略。</li>
-<li><strong>ST 与退市。</strong> 排除 ST 会改变研究总体；纳入则必须模拟价格限制、停牌和退市损失。</li>
-<li><strong>板块差异。</strong> 上市门槛、行业与盈利结构不同，统一 EP/规模断点可能把板块制度当因子。</li>
-<li><strong>非流通股历史。</strong> 股权分置改革前后，总市值与可交易资本含义变化，长样本需分段。</li>
-<li><strong>公告与累计利润。</strong> EP 分子必须按首次公告日和 TTM 口径构造，不能用报告期末。</li>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项">A 股实现注意事项</h2>
+<ol type="1">
+<li><strong>壳价值并非常数。</strong>
+注册制、退市常态化与并购重组规则会改变壳期权。2019
+年论文识别的机制必须在新时期重新测量。</li>
+<li><strong>散户与机构结构。</strong> 历史 A
+股个人投资者参与度较高，但账户、成交额和持仓占比不是一个指标，且随年份变化；不能用一个静态比例解释所有时期。</li>
+<li><strong>涨跌停与板块。</strong>
+主板、创业板、科创板、北交所及特殊股票的价格限制随制度和上市阶段不同，回测应使用历史规则表。</li>
+<li><strong>T+1。</strong>
+当日买入通常不能同日卖出，短期信号与止损执行受约束；ETF、可转债等品种规则又不同。</li>
+<li><strong>做空限制。</strong> 融券标的、券源、保证金和费用使 VMG、SMB
+空头腿不等于可执行策略。</li>
+<li><strong>ST 与退市。</strong> 排除 ST
+会改变研究总体；纳入则必须模拟价格限制、停牌和退市损失。</li>
+<li><strong>板块差异。</strong> 上市门槛、行业与盈利结构不同，统一
+EP/规模断点可能把板块制度当因子。</li>
+<li><strong>非流通股历史。</strong>
+股权分置改革前后，总市值与可交易资本含义变化，长样本需分段。</li>
+<li><strong>公告与累计利润。</strong> EP 分子必须按首次公告日和 TTM
+口径构造，不能用报告期末。</li>
 </ol>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界">常见错误与边界</h2>
 <ul>
 <li>只排除当前最小 30%，而不是每月点时重排。</li>
 <li>用自由流通市值却声称精确复现原论文。</li>
 <li>EP 用未来年报或最终修订值。</li>
-<li>把底部 30% 简称“壳公司”；论文是按污染概率排除，不是逐只确认壳身份。</li>
+<li>把底部 30%
+简称“壳公司”；论文是按污染概率排除，不是逐只确认壳身份。</li>
 <li>看到 CH-3 优于本地 FF3，就宣称风险机制已证明。</li>
 <li>以 2019 年发表结论直接解释 2026 年注册制与退市环境。</li>
 <li>构造因子用常规股票池，测试策略却包含被排除微盘股，模型总体不一致。</li>
 <li>忽略空头不可交易，直接把 VMG 当现实收益。</li>
 </ul>
-<p>排除底部 30% 是研究问题的一部分：若目标就是研究微盘与壳价值，就不应排除，而应单独构造壳因子或状态模型。CH-3 的选择适合“给常规经营股票定价”，不是所有 A 股研究的普遍清洗规则。</p>
-</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
-<p>原书第 6 章（PDF 文件页 224–290）是中国因子实证主线，第 5 章（192–223）提供实践问题背景。</p>
-<p>核心原文：Liu、Stambaugh、Yuan（2019），Size and Value in China，Journal of Financial Economics 134(1)，48–69，<a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.jfineco.2019.03.008">DOI 10.1016/j.jfineco.2019.03.008</a>。阅读时把作者样本期、过滤条件和制度背景与当前研究期逐项对照。</p>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
-<ol>
+<p>排除底部 30%
+是研究问题的一部分：若目标就是研究微盘与壳价值，就不应排除，而应单独构造壳因子或状态模型。CH-3
+的选择适合“给常规经营股票定价”，不是所有 A 股研究的普遍清洗规则。</p>
+</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文">原书与论文</h2>
+<p>原书第 6 章（PDF 文件页 224–290）是中国因子实证主线，第 5
+章（192–223）提供实践问题背景。</p>
+<p>核心原文：Liu、Stambaugh、Yuan（2019），Size and Value in
+China，Journal of Financial Economics 134(1)，48–69，<a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.jfineco.2019.03.008">DOI
+10.1016/j.jfineco.2019.03.008</a>。阅读时把作者样本期、过滤条件和制度背景与当前研究期逐项对照。</p>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习">练习</h2>
+<ol type="1">
 <li>每月排除最小 0%、10%、20%、30%、40%，比较 SMB、VMG 与市值覆盖。</li>
-<li>用 BM 和 EP 分别构造价值因子，比较相关、Alpha 和组内负盈利占比。</li>
+<li>用 BM 和 EP 分别构造价值因子，比较相关、Alpha
+和组内负盈利占比。</li>
 <li>复现六组合并逐月断言每个组合非空、权重和为一。</li>
-<li>设计壳价值代理：IPO 排队、借壳事件、最小市值与盈利惊喜相关，写出可证伪预测。</li>
-<li>将样本按制度阶段分段，检验底部 30% 的收益与经营基本面关系是否变化。</li>
-<li>说明目标为微盘策略时，为什么不能把 CH-3 过滤规则当普通数据清洗。</li>
+<li>设计壳价值代理：IPO
+排队、借壳事件、最小市值与盈利惊喜相关，写出可证伪预测。</li>
+<li>将样本按制度阶段分段，检验底部 30%
+的收益与经营基本面关系是否变化。</li>
+<li>说明目标为微盘策略时，为什么不能把 CH-3
+过滤规则当普通数据清洗。</li>
 </ol>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
-<p>CH-3 用两个本地化选择改变 FF3：排除壳价值污染最强的最小 30%，以 EP 替代 BM，再在剩余股票中构造 MKT、SMB、VMG。它说明资产定价模型必须对应制度和研究总体。</p>
-<p>论文证据来自特定历史样本。进入 2026 年研究前，应重新验证壳机制、交易制度、板块结构和无风险代理，而不是把 CH-3 当永久真理。</p>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步">小结与下一步</h2>
+<p>CH-3 用两个本地化选择改变 FF3：排除壳价值污染最强的最小 30%，以 EP
+替代 BM，再在剩余股票中构造
+MKT、SMB、VMG。它说明资产定价模型必须对应制度和研究总体。</p>
+<p>论文证据来自特定历史样本。进入 2026
+年研究前，应重新验证壳机制、交易制度、板块结构和无风险代理，而不是把
+CH-3 当永久真理。</p>
 </section></div>
                 
               </div>
