@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>每日 AI 论文简报｜Agent 记忆、安全与评测</title>
+    <link href="/2026/08/06/daily-ai-papers-2026-08-06/"/>
+    <url>/2026/08/06/daily-ai-papers-2026-08-06/</url>
+    
+    <content type="html"><![CDATA[<span id="more"></span><h2 id="重点关注">重点关注</h2><p>以下均为 arXiv 预印本，尚未经同行评审。PDF在本次运行中无法稳定完整下载，以下内容均<strong>仅依据摘要</strong>；数字、比较和结论均为作者报告，不能替代独立复现。</p><h3 id="homesafebench自由探索式家庭安全检查"><a href="https://arxiv.org/abs/2509.23690">HomeSafeBench：自由探索式家庭安全检查</a></h3><p>Jiashu Yao 等｜arXiv｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2509.23690">PDF</a>｜<a href="https://github.com/BITHLP/HomeSafeBench">代码与数据</a></p><ul><li><strong>问题、方法与基线。</strong> 在 VirtualHome 中构造 1,000个经人工验证任务、五类家庭危险；agent只能看第一人称渲染画面并主动移动视角。比较多种现有VLM，并以离线数据构造法 CueBack 微调 4B VLM。</li><li><strong>作者报告的证据。</strong> 最强基线约为 34.7%F1，人工检查员为 98.0%；CueBack 将其 4B 模型在分布外测试的平均 F1 从18.7% 提至 45.3%。精度高于召回，提示漏报才是主要瓶颈。</li><li><strong>创新、局限与阅读。</strong>把“找隐患”做成可交互、可审计的具身任务，而非单帧分类。模拟器与真实住宅、危险类别覆盖、闭源模型设置以及训练成本都会影响外推；不应把benchmark 分数视作可替代人工检查。适合具身 AI与安全产品团队，建议先读数据构建、F1/召回分解和分布外实验。</li></ul><h3 id="memarena端侧个人记忆-agent-评测"><a href="https://arxiv.org/abs/2608.02613">MemArena：端侧个人记忆 Agent评测</a></h3><p>Jiadong Zhang、Xiaosong Ma｜arXiv｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2608.02613">PDF</a></p><ul><li><strong>问题、方法与基线。</strong> MASim 在 50 个 agent、15天的单一世界中生成 1,030 万对话token；用六类回忆、推理与可信度任务比较五个开源 reader，及Vanilla、BM25-RAG、Oracle、Memobase、MemSearch 记忆后端。</li><li><strong>作者报告的证据。</strong> 对 Qwen3-0.6B，Memobase→MemSearch得 +32.5/+19.2 个百分点，超过同后端放大 reader 的 +10.6/+6.8；Spark GB10上三种检索的额外延迟为 87/7/48 ms。权限感知访问在所有后端均失败：Oracle泄露，其他后端又过度拒绝。</li><li><strong>创新、局限与阅读。</strong>它把准确率、权限和端侧延迟放进同一测试。合成世界、自动生成真值、尚未发布的代码/大基准和设备依赖限制可复现性；要审计训练数据污染与权限标签。适合做个人记忆/RAG的工程师，建议读任务定义、权限失败分析和延迟表。</li></ul><h3 id="scdg生成式改写抄袭的来源归因"><a href="https://arxiv.org/abs/2608.03859">SCDG：生成式改写抄袭的来源归因</a></h3><p>Peijia Guo 等｜arXiv｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2608.03859">PDF</a></p><ul><li><strong>问题、方法与基线。</strong>将可疑文本在有/无候选来源条件下的冻结语言模型描述长度作差，得到无需训练的token 级证据；与相似度方法和 PAN/CLEF 任务基线比较。</li><li><strong>作者报告的证据。</strong> PAN 2025 派生两两任务为 Precision0.92、Recall 0.97、F1 0.94；PAN 2026 多源检索为 <a href="mailto:nDCG@10" class="email">nDCG@10</a> 0.83、<a href="mailto:Recall@100" class="email">Recall@100</a> 0.96。在同主题同事件 Multi-News 中仅 0.125%被判来源复用。</li><li><strong>创新、局限与阅读。</strong> 价值在于把“检测 AI参与”改为可解释的“特定来源复用”信号。候选来源召回、语言模型与阈值选择、不同语言和合法引述情形仍可能失效；需独立人工标注复核，不能单独用于惩戒。适合学术诚信与检索系统研究者，先读指标、候选生成和误报分析。</li></ul><h3 id="diagchain攻击链重建的分阶段诊断"><a href="https://arxiv.org/abs/2608.03591">DiagChain：攻击链重建的分阶段诊断</a></h3><p>Xuyang Liu 等｜arXiv｜分类：cs.CR｜<a href="https://arxiv.org/pdf/2608.03591">PDF</a></p><ul><li><strong>问题、方法与基线。</strong> MAIN-69 覆盖 69个跨操作系统、噪声与链长的场景，含 849 个参考步骤；ECRAG用检索证据与演化的结构化攻击链联动，并以五项指标替代仅看最终答案的基线。</li><li><strong>作者报告的证据。</strong> 六个 LLM 的最强配置仅完成 39.6% 的849 个步骤；小模型首先难以吸收检索证据，大模型则主要错在证据排序。</li><li><strong>创新、局限与阅读。</strong>分清检索、引用和顺序推理的失败点，适合安全 agent调试。场景、遥测格式和评分规则由作者设定，真实 SOC的数据漂移、攻击者适应和人工升级流程未被证明。适合蓝队与评测作者，先读场景构成、五项指标及错误分解。</li></ul><h3 id="ai-辅助同行评审的质量与政策"><a href="https://arxiv.org/abs/2608.03581">AI辅助同行评审的质量与政策</a></h3><p>Alexander M. Fichtl 等｜arXiv｜分类：cs.CY｜<a href="https://arxiv.org/pdf/2608.03581">PDF</a></p><ul><li><strong>问题、方法与基线。</strong> 调查 111 个 AI/NLP会议与医学期刊的审稿 AI 政策；在 ICLR 2026 和 <em>NatureCommunications</em>的原稿及数百份人类/机器评审上，比较开源与专有模型的裁判分、评分一致性、粒度和与人类关注点的重合。</li><li><strong>作者报告的证据。</strong> 两个社群的政策差异显著；LLM能写出流畅细致的文字，但系统性偏正面、批评泛化且证据锚定不均。作者据此指出总分会高估质量。</li><li><strong>创新、局限与阅读。</strong>将治理规则与产出质量并列，而非把“像审稿”当作“审得对”。LLM裁判、选取期刊/会议与人类评审不一致都可能引入偏差；不可据此自动接纳或拒稿。适合编辑部和科研工具团队，先读政策编码、评价维度及人类对照。</li></ul><h3 id="scopellm-自主实验设计评测"><a href="https://arxiv.org/abs/2608.03501">SCOPE：LLM自主实验设计评测</a></h3><p>Zejun Liu 等｜arXiv｜分类：cs.AI｜<a href="https://arxiv.org/pdf/2608.03501">PDF</a></p><ul><li><strong>问题、方法与基线。</strong> 从 19 个领域的 300篇顶会论文构造基准，分别考核高层实验完整性与低层数据、基线、指标配置；以直接LLM 规划、搜索模式和提出的 OptED 分阶段工具/规则流程比较。</li><li><strong>作者报告的证据。</strong> 多数 LLM不能直接给出高质量设计，低层配置是共同瓶颈，搜索模式不改善质量；OptED缓解该瓶颈。摘要未给出可横比的完整分数。</li><li><strong>创新、局限与阅读。</strong>把研究自动化从“写代码”前移至可检验的研究设计。金标准由既有论文反推，可能奖励复现范式并受训练污染；工具成本和人工科学判断仍不可省略。适合AI4Research 团队，先读标注协议、低层错误和 OptED 消融。</li></ul><h3 id="角色扮演-agent-的多智能体对抗压力测试"><a href="https://arxiv.org/abs/2608.03166">角色扮演 Agent的多智能体对抗压力测试</a></h3><p>Saqib Shouqi 等｜arXiv｜分类：cs.AI｜<a href="https://arxiv.org/pdf/2608.03166">PDF</a></p><ul><li><strong>问题、方法与基线。</strong> 由提问、目标和裁判三个 agent在多轮对话中实施六种递进攻击，并以单策略/静态评测为基线；衡量角色忠实、漂移、伦理偏离与一致性。</li><li><strong>作者报告的证据。</strong>三种角色、三族模型中，多策略使鲁棒性平均再降0.17–0.20；自动裁判与人工的相关为 r=0.82、Fleissκ=0.71，权威挑战和情绪操纵最有效。</li><li><strong>创新、局限与阅读。</strong>长程对抗比单轮红队更接近部署风险。仅三种角色、裁判与攻击提示的可迁移性、以及攻击平台被滥用的风险需评估。适合安全评测团队，先读攻击策略、人工一致性和跨模型结果。</li></ul><h2 id="ai-论文">AI 论文</h2><p>以下条目与重点关注合计 18 篇去重候选；均保留摘要页与可直达PDF，均<strong>仅依据摘要</strong>。</p><h3 id="antiskillbench人格技能的隐私与冒充风险"><a href="https://arxiv.org/abs/2608.03700">AntiSkillBench：人格技能的隐私与冒充风险</a></h3><p>Yongli Xiang 等｜arXiv｜分类：cs.CR｜<a href="https://arxiv.org/pdf/2608.03700">PDF</a></p><p><strong>仅依据摘要。</strong>研究人格历史压缩为可复用技能后是否泄露属性或可被冒充；基准含 50个行为丰富画像、7,500条对话、三种蒸馏和四种线上/事后防御。作者报告三种前沿 agent的风险跨骨干与蒸馏均持续，现有防御且依赖蒸馏方式、泛化有限。其价值是覆盖端到端技能管线；画像合成性、风险标签和防御实现限制外推，需重点审计隐私数据来源与攻击成本。</p><h3 id="parvl多模态模型的并行计算分配"><a href="https://arxiv.org/abs/2608.04010">ParVL：多模态模型的并行计算分配</a></h3><p>Yang Yang 等｜arXiv｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2608.04010">PDF</a>｜<a href="https://github.com/YangYangGirl/ParVL">代码</a></p><p><strong>仅依据摘要。</strong>研究固定参数预算下视觉与语言计算如何分配；复用 ViT/LLM骨干的并行分支、分支前缀参数，并用约 130 亿 token全参数微调，与同配方单分支比较。作者报告整体多模态分数提高、最优分配随任务改变。价值在于显式处理模态算力；摘要未给任务表、延迟和显存，公平基线、数据污染与训练成本须复核。</p><h3 id="ldu-bench光刻缺陷多模态理解"><a href="https://arxiv.org/abs/2608.03078">LDU-Bench：光刻缺陷多模态理解</a></h3><p>Huanglong Ji 等｜arXiv｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2608.03078">PDF</a></p><p><strong>仅依据摘要。</strong>用真实光刻/芯片复核图像将工作流拆为分诊、形态、粗定位与因果分析，以任务指标和LCS 评测MLLM。作者报告分诊相对可靠却不能稳定迁移到后续环节，主要瓶颈是形态、定位与证据到原因映射。适合工业视觉评测；数据保密、标注一致性与“原因”可见性限制复现，不能据此直接用于产线放行。</p><h3 id="s³多阶段-agent-安全防御"><a href="https://arxiv.org/abs/2608.02683">S³：多阶段 Agent安全防御</a></h3><p>Zibo Xiao 等｜arXiv｜分类：cs.CR｜<a href="https://arxiv.org/pdf/2608.02683">PDF</a></p><p><strong>仅依据摘要。</strong>将记忆、规划、工具执行的异构安全机制抽象为带阶段语义的可组合技能，由guard agent 编排，并在 MSRB 上比较代表性SOTA。作者报告安全有效性与效用保持均优于基线。价值是将防御接口标准化；风险覆盖、guard单点失效、技能供应链与延迟/算力未由摘要量化，需先做独立红队。</p><h3 id="sportmv-bench多视角体育视频推理"><a href="https://arxiv.org/abs/2607.11844">SportMV-Bench：多视角体育视频推理</a></h3><p>Kerui Chen 等｜arXiv｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.11844">PDF</a></p><p><strong>仅依据摘要。</strong> 以官方比赛录像构造 1,022 组多视角视频和3,015 问答，覆盖感知、规则解释与裁决；SportMV-Agent迭代选视角、调用感知工具并做证据推理。作者报告相对最强 MLLM 基线提高15.61%，主要难点是精细视觉和选视角而非逻辑。LLM 生成、MLLM验证的数据流程和版权/分布偏差仍需审计。</p><h3 id="真实对话中的心理健康-ai-安全审计"><a href="https://arxiv.org/abs/2601.17003">真实对话中的心理健康 AI安全审计</a></h3><p>Caitlin A. Stamatis 等｜arXiv｜分类：cs.CY｜<a href="https://arxiv.org/pdf/2601.17003">PDF</a></p><p><strong>仅依据摘要。</strong> 将四个基准复现与 20,000段部署对话审计结合，对比专用系统和六个前沿通用模型。作者报告其系统在三类高风险提示的潜在有害率为6.2%，对照为 18.0%–52.0%（均 p&lt;.001）；600 段盲审中裁判敏感度为6/6、特异度99.2%。真实数据提高生态效度，但审计管线、样本量和低基数置信区间限制因果与总体安全结论，不能替代临床服务。</p><h3 id="推理-llm-的测试时扩展与可复现性"><a href="https://arxiv.org/abs/2608.04001">推理 LLM的测试时扩展与可复现性</a></h3><p>Mohsen Hariri 等｜arXiv｜分类：cs.LG｜<a href="https://arxiv.org/pdf/2608.04001">PDF</a></p><p><strong>仅依据摘要。</strong>论文把测试时扩展形式化为自回归前缀树上的预算推理，区分单轨迹、叶节点聚合与前缀搜索，并讨论计算记账和失败模式。作者报告单一“预算”或只报准确率会使研究不可比较。它提供评测语言而非新的能力证明；须配合相同模型、解码、token/墙钟成本和污染控制的实验。</p><h3 id="autoreflectionagentic-循环与文化基础设施"><a href="https://arxiv.org/abs/2608.03800">Autoreflection：Agentic循环与文化基础设施</a></h3><p>arXiv 作者见摘要页｜arXiv｜分类：AI｜<a href="https://arxiv.org/pdf/2608.03800">PDF</a></p><p><strong>仅依据摘要。</strong> 论文讨论 agentic“奇异循环”如何把人类文化转为 AI基础设施，研究问题是反思机制与文化生产的关系。摘要中的概念性论证是其方法与主要结论；其价值在于提出治理视角，但缺少可独立复验的实验或量化结果，不能据此推断实际生产率或社会影响。</p><h3 id="risky-business忠实性与安全性的张力"><a href="https://arxiv.org/abs/2608.03745">RiskyBusiness：忠实性与安全性的张力</a></h3><p>arXiv 作者见摘要页｜arXiv｜分类：AI｜<a href="https://arxiv.org/pdf/2608.03745">PDF</a></p><p><strong>仅依据摘要。</strong>研究模型“忠实呈现”与安全约束之间的可测冲突，标题指向相应度量。作者报告的结论和具体基线/数字未在可用摘要中展开。价值在于提醒安全优化可能改变解释或遵循度；须核查任务定义、裁判偏差、攻击覆盖和误拒成本，不能将单一分数当成安全证明。</p><h3 id="从社交编码到-agentic-编码的开源社区重构"><a href="https://arxiv.org/abs/2608.03585">从社交编码到 Agentic编码的开源社区重构</a></h3><p>arXiv 作者见摘要页｜arXiv｜分类：AI｜<a href="https://arxiv.org/pdf/2608.03585">PDF</a></p><p><strong>仅依据摘要。</strong> 研究 agentic编码如何改变开源社区的生产率与关系结构，方法/数据和主要结果需以摘要页与全文为准。它值得关注，因为技术采用不只影响代码产出，也影响协作和维护责任；观察性社区数据不能自动识别因果，选择进入、许可证和长期维护质量是关键限制。</p><h3 id="dataspace可验证异构工作区数据-agent-评测"><a href="https://arxiv.org/abs/2608.03451">DataSpace：可验证异构工作区数据Agent 评测</a></h3><p>arXiv 作者见摘要页｜arXiv｜分类：AI｜<a href="https://arxiv.org/pdf/2608.03451">PDF</a></p><p><strong>仅依据摘要。</strong>论文以异构工作区上的可验证分析任务评测数据agent，关注是否能给出可追溯结果。作者报告的具体任务、基线与数值未在可用摘要中展开。价值是把“回答看似合理”与“证据可验证”区分；连接器权限、数据污染、执行成本和真实企业数据分布仍需独立测试。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>每日论文</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>论文</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>每日金融论文简报｜衍生品、市场微观结构与识别</title>
+    <link href="/2026/08/06/daily-finance-papers-2026-08-06/"/>
+    <url>/2026/08/06/daily-finance-papers-2026-08-06/</url>
+    
+    <content type="html"><![CDATA[<span id="more"></span><h2 id="重点关注">重点关注</h2><p>以下均为 arXiv 预印本，尚未经同行评审。PDF在本次运行中无法稳定完整下载，以下内容均<strong>仅依据摘要</strong>；作者报告的回测、样本内诊断或模型推演不构成投资建议，亦不等同真实可交易结果。</p><h3 id="杠杆-etf-收盘再平衡与被掠夺交易"><a href="https://arxiv.org/abs/2608.03703">杠杆 ETF收盘再平衡与被掠夺交易</a></h3><p>Yinhong Zhao｜arXiv｜分类：econ.GN｜<a href="https://arxiv.org/pdf/2608.03703">PDF</a></p><ul><li><strong>问题、方法与基线。</strong> 论文提出机制：杠杆 ETF须在同一收盘价按当日方向再平衡，套利者可抢跑并在收盘交易放大需求。以韩国Samsung Electronics、SK Hynix与控制组、盘前美国消息的次日反转作事件设计。</li><li><strong>作者报告的证据。</strong> 估计该回路八周增加 47个百分点年化波动并向散户转移 4万亿韩元；两个收盘价平均可将可操纵幅度减半。摘要未披露样本窗口、稳健性和显著性表。</li><li><strong>识别、局限与阅读。</strong>这不是随机试验：即使控制组未见同样反转，2026年韩国市场的并发新闻、流动性和政策变化仍可能混杂。估算经济显著性不等于可交易利润，且不是建议交易LETF。适合市场微观结构与监管读者，先读事件定义、对照组、价格冲击分解和替代解释。</li></ul><h3 id="投影去除干扰后再检查-iv-识别"><a href="https://arxiv.org/abs/2608.03847">投影去除干扰后再检查 IV识别</a></h3><p>Ulrich Hounyo｜arXiv｜分类：econ.EM｜<a href="https://arxiv.org/pdf/2608.03847">PDF</a></p><ul><li><strong>问题、方法与基线。</strong> 针对面板 IV在去固定效应/潜在因子后可能丢失有效变异，推导投影 Jacobian、score 与Projected Information Matrix，并给出弱识别极限、稳健检验和bootstrap；基线是投影前的一阶段强度。</li><li><strong>作者报告的证据。</strong> 模拟显示原始一阶段统计量大于 500仍可能给出错误符号；国际货币应用中，共同投影削弱表观的外国经济产出持续性，Gaussian-referenceAnderson–Rubin 集保持无界。</li><li><strong>识别、局限与阅读。</strong>贡献是将因果识别诊断置于去干扰之后。结论依赖线性面板、双向依赖和投影兼容等条件；模拟成功不证明任一实证关系的因果性。适合计量/宏观金融研究者，先读假设、弱识别定理、模拟和实证规格。</li></ul><h3 id="无套利隐含波动率曲面的潜变量-flow-matching"><a href="https://arxiv.org/abs/2608.00616">无套利隐含波动率曲面的潜变量Flow Matching</a></h3><p>Oscar Brooks 等｜arXiv｜分类：q-fin.CP｜<a href="https://arxiv.org/pdf/2608.00616">PDF</a></p><ul><li><strong>问题、方法与基线。</strong>将曲面用带日历、价差、蝶式套利可微惩罚的 VAE 压缩，再以 flow matching从高斯先验生成潜变量；以Wasserstein、微笑/偏斜、分位曲面与静态无套利测试比较生成质量。</li><li><strong>作者报告的证据。</strong> 在极端 Q99 区间最好，90.8%样本通过全部所测静态无套利约束，无需采样后重加权。摘要未给数据切分、时间外检验或与交易/对冲损益的比较。</li><li><strong>识别、局限与阅读。</strong>静态无套利与分布拟合不是动态无套利、报价可执行性或 P&amp;L；90.8%亦意味着约 9.2%未通过所测约束。应分别检查样本内/样本外、尾部日期、基线调参与 GPU成本。适合波动率建模者，先读约束实现、Q99表和时间外实验；不构成期权交易建议。</li></ul><h3 id="amm-作为可验证投资组合产品"><a href="https://arxiv.org/abs/2608.02917">AMM作为可验证投资组合产品</a></h3><p>Zachary Feinstein、Ionut Florescu、SeanO'Leary｜arXiv｜分类：q-fin.TR｜<a href="https://arxiv.org/pdf/2608.02917">PDF</a></p><ul><li><strong>问题、方法与基线。</strong> 以 G3M 不变量把 AMM解释为目标权重组合；多资产费率下，竞争套利实现带状再平衡且持仓偏离可事前界定。将模拟G3M 与 VBIAX、EQL、EDOW 的年化收益及追踪误差比较。</li><li><strong>作者报告的证据。</strong>在某些费率范围、仅套利订单流的历史案例中，G3M两项指标均优于基金。摘要未给区间、交易成本、容量或样本外结果。</li><li><strong>识别、局限与阅读。</strong>这是历史模拟/结构模型，不是因果或真实部署比较；AMM的滑点、MEV、链上失败、税费和流动性会改变可交易结果。适合 DeFi机制设计读者，先读费率区间、再平衡界和基金可比性；不构成配置建议。</li></ul><h3 id="加密永续合约平仓瀑布的机制测量"><a href="https://arxiv.org/abs/2608.03616">加密永续合约平仓瀑布的机制测量</a></h3><p>Ramon Marc Garcia Seuma｜arXiv｜分类：physics.soc-ph｜<a href="https://arxiv.org/pdf/2608.03616">PDF</a></p><ul><li><strong>问题、方法与基线。</strong> 研究 2022–2025年七次大规模加密永续平仓；对 2025 年 10月最大事件使用透明场所链上成交日志，以三种估计量检验 Galton–Watson分支机制，并查看流动性和跨资产耦合。</li><li><strong>作者报告的证据。</strong> 场所内分支率约 0.1–0.2；起始后 30分钟内发生 88% 强平卖出、63% 被后备机制场外吸收；七次中耦合跳升 1.6–4.4个基准标准差，持仓下降 25%–70%。</li><li><strong>识别、局限与阅读。</strong>直接链上日志增强机制证据，但只覆盖一个透明场所、七事件很少，跨场所冲击和选择事件不能排除。统计上的模式不提供可预测交易信号，且作者称标量事前状态无法评级严重度。适合加密市场结构研究者，先读估计量、事件筛选与替代机制检验。</li></ul><h3 id="公共私人信贷计划的委托监控"><a href="https://arxiv.org/abs/2608.02651">公共—私人信贷计划的委托监控</a></h3><p>G. Charles-Cadogan｜arXiv｜分类：econ.TH｜<a href="https://arxiv.org/pdf/2608.02651">PDF</a></p><ul><li><strong>问题、方法与基线。</strong> 建立机制设计模型，研究由 PE/VC中介筛选和配置补贴贷款时，如何同时产生 Stiglitz–Weiss 投资不足与 DeMeza–Webb 过度投资；扩展加入评分与 Bayesian 更新。</li><li><strong>作者报告的证据。</strong>模型预测风险上升时合约可行利差收窄，按借款人特征对后验风险分类的边际影响配置监控可最小化误分配福利损失；SBASBIC 2018–2025 州年数据和校准模拟只作设计验证。</li><li><strong>识别、局限与阅读。</strong>作者明确无细粒度借款人数据且非因果检验；因此没有政策处理的因果效应或真实放贷绩效。适合公共金融/信贷政策读者，先读监控曲率、补贴强度和校准假设，不能据此直接制定放贷规则。</li></ul><h2 id="金融论文">金融论文</h2><p>以下条目与重点关注合计 18 篇去重候选；均保留摘要页与可直达PDF，均<strong>仅依据摘要</strong>。</p><h3 id="时间变换分数布朗运动期权定价"><a href="https://arxiv.org/abs/2608.03925">时间变换分数布朗运动期权定价</a></h3><p>Robert Jarrow、Jayen Tan｜arXiv｜分类：q-fin.MF｜<a href="https://arxiv.org/pdf/2608.03925">PDF</a></p><p><strong>仅依据摘要。</strong> 为恢复 fBm 的半鞅结构，使用随机 Gamma活动时间构造 fVG，并以 GMM 估计；S&amp;P 500 实证得 Hurst 指数约0.45。该结果是模型拟合参数，并非收益预测或对冲有效性；须检查风险中性化、样本外期权误差、交易成本和模型风险。</p><h3 id="持有至到期会计下的存款挤兑风险"><a href="https://arxiv.org/abs/2407.03285">“持有至到期”会计下的存款挤兑风险</a></h3><p>Zachary Feinstein、Grzegorz Halaj、AndreasSojmark｜arXiv｜分类：q-fin.RM｜<a href="https://arxiv.org/pdf/2407.03285">PDF</a></p><p><strong>仅依据摘要。</strong>构建由储户审视、流动性缓冲不足和火售推动的简化挤兑模型，并以 2020–2022年 Silicon Valley Bank 资产负债表校准，分析 HTM指定与融资风险。作者报告框架可刻画违约前脆弱性的积累。该校准案例不是对银行倒闭原因的因果识别；账面数据、行为参数与火售设定决定结果，不能作个别银行风险判断。</p><h3 id="适当评分规则的观测驱动滤波"><a href="https://arxiv.org/abs/2608.02828">适当评分规则的观测驱动滤波</a></h3><p>Giulia Livieri、Gianluca Palmari｜arXiv｜分类：math.ST｜<a href="https://arxiv.org/pdf/2608.02828">PDF</a></p><p><strong>仅依据摘要。</strong> 以可微适当评分规则的负参数导数取代似然score，推导局部损失下降、收缩、一致性、夹心渐近正态性及高频扩散极限；在国际股票收益上按点方差损失、VaR覆盖与 PIT诊断比较。作者报告该框架揭示评分规则和缩放如何限制极端观测传导。它是方法论，不提供统一优胜滤波器；VaR覆盖须样本外联合检验，统计校准不等于经济收益或可交易性。</p><h3 id="隐含因子影响大学专业选择的检验"><a href="https://arxiv.org/abs/2410.19947">隐含因子影响大学专业选择的检验</a></h3><p>Hayri Alper Arslan 等｜arXiv｜分类：econ.EM｜<a href="https://arxiv.org/pdf/2410.19947">PDF</a></p><p><strong>仅依据摘要。</strong> 以 copula联合模型和模拟检验恢复不可观测冲击的协方差，并在 NLSY97研究婚配前景与专业选择。作者报告不可观测婚配前景显著影响选择，加入事前陈述的婚配预期后依赖消失。识别仍依赖copula/结构假设，显著性不自动等于经济量级或可泛化因果效应。</p><h3 id="全球临床试验参与不平等"><a href="https://arxiv.org/abs/2601.04660">全球临床试验参与不平等</a></h3><p>Wen Lou 等｜arXiv｜分类：econ.GN｜<a href="https://arxiv.org/pdf/2601.04660">PDF</a></p><p><strong>仅依据摘要。</strong> 汇集 2000–2024 年 78,117 个 RCT、1.856亿参与者和疾病负担，分解参与差异。作者报告国家层面因素解释 88.9%变异，疾病与时间贡献较小。大样本是描述性关联，不识别基础设施投资的因果效应；国家分类、试验登记完整性和生态谬误须审计。</p><h3 id="预测增强-monte-carlo"><a href="https://arxiv.org/abs/2412.11257">预测增强 Monte Carlo</a></h3><p>Fengpei Li 等｜arXiv｜分类：stat.ML｜<a href="https://arxiv.org/pdf/2412.11257">PDF</a></p><p><strong>仅依据摘要。</strong> PEMC 把 ML预测器作为控制变量，以廉价并行模拟作特征，目标是在保留无偏和不确定性量化下减少方差/运行时间；覆盖方差互换、swaption和调度案例。作者报告跨例子有效，但摘要未给数值；需分开验证训练/测试路径、估计偏差和总算力，不能把模拟效率当作市场Alpha。</p><h3 id="偏好稳健的扭曲风险度量"><a href="https://arxiv.org/abs/2608.02854">偏好稳健的扭曲风险度量</a></h3><p>Carole Bernard、Silvana M. Pesenti｜arXiv｜分类：q-fin.RM｜<a href="https://arxiv.org/pdf/2608.02854">PDF</a></p><p><strong>仅依据摘要。</strong> 在 Wasserstein 与 Bregman距离定义的扭曲函数集合中求最坏/最好风险度量闭式解，并扩展至秩依赖效用。作者报告该框架可把秩依赖效用理解为期望效用的稳健化。它处理的是风险偏好函数不确定性而非收益分布已被验证；半径选择决定结论，须做敏感性分析。</p><h3 id="后-agi-经济学的价值理论"><a href="https://arxiv.org/abs/2608.01432">后 AGI 经济学的价值理论</a></h3><p>Keyun Ruan｜arXiv｜分类：cs.AI｜<a href="https://arxiv.org/pdf/2608.01432">PDF</a>｜金融 × AI</p><p><strong>仅依据摘要。</strong> 提出 Flourishing ValueTheory，以反事实、分配敏感且受社会/行星边界约束的长期能力贡献定义价值，并提出RoF与治理架构。作者的主要结果是理论框架而非实证识别；概念的可测量性、权重和政策反事实尚待检验，不能从中推出资产估值或投资结论。</p><h3 id="协整系统中的平滑结构变化检验"><a href="https://arxiv.org/abs/2608.03773">协整系统中的平滑结构变化检验</a></h3><p>Haofeng Liao、Xing Wang｜arXiv｜分类：econ.EM｜<a href="https://arxiv.org/pdf/2608.03773">PDF</a></p><p><strong>仅依据摘要。</strong>在已知干预时点后，以核加权局部降秩法估计 VECM的协整向量和调整系数平滑演变，并给出一致性/平滑性检验。作者在俄乌战争后的油价、USD/EUR与黄金指数中报告关系平滑变化。事件时点和模型设定不能自动隔离战争以外冲击，样本内拟合也不是可交易预测。</p><h3 id="digital-state-capacity"><a href="https://arxiv.org/abs/2608.03221">Digital State Capacity</a></h3><p>Patrick Healy 等｜arXiv｜分类：econ.GN｜<a href="https://arxiv.org/pdf/2608.03221">PDF</a></p><p><strong>仅依据摘要。</strong> 以政府机构持有的公共 IPv4地址衡量数字国家能力，面板约含 150 国、15 万个国家—实体记录，另有 1,681个次国家区域的 2019–2024面板。作者报告其与较低腐败、较高疫苗覆盖相关，并明确为描述性而非因果。IP地址不等同有效公共服务，组织归类和逆向因果均须处理。</p><h3 id="遍历-markov-过程的拟合优度检验"><a href="https://arxiv.org/abs/2608.03088">遍历 Markov过程的拟合优度检验</a></h3><p>Vance Martin 等｜arXiv｜分类：stat.ME｜<a href="https://arxiv.org/pdf/2608.03088">PDF</a></p><p><strong>仅依据摘要。</strong>提出比较稳态密度与原假设模型族的检验，无需指定备择或估计平滑参数，并声称对<span class="math inline">\(1/\sqrt{n}\)</span>局部备择有非平凡功效。它可用于金融时间序列模型诊断；有限样本、依赖结构和多重规格搜索将决定实际尺寸/功效，不应把拒绝原假设解释为交易机会。</p><h3 id="局部汇聚输入神经网络的期权定价"><a href="https://arxiv.org/abs/2608.02778">局部汇聚输入神经网络的期权定价</a></h3><p>Harris Cobb、Wenbo Hao、Yingjie Liu｜arXiv｜分类：cs.LG｜<a href="https://arxiv.org/pdf/2608.02778">PDF</a>｜金融 × AI</p><p><strong>仅依据摘要。</strong> NNLCI学习粗/细网格解之间的局部修正，用少量高精度训练数据处理 Black–Scholes现金或无期权及 Heston 障碍期权。作者报告测试集 RMSE 降低约 4–12 倍。数值PDE测试不是市场报价或风险管理实盘检验；应确认参数域外、尾部/障碍附近误差、推理延迟与无套利约束。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>每日论文</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>论文</tag>
+      
+      <tag>金融</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2026-08-06 GitHub 热榜简报：把 Agent 从演示推向可运行系统</title>
     <link href="/2026/08/06/daily-github-trending-2026-08-06/"/>
     <url>/2026/08/06/daily-github-trending-2026-08-06/</url>
@@ -839,33 +893,6 @@
   
   
   <entry>
-    <title>2026-07-23 AI 论文简报：第三方技能风险、多视图界面与证据选择</title>
-    <link href="/2026/07/23/daily-ai-papers-2026-07-23/"/>
-    <url>/2026/07/23/daily-ai-papers-2026-07-23/</url>
-    
-    <content type="html"><![CDATA[<span id="more"></span><h2 id="重点关注">重点关注</h2><h3 id="openskillrisk真实第三方技能下的-agent-安全">1. <a href="https://arxiv.org/abs/2607.20121">OpenSkillRisk：真实第三方技能下的agent 安全</a></h3><p>作者：Qiyuan Liu、Tingfeng Hui、Kun Zhan、Kaike Zhang、NingMiao｜来源：arXiv 2607.20121｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2607.20121">PDF</a>。<strong>仅依据摘要。</strong></p><ul><li><strong>核心问题、方法与基线</strong>：论文检验 LLM agent能否识别并避免开放技能市场中的隐性危险；构建含 263 个真实风险技能、7类威胁、标准任务及沙箱的 OpenSkillRisk，并比较 3 个主流 CLI agent 框架与13 个前沿 LLM，而非只测静态恶意提示。</li><li><strong>结果与创新</strong>：作者报告没有任何系统能可靠应对风险；最安全配置仍约有17%的案例执行了不安全动作，并归纳出“未识别风险、识别后未阻止、超出用户意图执行”三类失败。价值在于把风险放到工具执行链而非单轮对话中测量。</li><li><strong>限制、适读者与阅读建议</strong>：263个技能和沙箱任务未必代表私有企业环境；摘要也未给出不同框架、模型、调用成本及污染控制的完整细节。适合agent平台、安全工程和红队读者；优先读基准构造、框架比较、失败模式与威胁分类章节。</li></ul><h3 id="mv-bench多视图界面生成能力的缺口">2. <a href="https://arxiv.org/abs/2607.19910">MV-Bench：多视图界面生成能力的缺口</a></h3><p>作者：Yue Zhao、Hongxu Liu、Feiyu Wang、Xiaoyu Yang、Tong Ge等｜来源：arXiv 2607.19910｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.19910">PDF</a>。<strong>仅依据摘要。</strong></p><ul><li><strong>核心问题、方法与基线</strong>：单图表代码生成不能代表数据产品开发。MV-Bench以 Tableau workbook的数据绑定、视觉映射和交互为真值，经结构化中间表示生成可执行 Web界面；92 个基础界面重组为 1,048 个验证实例，比较 5 个 SOTA MLLM的单次生成。</li><li><strong>结果与创新</strong>：最强模型的视觉布局正确率为75.45%，但数据绑定仅 21.71%、交互完整性仅11.68%；迭代修复能提升可执行性，却未显著补齐后两项。它把“像”与“可用”拆开，是对UI agent 更有操作性的诊断。</li><li><strong>限制、适读者与阅读建议</strong>：Tableau语义与真实前端多样技术栈仍有距离；需核验模型提示、成本、图表重组造成的训练重叠和人工验证协议。适合数据可视化、前端agent 和评测研究者；优先读实例生成、三类指标和迭代实验章节。</li></ul><h3 id="selectbench污染检索中的选择性证据采纳">3. <a href="https://arxiv.org/abs/2607.20090">SelectBench：污染检索中的选择性证据采纳</a></h3><p>作者：Yanyu Chen、Yue Li、Yongyi Cui、Dongsheng Shi、LichangDai｜来源：arXiv 2607.20090｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2607.20090">PDF</a>。<strong>仅依据摘要。</strong></p><ul><li><strong>核心问题、方法与基线</strong>：RAG既不能一律拒绝上下文，也不能吞下指令式污染。作者用 SelectBench 训练/评测Qwen3.5-4B，并比较原模型、规则奖励 DAPO 与冻结语义裁判奖励 DAPO，另以MMLU 和干净 HotpotQA 检查通用能力回退。</li><li><strong>结果与创新</strong>：在修正后的 325 例 SelectBench-v2上，严格成功率由 22.46% 升至25.54%/26.46%；禁止内容采纳减少、回答更短，但提示注入跟随未改善，且成对增益未通过Holm校正。这一负结果比单报分数更重要：方向性改善尚不能称为稳健抗注入能力。</li><li><strong>限制、适读者与阅读建议</strong>：小测试集、冻结裁判偏差和单一4B 基座限制外推；摘要未给检索器、攻击分布和训练成本。适合 RAG安全与后训练读者；优先读数据污染定义、奖励设计、显著性检验和失败案例章节。</li></ul><h3 id="lkvalues低资源语境下的价值对齐">4. <a href="https://arxiv.org/abs/2607.20410">LKValues：低资源语境下的价值对齐</a></h3><p>作者：Nethmi Muthugala、Supryadi、Surangika Ranathunga、Nisansa deSilva 等｜来源：arXiv 2607.20410｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2607.20410">PDF</a>｜<a href="https://github.com/NextME14/LKValues">代码与数据</a>。<strong>仅依据摘要。</strong></p><ul><li><strong>核心问题、方法与基线</strong>：论文关注英语中心的价值评测会遗漏僧伽罗语社会语境。团队以205 人三语调查归纳 40 项多数认同价值，构建 15万条僧伽罗语—英语指令数据和 1,000 例基准，并评测闭源、开源模型及微调后的Qwen3.5-4B/9B 与 Aya-Expanse-8B。</li><li><strong>结果与创新</strong>：作者报告更大、更新的模型仍有低资源文化对齐缺口；LKValues微调改善 Qwen系列双语表现、减少无效输出和跨语言差距，但收益依模型家族而变。调查锚定与公开资源使方案具备可迁移的工作流价值。</li><li><strong>限制、适读者与阅读建议</strong>：205位受访者不能覆盖国家内部价值多元性，新闻派生指令和“多数认可”也可能压平少数观点；须审查标注、翻译和训练测试泄漏。适合对齐、低资源NLP 与本地化产品团队；优先读调查设计、基准构造和跨语言误差章节。</li></ul><h3 id="look-less-think-faster联合-token算力自适应">5. <a href="https://arxiv.org/abs/2607.20357">Look Less, Think Faster：联合token—算力自适应</a></h3><p>作者：Pengcheng Wang、Zhiquan Wang、Jayoung Lee、Zhuoyan Xu、Ran Xu等｜来源：arXiv 2607.20357｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20357">PDF</a>。<strong>仅依据摘要。</strong></p><ul><li><strong>核心问题、方法与基线</strong>：多模态推理成本由视觉 token与语言思考 token同时决定；论文提出联合适应两类预算的机制，目标是在不重要的视觉区域和不需要长推理的样本上少算，并应与固定视觉token、固定推理预算系统比较。</li><li><strong>结果与创新</strong>：作者报告方法能在多模态任务上以更少token/算力维持或改善性能；其新意在于将感知压缩与推理预算放入同一决策。摘要没有给出绝对精度、延迟、模型规模或具体基线，不能量化真实性价比。</li><li><strong>限制、适读者与阅读建议</strong>：动态预算可能把困难样本误判为简单样本，部署还需验证最坏延迟、硬件吞吐与分布外退化。适合推理系统、VLM服务与成本工程读者；优先读预算策略、消融、延迟—精度曲线及失败样例章节。</li></ul><h2 id="ai-论文">AI 论文</h2><h3 id="expertverse"><a href="https://arxiv.org/abs/2607.19341">ExpertVerse</a></h3><p>作者：Yuan Wang、Yongchao Du、Mengting Chen、Jinsong Lan、XuetaoFeng、Xiaoyong Zhu｜来源：arXiv 2607.19341｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.19341">PDF</a>。用 9 种认知能力、8个专家学科和 58 个子学科组织 1,611个专家标注视觉生成实例，并自动扩展为带推理轨迹的 100K 数据；作者以 RL微调KnowThinker，报告开源与闭源模型均暴露知识密集生成缺口。价值在于将“会画”拆为跨领域知识推理，但自动轨迹、奖励冲突处理和专有模型比较是否公平仍待核验。<strong>仅依据摘要。</strong></p><h3 id="agents-in-the-wild"><a href="https://arxiv.org/abs/2607.19336">Agents in the Wild</a></h3><p>作者：Grace Hui Yang、Pranav N. Venkit、Hooman Sedghamiz、EnricoSantus、Victor Dibia、Ioana Baldini｜来源：arXiv2607.19336｜分类：cs.AI｜<a href="https://arxiv.org/pdf/2607.19336">PDF</a>。这是一篇部署导向教程，借软件、科学发现和金融案例归纳验证流水线、回退与人在环等设计模式；作者主张研究基准与生产可靠性之间仍有缺口。它适合作为工程检查清单，而非新的对照实验；案例选择和建议的外部有效性需自行验证。<strong>仅依据摘要。</strong></p><h3 id="遥感-mllm领域专用还是通用"><a href="https://arxiv.org/abs/2607.20284">遥感MLLM：领域专用还是通用</a></h3><p>作者：Qiwei Ma、Chunping Qiu、Xinjun Cheng、Xiaoyu Zhang、Puhong Duan等｜来源：arXiv 2607.20284｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20284">PDF</a>。综述并诊断比较遥感专用与通用CV-MLLM，作者报告后者无需遥感微调便可在部分任务追平或超过专用模型，而两者都受空间关系、细粒度理解与跨格式泛化限制。结论提醒不要把专用标签当能力保证；任务选择、评测污染和高分辨率算力成本未由摘要展开。<strong>仅依据摘要。</strong></p><h3 id="entrap-vl"><a href="https://arxiv.org/abs/2607.20092">ENTRAP-VL</a></h3><p>作者：Karan Goyal、Afreen Hossain、Debojyoti Das、VishalBhutani｜来源：arXiv 2607.20092｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20092">PDF</a>。提出 1,500 项、8类的视觉—语言双上下文“牵引”探针，分别操控文本和视觉的相关性与真实性，以检测无关上下文是否拉偏输出。贡献是测量工具和分类法而非模型排名；人工构造条件、文化先验和与真实多模态攻击的距离限制其结论。<strong>仅依据摘要。</strong></p><h3 id="d-knee-mri-强度归一化基准"><a href="https://arxiv.org/abs/2607.20028">3D Knee MRI强度归一化基准</a></h3><p>作者：Oliver Mills、Philip Conaghan、Samuel Relton｜来源：arXiv2607.20028｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20028">PDF</a>。比较 7 种归一化方法对3D U-Net 半月板分割的影响，以 IWOAI 2019 训练、SKM-TEA外部测试；作者报告内部差异相近，Z-score、Nyúl 与 CLAHE在外部较稳健，但跨数据集域偏移造成的下降远大于归一化差异。结论有临床部署价值，却不能替代多中心前瞻验证和扫描协议控制。<strong>仅依据摘要。</strong></p><h3 id="arat相关一致性盲区"><a href="https://arxiv.org/abs/2607.19899">ARAT：相关一致性盲区</a></h3><p>作者：Shay Seiya McDonnell、Avantika Singh、Quoc-Viet Pham、VratislavHavlik、Gregory M. P. O'Hare｜来源：arXiv 2607.19899｜分类：cs.MA｜<a href="https://arxiv.org/pdf/2607.19899">PDF</a>。以随机森林、k-NN与校准元模型做告警分诊，作者在 UNSW-NB15 的 82,332 个留出样本上报告57.2% 错误发生在一致预测下，保守覆盖将低估率从 4.80% 降至1.70%。它指出“有分歧才升级”的结构性风险；网络入侵与临床再入院的迁移不证明对LLM agent 同样成立。<strong>仅依据摘要。</strong></p><h3 id="tcr奖励更好的思考过程"><a href="https://arxiv.org/abs/2607.19824">TCR：奖励更好的思考过程</a></h3><p>作者：Xubo Liu、Wenya Guo、Ruxue Yan、Xinying Qian、YingZhang｜来源：arXiv 2607.19824｜分类：cs.AI｜<a href="https://arxiv.org/pdf/2607.19824">PDF</a>。将偏好对转为样本级思考清单，并用EMA 残差从结果奖励中分离过程奖励；作者报告在 3 个模型家族的 5个模型和多项基准上持续改善。它试图缓解结果式奖励的粗粒度归因，但思维链监督是否忠实、奖励黑客和额外标注/推理成本仍需检查。<strong>仅依据摘要。</strong></p><h3 id="triagent"><a href="https://arxiv.org/abs/2607.19794">TriAgent</a></h3><p>作者：Isabel Xu、Cynthia Xu、Rachel Ren、Cong Guo、JiachengDing｜来源：arXiv 2607.19794｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2607.19794">PDF</a>。用 VADER、FinBERT、Qwen按粒度分工，以语义分歧指标路由金融情绪任务；作者报告批评者 F1 约0.87、幻觉检测 AUC 0.90，以及 20 标的回测 Sharpe 3.50。其价值是把云端LLM成本与分歧信号结合；回测不是实盘，时间切分、成本、选择偏差和多重尝试需严查，非投资建议。<strong>仅依据摘要。</strong></p><h3 id="开放问答的无参考推理评测"><a href="https://arxiv.org/abs/2607.19678">开放问答的无参考推理评测</a></h3><p>作者：Guneet Singh Kohli、Yuxiang Zhou、Michael SejrSchlichtkrull、Gregory E Dean、Maria Liakata｜来源：arXiv2607.19678｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2607.19678">PDF</a>。论文尝试在没有唯一参考答案的开放问答中评测推理质量，以减少只比字面答案的局限；作者报告其指标与人工判断更一致。高风险领域仍不能把自动裁判当事实核验，标注协议、裁判偏差和跨领域稳健性是主要证据限制。<strong>仅依据摘要。</strong></p><h3 id="notes-to-self"><a href="https://arxiv.org/abs/2607.20372">Notesto Self</a></h3><p>作者：Chang Liu、Xinyu Li、Artur Dubrawski｜来源：arXiv2607.20372｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2607.20372">PDF</a>。研究 LLM能否把经验压缩为可复用的自我笔记，再用于后续任务；作者报告经验抽象有助于学习。它面向长期agent记忆，但摘要未说明记忆污染、过期知识、隐私边界和与检索/上下文窗口基线的公平比较。<strong>仅依据摘要。</strong></p><h3 id="多轮时尚图像检索"><a href="https://arxiv.org/abs/2607.20291">多轮时尚图像检索</a></h3><p>作者：Mingqiang Tang、Haokun Wen、Meng Liu、Yupeng Hu、WeiliGuan、Xuemeng Song｜来源：arXiv 2607.20291｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20291">PDF</a>。针对用户意图会在多轮反馈中分叉的问题，提出多意图建模的时尚图像检索；作者报告能改善多轮检索。真实商业场景还要评估用户行为偏差、属性标注、长尾时尚概念和在线延迟，离线指标并不等于转化提升。<strong>仅依据摘要。</strong></p><h3 id="rs-rie-bench"><a href="https://arxiv.org/abs/2607.20197">RS-RIE-Bench</a></h3><p>作者：Zihan Qin、Boao Xu、Zhao Dong、Yingping Sun、Ziheng Jiao等｜来源：arXiv 2607.20197｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20197">PDF</a>。提出推理引导的遥感图像编辑评测，以考察模型对地物语义与编辑约束的理解；作者报告基准能揭示现有模型不足。遥感场景的地理分布、标注正确性和训练图像泄漏会显著影响结论，且视觉质量不保证地学意义正确。<strong>仅依据摘要。</strong></p><h3 id="cmr-心脏疾病诊断-ai"><a href="https://arxiv.org/abs/2607.20087">CMR 心脏疾病诊断 AI</a></h3><p>作者：Sina Amirrajab、Volker Vehof、Michael Bietenbeck、NuriyeAkyol、Redouane Bouras 等｜来源：arXiv 2607.20087｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20087">PDF</a>。开发基于常规心血管磁共振影像的自动诊断工具，目标是可靠且具临床意义；作者报告自动化流程具有诊断潜力。医疗AI需要独立、多中心、前瞻性比较与校准/公平性分析，摘要不足以判断临床净获益或是否能替代读片。<strong>仅依据摘要。</strong></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>每日论文</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>AI</tag>
-      
-      <tag>论文</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>2026-07-23 金融论文简报：信号失效、系统风险与模型不确定性</title>
     <link href="/2026/07/23/daily-finance-papers-2026-07-23/"/>
     <url>/2026/07/23/daily-finance-papers-2026-07-23/</url>
@@ -885,6 +912,33 @@
       <tag>论文</tag>
       
       <tag>金融</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>2026-07-23 AI 论文简报：第三方技能风险、多视图界面与证据选择</title>
+    <link href="/2026/07/23/daily-ai-papers-2026-07-23/"/>
+    <url>/2026/07/23/daily-ai-papers-2026-07-23/</url>
+    
+    <content type="html"><![CDATA[<span id="more"></span><h2 id="重点关注">重点关注</h2><h3 id="openskillrisk真实第三方技能下的-agent-安全">1. <a href="https://arxiv.org/abs/2607.20121">OpenSkillRisk：真实第三方技能下的agent 安全</a></h3><p>作者：Qiyuan Liu、Tingfeng Hui、Kun Zhan、Kaike Zhang、NingMiao｜来源：arXiv 2607.20121｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2607.20121">PDF</a>。<strong>仅依据摘要。</strong></p><ul><li><strong>核心问题、方法与基线</strong>：论文检验 LLM agent能否识别并避免开放技能市场中的隐性危险；构建含 263 个真实风险技能、7类威胁、标准任务及沙箱的 OpenSkillRisk，并比较 3 个主流 CLI agent 框架与13 个前沿 LLM，而非只测静态恶意提示。</li><li><strong>结果与创新</strong>：作者报告没有任何系统能可靠应对风险；最安全配置仍约有17%的案例执行了不安全动作，并归纳出“未识别风险、识别后未阻止、超出用户意图执行”三类失败。价值在于把风险放到工具执行链而非单轮对话中测量。</li><li><strong>限制、适读者与阅读建议</strong>：263个技能和沙箱任务未必代表私有企业环境；摘要也未给出不同框架、模型、调用成本及污染控制的完整细节。适合agent平台、安全工程和红队读者；优先读基准构造、框架比较、失败模式与威胁分类章节。</li></ul><h3 id="mv-bench多视图界面生成能力的缺口">2. <a href="https://arxiv.org/abs/2607.19910">MV-Bench：多视图界面生成能力的缺口</a></h3><p>作者：Yue Zhao、Hongxu Liu、Feiyu Wang、Xiaoyu Yang、Tong Ge等｜来源：arXiv 2607.19910｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.19910">PDF</a>。<strong>仅依据摘要。</strong></p><ul><li><strong>核心问题、方法与基线</strong>：单图表代码生成不能代表数据产品开发。MV-Bench以 Tableau workbook的数据绑定、视觉映射和交互为真值，经结构化中间表示生成可执行 Web界面；92 个基础界面重组为 1,048 个验证实例，比较 5 个 SOTA MLLM的单次生成。</li><li><strong>结果与创新</strong>：最强模型的视觉布局正确率为75.45%，但数据绑定仅 21.71%、交互完整性仅11.68%；迭代修复能提升可执行性，却未显著补齐后两项。它把“像”与“可用”拆开，是对UI agent 更有操作性的诊断。</li><li><strong>限制、适读者与阅读建议</strong>：Tableau语义与真实前端多样技术栈仍有距离；需核验模型提示、成本、图表重组造成的训练重叠和人工验证协议。适合数据可视化、前端agent 和评测研究者；优先读实例生成、三类指标和迭代实验章节。</li></ul><h3 id="selectbench污染检索中的选择性证据采纳">3. <a href="https://arxiv.org/abs/2607.20090">SelectBench：污染检索中的选择性证据采纳</a></h3><p>作者：Yanyu Chen、Yue Li、Yongyi Cui、Dongsheng Shi、LichangDai｜来源：arXiv 2607.20090｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2607.20090">PDF</a>。<strong>仅依据摘要。</strong></p><ul><li><strong>核心问题、方法与基线</strong>：RAG既不能一律拒绝上下文，也不能吞下指令式污染。作者用 SelectBench 训练/评测Qwen3.5-4B，并比较原模型、规则奖励 DAPO 与冻结语义裁判奖励 DAPO，另以MMLU 和干净 HotpotQA 检查通用能力回退。</li><li><strong>结果与创新</strong>：在修正后的 325 例 SelectBench-v2上，严格成功率由 22.46% 升至25.54%/26.46%；禁止内容采纳减少、回答更短，但提示注入跟随未改善，且成对增益未通过Holm校正。这一负结果比单报分数更重要：方向性改善尚不能称为稳健抗注入能力。</li><li><strong>限制、适读者与阅读建议</strong>：小测试集、冻结裁判偏差和单一4B 基座限制外推；摘要未给检索器、攻击分布和训练成本。适合 RAG安全与后训练读者；优先读数据污染定义、奖励设计、显著性检验和失败案例章节。</li></ul><h3 id="lkvalues低资源语境下的价值对齐">4. <a href="https://arxiv.org/abs/2607.20410">LKValues：低资源语境下的价值对齐</a></h3><p>作者：Nethmi Muthugala、Supryadi、Surangika Ranathunga、Nisansa deSilva 等｜来源：arXiv 2607.20410｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2607.20410">PDF</a>｜<a href="https://github.com/NextME14/LKValues">代码与数据</a>。<strong>仅依据摘要。</strong></p><ul><li><strong>核心问题、方法与基线</strong>：论文关注英语中心的价值评测会遗漏僧伽罗语社会语境。团队以205 人三语调查归纳 40 项多数认同价值，构建 15万条僧伽罗语—英语指令数据和 1,000 例基准，并评测闭源、开源模型及微调后的Qwen3.5-4B/9B 与 Aya-Expanse-8B。</li><li><strong>结果与创新</strong>：作者报告更大、更新的模型仍有低资源文化对齐缺口；LKValues微调改善 Qwen系列双语表现、减少无效输出和跨语言差距，但收益依模型家族而变。调查锚定与公开资源使方案具备可迁移的工作流价值。</li><li><strong>限制、适读者与阅读建议</strong>：205位受访者不能覆盖国家内部价值多元性，新闻派生指令和“多数认可”也可能压平少数观点；须审查标注、翻译和训练测试泄漏。适合对齐、低资源NLP 与本地化产品团队；优先读调查设计、基准构造和跨语言误差章节。</li></ul><h3 id="look-less-think-faster联合-token算力自适应">5. <a href="https://arxiv.org/abs/2607.20357">Look Less, Think Faster：联合token—算力自适应</a></h3><p>作者：Pengcheng Wang、Zhiquan Wang、Jayoung Lee、Zhuoyan Xu、Ran Xu等｜来源：arXiv 2607.20357｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20357">PDF</a>。<strong>仅依据摘要。</strong></p><ul><li><strong>核心问题、方法与基线</strong>：多模态推理成本由视觉 token与语言思考 token同时决定；论文提出联合适应两类预算的机制，目标是在不重要的视觉区域和不需要长推理的样本上少算，并应与固定视觉token、固定推理预算系统比较。</li><li><strong>结果与创新</strong>：作者报告方法能在多模态任务上以更少token/算力维持或改善性能；其新意在于将感知压缩与推理预算放入同一决策。摘要没有给出绝对精度、延迟、模型规模或具体基线，不能量化真实性价比。</li><li><strong>限制、适读者与阅读建议</strong>：动态预算可能把困难样本误判为简单样本，部署还需验证最坏延迟、硬件吞吐与分布外退化。适合推理系统、VLM服务与成本工程读者；优先读预算策略、消融、延迟—精度曲线及失败样例章节。</li></ul><h2 id="ai-论文">AI 论文</h2><h3 id="expertverse"><a href="https://arxiv.org/abs/2607.19341">ExpertVerse</a></h3><p>作者：Yuan Wang、Yongchao Du、Mengting Chen、Jinsong Lan、XuetaoFeng、Xiaoyong Zhu｜来源：arXiv 2607.19341｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.19341">PDF</a>。用 9 种认知能力、8个专家学科和 58 个子学科组织 1,611个专家标注视觉生成实例，并自动扩展为带推理轨迹的 100K 数据；作者以 RL微调KnowThinker，报告开源与闭源模型均暴露知识密集生成缺口。价值在于将“会画”拆为跨领域知识推理，但自动轨迹、奖励冲突处理和专有模型比较是否公平仍待核验。<strong>仅依据摘要。</strong></p><h3 id="agents-in-the-wild"><a href="https://arxiv.org/abs/2607.19336">Agents in the Wild</a></h3><p>作者：Grace Hui Yang、Pranav N. Venkit、Hooman Sedghamiz、EnricoSantus、Victor Dibia、Ioana Baldini｜来源：arXiv2607.19336｜分类：cs.AI｜<a href="https://arxiv.org/pdf/2607.19336">PDF</a>。这是一篇部署导向教程，借软件、科学发现和金融案例归纳验证流水线、回退与人在环等设计模式；作者主张研究基准与生产可靠性之间仍有缺口。它适合作为工程检查清单，而非新的对照实验；案例选择和建议的外部有效性需自行验证。<strong>仅依据摘要。</strong></p><h3 id="遥感-mllm领域专用还是通用"><a href="https://arxiv.org/abs/2607.20284">遥感MLLM：领域专用还是通用</a></h3><p>作者：Qiwei Ma、Chunping Qiu、Xinjun Cheng、Xiaoyu Zhang、Puhong Duan等｜来源：arXiv 2607.20284｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20284">PDF</a>。综述并诊断比较遥感专用与通用CV-MLLM，作者报告后者无需遥感微调便可在部分任务追平或超过专用模型，而两者都受空间关系、细粒度理解与跨格式泛化限制。结论提醒不要把专用标签当能力保证；任务选择、评测污染和高分辨率算力成本未由摘要展开。<strong>仅依据摘要。</strong></p><h3 id="entrap-vl"><a href="https://arxiv.org/abs/2607.20092">ENTRAP-VL</a></h3><p>作者：Karan Goyal、Afreen Hossain、Debojyoti Das、VishalBhutani｜来源：arXiv 2607.20092｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20092">PDF</a>。提出 1,500 项、8类的视觉—语言双上下文“牵引”探针，分别操控文本和视觉的相关性与真实性，以检测无关上下文是否拉偏输出。贡献是测量工具和分类法而非模型排名；人工构造条件、文化先验和与真实多模态攻击的距离限制其结论。<strong>仅依据摘要。</strong></p><h3 id="d-knee-mri-强度归一化基准"><a href="https://arxiv.org/abs/2607.20028">3D Knee MRI强度归一化基准</a></h3><p>作者：Oliver Mills、Philip Conaghan、Samuel Relton｜来源：arXiv2607.20028｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20028">PDF</a>。比较 7 种归一化方法对3D U-Net 半月板分割的影响，以 IWOAI 2019 训练、SKM-TEA外部测试；作者报告内部差异相近，Z-score、Nyúl 与 CLAHE在外部较稳健，但跨数据集域偏移造成的下降远大于归一化差异。结论有临床部署价值，却不能替代多中心前瞻验证和扫描协议控制。<strong>仅依据摘要。</strong></p><h3 id="arat相关一致性盲区"><a href="https://arxiv.org/abs/2607.19899">ARAT：相关一致性盲区</a></h3><p>作者：Shay Seiya McDonnell、Avantika Singh、Quoc-Viet Pham、VratislavHavlik、Gregory M. P. O'Hare｜来源：arXiv 2607.19899｜分类：cs.MA｜<a href="https://arxiv.org/pdf/2607.19899">PDF</a>。以随机森林、k-NN与校准元模型做告警分诊，作者在 UNSW-NB15 的 82,332 个留出样本上报告57.2% 错误发生在一致预测下，保守覆盖将低估率从 4.80% 降至1.70%。它指出“有分歧才升级”的结构性风险；网络入侵与临床再入院的迁移不证明对LLM agent 同样成立。<strong>仅依据摘要。</strong></p><h3 id="tcr奖励更好的思考过程"><a href="https://arxiv.org/abs/2607.19824">TCR：奖励更好的思考过程</a></h3><p>作者：Xubo Liu、Wenya Guo、Ruxue Yan、Xinying Qian、YingZhang｜来源：arXiv 2607.19824｜分类：cs.AI｜<a href="https://arxiv.org/pdf/2607.19824">PDF</a>。将偏好对转为样本级思考清单，并用EMA 残差从结果奖励中分离过程奖励；作者报告在 3 个模型家族的 5个模型和多项基准上持续改善。它试图缓解结果式奖励的粗粒度归因，但思维链监督是否忠实、奖励黑客和额外标注/推理成本仍需检查。<strong>仅依据摘要。</strong></p><h3 id="triagent"><a href="https://arxiv.org/abs/2607.19794">TriAgent</a></h3><p>作者：Isabel Xu、Cynthia Xu、Rachel Ren、Cong Guo、JiachengDing｜来源：arXiv 2607.19794｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2607.19794">PDF</a>。用 VADER、FinBERT、Qwen按粒度分工，以语义分歧指标路由金融情绪任务；作者报告批评者 F1 约0.87、幻觉检测 AUC 0.90，以及 20 标的回测 Sharpe 3.50。其价值是把云端LLM成本与分歧信号结合；回测不是实盘，时间切分、成本、选择偏差和多重尝试需严查，非投资建议。<strong>仅依据摘要。</strong></p><h3 id="开放问答的无参考推理评测"><a href="https://arxiv.org/abs/2607.19678">开放问答的无参考推理评测</a></h3><p>作者：Guneet Singh Kohli、Yuxiang Zhou、Michael SejrSchlichtkrull、Gregory E Dean、Maria Liakata｜来源：arXiv2607.19678｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2607.19678">PDF</a>。论文尝试在没有唯一参考答案的开放问答中评测推理质量，以减少只比字面答案的局限；作者报告其指标与人工判断更一致。高风险领域仍不能把自动裁判当事实核验，标注协议、裁判偏差和跨领域稳健性是主要证据限制。<strong>仅依据摘要。</strong></p><h3 id="notes-to-self"><a href="https://arxiv.org/abs/2607.20372">Notesto Self</a></h3><p>作者：Chang Liu、Xinyu Li、Artur Dubrawski｜来源：arXiv2607.20372｜分类：cs.CL｜<a href="https://arxiv.org/pdf/2607.20372">PDF</a>。研究 LLM能否把经验压缩为可复用的自我笔记，再用于后续任务；作者报告经验抽象有助于学习。它面向长期agent记忆，但摘要未说明记忆污染、过期知识、隐私边界和与检索/上下文窗口基线的公平比较。<strong>仅依据摘要。</strong></p><h3 id="多轮时尚图像检索"><a href="https://arxiv.org/abs/2607.20291">多轮时尚图像检索</a></h3><p>作者：Mingqiang Tang、Haokun Wen、Meng Liu、Yupeng Hu、WeiliGuan、Xuemeng Song｜来源：arXiv 2607.20291｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20291">PDF</a>。针对用户意图会在多轮反馈中分叉的问题，提出多意图建模的时尚图像检索；作者报告能改善多轮检索。真实商业场景还要评估用户行为偏差、属性标注、长尾时尚概念和在线延迟，离线指标并不等于转化提升。<strong>仅依据摘要。</strong></p><h3 id="rs-rie-bench"><a href="https://arxiv.org/abs/2607.20197">RS-RIE-Bench</a></h3><p>作者：Zihan Qin、Boao Xu、Zhao Dong、Yingping Sun、Ziheng Jiao等｜来源：arXiv 2607.20197｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20197">PDF</a>。提出推理引导的遥感图像编辑评测，以考察模型对地物语义与编辑约束的理解；作者报告基准能揭示现有模型不足。遥感场景的地理分布、标注正确性和训练图像泄漏会显著影响结论，且视觉质量不保证地学意义正确。<strong>仅依据摘要。</strong></p><h3 id="cmr-心脏疾病诊断-ai"><a href="https://arxiv.org/abs/2607.20087">CMR 心脏疾病诊断 AI</a></h3><p>作者：Sina Amirrajab、Volker Vehof、Michael Bietenbeck、NuriyeAkyol、Redouane Bouras 等｜来源：arXiv 2607.20087｜分类：cs.CV｜<a href="https://arxiv.org/pdf/2607.20087">PDF</a>。开发基于常规心血管磁共振影像的自动诊断工具，目标是可靠且具临床意义；作者报告自动化流程具有诊断潜力。医疗AI需要独立、多中心、前瞻性比较与校准/公平性分析，摘要不足以判断临床净获益或是否能替代读片。<strong>仅依据摘要。</strong></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>每日论文</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>论文</tag>
       
     </tags>
     
@@ -3394,6 +3448,8 @@
     
     <tags>
       
+      <tag>哈希表</tag>
+      
       <tag>并发控制</tag>
       
       <tag>索引结构</tag>
@@ -3403,8 +3459,6 @@
       <tag>闩锁 (Latches)</tag>
       
       <tag>自旋锁 (Spin Locks)</tag>
-      
-      <tag>哈希表</tag>
       
       <tag>B+树</tag>
       
@@ -4171,11 +4225,11 @@
     
     <tags>
       
+      <tag>Performance Tuning</tag>
+      
       <tag>High QPS</tag>
       
       <tag>DDoS</tag>
-      
-      <tag>Performance Tuning</tag>
       
       <tag>Scalability</tag>
       
@@ -4218,17 +4272,17 @@
     
     <tags>
       
-      <tag>High QPS</tag>
+      <tag>JVM</tag>
       
       <tag>Performance Tuning</tag>
-      
-      <tag>JVM</tag>
       
       <tag>Garbage Collection</tag>
       
       <tag>G1GC</tag>
       
       <tag>Memory Management</tag>
+      
+      <tag>High QPS</tag>
       
       <tag>System Optimization</tag>
       
@@ -4351,6 +4405,8 @@
       
       <tag>6.824</tag>
       
+      <tag>分布式系统</tag>
+      
       <tag>比特币</tag>
       
       <tag>电子现金</tag>
@@ -4366,8 +4422,6 @@
       <tag>工作量证明</tag>
       
       <tag>加密货币</tag>
-      
-      <tag>分布式系统</tag>
       
       <tag>交易验证</tag>
       
