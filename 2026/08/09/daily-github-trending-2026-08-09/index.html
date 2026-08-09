@@ -18,30 +18,27 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第九课：索引并发控制1 索引并发控制到目前为止，我们假设我们讨论的数据结构是单线程的。然而，大多数 DBMS 需要允许多个线程安全地访问数据结构，以利用额外的 CPU 核心并隐藏磁盘 I&#x2F;O 停顿。 有些系统使用单线程模型。将单线程数据结构转换为多线程数据结构的一种简单方法是使用读写锁，但效率不高。 并发控制协议是 DBMS 用于确保共享对象上的并发操作得到“正确”结果的方法。 协议的正确性标准可">
+    <meta name="description" content="GITHUB TRENDING · 2026.08.09   今天的热榜呈现两条并行线：一条是把工程经验封装为 Agent 可执行技能，另一条是把身份、状态、浏览器和开发工具链做成可审阅的基础设施。前者提升交付流程的一致性，后者决定自动化系统能否被安全地长期运行。   Agent 技能身份系统状态运行时浏览器工程   今日要点“技能”正在从提示词集合变成包含命令、质量门和安装接口的可复用工件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CMU15445-lecture9">
-<meta property="og:url" content="https://www.polarishaw.top/2024/07/18/%E7%AC%AC%E4%B9%9D%E8%AF%BE%EF%BC%9A%E7%B4%A2%E5%BC%95%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/index.html">
+<meta property="og:title" content="2026-08-09 GitHub 热榜简报：从 Agent 技能到可运行的软件基础设施">
+<meta property="og:url" content="https://www.polarishaw.top/2026/08/09/daily-github-trending-2026-08-09/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="第九课：索引并发控制1 索引并发控制到目前为止，我们假设我们讨论的数据结构是单线程的。然而，大多数 DBMS 需要允许多个线程安全地访问数据结构，以利用额外的 CPU 核心并隐藏磁盘 I&#x2F;O 停顿。 有些系统使用单线程模型。将单线程数据结构转换为多线程数据结构的一种简单方法是使用读写锁，但效率不高。 并发控制协议是 DBMS 用于确保共享对象上的并发操作得到“正确”结果的方法。 协议的正确性标准可">
+<meta property="og:description" content="GITHUB TRENDING · 2026.08.09   今天的热榜呈现两条并行线：一条是把工程经验封装为 Agent 可执行技能，另一条是把身份、状态、浏览器和开发工具链做成可审阅的基础设施。前者提升交付流程的一致性，后者决定自动化系统能否被安全地长期运行。   Agent 技能身份系统状态运行时浏览器工程   今日要点“技能”正在从提示词集合变成包含命令、质量门和安装接口的可复用工件">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-004-146867131.jpg">
-<meta property="article:published_time" content="2024-07-18T12:47:51.000Z">
-<meta property="article:modified_time" content="2026-06-10T12:50:47.068Z">
+<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-02/pixiv-rank-002-147711670.jpg">
+<meta property="article:published_time" content="2026-08-09T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-09T02:04:23.889Z">
 <meta property="article:author" content="Polaris">
-<meta property="article:tag" content="并发控制">
-<meta property="article:tag" content="索引结构">
-<meta property="article:tag" content="锁 (Locks)">
-<meta property="article:tag" content="闩锁 (Latches)">
-<meta property="article:tag" content="自旋锁 (Spin Locks)">
-<meta property="article:tag" content="哈希表">
-<meta property="article:tag" content="B+树">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="开发工具">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-004-146867131.jpg">
+<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-02/pixiv-rank-002-147711670.jpg">
   
   
   
-  <title>CMU15445-lecture9 - Polarisのblog</title>
+  <title>2026-08-09 GitHub 热榜简报：从 Agent 技能到可运行的软件基础设施 - Polarisのblog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -267,7 +264,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CMU15445-lecture9"></span>
+            <span id="subtitle" data-typed-text="2026-08-09 GitHub 热榜简报：从 Agent 技能到可运行的软件基础设施"></span>
           
         </div>
 
@@ -278,8 +275,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-18 20:47" pubdate>
-          2024年7月18日 晚上
+        <time datetime="2026-08-09 10:00" pubdate>
+          2026年8月9日 上午
         </time>
       </span>
     
@@ -290,7 +287,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          1.3k 字
         
       </span>
     
@@ -301,7 +298,7 @@
         
         
         
-          26 分钟
+          11 分钟
         
       </span>
     
@@ -346,90 +343,41 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">CMU15445-lecture9</h1>
+            <h1 id="seo-header">2026-08-09 GitHub 热榜简报：从 Agent 技能到可运行的软件基础设施</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="第九课：索引并发控制"><a href="#第九课：索引并发控制" class="headerlink" title="第九课：索引并发控制"></a>第九课：索引并发控制</h1><h2 id="1-索引并发控制"><a href="#1-索引并发控制" class="headerlink" title="1 索引并发控制"></a>1 索引并发控制</h2><p>到目前为止，我们假设我们讨论的数据结构是单线程的。然而，大多数 DBMS 需要允许多个线程安全地访问数据结构，以利用额外的 CPU 核心并隐藏磁盘 I/O 停顿。</p>
-<p>有些系统使用单线程模型。将单线程数据结构转换为多线程数据结构的一种简单方法是使用读写锁，但效率不高。</p>
-<p>并发控制协议是 DBMS 用于确保共享对象上的并发操作得到“正确”结果的方法。</p>
-<p>协议的正确性标准可能会有所不同：</p>
-<ul>
-<li><strong>逻辑正确：</strong>这意味着线程能够读取它应该读取的值，例如线程应该读回它之前写入的值。</li>
-<li><strong>物理正确：</strong>这意味着对象的内部表示是健全的，例如数据结构中不存在会导致线程读取无效内存位置的指针</li>
-</ul>
-<p>出于本讲座的目的，我们只关心强制执行物理正确性。我们将在后面的课中重新审视逻辑正确性。</p>
-<h2 id="2-Locks-vs-Latches"><a href="#2-Locks-vs-Latches" class="headerlink" title="2 Locks vs. Latches"></a>2 Locks vs. Latches</h2><p>在讨论 DBMS 如何保护其内部元素时，锁和闩锁之间存在重要区别。</p>
-<h3 id="Locks"><a href="#Locks" class="headerlink" title="Locks"></a>Locks</h3><p>锁时一种更高层次的逻辑原语，用于保护数据库中的内容（例如元组，表或者整个数据库），防止其他事务的干扰。一个事务在其整个执行期间都会持有锁。数据库系统可以向用户公开运行查询时持有的锁。应该有一些更高级别的机制来检测死锁和回滚更改。</p>
-<h3 id="Latches"><a href="#Latches" class="headerlink" title="Latches"></a>Latches</h3><p>锁存器是低级保护原语，用于来自其他线程的 DBMS 内部数据结构（例如数据结构、内存区域）的关键部分。锁存器会在数据库系统中短暂保留一个简单的操作（即页锁存器）。锁存器有两种模式：</p>
-<ul>
-<li><strong>读：</strong>允许多个线程同时读取同一个项目。即使另一个线程已经在读模式下获取了锁存器，线程也可以在读模式下获取该锁存器。</li>
-<li><strong>写：</strong>只允许一个线程访问该项目。如果另一个线程在任何模式下持有锁存器，则线程无法获取写锁存器。持有写锁存器的线程还会阻止其他线程获取读锁存器。</li>
-</ul>
-<h2 id="3-Latch实现"><a href="#3-Latch实现" class="headerlink" title="3 Latch实现"></a>3 Latch实现</h2><p>Latch实现应该具有较小的内存占用，并且在没有争用时可以有一条快速路径来获取锁存器。</p>
-<p>用于实现锁存器的底层原语是通过现代 CPU 提供的原子指令。这样，线程可以检查内存位置的内容以查看它是否具有特定值。</p>
-<p>有多种方法可以在 DBMS 中实现锁存器。每种方法在工程复杂性和运行时性能方面都有不同的权衡。这些测试和设置步骤以原子方式执行（即，没有其他线程可以更新测试和设置步骤之间的值。</p>
-<h3 id="Test-and-Set-Spin-Latch-TAS-（自旋锁）"><a href="#Test-and-Set-Spin-Latch-TAS-（自旋锁）" class="headerlink" title="Test-and-Set Spin Latch (TAS) （自旋锁）"></a>Test-and-Set Spin Latch (TAS) （自旋锁）</h3><p>自旋锁存器是操作系统互斥体的更有效替代方案，因为它由 DBMS 控制。自旋锁存器本质上是线程尝试更新的内存位置（例如，将布尔值设置为 true）。线程执行 CAS 来尝试更新内存位置。DBMS 可以控制如果无法获得锁存器会发生什么情况。它可以选择重试（例如，使用 while 循环）或允许操作系统取消调度它。因此，此方法为 DBMS 提供了比操作系统互斥体更多的控制权，在操作系统互斥体中，如果无法获取锁存器，则将控制权交给操作系统。</p>
-<ul>
-<li>举例：std::atomic<T></T></li>
-<li>优点:锁存/解锁操作非常高效（在 x86 上使用单指令锁定/解锁）。</li>
-<li>缺点:不可扩展，也不适合缓存，因为使用多个线程，CAS 指令将在不同的线程中执行多次。这些浪费的指令会在高竞争环境中堆积起来；尽管线程没有做有用的工作，但对操作系统来说它们看起来很忙。这会导致缓存一致性问题，因为线程正在轮询其他 CPU 上的缓存线。</li>
-</ul>
-<h3 id="阻塞操作系统Mutex"><a href="#阻塞操作系统Mutex" class="headerlink" title="阻塞操作系统Mutex"></a>阻塞操作系统Mutex</h3><p>锁存器的一种可能实现是操作系统内置的互斥基础设施。 Linux 提供了 futex（快速用户空间互斥体），它由 (1) 用户空间中的自旋锁存器和 (2) 操作系统级互斥体组成。如果 DBMS 可以获取用户空间锁存器，则锁存器被设置。尽管它包含两个内部锁存器，但它对于 DBMS 来说却显示为单个锁存器。如果 DBMS 无法获取用户空间锁存器，那么它会进入内核并尝试获取更昂贵的互斥锁。DBMS 无法获取第二个互斥体，然后线程通知操作系统它在互斥体上被阻塞，然后它被取消调度。</p>
-<p>操作系统互斥在 DBMS 内部通常是一个坏主意，因为它由操作系统管理并且开销很大</p>
-<ul>
-<li>举例：std::mutex</li>
-<li>优点：使用简单并且在DBMS中不需要额外coding</li>
-<li>缺点：由于操作系统调度，成本昂贵且不可扩展（每次锁定/解锁调用大约 25 ns）。</li>
-</ul>
-<h3 id="读写Latches"><a href="#读写Latches" class="headerlink" title="读写Latches"></a>读写Latches</h3><p>互斥锁和自旋锁存器不区分读/写（即，它们不支持不同的模式）。DBMS 需要一种允许并发读取的方法，因此如果应用程序有大量读取，它将具有更好的性能，因为读取者可以共享资源而不是等待。</p>
-<p>读写器锁存器允许锁存器保持在读或写模式。它追踪有多少个线程持有锁存器并等待在每种模式下获取锁存器。读写器锁存器使用前两个锁存器实现之一作为原语，并具有额外的逻辑来处理读写器队列，这些队列是每种模式下对锁存器的请求的队列。不同的 DBMS 对于如何处理队列可以有不同的策略。</p>
-<p>需要注意的一件事是，不同的读写锁实现具有不同的等待策略。有读者优先锁、作者优先锁和公平读写锁。不同操作系统和 pthread 实现中的行为有所不同。</p>
-<ul>
-<li>举例：std::shared_mutex</li>
-<li>优点：允许并发读</li>
-<li>缺点：DBMS 必须管理读/写队列以避免饥饿。由于额外的元数据，存储开销比自旋锁存器更大。</li>
-</ul>
-<h2 id="4-哈希表Latch"><a href="#4-哈希表Latch" class="headerlink" title="4 哈希表Latch"></a>4 哈希表Latch</h2><p>由于线程访问数据结构的方式有限，因此很容易支持静态哈希表中的并发访问。例如，当从槽移动到下一个槽时（即自上而下），所有线程都沿相同方向移动。线程一次也只能访问一个页面/槽。因此，在这种情况下不可能出现死锁，因为没有两个线程可以竞争对方持有的锁存器。当我们需要调整表的大小时，我们只需对整个表进行全局锁存即可执行操作。</p>
-<p>动态哈希方案（例如，可扩展）中的锁存是一种更复杂的方案，因为有更多的共享状态需要更新，但一般方法是相同的。</p>
-<p>有两种方法支持哈希表中的锁存，它们的锁存粒度不同:</p>
-<ul>
-<li><strong>页级锁存器：</strong>每个页面都有自己的读写器锁存器来保护其全部内容。线程在访问页面之前获取读或写锁存器。这会降低并行性，因为一次可能只有一个线程可以访问一页，但是对于单个线程来说，访问一页中的多个槽会很快，因为它只需要获取一个锁存器。</li>
-<li><strong>槽级锁存器：</strong>每个插槽都有自己的闩锁。这增加了并行性，因为两个线程可以访问同一页面上的不同插槽。但它增加了访问表的存储和计算开销，因为线程必须为其访问的每个槽获取锁存器，并且每个槽必须为锁存器存储数据。DBMS 可以使用单模式锁存器（即自旋锁存器）来减少元数据和计算开销，但代价是一些并行性。</li>
-</ul>
-<p>还可以直接使用比较和交换 (CAS) 指令创建无锁存线性探测哈希表。通过尝试将特殊的“空”值与我们希望插入的元组进行比较和交换，可以实现在槽处的插入。如果失败，我们可以探测下一个槽，继续直到成功。</p>
-<h2 id="5-B-树Latch"><a href="#5-B-树Latch" class="headerlink" title="5 B+树Latch"></a>5 B+树Latch</h2><p>B+Tree 锁存的挑战是防止以下两个问题：</p>
-<ul>
-<li>多个线程同时尝试修改节点的内容。</li>
-<li>一个线程遍历树，而另一个线程拆分/合并节点。</li>
-</ul>
-<p>“Latch crabbing/coupling” 是一种协议，它允许多个线程同时访问或修改B+树。基本思路如下：</p>
-<ol>
-<li>获得父节点的锁</li>
-<li>获得子节点的锁</li>
-<li>如果子节点被认为“安全”，则释放父节点的锁。 “安全”节点是指更新时不会分裂、合并或重新分配的节点。换句话说，一个节点是“安全的”如果<ul>
-<li>插入：它不是满的</li>
-<li>删除：它至少半满</li>
-</ul>
-</li>
-</ol>
-<p>请注意，读锁存器不需要担心“安全”条件。</p>
-<p><strong>基本锁抓取协议：</strong></p>
-<ul>
-<li>搜索：从根开始向下，重复获取子级的闩锁，然后解锁父级。</li>
-<li>插入/删除：从根开始向下，根据需要获取 X 个锁存器。一旦孩子被锁住，检查是否安全。如果孩子安全，则释放其所有祖先的锁</li>
-</ul>
-<p>从正确性的角度来看，锁存器释放的顺序并不重要。然而，从性能的角度来看，最好释放树中较高位置的锁存器，因为它们会阻止对大部分叶节点的访问。</p>
-<p><strong>改进的锁抓取协议：</strong>基本锁抓取算法的问题在于，事务总是在每次插入/删除操作的根上获取独占锁.这限制了并行性。相反，我们可以假设必须调整大小（即拆分/合并节点）的情况很少见，因此事务可以获取直至叶节点的共享锁存器。每个事务都会假设到目标叶节点的路径是安全的，并使用 READ 锁存器和螃蟹来到达它并进行验证。如果叶节点不安全，那么我们将中止并执行之前的算法，获取 WRITE 锁存器。</p>
-<ul>
-<li>搜索：与以前相同的算法。</li>
-<li>插入/删除：设置读锁就像搜索一样，转到叶子，然后在叶子上设置写锁。如果叶子不安全，则释放所有先前的锁存器，并使用先前的插入/删除协议重新启动事务。</li>
-</ul>
-<p><strong>叶子结点扫描</strong></p>
-<p>这些协议中的线程以“自上而下”的方式获取锁存器。这意味着线程只能从低于其当前节点的节点获取锁存器。如果所需的锁不可用，则线程必须等待直到它变得可用。鉴于此，永远不会出现僵局。</p>
-<p>然而，叶节点扫描很容易出现死锁，因为现在我们有线程尝试同时在两个不同方向获取排它锁（例如，线程 1 尝试删除，线程 2 执行叶节点扫描）。索引锁存器不支持死锁检测或避免。</p>
-<p>因此，程序员处理这个问题的唯一方法是通过编码规则。叶节点同级锁存器获取协议必须支持“无等待”模式。也就是说，B+树代码必须处理失败的锁存获取。由于锁旨在（相对）短暂地保持，因此如果线程尝试获取叶节点上的锁但该锁不可用，则它应该快速中止其操作（释放其持有的任何闩锁）并重新启动操作。</p>
+                <div class="briefing-masthead">
+  <p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.08.09</p>
+  <p>今天的热榜呈现两条并行线：一条是把工程经验封装为 Agent 可执行技能，另一条是把身份、状态、浏览器和开发工具链做成可审阅的基础设施。前者提升交付流程的一致性，后者决定自动化系统能否被安全地长期运行。</p>
+  <div class="briefing-masthead__topics"><span>Agent 技能</span><span>身份系统</span><span>状态运行时</span><span>浏览器工程</span></div>
+</div>
+
+<h2 id="今日要点"><a href="#今日要点" class="headerlink" title="今日要点"></a>今日要点</h2><p>“技能”正在从提示词集合变成包含命令、质量门和安装接口的可复用工件；同日上榜的三个仓库各自面向通用工程、Google 技术栈和个人工程实践。与此同时，authentik、celld 与 Ladybird 指向更慢但更重要的层面：身份边界、有状态执行和独立浏览器实现。热度是发现入口，不是生产采用依据。</p>
+<span id="more"></span>
+<h2 id="值得尝试"><a href="#值得尝试" class="headerlink" title="值得尝试"></a>值得尝试</h2><h3 id="PrimeIntellect-ai-prime-agent"><a href="#PrimeIntellect-ai-prime-agent" class="headerlink" title="PrimeIntellect-ai/prime-agent"></a><a target="_blank" rel="noopener" href="https://github.com/PrimeIntellect-ai/prime-agent">PrimeIntellect-ai/prime-agent</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/PrimeIntellect-ai/prime-agent/blob/main/README.md">Prime Agent</a>是面向编码和长时任务的开源 Agent，核心是持久 Python 控制环境、可留存的 harness 状态及子 Agent。它适合研究跨会话任务恢复与后台执行的团队；但 README 明确说明会以当前用户权限运行模型生成的命令，必须先在隔离环境、可回滚工作区中试用。</p>
+<h3 id="addyosmani-agent-skills"><a href="#addyosmani-agent-skills" class="headerlink" title="addyosmani/agent-skills"></a><a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills">addyosmani/agent-skills</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills/blob/main/README.md">Agent Skills</a>把需求、计划、构建、测试、审查和发布映射成命令与工程技能，并提供跨 Agent 的安装路径。它适合想把现有团队流程显式化的开发者；仓库给出的技能不能替代项目自身的架构决策，接入前应审阅每个技能会读取、修改或执行什么。</p>
+<h3 id="google-skills"><a href="#google-skills" class="headerlink" title="google/skills"></a><a target="_blank" rel="noopener" href="https://github.com/google/skills">google/skills</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/google/skills/blob/main/README.md">google/skills</a>提供面向 Google 产品与技术的 Agent Skills，让常见工作流拥有可复用的指令与资源入口。它更适合已使用相关云服务、框架或 API 的工程师，而非通用编码规范的替代品；应按需选取并在实际权限、成本和数据边界内验证。</p>
+<h3 id="mattpocock-skills"><a href="#mattpocock-skills" class="headerlink" title="mattpocock/skills"></a><a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills">mattpocock/skills</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills/blob/main/README.md">mattpocock/skills</a>收集了作者日常工程工作流中的 Agent 技能，重点服务于实际软件交付。它值得作为“个人实践如何产品化”为可检查工件的参考；与其他技能库有功能交集，因此更适合挑选具体流程比较，而不是整库无差别安装。</p>
+<h3 id="goauthentik-authentik"><a href="#goauthentik-authentik" class="headerlink" title="goauthentik/authentik"></a><a target="_blank" rel="noopener" href="https://github.com/goauthentik/authentik">goauthentik/authentik</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/goauthentik/authentik/blob/main/README.md">authentik</a>是可自托管的身份提供方，覆盖 SAML、OAuth2/OIDC、LDAP 和 RADIUS 等常见协议。它适合将内部应用与自动化入口纳入统一 SSO 的团队；部署本身不会自动带来安全性，身份源、会话时长、管理员恢复和审计策略仍需单独设计。</p>
+<h3 id="TauricResearch-TradingAgents"><a href="#TauricResearch-TradingAgents" class="headerlink" title="TauricResearch/TradingAgents"></a><a target="_blank" rel="noopener" href="https://github.com/TauricResearch/TradingAgents">TauricResearch/TradingAgents</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/TauricResearch/TradingAgents/blob/main/README.md">TradingAgents</a>提供以多 Agent 讨论、研究与决策流程为主题的 LLM 金融交易框架。它适合研究多角色协作、数据接入和回测管线的开发者；README 所呈现的框架不构成投资建议，任何输出都应经过独立数据校验、回测和风险控制，不能直接用于真实交易。</p>
+<h3 id="google-guava"><a href="#google-guava" class="headerlink" title="google/guava"></a><a target="_blank" rel="noopener" href="https://github.com/google/guava">google/guava</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/google/guava/blob/master/README.md">Guava</a>是 Java 的核心库集合，包含集合、缓存、并发、I/O、哈希与字符串等实用组件。它适合维护 Java 或 Android 兼容代码的工程师，也提醒我们成熟基础库仍会因新版本与生态依赖而重新进入关注视野；对标记为实验性的 API 应避免形成长期公共契约。</p>
+<h3 id="LadybirdBrowser-ladybird"><a href="#LadybirdBrowser-ladybird" class="headerlink" title="LadybirdBrowser/ladybird"></a><a target="_blank" rel="noopener" href="https://github.com/LadybirdBrowser/ladybird">LadybirdBrowser/ladybird</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/LadybirdBrowser/ladybird/blob/master/README.md">Ladybird</a>致力于构建独立的 Web 浏览器实现，是观察浏览器引擎、Web 标准与跨平台系统工程的好入口。它适合对渲染、网络栈和兼容性测试感兴趣的开发者；浏览器项目的可用性取决于大量标准细节与安全维护，不能仅凭“独立”定位替换日常生产浏览器。</p>
+<h3 id="denoland-celld"><a href="#denoland-celld" class="headerlink" title="denoland/celld"></a><a target="_blank" rel="noopener" href="https://github.com/denoland/celld">denoland/celld</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/denoland/celld/blob/main/README.md">celld</a>是自托管的分布式 Durable Objects 实现，围绕对象状态与持久化执行展开。它适合希望理解有状态边缘运行时、对象分片和自托管权衡的基础设施团队；项目仍在早期阶段，网络拓扑、复制语义和故障恢复须先用真实负载验证。</p>
+<h3 id="litu54-DevOps-Interview-Guide"><a href="#litu54-DevOps-Interview-Guide" class="headerlink" title="litu54/DevOps-Interview-Guide"></a><a target="_blank" rel="noopener" href="https://github.com/litu54/DevOps-Interview-Guide">litu54/DevOps-Interview-Guide</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/litu54/DevOps-Interview-Guide/blob/main/README.md">DevOps Interview Guide</a>整理了 DevOps 面试与复习主题，可作为梳理容器、CI/CD、云与运维知识面的检查清单。它适合准备技术面试或补齐知识框架的学习者；题库式材料的价值在于暴露盲点，不能替代亲手搭建、排障和复盘的工程证据。</p>
+<h2 id="快速浏览"><a href="#快速浏览" class="headerlink" title="快速浏览"></a>快速浏览</h2><div class="briefing-quick-list">
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/PrimeIntellect-ai/prime-agent"><span class="briefing-quick-item__source">长任务</span><span class="briefing-quick-item__body"><strong>Prime Agent</strong><small>持久状态与子 Agent；先隔离执行权限。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills"><span class="briefing-quick-item__source">工程流程</span><span class="briefing-quick-item__body"><strong>Agent Skills</strong><small>把质量门编码为可复用流程。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/google/skills"><span class="briefing-quick-item__source">Google</span><span class="briefing-quick-item__body"><strong>Google Skills</strong><small>产品与技术栈的专用 Agent 工件。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/mattpocock/skills"><span class="briefing-quick-item__source">实践</span><span class="briefing-quick-item__body"><strong>Matt Pocock Skills</strong><small>从个人工程流程中挑选可验证实践。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/goauthentik/authentik"><span class="briefing-quick-item__source">身份</span><span class="briefing-quick-item__body"><strong>authentik</strong><small>自托管 SSO；先设计策略与恢复路径。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/TauricResearch/TradingAgents"><span class="briefing-quick-item__source">研究</span><span class="briefing-quick-item__body"><strong>TradingAgents</strong><small>多 Agent 金融研究，严禁跳过回测与风控。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/google/guava"><span class="briefing-quick-item__source">Java</span><span class="briefing-quick-item__body"><strong>Guava</strong><small>成熟基础库；谨慎依赖实验性 API。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/LadybirdBrowser/ladybird"><span class="briefing-quick-item__source">浏览器</span><span class="briefing-quick-item__body"><strong>Ladybird</strong><small>独立浏览器工程与 Web 标准实践。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/denoland/celld"><span class="briefing-quick-item__source">状态</span><span class="briefing-quick-item__body"><strong>celld</strong><small>自托管 Durable Objects，先验证恢复语义。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/litu54/DevOps-Interview-Guide"><span class="briefing-quick-item__source">学习</span><span class="briefing-quick-item__body"><strong>DevOps Guide</strong><small>知识框架清单，仍需动手验证。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+</div>
 
                 
               </div>
@@ -448,7 +396,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/cmu15445/" class="category-chain-item">cmu15445</a>
+  <a href="/categories/GitHub-%E7%83%AD%E6%A6%9C/" class="category-chain-item">GitHub 热榜</a>
   
   
 
@@ -463,19 +411,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/" class="print-no-link">#并发控制</a>
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
       
-        <a href="/tags/%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84/" class="print-no-link">#索引结构</a>
+        <a href="/tags/GitHub/" class="print-no-link">#GitHub</a>
       
-        <a href="/tags/%E9%94%81-Locks/" class="print-no-link">#锁 (Locks)</a>
+        <a href="/tags/%E5%BC%80%E6%BA%90/" class="print-no-link">#开源</a>
       
-        <a href="/tags/%E9%97%A9%E9%94%81-Latches/" class="print-no-link">#闩锁 (Latches)</a>
-      
-        <a href="/tags/%E8%87%AA%E6%97%8B%E9%94%81-Spin-Locks/" class="print-no-link">#自旋锁 (Spin Locks)</a>
-      
-        <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" class="print-no-link">#哈希表</a>
-      
-        <a href="/tags/B-%E6%A0%91/" class="print-no-link">#B+树</a>
+        <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="print-no-link">#开发工具</a>
       
     </div>
   
@@ -487,8 +429,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CMU15445-lecture9</div>
-      <div>https://www.polarishaw.top/2024/07/18/第九课：索引并发控制/</div>
+      <div>2026-08-09 GitHub 热榜简报：从 Agent 技能到可运行的软件基础设施</div>
+      <div>https://www.polarishaw.top/2026/08/09/daily-github-trending-2026-08-09/</div>
     </div>
     <div class="license-meta">
       
@@ -500,7 +442,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月18日</div>
+          <div>2026年8月9日</div>
         </div>
       
       
@@ -532,18 +474,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/10/09/Paxos%20Made%20Simple/" title="Paxos Made Simple">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Paxos Made Simple</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/16/Kafka%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB%EF%BC%9F/" title="why kafka so fast?">
-                        <span class="hidden-mobile">why kafka so fast?</span>
+                      <a href="/2026/08/09/daily-briefing-2026-08-09/" title="每日信息简报｜2026 年 08 月 09 日">
+                        <span class="hidden-mobile">每日信息简报｜2026 年 08 月 09 日</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -600,12 +536,6 @@
 
 
   
-
-
-  
-  
-
-
 
 
 
@@ -852,49 +782,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 
