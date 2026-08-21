@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注MetaReason：用可编辑结构化表示做几何多模态推理论文：MetaReason: Precise Interleaved Multimodal Reasoning via Editing Meta Information for Solving Geometry Problems（arXiv:2608.15006）全文状态：已核阅公开 PDF。 核心问题是：视觉语言模型在平面几何中需">
+    <meta name="description" content="重点关注 MetaReason：用可编辑结构化表示做几何多模态推理 论文：MetaReason: Precise Interleaved Multimodal Reasoning via Editing Meta Information for Solving Geometry Problems（arXiv:2608.15006） 全文状态：已核阅公开 PDF。 核心问题是：视觉语言模型在平面几">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 8 月 19 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/08/19/daily-ai-papers-2026-08-19/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注MetaReason：用可编辑结构化表示做几何多模态推理论文：MetaReason: Precise Interleaved Multimodal Reasoning via Editing Meta Information for Solving Geometry Problems（arXiv:2608.15006）全文状态：已核阅公开 PDF。 核心问题是：视觉语言模型在平面几何中需">
+<meta property="og:description" content="重点关注 MetaReason：用可编辑结构化表示做几何多模态推理 论文：MetaReason: Precise Interleaved Multimodal Reasoning via Editing Meta Information for Solving Geometry Problems（arXiv:2608.15006） 全文状态：已核阅公开 PDF。 核心问题是：视觉语言模型在平面几">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-02/pixiv-rank-008-147630033.jpg">
 <meta property="article:published_time" content="2026-08-19T02:15:00.000Z">
@@ -347,48 +347,267 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="MetaReason：用可编辑结构化表示做几何多模态推理"><a href="#MetaReason：用可编辑结构化表示做几何多模态推理" class="headerlink" title="MetaReason：用可编辑结构化表示做几何多模态推理"></a>MetaReason：用可编辑结构化表示做几何多模态推理</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15006">MetaReason: Precise Interleaved Multimodal Reasoning via Editing Meta Information for Solving Geometry Problems</a>（arXiv:2608.15006）<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>核心问题是：视觉语言模型在平面几何中需要画辅助线，却容易因像素生成失真或逐步写绘图代码而出错。方法先把图形解析为由点和形状组成的 JSON 元信息，MetaJudge 重渲染并核对结构；通过后，MetaReasoner 只可调用连线、求交点、作垂线三种工具，并以 SFT 加 GRPO 学习工具序列；若结构不可靠则回退文本推理。对比对象包括 CodePlot-CoT、VisualSketchPad、直接生成中间图的统一模型及开闭源 VLM。论文报告 TutorGeo 含 13.7 万样本（其中 1.7 万图到元信息、6 万纯文本轨迹、6 万交错轨迹），ExamGeo 含 1,000 道按人类难度分层的题；在 ExamGeo 达 56.1%，较基础模型提高 43.0 个百分点。创新在于用可验证、确定性渲染的中间状态取代“看起来正确”的图像。局限是元信息抽取失败时仍回退 CoT，且基准集中在平面几何；训练数据、闭源模型比较及推理成本仍须独立复核。适合多模态推理、工具调用与教育 AI 读者；建议先读摘要、§3、§4、表格实验与消融。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15006">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/PenghaoYin/MetaReason">代码</a></p>
-<h3 id="AeroCopilotBench：静态知识分数不能替代安全执行评测"><a href="#AeroCopilotBench：静态知识分数不能替代安全执行评测" class="headerlink" title="AeroCopilotBench：静态知识分数不能替代安全执行评测"></a>AeroCopilotBench：静态知识分数不能替代安全执行评测</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16349">AeroCopilotBench: A Two-Tier Benchmark for Evaluating LLM Agents as Aviation Copilots in an Interactive Virtual Cockpit Environment</a>（arXiv:2608.16349）<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>该文检验 LLM 能否在局部可观测的驾驶舱中完成程序并保持安全，而非只会回答航空知识题。ACOE 将 POH 程序编码成状态转移、终局条件与硬安全约束；Tier-1 有 1,200 道选择题，Tier-2 有 73 个紧急/异常任务，模型可使用 12 个固定工具，成功必须同时完成目标且不违反任何硬约束。12 个模型在 Tier-2 各运行 219 次；论文报告最高成功率为 72.6%，最优开权重模型为 53.0%，且 451 个复盘失败中 416 个落在遗漏关键步骤、错误语义先验、状态门控失败与长程漂移四类。创新是把任务完成与轨迹安全分离计分；代价是每回合模型会消耗大量工具调用和 token，最高分仍有 27.4% 失败。局限是只覆盖两种机型、12 个场景模板，且无连续空气动力学、传感器噪声、真实时间压力或外部检索。适合高风险 agent、评测和回归测试读者；建议读 §3.4、表 2–3、§5.2 与限制部分。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16349">PDF</a></p>
-<h3 id="CompoSkill：逐个扫描安全的技能，组合后仍可能危险"><a href="#CompoSkill：逐个扫描安全的技能，组合后仍可能危险" class="headerlink" title="CompoSkill：逐个扫描安全的技能，组合后仍可能危险"></a>CompoSkill：逐个扫描安全的技能，组合后仍可能危险</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16246">CompoSkill: Compositional Skill Chain Attacks from Individually Scanner-Passing LLM Agent Skills</a>（arXiv:2608.16246）<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文挑战“每个技能通过扫描器，系统即安全”的节点级假设。方法将风险定义为路径性质：白盒攻击者直接注入技能 ID 链，黑盒攻击者仅知道角色画像、下载常用技能后在 Skill Composition Graph 中搜索隐式诱导链；CompoSkill-Bench 覆盖 5 类威胁、6 类场景、76 个职业工作流，含 380 个任务的三种变体，共 1,140 条记录。论文报告白盒/黑盒的风险链形成率最高分别为 83.3%/80.6%，现有逐技能扫描器只能拦截一部分；超过三跳后 ASR 下降，提示链长与攻击可执行性并非单调关系。创新是把审计对象从包升级为能力、输出与副作用相连的路径。局限是市场技能池、威胁模板与受测智能体的代表性决定结果，攻击成功不等于真实业务已被攻破；应在真实权限、审批和隔离环境中红队复验。适合 agent 平台、插件生态与安全工程读者；建议读威胁模型、基准构造、RQ1–RQ2 与失败分析。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16246">PDF</a></p>
-<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><h3 id="Representation-Signatures-and-Risk-Feedback-Alignment-in-LLM-Trading-Agents"><a href="#Representation-Signatures-and-Risk-Feedback-Alignment-in-LLM-Trading-Agents" class="headerlink" title="Representation Signatures and Risk-Feedback Alignment in LLM Trading Agents"></a>Representation Signatures and Risk-Feedback Alignment in LLM Trading Agents</h3><p><strong>作者</strong>：Weicheng Xue<br><strong>来源/分类</strong>：arXiv · cs.LG、q-fin.CP · 【跨主题】<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.28850">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.28850">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/weich97/TreLLM-public">代码/数据</a></p>
-<p>仅依据摘要：研究 LLM 交易智能体在压力下的表征漂移与风险反馈；TradeArena 记录可回放轨迹，并在 80 个失败锚点、8 条模型轨迹上比较多种探针。论文报告计划/风险融合表征可区分回撤前状态，但真实审计反馈对校准和收益的作用因模型而异。价值在于将“交易好不好”改成可审计的对齐问题；这不是盈利证据，51 只股票的日内实验、回测设定和成本均限制外推。</p>
-<h3 id="MetaReason-Precise-Interleaved-Multimodal-Reasoning-via-Editing-Meta-Information-for-Solving-Geometry-Problems"><a href="#MetaReason-Precise-Interleaved-Multimodal-Reasoning-via-Editing-Meta-Information-for-Solving-Geometry-Problems" class="headerlink" title="MetaReason: Precise Interleaved Multimodal Reasoning via Editing Meta Information for Solving Geometry Problems"></a>MetaReason: Precise Interleaved Multimodal Reasoning via Editing Meta Information for Solving Geometry Problems</h3><p><strong>作者</strong>：Penghao Yin、Haomin Wang、Qihong Tang、Xiaoye Qu、Hongjie Zhang、Xiao-Ping Zhang<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI、cs.MM<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15006">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15006">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/PenghaoYin/MetaReason">代码</a></p>
-<p>研究图形几何中如何以结构化元信息和有限工具构造高保真辅助线；数据包含图到元信息、文本及交错多模态轨迹，并以 SFT/RL 训练。论文报告优于所比较开源模型、接近专有模型。值得关注的是可验证中间状态；基准范围、训练数据污染控制、比较模型版本和推理算力仍需结合全文审查。</p>
-<h3 id="AeroCopilotBench-A-Two-Tier-Benchmark-for-Evaluating-LLM-Agents-as-Aviation-Copilots-in-an-Interactive-Virtual-Cockpit-Environment"><a href="#AeroCopilotBench-A-Two-Tier-Benchmark-for-Evaluating-LLM-Agents-as-Aviation-Copilots-in-an-Interactive-Virtual-Cockpit-Environment" class="headerlink" title="AeroCopilotBench: A Two-Tier Benchmark for Evaluating LLM Agents as Aviation Copilots in an Interactive Virtual Cockpit Environment"></a>AeroCopilotBench: A Two-Tier Benchmark for Evaluating LLM Agents as Aviation Copilots in an Interactive Virtual Cockpit Environment</h3><p><strong>作者</strong>：Yuchen Yuan、Zhenghuang Wu、Yuangan Li、Liang Ma、Ke Li<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16349">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16349">PDF</a></p>
-<p>研究航空智能体如何从静态知识走向带硬安全约束的交互式执行；基准含 1,200 道知识题与 73 个任务。论文报告最高 Tier-2 成功率 72.6%，且静态知识不稳定地转化为程序执行。价值在于安全门控评测；虚拟环境、有限机型和冻结工具接口不能证明真实飞行可用性。</p>
-<h3 id="CompoSkill-Compositional-Skill-Chain-Attacks-from-Individually-Scanner-Passing-LLM-Agent-Skills"><a href="#CompoSkill-Compositional-Skill-Chain-Attacks-from-Individually-Scanner-Passing-LLM-Agent-Skills" class="headerlink" title="CompoSkill: Compositional Skill Chain Attacks from Individually Scanner-Passing LLM Agent Skills"></a>CompoSkill: Compositional Skill Chain Attacks from Individually Scanner-Passing LLM Agent Skills</h3><p><strong>作者</strong>：Mingxiao Liu、Zhoumian Jiang、Jianan Ma、Jian Zhang、Jialuo Chen、Xinhao Deng、Zhen Wang<br><strong>来源/分类</strong>：arXiv · cs.CR、cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16246">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16246">PDF</a></p>
-<p>研究单技能认证为何遗漏跨技能攻击链；以白盒/黑盒攻击者和 1,140 条长程工作流记录测试路径级风险。论文报告两种设置的链形成率最高达 83.3% 与 80.6%。价值在于把安全边界扩展到组合；模拟场景和技能市场覆盖仍是关键证据限制。</p>
-<h3 id="Insurance-as-AI-Risk-Infrastructure-A-Generative-Agent-Simulation-of-AI-Adoption"><a href="#Insurance-as-AI-Risk-Infrastructure-A-Generative-Agent-Simulation-of-AI-Adoption" class="headerlink" title="Insurance as AI Risk Infrastructure: A Generative-Agent Simulation of AI Adoption"></a>Insurance as AI Risk Infrastructure: A Generative-Agent Simulation of AI Adoption</h3><p><strong>作者</strong>：Yixuan Yuan、Dedai Wei、Chudong Qian、Jielin Feng、Ziyue Lin、Yuheng Zhao、He Cao、Erasmo Purificato、Xinwu Ye<br><strong>来源/分类</strong>：arXiv · cs.MA<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15181">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15181">PDF</a></p>
-<p>仅依据摘要：研究保险能否为企业采用 AI 的残余尾部损失提供事后风险转移；以 LLM 驱动的多智能体社会仿真评估。论文报告该框架降低企业暴露并提高总体采用、偿付能力与资本。价值在于把技术防护与金融兜底区分；仿真的行为有效性和参数设定不等于真实保险市场或因果效果。</p>
-<h3 id="FinFraudBench-A-Heterogeneous-Graph-Benchmark-for-Financial-Fraud-Detection"><a href="#FinFraudBench-A-Heterogeneous-Graph-Benchmark-for-Financial-Fraud-Detection" class="headerlink" title="FinFraudBench: A Heterogeneous Graph Benchmark for Financial Fraud Detection"></a>FinFraudBench: A Heterogeneous Graph Benchmark for Financial Fraud Detection</h3><p><strong>作者</strong>：Yixuan Chen、Hongyu Zhan、Jie Sheng、Weiyu Han、Shuai Chen、Tianyi Zhang、Xiao Tan、Jun Xia<br><strong>来源/分类</strong>：arXiv · cs.LG、cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15177">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15177">PDF</a> · <a target="_blank" rel="noopener" href="https://anonymous.4open.science/r/FinFraudBench-B002">代码/数据</a></p>
-<p>仅依据摘要：研究异构金融实体与极端类别不平衡下的欺诈检测；发布两套最高 899 万节点、8,923 万有向类型边的数据及排序/不平衡分类协议。论文报告基线实验揭示现有方法局限。价值在于接近运营数据结构；匿名发布、标签质量、时间切分与潜在泄漏决定其真实泛化。</p>
-<h3 id="LAPF-LLM-Agent-Based-Path-Finder-Using-the-UAVScenes-Dataset"><a href="#LAPF-LLM-Agent-Based-Path-Finder-Using-the-UAVScenes-Dataset" class="headerlink" title="LAPF: LLM-Agent-Based Path Finder Using the UAVScenes Dataset"></a>LAPF: LLM-Agent-Based Path Finder Using the UAVScenes Dataset</h3><p><strong>作者</strong>：Yousef Emami、Mohammadhossein Homaei、Hao Zhou、Miguel Gutiérrez Gaitán、Atefeh Hajijamali Arani、Rui Zhang<br><strong>来源/分类</strong>：arXiv · cs.RO、cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15175">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15175">PDF</a></p>
-<p>仅依据摘要：研究 LLM 无人机导航如何结合感知、记忆、计划与动作闭环；在开放场地和障碍场景各做三次独立试验。论文报告平均路径为 512.83/506.37 米，相对 CoT 缩短 17.2%/15.6%。价值在于将危险绑定到有限纠正动作；试验次数少、仿真场景与直线最优基准均不足以说明真实飞行安全。</p>
-<h3 id="Agentic-Data-Cleaning-Without-a-Clean-Reference-An-Experimental-Study-of-Capabilities-and-Trade-offs"><a href="#Agentic-Data-Cleaning-Without-a-Clean-Reference-An-Experimental-Study-of-Capabilities-and-Trade-offs" class="headerlink" title="Agentic Data Cleaning Without a Clean Reference: An Experimental Study of Capabilities and Trade-offs"></a>Agentic Data Cleaning Without a Clean Reference: An Experimental Study of Capabilities and Trade-offs</h3><p><strong>作者</strong>：Hadi Fadlallah<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.DB<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14765">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.14765">PDF</a></p>
-<p>仅依据摘要：研究没有干净真值时，证据检索、可执行检查、保守修复和溯源日志的权衡；在金融、临床、环境数据的受控损坏上完成 126 次运行。论文报告确定性 profiling 基线的检测 F1 为 0.561，最完整 LLM 配置为 0.421，且没有配置全面占优。价值在于反对“能力叠加必然更好”；合成损坏与未直接修复限制对生产清洗的结论。</p>
-<h3 id="Don’t-Drop-the-BATON-Long-Horizon-Robot-Manipulation-via-Agentic-Subtask-Exploration-and-Transition-aware-Memory"><a href="#Don’t-Drop-the-BATON-Long-Horizon-Robot-Manipulation-via-Agentic-Subtask-Exploration-and-Transition-aware-Memory" class="headerlink" title="Don’t Drop the BATON: Long-Horizon Robot Manipulation via Agentic Subtask Exploration and Transition-aware Memory"></a>Don’t Drop the BATON: Long-Horizon Robot Manipulation via Agentic Subtask Exploration and Transition-aware Memory</h3><p><strong>作者</strong>：Bingxin Xu、Yuzhang Shang、Emilio Ferrara<br><strong>来源/分类</strong>：arXiv · cs.RO、cs.AI、cs.CV<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16889">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16889">PDF</a></p>
-<p>仅依据摘要：研究长程机械操作中阶段误差累积；BATON 按子任务探索并用过渡感知记忆处理前后条件。论文报告在 RoboMemArena 上任务成功率及累计成功率较 SOTA 提高 11.6%/14.9%。价值在于将探索成本从约 T^K 降为 T×K 的设计思路；基准、冻结 VLA 与无参数更新设定限制机器人迁移判断。</p>
-<h3 id="LLMs-for-Zero-Shot-Threat-Detection-via-Structured-Risk-Indicators"><a href="#LLMs-for-Zero-Shot-Threat-Detection-via-Structured-Risk-Indicators" class="headerlink" title="LLMs for Zero-Shot Threat Detection via Structured Risk Indicators"></a>LLMs for Zero-Shot Threat Detection via Structured Risk Indicators</h3><p><strong>作者</strong>：Abdullah Alghamdi、Siamak Layeghy、Marius Portmann<br><strong>来源/分类</strong>：arXiv · cs.CR、cs.LG、cs.NI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16508">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16508">PDF</a></p>
-<p>仅依据摘要：研究零样本威胁检测，先由 LLM 从日志生成可解释风险指标，再跨时间分类，并比较是否使用 RAG。论文报告相对 GABM 在 CERT r5.2/PicoDomain 的最佳 F1 分别提高 11.40/31.50 个百分点。价值在于指标层的可解释性；基准漂移、告警成本和检索历史泄漏仍需核验。</p>
-<h3 id="A-Human-LLM-Teaming-Framework-for-Privacy-Risk-Analysis-An-Illustration-with-CBDC-Based-Welfare-Schemes"><a href="#A-Human-LLM-Teaming-Framework-for-Privacy-Risk-Analysis-An-Illustration-with-CBDC-Based-Welfare-Schemes" class="headerlink" title="A Human-LLM Teaming Framework for Privacy Risk Analysis: An Illustration with CBDC-Based Welfare Schemes"></a>A Human-LLM Teaming Framework for Privacy Risk Analysis: An Illustration with CBDC-Based Welfare Schemes</h3><p><strong>作者</strong>：Sourya Joyee De、Abdessamad Imine<br><strong>来源/分类</strong>：arXiv · cs.ET、cs.AI、cs.CE、cs.CY<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16461">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16461">PDF</a></p>
-<p>仅依据摘要：研究 CBDC 福利系统的隐私风险评估如何人机协作；LLM 汇总文档、专家辨别证据和推断并迭代修订。论文以 PRIAM 的数据刻画活动作示例，报告人类可发现信息缺口和无支撑输出。价值在于保留专家最终判断；这是说明性案例，不能证明框架在不同制度或真实损害上有效。</p>
-<h3 id="A-Policy-Algebra-for-Trust-Preserving-Agentic-AI-Execution"><a href="#A-Policy-Algebra-for-Trust-Preserving-Agentic-AI-Execution" class="headerlink" title="A Policy Algebra for Trust-Preserving Agentic AI Execution"></a>A Policy Algebra for Trust-Preserving Agentic AI Execution</h3><p><strong>作者</strong>：Bhaskar Tripathi、Anurag Kumar、Ramendra Kumar、Bhavesh Gadhe<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16402">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16402">PDF</a></p>
-<p>仅依据摘要：研究智能体如何在身份、工具、数据、预算、审批和审计约束下保持可信执行；提出可组合的策略代数。论文报告运行时干预 94.8% 的违规事件，同时任务完成率 86.9%、审计完整度 98.6%。价值在于把可靠能力定义为路径属性；任务分布、策略正确性假设和完成功效的权衡不能由单一评测断言。</p>
-<h3 id="NumerosityVLM-A-Cognitively-Inspired-Benchmark-for-Interpreting-Numerosity-Representations-in-Vision-Language-Models"><a href="#NumerosityVLM-A-Cognitively-Inspired-Benchmark-for-Interpreting-Numerosity-Representations-in-Vision-Language-Models" class="headerlink" title="NumerosityVLM: A Cognitively Inspired Benchmark for Interpreting Numerosity Representations in Vision-Language Models"></a>NumerosityVLM: A Cognitively Inspired Benchmark for Interpreting Numerosity Representations in Vision-Language Models</h3><p><strong>作者</strong>：Yiming Fu、Fangjun Li、Xiujin Liu、Ruidong Ma、Hang Yu、Zhichen Lu、Kanwei He、Alessandro Di Nuovo、Angelo Cangelosi、Zhegong Shangguan<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15425">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15425">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/fuy3/NumerosityVLM-Benchmark">代码/数据</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/fuy3/NumerosityVLM">数据集</a></p>
-<p>仅依据摘要：研究 VLM 的数量感是否被大小、布局等视觉相关因素混淆；基准用 10,800 张合成图正交控制因素，并评测 7 个模型。论文报告架构解释的方差最大（partial ω²=0.325），数量信号早现于视觉编码器。价值在于诊断而非纯分数；合成刺激是否代表自然图像计数仍有限制。</p>
-<h3 id="From-“What-If”-to-“What-Is”-Counterfactual-Thinking-Inspired-Semantic-Alignment-for-Visual-Brain-Decoding"><a href="#From-“What-If”-to-“What-Is”-Counterfactual-Thinking-Inspired-Semantic-Alignment-for-Visual-Brain-Decoding" class="headerlink" title="From “What-If” to “What-Is”: Counterfactual Thinking-Inspired Semantic Alignment for Visual Brain Decoding"></a>From “What-If” to “What-Is”: Counterfactual Thinking-Inspired Semantic Alignment for Visual Brain Decoding</h3><p><strong>作者</strong>：Kaitao Yan、Chi Liu、Congcong Zhu、Huajie Chen、Gengshen Wu、Minghao Wang、Xiaotong Han、Tianqing Zhu<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.HC<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15163">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15163">PDF</a></p>
-<p>仅依据摘要：研究视觉脑解码中“好看但语义错”的重建；ConceptAlign 用离线 LLM 生成近似反事实描述，训练时拉开真实与近失误语义。论文报告在 Natural Scenes Dataset 上优于 MindEye2，并有负例来源与人工评测消融。价值在于评测细粒度错误；fMRI 样本、反事实质量和跨受试者泛化仍需谨慎。</p>
-<h3 id="LLMs-Can-Predict-Failure-Risk-But-Struggle-to-Predict-Which-Collaboration-Protocol-Pays-Off-Cost-Aware-Protocol-Routing-Across-Reasoning-Tasks"><a href="#LLMs-Can-Predict-Failure-Risk-But-Struggle-to-Predict-Which-Collaboration-Protocol-Pays-Off-Cost-Aware-Protocol-Routing-Across-Reasoning-Tasks" class="headerlink" title="LLMs Can Predict Failure Risk, But Struggle to Predict Which Collaboration Protocol Pays Off: Cost-Aware Protocol Routing Across Reasoning Tasks"></a>LLMs Can Predict Failure Risk, But Struggle to Predict Which Collaboration Protocol Pays Off: Cost-Aware Protocol Routing Across Reasoning Tasks</h3><p><strong>作者</strong>：Chih-Hsuan Yang、Jingyan Jiang、Cheng-Hau Yang、Vikram Vasudevan、Huihuo Zheng、Venkatram Vishwanath、Rajeev Thakur<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、cs.LG<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14927">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.14927">PDF</a></p>
-<p>仅依据摘要：研究何时值得让 LLM 升级为自纠、多角色或多智能体协作；固定求解器下比较四种协议和 4,181 道竞赛数学题。论文报告失败风险探针 AUROC 为 0.8847，但预测哪一种协作最划算的 AUPRC 仅 0.1674/0.1041。价值在于把成本纳入路由；回顾性 oracle 与真实在线收益、模型价格和延迟不是同一证据。</p>
-<h3 id="IP-Protection-in-the-Era-of-Visual-Generative-AI-A-Survey"><a href="#IP-Protection-in-the-Era-of-Visual-Generative-AI-A-Survey" class="headerlink" title="IP Protection in the Era of Visual Generative AI: A Survey"></a>IP Protection in the Era of Visual Generative AI: A Survey</h3><p><strong>作者</strong>：Zhuan Shi、Shunchang Liu、Alireza Dehghanpour Farashah、Qian Yang、Han Yu、Cao Yang、Chaochao Chen、Yuping Yan、Yaochu Jin、Golnoosh Farnadi、Lingjuan Lyu<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.CR、cs.LG<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14730">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.14730">PDF</a></p>
-<p>仅依据摘要：综述视觉生成模型的数据与模型 IP 防护；按信息暴露控制、生成行为约束、归因与问责，以及数据/模型资产两个维度组织方法。价值在于将评测与保护目标对应；作为综述不提供独立效果验证，方法覆盖与最新攻击适应性需读全文判断。</p>
-<h3 id="AeroGround-A-Comprehensive-Benchmark-for-Aerial-Ground-Collaborative-Reasoning"><a href="#AeroGround-A-Comprehensive-Benchmark-for-Aerial-Ground-Collaborative-Reasoning" class="headerlink" title="AeroGround: A Comprehensive Benchmark for Aerial-Ground Collaborative Reasoning"></a>AeroGround: A Comprehensive Benchmark for Aerial-Ground Collaborative Reasoning</h3><p><strong>作者</strong>：Shenghong Yi、Lin Zhang、Muzian Li、Jiakang Yuan、Haoyu Zhang、Peng Ye、Jiayuan Fan、Huafeng Qin、Tao Chen<br><strong>来源/分类</strong>：arXiv · cs.CV<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14721">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.14721">PDF</a></p>
-<p>仅依据摘要：研究 VLM 在空地协同救援、巡检中的跨视角空间推理；基准基于约 2.9 万多模态观测组，提供 2,250 个问答并测试 16 个模型。论文报告最佳模型平均准确率 54.4%，人类为 93.3%。价值在于量化空地鸿沟；模拟开放环境、问题生成与人类比较协议限制真实部署推论。</p>
-<h3 id="An-Agentic-Framework-Using-Rules-and-LLMs-for-Embedding-and-Annotating-Descriptive-Document-Layouts-A-Plant-Science-Use-Case"><a href="#An-Agentic-Framework-Using-Rules-and-LLMs-for-Embedding-and-Annotating-Descriptive-Document-Layouts-A-Plant-Science-Use-Case" class="headerlink" title="An Agentic Framework Using Rules and LLMs for Embedding and Annotating Descriptive Document Layouts: A Plant Science Use Case"></a>An Agentic Framework Using Rules and LLMs for Embedding and Annotating Descriptive Document Layouts: A Plant Science Use Case</h3><p><strong>作者</strong>：Nicolas Turenne、Youcef Sklab、Eric Chenin、Jean-Daniel Zucker<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14587">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.14587">PDF</a></p>
-<p>仅依据摘要：研究规则与 LLM 如何协同为描述性文档版面做嵌入和标注，并以植物科学材料为用例。论文将其定位为面向布局语义的 agent 框架。价值在于连接规则约束与语言模型；摘要未给出数据规模、比较基线、准确率或人工复核细节，实际效果需全文核验。</p>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="metareason用可编辑结构化表示做几何多模态推理">MetaReason：用可编辑结构化表示做几何多模态推理</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15006">MetaReason: Precise Interleaved
+Multimodal Reasoning via Editing Meta Information for Solving Geometry
+Problems</a>（arXiv:2608.15006）<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>核心问题是：视觉语言模型在平面几何中需要画辅助线，却容易因像素生成失真或逐步写绘图代码而出错。方法先把图形解析为由点和形状组成的
+JSON 元信息，MetaJudge 重渲染并核对结构；通过后，MetaReasoner
+只可调用连线、求交点、作垂线三种工具，并以 SFT 加 GRPO
+学习工具序列；若结构不可靠则回退文本推理。对比对象包括
+CodePlot-CoT、VisualSketchPad、直接生成中间图的统一模型及开闭源
+VLM。论文报告 TutorGeo 含 13.7 万样本（其中 1.7 万图到元信息、6
+万纯文本轨迹、6 万交错轨迹），ExamGeo 含 1,000 道按人类难度分层的题；在
+ExamGeo 达 56.1%，较基础模型提高 43.0
+个百分点。创新在于用可验证、确定性渲染的中间状态取代“看起来正确”的图像。局限是元信息抽取失败时仍回退
+CoT，且基准集中在平面几何；训练数据、闭源模型比较及推理成本仍须独立复核。适合多模态推理、工具调用与教育
+AI 读者；建议先读摘要、§3、§4、表格实验与消融。<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15006">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/PenghaoYin/MetaReason">代码</a></p>
+<h3 id="aerocopilotbench静态知识分数不能替代安全执行评测">AeroCopilotBench：静态知识分数不能替代安全执行评测</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16349">AeroCopilotBench: A Two-Tier
+Benchmark for Evaluating LLM Agents as Aviation Copilots in an
+Interactive Virtual Cockpit Environment</a>（arXiv:2608.16349）<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>该文检验 LLM
+能否在局部可观测的驾驶舱中完成程序并保持安全，而非只会回答航空知识题。ACOE
+将 POH 程序编码成状态转移、终局条件与硬安全约束；Tier-1 有 1,200
+道选择题，Tier-2 有 73 个紧急/异常任务，模型可使用 12
+个固定工具，成功必须同时完成目标且不违反任何硬约束。12 个模型在 Tier-2
+各运行 219 次；论文报告最高成功率为 72.6%，最优开权重模型为 53.0%，且
+451 个复盘失败中 416
+个落在遗漏关键步骤、错误语义先验、状态门控失败与长程漂移四类。创新是把任务完成与轨迹安全分离计分；代价是每回合模型会消耗大量工具调用和
+token，最高分仍有 27.4% 失败。局限是只覆盖两种机型、12
+个场景模板，且无连续空气动力学、传感器噪声、真实时间压力或外部检索。适合高风险
+agent、评测和回归测试读者；建议读 §3.4、表 2–3、§5.2 与限制部分。<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16349">PDF</a></p>
+<h3 id="composkill逐个扫描安全的技能组合后仍可能危险">CompoSkill：逐个扫描安全的技能，组合后仍可能危险</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16246">CompoSkill: Compositional Skill
+Chain Attacks from Individually Scanner-Passing LLM Agent
+Skills</a>（arXiv:2608.16246）<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>论文挑战“每个技能通过扫描器，系统即安全”的节点级假设。方法将风险定义为路径性质：白盒攻击者直接注入技能
+ID 链，黑盒攻击者仅知道角色画像、下载常用技能后在 Skill Composition
+Graph 中搜索隐式诱导链；CompoSkill-Bench 覆盖 5 类威胁、6 类场景、76
+个职业工作流，含 380 个任务的三种变体，共 1,140
+条记录。论文报告白盒/黑盒的风险链形成率最高分别为
+83.3%/80.6%，现有逐技能扫描器只能拦截一部分；超过三跳后 ASR
+下降，提示链长与攻击可执行性并非单调关系。创新是把审计对象从包升级为能力、输出与副作用相连的路径。局限是市场技能池、威胁模板与受测智能体的代表性决定结果，攻击成功不等于真实业务已被攻破；应在真实权限、审批和隔离环境中红队复验。适合
+agent 平台、插件生态与安全工程读者；建议读威胁模型、基准构造、RQ1–RQ2
+与失败分析。<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16246">PDF</a></p>
+<h2 id="ai-论文">AI 论文</h2>
+<h3 id="representation-signatures-and-risk-feedback-alignment-in-llm-trading-agents">Representation
+Signatures and Risk-Feedback Alignment in LLM Trading Agents</h3>
+<p><strong>作者</strong>：Weicheng Xue<br>
+<strong>来源/分类</strong>：arXiv · cs.LG、q-fin.CP · 【跨主题】<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.28850">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.28850">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/weich97/TreLLM-public">代码/数据</a></p>
+<p>仅依据摘要：研究 LLM
+交易智能体在压力下的表征漂移与风险反馈；TradeArena 记录可回放轨迹，并在
+80 个失败锚点、8
+条模型轨迹上比较多种探针。论文报告计划/风险融合表征可区分回撤前状态，但真实审计反馈对校准和收益的作用因模型而异。价值在于将“交易好不好”改成可审计的对齐问题；这不是盈利证据，51
+只股票的日内实验、回测设定和成本均限制外推。</p>
+<h3 id="metareason-precise-interleaved-multimodal-reasoning-via-editing-meta-information-for-solving-geometry-problems">MetaReason:
+Precise Interleaved Multimodal Reasoning via Editing Meta Information
+for Solving Geometry Problems</h3>
+<p><strong>作者</strong>：Penghao Yin、Haomin Wang、Qihong Tang、Xiaoye
+Qu、Hongjie Zhang、Xiao-Ping Zhang<br>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI、cs.MM<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15006">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15006">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/PenghaoYin/MetaReason">代码</a></p>
+<p>研究图形几何中如何以结构化元信息和有限工具构造高保真辅助线；数据包含图到元信息、文本及交错多模态轨迹，并以
+SFT/RL
+训练。论文报告优于所比较开源模型、接近专有模型。值得关注的是可验证中间状态；基准范围、训练数据污染控制、比较模型版本和推理算力仍需结合全文审查。</p>
+<h3 id="aerocopilotbench-a-two-tier-benchmark-for-evaluating-llm-agents-as-aviation-copilots-in-an-interactive-virtual-cockpit-environment">AeroCopilotBench:
+A Two-Tier Benchmark for Evaluating LLM Agents as Aviation Copilots in
+an Interactive Virtual Cockpit Environment</h3>
+<p><strong>作者</strong>：Yuchen Yuan、Zhenghuang Wu、Yuangan Li、Liang
+Ma、Ke Li<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16349">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16349">PDF</a></p>
+<p>研究航空智能体如何从静态知识走向带硬安全约束的交互式执行；基准含
+1,200 道知识题与 73 个任务。论文报告最高 Tier-2 成功率
+72.6%，且静态知识不稳定地转化为程序执行。价值在于安全门控评测；虚拟环境、有限机型和冻结工具接口不能证明真实飞行可用性。</p>
+<h3 id="composkill-compositional-skill-chain-attacks-from-individually-scanner-passing-llm-agent-skills">CompoSkill:
+Compositional Skill Chain Attacks from Individually Scanner-Passing LLM
+Agent Skills</h3>
+<p><strong>作者</strong>：Mingxiao Liu、Zhoumian Jiang、Jianan Ma、Jian
+Zhang、Jialuo Chen、Xinhao Deng、Zhen Wang<br>
+<strong>来源/分类</strong>：arXiv · cs.CR、cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16246">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16246">PDF</a></p>
+<p>研究单技能认证为何遗漏跨技能攻击链；以白盒/黑盒攻击者和 1,140
+条长程工作流记录测试路径级风险。论文报告两种设置的链形成率最高达 83.3%
+与
+80.6%。价值在于把安全边界扩展到组合；模拟场景和技能市场覆盖仍是关键证据限制。</p>
+<h3 id="insurance-as-ai-risk-infrastructure-a-generative-agent-simulation-of-ai-adoption">Insurance
+as AI Risk Infrastructure: A Generative-Agent Simulation of AI
+Adoption</h3>
+<p><strong>作者</strong>：Yixuan Yuan、Dedai Wei、Chudong Qian、Jielin
+Feng、Ziyue Lin、Yuheng Zhao、He Cao、Erasmo Purificato、Xinwu Ye<br>
+<strong>来源/分类</strong>：arXiv · cs.MA<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15181">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15181">PDF</a></p>
+<p>仅依据摘要：研究保险能否为企业采用 AI
+的残余尾部损失提供事后风险转移；以 LLM
+驱动的多智能体社会仿真评估。论文报告该框架降低企业暴露并提高总体采用、偿付能力与资本。价值在于把技术防护与金融兜底区分；仿真的行为有效性和参数设定不等于真实保险市场或因果效果。</p>
+<h3 id="finfraudbench-a-heterogeneous-graph-benchmark-for-financial-fraud-detection">FinFraudBench:
+A Heterogeneous Graph Benchmark for Financial Fraud Detection</h3>
+<p><strong>作者</strong>：Yixuan Chen、Hongyu Zhan、Jie Sheng、Weiyu
+Han、Shuai Chen、Tianyi Zhang、Xiao Tan、Jun Xia<br>
+<strong>来源/分类</strong>：arXiv · cs.LG、cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15177">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15177">PDF</a> · <a target="_blank" rel="noopener" href="https://anonymous.4open.science/r/FinFraudBench-B002">代码/数据</a></p>
+<p>仅依据摘要：研究异构金融实体与极端类别不平衡下的欺诈检测；发布两套最高
+899 万节点、8,923
+万有向类型边的数据及排序/不平衡分类协议。论文报告基线实验揭示现有方法局限。价值在于接近运营数据结构；匿名发布、标签质量、时间切分与潜在泄漏决定其真实泛化。</p>
+<h3 id="lapf-llm-agent-based-path-finder-using-the-uavscenes-dataset">LAPF:
+LLM-Agent-Based Path Finder Using the UAVScenes Dataset</h3>
+<p><strong>作者</strong>：Yousef Emami、Mohammadhossein Homaei、Hao
+Zhou、Miguel Gutiérrez Gaitán、Atefeh Hajijamali Arani、Rui Zhang<br>
+<strong>来源/分类</strong>：arXiv · cs.RO、cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15175">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15175">PDF</a></p>
+<p>仅依据摘要：研究 LLM
+无人机导航如何结合感知、记忆、计划与动作闭环；在开放场地和障碍场景各做三次独立试验。论文报告平均路径为
+512.83/506.37 米，相对 CoT 缩短
+17.2%/15.6%。价值在于将危险绑定到有限纠正动作；试验次数少、仿真场景与直线最优基准均不足以说明真实飞行安全。</p>
+<h3 id="agentic-data-cleaning-without-a-clean-reference-an-experimental-study-of-capabilities-and-trade-offs">Agentic
+Data Cleaning Without a Clean Reference: An Experimental Study of
+Capabilities and Trade-offs</h3>
+<p><strong>作者</strong>：Hadi Fadlallah<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.DB<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14765">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.14765">PDF</a></p>
+<p>仅依据摘要：研究没有干净真值时，证据检索、可执行检查、保守修复和溯源日志的权衡；在金融、临床、环境数据的受控损坏上完成
+126 次运行。论文报告确定性 profiling 基线的检测 F1 为 0.561，最完整 LLM
+配置为
+0.421，且没有配置全面占优。价值在于反对“能力叠加必然更好”；合成损坏与未直接修复限制对生产清洗的结论。</p>
+<h3 id="dont-drop-the-baton-long-horizon-robot-manipulation-via-agentic-subtask-exploration-and-transition-aware-memory">Don't
+Drop the BATON: Long-Horizon Robot Manipulation via Agentic Subtask
+Exploration and Transition-aware Memory</h3>
+<p><strong>作者</strong>：Bingxin Xu、Yuzhang Shang、Emilio
+Ferrara<br>
+<strong>来源/分类</strong>：arXiv · cs.RO、cs.AI、cs.CV<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16889">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16889">PDF</a></p>
+<p>仅依据摘要：研究长程机械操作中阶段误差累积；BATON
+按子任务探索并用过渡感知记忆处理前后条件。论文报告在 RoboMemArena
+上任务成功率及累计成功率较 SOTA 提高 11.6%/14.9%。价值在于将探索成本从约
+T<sup>K</sup> 降为 T×K 的设计思路；基准、冻结 VLA
+与无参数更新设定限制机器人迁移判断。</p>
+<h3 id="llms-for-zero-shot-threat-detection-via-structured-risk-indicators">LLMs
+for Zero-Shot Threat Detection via Structured Risk Indicators</h3>
+<p><strong>作者</strong>：Abdullah Alghamdi、Siamak Layeghy、Marius
+Portmann<br>
+<strong>来源/分类</strong>：arXiv · cs.CR、cs.LG、cs.NI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16508">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16508">PDF</a></p>
+<p>仅依据摘要：研究零样本威胁检测，先由 LLM
+从日志生成可解释风险指标，再跨时间分类，并比较是否使用 RAG。论文报告相对
+GABM 在 CERT r5.2/PicoDomain 的最佳 F1 分别提高 11.40/31.50
+个百分点。价值在于指标层的可解释性；基准漂移、告警成本和检索历史泄漏仍需核验。</p>
+<h3 id="a-human-llm-teaming-framework-for-privacy-risk-analysis-an-illustration-with-cbdc-based-welfare-schemes">A
+Human-LLM Teaming Framework for Privacy Risk Analysis: An Illustration
+with CBDC-Based Welfare Schemes</h3>
+<p><strong>作者</strong>：Sourya Joyee De、Abdessamad Imine<br>
+<strong>来源/分类</strong>：arXiv · cs.ET、cs.AI、cs.CE、cs.CY<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16461">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16461">PDF</a></p>
+<p>仅依据摘要：研究 CBDC 福利系统的隐私风险评估如何人机协作；LLM
+汇总文档、专家辨别证据和推断并迭代修订。论文以 PRIAM
+的数据刻画活动作示例，报告人类可发现信息缺口和无支撑输出。价值在于保留专家最终判断；这是说明性案例，不能证明框架在不同制度或真实损害上有效。</p>
+<h3 id="a-policy-algebra-for-trust-preserving-agentic-ai-execution">A
+Policy Algebra for Trust-Preserving Agentic AI Execution</h3>
+<p><strong>作者</strong>：Bhaskar Tripathi、Anurag Kumar、Ramendra
+Kumar、Bhavesh Gadhe<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.16402">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16402">PDF</a></p>
+<p>仅依据摘要：研究智能体如何在身份、工具、数据、预算、审批和审计约束下保持可信执行；提出可组合的策略代数。论文报告运行时干预
+94.8% 的违规事件，同时任务完成率 86.9%、审计完整度
+98.6%。价值在于把可靠能力定义为路径属性；任务分布、策略正确性假设和完成功效的权衡不能由单一评测断言。</p>
+<h3 id="numerosityvlm-a-cognitively-inspired-benchmark-for-interpreting-numerosity-representations-in-vision-language-models">NumerosityVLM:
+A Cognitively Inspired Benchmark for Interpreting Numerosity
+Representations in Vision-Language Models</h3>
+<p><strong>作者</strong>：Yiming Fu、Fangjun Li、Xiujin Liu、Ruidong
+Ma、Hang Yu、Zhichen Lu、Kanwei He、Alessandro Di Nuovo、Angelo
+Cangelosi、Zhegong Shangguan<br>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15425">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15425">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/fuy3/NumerosityVLM-Benchmark">代码/数据</a> ·
+<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/fuy3/NumerosityVLM">数据集</a></p>
+<p>仅依据摘要：研究 VLM
+的数量感是否被大小、布局等视觉相关因素混淆；基准用 10,800
+张合成图正交控制因素，并评测 7
+个模型。论文报告架构解释的方差最大（partial
+ω²=0.325），数量信号早现于视觉编码器。价值在于诊断而非纯分数；合成刺激是否代表自然图像计数仍有限制。</p>
+<h3 id="from-what-if-to-what-is-counterfactual-thinking-inspired-semantic-alignment-for-visual-brain-decoding">From
+"What-If" to "What-Is": Counterfactual Thinking-Inspired Semantic
+Alignment for Visual Brain Decoding</h3>
+<p><strong>作者</strong>：Kaitao Yan、Chi Liu、Congcong Zhu、Huajie
+Chen、Gengshen Wu、Minghao Wang、Xiaotong Han、Tianqing Zhu<br>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.HC<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.15163">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.15163">PDF</a></p>
+<p>仅依据摘要：研究视觉脑解码中“好看但语义错”的重建；ConceptAlign 用离线
+LLM 生成近似反事实描述，训练时拉开真实与近失误语义。论文报告在 Natural
+Scenes Dataset 上优于
+MindEye2，并有负例来源与人工评测消融。价值在于评测细粒度错误；fMRI
+样本、反事实质量和跨受试者泛化仍需谨慎。</p>
+<h3 id="llms-can-predict-failure-risk-but-struggle-to-predict-which-collaboration-protocol-pays-off-cost-aware-protocol-routing-across-reasoning-tasks">LLMs
+Can Predict Failure Risk, But Struggle to Predict Which Collaboration
+Protocol Pays Off: Cost-Aware Protocol Routing Across Reasoning
+Tasks</h3>
+<p><strong>作者</strong>：Chih-Hsuan Yang、Jingyan Jiang、Cheng-Hau
+Yang、Vikram Vasudevan、Huihuo Zheng、Venkatram Vishwanath、Rajeev
+Thakur<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、cs.LG<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14927">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.14927">PDF</a></p>
+<p>仅依据摘要：研究何时值得让 LLM
+升级为自纠、多角色或多智能体协作；固定求解器下比较四种协议和 4,181
+道竞赛数学题。论文报告失败风险探针 AUROC 为
+0.8847，但预测哪一种协作最划算的 AUPRC 仅
+0.1674/0.1041。价值在于把成本纳入路由；回顾性 oracle
+与真实在线收益、模型价格和延迟不是同一证据。</p>
+<h3 id="ip-protection-in-the-era-of-visual-generative-ai-a-survey">IP
+Protection in the Era of Visual Generative AI: A Survey</h3>
+<p><strong>作者</strong>：Zhuan Shi、Shunchang Liu、Alireza Dehghanpour
+Farashah、Qian Yang、Han Yu、Cao Yang、Chaochao Chen、Yuping Yan、Yaochu
+Jin、Golnoosh Farnadi、Lingjuan Lyu<br>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.CR、cs.LG<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14730">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.14730">PDF</a></p>
+<p>仅依据摘要：综述视觉生成模型的数据与模型 IP
+防护；按信息暴露控制、生成行为约束、归因与问责，以及数据/模型资产两个维度组织方法。价值在于将评测与保护目标对应；作为综述不提供独立效果验证，方法覆盖与最新攻击适应性需读全文判断。</p>
+<h3 id="aeroground-a-comprehensive-benchmark-for-aerial-ground-collaborative-reasoning">AeroGround:
+A Comprehensive Benchmark for Aerial-Ground Collaborative Reasoning</h3>
+<p><strong>作者</strong>：Shenghong Yi、Lin Zhang、Muzian Li、Jiakang
+Yuan、Haoyu Zhang、Peng Ye、Jiayuan Fan、Huafeng Qin、Tao Chen<br>
+<strong>来源/分类</strong>：arXiv · cs.CV<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14721">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.14721">PDF</a></p>
+<p>仅依据摘要：研究 VLM
+在空地协同救援、巡检中的跨视角空间推理；基准基于约 2.9
+万多模态观测组，提供 2,250 个问答并测试 16
+个模型。论文报告最佳模型平均准确率 54.4%，人类为
+93.3%。价值在于量化空地鸿沟；模拟开放环境、问题生成与人类比较协议限制真实部署推论。</p>
+<h3 id="an-agentic-framework-using-rules-and-llms-for-embedding-and-annotating-descriptive-document-layouts-a-plant-science-use-case">An
+Agentic Framework Using Rules and LLMs for Embedding and Annotating
+Descriptive Document Layouts: A Plant Science Use Case</h3>
+<p><strong>作者</strong>：Nicolas Turenne、Youcef Sklab、Eric
+Chenin、Jean-Daniel Zucker<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14587">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.14587">PDF</a></p>
+<p>仅依据摘要：研究规则与 LLM
+如何协同为描述性文档版面做嵌入和标注，并以植物科学材料为用例。论文将其定位为面向布局语义的
+agent
+框架。价值在于连接规则约束与语言模型；摘要未给出数据规模、比较基线、准确率或人工复核细节，实际效果需全文核验。</p>
 
                 
               </div>
