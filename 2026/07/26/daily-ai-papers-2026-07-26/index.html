@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 1. IssueTrojanBench：恶意 Issue 如何穿透代码 Agent 作者：Ankur Singh、Jinqiu Yang、Tse-Hsun Chen｜来源：arXiv 2607.20759｜分类：cs.CR、cs.AI、cs.SE｜PDF。  核心问题、方法与基线：研究把恶意指令嵌入 GitHub Issue、PDF 与评论等 6 种投递路径，并按 4 类攻击和扰动构造">
+    <meta name="description" content="重点关注1. IssueTrojanBench：恶意 Issue 如何穿透代码 Agent作者：Ankur Singh、Jinqiu Yang、Tse-Hsun Chen｜来源：arXiv 2607.20759｜分类：cs.CR、cs.AI、cs.SE｜PDF。  核心问题、方法与基线：研究把恶意指令嵌入 GitHub Issue、PDF 与评论等 6 种投递路径，并按 4 类攻击和扰动构造 I">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2026-07-26 AI 论文简报：代码 Agent 安全、动态 MCP 评测与数据制备">
 <meta property="og:url" content="https://www.polarishaw.top/2026/07/26/daily-ai-papers-2026-07-26/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 1. IssueTrojanBench：恶意 Issue 如何穿透代码 Agent 作者：Ankur Singh、Jinqiu Yang、Tse-Hsun Chen｜来源：arXiv 2607.20759｜分类：cs.CR、cs.AI、cs.SE｜PDF。  核心问题、方法与基线：研究把恶意指令嵌入 GitHub Issue、PDF 与评论等 6 种投递路径，并按 4 类攻击和扰动构造">
+<meta property="og:description" content="重点关注1. IssueTrojanBench：恶意 Issue 如何穿透代码 Agent作者：Ankur Singh、Jinqiu Yang、Tse-Hsun Chen｜来源：arXiv 2607.20759｜分类：cs.CR、cs.AI、cs.SE｜PDF。  核心问题、方法与基线：研究把恶意指令嵌入 GitHub Issue、PDF 与评论等 6 种投递路径，并按 4 类攻击和扰动构造 I">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-011-146040140.jpg">
 <meta property="article:published_time" content="2026-07-26T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-011-147051939.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-19/pixiv-rank-002-147092182.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,199 +347,55 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<h3 id="issuetrojanbench恶意-issue-如何穿透代码-agent">1. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20759">IssueTrojanBench：恶意 Issue
-如何穿透代码 Agent</a></h3>
-<p>作者：Ankur Singh、Jinqiu Yang、Tse-Hsun Chen｜来源：arXiv
-2607.20759｜分类：cs.CR、cs.AI、cs.SE｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20759">PDF</a>。</p>
+<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="1-IssueTrojanBench：恶意-Issue-如何穿透代码-Agent"><a href="#1-IssueTrojanBench：恶意-Issue-如何穿透代码-Agent" class="headerlink" title="1. IssueTrojanBench：恶意 Issue 如何穿透代码 Agent"></a>1. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20759">IssueTrojanBench：恶意 Issue 如何穿透代码 Agent</a></h3><p>作者：Ankur Singh、Jinqiu Yang、Tse-Hsun Chen｜来源：arXiv 2607.20759｜分类：cs.CR、cs.AI、cs.SE｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20759">PDF</a>。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：研究把恶意指令嵌入 GitHub
-Issue、PDF 与评论等 6 种投递路径，并按 4 类攻击和扰动构造
-IssueTrojanBench；比较 Cursor、Claude Code、Codex Desktop，以及
-GPT-5.3/5.4 Codex 与 Sonnet 4.6。它测的是已部署代码 Agent
-的端到端防线，而非单独提示词分类。</li>
-<li><strong>作者报告的结果与创新</strong>：66.5% 恶意 Issue 穿透全部
-agent 与模型层防线；拒绝几乎都来自底层 LLM，agent
-框架提供的额外保护有限。作者称 Sonnet 4.6
-对高影响动作的阻断较有选择性，而 GPT
-模型总体更易受攻击。该基准的价值在于把“外部工作项是攻击载体”变成可重复测试对象。</li>
-<li><strong>局限与工程判断</strong>：攻击分布、工具权限和产品版本会随部署变化，且摘要未说明各配置的样本量、重试协议、误拒率、训练/评测污染排查与运行成本；因此这些比例是作者实验中的脆弱性证据，不是所有企业环境的发生率。适合代码
-Agent
-平台、安全与红队读者；优先读威胁模型、攻击分类、逐系统结果和防御失效案例章节。</li>
+<li><strong>核心问题、方法与基线</strong>：研究把恶意指令嵌入 GitHub Issue、PDF 与评论等 6 种投递路径，并按 4 类攻击和扰动构造 IssueTrojanBench；比较 Cursor、Claude Code、Codex Desktop，以及 GPT-5.3/5.4 Codex 与 Sonnet 4.6。它测的是已部署代码 Agent 的端到端防线，而非单独提示词分类。</li>
+<li><strong>作者报告的结果与创新</strong>：66.5% 恶意 Issue 穿透全部 agent 与模型层防线；拒绝几乎都来自底层 LLM，agent 框架提供的额外保护有限。作者称 Sonnet 4.6 对高影响动作的阻断较有选择性，而 GPT 模型总体更易受攻击。该基准的价值在于把“外部工作项是攻击载体”变成可重复测试对象。</li>
+<li><strong>局限与工程判断</strong>：攻击分布、工具权限和产品版本会随部署变化，且摘要未说明各配置的样本量、重试协议、误拒率、训练/评测污染排查与运行成本；因此这些比例是作者实验中的脆弱性证据，不是所有企业环境的发生率。适合代码 Agent 平台、安全与红队读者；优先读威胁模型、攻击分类、逐系统结果和防御失效案例章节。</li>
 </ul>
-<h3 id="responseguard实时多模态审核不一定需要长推理">2. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21401">ResponseGuard：实时多模态审核不一定需要长推理</a></h3>
-<p>作者：Dongbin Na｜来源：arXiv 2607.21401｜分类：cs.CV、cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21401">PDF</a>｜<a target="_blank" rel="noopener" href="https://github.com/ndb796/ResponseGuard">代码、模型与数据</a>。</p>
+<h3 id="2-ResponseGuard：实时多模态审核不一定需要长推理"><a href="#2-ResponseGuard：实时多模态审核不一定需要长推理" class="headerlink" title="2. ResponseGuard：实时多模态审核不一定需要长推理"></a>2. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21401">ResponseGuard：实时多模态审核不一定需要长推理</a></h3><p>作者：Dongbin Na｜来源：arXiv 2607.21401｜分类：cs.CV、cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21401">PDF</a>｜<a target="_blank" rel="noopener" href="https://github.com/ndb796/ResponseGuard">代码、模型与数据</a>。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：针对流式视觉语言助手，作者以请求、回复和图像的池化表示一次前向输出安全标签，不生成思维链；与一个
-3B、基于推理链的视觉语言 guard
-在标准多模态安全基准上比较。目标是让拦截速度追得上逐 token 输出。</li>
-<li><strong>作者报告的结果与创新</strong>：2B ResponseGuard
-在“回复有害性”检测上超过该 3B 推理式基线，且时间成本约低 150
-倍；但在“请求有害性”上基线仍总体更强，二者余下差距集中在纯图像单元。单次判别还允许按句筛查流式输出。</li>
-<li><strong>局限与工程判断</strong>：这不是“推理无用”的结论：比较是否覆盖同等视觉编码器、校准阈值、罕见攻击召回、跨语言与对抗图像尚待全文核验；冻结视觉编码器可能才是图像项瓶颈。吞吐改进必须连同漏拦截、误伤、GPU
-占用和真实端到端延迟评估。适合内容安全与 VLM
-服务团队；优先读基准拆分、阈值/校准、图像消融与流式拦截实验章节。</li>
+<li><strong>核心问题、方法与基线</strong>：针对流式视觉语言助手，作者以请求、回复和图像的池化表示一次前向输出安全标签，不生成思维链；与一个 3B、基于推理链的视觉语言 guard 在标准多模态安全基准上比较。目标是让拦截速度追得上逐 token 输出。</li>
+<li><strong>作者报告的结果与创新</strong>：2B ResponseGuard 在“回复有害性”检测上超过该 3B 推理式基线，且时间成本约低 150 倍；但在“请求有害性”上基线仍总体更强，二者余下差距集中在纯图像单元。单次判别还允许按句筛查流式输出。</li>
+<li><strong>局限与工程判断</strong>：这不是“推理无用”的结论：比较是否覆盖同等视觉编码器、校准阈值、罕见攻击召回、跨语言与对抗图像尚待全文核验；冻结视觉编码器可能才是图像项瓶颈。吞吐改进必须连同漏拦截、误伤、GPU 占用和真实端到端延迟评估。适合内容安全与 VLM 服务团队；优先读基准拆分、阈值/校准、图像消融与流式拦截实验章节。</li>
 </ul>
-<h3 id="dynamicmcpbench用可观测效果而非答案评测-mcp-agent">3. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20531">DynamicMCPBench：用可观测效果而非答案评测
-MCP Agent</a></h3>
-<p>作者：Jerzy Kamiński、Ilya Galyukshev、Artem Kuznetsov、Sergey
-Chuprin、Kirill Redko、Aidar Shumbalov、Anna Kalyuzhnaya｜来源：arXiv
-2607.20531｜分类：cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20531">PDF</a>。</p>
+<h3 id="3-DynamicMCPBench：用可观测效果而非答案评测-MCP-Agent"><a href="#3-DynamicMCPBench：用可观测效果而非答案评测-MCP-Agent" class="headerlink" title="3. DynamicMCPBench：用可观测效果而非答案评测 MCP Agent"></a>3. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20531">DynamicMCPBench：用可观测效果而非答案评测 MCP Agent</a></h3><p>作者：Jerzy Kamiński、Ilya Galyukshev、Artem Kuznetsov、Sergey Chuprin、Kirill Redko、Aidar Shumbalov、Anna Kalyuzhnaya｜来源：arXiv 2607.20531｜分类：cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20531">PDF</a>。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：固定工具清单或最终答案在实时、有状态
-MCP
-服务上易失效。论文提出可在自有服务器重跑的框架：生成目标、记录成功轨迹、蒸馏成与具体路径无关的“效果检查点”，以是否复现效果评分，而非要求工具调用序列完全一致。</li>
-<li><strong>作者报告的结果与创新</strong>：在 121 台服务器、15 类任务各
-50 个、共 750 个任务上评测 24 个模型；以三次独立尝试都成功的
-pass<sup>3</sup> 计分，最强 agent 也只解决约一半任务，31%
-任务没有模型解决；工具链由最短到最长时准确率从 39% 降至
-13%。人工核验与自动评分的机会校正一致性为 0.76。</li>
-<li><strong>局限与工程判断</strong>：自动生成任务和成功轨迹可能把生成器偏好写进评测；实时服务状态、权限和成本会削弱复现实验。pass<sup>3</sup>
-是偏保守的可靠性指标，不能与单次 <a href="mailto:pass@1" class="email">pass@1</a>
-直接横比；还应审查工具选择、提示泄漏、失败重试与执行费用。适合 MCP
-平台、agent
-评测和可靠性工程读者；优先读效果检查点构造、人工验证、任务类别与链长消融章节。</li>
+<li><strong>核心问题、方法与基线</strong>：固定工具清单或最终答案在实时、有状态 MCP 服务上易失效。论文提出可在自有服务器重跑的框架：生成目标、记录成功轨迹、蒸馏成与具体路径无关的“效果检查点”，以是否复现效果评分，而非要求工具调用序列完全一致。</li>
+<li><strong>作者报告的结果与创新</strong>：在 121 台服务器、15 类任务各 50 个、共 750 个任务上评测 24 个模型；以三次独立尝试都成功的 pass^3 计分，最强 agent 也只解决约一半任务，31% 任务没有模型解决；工具链由最短到最长时准确率从 39% 降至 13%。人工核验与自动评分的机会校正一致性为 0.76。</li>
+<li><strong>局限与工程判断</strong>：自动生成任务和成功轨迹可能把生成器偏好写进评测；实时服务状态、权限和成本会削弱复现实验。pass^3 是偏保守的可靠性指标，不能与单次 pass@1 直接横比；还应审查工具选择、提示泄漏、失败重试与执行费用。适合 MCP 平台、agent 评测和可靠性工程读者；优先读效果检查点构造、人工验证、任务类别与链长消融章节。</li>
 </ul>
-<h3 id="inferencebenchagent-能否真正优化-llm-推理服务">4. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20468">InferenceBench：Agent
-能否真正优化 LLM 推理服务</a></h3>
-<p>作者：Jehyeok Yeon、Ben Rank、Maksym Andriushchenko｜来源：arXiv
-2607.20468｜分类：cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20468">PDF</a>。</p>
+<h3 id="4-InferenceBench：Agent-能否真正优化-LLM-推理服务"><a href="#4-InferenceBench：Agent-能否真正优化-LLM-推理服务" class="headerlink" title="4. InferenceBench：Agent 能否真正优化 LLM 推理服务"></a>4. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20468">InferenceBench：Agent 能否真正优化 LLM 推理服务</a></h3><p>作者：Jehyeok Yeon、Ben Rank、Maksym Andriushchenko｜来源：arXiv 2607.20468｜分类：cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20468">PDF</a>。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：每个 agent 在一张
-H100、两小时预算内，部署 OpenAI 兼容推理服务器，并分别优化 prefill
-延迟、decode 延迟、并发吞吐及三者平衡；这比套用已知工作流更接近开放式 AI
-工程。基线含朴素 PyTorch、默认 vLLM 与相同预算的简单超参数搜索。</li>
-<li><strong>作者报告的结果与创新</strong>：15 个前沿 agent
-配置都能胜过朴素 PyTorch，最高 8.08 倍；常能达到或超过默认 vLLM（4.05
-倍），却仍落后同预算的简单搜索（最高 11.53 倍）。轨迹分析显示 agent
-知道不少技巧，却过度收敛到单一框架、少探索配置。</li>
-<li><strong>局限与工程判断</strong>：单卡
-H100、两小时和选定模型/负载不等于生产环境；需要核查预热、测量噪声、显存约束、正确性检查及搜索基线实现。该结果衡量的是预算内性能优化，不是模型的通用研发能力；真实成本还包括失败重启与工程人工。适合推理基础设施与
-agent
-研发团队；优先读工作负载定义、计时协议、搜索基线和轨迹分析章节。</li>
+<li><strong>核心问题、方法与基线</strong>：每个 agent 在一张 H100、两小时预算内，部署 OpenAI 兼容推理服务器，并分别优化 prefill 延迟、decode 延迟、并发吞吐及三者平衡；这比套用已知工作流更接近开放式 AI 工程。基线含朴素 PyTorch、默认 vLLM 与相同预算的简单超参数搜索。</li>
+<li><strong>作者报告的结果与创新</strong>：15 个前沿 agent 配置都能胜过朴素 PyTorch，最高 8.08 倍；常能达到或超过默认 vLLM（4.05 倍），却仍落后同预算的简单搜索（最高 11.53 倍）。轨迹分析显示 agent 知道不少技巧，却过度收敛到单一框架、少探索配置。</li>
+<li><strong>局限与工程判断</strong>：单卡 H100、两小时和选定模型/负载不等于生产环境；需要核查预热、测量噪声、显存约束、正确性检查及搜索基线实现。该结果衡量的是预算内性能优化，不是模型的通用研发能力；真实成本还包括失败重启与工程人工。适合推理基础设施与 agent 研发团队；优先读工作负载定义、计时协议、搜索基线和轨迹分析章节。</li>
 </ul>
-<h3 id="dataprep-bench把生成训练数据与判断数据价值放到同一评测">5. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20465">DataPrep-Bench：把“生成训练数据”与“判断数据价值”放到同一评测</a></h3>
-<p>作者：Hao Liang、Qifeng Cai、Yibo Lin、Jianzhuo Du、Qifeng Xia、Sizhe
-Qiu、Linzhuang Sun、Meiyi Qiang、Zhaoyang Han、Xiaochen Ma、Bohan
-Zeng、Ruichuan An、Conghui He、Wentao Zhang｜来源：arXiv
-2607.20465｜分类：cs.LG、cs.CL｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20465">PDF</a>。</p>
+<h3 id="5-DataPrep-Bench：把“生成训练数据”与“判断数据价值”放到同一评测"><a href="#5-DataPrep-Bench：把“生成训练数据”与“判断数据价值”放到同一评测" class="headerlink" title="5. DataPrep-Bench：把“生成训练数据”与“判断数据价值”放到同一评测"></a>5. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20465">DataPrep-Bench：把“生成训练数据”与“判断数据价值”放到同一评测</a></h3><p>作者：Hao Liang、Qifeng Cai、Yibo Lin、Jianzhuo Du、Qifeng Xia、Sizhe Qiu、Linzhuang Sun、Meiyi Qiang、Zhaoyang Han、Xiaochen Ma、Bohan Zeng、Ruichuan An、Conghui He、Wentao Zhang｜来源：arXiv 2607.20465｜分类：cs.LG、cs.CL｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20465">PDF</a>。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：论文将 LLM
-数据制备拆为两项：由相同原始源构造监督数据，以及在训练前预测候选数据对下游训练的效用。前者用产物与
-Dolly-15k 联合微调基础模型来评分；后者以候选数据得分与下游表现的 Pearson
-相关衡量。比较 agent、DataFlow 与质量/多样性/启发式评估器，并提出基于
-MMD 的 Distributional Alignment Score（DAS）。</li>
-<li><strong>作者报告的结果与创新</strong>：Data-Construction-Skill 在
-Llama-3.1-8B Finance 上比仅 Dolly 的基线高近 20 个绝对点；DAS
-在六个领域中的四个达到最强跨模型相关，并且是唯一在数学、科学、医学同时超过
-r=0.70
-的指标。价值在于以真实下游训练效用定义“数据好”，而非只看表面质量。</li>
-<li><strong>局限与工程判断</strong>：联合
-Dolly-15k、领域代理分布与基础模型会影响结论，相关性也不是对新模型、任务或数据泄漏的因果保证。必须审查训练/测试隔离、候选池构成、统计置信区间、微调算力和可复现实验脚本；高相关不自动意味着能减少全部数据治理风险。适合数据工程、后训练和数据选型读者；优先读统一协议、各领域表格、泄漏控制与
-DAS 消融章节。</li>
+<li><strong>核心问题、方法与基线</strong>：论文将 LLM 数据制备拆为两项：由相同原始源构造监督数据，以及在训练前预测候选数据对下游训练的效用。前者用产物与 Dolly-15k 联合微调基础模型来评分；后者以候选数据得分与下游表现的 Pearson 相关衡量。比较 agent、DataFlow 与质量/多样性/启发式评估器，并提出基于 MMD 的 Distributional Alignment Score（DAS）。</li>
+<li><strong>作者报告的结果与创新</strong>：Data-Construction-Skill 在 Llama-3.1-8B Finance 上比仅 Dolly 的基线高近 20 个绝对点；DAS 在六个领域中的四个达到最强跨模型相关，并且是唯一在数学、科学、医学同时超过 r=0.70 的指标。价值在于以真实下游训练效用定义“数据好”，而非只看表面质量。</li>
+<li><strong>局限与工程判断</strong>：联合 Dolly-15k、领域代理分布与基础模型会影响结论，相关性也不是对新模型、任务或数据泄漏的因果保证。必须审查训练/测试隔离、候选池构成、统计置信区间、微调算力和可复现实验脚本；高相关不自动意味着能减少全部数据治理风险。适合数据工程、后训练和数据选型读者；优先读统一协议、各领域表格、泄漏控制与 DAS 消融章节。</li>
 </ul>
-<h3 id="fairgetfaun不均衡遗忘请求下的多模态公平性">6. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21300">FAIRGET/FAUN：不均衡遗忘请求下的多模态公平性</a></h3>
-<p>作者：Lorenzo Orsingher、Thomas De Min、Massimiliano Mancini、Davide
-Talon、Elisa Ricci｜来源：arXiv 2607.21300｜分类：cs.CV、cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21300">PDF</a>。</p>
+<h3 id="6-FAIRGET-FAUN：不均衡遗忘请求下的多模态公平性"><a href="#6-FAIRGET-FAUN：不均衡遗忘请求下的多模态公平性" class="headerlink" title="6. FAIRGET/FAUN：不均衡遗忘请求下的多模态公平性"></a>6. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21300">FAIRGET/FAUN：不均衡遗忘请求下的多模态公平性</a></h3><p>作者：Lorenzo Orsingher、Thomas De Min、Massimiliano Mancini、Davide Talon、Elisa Ricci｜来源：arXiv 2607.21300｜分类：cs.CV、cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21300">PDF</a>。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：已有多模态遗忘实验通常把虚构身份和遗忘请求均匀抽样，忽视不同群体请求频率不均。作者提出
-VQA 基准 FAIRGET，模拟不同难度的不平衡遗忘情形，并以 bias-aware
-activation steering 的 FAUN 同时追求遗忘与公平；在 FAIRGET 和既有
-FIUBench 上比较。</li>
-<li><strong>作者报告的结果与创新</strong>：作者称 FAUN
-在遗忘质量与公平性两项均优于比较方法。新意不是只问“能否删掉样本”，而是将遗忘采样机制可能引起的群体差异作为评测变量。</li>
-<li><strong>局限与工程判断</strong>：摘要未给具体分数、群体定义、模型规模、基线和统计区间；虚构身份与
-VQA
-也不等于真实的个人信息删除请求。激活引导是否稳定、是否带来保留数据性能/安全副作用、以及数据污染与复现成本，都须读全文和代码后判断。适合机器遗忘、公平性与合规工程读者；优先读不平衡设定、指标、群体消融及保留集权衡章节。</li>
+<li><strong>核心问题、方法与基线</strong>：已有多模态遗忘实验通常把虚构身份和遗忘请求均匀抽样，忽视不同群体请求频率不均。作者提出 VQA 基准 FAIRGET，模拟不同难度的不平衡遗忘情形，并以 bias-aware activation steering 的 FAUN 同时追求遗忘与公平；在 FAIRGET 和既有 FIUBench 上比较。</li>
+<li><strong>作者报告的结果与创新</strong>：作者称 FAUN 在遗忘质量与公平性两项均优于比较方法。新意不是只问“能否删掉样本”，而是将遗忘采样机制可能引起的群体差异作为评测变量。</li>
+<li><strong>局限与工程判断</strong>：摘要未给具体分数、群体定义、模型规模、基线和统计区间；虚构身份与 VQA 也不等于真实的个人信息删除请求。激活引导是否稳定、是否带来保留数据性能/安全副作用、以及数据污染与复现成本，都须读全文和代码后判断。适合机器遗忘、公平性与合规工程读者；优先读不平衡设定、指标、群体消融及保留集权衡章节。</li>
 </ul>
-<h2 id="ai-论文">AI 论文</h2>
-<p>以下 12
-篇均为本批次其余候选；结论均是作者在摘要中报告，未作独立验证。</p>
-<h3 id="dfah-bench金融决策-agent-的过程稳定性"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20491">DFAH-Bench：金融决策 Agent
-的过程稳定性</a></h3>
-<p>作者：Raffi Khatchadourian｜来源：arXiv
-2607.20491｜分类：cs.AI、cs.CL、cs.LG｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20491">PDF</a>。在 8,127 个回放
-episode、10 个模型和 3
-类金融任务中，评估工具轨迹、证据接触与决策集中度；作者报告决策一致率可达
-95%，相同工具路径却仅 77%，高决策一致组中逾 55%
-仍有实质轨迹分歧。它提示结果一致不等于过程稳定；但回放环境、金融任务定义和“轨迹差异”的阈值会影响外推，且不是可交易业绩或投资建议。<strong>仅依据摘要。</strong></p>
-<h3 id="aintma自主测试管理架构"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20452">AINTMA：自主测试管理架构</a></h3>
-<p>作者：Vinil Pasupuleti、Shyalendar Reddy Allala、Siva Rama Krishna
-Varma Bayyavarapu、Shrey Tyagi、Srinivasateja Songa｜来源：arXiv
-2607.20452｜分类：cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20452">PDF</a>。提出 6 个专职 agent、以
-47 项特征和 36 个月滚动数据进行 RL 测试优先级；作者报告在 12 个项目、18
-个月里 APFD 88.4%，高于随机 51.2%
-与“最佳商业基线”82.1%，并有周期、缺陷逃逸率和 ROI
-改善。比较对象、项目选择、经济收益口径及安全架构是否独立审计未在摘要交代，不能据此推断所有企业的投资回报。<strong>仅依据摘要。</strong></p>
-<h3 id="深度伪造生成与检测综述"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2411.19537">深度伪造生成与检测综述</a></h3>
-<p>作者：Florinel-Alin Croitoru、Andrei-Iulian Hiji、Vlad
-Hondru、Nicolae Catalin Ristea、Paul Irofti、Marius Popescu、Cristian
-Rusu、Radu Tudor Ionescu、Fahad Shahbaz Khan、Mubarak Shah｜来源：arXiv
-2411.19537｜分类：cs.CV、cs.AI、cs.LG、cs.MM、cs.SD、eess.AS｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2411.19537">PDF</a>｜<a target="_blank" rel="noopener" href="https://github.com/CroitoruAlin/biodeep">项目、代码与基准</a>。综述图像、视频、音频与多模态伪造的生成/检测分类、数据集与排行榜，并新建分布外多模态评测；作者报告现有检测器对未见生成器泛化失败。它适合作为威胁面地图，而非单一模型效果证明；排行榜可受数据泄漏、生成器版本和评测协议强烈影响。<strong>仅依据摘要。</strong></p>
-<h3 id="cup希腊语出版检索评测"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21274">CUP：希腊语出版检索评测</a></h3>
-<p>作者：Katerina Papantoniou、Panagiotis Papadakos、Theodore
-Patkos、Dimitris Garefalakis、Nikos Vardakis、Dimitris
-Plexousakis｜来源：arXiv 2607.21274｜分类：cs.CL、cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21274">PDF</a>。以 868 条书目和 104
-个专家分级查询比较 BM25、稠密、混合与 LLM 辅助检索；作者报告多语
-embedding 胜过希腊语专用模型，混合检索最佳，LLM
-目录摘要/后过滤虽有局部收益却成本高。小型单一出版场景限制外推；应核查查询泄漏、标注一致性、延迟和成本，而非把离线相关性直接视为商业检索效果。<strong>仅依据摘要。</strong></p>
-<h3 id="任意粒度文本行人检索"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21057">任意粒度文本行人检索</a></h3>
-<p>作者：Jialong Zuo、Hanyu Zhou、Dongyue Wu、Yongtai Deng、Mengdan
-Tan、Nong Sang、Changxin Gao、Xiang Bai｜来源：arXiv
-2607.21057｜分类：cs.CV｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21057">PDF</a>。将查询细粒度划为五级，提供
-UFine6926-MG、MG-Eval 和 CMAM
-框架，以正交专家、概率对齐和粒度一致推理处理一对多匹配；作者称各粒度显著超过
-SOTA。数据采样、身份标签和评价协议决定“显著”的含义，摘要没有数值、跨摄像头泛化、隐私与算力信息。<strong>仅依据摘要。</strong></p>
-<h3 id="emoagent-r1强化学习的动态情绪-agent-分工"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21013">EmoAgent-R1：强化学习的动态情绪
-Agent 分工</a></h3>
-<p>作者：Lihuang Fang、Yuchen Zou、kebin Jin、Jinghui Qin｜来源：arXiv
-2607.21013｜分类：cs.AI、cs.CV｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21013">PDF</a>。通过合成答案条件思维链与路由数据冷启动，再用
-P-GRPO 训练选择并专化 agent 的两步情绪理解流程；作者称在多项 MER
-基准上有更强推理与更稳定优化。合成思维链的忠实性、情绪文化偏差、与固定提示/同算力基线的公平比较及
-RL 成本仍需核查。<strong>仅依据摘要。</strong></p>
-<h3 id="agentic-designer约束验证的室内布局生成"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20866">Agentic
-Designer：约束验证的室内布局生成</a></h3>
-<p>作者：Zhijing Yang、Haocheng Lin、Zhihua Xu、Haojie Li、Keze
-Wang、Liang Lin、Tianshui Chen｜来源：arXiv 2607.20866｜分类：cs.CV｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20866">PDF</a>。以生成器、评估器、修正器三
-agent 的渐进共识，在每次家具落位前检查几何约束；同步建立含逾 18,000
-个参数化标注样本的
-InStruct。作者报告结构遵守和功能一致性优于现有方法，但未在摘要给出数值；合成/参数化房间与真实设计需求的差距，以及多
-agent 延迟与成本是落地限制。<strong>仅依据摘要。</strong></p>
-<h3 id="视觉-transformer-的机器遗忘基准"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.20114">视觉 Transformer
-的机器遗忘基准</a></h3>
-<p>作者：Kairan Zhao、Iurie Luca、Peter Triantafillou｜来源：arXiv
-2602.20114｜分类：cs.CV、cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.20114">PDF</a>。首次系统比较
-ViT、Swin-T、DINOv2
-上的多种遗忘算法、不同数据复杂度与单次/连续遗忘，并以遗忘质量、保留/测试准确率共同衡量。贡献主要是可比协议和参考基线；训练数据记忆代理是否真代表隐私泄漏、模型/数据覆盖是否充分，以及复训算力均需查看全文。<strong>仅依据摘要。</strong></p>
-<h3 id="agentic-memory统一长短期记忆管理"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.01885">Agentic
-Memory：统一长短期记忆管理</a></h3>
-<p>作者：Yi Yu、Liuyi Yao、Yuexiang Xie、Qingquan Tan、Jiaqi
-Feng、Yaliang Li、Libing Wu｜来源：arXiv 2601.01885｜分类：cs.CL｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.01885">PDF</a>。把存储、检索、更新、摘要和丢弃作为
-policy 内工具动作，以三阶段 RL 与 step-wise GRPO
-共同管理长/短期记忆；作者称在 5
-个长程基准、多个骨干上超过强记忆增强基线，并提高上下文效率。训练奖励、记忆污染/过期、隐私删除和随任务增长的
-token/调用成本均是关键证据缺口。<strong>仅依据摘要。</strong></p>
-<h3 id="pats面向策略演化的-agent-强化学习支架"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21419">PATS：面向策略演化的 Agent
-强化学习支架</a></h3>
-<p>作者：Yipeng Shi、Zhipeng Ma、Yue Wang、Qitai Tan、Yang Li、Peng
-Chen、Zhengzhou Zhu｜来源：arXiv 2607.21419｜分类：cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21419">PDF</a>。将最新策略的 rollout
-组转成证据卡，并随策略改善修订或移除上下文支架；以 RLVR
-训练、部署时丢弃支架。作者报告在 ALFWorld/WebShop 相对强基线最高提升
-18.6%，在 7 个搜索问答基准保持竞争力且 prompt token 少
-32.1%。需核对奖励设计、计算预算、基线提示长度是否等价，以及检索语料泄漏；基准增益不等于真实
-Agent 鲁棒性。<strong>仅依据摘要。</strong></p>
-<h3 id="多模态预训练-eeg-表征"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21384">多模态预训练 EEG 表征</a></h3>
-<p>作者：Targol Bakhtiarvand、Jugal Kalita、Adham Atyabi｜来源：arXiv
-2607.21384｜分类：cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21384">PDF</a>。结合 Mamba
-原始信号、ViT
-时频和轻量文本编码器，以掩码建模、跨视图对齐和时序一致性预训练；作者报告
-CHB-MIT 单模型 AUROC 0.874、集成 0.878，但 19 名受试者 LOSO 平衡准确率仅
-0.558。后者更接近患者独立泛化的难度；临床价值仍须多中心前瞻测试、校准/公平性分析，不能替代诊断。<strong>仅依据摘要。</strong></p>
-<h3 id="provise以像素输出测空间认知"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21072">ProVisE：以像素输出测空间认知</a></h3>
-<p>作者：Xu Wang、Kaixiang Yao、Miao Pan、Xiaohe Zhou、Xuanyu Liu、Wenqi
-Zhang、Xuhong Zhang｜来源：arXiv 2607.21072｜分类：cs.CV｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21072">PDF</a>。以协议化视觉答案将图像生成模型的标记/绘制解析为原始指标可评分的结构化预测，并给出含
-470 样本、14 子任务的 SpatialGen-Bench；作者报告像素表达与文本 VLM
-各有优势，后者在组合空间推理仍明显领先。协议解析误差、基准规模、图像生成成本和训练图像污染可能影响比较公平性。<strong>仅依据摘要。</strong></p>
+<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><p>以下 12 篇均为本批次其余候选；结论均是作者在摘要中报告，未作独立验证。</p>
+<h3 id="DFAH-Bench：金融决策-Agent-的过程稳定性"><a href="#DFAH-Bench：金融决策-Agent-的过程稳定性" class="headerlink" title="DFAH-Bench：金融决策 Agent 的过程稳定性"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20491">DFAH-Bench：金融决策 Agent 的过程稳定性</a></h3><p>作者：Raffi Khatchadourian｜来源：arXiv 2607.20491｜分类：cs.AI、cs.CL、cs.LG｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20491">PDF</a>。在 8,127 个回放 episode、10 个模型和 3 类金融任务中，评估工具轨迹、证据接触与决策集中度；作者报告决策一致率可达 95%，相同工具路径却仅 77%，高决策一致组中逾 55% 仍有实质轨迹分歧。它提示结果一致不等于过程稳定；但回放环境、金融任务定义和“轨迹差异”的阈值会影响外推，且不是可交易业绩或投资建议。<strong>仅依据摘要。</strong></p>
+<h3 id="AINTMA：自主测试管理架构"><a href="#AINTMA：自主测试管理架构" class="headerlink" title="AINTMA：自主测试管理架构"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20452">AINTMA：自主测试管理架构</a></h3><p>作者：Vinil Pasupuleti、Shyalendar Reddy Allala、Siva Rama Krishna Varma Bayyavarapu、Shrey Tyagi、Srinivasateja Songa｜来源：arXiv 2607.20452｜分类：cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20452">PDF</a>。提出 6 个专职 agent、以 47 项特征和 36 个月滚动数据进行 RL 测试优先级；作者报告在 12 个项目、18 个月里 APFD 88.4%，高于随机 51.2% 与“最佳商业基线”82.1%，并有周期、缺陷逃逸率和 ROI 改善。比较对象、项目选择、经济收益口径及安全架构是否独立审计未在摘要交代，不能据此推断所有企业的投资回报。<strong>仅依据摘要。</strong></p>
+<h3 id="深度伪造生成与检测综述"><a href="#深度伪造生成与检测综述" class="headerlink" title="深度伪造生成与检测综述"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2411.19537">深度伪造生成与检测综述</a></h3><p>作者：Florinel-Alin Croitoru、Andrei-Iulian Hiji、Vlad Hondru、Nicolae Catalin Ristea、Paul Irofti、Marius Popescu、Cristian Rusu、Radu Tudor Ionescu、Fahad Shahbaz Khan、Mubarak Shah｜来源：arXiv 2411.19537｜分类：cs.CV、cs.AI、cs.LG、cs.MM、cs.SD、eess.AS｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2411.19537">PDF</a>｜<a target="_blank" rel="noopener" href="https://github.com/CroitoruAlin/biodeep">项目、代码与基准</a>。综述图像、视频、音频与多模态伪造的生成/检测分类、数据集与排行榜，并新建分布外多模态评测；作者报告现有检测器对未见生成器泛化失败。它适合作为威胁面地图，而非单一模型效果证明；排行榜可受数据泄漏、生成器版本和评测协议强烈影响。<strong>仅依据摘要。</strong></p>
+<h3 id="CUP：希腊语出版检索评测"><a href="#CUP：希腊语出版检索评测" class="headerlink" title="CUP：希腊语出版检索评测"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21274">CUP：希腊语出版检索评测</a></h3><p>作者：Katerina Papantoniou、Panagiotis Papadakos、Theodore Patkos、Dimitris Garefalakis、Nikos Vardakis、Dimitris Plexousakis｜来源：arXiv 2607.21274｜分类：cs.CL、cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21274">PDF</a>。以 868 条书目和 104 个专家分级查询比较 BM25、稠密、混合与 LLM 辅助检索；作者报告多语 embedding 胜过希腊语专用模型，混合检索最佳，LLM 目录摘要/后过滤虽有局部收益却成本高。小型单一出版场景限制外推；应核查查询泄漏、标注一致性、延迟和成本，而非把离线相关性直接视为商业检索效果。<strong>仅依据摘要。</strong></p>
+<h3 id="任意粒度文本行人检索"><a href="#任意粒度文本行人检索" class="headerlink" title="任意粒度文本行人检索"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21057">任意粒度文本行人检索</a></h3><p>作者：Jialong Zuo、Hanyu Zhou、Dongyue Wu、Yongtai Deng、Mengdan Tan、Nong Sang、Changxin Gao、Xiang Bai｜来源：arXiv 2607.21057｜分类：cs.CV｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21057">PDF</a>。将查询细粒度划为五级，提供 UFine6926-MG、MG-Eval 和 CMAM 框架，以正交专家、概率对齐和粒度一致推理处理一对多匹配；作者称各粒度显著超过 SOTA。数据采样、身份标签和评价协议决定“显著”的含义，摘要没有数值、跨摄像头泛化、隐私与算力信息。<strong>仅依据摘要。</strong></p>
+<h3 id="EmoAgent-R1：强化学习的动态情绪-Agent-分工"><a href="#EmoAgent-R1：强化学习的动态情绪-Agent-分工" class="headerlink" title="EmoAgent-R1：强化学习的动态情绪 Agent 分工"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21013">EmoAgent-R1：强化学习的动态情绪 Agent 分工</a></h3><p>作者：Lihuang Fang、Yuchen Zou、kebin Jin、Jinghui Qin｜来源：arXiv 2607.21013｜分类：cs.AI、cs.CV｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21013">PDF</a>。通过合成答案条件思维链与路由数据冷启动，再用 P-GRPO 训练选择并专化 agent 的两步情绪理解流程；作者称在多项 MER 基准上有更强推理与更稳定优化。合成思维链的忠实性、情绪文化偏差、与固定提示/同算力基线的公平比较及 RL 成本仍需核查。<strong>仅依据摘要。</strong></p>
+<h3 id="Agentic-Designer：约束验证的室内布局生成"><a href="#Agentic-Designer：约束验证的室内布局生成" class="headerlink" title="Agentic Designer：约束验证的室内布局生成"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.20866">Agentic Designer：约束验证的室内布局生成</a></h3><p>作者：Zhijing Yang、Haocheng Lin、Zhihua Xu、Haojie Li、Keze Wang、Liang Lin、Tianshui Chen｜来源：arXiv 2607.20866｜分类：cs.CV｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.20866">PDF</a>。以生成器、评估器、修正器三 agent 的渐进共识，在每次家具落位前检查几何约束；同步建立含逾 18,000 个参数化标注样本的 InStruct。作者报告结构遵守和功能一致性优于现有方法，但未在摘要给出数值；合成/参数化房间与真实设计需求的差距，以及多 agent 延迟与成本是落地限制。<strong>仅依据摘要。</strong></p>
+<h3 id="视觉-Transformer-的机器遗忘基准"><a href="#视觉-Transformer-的机器遗忘基准" class="headerlink" title="视觉 Transformer 的机器遗忘基准"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.20114">视觉 Transformer 的机器遗忘基准</a></h3><p>作者：Kairan Zhao、Iurie Luca、Peter Triantafillou｜来源：arXiv 2602.20114｜分类：cs.CV、cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.20114">PDF</a>。首次系统比较 ViT、Swin-T、DINOv2 上的多种遗忘算法、不同数据复杂度与单次/连续遗忘，并以遗忘质量、保留/测试准确率共同衡量。贡献主要是可比协议和参考基线；训练数据记忆代理是否真代表隐私泄漏、模型/数据覆盖是否充分，以及复训算力均需查看全文。<strong>仅依据摘要。</strong></p>
+<h3 id="Agentic-Memory：统一长短期记忆管理"><a href="#Agentic-Memory：统一长短期记忆管理" class="headerlink" title="Agentic Memory：统一长短期记忆管理"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.01885">Agentic Memory：统一长短期记忆管理</a></h3><p>作者：Yi Yu、Liuyi Yao、Yuexiang Xie、Qingquan Tan、Jiaqi Feng、Yaliang Li、Libing Wu｜来源：arXiv 2601.01885｜分类：cs.CL｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.01885">PDF</a>。把存储、检索、更新、摘要和丢弃作为 policy 内工具动作，以三阶段 RL 与 step-wise GRPO 共同管理长/短期记忆；作者称在 5 个长程基准、多个骨干上超过强记忆增强基线，并提高上下文效率。训练奖励、记忆污染/过期、隐私删除和随任务增长的 token/调用成本均是关键证据缺口。<strong>仅依据摘要。</strong></p>
+<h3 id="PATS：面向策略演化的-Agent-强化学习支架"><a href="#PATS：面向策略演化的-Agent-强化学习支架" class="headerlink" title="PATS：面向策略演化的 Agent 强化学习支架"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21419">PATS：面向策略演化的 Agent 强化学习支架</a></h3><p>作者：Yipeng Shi、Zhipeng Ma、Yue Wang、Qitai Tan、Yang Li、Peng Chen、Zhengzhou Zhu｜来源：arXiv 2607.21419｜分类：cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21419">PDF</a>。将最新策略的 rollout 组转成证据卡，并随策略改善修订或移除上下文支架；以 RLVR 训练、部署时丢弃支架。作者报告在 ALFWorld/WebShop 相对强基线最高提升 18.6%，在 7 个搜索问答基准保持竞争力且 prompt token 少 32.1%。需核对奖励设计、计算预算、基线提示长度是否等价，以及检索语料泄漏；基准增益不等于真实 Agent 鲁棒性。<strong>仅依据摘要。</strong></p>
+<h3 id="多模态预训练-EEG-表征"><a href="#多模态预训练-EEG-表征" class="headerlink" title="多模态预训练 EEG 表征"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21384">多模态预训练 EEG 表征</a></h3><p>作者：Targol Bakhtiarvand、Jugal Kalita、Adham Atyabi｜来源：arXiv 2607.21384｜分类：cs.AI｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21384">PDF</a>。结合 Mamba 原始信号、ViT 时频和轻量文本编码器，以掩码建模、跨视图对齐和时序一致性预训练；作者报告 CHB-MIT 单模型 AUROC 0.874、集成 0.878，但 19 名受试者 LOSO 平衡准确率仅 0.558。后者更接近患者独立泛化的难度；临床价值仍须多中心前瞻测试、校准/公平性分析，不能替代诊断。<strong>仅依据摘要。</strong></p>
+<h3 id="ProVisE：以像素输出测空间认知"><a href="#ProVisE：以像素输出测空间认知" class="headerlink" title="ProVisE：以像素输出测空间认知"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21072">ProVisE：以像素输出测空间认知</a></h3><p>作者：Xu Wang、Kaixiang Yao、Miao Pan、Xiaohe Zhou、Xuanyu Liu、Wenqi Zhang、Xuhong Zhang｜来源：arXiv 2607.21072｜分类：cs.CV｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.21072">PDF</a>。以协议化视觉答案将图像生成模型的标记/绘制解析为原始指标可评分的结构化预测，并给出含 470 样本、14 子任务的 SpatialGen-Bench；作者报告像素表达与文本 VLM 各有优势，后者在组合空间推理仍明显领先。协议解析误差、基准规模、图像生成成本和训练图像污染可能影响比较公平性。<strong>仅依据摘要。</strong></p>
 
                 
               </div>
