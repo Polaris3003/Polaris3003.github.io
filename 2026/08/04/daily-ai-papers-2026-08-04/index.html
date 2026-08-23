@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 以下重点均为 arXiv 预印本，尚未经同行评审。文中“结果”均指作者在论文中报告的实验观察，而非独立复现结论。  1. Benchmarks Are Not Monolithic: Sample-Level Auditing and Orchestration for LLM Evaluation Philipp D. Siedler、Jordan Sassoon｜arXiv（cs">
+    <meta name="description" content="重点关注 以下重点均为 arXiv 预印本，尚未经同行评审。文中“结果”均指作者在论文中报告的实验观察，而非独立复现结论。 1. Benchmarks Are Not Monolithic: Sample-Level Auditing and Orchestration for LLM Evaluation Philipp D. Siedler、Jordan Sassoon｜arXiv（cs.C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜基准审计、金融推理与可扩展 RAG">
 <meta property="og:url" content="https://www.polarishaw.top/2026/08/04/daily-ai-papers-2026-08-04/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 以下重点均为 arXiv 预印本，尚未经同行评审。文中“结果”均指作者在论文中报告的实验观察，而非独立复现结论。  1. Benchmarks Are Not Monolithic: Sample-Level Auditing and Orchestration for LLM Evaluation Philipp D. Siedler、Jordan Sassoon｜arXiv（cs">
+<meta property="og:description" content="重点关注 以下重点均为 arXiv 预印本，尚未经同行评审。文中“结果”均指作者在论文中报告的实验观察，而非独立复现结论。 1. Benchmarks Are Not Monolithic: Sample-Level Auditing and Orchestration for LLM Evaluation Philipp D. Siedler、Jordan Sassoon｜arXiv（cs.C">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-001-146031498.jpg">
 <meta property="article:published_time" content="2026-08-04T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-012-146931602.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-005-147052101.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,80 +347,207 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
-<p>以下重点均为 arXiv 预印本，尚未经同行评审。文中“结果”均指作者在论文中报告的实验观察，而非独立复现结论。</p>
-<h3 id="1-benchmarks-are-not-monolithic-sample-level-auditing-and-orchestration-for-llm-evaluation"><a class="markdownIt-Anchor" href="#1-benchmarks-are-not-monolithic-sample-level-auditing-and-orchestration-for-llm-evaluation"></a> 1. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.28801">Benchmarks Are Not Monolithic: Sample-Level Auditing and Orchestration for LLM Evaluation</a></h3>
-<p>Philipp D. Siedler、Jordan Sassoon｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a> / <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> / cs.LG）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.28801">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.28801">DOI</a></p>
+<h2 id="重点关注">重点关注</h2>
+<p>以下重点均为 arXiv
+预印本，尚未经同行评审。文中“结果”均指作者在论文中报告的实验观察，而非独立复现结论。</p>
+<h3 id="benchmarks-are-not-monolithic-sample-level-auditing-and-orchestration-for-llm-evaluation">1.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.28801">Benchmarks Are Not
+Monolithic: Sample-Level Auditing and Orchestration for LLM
+Evaluation</a></h3>
+<p>Philipp D. Siedler、Jordan Sassoon｜arXiv（cs.CL / cs.AI /
+cs.LG）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.28801">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.28801">DOI</a></p>
 <ul>
-<li><strong>问题、方法与基线。</strong> 论文质疑把一个 benchmark 压缩为单一准确率：对 MMLU、ARC、WinoGrande、HellaSwag、TruthfulQA 的每道题按认知/知识、语言/内容、任务属性、上下文、伦理安全公平五个潜在维度标注，再据条件重组跨数据集子集。对照对象是现有按整套任务报告的聚合分数，而非新的模型训练法。</li>
-<li><strong>作者报告的证据。</strong> PDF 列出的五个集合含 ARC 3.55k、HellaSwag 10k、MMLU 15.9k、TruthfulQA 817、WinoGrande 1.27k 样本；样本层标注揭示同一总分下被掩盖的内部异质性，并可构造“推理深度”或“伦理敏感性”等定向测试。作者并未证明该标注必然提高对真实部署能力的预测力。</li>
-<li><strong>创新、限制与阅读建议。</strong> 价值在于把评测对象本身纳入审计，适合维护模型评测栈、采购评审或治理的人。标注准则、标注者一致性、既有 benchmark 的训练污染及重组子集的多重比较都可能影响结论；评测成本也会随样本级人工审计上升。优先读第 1、4–6 节与附录标注细则。</li>
+<li><strong>问题、方法与基线。</strong> 论文质疑把一个 benchmark
+压缩为单一准确率：对 MMLU、ARC、WinoGrande、HellaSwag、TruthfulQA
+的每道题按认知/知识、语言/内容、任务属性、上下文、伦理安全公平五个潜在维度标注，再据条件重组跨数据集子集。对照对象是现有按整套任务报告的聚合分数，而非新的模型训练法。</li>
+<li><strong>作者报告的证据。</strong> PDF 列出的五个集合含 ARC
+3.55k、HellaSwag 10k、MMLU 15.9k、TruthfulQA 817、WinoGrande 1.27k
+样本；样本层标注揭示同一总分下被掩盖的内部异质性，并可构造“推理深度”或“伦理敏感性”等定向测试。作者并未证明该标注必然提高对真实部署能力的预测力。</li>
+<li><strong>创新、限制与阅读建议。</strong>
+价值在于把评测对象本身纳入审计，适合维护模型评测栈、采购评审或治理的人。标注准则、标注者一致性、既有
+benchmark
+的训练污染及重组子集的多重比较都可能影响结论；评测成本也会随样本级人工审计上升。优先读第
+1、4–6 节与附录标注细则。</li>
 </ul>
-<h3 id="2-are-the-financial-reasoning-from-llms-credible-a-real-world-test-over-long-horizon-statements"><a class="markdownIt-Anchor" href="#2-are-the-financial-reasoning-from-llms-credible-a-real-world-test-over-long-horizon-statements"></a> 2. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.28661">Are the Financial Reasoning from LLMs Credible? A Real World Test over Long-Horizon Statements</a></h3>
-<p>Xinke Tong 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；金融 × AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.28661">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.28661">DOI</a></p>
+<h3 id="are-the-financial-reasoning-from-llms-credible-a-real-world-test-over-long-horizon-statements">2.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.28661">Are the Financial Reasoning
+from LLMs Credible? A Real World Test over Long-Horizon
+Statements</a></h3>
+<p>Xinke Tong 等｜arXiv（cs.CL；金融 × AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.28661">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.28661">DOI</a></p>
 <ul>
-<li><strong>问题、方法与基线。</strong> 作者构建 FinIndices，以最长 32K token 的未裁剪财务报表、自动合成和对抗陷阱，测试单指标计算与表格型多指标推理；重点针对跨报表、时间去累计和存量/流量口径。它与短表格、多选或单跳问答式金融 QA 形成基线对照。</li>
-<li><strong>作者报告的证据。</strong> 数据集有 68,307 个样本。去掉显式公式提示后，Gemini-3.1-Pro 在表格任务从 70.70% 降至 38.22%；监督微调在零提示设定下使单指标、表格任务分别提高 8.54、3.82 个百分点。这些是该基准的能力测量，不能推及投资判断、会计审计或真实金融系统可靠性。</li>
-<li><strong>创新、限制与阅读建议。</strong> 其贡献是把长上下文结构性错误从“会不会公式”中剥离，适合金融 LLM 评测、数据产品和审计团队。自动生成题目及陷阱的分布、答案可验证性、模型版本和提示模板会影响结论；没有覆盖检索、工具、人工升级等系统链路。优先读第 3–5 节、错误案例和附录任务定义。</li>
+<li><strong>问题、方法与基线。</strong> 作者构建 FinIndices，以最长 32K
+token
+的未裁剪财务报表、自动合成和对抗陷阱，测试单指标计算与表格型多指标推理；重点针对跨报表、时间去累计和存量/流量口径。它与短表格、多选或单跳问答式金融
+QA 形成基线对照。</li>
+<li><strong>作者报告的证据。</strong> 数据集有 68,307
+个样本。去掉显式公式提示后，Gemini-3.1-Pro 在表格任务从 70.70% 降至
+38.22%；监督微调在零提示设定下使单指标、表格任务分别提高 8.54、3.82
+个百分点。这些是该基准的能力测量，不能推及投资判断、会计审计或真实金融系统可靠性。</li>
+<li><strong>创新、限制与阅读建议。</strong>
+其贡献是把长上下文结构性错误从“会不会公式”中剥离，适合金融 LLM
+评测、数据产品和审计团队。自动生成题目及陷阱的分布、答案可验证性、模型版本和提示模板会影响结论；没有覆盖检索、工具、人工升级等系统链路。优先读第
+3–5 节、错误案例和附录任务定义。</li>
 </ul>
-<h3 id="3-multimodal-reinforcement-learning-with-adaptive-verifier-for-ai-agents"><a class="markdownIt-Anchor" href="#3-multimodal-reinforcement-learning-with-adaptive-verifier-for-ai-agents"></a> 3. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.03438">Multimodal Reinforcement Learning with Adaptive Verifier for AI Agents</a></h3>
-<p>Reuben Tan 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.03438">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2512.03438">DOI</a></p>
+<h3 id="multimodal-reinforcement-learning-with-adaptive-verifier-for-ai-agents">3.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.03438">Multimodal Reinforcement
+Learning with Adaptive Verifier for AI Agents</a></h3>
+<p>Reuben Tan 等｜arXiv（cs.AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.03438">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2512.03438">DOI</a></p>
 <ul>
-<li><strong>问题、方法与基线。</strong> Argos 为多模态 RL 的每个样本从教师模型与规则评分器池中选择验证器，同时评最终答案、时空定位和推理过程；它用于 SFT 数据筛选和在线 RL。比较包括 Qwen2.5-VL-7B、其 CoT 提示、Video-R1 与 ViGoRL，并包含移除 reward quality/grounding 的消融。</li>
-<li><strong>作者报告的证据。</strong> 空间基准表中 Argos 的 BLINK、MindCube-t、CV-Bench、CounterCurate 为 57.6、37.2、79.5、81.9；在 EB-Alfred 平均为 14.7，高于 Video-R1 的 10.0 和基座 CoT 的 5.6。作者称其在部分任务仅用 85k 训练样本，对比 Video-R1 的 260k 或 270k；这些横向比较仍依赖各方法的训练数据、环境与验证器可比性。</li>
-<li><strong>创新、限制与阅读建议。</strong> 亮点是将奖励可信度从单一结果信号扩展为可自适应的过程验证，并明确检查 reward hacking。教师评委错误会被放大，验证器选择本身也可能过拟合已知基准；计算成本、机器人实机安全与开放环境泛化未由离线分数解决。适合多模态 agent/RL 工程师；优先读第 3 节、5 节和消融实验。</li>
+<li><strong>问题、方法与基线。</strong> Argos 为多模态 RL
+的每个样本从教师模型与规则评分器池中选择验证器，同时评最终答案、时空定位和推理过程；它用于
+SFT 数据筛选和在线 RL。比较包括 Qwen2.5-VL-7B、其 CoT 提示、Video-R1 与
+ViGoRL，并包含移除 reward quality/grounding 的消融。</li>
+<li><strong>作者报告的证据。</strong> 空间基准表中 Argos 的
+BLINK、MindCube-t、CV-Bench、CounterCurate 为 57.6、37.2、79.5、81.9；在
+EB-Alfred 平均为 14.7，高于 Video-R1 的 10.0 和基座 CoT 的
+5.6。作者称其在部分任务仅用 85k 训练样本，对比 Video-R1 的 260k 或
+270k；这些横向比较仍依赖各方法的训练数据、环境与验证器可比性。</li>
+<li><strong>创新、限制与阅读建议。</strong>
+亮点是将奖励可信度从单一结果信号扩展为可自适应的过程验证，并明确检查
+reward
+hacking。教师评委错误会被放大，验证器选择本身也可能过拟合已知基准；计算成本、机器人实机安全与开放环境泛化未由离线分数解决。适合多模态
+agent/RL 工程师；优先读第 3 节、5 节和消融实验。</li>
 </ul>
-<h3 id="4-bm25-wins-at-scale-a-scaling-study-of-retrieval-augmented-generation-paradigms"><a class="markdownIt-Anchor" href="#4-bm25-wins-at-scale-a-scaling-study-of-retrieval-augmented-generation-paradigms"></a> 4. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.26497">BM25 Wins at Scale: A Scaling Study of Retrieval-Augmented Generation Paradigms</a></h3>
-<p>Pengyu Wang 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.26497">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.26497">DOI</a></p>
+<h3 id="bm25-wins-at-scale-a-scaling-study-of-retrieval-augmented-generation-paradigms">4.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.26497">BM25 Wins at Scale: A Scaling
+Study of Retrieval-Augmented Generation Paradigms</a></h3>
+<p>Pengyu Wang 等｜arXiv（cs.CL）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.26497">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.26497">DOI</a></p>
 <ul>
-<li><strong>问题、方法与基线。</strong> 作者在约 450 倍、28 个严格嵌套的语料规模上固定问题、阅读模型与评审协议，比较词法 BM25、稠密检索、图 RAG 与文件系统 agent，并计量准确率、建库/查询 token 和时延。</li>
-<li><strong>作者报告的证据。</strong> 约 1,000 万 token 后 BM25 超过文件系统 agent；在 511,959 文档的受控实验中，Native BM25 综合分 54.8、文件系统 36.9、Agent+BM25 69.4，后者比纯 agent 高 32.52 分且 token/问约 101K 对 895K。图方案的规模墙也很明确：作者将 HippoRAG 2 的全量建库外推为 2.9B 生成 token、约 3 天单实例。结果来自一个阅读器、一个判题协议和特定语料，不能替代通用 RAG 选型验证。</li>
-<li><strong>创新、限制与阅读建议。</strong> 论文把“更会推理”与“能否发现候选文档”作机制分离，对企业大语料 RAG 有直接诊断价值。评测可能受语料构成、金标准、BM25 参数和单一 judge 偏差影响；全量图成本部分是外推而非实测。适合检索、agent 与成本治理读者；优先读第 3–5 节及附录计量方法。</li>
+<li><strong>问题、方法与基线。</strong> 作者在约 450 倍、28
+个严格嵌套的语料规模上固定问题、阅读模型与评审协议，比较词法
+BM25、稠密检索、图 RAG 与文件系统 agent，并计量准确率、建库/查询 token
+和时延。</li>
+<li><strong>作者报告的证据。</strong> 约 1,000 万 token 后 BM25
+超过文件系统 agent；在 511,959 文档的受控实验中，Native BM25 综合分
+54.8、文件系统 36.9、Agent+BM25 69.4，后者比纯 agent 高 32.52 分且
+token/问约 101K 对 895K。图方案的规模墙也很明确：作者将 HippoRAG 2
+的全量建库外推为 2.9B 生成 token、约 3
+天单实例。结果来自一个阅读器、一个判题协议和特定语料，不能替代通用 RAG
+选型验证。</li>
+<li><strong>创新、限制与阅读建议。</strong>
+论文把“更会推理”与“能否发现候选文档”作机制分离，对企业大语料 RAG
+有直接诊断价值。评测可能受语料构成、金标准、BM25 参数和单一 judge
+偏差影响；全量图成本部分是外推而非实测。适合检索、agent
+与成本治理读者；优先读第 3–5 节及附录计量方法。</li>
 </ul>
-<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
-<p>以下 14 篇与上文重点合计为今日去重后的 18 篇候选。除特别说明外均<strong>仅依据 arXiv 官方 RSS 摘要</strong>，不把作者自述视为独立验证事实；模型分数还应检查基线公平性、训练/评测污染、可复现性和算力成本。</p>
-<h3 id="elisa-an-interpretable-hybrid-generative-ai-agent-for-expression-grounded-discovery-in-single-cell-genomics"><a class="markdownIt-Anchor" href="#elisa-an-interpretable-hybrid-generative-ai-agent-for-expression-grounded-discovery-in-single-cell-genomics"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.11872">ELISA: An Interpretable Hybrid Generative AI Agent for Expression-Grounded Discovery in Single-Cell Genomics</a></h3>
-<p>Omar Coser｜arXiv（<a target="_blank" rel="noopener" href="http://q-bio.GN">q-bio.GN</a> / <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.11872">PDF</a></p>
-<p><strong>仅依据摘要。</strong> ELISA 将 scGPT 表达嵌入、BioBERT 语义检索和 LLM 解释连接起来，以 6 个单细胞数据集评估细胞类型检索、通路/配体受体等分析；作者报告相对 CellWhisperer、BM25 与随机基线显著更好，基因签名查询 MRR 的 Cohen’s d 为 5.98。它值得关注于把自然语言与表达空间接通；但生物学假设仍须湿实验验证，数据集泄漏、检索对照和 LLM 生成解释的可证伪性是证据限制。</p>
-<h3 id="arb-a-matched-authorship-rewriting-benchmark-dataset-for-ai-text-detector-evaluation"><a class="markdownIt-Anchor" href="#arb-a-matched-authorship-rewriting-benchmark-dataset-for-ai-text-detector-evaluation"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.29539">ARB: A Matched Authorship-Rewriting Benchmark Dataset for AI-Text Detector Evaluation</a></h3>
-<p>Gaetano Perrone、Simon Pietro Romano｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a> / <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.29539">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.29539">DOI</a></p>
-<p><strong>仅依据摘要。</strong> ARB 由 1,800 篇人写原文、4 个开源生成器和四类匹配改写版本组成，在 1% 假阳性率下比较 5 个检测器；作者称 FastDetectGPT/Binoculars 对直接生成文本召回 91.2%/93.5%，对“人写后由 LLM 改写”仅 30.8%/15.1%。它提醒部署方不能用传统人类-vs-LLM 评测外推改写场景；语料域、攻击者模型与固定 FPR 设定限制泛化，也不应据此作个体归责。</p>
-<h3 id="benchmarks-are-not-validation-a-system-level-view-of-financial-llm-applications"><a class="markdownIt-Anchor" href="#benchmarks-are-not-validation-a-system-level-view-of-financial-llm-applications"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.28840">Benchmarks Are Not Validation: A System-Level View of Financial LLM Applications</a></h3>
-<p>Burak Payzun 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a> / <a target="_blank" rel="noopener" href="http://cs.SE">cs.SE</a>；金融 × AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.28840">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.28840">DOI</a></p>
-<p><strong>仅依据摘要。</strong> 这是一篇立场/框架文，主张金融 LLM 的上线证据应覆盖数据、检索生成、agent 行为、治理与实施，而不只是 benchmark 分数，并讨论多评委、rubric、一致性和可审计性。关注价值在于明确静态测评遗漏检索失败、工具误用与升级错误；但行业经验框架不是因果实证，尚需任务级事故率、成本和人工控制的独立比较。</p>
-<h3 id="openclaw-and-ollama-in-agentic-ai-toward-fully-autonomous-and-scalable-ai-agent-systems"><a class="markdownIt-Anchor" href="#openclaw-and-ollama-in-agentic-ai-toward-fully-autonomous-and-scalable-ai-agent-systems"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.28629">OpenClaw and Ollama in Agentic AI: Toward Fully Autonomous and Scalable AI Agent Systems</a></h3>
-<p>Konstantinos I. Roumeliotis、Ranjan Sapkota｜arXiv（<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.28629">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.28629">DOI</a></p>
-<p><strong>仅依据摘要。</strong> 论文以 Ollama 推理层与 OpenClaw 编排层提出全栈 agent 分层，并用原型考察持久记忆、工具使用与自适应决策；作者称架构复杂度提高时性能持续改善，并计划公开代码/数据。其价值是强调推理、编排、执行分层；原型对照、任务分布、安全威胁与运维成本若未独立复现，不能据此推断生产可靠性。</p>
-<h3 id="clinician-level-agreement-without-clinical-caution-llm-evaluator-limits-in-medical-ai-benchmarking"><a class="markdownIt-Anchor" href="#clinician-level-agreement-without-clinical-caution-llm-evaluator-limits-in-medical-ai-benchmarking"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.01103">Clinician-Level Agreement Without Clinical Caution: LLM Evaluator Limits in Medical AI Benchmarking</a></h3>
-<p>William Philipp 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.01103">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.01103">DOI</a></p>
-<p><strong>仅依据摘要。</strong> MedQADE 为德语开放式临床题库，含 3,800 题、10 位执业医生与 9 个 LLM 评委；作者称 Gemini 3 Flash 与医生上限的 κ 为 0.694/0.709，却在所有题目给确定评分，且出现架构谱系偏好。它说明统计一致性不等于临床谨慎；置信区间、德语任务范围、题目标注与真实临床工作流外部效度均限制结论，不能作诊疗建议。</p>
-<h3 id="drip-r-a-benchmark-for-decision-making-and-reasoning-under-real-world-policy-ambiguity-in-the-retail-domain"><a class="markdownIt-Anchor" href="#drip-r-a-benchmark-for-decision-making-and-reasoning-under-real-world-policy-ambiguity-in-the-retail-domain"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.07699">DRIP-R: A Benchmark for Decision-Making and Reasoning Under Real-World Policy Ambiguity in the Retail Domain</a></h3>
-<p>Hsuvas Borkakoty 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a> / <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.07699">PDF</a></p>
-<p><strong>仅依据摘要。</strong> DRIP-R 用带客服人格、工具调用和多评委的退货政策模糊场景，测试“并无唯一正确答案”的决策；作者报告前沿模型对相同场景存在根本分歧。它补足了清晰规则 benchmark 的盲区；情景编写、评委偏好和零售政策迁移性会左右结果，不能把分歧直接等同于线上损害率。</p>
-<h3 id="m3mad-bench-multi-dimensional-evaluation-of-multi-agent-debate-across-domains-and-modalities"><a class="markdownIt-Anchor" href="#m3mad-bench-multi-dimensional-evaluation-of-multi-agent-debate-across-domains-and-modalities"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.02854">M3MAD-Bench: Multi-Dimensional Evaluation of Multi-Agent Debate Across Domains and Modalities</a></h3>
-<p>Ao Li 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.02854">PDF</a></p>
-<p><strong>仅依据摘要。</strong> M3MAD-Bench 在知识、数学、医学、自然科学和复杂推理的 13 个数据集上比较 9 个基座模型的多 agent 辩论，并计入 token 与时延；作者称协作式方法在推理/多模态任务更稳健，但效率代价显著。它有助于将“辩论总会更好”的说法变为可测假设；共享模型相关错误、裁判偏差、训练污染和真实业务成本仍需逐任务审计。</p>
-<h3 id="beyond-component-testing-validating-agentic-ai-systems"><a class="markdownIt-Anchor" href="#beyond-component-testing-validating-agentic-ai-systems"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.29405">Beyond Component Testing: Validating Agentic AI Systems</a></h3>
-<p>Fabio Orazio Mirto 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> / <a target="_blank" rel="noopener" href="http://cs.MA">cs.MA</a> / <a target="_blank" rel="noopener" href="http://cs.SE">cs.SE</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.29405">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.29405">DOI</a></p>
-<p><strong>仅依据摘要。</strong> 综述汇集 257 篇 agent 评测、软件保障和监管研究，按行为、安全、时间、监管、多 agent 五维整理，并以医疗、工业、智慧交通案例说明轨迹级验证。作者认为行为评测相对成熟，时间有效性、运行时证据和开放式多 agent 保障不足；综述的覆盖与分类不可替代具体系统的红队、监控和事故数据。</p>
-<h3 id="suland-v2-a-refined-rgb-dataset-and-deep-learning-object-detection-benchmark-for-uavugv-based-surface-landmine-detection-under-domain-shift"><a class="markdownIt-Anchor" href="#suland-v2-a-refined-rgb-dataset-and-deep-learning-object-detection-benchmark-for-uavugv-based-surface-landmine-detection-under-domain-shift"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.28996">SULAND v2: A Refined RGB Dataset and Deep Learning Object Detection Benchmark for UAV/UGV-Based SUrface LANDmine Detection Under Domain Shift</a></h3>
-<p>Sagar Lekhak 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.28996">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.28996">DOI</a></p>
-<p><strong>仅依据摘要。</strong> SULAND_v2 在保留图像/划分的前提下修订地雷检测标签，含 33,771 图、12,433 框，并比较 9 个系列 35 个检测器；作者报告 YOLOv12-Small IID mAP@50 为 0.908，RF-DETR-Large OOD 为 0.799、召回 0.675。安全关键场景中 IID 高分不代表可部署；地域、传感器、漏检代价和实地安全流程未由该 benchmark 充分覆盖。</p>
-<h3 id="scaling-scientific-discovery-environments-for-turn-level-agentic-rl"><a class="markdownIt-Anchor" href="#scaling-scientific-discovery-environments-for-turn-level-agentic-rl"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.28990">Scaling Scientific Discovery Environments for Turn-Level Agentic RL</a></h3>
-<p>Yucheng Xu 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.28990">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.28990">DOI</a></p>
-<p><strong>仅依据摘要。</strong> SciDisco 把假设、数据、隐藏证据图和验证器编译成可过程核验的科学发现环境，以轨迹合成和逐轮 credit assignment 训练；作者称 SciDisco-14B 在假设驱动数据分析 benchmark 达到 SOTA。价值是为长程分析提供可核验反馈；隐藏图和验证器定义可能把训练偏向可形式化的证据链，跨学科真实发现与算力成本尚待检验。</p>
-<h3 id="so-fake-benchmarking-and-explaining-social-media-image-forgery-detection"><a class="markdownIt-Anchor" href="#so-fake-benchmarking-and-explaining-social-media-image-forgery-detection"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.18660">So-Fake: Benchmarking and Explaining Social Media Image Forgery Detection</a></h3>
-<p>Zhenglin Huang 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2505.18660">PDF</a></p>
-<p><strong>仅依据摘要。</strong> So-Fake-Set 含逾 200 万图像、35 个生成模型，另以 10 万商业模型图像设 OOD 测试；So-Fake-R1 用视觉语言与 RL 做检测、定位和解释，作者称比第二名高 1.3% 检测准确率、4.5% 定位 IoU。它面向社媒分布外伪造；公开后生成器迭代、压缩/再传播、误报伤害和待发布的代码数据都会影响可复现性。</p>
-<h3 id="moroute-dynamic-routing-for-in-context-multimodal-video-generation"><a class="markdownIt-Anchor" href="#moroute-dynamic-routing-for-in-context-multimodal-video-generation"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.29545">MoRoute: Dynamic Routing for In-Context Multimodal Video Generation</a></h3>
-<p>Chong Gao 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.29545">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.29545">DOI</a></p>
-<p><strong>仅依据摘要。</strong> MoRoute 用轻量路由器让视频 DiT 各 block 从冻结 VLM 的层级表示中动态选层，并把参考图/源视频作上下文 token；作者称在 IntelligentVBench、OpenVE-Bench、RefVIE-Bench 的 1–5 分制平均提升 0.15、0.18、0.34。异构预训练骨干复用是其看点；评分主观性、训练/推理开销、版权数据和长视频一致性仍需独立评估。</p>
-<h3 id="seekbrain-an-autonomous-multi-agent-system-for-accelerating-neuroscience-discovery"><a class="markdownIt-Anchor" href="#seekbrain-an-autonomous-multi-agent-system-for-accelerating-neuroscience-discovery"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.29347">SeekBrain: An Autonomous Multi-Agent System for Accelerating Neuroscience Discovery</a></h3>
-<p>Jiamin Wu 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.MA">cs.MA</a> / <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.29347">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.29347">DOI</a></p>
-<p><strong>仅依据摘要。</strong> SeekBrain 从代码—论文对构造分析配方，由多 agent 分层规划并进行跨模态神经科学分析；作者称其在专家标注 BrainArena 超过 agent 基线，并给出斑马鱼和小鼠数据的发现案例。它可提升可复用分析工作流；论文—代码配对质量、基线预算、事后叙事与生物学验证决定了“发现”能否成立。</p>
-<h3 id="on-the-generalization-of-steering-vectors-for-chain-of-thought-faithfulness"><a class="markdownIt-Anchor" href="#on-the-generalization-of-steering-vectors-for-chain-of-thought-faithfulness"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.29062">On the Generalization of Steering Vectors for Chain-of-Thought Faithfulness</a></h3>
-<p>Matthew Nguyen 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.29062">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.29062">DOI</a></p>
-<p><strong>仅依据摘要。</strong> 研究在 Gemma-3 4B、Qwen-3.5 9B、Gemma-3 12B 的带提示问答中测试 steering vector 跨线索/数据集泛化；作者称仅最大模型稳定增加线索承认，且有效时作用主要由评测设定而非向量训练设定决定，线索使用率大致不变。它关联 CoT 可监控性；“承认”并不证明真实推理忠实，提示依赖、评测污染和能力副作用必须单独检查。</p>
+<h2 id="ai-论文">AI 论文</h2>
+<p>以下 14 篇与上文重点合计为今日去重后的 18
+篇候选。除特别说明外均<strong>仅依据 arXiv 官方 RSS
+摘要</strong>，不把作者自述视为独立验证事实；模型分数还应检查基线公平性、训练/评测污染、可复现性和算力成本。</p>
+<h3 id="elisa-an-interpretable-hybrid-generative-ai-agent-for-expression-grounded-discovery-in-single-cell-genomics"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.11872">ELISA: An Interpretable Hybrid
+Generative AI Agent for Expression-Grounded Discovery in Single-Cell
+Genomics</a></h3>
+<p>Omar Coser｜arXiv（q-bio.GN / cs.AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.11872">PDF</a></p>
+<p><strong>仅依据摘要。</strong> ELISA 将 scGPT 表达嵌入、BioBERT
+语义检索和 LLM 解释连接起来，以 6
+个单细胞数据集评估细胞类型检索、通路/配体受体等分析；作者报告相对
+CellWhisperer、BM25 与随机基线显著更好，基因签名查询 MRR 的 Cohen’s d 为
+5.98。它值得关注于把自然语言与表达空间接通；但生物学假设仍须湿实验验证，数据集泄漏、检索对照和
+LLM 生成解释的可证伪性是证据限制。</p>
+<h3 id="arb-a-matched-authorship-rewriting-benchmark-dataset-for-ai-text-detector-evaluation"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.29539">ARB: A Matched
+Authorship-Rewriting Benchmark Dataset for AI-Text Detector
+Evaluation</a></h3>
+<p>Gaetano Perrone、Simon Pietro Romano｜arXiv（cs.CL / cs.AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.29539">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.29539">DOI</a></p>
+<p><strong>仅依据摘要。</strong> ARB 由 1,800 篇人写原文、4
+个开源生成器和四类匹配改写版本组成，在 1% 假阳性率下比较 5
+个检测器；作者称 FastDetectGPT/Binoculars 对直接生成文本召回
+91.2%/93.5%，对“人写后由 LLM 改写”仅
+30.8%/15.1%。它提醒部署方不能用传统人类-vs-LLM
+评测外推改写场景；语料域、攻击者模型与固定 FPR
+设定限制泛化，也不应据此作个体归责。</p>
+<h3 id="benchmarks-are-not-validation-a-system-level-view-of-financial-llm-applications"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.28840">Benchmarks Are Not Validation: A
+System-Level View of Financial LLM Applications</a></h3>
+<p>Burak Payzun 等｜arXiv（cs.CL / cs.SE；金融 × AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.28840">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.28840">DOI</a></p>
+<p><strong>仅依据摘要。</strong> 这是一篇立场/框架文，主张金融 LLM
+的上线证据应覆盖数据、检索生成、agent 行为、治理与实施，而不只是
+benchmark
+分数，并讨论多评委、rubric、一致性和可审计性。关注价值在于明确静态测评遗漏检索失败、工具误用与升级错误；但行业经验框架不是因果实证，尚需任务级事故率、成本和人工控制的独立比较。</p>
+<h3 id="openclaw-and-ollama-in-agentic-ai-toward-fully-autonomous-and-scalable-ai-agent-systems"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.28629">OpenClaw and Ollama in Agentic
+AI: Toward Fully Autonomous and Scalable AI Agent Systems</a></h3>
+<p>Konstantinos I. Roumeliotis、Ranjan Sapkota｜arXiv（cs.AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.28629">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.28629">DOI</a></p>
+<p><strong>仅依据摘要。</strong> 论文以 Ollama 推理层与 OpenClaw
+编排层提出全栈 agent
+分层，并用原型考察持久记忆、工具使用与自适应决策；作者称架构复杂度提高时性能持续改善，并计划公开代码/数据。其价值是强调推理、编排、执行分层；原型对照、任务分布、安全威胁与运维成本若未独立复现，不能据此推断生产可靠性。</p>
+<h3 id="clinician-level-agreement-without-clinical-caution-llm-evaluator-limits-in-medical-ai-benchmarking"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.01103">Clinician-Level Agreement
+Without Clinical Caution: LLM Evaluator Limits in Medical AI
+Benchmarking</a></h3>
+<p>William Philipp 等｜arXiv（cs.CL）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.01103">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.01103">DOI</a></p>
+<p><strong>仅依据摘要。</strong> MedQADE 为德语开放式临床题库，含 3,800
+题、10 位执业医生与 9 个 LLM 评委；作者称 Gemini 3 Flash 与医生上限的 κ
+为
+0.694/0.709，却在所有题目给确定评分，且出现架构谱系偏好。它说明统计一致性不等于临床谨慎；置信区间、德语任务范围、题目标注与真实临床工作流外部效度均限制结论，不能作诊疗建议。</p>
+<h3 id="drip-r-a-benchmark-for-decision-making-and-reasoning-under-real-world-policy-ambiguity-in-the-retail-domain"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.07699">DRIP-R: A Benchmark for
+Decision-Making and Reasoning Under Real-World Policy Ambiguity in the
+Retail Domain</a></h3>
+<p>Hsuvas Borkakoty 等｜arXiv（cs.CL / cs.AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.07699">PDF</a></p>
+<p><strong>仅依据摘要。</strong> DRIP-R
+用带客服人格、工具调用和多评委的退货政策模糊场景，测试“并无唯一正确答案”的决策；作者报告前沿模型对相同场景存在根本分歧。它补足了清晰规则
+benchmark
+的盲区；情景编写、评委偏好和零售政策迁移性会左右结果，不能把分歧直接等同于线上损害率。</p>
+<h3 id="m3mad-bench-multi-dimensional-evaluation-of-multi-agent-debate-across-domains-and-modalities"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.02854">M3MAD-Bench: Multi-Dimensional
+Evaluation of Multi-Agent Debate Across Domains and Modalities</a></h3>
+<p>Ao Li 等｜arXiv（cs.AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.02854">PDF</a></p>
+<p><strong>仅依据摘要。</strong> M3MAD-Bench
+在知识、数学、医学、自然科学和复杂推理的 13 个数据集上比较 9
+个基座模型的多 agent 辩论，并计入 token
+与时延；作者称协作式方法在推理/多模态任务更稳健，但效率代价显著。它有助于将“辩论总会更好”的说法变为可测假设；共享模型相关错误、裁判偏差、训练污染和真实业务成本仍需逐任务审计。</p>
+<h3 id="beyond-component-testing-validating-agentic-ai-systems"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.29405">Beyond Component Testing:
+Validating Agentic AI Systems</a></h3>
+<p>Fabio Orazio Mirto 等｜arXiv（cs.AI / cs.MA / cs.SE）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.29405">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.29405">DOI</a></p>
+<p><strong>仅依据摘要。</strong> 综述汇集 257 篇 agent
+评测、软件保障和监管研究，按行为、安全、时间、监管、多 agent
+五维整理，并以医疗、工业、智慧交通案例说明轨迹级验证。作者认为行为评测相对成熟，时间有效性、运行时证据和开放式多
+agent
+保障不足；综述的覆盖与分类不可替代具体系统的红队、监控和事故数据。</p>
+<h3 id="suland-v2-a-refined-rgb-dataset-and-deep-learning-object-detection-benchmark-for-uavugv-based-surface-landmine-detection-under-domain-shift"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.28996">SULAND v2: A Refined RGB Dataset
+and Deep Learning Object Detection Benchmark for UAV/UGV-Based SUrface
+LANDmine Detection Under Domain Shift</a></h3>
+<p>Sagar Lekhak 等｜arXiv（cs.CV）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.28996">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.28996">DOI</a></p>
+<p><strong>仅依据摘要。</strong> SULAND_v2
+在保留图像/划分的前提下修订地雷检测标签，含 33,771 图、12,433 框，并比较
+9 个系列 35 个检测器；作者报告 YOLOv12-Small IID <a href="mailto:mAP@50" class="email">mAP@50</a> 为 0.908，RF-DETR-Large OOD 为 0.799、召回
+0.675。安全关键场景中 IID
+高分不代表可部署；地域、传感器、漏检代价和实地安全流程未由该 benchmark
+充分覆盖。</p>
+<h3 id="scaling-scientific-discovery-environments-for-turn-level-agentic-rl"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.28990">Scaling Scientific Discovery
+Environments for Turn-Level Agentic RL</a></h3>
+<p>Yucheng Xu 等｜arXiv（cs.AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.28990">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.28990">DOI</a></p>
+<p><strong>仅依据摘要。</strong> SciDisco
+把假设、数据、隐藏证据图和验证器编译成可过程核验的科学发现环境，以轨迹合成和逐轮
+credit assignment 训练；作者称 SciDisco-14B 在假设驱动数据分析 benchmark
+达到
+SOTA。价值是为长程分析提供可核验反馈；隐藏图和验证器定义可能把训练偏向可形式化的证据链，跨学科真实发现与算力成本尚待检验。</p>
+<h3 id="so-fake-benchmarking-and-explaining-social-media-image-forgery-detection"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.18660">So-Fake: Benchmarking and
+Explaining Social Media Image Forgery Detection</a></h3>
+<p>Zhenglin Huang 等｜arXiv（cs.CV）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2505.18660">PDF</a></p>
+<p><strong>仅依据摘要。</strong> So-Fake-Set 含逾 200 万图像、35
+个生成模型，另以 10 万商业模型图像设 OOD 测试；So-Fake-R1 用视觉语言与
+RL 做检测、定位和解释，作者称比第二名高 1.3% 检测准确率、4.5% 定位
+IoU。它面向社媒分布外伪造；公开后生成器迭代、压缩/再传播、误报伤害和待发布的代码数据都会影响可复现性。</p>
+<h3 id="moroute-dynamic-routing-for-in-context-multimodal-video-generation"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.29545">MoRoute: Dynamic Routing for
+In-Context Multimodal Video Generation</a></h3>
+<p>Chong Gao 等｜arXiv（cs.CV）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.29545">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.29545">DOI</a></p>
+<p><strong>仅依据摘要。</strong> MoRoute 用轻量路由器让视频 DiT 各 block
+从冻结 VLM 的层级表示中动态选层，并把参考图/源视频作上下文
+token；作者称在 IntelligentVBench、OpenVE-Bench、RefVIE-Bench 的 1–5
+分制平均提升
+0.15、0.18、0.34。异构预训练骨干复用是其看点；评分主观性、训练/推理开销、版权数据和长视频一致性仍需独立评估。</p>
+<h3 id="seekbrain-an-autonomous-multi-agent-system-for-accelerating-neuroscience-discovery"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.29347">SeekBrain: An Autonomous
+Multi-Agent System for Accelerating Neuroscience Discovery</a></h3>
+<p>Jiamin Wu 等｜arXiv（cs.MA / cs.AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.29347">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.29347">DOI</a></p>
+<p><strong>仅依据摘要。</strong> SeekBrain
+从代码—论文对构造分析配方，由多 agent
+分层规划并进行跨模态神经科学分析；作者称其在专家标注 BrainArena 超过
+agent
+基线，并给出斑马鱼和小鼠数据的发现案例。它可提升可复用分析工作流；论文—代码配对质量、基线预算、事后叙事与生物学验证决定了“发现”能否成立。</p>
+<h3 id="on-the-generalization-of-steering-vectors-for-chain-of-thought-faithfulness"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.29062">On the Generalization of
+Steering Vectors for Chain-of-Thought Faithfulness</a></h3>
+<p>Matthew Nguyen 等｜arXiv（cs.AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.29062">PDF</a>｜<a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.29062">DOI</a></p>
+<p><strong>仅依据摘要。</strong> 研究在 Gemma-3 4B、Qwen-3.5 9B、Gemma-3
+12B 的带提示问答中测试 steering vector
+跨线索/数据集泛化；作者称仅最大模型稳定增加线索承认，且有效时作用主要由评测设定而非向量训练设定决定，线索使用率大致不变。它关联
+CoT
+可监控性；“承认”并不证明真实推理忠实，提示依赖、评测污染和能力副作用必须单独检查。</p>
 
                 
               </div>
