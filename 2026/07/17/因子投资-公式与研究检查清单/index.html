@@ -296,7 +296,7 @@
         
         
         
-          27 分钟
+          26 分钟
         
       </span>
     
@@ -360,258 +360,119 @@
         <div><span>阅读</span><strong>约 10 分钟</strong></div>
         <div><span>材料</span><strong>7 节 · 0 段代码</strong></div>
       </div>
-    </header><div class="quant-doc-intro"><p>这篇文章有两个用途：学习时统一公式口径，研究交付前逐项验收。所有公式默认收益率用小数表示；i
-是股票，t 是时间，N 是当期股票数，T 是期数，K
-是解释变量或因子数。凡出现“年化”，都必须同时写明原始频率和一年期数。</p>
-</div><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="一价格收益与复利">一、价格、收益与复利</h2>
-<h3 id="含现金分配的简单收益率">1. 含现金分配的简单收益率</h3>
-<p><span class="math display">\[
-R_{i,t}=(P_{i,t}+D_{i,t}-P_{i,t-1})/P_{i,t-1}
-\]</span></p>
-<p>P 是每股价格，单位为元/股；D 是本期每股现金分配，单位同为元/股；R
-是每期无量纲比例。若数据供应商已经提供含分红复权价，不能再加一次
-D。横截面板的维度为 N×T。</p>
-<h3 id="对数收益率">2. 对数收益率</h3>
-<p><span class="math display">\[
-r_{i,t}=\ln(1+R_{i,t})=\ln(P^*_{i,t}/P^*_{i,t-1})
-\]</span></p>
-<p>P*
-表示口径一致的总回报价格。对数收益可跨时间相加；组合横截面收益仍应以简单收益按权重相加。R
-接近负一时，对数收益对极端亏损非常敏感；R 等于负一时没有有限对数值。</p>
-<h3 id="累计与年化收益">3. 累计与年化收益</h3>
-<p><span class="math display">\[
-R_{0:T}^{cum}=\prod_{t=1}^{T}(1+R_t)-1
-\]</span></p>
-<p><span class="math display">\[
-R^{ann}=(1+R_{0:T}^{cum})^{A/T}-1
-\]</span></p>
-<p>A 是一年包含的观测期数，例如日频常近似 252，月频为
-12。累计收益是整个区间比例；年化收益是每年比例。短样本的年化会放大偶然结果，不能当作稳定预期。</p>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="二风险相关性与组合">二、风险、相关性与组合</h2>
-<h3 id="样本均值方差与波动率">4. 样本均值、方差与波动率</h3>
-<p><span class="math display">\[
-\bar R=(1/T)\sum_{t=1}^{T}R_t
-\]</span></p>
-<p><span class="math display">\[
-s^2=(1/(T-1))\sum_{t=1}^{T}(R_t-\bar R)^2
-\]</span></p>
-<p><span class="math display">\[
-\sigma_{ann}=s\sqrt A
-\]</span></p>
-<p>均值和标准差的单位是每期收益率，方差单位是收益率平方。波动率平方根年化隐含相同频率分布和有限二阶矩等近似条件；存在强烈自相关时应从聚合收益直接估计，不能机械乘根号
-A。</p>
-<h3 id="协方差与相关系数">5. 协方差与相关系数</h3>
-<p><span class="math display">\[
-cov(X,Y)=(1/(T-1))\sum_{t=1}^{T}(X_t-\bar X)(Y_t-\bar Y)
-\]</span></p>
-<p><span class="math display">\[
-\rho_{XY}=cov(X,Y)/(s_Xs_Y)
-\]</span></p>
-<p>协方差单位是收益率平方，相关系数无量纲且介于负一与一。相关矩阵是
-N×N；它描述线性共同变化，不给出因果方向。</p>
-<h3 id="组合收益与方差">6. 组合收益与方差</h3>
-<p><span class="math display">\[
-R_{p,t}=w_t^{\prime}R_t
-\]</span></p>
-<p><span class="math display">\[
-\sigma_p^2=w^{\prime}\Sigma w
-\]</span></p>
-<p>w 和 R 都是 N×1，Σ 是 N×N
-协方差矩阵，结果分别是一期组合收益和收益平方。权重必须与下一期收益的资产顺序一致；当期收盘后形成的权重不能假设以同一收盘价无摩擦成交。</p>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="三绩效指标">三、绩效指标</h2>
-<h3 id="sharpe-比率">7. Sharpe 比率</h3>
-<p><span class="math display">\[
-SR_{ann}=\sqrt A\,\bar R_e/s(R_e)
-\]</span></p>
-<p>R(e) 是每期组合收益减同期限无风险收益。Sharpe
-无量纲，但必须报告样本区间、频率、无风险利率、是否扣费以及置信区间。非独立同分布收益下，根号年化只是近似。</p>
-<h3 id="信息比率与跟踪误差">8. 信息比率与跟踪误差</h3>
-<p><span class="math display">\[
-TE_{ann}=\sqrt A\,s(R_p-R_b)
-\]</span></p>
-<p><span class="math display">\[
-IR_{ann}=\sqrt A\,\overline{(R_p-R_b)}/s(R_p-R_b)
-\]</span></p>
-<p>R(b) 是同频基准收益。TE 单位是每年百分比，IR
-无量纲。基准必须与投资范围、币种和再投资口径一致，否则主动收益没有清晰含义。</p>
-<h3 id="最大回撤">9. 最大回撤</h3>
-<p><span class="math display">\[
-W_t=\prod_{u=1}^{t}(1+R_u)
-\]</span></p>
-<p><span class="math display">\[
-DD_t=W_t/\max_{0\le u\le t}W_u-1
-\]</span></p>
-<p><span class="math display">\[
-MDD=\min_t DD_t
-\]</span></p>
-<p>W 是从一开始的净值，DD 与 MDD
-是非正比例。也有人把最大回撤报告为正数绝对值，报告中必须声明符号。最大回撤高度依赖样本起止点，不能只给一个数而不展示路径和修复时长。</p>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="四回归与统计推断">四、回归与统计推断</h2>
-<h3 id="ols">10. OLS</h3>
-<p><span class="math display">\[
-y=X\beta+\varepsilon
-\]</span></p>
-<p><span class="math display">\[
-\hat\beta=(X^{\prime}X)^{-1}X^{\prime}y
-\]</span></p>
-<p>y 是 T×1，X 是 T×K，β 是 K×1，残差 ε 是 T×1。若 X
-包含常数列，第一项通常是截距。逆矩阵公式要求 X
-满列秩；实际代码更适合数值稳定的最小二乘或 QR 分解，而非显式求逆。</p>
-<h3 id="t-统计量">11. t 统计量</h3>
-<p><span class="math display">\[
-t_j=(\hat\beta_j-\beta_{j,0})/SE(\hat\beta_j)
-\]</span></p>
-<p>t 无量纲。它只相对于所采用的误差模型成立：普通同方差标准误、White
-稳健标准误、聚类标准误和 Newey–West 标准误可以给出完全不同的判断。</p>
-<h3 id="famamacbeth-风险价格">12. Fama–MacBeth 风险价格</h3>
-<p>每期横截面回归：</p>
-<p><span class="math display">\[
-R_{i,t+1}=\lambda_{0,t}+x_{i,t}^{\prime}\lambda_t+u_{i,t+1}
-\]</span></p>
-<p>时间平均：</p>
-<p><span class="math display">\[
-\bar\lambda=(1/T)\sum_{t=1}^{T}\hat\lambda_t
-\]</span></p>
-<p>x 是决策时点可得的 N×K 特征或暴露，λ(t) 是 K×1
-的当期价格。回归用未来一期收益，所以 x
-与收益的时间对齐是核心。标准误来自 λ(t) 的时间序列，若其自相关则需 HAC
-修正。</p>
-<h3 id="neweywest-协方差">13. Newey–West 协方差</h3>
-<p>令 u(t)=x(t)e(t) 为 K×1 得分向量，截断滞后为 L，Bartlett 权重为
-q(l)=1-l/(L+1)：</p>
-<p><span class="math display">\[
-S=\Gamma_0+\sum_{l=1}^{L}q(l)(\Gamma_l+\Gamma_l^{\prime})
-\]</span></p>
-<p><span class="math display">\[
-\Gamma_l=(1/T)\sum_{t=l+1}^{T}u_tu_{t-l}^{\prime}
-\]</span></p>
-<p>S 是 K×K 的长期协方差核心，需结合设计矩阵得到系数协方差。L
-不是“越大越稳健”：过小遗漏相关，过大增加估计噪声。必须报告选择规则和敏感性。</p>
-<h3 id="grs-联合-alpha-检验">14. GRS 联合 Alpha 检验</h3>
-<p>设 N 个测试资产对 K 个因子做 T 期时序回归，α 是 N×1 截距向量，Σ(e) 是
-N×N 残差协方差，μ(f) 与 Σ(f) 是 K×1 因子均值和 K×K 因子协方差：</p>
-<p><span class="math display">\[
+    </header><div class="quant-doc-intro"><p>这篇文章有两个用途：学习时统一公式口径，研究交付前逐项验收。所有公式默认收益率用小数表示；i 是股票，t 是时间，N 是当期股票数，T 是期数，K 是解释变量或因子数。凡出现“年化”，都必须同时写明原始频率和一年期数。</p>
+</div><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="一、价格、收益与复利"><a href="#一、价格、收益与复利" class="headerlink" title="一、价格、收益与复利"></a>一、价格、收益与复利</h2><h3 id="1-含现金分配的简单收益率"><a href="#1-含现金分配的简单收益率" class="headerlink" title="1. 含现金分配的简单收益率"></a>1. 含现金分配的简单收益率</h3><script type="math/tex; mode=display">
+R_{i,t}=(P_{i,t}+D_{i,t}-P_{i,t-1})/P_{i,t-1}</script><p>P 是每股价格，单位为元/股；D 是本期每股现金分配，单位同为元/股；R 是每期无量纲比例。若数据供应商已经提供含分红复权价，不能再加一次 D。横截面板的维度为 N×T。</p>
+<h3 id="2-对数收益率"><a href="#2-对数收益率" class="headerlink" title="2. 对数收益率"></a>2. 对数收益率</h3><script type="math/tex; mode=display">
+r_{i,t}=\ln(1+R_{i,t})=\ln(P^*_{i,t}/P^*_{i,t-1})</script><p>P* 表示口径一致的总回报价格。对数收益可跨时间相加；组合横截面收益仍应以简单收益按权重相加。R 接近负一时，对数收益对极端亏损非常敏感；R 等于负一时没有有限对数值。</p>
+<h3 id="3-累计与年化收益"><a href="#3-累计与年化收益" class="headerlink" title="3. 累计与年化收益"></a>3. 累计与年化收益</h3><script type="math/tex; mode=display">
+R_{0:T}^{cum}=\prod_{t=1}^{T}(1+R_t)-1</script><script type="math/tex; mode=display">
+R^{ann}=(1+R_{0:T}^{cum})^{A/T}-1</script><p>A 是一年包含的观测期数，例如日频常近似 252，月频为 12。累计收益是整个区间比例；年化收益是每年比例。短样本的年化会放大偶然结果，不能当作稳定预期。</p>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="二、风险、相关性与组合"><a href="#二、风险、相关性与组合" class="headerlink" title="二、风险、相关性与组合"></a>二、风险、相关性与组合</h2><h3 id="4-样本均值、方差与波动率"><a href="#4-样本均值、方差与波动率" class="headerlink" title="4. 样本均值、方差与波动率"></a>4. 样本均值、方差与波动率</h3><script type="math/tex; mode=display">
+\bar R=(1/T)\sum_{t=1}^{T}R_t</script><script type="math/tex; mode=display">
+s^2=(1/(T-1))\sum_{t=1}^{T}(R_t-\bar R)^2</script><script type="math/tex; mode=display">
+\sigma_{ann}=s\sqrt A</script><p>均值和标准差的单位是每期收益率，方差单位是收益率平方。波动率平方根年化隐含相同频率分布和有限二阶矩等近似条件；存在强烈自相关时应从聚合收益直接估计，不能机械乘根号 A。</p>
+<h3 id="5-协方差与相关系数"><a href="#5-协方差与相关系数" class="headerlink" title="5. 协方差与相关系数"></a>5. 协方差与相关系数</h3><script type="math/tex; mode=display">
+cov(X,Y)=(1/(T-1))\sum_{t=1}^{T}(X_t-\bar X)(Y_t-\bar Y)</script><script type="math/tex; mode=display">
+\rho_{XY}=cov(X,Y)/(s_Xs_Y)</script><p>协方差单位是收益率平方，相关系数无量纲且介于负一与一。相关矩阵是 N×N；它描述线性共同变化，不给出因果方向。</p>
+<h3 id="6-组合收益与方差"><a href="#6-组合收益与方差" class="headerlink" title="6. 组合收益与方差"></a>6. 组合收益与方差</h3><script type="math/tex; mode=display">
+R_{p,t}=w_t^{\prime}R_t</script><script type="math/tex; mode=display">
+\sigma_p^2=w^{\prime}\Sigma w</script><p>w 和 R 都是 N×1，Σ 是 N×N 协方差矩阵，结果分别是一期组合收益和收益平方。权重必须与下一期收益的资产顺序一致；当期收盘后形成的权重不能假设以同一收盘价无摩擦成交。</p>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="三、绩效指标"><a href="#三、绩效指标" class="headerlink" title="三、绩效指标"></a>三、绩效指标</h2><h3 id="7-Sharpe-比率"><a href="#7-Sharpe-比率" class="headerlink" title="7. Sharpe 比率"></a>7. Sharpe 比率</h3><script type="math/tex; mode=display">
+SR_{ann}=\sqrt A\,\bar R_e/s(R_e)</script><p>R(e) 是每期组合收益减同期限无风险收益。Sharpe 无量纲，但必须报告样本区间、频率、无风险利率、是否扣费以及置信区间。非独立同分布收益下，根号年化只是近似。</p>
+<h3 id="8-信息比率与跟踪误差"><a href="#8-信息比率与跟踪误差" class="headerlink" title="8. 信息比率与跟踪误差"></a>8. 信息比率与跟踪误差</h3><script type="math/tex; mode=display">
+TE_{ann}=\sqrt A\,s(R_p-R_b)</script><script type="math/tex; mode=display">
+IR_{ann}=\sqrt A\,\overline{(R_p-R_b)}/s(R_p-R_b)</script><p>R(b) 是同频基准收益。TE 单位是每年百分比，IR 无量纲。基准必须与投资范围、币种和再投资口径一致，否则主动收益没有清晰含义。</p>
+<h3 id="9-最大回撤"><a href="#9-最大回撤" class="headerlink" title="9. 最大回撤"></a>9. 最大回撤</h3><script type="math/tex; mode=display">
+W_t=\prod_{u=1}^{t}(1+R_u)</script><script type="math/tex; mode=display">
+DD_t=W_t/\max_{0\le u\le t}W_u-1</script><script type="math/tex; mode=display">
+MDD=\min_t DD_t</script><p>W 是从一开始的净值，DD 与 MDD 是非正比例。也有人把最大回撤报告为正数绝对值，报告中必须声明符号。最大回撤高度依赖样本起止点，不能只给一个数而不展示路径和修复时长。</p>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="四、回归与统计推断"><a href="#四、回归与统计推断" class="headerlink" title="四、回归与统计推断"></a>四、回归与统计推断</h2><h3 id="10-OLS"><a href="#10-OLS" class="headerlink" title="10. OLS"></a>10. OLS</h3><script type="math/tex; mode=display">
+y=X\beta+\varepsilon</script><script type="math/tex; mode=display">
+\hat\beta=(X^{\prime}X)^{-1}X^{\prime}y</script><p>y 是 T×1，X 是 T×K，β 是 K×1，残差 ε 是 T×1。若 X 包含常数列，第一项通常是截距。逆矩阵公式要求 X 满列秩；实际代码更适合数值稳定的最小二乘或 QR 分解，而非显式求逆。</p>
+<h3 id="11-t-统计量"><a href="#11-t-统计量" class="headerlink" title="11. t 统计量"></a>11. t 统计量</h3><script type="math/tex; mode=display">
+t_j=(\hat\beta_j-\beta_{j,0})/SE(\hat\beta_j)</script><p>t 无量纲。它只相对于所采用的误差模型成立：普通同方差标准误、White 稳健标准误、聚类标准误和 Newey–West 标准误可以给出完全不同的判断。</p>
+<h3 id="12-Fama–MacBeth-风险价格"><a href="#12-Fama–MacBeth-风险价格" class="headerlink" title="12. Fama–MacBeth 风险价格"></a>12. Fama–MacBeth 风险价格</h3><p>每期横截面回归：</p>
+<script type="math/tex; mode=display">
+R_{i,t+1}=\lambda_{0,t}+x_{i,t}^{\prime}\lambda_t+u_{i,t+1}</script><p>时间平均：</p>
+<script type="math/tex; mode=display">
+\bar\lambda=(1/T)\sum_{t=1}^{T}\hat\lambda_t</script><p>x 是决策时点可得的 N×K 特征或暴露，λ(t) 是 K×1 的当期价格。回归用未来一期收益，所以 x 与收益的时间对齐是核心。标准误来自 λ(t) 的时间序列，若其自相关则需 HAC 修正。</p>
+<h3 id="13-Newey–West-协方差"><a href="#13-Newey–West-协方差" class="headerlink" title="13. Newey–West 协方差"></a>13. Newey–West 协方差</h3><p>令 u(t)=x(t)e(t) 为 K×1 得分向量，截断滞后为 L，Bartlett 权重为 q(l)=1-l/(L+1)：</p>
+<script type="math/tex; mode=display">
+S=\Gamma_0+\sum_{l=1}^{L}q(l)(\Gamma_l+\Gamma_l^{\prime})</script><script type="math/tex; mode=display">
+\Gamma_l=(1/T)\sum_{t=l+1}^{T}u_tu_{t-l}^{\prime}</script><p>S 是 K×K 的长期协方差核心，需结合设计矩阵得到系数协方差。L 不是“越大越稳健”：过小遗漏相关，过大增加估计噪声。必须报告选择规则和敏感性。</p>
+<h3 id="14-GRS-联合-Alpha-检验"><a href="#14-GRS-联合-Alpha-检验" class="headerlink" title="14. GRS 联合 Alpha 检验"></a>14. GRS 联合 Alpha 检验</h3><p>设 N 个测试资产对 K 个因子做 T 期时序回归，α 是 N×1 截距向量，Σ(e) 是 N×N 残差协方差，μ(f) 与 Σ(f) 是 K×1 因子均值和 K×K 因子协方差：</p>
+<script type="math/tex; mode=display">
 GRS=((T-N-K)/N)\,
 \frac{\hat\alpha^{\prime}\hat\Sigma_e^{-1}\hat\alpha}
-{1+\hat\mu_f^{\prime}\hat\Sigma_f^{-1}\hat\mu_f}
-\]</span></p>
-<p>在经典假设下它服从 F(N,T-N-K)。检验的零假设是全部 Alpha 同时为零。若
-T 不足、N
-很大或协方差接近奇异，统计量会不稳定；拒绝模型也不告诉我们哪一个替代模型正确。</p>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="五因子预测与交易实现">五、因子预测与交易实现</h2>
-<h3 id="ic-与-rank-ic">15. IC 与 Rank IC</h3>
-<p><span class="math display">\[
-IC_t=corr_i(x_{i,t},R_{i,t+1})
-\]</span></p>
-<p><span class="math display">\[
-RankIC_t=corr_i(rank(x_{i,t}),rank(R_{i,t+1}))
-\]</span></p>
-<p>相关在每个 t 的横截面 i 上计算，得到长度 T 的时间序列。IC
-无量纲。必须说明收益期限、股票池、缺失值处理、中性化和极值处理。IC
-均值显著不保证分层组合扣费后赚钱。</p>
-<h3 id="换手率">16. 换手率</h3>
-<p>考虑收益漂移后的再平衡前权重：</p>
-<p><span class="math display">\[
+{1+\hat\mu_f^{\prime}\hat\Sigma_f^{-1}\hat\mu_f}</script><p>在经典假设下它服从 F(N,T-N-K)。检验的零假设是全部 Alpha 同时为零。若 T 不足、N 很大或协方差接近奇异，统计量会不稳定；拒绝模型也不告诉我们哪一个替代模型正确。</p>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="五、因子预测与交易实现"><a href="#五、因子预测与交易实现" class="headerlink" title="五、因子预测与交易实现"></a>五、因子预测与交易实现</h2><h3 id="15-IC-与-Rank-IC"><a href="#15-IC-与-Rank-IC" class="headerlink" title="15. IC 与 Rank IC"></a>15. IC 与 Rank IC</h3><script type="math/tex; mode=display">
+IC_t=corr_i(x_{i,t},R_{i,t+1})</script><script type="math/tex; mode=display">
+RankIC_t=corr_i(rank(x_{i,t}),rank(R_{i,t+1}))</script><p>相关在每个 t 的横截面 i 上计算，得到长度 T 的时间序列。IC 无量纲。必须说明收益期限、股票池、缺失值处理、中性化和极值处理。IC 均值显著不保证分层组合扣费后赚钱。</p>
+<h3 id="16-换手率"><a href="#16-换手率" class="headerlink" title="16. 换手率"></a>16. 换手率</h3><p>考虑收益漂移后的再平衡前权重：</p>
+<script type="math/tex; mode=display">
 w_{i,t}^{pre}=w_{i,t-1}^{post}(1+R_{i,t})/
-\sum_j w_{j,t-1}^{post}(1+R_{j,t})
-\]</span></p>
-<p>单边换手定义：</p>
-<p><span class="math display">\[
-TO_t=(1/2)\sum_i|w_{i,t}^{post}-w_{i,t}^{pre}|
-\]</span></p>
-<p>TO
-是每期比例。若不除以二，得到双边成交权重；两种口径都可用，但成本系数必须匹配。多空组合还需明确按总敞口、净资产还是资本占用归一。</p>
-<h3 id="交易成本与净收益">17. 交易成本与净收益</h3>
-<p>一个透明的基线模型是：</p>
-<p><span class="math display">\[
+\sum_j w_{j,t-1}^{post}(1+R_{j,t})</script><p>单边换手定义：</p>
+<script type="math/tex; mode=display">
+TO_t=(1/2)\sum_i|w_{i,t}^{post}-w_{i,t}^{pre}|</script><p>TO 是每期比例。若不除以二，得到双边成交权重；两种口径都可用，但成本系数必须匹配。多空组合还需明确按总敞口、净资产还是资本占用归一。</p>
+<h3 id="17-交易成本与净收益"><a href="#17-交易成本与净收益" class="headerlink" title="17. 交易成本与净收益"></a>17. 交易成本与净收益</h3><p>一个透明的基线模型是：</p>
+<script type="math/tex; mode=display">
 C_t=\sum_i(c_{i,t}^{linear}|\Delta w_{i,t}|
-+c_{i,t}^{impact}|\Delta w_{i,t}|^{3/2})
-\]</span></p>
-<p><span class="math display">\[
-R_{p,t}^{net}=R_{p,t}^{gross}-C_t-B_t
-\]</span></p>
-<p>线性项可以包含佣金、印花税和半价差，冲击项随订单规模非线性上升，B
-是借券与融资成本。C、B 和收益都用每期净资产比例。A
-股卖出印花税是方向不对称成本，不能给买卖两边套同一费率。</p>
-<h3 id="常见组合约束">18. 常见组合约束</h3>
-<p><span class="math display">\[
-\mathbf{1}^{\prime}w=1
-\]</span></p>
-<p><span class="math display">\[
-l_i\le w_i\le u_i
-\]</span></p>
-<p><span class="math display">\[
-Aw=b
-\]</span></p>
-<p><span class="math display">\[
-\|w-w^{bench}\|_1\le TO_{max}
-\]</span></p>
-<p>四类约束分别表示资金守恒、个股上下限、行业或风格等线性暴露约束、相对基准的换手预算。实际可交易集合还必须在优化前剔除当日无法买卖的证券；优化器给出权重不等于交易能够成交。</p>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="六数据与回测检查清单">六、数据与回测检查清单</h2>
-<h3 id="研究问题">研究问题</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">因子有一句可证伪的经济假设，而不是先看结果再命名。</label></li>
-<li><label><input type="checkbox">目标变量、预测期限、再平衡频率、基准和评价指标在看测试集前固定。</label></li>
-<li><label><input type="checkbox">明确区分风险补偿、行为偏差、制度摩擦和纯统计预测四类解释。</label></li>
++c_{i,t}^{impact}|\Delta w_{i,t}|^{3/2})</script><script type="math/tex; mode=display">
+R_{p,t}^{net}=R_{p,t}^{gross}-C_t-B_t</script><p>线性项可以包含佣金、印花税和半价差，冲击项随订单规模非线性上升，B 是借券与融资成本。C、B 和收益都用每期净资产比例。A 股卖出印花税是方向不对称成本，不能给买卖两边套同一费率。</p>
+<h3 id="18-常见组合约束"><a href="#18-常见组合约束" class="headerlink" title="18. 常见组合约束"></a>18. 常见组合约束</h3><script type="math/tex; mode=display">
+\mathbf{1}^{\prime}w=1</script><script type="math/tex; mode=display">
+l_i\le w_i\le u_i</script><script type="math/tex; mode=display">
+Aw=b</script><script type="math/tex; mode=display">
+\|w-w^{bench}\|_1\le TO_{max}</script><p>四类约束分别表示资金守恒、个股上下限、行业或风格等线性暴露约束、相对基准的换手预算。实际可交易集合还必须在优化前剔除当日无法买卖的证券；优化器给出权重不等于交易能够成交。</p>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="六、数据与回测检查清单"><a href="#六、数据与回测检查清单" class="headerlink" title="六、数据与回测检查清单"></a>六、数据与回测检查清单</h2><h3 id="研究问题"><a href="#研究问题" class="headerlink" title="研究问题"></a>研究问题</h3><ul>
+<li>[ ] 因子有一句可证伪的经济假设，而不是先看结果再命名。</li>
+<li>[ ] 目标变量、预测期限、再平衡频率、基准和评价指标在看测试集前固定。</li>
+<li>[ ] 明确区分风险补偿、行为偏差、制度摩擦和纯统计预测四类解释。</li>
 </ul>
-<h3 id="股票池与点时数据">股票池与点时数据</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">股票池按每个历史时点重建，包含后来退市和长期停牌的证券。</label></li>
-<li><label><input type="checkbox">价格、分红、拆并股和配股只使用一套一致的复权逻辑。</label></li>
-<li><label><input type="checkbox">财报使用首次公告日或当时可得版本，不用报告期末直接对齐收益。</label></li>
-<li><label><input type="checkbox">指数成分、行业分类、ST
-状态、上市日期和退市日期均为历史版本。</label></li>
-<li><label><input type="checkbox">主板、创业板、科创板和北交所的涨跌停、上市初期制度按日期处理。</label></li>
-<li><label><input type="checkbox">缺失值、极值、负权益和一字板不是用全样本信息决定删除。</label></li>
+<h3 id="股票池与点时数据"><a href="#股票池与点时数据" class="headerlink" title="股票池与点时数据"></a>股票池与点时数据</h3><ul>
+<li>[ ] 股票池按每个历史时点重建，包含后来退市和长期停牌的证券。</li>
+<li>[ ] 价格、分红、拆并股和配股只使用一套一致的复权逻辑。</li>
+<li>[ ] 财报使用首次公告日或当时可得版本，不用报告期末直接对齐收益。</li>
+<li>[ ] 指数成分、行业分类、ST 状态、上市日期和退市日期均为历史版本。</li>
+<li>[ ] 主板、创业板、科创板和北交所的涨跌停、上市初期制度按日期处理。</li>
+<li>[ ] 缺失值、极值、负权益和一字板不是用全样本信息决定删除。</li>
 </ul>
-<h3 id="信号与组合">信号与组合</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">每个原始字段有定义、单位、可得时点、更新频率和供应商口径。</label></li>
-<li><label><input type="checkbox">排名、标准化、去极值和中性化只用当期横截面信息。</label></li>
-<li><label><input type="checkbox">分组断点、组数、等权或价值加权、持有期和跳过期均明确。</label></li>
-<li><label><input type="checkbox">信号形成、下单、成交和收益计量的时间线可以画成一条无歧义的轴。</label></li>
-<li><label><input type="checkbox">停牌、涨跌停、最小交易单位和融券不可得时有明确的持仓迁移规则。</label></li>
+<h3 id="信号与组合"><a href="#信号与组合" class="headerlink" title="信号与组合"></a>信号与组合</h3><ul>
+<li>[ ] 每个原始字段有定义、单位、可得时点、更新频率和供应商口径。</li>
+<li>[ ] 排名、标准化、去极值和中性化只用当期横截面信息。</li>
+<li>[ ] 分组断点、组数、等权或价值加权、持有期和跳过期均明确。</li>
+<li>[ ] 信号形成、下单、成交和收益计量的时间线可以画成一条无歧义的轴。</li>
+<li>[ ] 停牌、涨跌停、最小交易单位和融券不可得时有明确的持仓迁移规则。</li>
 </ul>
-<h3 id="推断稳健性与数据挖掘">推断、稳健性与数据挖掘</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">报告效应量、标准误、置信区间和样本长度，不只报告星号。</label></li>
-<li><label><input type="checkbox">重叠持有期和高频再平衡导致的自相关使用合适的 HAC
-或聚类标准误。</label></li>
-<li><label><input type="checkbox">因子模型使用多组测试资产时，同时报告
-Alpha 分布和联合检验。</label></li>
-<li><label><input type="checkbox">变量、样本和参数尝试次数有记录，并采用多重检验或独立验证控制。</label></li>
-<li><label><input type="checkbox">样本拆为训练、验证和最终测试；最终测试不参与特征和参数选择。</label></li>
-<li><label><input type="checkbox">替代定义、子时期、行业、规模、微盘股排除与发表后结果均被检查。</label></li>
+<h3 id="推断、稳健性与数据挖掘"><a href="#推断、稳健性与数据挖掘" class="headerlink" title="推断、稳健性与数据挖掘"></a>推断、稳健性与数据挖掘</h3><ul>
+<li>[ ] 报告效应量、标准误、置信区间和样本长度，不只报告星号。</li>
+<li>[ ] 重叠持有期和高频再平衡导致的自相关使用合适的 HAC 或聚类标准误。</li>
+<li>[ ] 因子模型使用多组测试资产时，同时报告 Alpha 分布和联合检验。</li>
+<li>[ ] 变量、样本和参数尝试次数有记录，并采用多重检验或独立验证控制。</li>
+<li>[ ] 样本拆为训练、验证和最终测试；最终测试不参与特征和参数选择。</li>
+<li>[ ] 替代定义、子时期、行业、规模、微盘股排除与发表后结果均被检查。</li>
 </ul>
-<h3 id="成本约束与容量">成本、约束与容量</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">毛收益与净收益并列，成本参数注明日期、市场和单边/双边口径。</label></li>
-<li><label><input type="checkbox">佣金、税费、价差、冲击、借券、融资和未成交分别建模。</label></li>
-<li><label><input type="checkbox">个股、行业、风格、Beta、总敞口、净敞口和换手约束清楚。</label></li>
-<li><label><input type="checkbox">容量按成交额参与率、持仓天数和冲击曲线做情景分析。</label></li>
-<li><label><input type="checkbox">参数在保守、中性和乐观三种情景下均展示，结论不依赖最乐观情景。</label></li>
+<h3 id="成本、约束与容量"><a href="#成本、约束与容量" class="headerlink" title="成本、约束与容量"></a>成本、约束与容量</h3><ul>
+<li>[ ] 毛收益与净收益并列，成本参数注明日期、市场和单边/双边口径。</li>
+<li>[ ] 佣金、税费、价差、冲击、借券、融资和未成交分别建模。</li>
+<li>[ ] 个股、行业、风格、Beta、总敞口、净敞口和换手约束清楚。</li>
+<li>[ ] 容量按成交额参与率、持仓天数和冲击曲线做情景分析。</li>
+<li>[ ] 参数在保守、中性和乐观三种情景下均展示，结论不依赖最乐观情景。</li>
 </ul>
-<h3 id="可复现交付">可复现交付</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">原始数据不被覆盖，清洗数据和特征数据有版本或内容哈希。</label></li>
-<li><label><input type="checkbox">代码固定随机种子、依赖版本、时区、交易日历和排序稳定规则。</label></li>
-<li><label><input type="checkbox">报告保存参数、样本筛选计数、中间表、图、日志和运行日期。</label></li>
-<li><label><input type="checkbox">每张表和图能追溯到脚本与输入，每个结论能追溯到表或检验。</label></li>
+<h3 id="可复现交付"><a href="#可复现交付" class="headerlink" title="可复现交付"></a>可复现交付</h3><ul>
+<li>[ ] 原始数据不被覆盖，清洗数据和特征数据有版本或内容哈希。</li>
+<li>[ ] 代码固定随机种子、依赖版本、时区、交易日历和排序稳定规则。</li>
+<li>[ ] 报告保存参数、样本筛选计数、中间表、图、日志和运行日期。</li>
+<li>[ ] 每张表和图能追溯到脚本与输入，每个结论能追溯到表或检验。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="七发布前六个验收问题">七、发布前六个验收问题</h2>
-<ol type="1">
-<li><strong>问题是否先于结果？</strong>
-能否在隐藏最终测试集时，写出因子的经济机制、方向、期限和反证条件？</li>
-<li><strong>数据是否当时可得？</strong>
-任取一个历史交易日，能否列出每只股票为什么进入股票池、信号来自哪个已知版本？</li>
-<li><strong>实现是否可成交？</strong>
-信号形成到成交的时间线是否尊重公告、停牌、涨跌停、交易单位、做空和资金约束？</li>
-<li><strong>证据是否经得住统计审查？</strong>
-效应量、稳健标准误、联合检验、多重检验、样本外和发表后证据是否齐全？</li>
-<li><strong>收益是否经得住经济审查？</strong>
-在保守成本、容量和约束下，净收益是否仍大于机会成本并具有合理机制？</li>
-<li><strong>第三方能否复现？</strong>
-新环境中的研究者能否凭数据字典、版本、参数和脚本得到相同的关键数字？</li>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="七、发布前六个验收问题"><a href="#七、发布前六个验收问题" class="headerlink" title="七、发布前六个验收问题"></a>七、发布前六个验收问题</h2><ol>
+<li><strong>问题是否先于结果？</strong> 能否在隐藏最终测试集时，写出因子的经济机制、方向、期限和反证条件？</li>
+<li><strong>数据是否当时可得？</strong> 任取一个历史交易日，能否列出每只股票为什么进入股票池、信号来自哪个已知版本？</li>
+<li><strong>实现是否可成交？</strong> 信号形成到成交的时间线是否尊重公告、停牌、涨跌停、交易单位、做空和资金约束？</li>
+<li><strong>证据是否经得住统计审查？</strong> 效应量、稳健标准误、联合检验、多重检验、样本外和发表后证据是否齐全？</li>
+<li><strong>收益是否经得住经济审查？</strong> 在保守成本、容量和约束下，净收益是否仍大于机会成本并具有合理机制？</li>
+<li><strong>第三方能否复现？</strong> 新环境中的研究者能否凭数据字典、版本、参数和脚本得到相同的关键数字？</li>
 </ol>
 <p>只要其中一题回答“不能”，结论就应降级为探索性证据。六题全部通过也不代表未来收益有保证，只说明研究过程达到了可审计、可反驳和可复现的最低标准。</p>
 </section></div>
