@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 用人类对齐的 LLM-as-a-Judge 评估药物发现 agent 论文：Designing a Robust LLM-Based Evaluation System for Agentic AI in Drug Discovery Through Human Alignment（arXiv:2608.21057） 作者：Emma Granqvist、Rocío Mercado、Sa">
+    <meta name="description" content="重点关注  用人类对齐的 LLM-as-a-Judge 评估药物发现 agent 论文：Designing a Robust LLM-Based Evaluation System for Agentic AI in Drug Discovery Through Human Alignment（arXiv:2608.21057） 作者：Emma Granqvist、Rocío Mercado、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日AI论文简报｜2026 年 8 月 25 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/08/25/daily-ai-papers-2026-08-25/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 用人类对齐的 LLM-as-a-Judge 评估药物发现 agent 论文：Designing a Robust LLM-Based Evaluation System for Agentic AI in Drug Discovery Through Human Alignment（arXiv:2608.21057） 作者：Emma Granqvist、Rocío Mercado、Sa">
+<meta property="og:description" content="重点关注  用人类对齐的 LLM-as-a-Judge 评估药物发现 agent 论文：Designing a Robust LLM-Based Evaluation System for Agentic AI in Drug Discovery Through Human Alignment（arXiv:2608.21057） 作者：Emma Granqvist、Rocío Mercado、">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-23/pixiv-rank-002-148475000.jpg">
 <meta property="article:published_time" content="2026-08-25T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-19/pixiv-rank-002-147092182.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-19/pixiv-rank-006-147092236.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,396 +347,138 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<h3 id="用人类对齐的-llm-as-a-judge-评估药物发现-agent">用人类对齐的
-LLM-as-a-Judge 评估药物发现 agent</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21057">Designing a Robust LLM-Based
-Evaluation System for Agentic AI in Drug Discovery Through Human
-Alignment</a>（arXiv:2608.21057）<br>
-<strong>作者</strong>：Emma Granqvist、Rocío Mercado、Samuel
-Genheden<br>
+<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
+<h3 id="用人类对齐的-llm-as-a-judge-评估药物发现-agent"><a class="markdownIt-Anchor" href="#用人类对齐的-llm-as-a-judge-评估药物发现-agent"></a> 用人类对齐的 LLM-as-a-Judge 评估药物发现 agent</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21057">Designing a Robust LLM-Based Evaluation System for Agentic AI in Drug Discovery Through Human Alignment</a>（arXiv:2608.21057）<br>
+<strong>作者</strong>：Emma Granqvist、Rocío Mercado、Samuel Genheden<br>
 <strong>来源/分类</strong>：arXiv · cs.LG<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文研究的问题不是 ChatInvent
-能否生成一段看似合理的回答，而是开放式、可调用工具的药物发现 agent
-能否被稳定、可扩展地评价。作者为输出定义
-Completeness、Relevancy、Structural Clarity、Scope Adherence 四个 LLM
-评审维度，并把 Tool Call Correctness 作为确定性检查；随后让 5 名专家给
-30 个样本标注，比较 Gemini 3.1 Pro、Claude Opus 4.7、GPT-5 和 Llama 3.1
-70B 四个候选评审器，再用 20 个样本做 DSPy few-shot 优化、10
-个样本做验证，最后在 70 个留出问题上评估
-ChatInvent。这里的“对齐”是评审器与人工多数票的一致性，不是 agent
-的科学发现已被独立验证。</p>
-<p>作者报告最佳评审器经少样本优化后与人工多数票的平均对齐从 0.80 提升到
-0.86。在 70 个留出问题上，ChatInvent 的 Tool Call
-Correctness、Relevancy、Structural Clarity、Scope Adherence 平均分别约为
-90%、86%、90%、84%；Completeness 只有 43% 被评为完整，另有 39%
-部分完整，常见缺陷是遗漏 CSV
-路径、表格或请求的分子属性。论文的创新在于把评审器本身当作需要验证的测量仪器；局限也很明确：只有
-5 名专家、单一 agent、30 个对齐样本，模型和提示会持续变化，LLM
-评审有成本与偏差，且实验没有证明输出在真实药物研发中的正确性。适合 agent
-评测、科学 AI 和 LLM-as-a-Judge 工程读者；建议优先读摘要、§3
-ChatInvent、§4 评估框架、§5 对齐实验、§6 结果和 §7 讨论。</p>
+<p>论文研究的问题不是 ChatInvent 能否生成一段看似合理的回答，而是开放式、可调用工具的药物发现 agent 能否被稳定、可扩展地评价。作者为输出定义 Completeness、Relevancy、Structural Clarity、Scope Adherence 四个 LLM 评审维度，并把 Tool Call Correctness 作为确定性检查；随后让 5 名专家给 30 个样本标注，比较 Gemini 3.1 Pro、Claude Opus 4.7、GPT-5 和 Llama 3.1 70B 四个候选评审器，再用 20 个样本做 DSPy few-shot 优化、10 个样本做验证，最后在 70 个留出问题上评估 ChatInvent。这里的“对齐”是评审器与人工多数票的一致性，不是 agent 的科学发现已被独立验证。</p>
+<p>作者报告最佳评审器经少样本优化后与人工多数票的平均对齐从 0.80 提升到 0.86。在 70 个留出问题上，ChatInvent 的 Tool Call Correctness、Relevancy、Structural Clarity、Scope Adherence 平均分别约为 90%、86%、90%、84%；Completeness 只有 43% 被评为完整，另有 39% 部分完整，常见缺陷是遗漏 CSV 路径、表格或请求的分子属性。论文的创新在于把评审器本身当作需要验证的测量仪器；局限也很明确：只有 5 名专家、单一 agent、30 个对齐样本，模型和提示会持续变化，LLM 评审有成本与偏差，且实验没有证明输出在真实药物研发中的正确性。适合 agent 评测、科学 AI 和 LLM-as-a-Judge 工程读者；建议优先读摘要、§3 ChatInvent、§4 评估框架、§5 对齐实验、§6 结果和 §7 讨论。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21057">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21057">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/MolecularAI/langdmta-lab">相关代码</a></p>
-<h3 id="trustworthy-rag能拦截显式投毒但不能把隐性改写当作已解决">Trustworthy
-RAG：能拦截显式投毒，但不能把隐性改写当作已解决</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21095">Trustworthy RAG: An Evaluation
-Agent for Detecting Misinformation and Knowledge Poisoning in Generative
-AI Systems</a>（arXiv:2608.21095）<br>
-<strong>作者</strong>：Balkrishna Giri、Md Toufique Hasan、Jussi
-Rasku、Muhammad Waseem、Pekka Abrahamsson<br>
-<strong>来源/分类</strong>：arXiv ·
-cs.SE、cs.AI、cs.CL、cs.CR、cs.IR<br>
+<h3 id="trustworthy-rag能拦截显式投毒但不能把隐性改写当作已解决"><a class="markdownIt-Anchor" href="#trustworthy-rag能拦截显式投毒但不能把隐性改写当作已解决"></a> Trustworthy RAG：能拦截显式投毒，但不能把隐性改写当作已解决</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21095">Trustworthy RAG: An Evaluation Agent for Detecting Misinformation and Knowledge Poisoning in Generative AI Systems</a>（arXiv:2608.21095）<br>
+<strong>作者</strong>：Balkrishna Giri、Md Toufique Hasan、Jussi Rasku、Muhammad Waseem、Pekka Abrahamsson<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.SE">cs.SE</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>、<a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a><br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文把 RAG
-的风险拆成“检索相关但事实不真”的安全—可靠性缺口，提出一个生成前中间件：用
-NLI 做事实性核验，用五类信号检测知识投毒，再以
-<code>T = 0.4F + 0.35C + 0.25(1-P)</code> 汇总为 Trust
-Index，并对高污染上下文施加非线性惩罚。实验使用
-TruthfulQA、FEVER，以及包含 40 条 OWASP/CWE
-规则的安全编码知识库；主配置以 Llama 3.3 70B 生成、MiniLM 向量检索，比较
-Qwen 3.5 35B、Mistral 7B
-等模型，并将矛盾、指令注入、实体替换和细微语义弱化分开测试。</p>
-<p>在 TruthfulQA 的混合攻击设置中，作者报告 91% 准确率、100% 精确率、40%
-召回率和 57.1% F1；指令注入的召回率为 100%、F1 为
-96.8%，但实体替换召回率为 0%，细微语义操纵召回率只有 20%。跨模型 ROC-AUC
-约为
-0.73–0.81，按模型校准阈值后可恢复部分性能；在安全编码场景中，指令注入 F1
-为 92.3%，而矛盾和细微弱化仍为 0% 召回。代价是每个样本约增加 14.7
-秒、约为普通 RAG 的 17
-倍。最重要的证据边界是：论文测量的是投毒上下文的检测，不是下游 LLM
-是否真的采纳了错误信息；攻击样本是规则构造的，FEVER 上准确率降到
-73%、低于 85% 的朴素基线，且按文档标注的召回还是偏保守。适合 RAG
-安全、知识库治理和安全编码流水线读者；建议读摘要、§III Trust Index、§IV
-实验设计、§V-A/C/F/G 和 §VI 局限。</p>
+<p>论文把 RAG 的风险拆成“检索相关但事实不真”的安全—可靠性缺口，提出一个生成前中间件：用 NLI 做事实性核验，用五类信号检测知识投毒，再以 <code>T = 0.4F + 0.35C + 0.25(1-P)</code> 汇总为 Trust Index，并对高污染上下文施加非线性惩罚。实验使用 TruthfulQA、FEVER，以及包含 40 条 OWASP/CWE 规则的安全编码知识库；主配置以 Llama 3.3 70B 生成、MiniLM 向量检索，比较 Qwen 3.5 35B、Mistral 7B 等模型，并将矛盾、指令注入、实体替换和细微语义弱化分开测试。</p>
+<p>在 TruthfulQA 的混合攻击设置中，作者报告 91% 准确率、100% 精确率、40% 召回率和 57.1% F1；指令注入的召回率为 100%、F1 为 96.8%，但实体替换召回率为 0%，细微语义操纵召回率只有 20%。跨模型 ROC-AUC 约为 0.73–0.81，按模型校准阈值后可恢复部分性能；在安全编码场景中，指令注入 F1 为 92.3%，而矛盾和细微弱化仍为 0% 召回。代价是每个样本约增加 14.7 秒、约为普通 RAG 的 17 倍。最重要的证据边界是：论文测量的是投毒上下文的检测，不是下游 LLM 是否真的采纳了错误信息；攻击样本是规则构造的，FEVER 上准确率降到 73%、低于 85% 的朴素基线，且按文档标注的召回还是偏保守。适合 RAG 安全、知识库治理和安全编码流水线读者；建议读摘要、§III Trust Index、§IV 实验设计、§V-A/C/F/G 和 §VI 局限。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21095">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21095">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/GPT-Laboratory/TrustworthyRAG">代码与实验材料</a></p>
-<h3 id="crate把移动-agent-评估拆成逐步后果推理降低长轨迹上下文负担">CRATE：把移动
-agent 评估拆成逐步后果推理，降低长轨迹上下文负担</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20797">Automated Trajectory Evaluation
-for Mobile Agents via Step-Level Consequence Reasoning and
-Aggregation</a>（arXiv:2608.20797）<br>
-<strong>作者</strong>：Pengshuai Yang、Zijing Gao、Xue Yu、Benhui
-Zhuang、Bo Yuan、Junlan Feng<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<h3 id="crate把移动-agent-评估拆成逐步后果推理降低长轨迹上下文负担"><a class="markdownIt-Anchor" href="#crate把移动-agent-评估拆成逐步后果推理降低长轨迹上下文负担"></a> CRATE：把移动 agent 评估拆成逐步后果推理，降低长轨迹上下文负担</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20797">Automated Trajectory Evaluation for Mobile Agents via Step-Level Consequence Reasoning and Aggregation</a>（arXiv:2608.20797）<br>
+<strong>作者</strong>：Pengshuai Yang、Zijing Gao、Xue Yu、Benhui Zhuang、Bo Yuan、Junlan Feng<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文针对移动 agent 的两个评估问题：一次性把完整轨迹交给 VLM
-会造成上下文过载，而只看任务完成又会漏掉操作安全。CRATE
-先在每一步提取与任务有关的视觉线索、推断动作导致的状态变化，再把逐步证据聚合成轨迹级完成度判断；CRATE-S
-在同一框架上定位操作风险。作者用 Qwen2.5-VL-72B-Instruct 和
-GPT-4o-1120-128k 作评审器，与 SPA-Bench、A3
-的最终状态/关键状态版本比较，并在 AndroidWorld、CRATEBench、MobileRisk
-上评估；安全实验另与规则法、基础 VLM 和 OS-Sentinel 对比。</p>
-<p>作者报告在 AndroidWorld 上，Qwen 评审器的 CRATE 准确率/F1 为
-0.930/0.833，GPT-4o 为 0.904/0.756；在更复杂的 CRATEBench 上分别为
-0.839/0.815 和 0.806/0.760。MobileRisk 上，Qwen 版 CRATE-S 的轨迹级 F1
-为 0.697、逐步风险分数为 28.8，高于 OS-Sentinel 的 0.630 和
-23.5；去掉逐步后果推理后，Qwen 在 CRATEBench 的 F1 从 0.815 降到
-0.649。创新是把“动作—状态变化—轨迹结论”做成可解释中间证据，而不是把长截图序列整体交给裁判。局限是只验证了移动场景、全部是事后评估，尚未证明可作为在线奖励或实时反思模块，且性能受底层
-VLM 能力约束。适合 GUI/mobile agent 评测、安全监控和 VLM
-工程读者；建议读摘要、§3 CRATE/CRATE-S、表 2–4、§5 实验和末尾
-Limitations。</p>
+<p>论文针对移动 agent 的两个评估问题：一次性把完整轨迹交给 VLM 会造成上下文过载，而只看任务完成又会漏掉操作安全。CRATE 先在每一步提取与任务有关的视觉线索、推断动作导致的状态变化，再把逐步证据聚合成轨迹级完成度判断；CRATE-S 在同一框架上定位操作风险。作者用 Qwen2.5-VL-72B-Instruct 和 GPT-4o-1120-128k 作评审器，与 SPA-Bench、A3 的最终状态/关键状态版本比较，并在 AndroidWorld、CRATEBench、MobileRisk 上评估；安全实验另与规则法、基础 VLM 和 OS-Sentinel 对比。</p>
+<p>作者报告在 AndroidWorld 上，Qwen 评审器的 CRATE 准确率/F1 为 0.930/0.833，GPT-4o 为 0.904/0.756；在更复杂的 CRATEBench 上分别为 0.839/0.815 和 0.806/0.760。MobileRisk 上，Qwen 版 CRATE-S 的轨迹级 F1 为 0.697、逐步风险分数为 28.8，高于 OS-Sentinel 的 0.630 和 23.5；去掉逐步后果推理后，Qwen 在 CRATEBench 的 F1 从 0.815 降到 0.649。创新是把“动作—状态变化—轨迹结论”做成可解释中间证据，而不是把长截图序列整体交给裁判。局限是只验证了移动场景、全部是事后评估，尚未证明可作为在线奖励或实时反思模块，且性能受底层 VLM 能力约束。适合 GUI/mobile agent 评测、安全监控和 VLM 工程读者；建议读摘要、§3 CRATE/CRATE-S、表 2–4、§5 实验和末尾 Limitations。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20797">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20797">PDF</a> · <a target="_blank" rel="noopener" href="https://anonymous.4open.science/r/CRATE-D580">代码</a></p>
-<h3 id="susvibes功能测试通过不代表-agent-生成的代码安全">SUSVIBES：功能测试通过，不代表
-agent 生成的代码安全</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.03262">Is
-Vibe Coding Safe? Benchmarking Vulnerability of Agent-Generated Code in
-Real-World Tasks</a>（arXiv:2512.03262）<br>
-<strong>作者</strong>：Songwen Zhao、Danqing Wang、Kexun Zhang、Jiaxuan
-Luo、Zhuo Li、Lei Li<br>
-<strong>来源/分类</strong>：arXiv · cs.SE、cs.CL<br>
+<h3 id="susvibes功能测试通过不代表-agent-生成的代码安全"><a class="markdownIt-Anchor" href="#susvibes功能测试通过不代表-agent-生成的代码安全"></a> SUSVIBES：功能测试通过，不代表 agent 生成的代码安全</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.03262">Is Vibe Coding Safe? Benchmarking Vulnerability of Agent-Generated Code in Real-World Tasks</a>（arXiv:2512.03262）<br>
+<strong>作者</strong>：Songwen Zhao、Danqing Wang、Kexun Zhang、Jiaxuan Luo、Zhuo Li、Lei Li<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.SE">cs.SE</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a><br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文把“vibe coding
-是否能直接进入生产”具体化为仓库级安全测试。SUSVIBES
-从真实开源项目中的漏洞修复提交构造 186
-个功能请求任务，保留完整仓库上下文，并为每个任务同时准备功能测试和安全测试；任务平均上下文约
-236K 行、1,186 个文件，覆盖 10 个应用领域。实验组合 3 个 agent
-框架（SWE-Agent、OpenHands、Claude Code）与 4 个模型，采用 <a href="mailto:pass@1" class="email">pass@1</a>，分别报告
-FuncPass（功能正确）和 SecPass（功能与安全都正确），再测试让 agent 自选
-CWE 或直接给出漏洞类型的轻量缓解。</p>
-<p>作者报告 SWE-Agent + Claude 4 Sonnet 的 FuncPass 为 57.0%，但 SecPass
-只有 11.8%；也就是说在其功能正确的解中，约 79.3%
-仍不安全。四个模型的安全率在共同功能正确子集上为 18.3%–30.4%，框架之间为
-17.4%–23.3%；给出安全提示或 oracle CWE 只把该配置的 SecPass 从 11.8%
-提到 14.5%/15.1%，同时降低功能通过率。论文还给出具体的 Django
-密码校验时序侧信道案例，说明漏洞可能来自正确功能路径中的边界处理。价值在于把安全作为独立可执行的验收条件；限制是任务来自可观测漏洞修复、只覆盖其测试能捕获的安全性质，结果是特定模型/提示/环境下的
-<a href="mailto:pass@1" class="email">pass@1</a>
-快照，不等同生产事故率或未来模型必然表现。适合代码 agent、DevSecOps
-和软件供应链治理读者；建议读摘要、§3.3 基准构造、§4.1–4.3、§5 缓解和附录
-B 的筛选流程。</p>
+<p>论文把“vibe coding 是否能直接进入生产”具体化为仓库级安全测试。SUSVIBES 从真实开源项目中的漏洞修复提交构造 186 个功能请求任务，保留完整仓库上下文，并为每个任务同时准备功能测试和安全测试；任务平均上下文约 236K 行、1,186 个文件，覆盖 10 个应用领域。实验组合 3 个 agent 框架（SWE-Agent、OpenHands、Claude Code）与 4 个模型，采用 pass@1，分别报告 FuncPass（功能正确）和 SecPass（功能与安全都正确），再测试让 agent 自选 CWE 或直接给出漏洞类型的轻量缓解。</p>
+<p>作者报告 SWE-Agent + Claude 4 Sonnet 的 FuncPass 为 57.0%，但 SecPass 只有 11.8%；也就是说在其功能正确的解中，约 79.3% 仍不安全。四个模型的安全率在共同功能正确子集上为 18.3%–30.4%，框架之间为 17.4%–23.3%；给出安全提示或 oracle CWE 只把该配置的 SecPass 从 11.8% 提到 14.5%/15.1%，同时降低功能通过率。论文还给出具体的 Django 密码校验时序侧信道案例，说明漏洞可能来自正确功能路径中的边界处理。价值在于把安全作为独立可执行的验收条件；限制是任务来自可观测漏洞修复、只覆盖其测试能捕获的安全性质，结果是特定模型/提示/环境下的 pass@1 快照，不等同生产事故率或未来模型必然表现。适合代码 agent、DevSecOps 和软件供应链治理读者；建议读摘要、§3.3 基准构造、§4.1–4.3、§5 缓解和附录 B 的筛选流程。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.03262">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.03262">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/LeiLiLab/susvibes">代码与数据</a> · <a target="_blank" rel="noopener" href="https://leililab.github.io/susvibes-leaderboard/#home">排行榜</a></p>
-<h3 id="aixamine可信度是多维向量单一总分会掩盖安全隐私可用性冲突">aiXamine：可信度是多维向量，单一总分会掩盖安全—隐私—可用性冲突</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20554">aiXamine: Unified Black-Box
-Evaluation of Cross-Dimensional Trade-offs in LLM Safety, Security, and
-Privacy</a>（arXiv:2608.20554）<br>
-<strong>作者</strong>：Fatih Deniz、Yazan Boshmaf、Dorde Popovic、Issa
-Khalil<br>
-<strong>来源/分类</strong>：arXiv · cs.CR、cs.LG<br>
+<h3 id="aixamine可信度是多维向量单一总分会掩盖安全隐私可用性冲突"><a class="markdownIt-Anchor" href="#aixamine可信度是多维向量单一总分会掩盖安全隐私可用性冲突"></a> aiXamine：可信度是多维向量，单一总分会掩盖安全—隐私—可用性冲突</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20554">aiXamine: Unified Black-Box Evaluation of Cross-Dimensional Trade-offs in LLM Safety, Security, and Privacy</a>（arXiv:2608.20554）<br>
+<strong>作者</strong>：Fatih Deniz、Yazan Boshmaf、Dorde Popovic、Issa Khalil<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>、cs.LG<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文提出 SSP（Safety、Security、Privacy）框架，将 46 个测试、9
-个服务放到同一黑盒评测协议中，覆盖越狱、代码安全、幻觉、过度拒答、隐私泄露、公平性和分布外鲁棒性等。作者在相同推理条件下评估
-121 个闭源与开放权重模型、超过 5,000
-次测试，并用规则、多裁判和外部审核器组合打分；同时用 6 个部署画像和
-10,000 个 Dirichlet
-权重向量检查总分排序的稳定性。比较重点不是“谁的总分最高”，而是同一模型在不同风险维度上的取舍。</p>
-<p>作者报告安全服务与过度拒答存在负相关，越狱鲁棒性与可用性相关系数为
-−0.39；隐私与其他维度的平均绝对相关约为
-0.13，说明标准安全对齐不能代替隐私评测。部署画像改变后，前 15
-个模型的第一名在 6 个画像中的 4 个发生变化，GPT-4o 的名次最多摆动 13
-位；同一基础架构的 R1 式离线蒸馏还把对抗鲁棒性从 56.9 降到
-2.6。创新是把跨维度 trade-off
-和排序敏感性作为一等公民，而非把安全、隐私、可用性分别报表。限制包括只测英文、黑盒文本交互、自动裁判与二元安全标签的误差、供应商版本差异和聚合权重选择；这些是作者在自有基准上的比较结果，不是对真实事故概率的估计。适合模型选型、红队评测和安全治理读者；建议读摘要、§3
-测试体系、§4.2–4.6、§6 局限和附录测试清单。</p>
+<p>论文提出 SSP（Safety、Security、Privacy）框架，将 46 个测试、9 个服务放到同一黑盒评测协议中，覆盖越狱、代码安全、幻觉、过度拒答、隐私泄露、公平性和分布外鲁棒性等。作者在相同推理条件下评估 121 个闭源与开放权重模型、超过 5,000 次测试，并用规则、多裁判和外部审核器组合打分；同时用 6 个部署画像和 10,000 个 Dirichlet 权重向量检查总分排序的稳定性。比较重点不是“谁的总分最高”，而是同一模型在不同风险维度上的取舍。</p>
+<p>作者报告安全服务与过度拒答存在负相关，越狱鲁棒性与可用性相关系数为 −0.39；隐私与其他维度的平均绝对相关约为 0.13，说明标准安全对齐不能代替隐私评测。部署画像改变后，前 15 个模型的第一名在 6 个画像中的 4 个发生变化，GPT-4o 的名次最多摆动 13 位；同一基础架构的 R1 式离线蒸馏还把对抗鲁棒性从 56.9 降到 2.6。创新是把跨维度 trade-off 和排序敏感性作为一等公民，而非把安全、隐私、可用性分别报表。限制包括只测英文、黑盒文本交互、自动裁判与二元安全标签的误差、供应商版本差异和聚合权重选择；这些是作者在自有基准上的比较结果，不是对真实事故概率的估计。适合模型选型、红队评测和安全治理读者；建议读摘要、§3 测试体系、§4.2–4.6、§6 局限和附录测试清单。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20554">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20554">PDF</a> · <a target="_blank" rel="noopener" href="https://aixamine.qcri.org/">评测门户</a></p>
-<h2 id="ai-论文">AI 论文</h2>
-<h3 id="designing-a-robust-llm-based-evaluation-system-for-agentic-ai-in-drug-discovery-through-human-alignment">Designing
-a Robust LLM-Based Evaluation System for Agentic AI in Drug Discovery
-Through Human Alignment</h3>
-<p><strong>作者</strong>：Emma Granqvist、Rocío Mercado、Samuel
-Genheden<br>
+<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
+<h3 id="designing-a-robust-llm-based-evaluation-system-for-agentic-ai-in-drug-discovery-through-human-alignment"><a class="markdownIt-Anchor" href="#designing-a-robust-llm-based-evaluation-system-for-agentic-ai-in-drug-discovery-through-human-alignment"></a> Designing a Robust LLM-Based Evaluation System for Agentic AI in Drug Discovery Through Human Alignment</h3>
+<p><strong>作者</strong>：Emma Granqvist、Rocío Mercado、Samuel Genheden<br>
 <strong>来源/分类</strong>：arXiv · cs.LG<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21057">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21057">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/MolecularAI/langdmta-lab">相关代码</a></p>
-<p>已在重点关注中核阅全文。论文把 ChatInvent
-的开放式药物发现回答拆成完整性、相关性、结构清晰度、范围遵循和工具调用正确性，并用
-5 名专家校准 LLM 评审器。作者报告 few-shot 优化后与人工多数票的对齐从
-0.80 到 0.86，70
-个留出问题中完整性明显弱于其他维度；证据局限是小规模人工标注、单一 agent
-与评审器成本，不能把评审分数当成化学正确性或真实研发收益。</p>
-<h3 id="when-vocabulary-comprehension-fails-clinical-reasoning-evaluating-therapy-bots-safety-risks-for-generation-alpha">When
-Vocabulary Comprehension Fails Clinical Reasoning: Evaluating Therapy
-Bots' Safety Risks for Generation Alpha</h3>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21057">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21057">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/MolecularAI/langdmta-lab">相关代码</a></p>
+<p>已在重点关注中核阅全文。论文把 ChatInvent 的开放式药物发现回答拆成完整性、相关性、结构清晰度、范围遵循和工具调用正确性，并用 5 名专家校准 LLM 评审器。作者报告 few-shot 优化后与人工多数票的对齐从 0.80 到 0.86，70 个留出问题中完整性明显弱于其他维度；证据局限是小规模人工标注、单一 agent 与评审器成本，不能把评审分数当成化学正确性或真实研发收益。</p>
+<h3 id="when-vocabulary-comprehension-fails-clinical-reasoning-evaluating-therapy-bots-safety-risks-for-generation-alpha"><a class="markdownIt-Anchor" href="#when-vocabulary-comprehension-fails-clinical-reasoning-evaluating-therapy-bots-safety-risks-for-generation-alpha"></a> When Vocabulary Comprehension Fails Clinical Reasoning: Evaluating Therapy Bots’ Safety Risks for Generation Alpha</h3>
 <p><strong>作者</strong>：Manisha Mehta、Virendra Mehta<br>
-<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.CY<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20345">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20345">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3805689.3806522">DOI</a></p>
-<p>仅依据摘要：研究面向 Generation Alpha
-的心理健康表达，测试聊天系统理解俚语、反讽和语义漂移后能否正确校准临床风险。作者构建
-64 条表达和 75 段多轮对话（780 轮），由母语者与临床人员验证，并评估
-Claude、GPT-4o、Llama-3.1；报告词汇理解率 76%–82%，风险校准率
-64%–72%，差距为 10–14 个百分点，且歧义从 7 个百分点扩大到 18
-个百分点，三种以上失败模式叠加时漏报率达到
-94%。价值在于把“听懂词”与“识别危机”分开；摘要证据不足以验证样本代表性、提示/模型版本、年度危机数外推和与现实伤害的因果关系，6.4
-倍成本也需要全文复核。</p>
-<h3 id="trustworthy-rag-an-evaluation-agent-for-detecting-misinformation-and-knowledge-poisoning-in-generative-ai-systems">Trustworthy
-RAG: An Evaluation Agent for Detecting Misinformation and Knowledge
-Poisoning in Generative AI Systems</h3>
-<p><strong>作者</strong>：Balkrishna Giri、Md Toufique Hasan、Jussi
-Rasku、Muhammad Waseem、Pekka Abrahamsson<br>
-<strong>来源/分类</strong>：arXiv ·
-cs.SE、cs.AI、cs.CL、cs.CR、cs.IR<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21095">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21095">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/GPT-Laboratory/TrustworthyRAG">代码与实验材料</a></p>
-<p>已在重点关注中核阅全文。论文以 NLI、投毒信号和 Trust Index
-作为生成前门控，在 TruthfulQA
-上对显式指令注入有效，但对实体替换和细微语义弱化无力；在 FEVER
-上的跨数据集表现低于朴素基线。结果只说明受控投毒检测能力，不说明下游模型是否采纳错误内容，也不构成安全部署保证。</p>
-<h3 id="is-multimodal-speculative-decoding-ready-for-diffusion-based-parallel-drafting-a-survey-and-empirical-diagnosis">Is
-Multimodal Speculative Decoding Ready for Diffusion-Based Parallel
-Drafting? A Survey and Empirical Diagnosis</h3>
-<p><strong>作者</strong>：Yantao Li、Huanlin Gao、Fang Zhao、Chao
-Tan、Qiang Hui、Shuting Liu、Fuyuan Shi、Ting Lu、Shaoan Zhao、Xueqiang
-Guo、Xinpei Su、Jianbing Zhang、Xinyu Dai、Kai Wang、Shiguo Lian<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20743">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20743">PDF</a></p>
-<p>仅依据摘要：论文综述多模态 speculative decoding，并将问题聚焦到
-diffusion-based block-parallel drafting 能否从文本 LLM
-推广到视觉、视频、音频和 VLA 模型。作者提出区分 draft-side
-并行性与树构造、验证策略等正交设计的 taxonomy，在
-OCR、VQA、视觉推理和图像描述基准上比较不同并行度。摘要只说明完成了跨架构实证比较，没有给出各方法的完整数值、硬件或端到端质量—延迟曲线；“最高
-3.6 倍”是摘要提到的既有文本任务结果，不应当当作本文多模态新结果。</p>
-<h3 id="a-survey-on-foundations-and-frontiers-of-multimodal-agentic-frameworks-techniques-and-applications">A
-Survey on Foundations and Frontiers of Multimodal Agentic Frameworks:
-Techniques and Applications</h3>
-<p><strong>作者</strong>：Neel Mokaria、Rishie Raj、Dheeraj
-Baiju、Xiaoqian Shen、Shraman Pramanick、Kevin Qinghong Lin、Arda
-Senocak、Mike Zheng Shou、Philip Torr、Mohamed Elhoseiny、Yapeng
-Tian、Ruohan Gao、Salman Khan、Sayan Nag、Sanjoy Chowdhury、Dinesh
-Manocha<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20379">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20379">PDF</a></p>
-<p>仅依据摘要：综述以感知、推理、规划、记忆、行动五个 agent
-模块为主线，整理 delegated、late-fusion、early-fusion
-等多模态接入方式，并覆盖机器人、GUI/Web
-导航、多媒体生成和长视频理解。作者还讨论能力与训练/推理成本、延迟和部署约束之间的权衡。摘要未给出统一的纳入标准、复核流程或可比的性能统计；因此它更适合作为文献地图，不能仅凭摘要证明某种架构在跨领域均占优。</p>
-<h3 id="masking-is-not-enough-generative-restoration-for-multimodal-de-identification-in-medical-ai">Masking
-Is Not Enough: Generative Restoration for Multimodal De-Identification
-in Medical AI</h3>
-<p><strong>作者</strong>：Shiva Shrestha、Zongxing Xie、Chen Zhao、Liran
-Ma、Zhipeng Cai、Honghui Xu<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.CR<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21133">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21133">PDF</a></p>
-<p>仅依据摘要：ClinX 同时处理医学图像和文本中的 PHI，图像侧用 OCR
-生成掩码并以 ClinX-PRISM
-做生成式恢复，文本侧逐级使用正则、上下文和重写式脱敏，再在 MedVQA
-中联合测 PHI 泄露与下游效用。作者报告 OCR-only masking
-不足，而恢复式处理更能保留临床视觉上下文并降低可恢复
-PHI。摘要未给出泄露率、效用变化、攻击者能力和不同医学分布的结果；隐私降低与临床安全之间的关系仍需全文验证。</p>
-<h3 id="reinforcing-multi-turn-reasoning-in-llm-agents-via-fine-grained-reward-structure-and-credit-assignment">Reinforcing
-Multi-Turn Reasoning in LLM Agents via Fine-Grained Reward Structure and
-Credit Assignment</h3>
-<p><strong>作者</strong>：Quan Wei、Siliang Zeng、Chenliang Li、Zhongruo
-Wang、William Brown、Oana Frunza、Wei Deng、Anderson Schneider、Yuriy
-Nevmyvaka、Yang Katie Zhao、Alfredo Garcia、Mingyi Hong<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CY">cs.CY</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20345">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20345">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3805689.3806522">DOI</a></p>
+<p>仅依据摘要：研究面向 Generation Alpha 的心理健康表达，测试聊天系统理解俚语、反讽和语义漂移后能否正确校准临床风险。作者构建 64 条表达和 75 段多轮对话（780 轮），由母语者与临床人员验证，并评估 Claude、GPT-4o、Llama-3.1；报告词汇理解率 76%–82%，风险校准率 64%–72%，差距为 10–14 个百分点，且歧义从 7 个百分点扩大到 18 个百分点，三种以上失败模式叠加时漏报率达到 94%。价值在于把“听懂词”与“识别危机”分开；摘要证据不足以验证样本代表性、提示/模型版本、年度危机数外推和与现实伤害的因果关系，6.4 倍成本也需要全文复核。</p>
+<h3 id="trustworthy-rag-an-evaluation-agent-for-detecting-misinformation-and-knowledge-poisoning-in-generative-ai-systems"><a class="markdownIt-Anchor" href="#trustworthy-rag-an-evaluation-agent-for-detecting-misinformation-and-knowledge-poisoning-in-generative-ai-systems"></a> Trustworthy RAG: An Evaluation Agent for Detecting Misinformation and Knowledge Poisoning in Generative AI Systems</h3>
+<p><strong>作者</strong>：Balkrishna Giri、Md Toufique Hasan、Jussi Rasku、Muhammad Waseem、Pekka Abrahamsson<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.SE">cs.SE</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>、<a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21095">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21095">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/GPT-Laboratory/TrustworthyRAG">代码与实验材料</a></p>
+<p>已在重点关注中核阅全文。论文以 NLI、投毒信号和 Trust Index 作为生成前门控，在 TruthfulQA 上对显式指令注入有效，但对实体替换和细微语义弱化无力；在 FEVER 上的跨数据集表现低于朴素基线。结果只说明受控投毒检测能力，不说明下游模型是否采纳错误内容，也不构成安全部署保证。</p>
+<h3 id="is-multimodal-speculative-decoding-ready-for-diffusion-based-parallel-drafting-a-survey-and-empirical-diagnosis"><a class="markdownIt-Anchor" href="#is-multimodal-speculative-decoding-ready-for-diffusion-based-parallel-drafting-a-survey-and-empirical-diagnosis"></a> Is Multimodal Speculative Decoding Ready for Diffusion-Based Parallel Drafting? A Survey and Empirical Diagnosis</h3>
+<p><strong>作者</strong>：Yantao Li、Huanlin Gao、Fang Zhao、Chao Tan、Qiang Hui、Shuting Liu、Fuyuan Shi、Ting Lu、Shaoan Zhao、Xueqiang Guo、Xinpei Su、Jianbing Zhang、Xinyu Dai、Kai Wang、Shiguo Lian<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20743">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20743">PDF</a></p>
+<p>仅依据摘要：论文综述多模态 speculative decoding，并将问题聚焦到 diffusion-based block-parallel drafting 能否从文本 LLM 推广到视觉、视频、音频和 VLA 模型。作者提出区分 draft-side 并行性与树构造、验证策略等正交设计的 taxonomy，在 OCR、VQA、视觉推理和图像描述基准上比较不同并行度。摘要只说明完成了跨架构实证比较，没有给出各方法的完整数值、硬件或端到端质量—延迟曲线；“最高 3.6 倍”是摘要提到的既有文本任务结果，不应当当作本文多模态新结果。</p>
+<h3 id="a-survey-on-foundations-and-frontiers-of-multimodal-agentic-frameworks-techniques-and-applications"><a class="markdownIt-Anchor" href="#a-survey-on-foundations-and-frontiers-of-multimodal-agentic-frameworks-techniques-and-applications"></a> A Survey on Foundations and Frontiers of Multimodal Agentic Frameworks: Techniques and Applications</h3>
+<p><strong>作者</strong>：Neel Mokaria、Rishie Raj、Dheeraj Baiju、Xiaoqian Shen、Shraman Pramanick、Kevin Qinghong Lin、Arda Senocak、Mike Zheng Shou、Philip Torr、Mohamed Elhoseiny、Yapeng Tian、Ruohan Gao、Salman Khan、Sayan Nag、Sanjoy Chowdhury、Dinesh Manocha<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20379">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20379">PDF</a></p>
+<p>仅依据摘要：综述以感知、推理、规划、记忆、行动五个 agent 模块为主线，整理 delegated、late-fusion、early-fusion 等多模态接入方式，并覆盖机器人、GUI/Web 导航、多媒体生成和长视频理解。作者还讨论能力与训练/推理成本、延迟和部署约束之间的权衡。摘要未给出统一的纳入标准、复核流程或可比的性能统计；因此它更适合作为文献地图，不能仅凭摘要证明某种架构在跨领域均占优。</p>
+<h3 id="masking-is-not-enough-generative-restoration-for-multimodal-de-identification-in-medical-ai"><a class="markdownIt-Anchor" href="#masking-is-not-enough-generative-restoration-for-multimodal-de-identification-in-medical-ai"></a> Masking Is Not Enough: Generative Restoration for Multimodal De-Identification in Medical AI</h3>
+<p><strong>作者</strong>：Shiva Shrestha、Zongxing Xie、Chen Zhao、Liran Ma、Zhipeng Cai、Honghui Xu<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21133">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21133">PDF</a></p>
+<p>仅依据摘要：ClinX 同时处理医学图像和文本中的 PHI，图像侧用 OCR 生成掩码并以 ClinX-PRISM 做生成式恢复，文本侧逐级使用正则、上下文和重写式脱敏，再在 MedVQA 中联合测 PHI 泄露与下游效用。作者报告 OCR-only masking 不足，而恢复式处理更能保留临床视觉上下文并降低可恢复 PHI。摘要未给出泄露率、效用变化、攻击者能力和不同医学分布的结果；隐私降低与临床安全之间的关系仍需全文验证。</p>
+<h3 id="reinforcing-multi-turn-reasoning-in-llm-agents-via-fine-grained-reward-structure-and-credit-assignment"><a class="markdownIt-Anchor" href="#reinforcing-multi-turn-reasoning-in-llm-agents-via-fine-grained-reward-structure-and-credit-assignment"></a> Reinforcing Multi-Turn Reasoning in LLM Agents via Fine-Grained Reward Structure and Credit Assignment</h3>
+<p><strong>作者</strong>：Quan Wei、Siliang Zeng、Chenliang Li、Zhongruo Wang、William Brown、Oana Frunza、Wei Deng、Anderson Schneider、Yuriy Nevmyvaka、Yang Katie Zhao、Alfredo Garcia、Mingyi Hong<br>
 <strong>来源/分类</strong>：arXiv · cs.LG<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.11821">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2505.11821">PDF</a></p>
-<p>仅依据摘要：论文把长程多轮 agent 建模为 turn-level MDP，比较
-terminal、delayed 和 per-turn 三种奖励粒度，并分别为 GRPO、PPO
-设计信用分配方式。在多轮搜索与游戏 agent
-任务上，作者报告逐轮密集奖励在训练动态和数值结果上持续优于稀疏奖励，搜索任务中的
-PPO
-收敛更快、更稳定且答案正确率最高。摘要没有给出任务规模、算力预算、奖励是否需要可靠中间标签及与强基线的完整数字；密集奖励也可能引入奖励错配或投机行为，需看全文实验与消融。</p>
-<h3 id="reframe-evidence-guided-test-time-safety-alignment-in-multimodal-large-language-models">ReFrame:
-Evidence-Guided Test-Time Safety Alignment in Multimodal Large Language
-Models</h3>
-<p><strong>作者</strong>：Wenzheng Jiang、Xuankun Rong、Yuanzhao
-Zhai、Dawei Feng、Huaimin Wang<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21100">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21100">PDF</a></p>
-<p>仅依据摘要：ReFrame 面向不能改参数、也看不到内部状态的闭源
-MLLM，在调用下游模型前用两个共享轻量本地 MLLM 的 agent
-生成风险/效用证据，再改写代理提示并决定图像路由。作者报告在多个 MLLM
-和基准上同时改善越狱防御、安全意识和过度拒答，同时保留多模态效用。摘要未给出具体模型、攻击强度、额外延迟与
-token/GPU
-成本，也未证明面对自适应攻击或跨模态数据污染仍稳健；“training-free”不等于部署无成本。</p>
-<h3 id="automated-trajectory-evaluation-for-mobile-agents-via-step-level-consequence-reasoning-and-aggregation">Automated
-Trajectory Evaluation for Mobile Agents via Step-Level Consequence
-Reasoning and Aggregation</h3>
-<p><strong>作者</strong>：Pengshuai Yang、Zijing Gao、Xue Yu、Benhui
-Zhuang、Bo Yuan、Junlan Feng<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20797">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20797">PDF</a> · <a target="_blank" rel="noopener" href="https://anonymous.4open.science/r/CRATE-D580">代码</a></p>
-<p>已在重点关注中核阅全文。CRATE/CRATE-S
-用逐步视觉证据缓解完整轨迹裁判的上下文过载；作者报告 AndroidWorld F1 为
-0.833、MobileRisk 安全 F1 为 0.697。其结论仍限于移动端、事后评估和选定
-VLM，不能直接推出在线监控或真实设备安全率。</p>
-<h3 id="statesight-benchmarking-latent-spatial-state-reconstruction-in-vision-language-models">StateSight:
-Benchmarking Latent Spatial-State Reconstruction in Vision-Language
-Models</h3>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.11821">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2505.11821">PDF</a></p>
+<p>仅依据摘要：论文把长程多轮 agent 建模为 turn-level MDP，比较 terminal、delayed 和 per-turn 三种奖励粒度，并分别为 GRPO、PPO 设计信用分配方式。在多轮搜索与游戏 agent 任务上，作者报告逐轮密集奖励在训练动态和数值结果上持续优于稀疏奖励，搜索任务中的 PPO 收敛更快、更稳定且答案正确率最高。摘要没有给出任务规模、算力预算、奖励是否需要可靠中间标签及与强基线的完整数字；密集奖励也可能引入奖励错配或投机行为，需看全文实验与消融。</p>
+<h3 id="reframe-evidence-guided-test-time-safety-alignment-in-multimodal-large-language-models"><a class="markdownIt-Anchor" href="#reframe-evidence-guided-test-time-safety-alignment-in-multimodal-large-language-models"></a> ReFrame: Evidence-Guided Test-Time Safety Alignment in Multimodal Large Language Models</h3>
+<p><strong>作者</strong>：Wenzheng Jiang、Xuankun Rong、Yuanzhao Zhai、Dawei Feng、Huaimin Wang<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21100">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21100">PDF</a></p>
+<p>仅依据摘要：ReFrame 面向不能改参数、也看不到内部状态的闭源 MLLM，在调用下游模型前用两个共享轻量本地 MLLM 的 agent 生成风险/效用证据，再改写代理提示并决定图像路由。作者报告在多个 MLLM 和基准上同时改善越狱防御、安全意识和过度拒答，同时保留多模态效用。摘要未给出具体模型、攻击强度、额外延迟与 token/GPU 成本，也未证明面对自适应攻击或跨模态数据污染仍稳健；“training-free”不等于部署无成本。</p>
+<h3 id="automated-trajectory-evaluation-for-mobile-agents-via-step-level-consequence-reasoning-and-aggregation"><a class="markdownIt-Anchor" href="#automated-trajectory-evaluation-for-mobile-agents-via-step-level-consequence-reasoning-and-aggregation"></a> Automated Trajectory Evaluation for Mobile Agents via Step-Level Consequence Reasoning and Aggregation</h3>
+<p><strong>作者</strong>：Pengshuai Yang、Zijing Gao、Xue Yu、Benhui Zhuang、Bo Yuan、Junlan Feng<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20797">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20797">PDF</a> · <a target="_blank" rel="noopener" href="https://anonymous.4open.science/r/CRATE-D580">代码</a></p>
+<p>已在重点关注中核阅全文。CRATE/CRATE-S 用逐步视觉证据缓解完整轨迹裁判的上下文过载；作者报告 AndroidWorld F1 为 0.833、MobileRisk 安全 F1 为 0.697。其结论仍限于移动端、事后评估和选定 VLM，不能直接推出在线监控或真实设备安全率。</p>
+<h3 id="statesight-benchmarking-latent-spatial-state-reconstruction-in-vision-language-models"><a class="markdownIt-Anchor" href="#statesight-benchmarking-latent-spatial-state-reconstruction-in-vision-language-models"></a> StateSight: Benchmarking Latent Spatial-State Reconstruction in Vision-Language Models</h3>
 <p><strong>作者</strong>：Michelle Lin<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CV<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20414">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20414">PDF</a></p>
-<p>仅依据摘要：StateSight
-用程序生成的单图任务隔离视觉语言模型对潜在空间状态的重建能力，包含立方体展开图对面推理、遮挡立方体塔计数和四邻域连通分量计数，每类
-300 题、确定性 oracle 标签、exact-match 评分。作者报告 GPT-5.5
-三类准确率为 59.3%、33.3%、28.3%，Claude Sonnet 5 为
-53.3%、18.7%、7.3%；30 名参与者的人类基线在 60 题上为
-80.8%、68.8%、64.3%，且模型没有格式错误。价值是把“格式合法”与真正重建空间状态区分开；摘要未说明模型调用成本、提示泄漏、题目生成分布和人类样本代表性，不能据此概括通用视觉推理能力。</p>
-<h3 id="s-ai-recursive-convergent-recursive-reasoning">S-AI-Recursive:
-Convergent Recursive Reasoning</h3>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20414">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20414">PDF</a></p>
+<p>仅依据摘要：StateSight 用程序生成的单图任务隔离视觉语言模型对潜在空间状态的重建能力，包含立方体展开图对面推理、遮挡立方体塔计数和四邻域连通分量计数，每类 300 题、确定性 oracle 标签、exact-match 评分。作者报告 GPT-5.5 三类准确率为 59.3%、33.3%、28.3%，Claude Sonnet 5 为 53.3%、18.7%、7.3%；30 名参与者的人类基线在 60 题上为 80.8%、68.8%、64.3%，且模型没有格式错误。价值是把“格式合法”与真正重建空间状态区分开；摘要未说明模型调用成本、提示泄漏、题目生成分布和人类样本代表性，不能据此概括通用视觉推理能力。</p>
+<h3 id="s-ai-recursive-convergent-recursive-reasoning"><a class="markdownIt-Anchor" href="#s-ai-recursive-convergent-recursive-reasoning"></a> S-AI-Recursive: Convergent Recursive Reasoning</h3>
 <p><strong>作者</strong>：Said Slaoui<br>
-<strong>来源/分类</strong>：arXiv · cs.NE、cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.13872">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.13872">PDF</a></p>
-<p>仅依据摘要：论文提出用 Clarifine/Confusionin
-两个递归信号调节状态更新、停止和记忆检索的稀疏递归架构，并给出收缩、Lyapunov、Euler–Maruyama
-等分析。在可验证的 Maze 实例中，自适应停止把平均深度从 20.00 降到
-11.31；兼容的重复 Sudoku 中 warm-start 把深度从 18.39 降到
-2.00，摘要还称在欺骗性平台期有优势、在同质高斯噪声下没有优势。证据主要来自作者设计的模拟和任务，ARC
-只用于操作迁移性；摘要明确不能证明优于独立训练的外部架构，算力和基线公平性仍需核验。</p>
-<h3 id="is-vibe-coding-safe-benchmarking-vulnerability-of-agent-generated-code-in-real-world-tasks">Is
-Vibe Coding Safe? Benchmarking Vulnerability of Agent-Generated Code in
-Real-World Tasks</h3>
-<p><strong>作者</strong>：Songwen Zhao、Danqing Wang、Kexun
-Zhang、Jiaxuan Luo、Zhuo Li、Lei Li<br>
-<strong>来源/分类</strong>：arXiv · cs.SE、cs.CL<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.03262">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.03262">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/LeiLiLab/susvibes">代码与数据</a> · <a target="_blank" rel="noopener" href="https://leililab.github.io/susvibes-leaderboard/#home">排行榜</a></p>
-<p>已在重点关注中核阅全文。SUSVIBES
-把真实仓库中的功能正确和安全正确分开计分，最强示例的功能通过率
-57%、安全通过率
-11.8%；安全提示只带来有限改善并牺牲功能。它是安全验收基准，不是对所有代码
-agent
-生产事故率的估计，测试覆盖、漏洞分布、模型版本和任务选择都决定了外推边界。</p>
-<h3 id="clawsentry-a-progressive-multi-tier-security-monitor-for-safeguarding-autonomous-llm-agents">ClawSentry:
-A Progressive Multi-Tier Security Monitor for Safeguarding Autonomous
-LLM Agents</h3>
-<p><strong>作者</strong>：Kai Wang、Zeming Wei、BiaoJie Zeng、Chang
-Jin、An Wang、Xiaokun Luan、Zhixiao Lin、Jingjing Qu、Xia Hu、Xingcheng
-Xu<br>
-<strong>来源/分类</strong>：arXiv · cs.CR、cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21101">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21101">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Elroyper/ClawSentry">代码</a></p>
-<p>仅依据摘要：ClawSentry 将 agent
-风险分成技能准入、调用意图、执行效果和事后后果四个位置，先做技能包审查，再以确定性
-L1、规则锚定的 L2 和只读 agent L3
-逐级升级，并用会话级机制识别换工具或改写措辞的重试。作者报告在
-SkillInject/Codex-GPT-5.4 上 ASR 从 39.55% 降到 2.61%，干净技能的 TSR 从
-83.78% 变为 83.05%；五个 work agent 上 ASR 降到 9.09%–15.03%，干净技能
-TSR 为
-98.7%。摘要未说明各层延迟、误报、完整威胁覆盖和真实部署流量，ASR/TSR
-也来自受控基准，不应直接当作生产安全率。</p>
-<h3 id="cas-conformalized-agentic-search-via-adaptive-retrieval-and-policy-weighting">CAS:
-Conformalized Agentic Search via Adaptive Retrieval and Policy
-Weighting</h3>
-<p><strong>作者</strong>：Zixi Zhu、Jiayuan Su、Jian Zhang、Yu
-Lin、Hongwei Wang<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20771">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20771">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/S1llyBird/CAS">代码</a></p>
-<p>仅依据摘要：CAS 用 conformal prediction 的 APS
-构造自适应大小的检索文档集合，再用 ACI 估计答案置信度，将低置信轨迹纳入
-GRPO
-的惩罚项，目标是同时减少证据遗漏、噪声和冗余搜索。作者在单跳和多跳问答上报告准确率提高、工具调用明显减少。摘要没有给出覆盖率保证所需的交换性条件、校准集规模、不同
-K 的调用成本或各基线数字；因此“可靠高效”仍是作者在这些 QA
-基准上的报告，不能推广为所有 agent 搜索场景的统计保证。</p>
-<h3 id="agidefect-4k-a-richly-annotated-dataset-for-ai-generated-image-defect-detection-localization-and-explanation">AGIDefect-4K:
-A Richly Annotated Dataset for AI-Generated Image Defect Detection,
-Localization and Explanation</h3>
-<p><strong>作者</strong>：Xiangfei Sheng、Weidong Zou、Tianjiao
-Gu、Zhichao Yang、Pengfei Chen、Leida Li<br>
-<strong>来源/分类</strong>：arXiv · cs.CV<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20713">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20713">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/sxfly99/AGIDefect-4K">数据与代码</a></p>
-<p>仅依据摘要：AGIDefect-4K 收集来自 15 个开源和闭源生成模型的 4,000
-张图像，提供缺陷有无、像素级定位、文字解释和总体质量分数四层标注，并以
-MLLM 构建 AGIDA
-基线，同时做检测、定位、解释和质量预测。作者报告当前模型的缺陷理解仍然困难。摘要未说明生成提示、模型版本和图像去重、标注者一致性、跨生成器测试切分及基线算力；数据集的覆盖面不等于对真实生成图像质量的完整测量。</p>
-<h3 id="artimo-agent-driven-articulated-mesh-animation">ArtiMo:
-Agent-Driven Articulated Mesh Animation</h3>
-<p><strong>作者</strong>：Chunyu Zou、Peng Dai、Yi-Hua Huang、Ze
-Yuan、Jingwei Huang、Yeming Yao、Xiaojuan Qi<br>
-<strong>来源/分类</strong>：arXiv · cs.CV<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20699">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20699">PDF</a> · <a target="_blank" rel="noopener" href="https://zou-2004.github.io/ArtiMo/">项目页</a></p>
-<p>仅依据摘要：ArtiMo 用 LLM/VLM agent
-组织文本到关节网格动画的零样本流程，以 URDF
-约束运动学，并把渲染后的关键帧和运动线索反馈给 VLM
-做自我修正；作者还发布覆盖 21
-类关节物体、带因果关系的动作基准。论文报告复杂因果动作上优于基线。摘要没有给出动作物理违约率、迭代次数、模型/渲染成本和跨物体泛化，项目页结果也需要独立复现。</p>
-<h3 id="aixamine-unified-black-box-evaluation-of-cross-dimensional-trade-offs-in-llm-safety-security-and-privacy">aiXamine:
-Unified Black-Box Evaluation of Cross-Dimensional Trade-offs in LLM
-Safety, Security, and Privacy</h3>
-<p><strong>作者</strong>：Fatih Deniz、Yazan Boshmaf、Dorde
-Popovic、Issa Khalil<br>
-<strong>来源/分类</strong>：arXiv · cs.CR、cs.LG<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20554">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20554">PDF</a> · <a target="_blank" rel="noopener" href="https://aixamine.qcri.org/">评测门户</a></p>
-<p>已在重点关注中核阅全文。aiXamine
-的核心结果是安全、隐私和可用性不能由一个平均分代理；作者在 121
-个模型、5,000 多次运行中报告安全
-tax、隐私近正交和蒸馏鲁棒性崩溃。英文-only、黑盒、自动裁判和权重聚合使这些数字适合作为可复核的评测结果，不是跨语言或真实风险概率。</p>
-<h3 id="volumetric-radiology-ai-in-the-era-of-multimodal-large-language-models">Volumetric
-Radiology AI in the Era of Multimodal Large Language Models</h3>
-<p><strong>作者</strong>：Zanting Ye、Shengyuan Liu、Xin Liu、Chenhui
-Wang、Zhisong Wang、Jiashuai Liu、Zipei Wang、Cheng Wang、Wentao
-Pan、Mengjie Fang、Di Dong、Mohammad Salmanpour、Arman Rahmim、Yu
-Gu、Yong Xia、Hongming Shan、Yixuan Yuan、Yefeng Zheng、Lijun Lu<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20549">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20549">PDF</a></p>
-<p>仅依据摘要：这篇综述覆盖截至 2026 年 7 月的 200
-多篇工作，围绕体数据表示、多模态理解、agent 编排以及临床工作流，提出
-Claim-Design-Validation 框架，区分何时 2D
-视图或报告中介足够、何时必须使用原生 3D
-表示。作者强调临床可信度需要忠实的体积信息、可追踪行为、与主张匹配的验证和明确的人类监督。摘要未给出系统综述检索/排除流程、定量
-meta-analysis 或临床前瞻性结果；这是研究路线图，不是临床有效性证明。</p>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.NE">cs.NE</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.13872">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.13872">PDF</a></p>
+<p>仅依据摘要：论文提出用 Clarifine/Confusionin 两个递归信号调节状态更新、停止和记忆检索的稀疏递归架构，并给出收缩、Lyapunov、Euler–Maruyama 等分析。在可验证的 Maze 实例中，自适应停止把平均深度从 20.00 降到 11.31；兼容的重复 Sudoku 中 warm-start 把深度从 18.39 降到 2.00，摘要还称在欺骗性平台期有优势、在同质高斯噪声下没有优势。证据主要来自作者设计的模拟和任务，ARC 只用于操作迁移性；摘要明确不能证明优于独立训练的外部架构，算力和基线公平性仍需核验。</p>
+<h3 id="is-vibe-coding-safe-benchmarking-vulnerability-of-agent-generated-code-in-real-world-tasks"><a class="markdownIt-Anchor" href="#is-vibe-coding-safe-benchmarking-vulnerability-of-agent-generated-code-in-real-world-tasks"></a> Is Vibe Coding Safe? Benchmarking Vulnerability of Agent-Generated Code in Real-World Tasks</h3>
+<p><strong>作者</strong>：Songwen Zhao、Danqing Wang、Kexun Zhang、Jiaxuan Luo、Zhuo Li、Lei Li<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.SE">cs.SE</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.03262">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.03262">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/LeiLiLab/susvibes">代码与数据</a> · <a target="_blank" rel="noopener" href="https://leililab.github.io/susvibes-leaderboard/#home">排行榜</a></p>
+<p>已在重点关注中核阅全文。SUSVIBES 把真实仓库中的功能正确和安全正确分开计分，最强示例的功能通过率 57%、安全通过率 11.8%；安全提示只带来有限改善并牺牲功能。它是安全验收基准，不是对所有代码 agent 生产事故率的估计，测试覆盖、漏洞分布、模型版本和任务选择都决定了外推边界。</p>
+<h3 id="clawsentry-a-progressive-multi-tier-security-monitor-for-safeguarding-autonomous-llm-agents"><a class="markdownIt-Anchor" href="#clawsentry-a-progressive-multi-tier-security-monitor-for-safeguarding-autonomous-llm-agents"></a> ClawSentry: A Progressive Multi-Tier Security Monitor for Safeguarding Autonomous LLM Agents</h3>
+<p><strong>作者</strong>：Kai Wang、Zeming Wei、BiaoJie Zeng、Chang Jin、An Wang、Xiaokun Luan、Zhixiao Lin、Jingjing Qu、Xia Hu、Xingcheng Xu<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21101">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21101">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Elroyper/ClawSentry">代码</a></p>
+<p>仅依据摘要：ClawSentry 将 agent 风险分成技能准入、调用意图、执行效果和事后后果四个位置，先做技能包审查，再以确定性 L1、规则锚定的 L2 和只读 agent L3 逐级升级，并用会话级机制识别换工具或改写措辞的重试。作者报告在 SkillInject/Codex-GPT-5.4 上 ASR 从 39.55% 降到 2.61%，干净技能的 TSR 从 83.78% 变为 83.05%；五个 work agent 上 ASR 降到 9.09%–15.03%，干净技能 TSR 为 98.7%。摘要未说明各层延迟、误报、完整威胁覆盖和真实部署流量，ASR/TSR 也来自受控基准，不应直接当作生产安全率。</p>
+<h3 id="cas-conformalized-agentic-search-via-adaptive-retrieval-and-policy-weighting"><a class="markdownIt-Anchor" href="#cas-conformalized-agentic-search-via-adaptive-retrieval-and-policy-weighting"></a> CAS: Conformalized Agentic Search via Adaptive Retrieval and Policy Weighting</h3>
+<p><strong>作者</strong>：Zixi Zhu、Jiayuan Su、Jian Zhang、Yu Lin、Hongwei Wang<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20771">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20771">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/S1llyBird/CAS">代码</a></p>
+<p>仅依据摘要：CAS 用 conformal prediction 的 APS 构造自适应大小的检索文档集合，再用 ACI 估计答案置信度，将低置信轨迹纳入 GRPO 的惩罚项，目标是同时减少证据遗漏、噪声和冗余搜索。作者在单跳和多跳问答上报告准确率提高、工具调用明显减少。摘要没有给出覆盖率保证所需的交换性条件、校准集规模、不同 K 的调用成本或各基线数字；因此“可靠高效”仍是作者在这些 QA 基准上的报告，不能推广为所有 agent 搜索场景的统计保证。</p>
+<h3 id="agidefect-4k-a-richly-annotated-dataset-for-ai-generated-image-defect-detection-localization-and-explanation"><a class="markdownIt-Anchor" href="#agidefect-4k-a-richly-annotated-dataset-for-ai-generated-image-defect-detection-localization-and-explanation"></a> AGIDefect-4K: A Richly Annotated Dataset for AI-Generated Image Defect Detection, Localization and Explanation</h3>
+<p><strong>作者</strong>：Xiangfei Sheng、Weidong Zou、Tianjiao Gu、Zhichao Yang、Pengfei Chen、Leida Li<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20713">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20713">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/sxfly99/AGIDefect-4K">数据与代码</a></p>
+<p>仅依据摘要：AGIDefect-4K 收集来自 15 个开源和闭源生成模型的 4,000 张图像，提供缺陷有无、像素级定位、文字解释和总体质量分数四层标注，并以 MLLM 构建 AGIDA 基线，同时做检测、定位、解释和质量预测。作者报告当前模型的缺陷理解仍然困难。摘要未说明生成提示、模型版本和图像去重、标注者一致性、跨生成器测试切分及基线算力；数据集的覆盖面不等于对真实生成图像质量的完整测量。</p>
+<h3 id="artimo-agent-driven-articulated-mesh-animation"><a class="markdownIt-Anchor" href="#artimo-agent-driven-articulated-mesh-animation"></a> ArtiMo: Agent-Driven Articulated Mesh Animation</h3>
+<p><strong>作者</strong>：Chunyu Zou、Peng Dai、Yi-Hua Huang、Ze Yuan、Jingwei Huang、Yeming Yao、Xiaojuan Qi<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20699">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20699">PDF</a> · <a target="_blank" rel="noopener" href="https://zou-2004.github.io/ArtiMo/">项目页</a></p>
+<p>仅依据摘要：ArtiMo 用 LLM/VLM agent 组织文本到关节网格动画的零样本流程，以 URDF 约束运动学，并把渲染后的关键帧和运动线索反馈给 VLM 做自我修正；作者还发布覆盖 21 类关节物体、带因果关系的动作基准。论文报告复杂因果动作上优于基线。摘要没有给出动作物理违约率、迭代次数、模型/渲染成本和跨物体泛化，项目页结果也需要独立复现。</p>
+<h3 id="aixamine-unified-black-box-evaluation-of-cross-dimensional-trade-offs-in-llm-safety-security-and-privacy"><a class="markdownIt-Anchor" href="#aixamine-unified-black-box-evaluation-of-cross-dimensional-trade-offs-in-llm-safety-security-and-privacy"></a> aiXamine: Unified Black-Box Evaluation of Cross-Dimensional Trade-offs in LLM Safety, Security, and Privacy</h3>
+<p><strong>作者</strong>：Fatih Deniz、Yazan Boshmaf、Dorde Popovic、Issa Khalil<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>、cs.LG<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20554">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20554">PDF</a> · <a target="_blank" rel="noopener" href="https://aixamine.qcri.org/">评测门户</a></p>
+<p>已在重点关注中核阅全文。aiXamine 的核心结果是安全、隐私和可用性不能由一个平均分代理；作者在 121 个模型、5,000 多次运行中报告安全 tax、隐私近正交和蒸馏鲁棒性崩溃。英文-only、黑盒、自动裁判和权重聚合使这些数字适合作为可复核的评测结果，不是跨语言或真实风险概率。</p>
+<h3 id="volumetric-radiology-ai-in-the-era-of-multimodal-large-language-models"><a class="markdownIt-Anchor" href="#volumetric-radiology-ai-in-the-era-of-multimodal-large-language-models"></a> Volumetric Radiology AI in the Era of Multimodal Large Language Models</h3>
+<p><strong>作者</strong>：Zanting Ye、Shengyuan Liu、Xin Liu、Chenhui Wang、Zhisong Wang、Jiashuai Liu、Zipei Wang、Cheng Wang、Wentao Pan、Mengjie Fang、Di Dong、Mohammad Salmanpour、Arman Rahmim、Yu Gu、Yong Xia、Hongming Shan、Yixuan Yuan、Yefeng Zheng、Lijun Lu<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.20549">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.20549">PDF</a></p>
+<p>仅依据摘要：这篇综述覆盖截至 2026 年 7 月的 200 多篇工作，围绕体数据表示、多模态理解、agent 编排以及临床工作流，提出 Claim-Design-Validation 框架，区分何时 2D 视图或报告中介足够、何时必须使用原生 3D 表示。作者强调临床可信度需要忠实的体积信息、可追踪行为、与主张匹配的验证和明确的人类监督。摘要未给出系统综述检索/排除流程、定量 meta-analysis 或临床前瞻性结果；这是研究路线图，不是临床有效性证明。</p>
 
                 
               </div>
@@ -828,6 +570,12 @@ meta-analysis 或临床前瞻性结果；这是研究路线图，不是临床有
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2026/08/26/daily-briefing-2026-08-26/" title="每日信息简报｜2026 年 08 月 26 日">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">每日信息简报｜2026 年 08 月 26 日</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
