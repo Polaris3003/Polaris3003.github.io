@@ -1,0 +1,1171 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="重点关注 ABIDES-MARL：把最优执行从单人控制改写成流动性内生的博弈 论文：ABIDES-MARL: A Multi-Agent Reinforcement Learning Environment for Optimal Execution with Endogenous Liquidity（arXiv:2511.02016） 作者：Patrick Cheridito、Jean-Lou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日金融论文简报｜2026 年 8 月 26 日">
+<meta property="og:url" content="https://www.polarishaw.top/2026/08/26/daily-finance-papers-2026-08-26/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="重点关注 ABIDES-MARL：把最优执行从单人控制改写成流动性内生的博弈 论文：ABIDES-MARL: A Multi-Agent Reinforcement Learning Environment for Optimal Execution with Endogenous Liquidity（arXiv:2511.02016） 作者：Patrick Cheridito、Jean-Lou">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-16/pixiv-rank-013-148245869.jpg">
+<meta property="article:published_time" content="2026-08-26T02:15:00.000Z">
+<meta property="article:modified_time" content="2026-08-26T02:28:18.638Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="论文">
+<meta property="article:tag" content="金融">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-16/pixiv-rank-013-148245869.jpg">
+  
+  
+  
+  <title>每日金融论文简报｜2026 年 8 月 26 日 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
+<link rel="stylesheet" href="/css/dailyBriefing.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/covers/pixiv-weekly/2026-07-19/pixiv-rank-006-147092236.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="每日金融论文简报｜2026 年 8 月 26 日"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-08-26 10:15" pubdate>
+          2026年8月26日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">每日金融论文简报｜2026 年 8 月 26 日</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="abides-marl把最优执行从单人控制改写成流动性内生的博弈">ABIDES-MARL：把最优执行从单人控制改写成流动性内生的博弈</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.02016">ABIDES-MARL: A Multi-Agent
+Reinforcement Learning Environment for Optimal Execution with Endogenous
+Liquidity</a>（arXiv:2511.02016）<br>
+<strong>作者</strong>：Patrick Cheridito、Jean-Loup Dupret、Zhexin
+Wu<br>
+<strong>来源/分类</strong>：arXiv ·
+q-fin.TR、cs.GT、cs.MA、cs.SY、eess.SY<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>传统最优执行把 market impact
+和流动性当成外生过程，交易者只需在固定冲击系数下做控制；本文指出，当做市商会根据订单流和交易者策略适应性报价时，这个假设是结构性错设。ABIDES-MARL
+在 ABIDES/ABIDES-Gym
+上加入同步的多学习者决策周期、受控信息过滤和真实限价订单簿互动，让
+informed trader、liquidity trader、多个 market maker 与 noise trader
+共同形成一个有限期随机博弈。作者先在扩展 Kyle 场景验证价格发现，再比较
+PPO joint MARL、VWAP、TWAP、固定 impact 的 analytical schedule
+和冻结对手后的 PPO-Single。作者明确不宣称 MARL 收敛到精确 Nash
+equilibrium，而是用固定点/结构诊断解释“equilibrium-like”行为。</p>
+<p>线性策略参数化下，20 个 market makers、无 LOB
+信息、开盘价低于基本价值时，价格误差 AR(1) 系数为 0.745、半衰期
+2.36，Kyle 回归斜率 2.30 且显著；开盘价高于基本价值时半衰期为
+3.18。非线性策略会破坏这一结构：20 个做市商、无 LOB、down
+初值时半衰期升至 145.41，Kyle 斜率 −0.14 且不显著。执行实验的 30 个
+holdout episodes 显示，在受约束的线性对手下 TWAP 较稳健，而固定 impact
+的 analytical schedule 并不可靠；在更灵活的非线性对手下，PPO-Single
+往往更低 shortfall，PPO joint 也会因对手适应而被利用。这里的
+implementation shortfall 是模拟器中的相对执行成本，不是实盘收益、可交易
+alpha 或因果估计；市场参与者、信息结构、策略网络、30 episode 评估和 20
+步 horizon
+都是模型设定。创新在于把“你的策略改变未来流动性”作为核心机制；失败条件是策略类过度灵活、信息不平衡或可预测强制交易导致市场动力学退化。适合市场微观结构、MARL
+和执行建模读者；建议读 §2 同步模拟器、§3 随机博弈、§4.3 Kyle 验证、§4.4
+表 3–4 和 §4.5。没有真实市场样本外验证，也不构成投资建议。</p>
+<p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.02016">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.02016">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/10258392511/MARLOptExecution">代码与配置</a></p>
+<h3 id="investment-bias-dial单神经元可以调节-llm-的买卖先验但不是调出-alpha">Investment-Bias
+Dial：单神经元可以调节 LLM 的买卖先验，但不是调出 alpha</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.22852">Your AI, On a Dial: Controlling
+Investment Bias in LLMs with a Single
+Neuron</a>（arXiv:2608.22852）<br>
+<strong>作者</strong>：Sahong Park、Suhwan Park、Hoyoung Lee、Gakyung
+Kwon、Wonbin Ahn、Jaewon Choi、Alejandro Lopez-Lira、Yoon Kim、Chanyeol
+Choi、Hyeongwoo Kong、Yongjae Lee<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、q-fin.GN<br>
+<strong>全文状态</strong>：已核阅公开 PDF；论文注明 Under review。</p>
+<p>论文研究如何在不改 prompt、不更新参数的前提下，连续控制 LLM 的总体
+bullish/bearish decision prior。作者先用梯度敏感性筛选 MLP
+坐标，再在互斥证券集合上校准候选神经元的 transfer
+curve，最后对单个坐标在所有 token 位置加上干预系数
+Δ。五个开放权重模型（Qwen3-8B、Llama-4-Scout、DeepSeek-R1-Distill-Qwen-14B、Gemma-4-12B、Mistral-24B）都出现单调响应，但方向和可达范围是模型特定的；“中性”被定义为
+balanced positive/negative evidence 下总体买卖频率的
+π=0，不是无偏、最优或适合任何投资者的目标。</p>
+<p>Qwen3-8B 的基线 investment-bias π 为 +0.575，校准后为
+−0.010，2,527/8,536 个决策改变；Llama-4-Scout 从 +0.623 到 −0.026，改变
+32.5%；DeepSeek-R1-14B 从 +0.095 到 +0.010，改变 21.1%；Gemma-4-12B 与
+Mistral-24B 已接近中性而不需改动。七个通用/金融 benchmark
+的最大绝对变化为 1.60 个百分点，BH 校正后没有系统性显著下降，但最差单侧
+95% 下界仍在 −2.49 到 −0.81 个百分点，不能写成“零副作用”。在 Qwen3-8B
+的检索 agent 中，校准使 bearish 查询、打开证据和 memo 引用的比例相对增加
+88%、41%、74%；长上下文中神经元控制比匹配的 system prompt
+更稳定。作者又对 427 只 S&amp;P 500 股票做 29 个 signal weeks、28 个
+one-week-ahead return weeks 的 top-100 long-only 周度回测；不同 Δ
+改变排名、平局和 realized Sharpe，部分设置超过随机组合 95
+分位，但作者明确称其为 exploratory
+backtest，未计交易成本、滑点、延迟，也不证明
+alpha。这里没有因果识别：实验说明内部干预能改变模型行为，不能说明改变后的信息选择提高真实投资回报；样本外只指该回测窗口，且不是实时可交易结果。适合金融
+AI、activation steering 和模型治理读者；建议读 §4.1、表 3、§5.3
+能力保留、§5.4 agent 行为、§6 限制和附录
+D/E。重点核查内部激活访问、模型重训后重新校准和 prompt/证据公平性。</p>
+<p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.22852">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.22852">PDF</a></p>
+<h3 id="arbitrage-aware-ivs-diffusion生成-30-天波动率曲面轨迹但短期仍不如复制最新曲面">Arbitrage-Aware
+IVS Diffusion：生成 30 天波动率曲面轨迹，但短期仍不如复制最新曲面</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.22478">Arbitrage-Aware Multi-Step
+Forecasting of Implied Volatility Surfaces: Modelling Surface
+Trajectories Using Latent Diffusion</a>（arXiv:2608.22478）<br>
+<strong>作者</strong>：Dominik Manuel Buchegger、Lukas Gonon<br>
+<strong>来源/分类</strong>：arXiv · q-fin.MF、cs.LG<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>作者用 OptionMetrics IvyDB US 的 SPX 期权报价构造每日 time-scaled
+implied volatility surface，先用带无静态套利惩罚的 8 维确定性
+autoencoder 压缩，再用 conditional latent diffusion 联合生成未来 30
+个交易日的 IVS 与标的收益。数据覆盖 2000 年 1 月至 2025 年 8 月，共
+6,429 个日曲面；按时间切分为 5,511 个训练、251 个验证、667
+个测试观察，形成 5,461/221/637 条 21 日历史到 30
+日未来的轨迹。解码器在连续坐标上重建曲面，训练中惩罚 butterfly/calendar
+静态套利；推理每个测试起点生成 1,000 条轨迹，并以 persistence 与
+bootstrap persistence 比较，而不是只展示看起来平滑的样本。</p>
+<p>模型生成路径的前三个 realised-PCA 因子解释 91.76%
+的曲面增量方差，分别对应 level 83.95%、skew 5.41%、curvature 2.41%，PC1
+loading 对齐 0.996、PC2 0.962、PC3 0.831。样本的 calendar violation 为
+0%，butterfly violation 为 0.13%，单路径平均修复约为中位 bid–ask 半价的
+15%，ensemble mean 约 5%；去掉无套利损失后无套利曲面比例从约 88% 降到约
+24%。但模型有明显 underdispersion：h=21 的 PC1 生成标准差 0.669、真实为
+0.923，h=30 为 0.769 对 1.021；名义 95% 区间覆盖率从 h=1 的 0.856 降到
+h=30 的 0.811。对 persistence 的点预测在 h=1 仍较差，整体 30 日 RMSE
+增益 6.09%，h=10 为 15.72%，约从 h=4–6 才转正；CRPS 在 h=1 对
+skew、curvature 等部分维度不如 bootstrap persistence，h=10/30
+才在大多数维度领先。金融含义必须分层：这些是曲面预测和情景生成的统计/经济约束结果，不是期权交易、对冲利润或真实可交易回测；数据来自需要
+WRDS/OptionMetrics 许可的来源，代码公开但数据复现成本不低。局限是
+underdispersion、一天前预测弱、中心长到期区域难改善、静态套利检查依赖网格和有限差分。适合波动率建模、风险管理和金融生成模型读者；建议读
+§4.1–4.3、表 1–4、§5.2–5.3、表 5–6 和 §6。</p>
+<p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.22478">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.22478">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/DomBBB/implied-volatility-trajectories-using-latent-diffusion">代码</a></p>
+<h3 id="emergence-of-statistical-financial-factors网络互动可以生成因子但不是对现实市场的因果识别">Emergence
+of Statistical Financial
+Factors：网络互动可以生成因子，但不是对现实市场的因果识别</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.12197">Emergence of Statistical
+Financial Factors by a Diffusion Process</a>（arXiv:2604.12197）<br>
+<strong>作者</strong>：Jose Negrete Jr、Jaime Joel Ramos<br>
+<strong>来源/分类</strong>：arXiv · q-fin.CP、nlin.CD<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>论文提出一种结构模型：每个资产的收益由带重尾和弱自相关的非线性
+chaotic map 产生，再通过由 Laplacian 的正交变换构造的 coupling matrix
+互相影响。耦合矩阵的 nullity/初始 cluster
+数被用来控制系统的潜在维度；在一定 coupling strength 下，系统靠近低维
+synchronization manifold，PCA 提取的 statistical factors
+被解释为互动网络的集体模式，而非外生指定的经济因子。作者区分
+synchronization mode、statistical factor 和 CAPM/Fama–French 意义上的
+financial factor，避免把模型生成的潜变量直接称为风险溢价。</p>
+<p>模拟令 cluster 数 M=1–6、每个 cluster 10 个资产，每个参数组合重复 200
+次；在约 0.36&lt;ε≤0.58 的区域，M=2–6 时检测出的因子数稳定地等于
+coupling matrix nullity，ε 接近 0.5 时领先因子解释的收益方差接近
+100%。局部 map 与 NFLX 251 个交易日收益的网格比较中，73,438
+条完整模拟序列中约 75% 的 MSE≤0.0042，固定参数示例 MSE 为 0.0016，约 86%
+的完整序列同时通过 Ljung–Box 无自相关和 Durbin–Watson 区间检查。一个 10
+个指数/股票的小组合在两个 2020–2022
+年期间被用作形状对照：模拟谱能复现实证 PCA 特征，模拟因子载荷熵约
+0.87，实证组合约 0.59；作者明确称这是 illustrative
+example，正式实证验证超出范围。这里没有因果识别、样本外收益、风险溢价或可交易回测，经验部分也不是对
+coupling 机制的自然实验；MSE 和 PCA
+形状相似不等于价格预测有效。适合金融网络、非线性动力学和因子建模读者；建议读
+§II 的局部 map/耦合、稳定性分析、§III.B–E、图 7–10 和结论。数据来自
+Yahoo Finance，代码/Notebook 以 Colab
+形式提供，但参数选择、随机种子和小样本外推需独立复核。</p>
+<p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.12197">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.12197">PDF</a> · <a target="_blank" rel="noopener" href="https://colab.research.google.com/drive/1NrQKD1ibd9M9t3S5f7-7BoHWocIkz2aO?usp=sharing">数据说明与
+Colab Notebook</a></p>
+<h2 id="金融论文">金融论文</h2>
+<p>阅读以下金融论文时，要把相关性与因果识别、样本内与样本外、统计显著性与经济显著性、历史/模拟回测与真实可交易结果分开；文中任何结果都不构成投资建议。</p>
+<h3 id="abides-marl-a-multi-agent-reinforcement-learning-environment-for-optimal-execution-with-endogenous-liquidity">ABIDES-MARL:
+A Multi-Agent Reinforcement Learning Environment for Optimal Execution
+with Endogenous Liquidity</h3>
+<p><strong>作者</strong>：Patrick Cheridito、Jean-Loup Dupret、Zhexin
+Wu<br>
+<strong>来源/分类</strong>：arXiv ·
+q-fin.TR、cs.GT、cs.MA、cs.SY、eess.SY<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.02016">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.02016">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/10258392511/MARLOptExecution">代码与配置</a></p>
+<p>已在重点关注中核阅全文。论文报告的是同步 LOB 模拟器和 MARL
+随机博弈实验；价格发现是模型内的结构验证，implementation shortfall
+是模拟执行指标，不是现实交易收益。固定 impact 的 analytical schedule
+在对手会适应时失效，且作者不宣称精确 Nash 收敛。</p>
+<h3 id="your-ai-on-a-dial-controlling-investment-bias-in-llms-with-a-single-neuron">Your
+AI, On a Dial: Controlling Investment Bias in LLMs with a Single
+Neuron</h3>
+<p><strong>作者</strong>：Sahong Park、Suhwan Park、Hoyoung Lee、Gakyung
+Kwon、Wonbin Ahn、Jaewon Choi、Alejandro Lopez-Lira、Yoon Kim、Chanyeol
+Choi、Hyeongwoo Kong、Yongjae Lee<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、q-fin.GN<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.22852">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.22852">PDF</a></p>
+<p>已在重点关注中核阅全文。单神经元干预能在作者的 balanced-evidence
+协议下校准买卖先验，且会影响检索证据和组合排序；能力 benchmark 没有 BH
+校正后的系统性下降，但该结果不是因果投资收益。427 只股票的 29/28
+周回测是探索性、样本外于其信号窗口的历史模拟，未计成本、滑点和延迟，不等于真实可交易结果。</p>
+<h3 id="arbitrage-aware-multi-step-forecasting-of-implied-volatility-surfaces-modelling-surface-trajectories-using-latent-diffusion">Arbitrage-Aware
+Multi-Step Forecasting of Implied Volatility Surfaces: Modelling Surface
+Trajectories Using Latent Diffusion</h3>
+<p><strong>作者</strong>：Dominik Manuel Buchegger、Lukas Gonon<br>
+<strong>来源/分类</strong>：arXiv · q-fin.MF、cs.LG<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.22478">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.22478">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/DomBBB/implied-volatility-trajectories-using-latent-diffusion">代码</a></p>
+<p>已在重点关注中核阅全文。作者在 SPX IVS 上报告 30 日概率轨迹和相对
+persistence 的预测差异，h=1 仍常被 persistence 胜过，h=10/30
+才显示更稳定的优势。它没有把曲面统计改善转成期权交易或对冲利润，也没有真实可交易回测；无套利和
+underdispersion 是同时存在的约束。</p>
+<h3 id="emergence-of-statistical-financial-factors-by-a-diffusion-process">Emergence
+of Statistical Financial Factors by a Diffusion Process</h3>
+<p><strong>作者</strong>：Jose Negrete Jr、Jaime Joel Ramos<br>
+<strong>来源/分类</strong>：arXiv · q-fin.CP、nlin.CD<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.12197">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.12197">PDF</a> · <a target="_blank" rel="noopener" href="https://colab.research.google.com/drive/1NrQKD1ibd9M9t3S5f7-7BoHWocIkz2aO?usp=sharing">数据说明与
+Colab Notebook</a></p>
+<p>已在重点关注中核阅全文。模拟中的因子数和 coupling matrix nullity
+一致，且能复现实证 PCA
+谱的形状，但这是结构模型与小组合的描述性对照；没有因果识别、样本外预测、风险溢价或经济显著性结果，不能把“涌现因子”理解为可交易因子。</p>
+<h3 id="short-horizon-mean-reversion-in-cryptocurrency-markets-a-matched-cross-market-measurement">Short-horizon
+mean reversion in cryptocurrency markets: a matched cross-market
+measurement</h3>
+<p><strong>作者</strong>：Nadav A. Kitron、Jonathan M. Wengrowicz<br>
+<strong>来源/分类</strong>：arXiv · q-fin.TR、q-fin.ST<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21888">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21888">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/nadav2/short-horizon-reversion">代码与复现实验</a></p>
+<p>已在重点关注中核阅全文。统一 walk-forward 协议下，作者报告 183 个
+Binance pairs 中 90% 显著反转、187 只美股/ETF 中为 2.7%，主样本
+class-mean AUC gap 为 +0.031，六个月冻结 holdout 为
++0.020；这些是跨资产横截面的描述性预测差异，不是 183
+个独立因果实验。gross edge 约 1.3bp/笔，低于 5bp 最低 benchmark spot
+round-trip cost，且忽略深度、延迟和 adverse
+selection，因此没有可交易收益结论；flow
+条件与补偿性流动性提供一致，但不能排除信息交易机制。</p>
+<h3 id="causal-separation-in-portfolio-choice-screening-off-information-and-conditional-risk">Causal
+Separation in Portfolio Choice: Screening-Off Information and
+Conditional Risk</h3>
+<p><strong>作者</strong>：Alejandro Rodriguez Dominguez<br>
+<strong>来源/分类</strong>：arXiv · q-fin.PM<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.05320">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.05320">PDF</a></p>
+<p>仅依据摘要：论文提出 causal separation，将 horizon-closed
+conditioning
+作为组合信息原则，使收益分解为对角残差风险与条件均值不确定性，再将系统风险投影到有限维
+driver innovations，得到近似 diagonal-plus-low-rank
+的协方差结构。作者报告受控实验恢复理论分解和 intervention
+行为，美国股票应用中残差横截面协方差下降、短训练窗口的结构化协方差样本外表现有竞争力。摘要没有给出训练/测试跨度、与标准
+shrinkage/factor baseline
+的完整数字、交易成本或真实组合收益；“causal”是模型条件下的结构解释，不等于观察数据已识别因果关系。</p>
+<h3 id="pragma-revolut-foundation-model">PRAGMA: Revolut Foundation
+Model</h3>
+<p><strong>作者</strong>：Maxim Ostroukhov、Ruslan Mikhailov、Vladimir
+Iashin、Artem Sokolov、Andrei Akshonov、Vitaly Protasov、Andrey
+Goncharov、Dmitrii Beloborodov、Vince Mullin、Roman Yokunda
+Enzmann、Georgios Kolovos、Jason Renders、Pavel Nesterov、Anton
+Repushko<br>
+<strong>来源/分类</strong>：arXiv ·
+cs.LG、cs.CE、cs.CL、cs.IR、q-fin.CP<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.08649">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.08649">PDF</a></p>
+<p>仅依据摘要：PRAGMA 用 masked modelling 在异构银行事件序列上预训练
+Transformer foundation model，输出 embedding
+后用线性模型或轻量微调支持信用评分、欺诈检测和 lifetime value
+prediction。作者声称在多个 downstream task
+上优于对比模型。摘要没有给出事件时间切分、客户/机构泄漏防护、样本外窗口、类别不平衡、经济损失函数和算力成本；信用或欺诈任务的
+benchmark 提升也不是因果效应或投资回测收益。</p>
+<h3 id="sequentially-valid-inference-for-probabilistic-inflation-forecasts">Sequentially
+valid inference for probabilistic inflation forecasts</h3>
+<p><strong>作者</strong>：Amadeo Grob、Maurizio Daniele、Johanna
+Ziegel<br>
+<strong>来源/分类</strong>：arXiv · stat.ME、econ.EM、stat.AP<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23064">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.23064">PDF</a></p>
+<p>仅依据摘要：论文把 e-values 用于概率通胀预测校准的 sequential
+testing，使研究者可以持续检验而不破坏 anytime-valid
+保证，并应用于美国、欧元区和瑞士通胀预测。作者报告结构断裂期间
+sequential
+方法能发现静态全样本检验漏掉的失配时点。它是预测校准的统计推断方法，不是通胀方向交易策略；摘要没有提供滚动收益、经济显著性、预测机构选择或决策成本，不能把拒绝校准写成可获利信号。</p>
+<h3 id="does-rank-still-matter-position-bias-when-ai-agents-shop-on-our-behalf">Does
+Rank Still Matter? Position Bias When AI Agents Shop on Our Behalf</h3>
+<p><strong>作者</strong>：Davood Wadi、Yu Ma<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、econ.GN、q-fin.EC<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.22697">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.22697">PDF</a></p>
+<p>仅依据摘要：作者在 5,000 次 AI agent session 中随机化 100
+个酒店列表的顺序，比较 4 个 LLM 与人类现场数据。agent
+比人搜索更深且从不放弃购买；位置仍影响查看但呈非单调关系，中间位置检查概率最低，部分模型把位置效应带到选择阶段，最终却都选同一
+undominated listing。摘要没有说明酒店属性、agent
+prompt、模型温度、随机化实现和外部效度，也没有金融回测；这是平台搜索行为的实验结果，不是资产价格因果证据。</p>
+<h3 id="regularized-ensemble-forecasting-for-learning-weights-from-historical-and-current-forecasts">Regularized
+Ensemble Forecasting for Learning Weights from Historical and Current
+Forecasts</h3>
+<p><strong>作者</strong>：Han Su、Xiaojia Guo、Xiaoke Zhang<br>
+<strong>来源/分类</strong>：arXiv ·
+stat.AP、econ.GN、q-fin.EC、stat.ME<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.11379">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.11379">PDF</a></p>
+<p>仅依据摘要：论文扩展 linear opinion
+pool，同时用当前预测和历史表现学习权重，以组合方差最小化加历史表现正则项，并给出
+Bayesian interpretation；Walmart sales
+和宏观预测实验中，作者报告其优于多个 ensemble
+baseline，且能处理专家进出。摘要没有给出完整样本外窗口、预测者选择、权重稳定性和失配下的统计检验；“优于”是预测误差意义，不是金融资产收益或可交易策略收益。</p>
+<h3 id="tse_tick-a-python-library-for-parsing-and-querying-nikkei-needs-tick-data-from-the-tokyo-stock-exchange">tse_tick:
+A Python Library for Parsing and Querying Nikkei NEEDS Tick Data from
+the Tokyo Stock Exchange</h3>
+<p><strong>作者</strong>：Kazumi Li、Masataka Hayashi、Teruo
+Nakatsuma、Peter Romero<br>
+<strong>来源/分类</strong>：arXiv · q-fin.TR<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23053">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.23053">PDF</a></p>
+<p>仅依据摘要：tse_tick 把 Nikkei NEEDS 的四类、跨时期
+schema、日文布局和 ZIP CSV 转成带类型的 Polars DataFrame 与
+Hive-partitioned Parquet，并通过 DuckDB
+查询；设计重点是按日期原子提交、bounded streaming、RAM-aware process
+pool 和 ticker part-pruning。作者报告最坏交易日峰值内存从 24.5GB 降到
+2.4GB，4.8m 行 archive part 比原 pandas prototype 快 59.8 倍，单 ticker
+时间窗查询比 pandas scan 约快 410 倍。摘要没有核查全部
+schema、硬件公平性、真实数据许可和跨市场性能；这是数据工程
+benchmark，不是交易信号或收益结果。</p>
+<h3 id="beyond-lognormal-sums-a-four-moment-probability-framework-for-basket-and-spread-option-pricing">Beyond
+Lognormal Sums: A Four-Moment Probability Framework for Basket and
+Spread Option Pricing</h3>
+<p><strong>作者</strong>：Dongdong Hu、Hasanjan Sayit、Steve
+Tchoneteck、Frederi Viens<br>
+<strong>来源/分类</strong>：arXiv · q-fin.PR、math.PR<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21498">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21498">PDF</a></p>
+<p>仅依据摘要：论文先用 change of measure 把 basket price
+改写为概率线性组合，再用匹配前四阶矩的 shifted-lognormal variance
+mixture 近似相关 lognormal sum；mixed-sign basket 使用 signed
+shifted-lognormal proxy，并给出 admissibility、root
+selection、无套利性质和 pricing-error identity。数值部分包含标准 basket
+benchmark 和 RBOB/ULSD(or heating oil)/WTI 的 3:2:1 crack
+spread，作者报告第四矩改善尾部偏斜和长到期下的拟合/定价精度。摘要没有具体误差表、与
+Monte
+Carlo/其他近似的完整基线、校准样本外验证或交易成本；定价误差改善不等于策略收益。</p>
+<h3 id="optimal-risk-aware-interest-rates-for-decentralized-lending-protocols">Optimal
+risk-aware interest rates for decentralized lending protocols</h3>
+<p><strong>作者</strong>：Bastien Baude、Damien Challet、Ioane Muni
+Toke<br>
+<strong>来源/分类</strong>：arXiv · q-fin.MF<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2502.19862">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2502.19862">PDF</a></p>
+<p>仅依据摘要：论文把 DeFi lending 的 utilization 视为利率依赖的 point
+process，目标是最大化 lender expected
+wealth，同时惩罚流动性风险和利率波动；线性强度下得到 Riccati 型
+ODE，非线性下用 Monte Carlo + deep learning 近似，并用逐区块数据做
+risk-adjusted P&amp;L
+比较行业模型和深度学习模型。摘要没有具体协议、样本外时期、费用/清算/对手方风险、基线数字或真实可执行性；逐区块
+P&amp;L
+是历史/模拟评估，不是因果效果或投资建议，且利率最优性依赖强结构假设。</p>
+<h3 id="the-measurement-revolution-credible-measurement-and-inference-in-the-age-of-ai">The
+Measurement Revolution? Credible Measurement and Inference in the Age of
+AI</h3>
+<p><strong>作者</strong>：Melissa Dell、Ashesh Rambachan<br>
+<strong>来源/分类</strong>：arXiv ·
+econ.GN、cs.AI、q-fin.EC、stat.AP<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23524">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.23524">PDF</a></p>
+<p>仅依据摘要：这篇综述把 AI 进入经济测量分成 discovery、construct
+definition、observation 三阶段，强调可扩展 proxy
+越多，研究者越要用明确标准和 validation sample
+证明构念有效。作者讨论即使 AI
+预测任意偏置，如何借助随机验证样本做有效推断，以及没有随机验证样本时的替代方法。价值在于提醒金融/经济实证不要把可扩展变量当作已验证事实；摘要没有给出具体应用的估计结果，也不提供资产回报、样本外预测或交易证据。</p>
+<h3 id="the-physical-crash-frontier-what-finite-option-quotes-can-and-cannot-reveal">The
+Physical Crash Frontier: What Finite Option Quotes Can and Cannot
+Reveal</h3>
+<p><strong>作者</strong>：Jirong Zhuang<br>
+<strong>来源/分类</strong>：arXiv · q-fin.CP、q-fin.RM<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23274">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.23274">PDF</a></p>
+<p>仅依据摘要：论文用 power-utility pricing kernel 把期权隐含的
+risk-neutral crash probability 转回 physical measure，并在有限 bid–ask
+quote 下刻画所有可行的“崩盘概率—阈值下预期损失”对，称其边界为 physical
+crash frontier；有界支持时可由有限二阶锥规划追踪。作者在 1,000 个每周
+S&amp;P 500 横截面中报告，加入临近阈值的两个 put
+之外的报价后，可行概率区间中位数缩小约
+80%；去掉尾部界限时，深右尾的极小质量会使概率趋近零。摘要没有给出风险厌恶参数校准、尾部限制的经验依据或样本外预测；这是期权报价识别边界，不是崩盘概率的唯一估计，更不是择时信号。</p>
+<h3 id="diagonal-frog-meets-adi-trading-matrix-exponentials-for-rational-maps-in-the-fokkerplanck-equation">Diagonal
+Frog meets ADI: trading matrix exponentials for rational maps in the
+Fokker–Planck equation</h3>
+<p><strong>作者</strong>：Andrey Itkin、Rakhymzhan Kazbek<br>
+<strong>来源/分类</strong>：arXiv ·
+math.NA、cs.NA、physics.comp-ph、q-fin.CP、q-fin.PR<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.22703">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.22703">PDF</a></p>
+<p>仅依据摘要：论文将 Diagonal Frog 方向子步中的 Krylov matrix
+exponential 换成 rational map，使计算变成 banded
+solve，并证明最终指数正生成元下，r(∞) 的符号决定大步长 entrywise
+positivity；Crank–Nicolson 被排除，subdiagonal Padé(0,2)
+被选为二阶、L-stable 且在显式阈值以上保持正性的方案。作者报告相对 Krylov
+exponential 在匹配精度下快 10–32 倍，但强 cross-diffusion 下 composite
+二阶 scheme
+只有经验正性。摘要没有金融市场样本外检验、定价误差经济显著性或真实交易应用；速度是数值实验结果，不是投资收益。</p>
+<h3 id="wsvi-a-dimensionless-shape-family-for-implied-volatility-and-its-static-no-arbitrage-structure">WSVI:
+A Dimensionless Shape Family for Implied Volatility and Its Static
+No-Arbitrage Structure</h3>
+<p><strong>作者</strong>：Charles Clevenger、Xiang Wan<br>
+<strong>来源/分类</strong>：arXiv · q-fin.MF<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.22620">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.22620">PDF</a></p>
+<p>仅依据摘要：WSVI 为 earnings 等二元事件附近的 W-shaped
+implied-volatility smile 构造三参数之外的维度无关 shape family，允许负的
+at-the-forward curvature 和双峰 implied density，同时把 total variance
+拆成 level 与 normalized log-moneyness shape。作者直接在 shape
+coordinates 中刻画 butterfly、vertical-spread 和 calendar
+的静态无套利条件。摘要没有报告真实期权面拟合、样本外定价、基线误差或流动性成本；它是参数化与无套利结构贡献，不是波动率方向预测或交易策略。</p>
+<h3 id="discrete-asset-pricing-under-transaction-costs-and-model-uncertainty-with-and-without-short-sale-constraints">Discrete
+asset pricing under transaction costs and model uncertainty with and
+without short-sale constraints</h3>
+<p><strong>作者</strong>：Wenqing Zhang<br>
+<strong>来源/分类</strong>：arXiv · q-fin.MF<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.21873">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.21873">PDF</a></p>
+<p>仅依据摘要：论文研究带 bid–ask spread、模型不确定性和/或 short-sale
+constraints 的离散时间资产定价，证明无约束下 no-arbitrage 等价于存在
+full-support martingale consistent price system；有卖空限制时换成
+supermartingale system，并扩展到有限多期树与非平凡初始信息。作者还引入
+lower/upper robust supermartingale systems，并用两状态例子说明 lower
+条件单独并不充分。摘要没有实证数据、样本外回测或经济显著性；这些是无套利理论条件，不是可交易价格或投资建议。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/" class="category-chain-item">每日论文</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%BA%E6%96%87/" class="print-no-link">#论文</a>
+      
+        <a href="/tags/%E9%87%91%E8%9E%8D/" class="print-no-link">#金融</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>每日金融论文简报｜2026 年 8 月 26 日</div>
+      <div>https://www.polarishaw.top/2026/08/26/daily-finance-papers-2026-08-26/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年8月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/08/26/daily-ai-papers-2026-08-26/" title="每日AI论文简报｜2026 年 8 月 26 日">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">每日AI论文简报｜2026 年 8 月 26 日</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/08/26/daily-github-trending-2026-08-26/" title="2026-08-26 GitHub 热榜简报：Agent 运行时、个人知识与可控工作站">
+                        <span class="hidden-mobile">2026-08-26 GitHub 热榜简报：Agent 运行时、个人知识与可控工作站</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
