@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 本文把相关性与因果、样本内与样本外、统计显著性与经济意义、历史回测与真实可交易结果分开标注；所有交易策略结果都只是论文中的研究证据，不构成投资建议。  Harvesting the Volatility Risk Premium：高 Sharpe 的 0DTE 回测，最值得先看失败条件 论文：Harvesting the Volatility Risk Premium: A Lear">
+    <meta name="description" content="重点关注 本文把相关性与因果、样本内与样本外、统计显著性与经济意义、历史回测与真实可交易结果分开标注；所有交易策略结果都只是论文中的研究证据，不构成投资建议。 Harvesting the Volatility Risk Premium：高 Sharpe 的 0DTE 回测，最值得先看失败条件 论文：Harvesting the Volatility Risk Premium: A Learni">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日金融论文简报｜2026 年 8 月 27 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/08/27/daily-finance-papers-2026-08-27/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 本文把相关性与因果、样本内与样本外、统计显著性与经济意义、历史回测与真实可交易结果分开标注；所有交易策略结果都只是论文中的研究证据，不构成投资建议。  Harvesting the Volatility Risk Premium：高 Sharpe 的 0DTE 回测，最值得先看失败条件 论文：Harvesting the Volatility Risk Premium: A Lear">
+<meta property="og:description" content="重点关注 本文把相关性与因果、样本内与样本外、统计显著性与经济意义、历史回测与真实可交易结果分开标注；所有交易策略结果都只是论文中的研究证据，不构成投资建议。 Harvesting the Volatility Risk Premium：高 Sharpe 的 0DTE 回测，最值得先看失败条件 论文：Harvesting the Volatility Risk Premium: A Learni">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-06-27/pixiv-rank-015-146299875.jpg">
 <meta property="article:published_time" content="2026-08-27T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-010-145971822.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-08-16/pixiv-rank-012-148227521.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,129 +347,332 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
+<h2 id="重点关注">重点关注</h2>
 <p>本文把相关性与因果、样本内与样本外、统计显著性与经济意义、历史回测与真实可交易结果分开标注；所有交易策略结果都只是论文中的研究证据，不构成投资建议。</p>
-<h3 id="harvesting-the-volatility-risk-premium高-sharpe-的-0dte-回测最值得先看失败条件"><a class="markdownIt-Anchor" href="#harvesting-the-volatility-risk-premium高-sharpe-的-0dte-回测最值得先看失败条件"></a> Harvesting the Volatility Risk Premium：高 Sharpe 的 0DTE 回测，最值得先看失败条件</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24786">Harvesting the Volatility Risk Premium: A Learning-to-Rank Approach</a>（arXiv:2608.24786）<br>
+<h3 id="harvesting-the-volatility-risk-premium高-sharpe-的-0dte-回测最值得先看失败条件">Harvesting
+the Volatility Risk Premium：高 Sharpe 的 0DTE
+回测，最值得先看失败条件</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24786">Harvesting the Volatility Risk
+Premium: A Learning-to-Rank Approach</a>（arXiv:2608.24786）<br>
 <strong>作者</strong>：Maciej Wysocki<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.TR">q-fin.TR</a><br>
+<strong>来源/分类</strong>：arXiv · q-fin.TR<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文研究如何在 SPXW 0DTE 周期权的每日候选中，横截面地选择更值得卖出的 short-put 策略。候选池是 8 个 delta 目标的 short put 加 SKIP，LightGBM LambdaRank 根据约 190 个候选特征排序；标签不是收盘价，而是用 1 分钟路径计算的、考虑尾部路径的 Sortino 风险调整目标。系统还加入 10:00 ET 的 bid/ask、保证金、费用、置信度门控和 7 种仓位规则。实验将 2017 年作滚动特征 warm-up，2021–2024 年做逐年扩展窗口 walk-forward，2025 年严格留作从未参与训练、超参、门控或仓位选择的 OOT holdout。</p>
-<p>作者报告，7 种仓位规则在 2021–2024 walk-forward 上的年化 Sharpe 为 1.897–3.105，在 2025 OOT 上为 4.308–5.761；Edge Allocation 的 OOT Sharpe 为 5.761，固定保证金和 Short-Richness Scaling 分别为 5.063 和 5.262。Edge Allocation 全样本最大回撤为 2.28%，但其 2025 OOT 的年化波动只有 1.82%，而 2024 年 walk-forward 的单年 Sharpe 仅 0.41；所有方法的 2025 Sharpe 都比自身 walk-forward 高至少 2.4。多重检验修正后，Edge Allocation 的 OOT DSR 为 .856、Short-Richness Scaling 为 .913，低于未经修正的 PSR，原因包括 75 次研究试验和只有一个日历年 holdout。作者还报告相对 CBOE PUT/WPUT 和 SPX 买入持有基准的差异，但这仍是历史回测中的统计比较，不是可实现的实盘收益。</p>
-<p>创新是把“同一天多个 delta 选择”改成排序问题，并把盘中路径、跳过交易和仓位方法统一纳入 walk-forward。证据限制同样突出：单个 2025 年 OOT 年份不足以区分泛化与有利波动状态，2021–2025 各年表现差异很大；bid-to-mid 等成交假设、0DTE 流动性、滑点、尾部跳跃、数据供应商和保证金约束可能让纸面结果无法按模型价成交。论文没有因果识别，也没有真实账户或前瞻实盘结果。适合研究期权回测、模型选择和多重检验的读者；建议先读 §3.1–3.7 的候选/标签/仓位定义、§5.1–5.5 的 WF/OOT 与 regime 表、§5.6 的执行拖累、§6.3 的特征消融和 §7 的研究结论。</p>
+<p>论文研究如何在 SPXW 0DTE 周期权的每日候选中，横截面地选择更值得卖出的
+short-put 策略。候选池是 8 个 delta 目标的 short put 加 SKIP，LightGBM
+LambdaRank 根据约 190 个候选特征排序；标签不是收盘价，而是用 1
+分钟路径计算的、考虑尾部路径的 Sortino 风险调整目标。系统还加入 10:00 ET
+的 bid/ask、保证金、费用、置信度门控和 7 种仓位规则。实验将 2017
+年作滚动特征 warm-up，2021–2024 年做逐年扩展窗口 walk-forward，2025
+年严格留作从未参与训练、超参、门控或仓位选择的 OOT holdout。</p>
+<p>作者报告，7 种仓位规则在 2021–2024 walk-forward 上的年化 Sharpe 为
+1.897–3.105，在 2025 OOT 上为 4.308–5.761；Edge Allocation 的 OOT Sharpe
+为 5.761，固定保证金和 Short-Richness Scaling 分别为 5.063 和
+5.262。Edge Allocation 全样本最大回撤为 2.28%，但其 2025 OOT
+的年化波动只有 1.82%，而 2024 年 walk-forward 的单年 Sharpe 仅
+0.41；所有方法的 2025 Sharpe 都比自身 walk-forward 高至少
+2.4。多重检验修正后，Edge Allocation 的 OOT DSR 为 .856、Short-Richness
+Scaling 为 .913，低于未经修正的 PSR，原因包括 75
+次研究试验和只有一个日历年 holdout。作者还报告相对 CBOE PUT/WPUT 和 SPX
+买入持有基准的差异，但这仍是历史回测中的统计比较，不是可实现的实盘收益。</p>
+<p>创新是把“同一天多个 delta
+选择”改成排序问题，并把盘中路径、跳过交易和仓位方法统一纳入
+walk-forward。证据限制同样突出：单个 2025 年 OOT
+年份不足以区分泛化与有利波动状态，2021–2025 各年表现差异很大；bid-to-mid
+等成交假设、0DTE
+流动性、滑点、尾部跳跃、数据供应商和保证金约束可能让纸面结果无法按模型价成交。论文没有因果识别，也没有真实账户或前瞻实盘结果。适合研究期权回测、模型选择和多重检验的读者；建议先读
+§3.1–3.7 的候选/标签/仓位定义、§5.1–5.5 的 WF/OOT 与 regime 表、§5.6
+的执行拖累、§6.3 的特征消融和 §7 的研究结论。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24786">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24786">PDF</a></p>
-<h3 id="minervascore一套回测鲁棒性分数实盘外推却得到零相关"><a class="markdownIt-Anchor" href="#minervascore一套回测鲁棒性分数实盘外推却得到零相关"></a> MinervaScore：一套回测鲁棒性分数，实盘外推却得到零相关</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23808">Equity Strategy Backtesting: Luck or Edge? The MinervaScore as a Statistical Robustness Grade</a>（arXiv:2608.23808）<br>
-<strong>作者</strong>：Maria Laura Santoni、Vincent Jouanne、Matthew L. Scullin<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.PM">q-fin.PM</a>、<a target="_blank" rel="noopener" href="http://q-fin.ST">q-fin.ST</a><br>
+<h3 id="minervascore一套回测鲁棒性分数实盘外推却得到零相关">MinervaScore：一套回测鲁棒性分数，实盘外推却得到零相关</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23808">Equity Strategy Backtesting:
+Luck or Edge? The MinervaScore as a Statistical Robustness
+Grade</a>（arXiv:2608.23808）<br>
+<strong>作者</strong>：Maria Laura Santoni、Vincent Jouanne、Matthew L.
+Scullin<br>
+<strong>来源/分类</strong>：arXiv · q-fin.PM、q-fin.ST<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>MinervaScore 不是预测股票收益的模型，而是对策略搜索完成后的验证层打分。它把 Deflated Sharpe Ratio、Probability of Backtest Overfitting、Superior Predictive Ability、Minimum Track Record Length 和 regime stability 组成五个门槛；只有全部通过才给出 80–100 的 Robustness Seal，失败策略的分数被限制在 80 以下。作者用 359,062 条生产回测记录校准显示层，再用有已知真相的合成市场比较 MinervaScore、单独 DSR、GT-Score 和“通过门数”基线；合成研究有 3×2 的历史长度/真实边际难度网格。</p>
-<p>作者在 headline 合成难度上报告 MinervaScore AUROC=.989，略高于 GT-Score .986、DSR-alone .988，明显高于门数基线 .960；最坏难度的 AUROC regret 为 .021，但修正后的 DSR-alone 为 .009，反而是总体最稳健的单项。分数展示并非概率：其可靠性图 ECE=.174，论文明确说不能把 0–100 解释成“策略有真实 edge 的概率”。更关键的是预注册的真实市场检验：352 个策略、封存的 2018–2020 OOS 窗口，样本内分数与 OOS Sharpe 的 Spearman ρ=.013，95% bootstrap CI 为 [−.094,.121]，单侧置换 p=.40，Sharpe&gt;0 的 AUROC=.496；论文因此不主张真实市场预测力。这里的 OOS 结果是一次封存回测，不是实时可交易实验，也没有建立任何因果关系。</p>
-<p>创新在于将搜索规模惩罚、样本外过拟合和多门槛证据合并为可审计的 verdict；最值得读的是它没有用合成 AUROC 掩盖真实市场零相关。局限是合成环境比真实市场更干净，真实研究只覆盖一个策略族、两个指数池和一个特殊历史阶段，且“Seal 通过率”不能转成未来收益概率。适合量化研究、回测审计和模型选择读者；建议优先读 §4 的五门槛与分数构造、§6.2–6.7 的合成难度/校准/局限、§7 的预注册设计和 §7.2 的真实市场 null result。</p>
+<p>MinervaScore
+不是预测股票收益的模型，而是对策略搜索完成后的验证层打分。它把 Deflated
+Sharpe Ratio、Probability of Backtest Overfitting、Superior Predictive
+Ability、Minimum Track Record Length 和 regime stability
+组成五个门槛；只有全部通过才给出 80–100 的 Robustness
+Seal，失败策略的分数被限制在 80 以下。作者用 359,062
+条生产回测记录校准显示层，再用有已知真相的合成市场比较
+MinervaScore、单独 DSR、GT-Score 和“通过门数”基线；合成研究有 3×2
+的历史长度/真实边际难度网格。</p>
+<p>作者在 headline 合成难度上报告 MinervaScore AUROC=.989，略高于
+GT-Score .986、DSR-alone .988，明显高于门数基线 .960；最坏难度的 AUROC
+regret 为 .021，但修正后的 DSR-alone 为
+.009，反而是总体最稳健的单项。分数展示并非概率：其可靠性图
+ECE=.174，论文明确说不能把 0–100 解释成“策略有真实 edge
+的概率”。更关键的是预注册的真实市场检验：352 个策略、封存的 2018–2020
+OOS 窗口，样本内分数与 OOS Sharpe 的 Spearman ρ=.013，95% bootstrap CI
+为 [−.094,.121]，单侧置换 p=.40，Sharpe&gt;0 的
+AUROC=.496；论文因此不主张真实市场预测力。这里的 OOS
+结果是一次封存回测，不是实时可交易实验，也没有建立任何因果关系。</p>
+<p>创新在于将搜索规模惩罚、样本外过拟合和多门槛证据合并为可审计的
+verdict；最值得读的是它没有用合成 AUROC
+掩盖真实市场零相关。局限是合成环境比真实市场更干净，真实研究只覆盖一个策略族、两个指数池和一个特殊历史阶段，且“Seal
+通过率”不能转成未来收益概率。适合量化研究、回测审计和模型选择读者；建议优先读
+§4 的五门槛与分数构造、§6.2–6.7 的合成难度/校准/局限、§7 的预注册设计和
+§7.2 的真实市场 null result。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23808">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.23808">PDF</a></p>
-<h3 id="findr把信用风险预测-可解释结构和公平约束放在同一条前沿上"><a class="markdownIt-Anchor" href="#findr把信用风险预测-可解释结构和公平约束放在同一条前沿上"></a> findr：把信用风险预测、可解释结构和公平约束放在同一条前沿上</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24582">findr: Transparent and Fair Credit Risk Decisions through Semi-Structured Regressions</a>（arXiv:2608.24582）<br>
-<strong>作者</strong>：Victor Medina-Olivares、Stefan Lessmann、Jonathan Crook<br>
+<h3 id="findr把信用风险预测可解释结构和公平约束放在同一条前沿上">findr：把信用风险预测、可解释结构和公平约束放在同一条前沿上</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24582">findr: Transparent and Fair
+Credit Risk Decisions through Semi-Structured
+Regressions</a>（arXiv:2608.24582）<br>
+<strong>作者</strong>：Victor Medina-Olivares、Stefan Lessmann、Jonathan
+Crook<br>
 <strong>来源/分类</strong>：arXiv · q-fin.RM、cs.LG<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>findr 面向信用风险评分中“线性模型易审计但可能漏掉非线性、神经模型更灵活但难解释”的矛盾。它把可读的 logistic structured component 与正交化的 neural residual 相加，并对完整预测分数施加 Wasserstein fairness penalty；通过 λ 网格绘制同一分布公平标准下的 out-of-sample accuracy–fairness frontier。实验在 8 个公开信用数据集上把年龄是否不超过 25 岁作为敏感属性，按 70/10/20 切分，比较 logistic regression、神经模型和 findr，并以无公平约束 CatBoost 作为性能参照；主文重点是 equalized-odds 的分数分布差异。</p>
-<p>在较明显非线性的数据集 Taiwan Credit Default 和 Give Me Some Credit 上，λ=0 时 findr 的测试 AUC 分别为 .774 和 .850，接近神经模型的 .777 和 .856，明显高于 logistic regression 的 .722 和 .669；在近似线性数据集上，findr 更接近 LR。公平惩罚有明确代价：Taiwan 上 findr 的 AUC 从 λ=0 的 .774 降到 λ=1 的 .665，Vehicle Loan 从 .641 降到 .513。解释性诊断显示，在 Taiwan/GMSC 等非线性数据中，structured component 只解释约 52.7%/39.9% 的 logit 变化，系数并不是完整决策解释；在 MyHome、Thomas 等线性数据中，EVR 为 .935/.981，决策不一致率更低。上述是测试集上的预测与分布公平统计，不是贷款违约的因果影响、利润结果或真实审批公平。</p>
-<p>创新是把公平约束施加在分数分布、而非只在一个阈值之后调校，同时用 EVR、DDR、CSER 诚实标出“系数可读”何时不等于“模型已解释完”。局限包括敏感属性二值化的规范性、公开数据与机构真实组合的差异、fairness criterion 选择会改变结论，且 Wasserstein 约束不保证所有阈值下都满足同一公平定义；论文没有真实授信部署或经济损失评估。适合信用评分、可解释 ML 和公平风险治理读者；建议读 §3.1–3.5 的模型/公平目标、表 3–4 的测试集 AUC、图 9 的前沿、§5.2.3 的解释诊断和 §6 的结论。</p>
+<p>findr
+面向信用风险评分中“线性模型易审计但可能漏掉非线性、神经模型更灵活但难解释”的矛盾。它把可读的
+logistic structured component 与正交化的 neural residual
+相加，并对完整预测分数施加 Wasserstein fairness penalty；通过 λ
+网格绘制同一分布公平标准下的 out-of-sample accuracy–fairness
+frontier。实验在 8 个公开信用数据集上把年龄是否不超过 25
+岁作为敏感属性，按 70/10/20 切分，比较 logistic regression、神经模型和
+findr，并以无公平约束 CatBoost 作为性能参照；主文重点是 equalized-odds
+的分数分布差异。</p>
+<p>在较明显非线性的数据集 Taiwan Credit Default 和 Give Me Some Credit
+上，λ=0 时 findr 的测试 AUC 分别为 .774 和 .850，接近神经模型的 .777 和
+.856，明显高于 logistic regression 的 .722 和
+.669；在近似线性数据集上，findr 更接近 LR。公平惩罚有明确代价：Taiwan 上
+findr 的 AUC 从 λ=0 的 .774 降到 λ=1 的 .665，Vehicle Loan 从 .641 降到
+.513。解释性诊断显示，在 Taiwan/GMSC 等非线性数据中，structured
+component 只解释约 52.7%/39.9% 的 logit 变化，系数并不是完整决策解释；在
+MyHome、Thomas 等线性数据中，EVR 为
+.935/.981，决策不一致率更低。上述是测试集上的预测与分布公平统计，不是贷款违约的因果影响、利润结果或真实审批公平。</p>
+<p>创新是把公平约束施加在分数分布、而非只在一个阈值之后调校，同时用
+EVR、DDR、CSER
+诚实标出“系数可读”何时不等于“模型已解释完”。局限包括敏感属性二值化的规范性、公开数据与机构真实组合的差异、fairness
+criterion 选择会改变结论，且 Wasserstein
+约束不保证所有阈值下都满足同一公平定义；论文没有真实授信部署或经济损失评估。适合信用评分、可解释
+ML 和公平风险治理读者；建议读 §3.1–3.5 的模型/公平目标、表 3–4 的测试集
+AUC、图 9 的前沿、§5.2.3 的解释诊断和 §6 的结论。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24582">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24582">PDF</a></p>
-<h3 id="dynamics-of-the-currency-composition-of-central-bank-reserves储备货币份额本质上是一个受约束系统"><a class="markdownIt-Anchor" href="#dynamics-of-the-currency-composition-of-central-bank-reserves储备货币份额本质上是一个受约束系统"></a> Dynamics of the Currency Composition of Central Bank Reserves：储备货币份额本质上是一个受约束系统</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24468">Dynamics of the Currency Composition of Central Bank Reserves</a>（arXiv:2608.24468）<br>
-<strong>作者</strong>：Deborah Gefang、Stephen G. Hall、George S. Tavlas<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.GN">q-fin.GN</a>、E52、E58<br>
+<h3 id="dynamics-of-the-currency-composition-of-central-bank-reserves储备货币份额本质上是一个受约束系统">Dynamics
+of the Currency Composition of Central Bank
+Reserves：储备货币份额本质上是一个受约束系统</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24468">Dynamics of the Currency
+Composition of Central Bank Reserves</a>（arXiv:2608.24468）<br>
+<strong>作者</strong>：Deborah Gefang、Stephen G. Hall、George S.
+Tavlas<br>
+<strong>来源/分类</strong>：arXiv · q-fin.GN、E52、E58<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文的研究问题是：如果各国央行的储备货币份额必须加总为 100%，那么经济规模、贸易、制裁和不确定性如何共同改变整个组合，而不是单独改变某一种货币。作者用 53 个国家 1999–2023 年的不平衡面板，覆盖 8 类货币，估计显式施加 adding-up restriction 的受约束 SUR 系统；同时比较 country fixed effects 与 two-way fixed effects，以区分跨国差异和共同年份冲击。研究对象是官方储备组合份额，不是资产收益或交易策略。</p>
-<p>作者报告储备配置具有很强惯性和跨货币依赖：含双向固定效应时，美元、人民币和欧元自滞后系数分别为 .6794、.8380 和 .7612。单向国家固定效应规格中，发行方全球 GDP 份额增加 1 个百分点与其货币储备份额增加约 .45 个百分点相关；但加入年份固定效应后，经济规模、不确定性、通胀差和汇率变量大多失去显著性。相对稳健的是贸易和制裁：与欧元区贸易暴露与欧元份额正相关（.6509），与中国贸易暴露与美元份额正相关、与欧元份额负相关；制裁变量也与人民币等份额的重新配置相关。作者报告的是面板关联，模型没有随机冲击、工具变量或自然实验来证明制裁/贸易导致储备改变，也不说明未来汇率或投资回报。</p>
-<p>创新在于把份额加总约束从事后解释变成估计时的结构条件，避免各货币方程独立预测出不可能的组合。局限包括储备份额测量、缺失国家和货币、年度聚合、共同政策趋势与反向选择；两种固定效应规格的显著性差异正是模型不确定性的一部分。适合国际金融、宏观政策和受约束面板读者；建议读数据与约束系统、表 1 的国家固定效应结果、表 2 的双向固定效应、跨货币滞后项和 §5 结论。</p>
+<p>论文的研究问题是：如果各国央行的储备货币份额必须加总为
+100%，那么经济规模、贸易、制裁和不确定性如何共同改变整个组合，而不是单独改变某一种货币。作者用
+53 个国家 1999–2023 年的不平衡面板，覆盖 8 类货币，估计显式施加
+adding-up restriction 的受约束 SUR 系统；同时比较 country fixed effects
+与 two-way fixed
+effects，以区分跨国差异和共同年份冲击。研究对象是官方储备组合份额，不是资产收益或交易策略。</p>
+<p>作者报告储备配置具有很强惯性和跨货币依赖：含双向固定效应时，美元、人民币和欧元自滞后系数分别为
+.6794、.8380 和 .7612。单向国家固定效应规格中，发行方全球 GDP 份额增加 1
+个百分点与其货币储备份额增加约 .45
+个百分点相关；但加入年份固定效应后，经济规模、不确定性、通胀差和汇率变量大多失去显著性。相对稳健的是贸易和制裁：与欧元区贸易暴露与欧元份额正相关（.6509），与中国贸易暴露与美元份额正相关、与欧元份额负相关；制裁变量也与人民币等份额的重新配置相关。作者报告的是面板关联，模型没有随机冲击、工具变量或自然实验来证明制裁/贸易导致储备改变，也不说明未来汇率或投资回报。</p>
+<p>创新在于把份额加总约束从事后解释变成估计时的结构条件，避免各货币方程独立预测出不可能的组合。局限包括储备份额测量、缺失国家和货币、年度聚合、共同政策趋势与反向选择；两种固定效应规格的显著性差异正是模型不确定性的一部分。适合国际金融、宏观政策和受约束面板读者；建议读数据与约束系统、表
+1 的国家固定效应结果、表 2 的双向固定效应、跨货币滞后项和 §5 结论。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24468">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24468">PDF</a></p>
-<h3 id="impact-of-tobacco-advertising-restrictions-in-switzerland准实验结果与识别假设要一起读"><a class="markdownIt-Anchor" href="#impact-of-tobacco-advertising-restrictions-in-switzerland准实验结果与识别假设要一起读"></a> Impact of Tobacco Advertising Restrictions in Switzerland：准实验结果与识别假设要一起读</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.08352">Impact of Tobacco Advertising Restrictions in Switzerland: A Quasi-Experimental Study on the Effect of Billboard Bans on Smoking</a>（arXiv:2601.08352）<br>
+<h3 id="impact-of-tobacco-advertising-restrictions-in-switzerland准实验结果与识别假设要一起读">Impact
+of Tobacco Advertising Restrictions in
+Switzerland：准实验结果与识别假设要一起读</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.08352">Impact of Tobacco Advertising
+Restrictions in Switzerland: A Quasi-Experimental Study on the Effect of
+Billboard Bans on Smoking</a>（arXiv:2601.08352）<br>
 <strong>作者</strong>：Andreas Stoller<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a>、<a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a><br>
+<strong>来源/分类</strong>：arXiv · q-fin.EC、econ.GN<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>这篇政策经济学论文利用瑞士各州不同时间实施的烟草户外广告牌禁令，估计禁令对吸烟率的影响。作者从 Swiss Health Survey 的回顾性吸烟史重建 1993–2017 年的年度个体状态，得到 1,268,266 条观测；主结果用对异质处理稳健的 staggered DiD，另用 interactive fixed effects counterfactual（IFEct）估计，控制其他烟草政策、年龄和性别，并做提前期 placebo、替代控制组和跨州溢出检验。</p>
-<p>主 staggered DiD 的事件研究显示，禁令实施当年吸烟率变化 −0.4 个百分点（p=.06），两年后 −0.9 个百分点（p=.01），三年后 −0.6 个百分点（p=.03）；0–5 年平均为 −0.4 个百分点（p=.08），所以长期平均并未达到 5% 显著水平。IFEct 估计则报告约 −0.9 个百分点且 p&lt;.01 的持续下降。异质性主要由女性以及 25–44 岁和 65 岁以上人群贡献，15–24 岁组没有稳定显著效果。两种估计的方向一致不能自动消除识别风险：作者指出结果对是否控制其他烟草政策敏感，回顾性居住地无法观察迁移，州际通勤可能产生溢出；使用通勤修正时，平均估计可达 −2.0 个百分点，但这仍是模型设定结果，不是额外实验事实。</p>
-<p>论文的价值在于同时报告统计显著性、效应大小和识别失败条件，而不是只摘取 −0.9 这个最大数字。它估计的是政策对吸烟行为的准因果效应，不是金融市场回测，也没有投资含义。适合政策评估、因果推断和健康经济学读者；建议读 §4 的识别假设、图 3/表 4 的主估计、§5.2 的 placebo、§5.3 的异质性和 §6 的溢出/稳健性。</p>
+<p>这篇政策经济学论文利用瑞士各州不同时间实施的烟草户外广告牌禁令，估计禁令对吸烟率的影响。作者从
+Swiss Health Survey 的回顾性吸烟史重建 1993–2017 年的年度个体状态，得到
+1,268,266 条观测；主结果用对异质处理稳健的 staggered DiD，另用
+interactive fixed effects
+counterfactual（IFEct）估计，控制其他烟草政策、年龄和性别，并做提前期
+placebo、替代控制组和跨州溢出检验。</p>
+<p>主 staggered DiD 的事件研究显示，禁令实施当年吸烟率变化 −0.4
+个百分点（p=.06），两年后 −0.9 个百分点（p=.01），三年后 −0.6
+个百分点（p=.03）；0–5 年平均为 −0.4
+个百分点（p=.08），所以长期平均并未达到 5% 显著水平。IFEct 估计则报告约
+−0.9 个百分点且 p&lt;.01 的持续下降。异质性主要由女性以及 25–44 岁和 65
+岁以上人群贡献，15–24
+岁组没有稳定显著效果。两种估计的方向一致不能自动消除识别风险：作者指出结果对是否控制其他烟草政策敏感，回顾性居住地无法观察迁移，州际通勤可能产生溢出；使用通勤修正时，平均估计可达
+−2.0 个百分点，但这仍是模型设定结果，不是额外实验事实。</p>
+<p>论文的价值在于同时报告统计显著性、效应大小和识别失败条件，而不是只摘取
+−0.9
+这个最大数字。它估计的是政策对吸烟行为的准因果效应，不是金融市场回测，也没有投资含义。适合政策评估、因果推断和健康经济学读者；建议读
+§4 的识别假设、图 3/表 4 的主估计、§5.2 的 placebo、§5.3 的异质性和 §6
+的溢出/稳健性。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.08352">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.08352">PDF</a></p>
-<h2 id="金融论文"><a class="markdownIt-Anchor" href="#金融论文"></a> 金融论文</h2>
-<h3 id="generalizing-markowitz-portfolio-optimization-by-a-quadratic-risk-measure"><a class="markdownIt-Anchor" href="#generalizing-markowitz-portfolio-optimization-by-a-quadratic-risk-measure"></a> Generalizing Markowitz Portfolio Optimization by a Quadratic Risk Measure</h3>
+<h2 id="金融论文">金融论文</h2>
+<h3 id="generalizing-markowitz-portfolio-optimization-by-a-quadratic-risk-measure">Generalizing
+Markowitz Portfolio Optimization by a Quadratic Risk Measure</h3>
 <p><strong>作者</strong>：Ignas Gasparavičius、Andrius Grigutis<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.PM">q-fin.PM</a>、math.OC<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24449">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24449">PDF</a></p>
-<p>仅依据摘要：论文把 Markowitz 的方差风险推广到带线性项、常数项和对称正定矩阵的严格凸二次风险测度，并推导有效前沿、最小风险、最大 Sharpe、资本市场线/曲线和最大效用的闭式解。作者指出一般二次风险下切点不再必然等于最大 Sharpe 点，并给出数值例子。摘要没有展示数据、交易成本、估计误差或真实组合验证；这是优化结构结果，不应直接转成资产配置建议。</p>
-<h3 id="harvesting-the-volatility-risk-premium已在上文详述"><a class="markdownIt-Anchor" href="#harvesting-the-volatility-risk-premium已在上文详述"></a> Harvesting the Volatility Risk Premium：已在上文详述</h3>
-<p>论文在 SPXW 0DTE 候选横截面上使用 LightGBM LambdaRank、盘中路径标签和滚动 walk-forward；作者报告 2025 OOT Sharpe 4.308–5.761，但 2024 年表现弱、OOT DSR 受一年样本和 75 次试验惩罚，且仍是含成交假设的历史回测。</p>
-<h3 id="lead-lag-relationships-in-financial-markets-a-comparison-of-multiple-clustering-algorithms"><a class="markdownIt-Anchor" href="#lead-lag-relationships-in-financial-markets-a-comparison-of-multiple-clustering-algorithms"></a> Lead-Lag Relationships in Financial Markets: A Comparison of Multiple Clustering Algorithms</h3>
+<strong>来源/分类</strong>：arXiv · q-fin.PM、math.OC<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24449">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24449">PDF</a></p>
+<p>仅依据摘要：论文把 Markowitz
+的方差风险推广到带线性项、常数项和对称正定矩阵的严格凸二次风险测度，并推导有效前沿、最小风险、最大
+Sharpe、资本市场线/曲线和最大效用的闭式解。作者指出一般二次风险下切点不再必然等于最大
+Sharpe
+点，并给出数值例子。摘要没有展示数据、交易成本、估计误差或真实组合验证；这是优化结构结果，不应直接转成资产配置建议。</p>
+<h3 id="harvesting-the-volatility-risk-premium已在上文详述">Harvesting
+the Volatility Risk Premium：已在上文详述</h3>
+<p>论文在 SPXW 0DTE 候选横截面上使用 LightGBM
+LambdaRank、盘中路径标签和滚动 walk-forward；作者报告 2025 OOT Sharpe
+4.308–5.761，但 2024 年表现弱、OOT DSR 受一年样本和 75
+次试验惩罚，且仍是含成交假设的历史回测。</p>
+<h3 id="lead-lag-relationships-in-financial-markets-a-comparison-of-multiple-clustering-algorithms">Lead-Lag
+Relationships in Financial Markets: A Comparison of Multiple Clustering
+Algorithms</h3>
 <p><strong>作者</strong>：Ruichen Deng、Yichi Zhang<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.ST">q-fin.ST</a>、<a target="_blank" rel="noopener" href="http://q-fin.PM">q-fin.PM</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24703">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24703">PDF</a></p>
-<p>仅依据摘要：论文比较 MiniRocket-KMeans、KShape、ensemble 与 DTW-KMedoids 对金融市场 lead-lag 关系的聚类，并在合成与真实股票数据上使用同一交易策略、silhouette 选择簇数。作者报告 MiniRocket 的 lead 策略 Sharpe 为 .866、最大回撤 −63.9%，ensemble 更稳定，若干检验 p-value 显示为 0.0。摘要没有说明交易成本、样本外切分、有效样本数、多重检验和 p-value 精度；−63.9% 回撤也说明统计聚类结果不能直接转成可交易优势。</p>
-<h3 id="findr已在上文详述"><a class="markdownIt-Anchor" href="#findr已在上文详述"></a> findr：已在上文详述</h3>
-<p>findr 用 logistic 结构项、正交神经残差和 Wasserstein 分数公平约束，在 8 个公开信用数据集上进行 out-of-sample 比较。非线性数据集保留了大部分神经模型 AUC，但高公平惩罚会牺牲区分度；公平指标是分数分布层面的统计约束，不等于贷款因果效果或审批利润。</p>
-<h3 id="minimum-distortion-wealth-taxation-i把财富税看成信息输运意义下的失真最小化"><a class="markdownIt-Anchor" href="#minimum-distortion-wealth-taxation-i把财富税看成信息输运意义下的失真最小化"></a> Minimum-Distortion Wealth Taxation, I：把财富税看成信息/输运意义下的失真最小化</h3>
+<strong>来源/分类</strong>：arXiv · q-fin.ST、q-fin.PM<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24703">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24703">PDF</a></p>
+<p>仅依据摘要：论文比较 MiniRocket-KMeans、KShape、ensemble 与
+DTW-KMedoids 对金融市场 lead-lag
+关系的聚类，并在合成与真实股票数据上使用同一交易策略、silhouette
+选择簇数。作者报告 MiniRocket 的 lead 策略 Sharpe 为 .866、最大回撤
+−63.9%，ensemble 更稳定，若干检验 p-value 显示为
+0.0。摘要没有说明交易成本、样本外切分、有效样本数、多重检验和 p-value
+精度；−63.9% 回撤也说明统计聚类结果不能直接转成可交易优势。</p>
+<h3 id="findr已在上文详述">findr：已在上文详述</h3>
+<p>findr 用 logistic 结构项、正交神经残差和 Wasserstein 分数公平约束，在
+8 个公开信用数据集上进行 out-of-sample
+比较。非线性数据集保留了大部分神经模型
+AUC，但高公平惩罚会牺牲区分度；公平指标是分数分布层面的统计约束，不等于贷款因果效果或审批利润。</p>
+<h3 id="minimum-distortion-wealth-taxation-i把财富税看成信息输运意义下的失真最小化">Minimum-Distortion
+Wealth Taxation, I：把财富税看成信息/输运意义下的失真最小化</h3>
 <p><strong>作者</strong>：Anders G. Frøseth<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a>、<a target="_blank" rel="noopener" href="http://econ.TH">econ.TH</a>、math.OC<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23576">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.23576">PDF</a></p>
-<p>仅依据摘要：论文在比例类财富分布上比较 JKO free-energy 与 Wasserstein-2 输运几何的最优性，给出保留率—财富税率平面中的闭式解和相变区域。研究目标是刻画税制对分布失真的两种数学度量，而非估计现实税率的因果效果。摘要没有校准数据、福利权重、行为反应或政策实验；读者应把它视为理论模型，不能据此提出个人或政府的税务建议。</p>
-<h3 id="ai-worsens-climate-change-integrated-assessment-shows"><a class="markdownIt-Anchor" href="#ai-worsens-climate-change-integrated-assessment-shows"></a> AI worsens climate change, integrated assessment shows</h3>
-<p><strong>作者</strong>：Huiying Ye、Richard S. J. Tol、Fangzhi Wang<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a>、<a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、econ.EM<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24670">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24670">PDF</a></p>
-<p>仅依据摘要：论文把 AI 对产出、信息通信技术排放和气候损害的影响放入 DICE integrated assessment model，并比较“类 ICT”与“类工业革命”两种 AI 情景。作者报告低减排情景下 AI 到 2100 年可能增加约 0.1°C 或 0.8°C 的升温，气候成本抵消约五分之一或四分之一的产出收益，2°C 约束也会改变最优投资率。数字高度依赖情景、损害函数和折现/减排参数；摘要没有给校准、敏感性和概率分布，属于模型情景推演，不是 AI 产业排放的观测因果估计。</p>
-<h3 id="equity-strategy-backtesting已在上文详述"><a class="markdownIt-Anchor" href="#equity-strategy-backtesting已在上文详述"></a> Equity Strategy Backtesting：已在上文详述</h3>
-<p>MinervaScore 将五个回测验证量组合成 0–100 的审计分数；合成市场 AUROC=.989，但预注册的 352 个真实策略的分数与 OOS Sharpe 仅 ρ=.013、p=.40。最稳健的阅读方式是把它当作防止过度认证的验证层，而不是未来收益预测器。</p>
-<h3 id="accelerating-the-adoption-of-residential-solar-power-systems-policy-analysis-using-a-dynamic-structural-model"><a class="markdownIt-Anchor" href="#accelerating-the-adoption-of-residential-solar-power-systems-policy-analysis-using-a-dynamic-structural-model"></a> Accelerating the Adoption of Residential Solar Power Systems: Policy Analysis using a Dynamic Structural Model</h3>
-<p><strong>作者</strong>：Sebastián Souyris、Jason A. Duan、Anantaram Balakrishnan、Varun Rai<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a>、<a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、econ.EM<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23796">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.23796">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.2139/ssrn.4301666">相关 DOI</a></p>
-<p>仅依据摘要：论文用动态结构模型描述家庭在前瞻性预期、邻居网络和收益/成本权衡下的住宅光伏采用，并用 Austin 家庭数据做 Bayesian 估计和样本外预测。作者报告短期 rebate 比单纯长期补贴带来更高采用和减排，分两步降低补贴并按地理区域差异化更有效。摘要没有给估计参数、预测误差、反事实不确定区间和政策执行成本；这些是模型相关性/结构假设下的政策模拟，不应转成太阳能项目收益承诺。</p>
-<h3 id="impact-of-tobacco-advertising-restrictions-in-switzerland已在上文详述"><a class="markdownIt-Anchor" href="#impact-of-tobacco-advertising-restrictions-in-switzerland已在上文详述"></a> Impact of Tobacco Advertising Restrictions in Switzerland：已在上文详述</h3>
-<p>这篇研究使用瑞士州级错时禁令与回顾性个体吸烟史做 staggered DiD 和 IFEct，报告 −0.4 至 −0.9 个百分点的吸烟率变化。主估计对其他政策控制、迁移和通勤溢出敏感，部分长期平均并不显著；结论是政策准因果证据，不是资产回测。</p>
-<h3 id="the-economics-of-global-personality-diversity"><a class="markdownIt-Anchor" href="#the-economics-of-global-personality-diversity"></a> The economics of global personality diversity</h3>
-<p><strong>作者</strong>：Paul X. McCarthy、Xian Gong、Marieth Coetzer、Marian-Andrei Rizoiu、Margaret L. Kern、John A. Johnson、Richard Holden、Fabian Braesemann<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a>、<a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、econ.EM<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2503.19388">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2503.19388">PDF</a></p>
-<p>仅依据摘要：论文用 135 个国家、760,242 人的大五人格数据度量国内人格多样性，并与人均 GDP 及制度、移民变量关联。作者报告人格多样性可解释 19.9% 的人均 GDP 跨国方差，在加入制度和移民后仍增加约 5.7% 的解释力。这里是跨国相关性，不是人格或多样性导致经济增长的因果证据；样本代表性、文化测量等值性、反向因果和遗漏变量都可能改变结果，摘要没有投资含义。</p>
-<h3 id="machine-learning-classification-and-portfolio-construction-does-the-loss-function-matter"><a class="markdownIt-Anchor" href="#machine-learning-classification-and-portfolio-construction-does-the-loss-function-matter"></a> Machine Learning Classification and Portfolio Construction: Does the Loss Function Matter?</h3>
+<strong>来源/分类</strong>：arXiv · q-fin.EC、econ.TH、math.OC<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23576">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.23576">PDF</a></p>
+<p>仅依据摘要：论文在比例类财富分布上比较 JKO free-energy 与
+Wasserstein-2
+输运几何的最优性，给出保留率—财富税率平面中的闭式解和相变区域。研究目标是刻画税制对分布失真的两种数学度量，而非估计现实税率的因果效果。摘要没有校准数据、福利权重、行为反应或政策实验；读者应把它视为理论模型，不能据此提出个人或政府的税务建议。</p>
+<h3 id="ai-worsens-climate-change-integrated-assessment-shows">AI
+worsens climate change, integrated assessment shows</h3>
+<p><strong>作者</strong>：Huiying Ye、Richard S. J. Tol、Fangzhi
+Wang<br>
+<strong>来源/分类</strong>：arXiv · q-fin.EC、econ.GN、econ.EM<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24670">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24670">PDF</a></p>
+<p>仅依据摘要：论文把 AI 对产出、信息通信技术排放和气候损害的影响放入
+DICE integrated assessment model，并比较“类 ICT”与“类工业革命”两种 AI
+情景。作者报告低减排情景下 AI 到 2100 年可能增加约 0.1°C 或 0.8°C
+的升温，气候成本抵消约五分之一或四分之一的产出收益，2°C
+约束也会改变最优投资率。数字高度依赖情景、损害函数和折现/减排参数；摘要没有给校准、敏感性和概率分布，属于模型情景推演，不是
+AI 产业排放的观测因果估计。</p>
+<h3 id="equity-strategy-backtesting已在上文详述">Equity Strategy
+Backtesting：已在上文详述</h3>
+<p>MinervaScore 将五个回测验证量组合成 0–100 的审计分数；合成市场
+AUROC=.989，但预注册的 352 个真实策略的分数与 OOS Sharpe 仅
+ρ=.013、p=.40。最稳健的阅读方式是把它当作防止过度认证的验证层，而不是未来收益预测器。</p>
+<h3 id="accelerating-the-adoption-of-residential-solar-power-systems-policy-analysis-using-a-dynamic-structural-model">Accelerating
+the Adoption of Residential Solar Power Systems: Policy Analysis using a
+Dynamic Structural Model</h3>
+<p><strong>作者</strong>：Sebastián Souyris、Jason A. Duan、Anantaram
+Balakrishnan、Varun Rai<br>
+<strong>来源/分类</strong>：arXiv · q-fin.EC、econ.GN、econ.EM<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23796">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.23796">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.2139/ssrn.4301666">相关 DOI</a></p>
+<p>仅依据摘要：论文用动态结构模型描述家庭在前瞻性预期、邻居网络和收益/成本权衡下的住宅光伏采用，并用
+Austin 家庭数据做 Bayesian 估计和样本外预测。作者报告短期 rebate
+比单纯长期补贴带来更高采用和减排，分两步降低补贴并按地理区域差异化更有效。摘要没有给估计参数、预测误差、反事实不确定区间和政策执行成本；这些是模型相关性/结构假设下的政策模拟，不应转成太阳能项目收益承诺。</p>
+<h3 id="impact-of-tobacco-advertising-restrictions-in-switzerland已在上文详述">Impact
+of Tobacco Advertising Restrictions in Switzerland：已在上文详述</h3>
+<p>这篇研究使用瑞士州级错时禁令与回顾性个体吸烟史做 staggered DiD 和
+IFEct，报告 −0.4 至 −0.9
+个百分点的吸烟率变化。主估计对其他政策控制、迁移和通勤溢出敏感，部分长期平均并不显著；结论是政策准因果证据，不是资产回测。</p>
+<h3 id="the-economics-of-global-personality-diversity">The economics of
+global personality diversity</h3>
+<p><strong>作者</strong>：Paul X. McCarthy、Xian Gong、Marieth
+Coetzer、Marian-Andrei Rizoiu、Margaret L. Kern、John A.
+Johnson、Richard Holden、Fabian Braesemann<br>
+<strong>来源/分类</strong>：arXiv · q-fin.EC、econ.GN、econ.EM<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2503.19388">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2503.19388">PDF</a></p>
+<p>仅依据摘要：论文用 135 个国家、760,242
+人的大五人格数据度量国内人格多样性，并与人均 GDP
+及制度、移民变量关联。作者报告人格多样性可解释 19.9% 的人均 GDP
+跨国方差，在加入制度和移民后仍增加约 5.7%
+的解释力。这里是跨国相关性，不是人格或多样性导致经济增长的因果证据；样本代表性、文化测量等值性、反向因果和遗漏变量都可能改变结果，摘要没有投资含义。</p>
+<h3 id="machine-learning-classification-and-portfolio-construction-does-the-loss-function-matter">Machine
+Learning Classification and Portfolio Construction: Does the Loss
+Function Matter?</h3>
 <p><strong>作者</strong>：Yang Bai、Kuntara Pukthuanthong<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.PM">q-fin.PM</a>、<a target="_blank" rel="noopener" href="http://q-fin.ST">q-fin.ST</a>、cs.LG<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2108.02283">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2108.02283">PDF</a></p>
-<p>仅依据摘要：论文在匹配的机器学习设置下比较收益分类与回归损失对组合构建的影响，使用 stacking 的 gradient boosting、random forest 和 neural network，并把分类概率映射到价值加权组合。作者报告分类方案年化 Sharpe 1.83、回归方案 1.11，且在子样本、多分类和交易成本下仍存在，另有 spanning alpha。摘要未说明全部样本外窗口、特征发布时间、交易容量和成本假设；Sharpe 是历史策略统计量，不是实盘可实现结果，也没有因果识别。</p>
-<h3 id="natpar-natural-parametric-modeling"><a class="markdownIt-Anchor" href="#natpar-natural-parametric-modeling"></a> NatPar: Natural Parametric Modeling</h3>
+<strong>来源/分类</strong>：arXiv · q-fin.PM、q-fin.ST、cs.LG<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2108.02283">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2108.02283">PDF</a></p>
+<p>仅依据摘要：论文在匹配的机器学习设置下比较收益分类与回归损失对组合构建的影响，使用
+stacking 的 gradient boosting、random forest 和 neural
+network，并把分类概率映射到价值加权组合。作者报告分类方案年化 Sharpe
+1.83、回归方案 1.11，且在子样本、多分类和交易成本下仍存在，另有 spanning
+alpha。摘要未说明全部样本外窗口、特征发布时间、交易容量和成本假设；Sharpe
+是历史策略统计量，不是实盘可实现结果，也没有因果识别。</p>
+<h3 id="natpar-natural-parametric-modeling">NatPar: Natural Parametric
+Modeling</h3>
 <p><strong>作者</strong>：Hirbod Assa<br>
-<strong>来源/分类</strong>：arXiv · q-fin.RM、<a target="_blank" rel="noopener" href="http://q-fin.PR">q-fin.PR</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24871">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24871">PDF</a></p>
-<p>仅依据摘要：NatPar 为参数化巨灾保险建模提供自然参数化框架，围绕 AAL、EP、AEP、OEP 和 BEP 处理基差风险，并用霜冻案例说明在 AAL 中性条件下如何在不同期限重新分配尾部赔付。作者强调尾部依赖会反转结论。摘要没有给校准数据、价格、资本约束和实际保单验证；它是风险建模框架，不是保险产品报价或投资建议。</p>
-<h3 id="how-does-hazard-exposure-influence-job-choice-evaluating-time-dependent-tradeoffs-between-salary-and-hazard-risks"><a class="markdownIt-Anchor" href="#how-does-hazard-exposure-influence-job-choice-evaluating-time-dependent-tradeoffs-between-salary-and-hazard-risks"></a> How does hazard exposure influence job choice? Evaluating time-dependent tradeoffs between salary and hazard risks</h3>
-<p><strong>作者</strong>：Richard Bernknopf、Leila Gonzales、Christpher Keane<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a>、<a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24811">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24811">PDF</a></p>
-<p>仅依据摘要：论文用模拟的 seek-and-screen 求职决策、Cox hazard 与随机效用模型研究工资和犯罪/自然灾害风险的时间权衡。作者报告工资和犯罪风险影响较稳定，而自然灾害暴露的效应随时间从负面转为中性甚至正面。摘要没有说明模拟参数、真实求职数据校准、识别和异质性；结果属于行为模型推演，不是劳动力市场的因果估计。</p>
-<h3 id="dynamics-of-the-currency-composition-of-central-bank-reserves已在上文详述"><a class="markdownIt-Anchor" href="#dynamics-of-the-currency-composition-of-central-bank-reserves已在上文详述"></a> Dynamics of the Currency Composition of Central Bank Reserves：已在上文详述</h3>
-<p>该文用受约束 SUR 同时估计 53 国 8 类储备货币份额，发现惯性、跨货币依赖、贸易和制裁的关联在加入年份效应后更稳健。它解释的是官方储备组合的统计结构，不能外推为某货币未来收益或资产配置信号。</p>
-<h3 id="equilibrium-in-closed-constant-function-market-maker-economies"><a class="markdownIt-Anchor" href="#equilibrium-in-closed-constant-function-market-maker-economies"></a> Equilibrium in closed constant-function market maker economies</h3>
+<strong>来源/分类</strong>：arXiv · q-fin.RM、q-fin.PR<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24871">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24871">PDF</a></p>
+<p>仅依据摘要：NatPar 为参数化巨灾保险建模提供自然参数化框架，围绕
+AAL、EP、AEP、OEP 和 BEP 处理基差风险，并用霜冻案例说明在 AAL
+中性条件下如何在不同期限重新分配尾部赔付。作者强调尾部依赖会反转结论。摘要没有给校准数据、价格、资本约束和实际保单验证；它是风险建模框架，不是保险产品报价或投资建议。</p>
+<h3 id="how-does-hazard-exposure-influence-job-choice-evaluating-time-dependent-tradeoffs-between-salary-and-hazard-risks">How
+does hazard exposure influence job choice? Evaluating time-dependent
+tradeoffs between salary and hazard risks</h3>
+<p><strong>作者</strong>：Richard Bernknopf、Leila Gonzales、Christpher
+Keane<br>
+<strong>来源/分类</strong>：arXiv · q-fin.EC、econ.GN<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24811">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24811">PDF</a></p>
+<p>仅依据摘要：论文用模拟的 seek-and-screen 求职决策、Cox hazard
+与随机效用模型研究工资和犯罪/自然灾害风险的时间权衡。作者报告工资和犯罪风险影响较稳定，而自然灾害暴露的效应随时间从负面转为中性甚至正面。摘要没有说明模拟参数、真实求职数据校准、识别和异质性；结果属于行为模型推演，不是劳动力市场的因果估计。</p>
+<h3 id="dynamics-of-the-currency-composition-of-central-bank-reserves已在上文详述">Dynamics
+of the Currency Composition of Central Bank Reserves：已在上文详述</h3>
+<p>该文用受约束 SUR 同时估计 53 国 8
+类储备货币份额，发现惯性、跨货币依赖、贸易和制裁的关联在加入年份效应后更稳健。它解释的是官方储备组合的统计结构，不能外推为某货币未来收益或资产配置信号。</p>
+<h3 id="equilibrium-in-closed-constant-function-market-maker-economies">Equilibrium
+in closed constant-function market maker economies</h3>
 <p><strong>作者</strong>：Muqiao Huang、Ruodu Wang、Yiyun Wang<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.TR">q-fin.TR</a>、<a target="_blank" rel="noopener" href="http://econ.TH">econ.TH</a>、math.OC<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23915">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.23915">PDF</a></p>
-<p>仅依据摘要：论文在无手续费、两资产两交易者的封闭 constant-function market maker 经济中研究均衡；无交易时边际价格等于双方边际替代率，单方面均衡相对不变量具有 Pareto 最优性质，并用加权 sup-convolution 表示弱代表性代理。有限次交易可到达一组状态，交替效用最大化会收敛，同时存在订单先后效应。摘要没有现实 AMM 数据、手续费、价格冲击和外部资产，属于机制理论而非可交易收益研究。</p>
-<h3 id="groundwater-management-combating-the-sinking-feeling"><a class="markdownIt-Anchor" href="#groundwater-management-combating-the-sinking-feeling"></a> Groundwater Management: Combating the Sinking Feeling</h3>
+<strong>来源/分类</strong>：arXiv · q-fin.TR、econ.TH、math.OC<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23915">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.23915">PDF</a></p>
+<p>仅依据摘要：论文在无手续费、两资产两交易者的封闭 constant-function
+market maker
+经济中研究均衡；无交易时边际价格等于双方边际替代率，单方面均衡相对不变量具有
+Pareto 最优性质，并用加权 sup-convolution
+表示弱代表性代理。有限次交易可到达一组状态，交替效用最大化会收敛，同时存在订单先后效应。摘要没有现实
+AMM
+数据、手续费、价格冲击和外部资产，属于机制理论而非可交易收益研究。</p>
+<h3 id="groundwater-management-combating-the-sinking-feeling">Groundwater
+Management: Combating the Sinking Feeling</h3>
 <p><strong>作者</strong>：Igor Cialenco、Mike Ludkovski<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a>、<a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、<a target="_blank" rel="noopener" href="http://math.PR">math.PR</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23914">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.23914">PDF</a></p>
+<strong>来源/分类</strong>：arXiv · q-fin.EC、econ.GN、math.PR<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.23914">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.23914">PDF</a></p>
 <p>仅依据摘要：这篇非技术综述讨论地下水抽取权市场、随机地下水动态、博弈均衡、配给和监管设计，并总结开放问题。价值在于把资源经济与随机控制放入同一政策框架；摘要没有给结构估计、现场数据或可验证政策效果，不应把市场机制建议写成已证实的资源治理结果。</p>
-<h3 id="local-stochastic-rough-volatility-pathwise-filtering-and-the-conditional-density-equation"><a class="markdownIt-Anchor" href="#local-stochastic-rough-volatility-pathwise-filtering-and-the-conditional-density-equation"></a> Local Stochastic Rough Volatility: Pathwise Filtering and the Conditional Density Equation</h3>
+<h3 id="local-stochastic-rough-volatility-pathwise-filtering-and-the-conditional-density-equation">Local
+Stochastic Rough Volatility: Pathwise Filtering and the Conditional
+Density Equation</h3>
 <p><strong>作者</strong>：Damiano Brigo、Vladimir Lucic<br>
-<strong>来源/分类</strong>：arXiv · q-fin.MF、<a target="_blank" rel="noopener" href="http://math.PR">math.PR</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.27588">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.27588">PDF</a></p>
-<p>仅依据摘要：论文研究局部随机粗波动率模型下的路径滤波与条件密度方程，在局部随机粗 Heston 框架中用 Itô–Wentzell 变换得到带路径依赖系数的确定性 PDE，并给出纯 rough Heston 的显式对数正态形式。摘要没有市场校准、期权定价误差、数值稳定性和真实交易检验；它是随机分析与定价基础结果，不构成波动率交易信号。</p>
-<h3 id="ballot-exhaustion-in-multiwinner-single-transferable-vote-elections"><a class="markdownIt-Anchor" href="#ballot-exhaustion-in-multiwinner-single-transferable-vote-elections"></a> Ballot Exhaustion in Multiwinner Single Transferable Vote Elections</h3>
+<strong>来源/分类</strong>：arXiv · q-fin.MF、math.PR<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.27588">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.27588">PDF</a></p>
+<p>仅依据摘要：论文研究局部随机粗波动率模型下的路径滤波与条件密度方程，在局部随机粗
+Heston 框架中用 Itô–Wentzell 变换得到带路径依赖系数的确定性
+PDE，并给出纯 rough Heston
+的显式对数正态形式。摘要没有市场校准、期权定价误差、数值稳定性和真实交易检验；它是随机分析与定价基础结果，不构成波动率交易信号。</p>
+<h3 id="ballot-exhaustion-in-multiwinner-single-transferable-vote-elections">Ballot
+Exhaustion in Multiwinner Single Transferable Vote Elections</h3>
 <p><strong>作者</strong>：David McCune、E. E. Naber<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a>、<a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、math.HO<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.12676">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.12676">PDF</a></p>
-<p>仅依据摘要：论文分析苏格兰 1,070 场地方选举、约 540 万张选票中的单票转移制 exhausted ballots，区分原始耗尽率与权重耗尽率，并模拟比例完成方案。作者报告原始耗尽约 27.9%、权重耗尽约 7.1%，多数选票仍被代表；比例完成只改变约 3.5% 席位，更极端假设下会增加，部分赢家也可能未达到配额。摘要没有给全部选举制度反事实、统计不确定性与政策成本；它是制度与数据分析，不是金融回测。</p>
+<strong>来源/分类</strong>：arXiv · q-fin.EC、econ.GN、math.HO<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.12676">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.12676">PDF</a></p>
+<p>仅依据摘要：论文分析苏格兰 1,070 场地方选举、约 540
+万张选票中的单票转移制 exhausted
+ballots，区分原始耗尽率与权重耗尽率，并模拟比例完成方案。作者报告原始耗尽约
+27.9%、权重耗尽约 7.1%，多数选票仍被代表；比例完成只改变约 3.5%
+席位，更极端假设下会增加，部分赢家也可能未达到配额。摘要没有给全部选举制度反事实、统计不确定性与政策成本；它是制度与数据分析，不是金融回测。</p>
 
                 
               </div>

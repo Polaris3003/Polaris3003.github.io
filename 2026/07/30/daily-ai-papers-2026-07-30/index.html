@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注  1. 医疗 agent 的难点不只是答对，而是在行动前完成分诊 **PatientAgentBench: A Benchmark Framework for Evaluating Patient-Facing Health AI Agents**｜Korosh Vatanparvar 等｜arXiv（cs.AI &#x2F; cs.CL）｜PDF  核心问题与方法。 论文评测面向患者、能读病">
+    <meta name="description" content="重点关注 1. 医疗 agent 的难点不只是答对，而是在行动前完成分诊 PatientAgentBench: A Benchmark Framework for Evaluating Patient-Facing Health AI Agents｜Korosh Vatanparvar 等｜arXiv（cs.AI &#x2F; cs.CL）｜PDF  核心问题与方法。 论文评测面向患者、能读病历并调用医疗">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜医疗智能体评测、意图推荐与临床时序推理">
 <meta property="og:url" content="https://www.polarishaw.top/2026/07/30/daily-ai-papers-2026-07-30/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注  1. 医疗 agent 的难点不只是答对，而是在行动前完成分诊 **PatientAgentBench: A Benchmark Framework for Evaluating Patient-Facing Health AI Agents**｜Korosh Vatanparvar 等｜arXiv（cs.AI &#x2F; cs.CL）｜PDF  核心问题与方法。 论文评测面向患者、能读病">
+<meta property="og:description" content="重点关注 1. 医疗 agent 的难点不只是答对，而是在行动前完成分诊 PatientAgentBench: A Benchmark Framework for Evaluating Patient-Facing Health AI Agents｜Korosh Vatanparvar 等｜arXiv（cs.AI &#x2F; cs.CL）｜PDF  核心问题与方法。 论文评测面向患者、能读病历并调用医疗">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-26/pixiv-rank-007-147443309.jpg">
 <meta property="article:published_time" content="2026-07-30T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-010-145971822.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-08-16/pixiv-rank-012-148227521.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,62 +347,171 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
-<h3 id="1-医疗-agent-的难点不只是答对而是在行动前完成分诊"><a class="markdownIt-Anchor" href="#1-医疗-agent-的难点不只是答对而是在行动前完成分诊"></a> 1. 医疗 agent 的难点不只是答对，而是在行动前完成分诊</h3>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25485">PatientAgentBench: A Benchmark Framework for Evaluating Patient-Facing Health AI Agents</a>**｜Korosh Vatanparvar 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> / <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25485">PDF</a></p>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="医疗-agent-的难点不只是答对而是在行动前完成分诊">1. 医疗 agent
+的难点不只是答对，而是在行动前完成分诊</h3>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25485">PatientAgentBench:
+A Benchmark Framework for Evaluating Patient-Facing Health AI
+Agents</a></strong>｜Korosh Vatanparvar 等｜arXiv（cs.AI / cs.CL）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25485">PDF</a></p>
 <ul>
-<li><strong>核心问题与方法。</strong> 论文评测面向患者、能读病历并调用医疗工具的多轮 agent，而非静态医学问答。作者以统一 ReAct 基线外壳、状态化医疗工具沙盒和合成患者对话，按临床安全、分诊、工作流准确性、任务完成、临床帮助度与对话质量六维、102 条临床规则评分；10 个模型各跑 1,200 个场景、最多 15 轮。</li>
-<li><strong>作者报告的结果。</strong> 已核对 PDF：最强模型的综合均分为 4.25/5，分诊通过率仍只有 88%；全体模型分诊通过率跨度为 32%–88%。前沿模型在安全和工作流上接近满分，但仍会漏给危机资源、未核验工具输出或过早行动。LLM 裁判与持证临床人员的相邻一致率为 79%–93%，这是评分对齐证据，不等同于真实临床安全证明。</li>
-<li><strong>创新、局限与适读者。</strong> 贡献是把“完成预约”与“是否先识别风险”拆开检查，并固定 agent 外壳以减小提示工程混杂。局限是患者、病历与工具均为模拟环境；LLM 裁判、公开基准污染和模型版本变化仍会影响可复现性，不能据此用于诊疗。适合医疗 AI、agent 评测与安全团队；建议优先读第 3 节场景/沙盒、第 4 节评分规则和第 5.2–5.3 节分维结果。</li>
+<li><strong>核心问题与方法。</strong>
+论文评测面向患者、能读病历并调用医疗工具的多轮
+agent，而非静态医学问答。作者以统一 ReAct
+基线外壳、状态化医疗工具沙盒和合成患者对话，按临床安全、分诊、工作流准确性、任务完成、临床帮助度与对话质量六维、102
+条临床规则评分；10 个模型各跑 1,200 个场景、最多 15 轮。</li>
+<li><strong>作者报告的结果。</strong> 已核对 PDF：最强模型的综合均分为
+4.25/5，分诊通过率仍只有 88%；全体模型分诊通过率跨度为
+32%–88%。前沿模型在安全和工作流上接近满分，但仍会漏给危机资源、未核验工具输出或过早行动。LLM
+裁判与持证临床人员的相邻一致率为
+79%–93%，这是评分对齐证据，不等同于真实临床安全证明。</li>
+<li><strong>创新、局限与适读者。</strong>
+贡献是把“完成预约”与“是否先识别风险”拆开检查，并固定 agent
+外壳以减小提示工程混杂。局限是患者、病历与工具均为模拟环境；LLM
+裁判、公开基准污染和模型版本变化仍会影响可复现性，不能据此用于诊疗。适合医疗
+AI、agent 评测与安全团队；建议优先读第 3 节场景/沙盒、第 4
+节评分规则和第 5.2–5.3 节分维结果。</li>
 </ul>
-<h3 id="2-推荐系统把昂贵推理移到离线才有机会检验真实增量"><a class="markdownIt-Anchor" href="#2-推荐系统把昂贵推理移到离线才有机会检验真实增量"></a> 2. 推荐系统把昂贵推理移到离线，才有机会检验真实增量</h3>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24789">NEXT: Reasoning-Driven Video Recommendation via a Vision-Language Model</a>**｜Yuming Liu 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a> / <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a> / cs.LG / <a target="_blank" rel="noopener" href="http://cs.MM">cs.MM</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24789">PDF</a></p>
+<h3 id="推荐系统把昂贵推理移到离线才有机会检验真实增量">2.
+推荐系统把昂贵推理移到离线，才有机会检验真实增量</h3>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24789">NEXT:
+Reasoning-Driven Video Recommendation via a Vision-Language
+Model</a></strong>｜Yuming Liu 等｜arXiv（cs.IR / cs.CV / cs.LG /
+cs.MM）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24789">PDF</a></p>
 <ul>
-<li><strong>核心问题与方法。</strong> NEXT 不用共点击相关性直接接续视频，而是以“视频→下一意图→视频”生成有向边；8B 视觉语言模型经历感知增强 RL、分布对齐 SFT 与 GRPO 三阶段训练。线上只查离线生成并验证过的候选边，原有排序器在小候选集中个性化，避免把 VLM 放在请求关键路径。</li>
-<li><strong>作者报告的结果。</strong> 已核对 PDF：NEXT-8B 在 DocVQA 达 97.28% ANLS；训练消融中最后一阶段使分数从 96.96 提至 97.28。约 1 亿用户规模、多周线上 A/B 中，加入该检索通路后观看时长 +0.53%、不同视频曝光 +0.51%，两项 95% 置信区间均不含零且 p&lt;0.05；论文称负反馈、安全与延迟未见显著退化。</li>
-<li><strong>创新、局限与适读者。</strong> 价值在于用真实 A/B 而非只报离线 NDCG，并将推理成本与线上 SLA 解耦。结果来自单一商业平台和封闭数据；离线挖边的算力吞吐仍是瓶颈，连续的“下一步”也可能收窄探索多样性。适合推荐基础设施、VLM 工程与实验平台团队；建议读第 3 节训练、第 4 节消融与第 5 节 A/B 设计。</li>
+<li><strong>核心问题与方法。</strong> NEXT
+不用共点击相关性直接接续视频，而是以“视频→下一意图→视频”生成有向边；8B
+视觉语言模型经历感知增强 RL、分布对齐 SFT 与 GRPO
+三阶段训练。线上只查离线生成并验证过的候选边，原有排序器在小候选集中个性化，避免把
+VLM 放在请求关键路径。</li>
+<li><strong>作者报告的结果。</strong> 已核对 PDF：NEXT-8B 在 DocVQA 达
+97.28% ANLS；训练消融中最后一阶段使分数从 96.96 提至 97.28。约 1
+亿用户规模、多周线上 A/B 中，加入该检索通路后观看时长
++0.53%、不同视频曝光 +0.51%，两项 95% 置信区间均不含零且
+p&lt;0.05；论文称负反馈、安全与延迟未见显著退化。</li>
+<li><strong>创新、局限与适读者。</strong> 价值在于用真实 A/B
+而非只报离线 NDCG，并将推理成本与线上 SLA
+解耦。结果来自单一商业平台和封闭数据；离线挖边的算力吞吐仍是瓶颈，连续的“下一步”也可能收窄探索多样性。适合推荐基础设施、VLM
+工程与实验平台团队；建议读第 3 节训练、第 4 节消融与第 5 节 A/B
+设计。</li>
 </ul>
-<h3 id="3-不规则临床时间序列重点是压缩证据而不是把原序列全塞进上下文"><a class="markdownIt-Anchor" href="#3-不规则临床时间序列重点是压缩证据而不是把原序列全塞进上下文"></a> 3. 不规则临床时间序列，重点是压缩证据而不是把原序列全塞进上下文</h3>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25947">A Cost-Effective Multimodal LLM Reasoning Framework for Question Answering over Irregular Clinical Time Series</a>**｜Frank Nie 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> / <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25947">PDF</a></p>
+<h3 id="不规则临床时间序列重点是压缩证据而不是把原序列全塞进上下文">3.
+不规则临床时间序列，重点是压缩证据而不是把原序列全塞进上下文</h3>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25947">A Cost-Effective
+Multimodal LLM Reasoning Framework for Question Answering over Irregular
+Clinical Time Series</a></strong>｜Frank Nie 等｜arXiv（cs.AI /
+cs.CL）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25947">PDF</a></p>
 <ul>
-<li><strong>核心问题与方法。</strong> ClinPRISM 针对缺失、异步采样的临床序列，用宏观/事件/点级多尺度编码器、时间证据蒸馏和分阶段时间—语言对齐，把输入压为 16 个 token；以 Qwen3-4B 为骨干，在 3 万条带描述的序列和约 4.1 万道多任务题上训练，并与闭源/开源通用 LLM、时序 LLM 及 t-PatchGNN 基线比较。</li>
-<li><strong>作者报告的结果。</strong> 已核对 PDF：在留出 CLIR-Bench 上，宏平均准确率为 49.83，较最强时序基线 t-PatchGNN 高 11.18 点，较 GPT-5.4 mini 低 0.32 点；每题 0.15 秒、16 个时序 token。移除联合 LoRA—连接器适配后降至 36.35；稀疏度分桶下相对波动 1.6%，对照为 12.7%。这些是离线多选 QA 的作者结果，不能推出临床决策能力。</li>
-<li><strong>创新、局限与适读者。</strong> 多尺度表示与小 token 接口同时回应准确率和推理成本。基准仍是离线、选择题，数据分布与开放式问答、真实病历部署不同，且未见前瞻安全验证。适合医疗时序建模、低延迟多模态系统与评测人员；建议读第 3 节数据构造、第 4.2–4.5 节比较/消融/效率与第 6 节。</li>
+<li><strong>核心问题与方法。</strong> ClinPRISM
+针对缺失、异步采样的临床序列，用宏观/事件/点级多尺度编码器、时间证据蒸馏和分阶段时间—语言对齐，把输入压为
+16 个 token；以 Qwen3-4B 为骨干，在 3 万条带描述的序列和约 4.1
+万道多任务题上训练，并与闭源/开源通用 LLM、时序 LLM 及 t-PatchGNN
+基线比较。</li>
+<li><strong>作者报告的结果。</strong> 已核对 PDF：在留出 CLIR-Bench
+上，宏平均准确率为 49.83，较最强时序基线 t-PatchGNN 高 11.18 点，较
+GPT-5.4 mini 低 0.32 点；每题 0.15 秒、16 个时序 token。移除联合
+LoRA—连接器适配后降至 36.35；稀疏度分桶下相对波动 1.6%，对照为
+12.7%。这些是离线多选 QA 的作者结果，不能推出临床决策能力。</li>
+<li><strong>创新、局限与适读者。</strong> 多尺度表示与小 token
+接口同时回应准确率和推理成本。基准仍是离线、选择题，数据分布与开放式问答、真实病历部署不同，且未见前瞻安全验证。适合医疗时序建模、低延迟多模态系统与评测人员；建议读第
+3 节数据构造、第 4.2–4.5 节比较/消融/效率与第 6 节。</li>
 </ul>
-<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
-<p>以下按候选清单完整收录 18 篇；上文三篇已核对 PDF，其余均<strong>仅依据作者公开摘要</strong>，论文报告的结果不代表独立验证。</p>
-<h3 id="医疗-科研与安全"><a class="markdownIt-Anchor" href="#医疗-科研与安全"></a> 医疗、科研与安全</h3>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25489">Agentic AI in medicine: architectures, applications, evaluation, and challenges for clinical translation</a>**｜Zheng Tong 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25489">PDF</a></p>
-<p>范围综述医疗 agent 的定义、架构和临床转化缺口；作者在五个来源筛查 1,649 条记录、暂纳入 557 项研究，发现证据多为公开基准、模拟/回顾性数据与小规模专家评估。它值得作为评测清单，但综述映射不能替代前瞻临床验证；应特别检查可追溯性、不确定性与工作流影响。<strong>仅依据摘要。</strong></p>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25145">Agentic AI for Scientific Reasoning in Autonomous Quantum Sensing Experiments</a>**｜Takuya Isogawa 等｜arXiv（quant-ph / <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25145">PDF</a></p>
-<p>研究 LLM 如何在金刚石 NV 中心实验中做假设、分析和测量选择；agent 负责记录、计算与数据分析，确定性代码控制硬件。作者称要求预期信号计算可压低三种模型、不同推理强度下的假阳性；限制是离线基准与单一实验平台不能证明通用自主实验安全。<strong>仅依据摘要。</strong></p>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.05775">Guardians and Offenders: A Survey on Harmful Content Generation and Safety Mitigation of LLM</a>**｜Chi Zhang 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a> / <a target="_blank" rel="noopener" href="http://cs.CY">cs.CY</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2508.05775">PDF</a></p>
-<p>该综述统一讨论无意毒性、越狱与检测/审核/RLHF 等缓解方法，并纳入多模态攻击。关注价值是把“生成伤害”和“用 LLM 防御”置于同一分类；但综述不能替代特定模型的红队、跨语言测量和部署误伤率验证。<strong>仅依据摘要。</strong></p>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24875">FinAbstain: Uncertainty-Calibrated Multimodal RAG for Selective Financial Forecasting</a>**｜Dorothy Torres、Wei Cheng、Henan Huang｜arXiv（cs.LG）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24875">PDF</a></p>
-<p>论文提出按预测时点取证的金融多模态 RAG，以温度缩放、保序回归、共形预测和拒答控制器在证据冲突时弃权。作者明确结果为模拟示例而非实证；因此它是可审计评测蓝图，不是预测有效性、回测收益或投资建议，且仍需检查时间泄漏、成本与真实成交。<strong>仅依据摘要。</strong></p>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24799">Multimodal Hybrid Retrieval-Augmented Generation for Scientific Document Understanding using Open-Source SLMs</a>**｜Alexandru-Andrei Saucă、Ana-Luiza Rusnac｜arXiv（<a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a> / <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24799">PDF</a></p>
-<p>作者以 Qwen2-VL-2B 描述表图，结合 HNSW、词法检索、RRF 与 cross-encoder 重排来问答科学文档；摘要称检索质量较 Naive-RAG 高 157%、仅增 50ms。关键限制是 BeIR 格式合成数据与 BERTScore 不能充分证明真实文档事实性，基线及索引成本需复核。<strong>仅依据摘要。</strong></p>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24793">Retrieval, not hallucinations, will be the limiting factor for LLM-based clinical AI tools</a>**｜Kirk Roberts 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a> / <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24793">PDF</a></p>
+<h2 id="ai-论文">AI 论文</h2>
+<p>以下按候选清单完整收录 18 篇；上文三篇已核对
+PDF，其余均<strong>仅依据作者公开摘要</strong>，论文报告的结果不代表独立验证。</p>
+<h3 id="医疗科研与安全">医疗、科研与安全</h3>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25489">Agentic AI in
+medicine: architectures, applications, evaluation, and challenges for
+clinical translation</a></strong>｜Zheng Tong 等｜arXiv（cs.CV）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25489">PDF</a></p>
+<p>范围综述医疗 agent 的定义、架构和临床转化缺口；作者在五个来源筛查
+1,649 条记录、暂纳入 557
+项研究，发现证据多为公开基准、模拟/回顾性数据与小规模专家评估。它值得作为评测清单，但综述映射不能替代前瞻临床验证；应特别检查可追溯性、不确定性与工作流影响。<strong>仅依据摘要。</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25145">Agentic AI for
+Scientific Reasoning in Autonomous Quantum Sensing
+Experiments</a></strong>｜Takuya Isogawa 等｜arXiv（quant-ph /
+cs.AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25145">PDF</a></p>
+<p>研究 LLM 如何在金刚石 NV 中心实验中做假设、分析和测量选择；agent
+负责记录、计算与数据分析，确定性代码控制硬件。作者称要求预期信号计算可压低三种模型、不同推理强度下的假阳性；限制是离线基准与单一实验平台不能证明通用自主实验安全。<strong>仅依据摘要。</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.05775">Guardians and
+Offenders: A Survey on Harmful Content Generation and Safety Mitigation
+of LLM</a></strong>｜Chi Zhang 等｜arXiv（cs.CL / cs.CY）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2508.05775">PDF</a></p>
+<p>该综述统一讨论无意毒性、越狱与检测/审核/RLHF
+等缓解方法，并纳入多模态攻击。关注价值是把“生成伤害”和“用 LLM
+防御”置于同一分类；但综述不能替代特定模型的红队、跨语言测量和部署误伤率验证。<strong>仅依据摘要。</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24875">FinAbstain:
+Uncertainty-Calibrated Multimodal RAG for Selective Financial
+Forecasting</a></strong>｜Dorothy Torres、Wei Cheng、Henan
+Huang｜arXiv（cs.LG）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24875">PDF</a></p>
+<p>论文提出按预测时点取证的金融多模态
+RAG，以温度缩放、保序回归、共形预测和拒答控制器在证据冲突时弃权。作者明确结果为模拟示例而非实证；因此它是可审计评测蓝图，不是预测有效性、回测收益或投资建议，且仍需检查时间泄漏、成本与真实成交。<strong>仅依据摘要。</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24799">Multimodal Hybrid
+Retrieval-Augmented Generation for Scientific Document Understanding
+using Open-Source SLMs</a></strong>｜Alexandru-Andrei Saucă、Ana-Luiza
+Rusnac｜arXiv（cs.IR / cs.AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24799">PDF</a></p>
+<p>作者以 Qwen2-VL-2B 描述表图，结合 HNSW、词法检索、RRF 与
+cross-encoder 重排来问答科学文档；摘要称检索质量较 Naive-RAG 高
+157%、仅增 50ms。关键限制是 BeIR 格式合成数据与 BERTScore
+不能充分证明真实文档事实性，基线及索引成本需复核。<strong>仅依据摘要。</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24793">Retrieval, not
+hallucinations, will be the limiting factor for LLM-based clinical AI
+tools</a></strong>｜Kirk Roberts 等｜arXiv（cs.IR / cs.CL）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24793">PDF</a></p>
 <p>这篇观点文主张临床工具更应关注患者级数据检索的召回错误，而非只盯生成幻觉，并讨论错误类型与评测方向。其价值是改变质量指标优先级；限制是观点并非比较实验，检索召回提升也不自动解决病历质量、权限和临床责任。<strong>仅依据摘要。</strong></p>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24748">VLD-RAG: Agentic Vision-Language Retrieval-Augmented Generation for Long, Visually-Rich Multi-Page Documents</a>**｜Seonok Kim｜arXiv（<a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a> / <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> / <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24748">PDF</a></p>
-<p>该文为多页图文文档建立保留页结构的多模态索引，并用检索、回答、验证 agent 协作补证据与引文。作者称在 LongDocURL、MMLongBench-Doc 超越视觉检索基线；仍需检查页级召回与最终回答的因果关系、工具成本和跨版式泛化。<strong>仅依据摘要。</strong></p>
-<h3 id="多模态-评测与工程"><a class="markdownIt-Anchor" href="#多模态-评测与工程"></a> 多模态、评测与工程</h3>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25642">Instruction-based Image Editing: A Survey on Data, Models, Evaluation, and Applications</a>**｜Xianghao Zang 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a> / <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25642">PDF</a></p>
-<p>综述指令式图像编辑的数据、GAN/扩散/自回归模型、指标与商业应用，并提出诊断性 CDD-IIE Bench。它有助于对齐评测维度；但图像编辑的偏好、身份保持与版权/安全边界不能由单一自动指标决定。<strong>仅依据摘要。</strong></p>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25589">Forensic Reproducibility Audit of a Radiology Vision-Language Model Benchmark: From Intended Protocol to Released Artifact</a>**｜Mateusz Kozłowski｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a> / <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> / <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25589">PDF</a></p>
-<p>作者审计一项胸片 VLM 试点的提示绑定、DICOM 渲染、标签提取与统计产物，称重建共同队列后 Cochran Q 从 154.73 变为 182.29，并撤回原性能/排名主张。关注点在研究发布链的可追踪性；该案例不能量化所有医学基准的错误率。<strong>仅依据摘要。</strong></p>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25415">A Control System, a Dataset, and a Recipe for Making Frozen LLM Agents Learn a Domain</a>**｜Debjyoti Paul｜arXiv（<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25415">PDF</a></p>
-<p>论文把冻结 LLM 的提示、工具、记忆和验证器视作固定、可读的动作空间，用 contextual bandit/REINFORCE 在线选策略，并以 DSPy 静态提示为基线。优点是强调审计与成本/延迟目标；但摘要未给出各域完整增益和在线风险，黑箱 API 的可复现性也受版本影响。<strong>仅依据摘要。</strong></p>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25300">MEDit-Bench: A Dataset for Evaluating Message-Driven Narrative Video Editing</a>**｜Katsuya Ogata 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25300">PDF</a></p>
-<p>作者将长视频、多种编辑意图及专业剪辑配对，指出 LLM 裁判受严重位置偏差，而强模型在严格时间对齐上仍落后人类。它把“叙事意图”纳入视频编辑评测；限制是专业偏好、版权素材和自动时间对齐都未覆盖最终创作价值。<strong>仅依据摘要。</strong></p>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25186">MyoCardBench: A Real-World Data Benchmark for Evaluating Large Language Models in Clinically Authentic Cardiovascular Care Scenarios</a>**｜Xiao Li 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25186">PDF</a></p>
-<p>该基准含 2,263 个心血管真实世界任务项，16 位医生参与标注；摘要称 GPT-5.4 宏平均 62.55，心电与伦理子任务最低。价值在于暴露跨工作流短板；去标识数据、零样本提示和离线得分仍不能替代临床效果或责任验证。<strong>仅依据摘要。</strong></p>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24810">RRS-10K: A Multitask Vision-Language Model Benchmark for Rare Remote Sensing Image Interpretation</a>**｜Yuqiao Lai 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> / eess.IV）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24810">PDF</a></p>
-<p>RRS-10K 收录 10,738 张军事相关遥感图与多格式问答，作者测试 52 个模型并称其在视觉定位、指代分割和复杂推理上仍弱。长尾场景值得单列评测；但军事数据来源、任务公开后的污染与真实情报工作流的法律伦理边界都需审查。<strong>仅依据摘要。</strong></p>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24779">HOBA: Hierarchical On-Policy Bidding Agents for Adaptive Online Advertising</a>**｜Ji Wu 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> / cs.LG）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24779">PDF</a></p>
-<p>作者以 LLM 调超参、SARSA 选专家、PID/MPC/IQL 等执行出价，并称 AuctionNet 与大规模 A/B 均优于基线、目标成本 +3.6%。需先澄清“目标成本增加”的业务含义及因果归因；广告 A/B 的预算、竞价外部性和安全约束决定结论能否迁移。<strong>仅依据摘要。</strong></p>
-<p>**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.05580">AlphaCrafter: Harnessing Multi-Agent Workflows for Cross-Sectional Quantitative Trading</a>**｜Yishuo Yuan 等｜arXiv（<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.05580">PDF</a></p>
-<p>论文以可编程策略规范约束量化交易 agent，并在 CSI 300 与 S&amp;P 500 基准上声称风险调整收益更高、跨模型方差更低。结构化工作流有利于审计；但摘要未证明样本外、费用冲击、容量和真实成交，不能转化为投资结论。<strong>仅依据摘要。</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24748">VLD-RAG: Agentic
+Vision-Language Retrieval-Augmented Generation for Long, Visually-Rich
+Multi-Page Documents</a></strong>｜Seonok Kim｜arXiv（cs.IR / cs.AI /
+cs.CL）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24748">PDF</a></p>
+<p>该文为多页图文文档建立保留页结构的多模态索引，并用检索、回答、验证
+agent 协作补证据与引文。作者称在 LongDocURL、MMLongBench-Doc
+超越视觉检索基线；仍需检查页级召回与最终回答的因果关系、工具成本和跨版式泛化。<strong>仅依据摘要。</strong></p>
+<h3 id="多模态评测与工程">多模态、评测与工程</h3>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25642">Instruction-based
+Image Editing: A Survey on Data, Models, Evaluation, and
+Applications</a></strong>｜Xianghao Zang 等｜arXiv（cs.CV / cs.CL）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25642">PDF</a></p>
+<p>综述指令式图像编辑的数据、GAN/扩散/自回归模型、指标与商业应用，并提出诊断性
+CDD-IIE
+Bench。它有助于对齐评测维度；但图像编辑的偏好、身份保持与版权/安全边界不能由单一自动指标决定。<strong>仅依据摘要。</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25589">Forensic
+Reproducibility Audit of a Radiology Vision-Language Model Benchmark:
+From Intended Protocol to Released Artifact</a></strong>｜Mateusz
+Kozłowski｜arXiv（cs.CV / cs.AI / cs.CL）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25589">PDF</a></p>
+<p>作者审计一项胸片 VLM 试点的提示绑定、DICOM
+渲染、标签提取与统计产物，称重建共同队列后 Cochran Q 从 154.73 变为
+182.29，并撤回原性能/排名主张。关注点在研究发布链的可追踪性；该案例不能量化所有医学基准的错误率。<strong>仅依据摘要。</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25415">A Control System,
+a Dataset, and a Recipe for Making Frozen LLM Agents Learn a
+Domain</a></strong>｜Debjyoti Paul｜arXiv（cs.AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25415">PDF</a></p>
+<p>论文把冻结 LLM 的提示、工具、记忆和验证器视作固定、可读的动作空间，用
+contextual bandit/REINFORCE 在线选策略，并以 DSPy
+静态提示为基线。优点是强调审计与成本/延迟目标；但摘要未给出各域完整增益和在线风险，黑箱
+API 的可复现性也受版本影响。<strong>仅依据摘要。</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25300">MEDit-Bench: A
+Dataset for Evaluating Message-Driven Narrative Video
+Editing</a></strong>｜Katsuya Ogata 等｜arXiv（cs.CV）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25300">PDF</a></p>
+<p>作者将长视频、多种编辑意图及专业剪辑配对，指出 LLM
+裁判受严重位置偏差，而强模型在严格时间对齐上仍落后人类。它把“叙事意图”纳入视频编辑评测；限制是专业偏好、版权素材和自动时间对齐都未覆盖最终创作价值。<strong>仅依据摘要。</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.25186">MyoCardBench: A
+Real-World Data Benchmark for Evaluating Large Language Models in
+Clinically Authentic Cardiovascular Care Scenarios</a></strong>｜Xiao Li
+等｜arXiv（cs.CL）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.25186">PDF</a></p>
+<p>该基准含 2,263 个心血管真实世界任务项，16 位医生参与标注；摘要称
+GPT-5.4 宏平均
+62.55，心电与伦理子任务最低。价值在于暴露跨工作流短板；去标识数据、零样本提示和离线得分仍不能替代临床效果或责任验证。<strong>仅依据摘要。</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24810">RRS-10K: A
+Multitask Vision-Language Model Benchmark for Rare Remote Sensing Image
+Interpretation</a></strong>｜Yuqiao Lai 等｜arXiv（cs.AI / eess.IV）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24810">PDF</a></p>
+<p>RRS-10K 收录 10,738 张军事相关遥感图与多格式问答，作者测试 52
+个模型并称其在视觉定位、指代分割和复杂推理上仍弱。长尾场景值得单列评测；但军事数据来源、任务公开后的污染与真实情报工作流的法律伦理边界都需审查。<strong>仅依据摘要。</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.24779">HOBA: Hierarchical
+On-Policy Bidding Agents for Adaptive Online
+Advertising</a></strong>｜Ji Wu 等｜arXiv（cs.AI / cs.LG）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.24779">PDF</a></p>
+<p>作者以 LLM 调超参、SARSA 选专家、PID/MPC/IQL 等执行出价，并称
+AuctionNet 与大规模 A/B 均优于基线、目标成本
++3.6%。需先澄清“目标成本增加”的业务含义及因果归因；广告 A/B
+的预算、竞价外部性和安全约束决定结论能否迁移。<strong>仅依据摘要。</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.05580">AlphaCrafter:
+Harnessing Multi-Agent Workflows for Cross-Sectional Quantitative
+Trading</a></strong>｜Yishuo Yuan 等｜arXiv（cs.AI）｜<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.05580">PDF</a></p>
+<p>论文以可编程策略规范约束量化交易 agent，并在 CSI 300 与 S&amp;P 500
+基准上声称风险调整收益更高、跨模型方差更低。结构化工作流有利于审计；但摘要未证明样本外、费用冲击、容量和真实成交，不能转化为投资结论。<strong>仅依据摘要。</strong></p>
 
                 
               </div>

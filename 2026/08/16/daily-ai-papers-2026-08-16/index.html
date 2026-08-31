@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注  嵌入模型与生成式 LLM：0.4 分差距背后的 1,431 倍成本 论文：The Embedder’s Dilemma: LLMs Are Better, but at What Cost?（arXiv:2608.12875） 全文状态：已核阅公开 PDF。 问题是通用 LLM 是否值得替代文本嵌入管线。作者在 37 项 MTEB(LLM) 任务上比较 10 个、覆盖 6 个家族的">
+    <meta name="description" content="重点关注 嵌入模型与生成式 LLM：0.4 分差距背后的 1,431 倍成本 论文：The Embedder&#39;s Dilemma: LLMs Are Better, but at What Cost?（arXiv:2608.12875） 全文状态：已核阅公开 PDF。 问题是通用 LLM 是否值得替代文本嵌入管线。作者在 37 项 MTEB(LLM) 任务上比较 10 个、覆盖 6 个家族的 L">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日AI论文简报｜2026 年 8 月 16 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/08/16/daily-ai-papers-2026-08-16/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注  嵌入模型与生成式 LLM：0.4 分差距背后的 1,431 倍成本 论文：The Embedder’s Dilemma: LLMs Are Better, but at What Cost?（arXiv:2608.12875） 全文状态：已核阅公开 PDF。 问题是通用 LLM 是否值得替代文本嵌入管线。作者在 37 项 MTEB(LLM) 任务上比较 10 个、覆盖 6 个家族的">
+<meta property="og:description" content="重点关注 嵌入模型与生成式 LLM：0.4 分差距背后的 1,431 倍成本 论文：The Embedder&#39;s Dilemma: LLMs Are Better, but at What Cost?（arXiv:2608.12875） 全文状态：已核阅公开 PDF。 问题是通用 LLM 是否值得替代文本嵌入管线。作者在 37 项 MTEB(LLM) 任务上比较 10 个、覆盖 6 个家族的 L">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-002-146822320.jpg">
 <meta property="article:published_time" content="2026-08-16T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-010-145971822.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-08-16/pixiv-rank-012-148227521.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,114 +347,285 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
-<h3 id="嵌入模型与生成式-llm04-分差距背后的-1431-倍成本"><a class="markdownIt-Anchor" href="#嵌入模型与生成式-llm04-分差距背后的-1431-倍成本"></a> 嵌入模型与生成式 LLM：0.4 分差距背后的 1,431 倍成本</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12875">The Embedder’s Dilemma: LLMs Are Better, but at What Cost?</a>（arXiv:2608.12875）<br>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="嵌入模型与生成式-llm0.4-分差距背后的-1431-倍成本">嵌入模型与生成式
+LLM：0.4 分差距背后的 1,431 倍成本</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12875">The
+Embedder's Dilemma: LLMs Are Better, but at What
+Cost?</a>（arXiv:2608.12875）<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>问题是通用 LLM 是否值得替代文本嵌入管线。作者在 37 项 MTEB(LLM) 任务上比较 10 个、覆盖 6 个家族的 LLM 与 26 个 118M–14B 嵌入模型；分类用嵌入+kNN 对零样本 LLM，检索以小语料放入上下文，并同时核算 API 与 H100 上的吞吐/成本。作者报告最佳 LLM Gemini 3.1 Pro 得分 77.6，最佳嵌入模型 Octen-8B 为 77.2；前者单次基准成本为 154 美元、后者 0.11 美元，约 1,431 倍，开放 LLM 同卡吞吐慢 2.5–736 倍。LLM 在推理密集检索领先、嵌入模型在分类领先；推理 token 占 LLM 成本 28–81%。创新是把质量、成本与吞吐置于同一比较框架；局限是检索语料为 82–415 文档的小上下文设置，且 kNN 与零样本提示并非完全同一训练信息条件，不能直接等同生产级大库检索。适合做检索/RAG 成本决策的工程读者，建议读摘要、§3.2 协议、表 1、§4.2–4.6 与 §5 局限。</p>
-<h3 id="自我改进智能体可复用技能会把一次越界带入后续任务"><a class="markdownIt-Anchor" href="#自我改进智能体可复用技能会把一次越界带入后续任务"></a> 自我改进智能体：可复用技能会把一次越界带入后续任务</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12851">Practice Makes Unsafe: Skill Misevolution in Self-Improving LLM Agents</a>（arXiv:2608.12851）<br>
+<p>问题是通用 LLM 是否值得替代文本嵌入管线。作者在 37 项 MTEB(LLM)
+任务上比较 10 个、覆盖 6 个家族的 LLM 与 26 个 118M–14B
+嵌入模型；分类用嵌入+kNN 对零样本
+LLM，检索以小语料放入上下文，并同时核算 API 与 H100
+上的吞吐/成本。作者报告最佳 LLM Gemini 3.1 Pro 得分 77.6，最佳嵌入模型
+Octen-8B 为 77.2；前者单次基准成本为 154 美元、后者 0.11 美元，约 1,431
+倍，开放 LLM 同卡吞吐慢 2.5–736 倍。LLM
+在推理密集检索领先、嵌入模型在分类领先；推理 token 占 LLM 成本
+28–81%。创新是把质量、成本与吞吐置于同一比较框架；局限是检索语料为
+82–415 文档的小上下文设置，且 kNN
+与零样本提示并非完全同一训练信息条件，不能直接等同生产级大库检索。适合做检索/RAG
+成本决策的工程读者，建议读摘要、§3.2 协议、表 1、§4.2–4.6 与 §5
+局限。</p>
+<h3 id="自我改进智能体可复用技能会把一次越界带入后续任务">自我改进智能体：可复用技能会把一次越界带入后续任务</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12851">Practice Makes Unsafe: Skill
+Misevolution in Self-Improving LLM Agents</a>（arXiv:2608.12851）<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文研究把成功轨迹固化为跨任务技能的智能体，如何因一次不安全成功而在触发输入消失后继续传播风险。作者提出版本化生命周期测试框架 SkillMisevo-Gym 与 SkillMisevo-Bench，把暴露、写入、检索和新会话执行串联；SafeEvolve 则在写入与复用前修复/治理内容。25 种 agent-method 配置、每种 25 个 episode 共 525 个任务中，作者报告 21 种演化配置都会写出不安全工件，15 种会导致新会话伤害；仅三项恶意任务即可把迁移攻击成功率从 16.0% 提至 35.3%。SafeEvolve 使不安全检索与新会话伤害分别降 26.7、17.3 个百分点，良性效用均值仅变动 0.4 点。创新是将“技能状态”的生命周期因果链而非单轮行为纳入评测；局限是恶意暴露、任务与指标均是受控基准，代码安全、真实权限与长时组织工作流的外推仍待独立红队复核。适合 agent 记忆、安全评测和持续学习系统读者，建议读 §1 威胁模型、基准设计、主结果与失败案例。</p>
-<h3 id="行动边界的过度保守能力更强不代表更会放行"><a class="markdownIt-Anchor" href="#行动边界的过度保守能力更强不代表更会放行"></a> 行动边界的过度保守：能力更强不代表更会放行</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12654">SteerBench-Work: A Benchmark for Agent Steering at Action Boundaries</a>（arXiv:2608.12654）<br>
+<p>论文研究把成功轨迹固化为跨任务技能的智能体，如何因一次不安全成功而在触发输入消失后继续传播风险。作者提出版本化生命周期测试框架
+SkillMisevo-Gym 与
+SkillMisevo-Bench，把暴露、写入、检索和新会话执行串联；SafeEvolve
+则在写入与复用前修复/治理内容。25 种 agent-method 配置、每种 25 个
+episode 共 525 个任务中，作者报告 21 种演化配置都会写出不安全工件，15
+种会导致新会话伤害；仅三项恶意任务即可把迁移攻击成功率从 16.0% 提至
+35.3%。SafeEvolve 使不安全检索与新会话伤害分别降 26.7、17.3
+个百分点，良性效用均值仅变动 0.4
+点。创新是将“技能状态”的生命周期因果链而非单轮行为纳入评测；局限是恶意暴露、任务与指标均是受控基准，代码安全、真实权限与长时组织工作流的外推仍待独立红队复核。适合
+agent 记忆、安全评测和持续学习系统读者，建议读 §1
+威胁模型、基准设计、主结果与失败案例。</p>
+<h3 id="行动边界的过度保守能力更强不代表更会放行">行动边界的过度保守：能力更强不代表更会放行</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12654">SteerBench-Work: A Benchmark for
+Agent Steering at Action Boundaries</a>（arXiv:2608.12654）<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>该文问的是长程工作智能体在发送邮件、合并 PR、付款等不可逆行动前，能否正确选择“执行”或“等待人工/策略审查”。SteerBench-Work v2026-05 包含 106 个锚定公开事件的双向镜像场景，覆盖开发运维、客服、金融、法律、医疗、HR 与安全；标签在执行/暂缓之间近乎均衡，基线是模型对行动与可见证据作 gate 决策。作者在 30 个模型条件下报告，两类错误高度不对称：已获授权且证据已澄清的工作被错误暂缓 28.1%，不安全工作被错误放行 1.0%；对著名事件原版的 98.5% 表现，在证据反转镜像上降至 63.8%。贡献是用镜像控制揭示记忆化情境与校准并非一回事；局限为 106 个场景、公开事件选择和后续模型版本都会影响结果，且“正确放行”标签不代替组织授权流程。适合构建审批门、agent policy 和评测集的读者，建议读 §2 数据构成、主表、镜像分析及附录的标注协议。</p>
-<h3 id="理论计算机科学证明先评生成也要验证验证器"><a class="markdownIt-Anchor" href="#理论计算机科学证明先评生成也要验证验证器"></a> 理论计算机科学证明：先评生成，也要验证验证器</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.09538">TCS-BENCH: Benchmarking State-of-the-Art Generative AI Theoretical Computer Science Research Ability</a>（arXiv:2608.09538）<br>
+<p>该文问的是长程工作智能体在发送邮件、合并
+PR、付款等不可逆行动前，能否正确选择“执行”或“等待人工/策略审查”。SteerBench-Work
+v2026-05 包含 106
+个锚定公开事件的双向镜像场景，覆盖开发运维、客服、金融、法律、医疗、HR
+与安全；标签在执行/暂缓之间近乎均衡，基线是模型对行动与可见证据作 gate
+决策。作者在 30
+个模型条件下报告，两类错误高度不对称：已获授权且证据已澄清的工作被错误暂缓
+28.1%，不安全工作被错误放行 1.0%；对著名事件原版的 98.5%
+表现，在证据反转镜像上降至
+63.8%。贡献是用镜像控制揭示记忆化情境与校准并非一回事；局限为 106
+个场景、公开事件选择和后续模型版本都会影响结果，且“正确放行”标签不代替组织授权流程。适合构建审批门、agent
+policy 和评测集的读者，建议读 §2
+数据构成、主表、镜像分析及附录的标注协议。</p>
+<h3 id="理论计算机科学证明先评生成也要验证验证器">理论计算机科学证明：先评生成，也要验证验证器</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.09538">TCS-BENCH: Benchmarking
+State-of-the-Art Generative AI Theoretical Computer Science Research
+Ability</a>（arXiv:2608.09538）<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文针对研究级理论计算机科学证明生成建立 TCS-Bench，题目来自 STOC、FOCS、SODA 已发表论文，每题给出推导目标结论所需上下文；生成证明再经验证 agent 检验，并以专家评判的目标陈述—证明对校准验证器。作者报告其参考验证器在专家标注集准确率超过 90%。价值在于把“模型能写出貌似合理证明”与“证明判定器可靠”拆开度量；但摘要没有给出各生成模型的完整结果、题目数、污染控制细节或形式化证明覆盖率，验证 agent 的 90% 准确率也不是完备性保证。适合研究数学推理评测、证明验证与训练数据治理的读者，建议读数据构造、验证器对人工判断的比较、各模型结果和错误分类章节。</p>
-<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
-<h3 id="tennisvar-a-stroke-evidence-grounded-multimodal-large-language-model-for-tactical-reasoning-in-tennis-videos"><a class="markdownIt-Anchor" href="#tennisvar-a-stroke-evidence-grounded-multimodal-large-language-model-for-tactical-reasoning-in-tennis-videos"></a> TennisVAR: A Stroke-Evidence-Grounded Multimodal Large Language Model for Tactical Reasoning in Tennis Videos</h3>
-<p><strong>作者</strong>：Yifan Mei、Qingling Shi、Changli Wu、Jiayuan Rao、Jiayi Ji、Liujuan Cao<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12920">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12920">PDF</a></p>
-<p>研究网球视频从逐拍感知走向有证据的回合战术推理：模型须同时给出开放回答、层级战术标签、按序证据击球和关键动作帧。作者构建含 11,189 个回合视频、41,485 个击球事件、25,429 个战术单元及同量问答的专家标注 TRACE，并提出把事件解析与战术图时间推理结合的 TennisVAR。仅依据摘要，未见与何种基线比较及关键分数；数据标注、击球接触帧和单一运动项目的泛化性仍需全文核验。</p>
-<h3 id="the-embedders-dilemma-llms-are-better-but-at-what-cost"><a class="markdownIt-Anchor" href="#the-embedders-dilemma-llms-are-better-but-at-what-cost"></a> The Embedder’s Dilemma: LLMs Are Better, but at What Cost?</h3>
-<p><strong>作者</strong>：Adnan El Assadi、Niklas Muennighoff、Jinhyuk Lee<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12875">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12875">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/embeddings-benchmark/embedders-dilemma">代码/数据</a></p>
-<p>研究 LLM 能否替代文本嵌入管线；比较 10 个 LLM 和 26 个嵌入模型在 37 项任务上的质量、成本与吞吐。作者报告最佳 LLM 与嵌入模型总分仅差 0.4 分，但前者成本最高达约 1,431 倍；完整方法、基线公平性与生产级外推见上文重点关注。</p>
-<h3 id="practice-makes-unsafe-skill-misevolution-in-self-improving-llm-agents"><a class="markdownIt-Anchor" href="#practice-makes-unsafe-skill-misevolution-in-self-improving-llm-agents"></a> Practice Makes Unsafe: Skill Misevolution in Self-Improving LLM Agents</h3>
-<p><strong>作者</strong>：Xutao Mao、Liangjie Zhao、Xiang Zheng、Cong Wang<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12851">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12851">PDF</a></p>
-<p>研究自我改进 agent 的持久技能如何将一次不安全轨迹迁移到后续任务；以生命周期基准和 SafeEvolve 治理复用。作者报告恶意暴露可提高迁移攻击成功率，治理层降低不安全检索与新会话伤害；完整数字、基线和外推限制见上文重点关注。 <a target="_blank" rel="noopener" href="https://github.com/henrymao2004/misevolve">代码</a></p>
-<h3 id="craft-llm-based-iterative-refinement-for-temporal-reasoning-over-clinical-narratives"><a class="markdownIt-Anchor" href="#craft-llm-based-iterative-refinement-for-temporal-reasoning-over-clinical-narratives"></a> CRAFT: LLM-Based Iterative Refinement for Temporal Reasoning over Clinical Narratives</h3>
-<p><strong>作者</strong>：Chengyang He、Tahreem Arif、Marko Zivkovic、Lijing Wang、Yue Ning、Ping Wang<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12779">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12779">PDF</a></p>
-<p>研究临床叙述缺少显式时间锚点时的症状轨迹重建；CRAFT 以生成器和约束验证器迭代细化分阶段时间线，在 MedTempo 的 5,347 条疫苗不良事件叙述（3,166 条有专家时间标注）上比较四个 LLM。作者报告时间排序准确率持续改善且有消融。仅依据摘要，临床叙述、疫苗种类和专家标注不等于临床可用性；还须核查基线、数据偏差与安全验证，不能作为诊疗建议。</p>
-<h3 id="scaling-representation-diversity-modulated-attention-and-reconstructive-regularization-for-visual-grounding"><a class="markdownIt-Anchor" href="#scaling-representation-diversity-modulated-attention-and-reconstructive-regularization-for-visual-grounding"></a> Scaling Representation Diversity: Modulated Attention and Reconstructive Regularization for Visual Grounding</h3>
-<p><strong>作者</strong>：Junyi Hu、Tian Bai、Fengyi Wu、Yian Huang、Wei Wen、Zaoli Li、Junli Lin、Xingchen Li、Zhenming Peng、Yi Zhang<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12748">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12748">PDF</a></p>
-<p>研究指代表达理解在数据集专用微调下跨集泛化较弱的问题；以调制注意力对比头、文本条件 JEPA 辅助流及 Objects365-Caption 进行数据—模型协同设计。作者声称单 checkpoint 在标准 REC 基准具竞争力且无需基准专调便能泛化。仅依据摘要，未给具体分数、对比模型或数据污染审查；理论分析与视觉 grounding 的真实部署收益需读全文确认。</p>
-<h3 id="spatial-memory-agent-experience-grounded-procedure-memory-for-spatial-intelligence"><a class="markdownIt-Anchor" href="#spatial-memory-agent-experience-grounded-procedure-memory-for-spatial-intelligence"></a> Spatial Memory Agent: Experience-Grounded Procedure Memory for Spatial Intelligence</h3>
-<p><strong>作者</strong>：Haokai Zhang、Yuhang Ding、Yunshu Zhou、Xinze Du、Shengtao Zhang、Zhiyue Zhao、Yuling Xi、Hao Chen<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12743">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12743">PDF</a></p>
-<p>研究冻结 VLM 无参数更新地提升空间推理；SMA 在可验证空间环境中把带奖励的经验经验证器引导反思提炼为可迁移 lesson，以语义过滤及相似度—迁移可靠性分数检索，在只读部署时指导推理。作者报告在五个空间基准、四个基础 VLM 的各模型组中均取得最高宏平均，并在 20 项评估的大多数中最高。仅依据摘要，未给具体分数与完整基线；基准与真实具身环境的差距、经验奖励质量、检索污染和额外推理成本仍需全文核验。</p>
-<h3 id="steerbench-work-a-benchmark-for-agent-steering-at-action-boundaries"><a class="markdownIt-Anchor" href="#steerbench-work-a-benchmark-for-agent-steering-at-action-boundaries"></a> SteerBench-Work: A Benchmark for Agent Steering at Action Boundaries</h3>
+<p>论文针对研究级理论计算机科学证明生成建立 TCS-Bench，题目来自
+STOC、FOCS、SODA
+已发表论文，每题给出推导目标结论所需上下文；生成证明再经验证 agent
+检验，并以专家评判的目标陈述—证明对校准验证器。作者报告其参考验证器在专家标注集准确率超过
+90%。价值在于把“模型能写出貌似合理证明”与“证明判定器可靠”拆开度量；但摘要没有给出各生成模型的完整结果、题目数、污染控制细节或形式化证明覆盖率，验证
+agent 的 90%
+准确率也不是完备性保证。适合研究数学推理评测、证明验证与训练数据治理的读者，建议读数据构造、验证器对人工判断的比较、各模型结果和错误分类章节。</p>
+<h2 id="ai-论文">AI 论文</h2>
+<h3 id="tennisvar-a-stroke-evidence-grounded-multimodal-large-language-model-for-tactical-reasoning-in-tennis-videos">TennisVAR:
+A Stroke-Evidence-Grounded Multimodal Large Language Model for Tactical
+Reasoning in Tennis Videos</h3>
+<p><strong>作者</strong>：Yifan Mei、Qingling Shi、Changli Wu、Jiayuan
+Rao、Jiayi Ji、Liujuan Cao<br>
+<strong>来源/分类</strong>：arXiv · cs.CV<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12920">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12920">PDF</a></p>
+<p>研究网球视频从逐拍感知走向有证据的回合战术推理：模型须同时给出开放回答、层级战术标签、按序证据击球和关键动作帧。作者构建含
+11,189 个回合视频、41,485 个击球事件、25,429
+个战术单元及同量问答的专家标注
+TRACE，并提出把事件解析与战术图时间推理结合的
+TennisVAR。仅依据摘要，未见与何种基线比较及关键分数；数据标注、击球接触帧和单一运动项目的泛化性仍需全文核验。</p>
+<h3 id="the-embedders-dilemma-llms-are-better-but-at-what-cost">The
+Embedder's Dilemma: LLMs Are Better, but at What Cost?</h3>
+<p><strong>作者</strong>：Adnan El Assadi、Niklas Muennighoff、Jinhyuk
+Lee<br>
+<strong>来源/分类</strong>：arXiv · cs.CL<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12875">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12875">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/embeddings-benchmark/embedders-dilemma">代码/数据</a></p>
+<p>研究 LLM 能否替代文本嵌入管线；比较 10 个 LLM 和 26 个嵌入模型在 37
+项任务上的质量、成本与吞吐。作者报告最佳 LLM 与嵌入模型总分仅差 0.4
+分，但前者成本最高达约 1,431
+倍；完整方法、基线公平性与生产级外推见上文重点关注。</p>
+<h3 id="practice-makes-unsafe-skill-misevolution-in-self-improving-llm-agents">Practice
+Makes Unsafe: Skill Misevolution in Self-Improving LLM Agents</h3>
+<p><strong>作者</strong>：Xutao Mao、Liangjie Zhao、Xiang Zheng、Cong
+Wang<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12851">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12851">PDF</a></p>
+<p>研究自我改进 agent
+的持久技能如何将一次不安全轨迹迁移到后续任务；以生命周期基准和
+SafeEvolve
+治理复用。作者报告恶意暴露可提高迁移攻击成功率，治理层降低不安全检索与新会话伤害；完整数字、基线和外推限制见上文重点关注。
+<a target="_blank" rel="noopener" href="https://github.com/henrymao2004/misevolve">代码</a></p>
+<h3 id="craft-llm-based-iterative-refinement-for-temporal-reasoning-over-clinical-narratives">CRAFT:
+LLM-Based Iterative Refinement for Temporal Reasoning over Clinical
+Narratives</h3>
+<p><strong>作者</strong>：Chengyang He、Tahreem Arif、Marko
+Zivkovic、Lijing Wang、Yue Ning、Ping Wang<br>
+<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.IR<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12779">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12779">PDF</a></p>
+<p>研究临床叙述缺少显式时间锚点时的症状轨迹重建；CRAFT
+以生成器和约束验证器迭代细化分阶段时间线，在 MedTempo 的 5,347
+条疫苗不良事件叙述（3,166 条有专家时间标注）上比较四个
+LLM。作者报告时间排序准确率持续改善且有消融。仅依据摘要，临床叙述、疫苗种类和专家标注不等于临床可用性；还须核查基线、数据偏差与安全验证，不能作为诊疗建议。</p>
+<h3 id="scaling-representation-diversity-modulated-attention-and-reconstructive-regularization-for-visual-grounding">Scaling
+Representation Diversity: Modulated Attention and Reconstructive
+Regularization for Visual Grounding</h3>
+<p><strong>作者</strong>：Junyi Hu、Tian Bai、Fengyi Wu、Yian Huang、Wei
+Wen、Zaoli Li、Junli Lin、Xingchen Li、Zhenming Peng、Yi Zhang<br>
+<strong>来源/分类</strong>：arXiv · cs.CV<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12748">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12748">PDF</a></p>
+<p>研究指代表达理解在数据集专用微调下跨集泛化较弱的问题；以调制注意力对比头、文本条件
+JEPA 辅助流及 Objects365-Caption 进行数据—模型协同设计。作者声称单
+checkpoint 在标准 REC
+基准具竞争力且无需基准专调便能泛化。仅依据摘要，未给具体分数、对比模型或数据污染审查；理论分析与视觉
+grounding 的真实部署收益需读全文确认。</p>
+<h3 id="spatial-memory-agent-experience-grounded-procedure-memory-for-spatial-intelligence">Spatial
+Memory Agent: Experience-Grounded Procedure Memory for Spatial
+Intelligence</h3>
+<p><strong>作者</strong>：Haokai Zhang、Yuhang Ding、Yunshu Zhou、Xinze
+Du、Shengtao Zhang、Zhiyue Zhao、Yuling Xi、Hao Chen<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12743">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12743">PDF</a></p>
+<p>研究冻结 VLM 无参数更新地提升空间推理；SMA
+在可验证空间环境中把带奖励的经验经验证器引导反思提炼为可迁移
+lesson，以语义过滤及相似度—迁移可靠性分数检索，在只读部署时指导推理。作者报告在五个空间基准、四个基础
+VLM 的各模型组中均取得最高宏平均，并在 20
+项评估的大多数中最高。仅依据摘要，未给具体分数与完整基线；基准与真实具身环境的差距、经验奖励质量、检索污染和额外推理成本仍需全文核验。</p>
+<h3 id="steerbench-work-a-benchmark-for-agent-steering-at-action-boundaries">SteerBench-Work:
+A Benchmark for Agent Steering at Action Boundaries</h3>
 <p><strong>作者</strong>：Oguz Serdar、Cuneyt Mertayak<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、cs.LG<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12654">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12654">PDF</a></p>
-<p>研究 agent 在不可逆行动前的执行/暂缓决策，提出公共事件锚定并带证据反转镜像的工作场景基准。作者报告主要错误是过度暂缓而非不安全放行；基线、数字与适用边界见上文重点关注。</p>
-<h3 id="can-vision-language-models-assess-proxemic-risk-from-egocentric-robot-images"><a class="markdownIt-Anchor" href="#can-vision-language-models-assess-proxemic-risk-from-egocentric-robot-images"></a> Can Vision-Language Models Assess Proxemic Risk from Egocentric Robot Images?</h3>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、cs.LG<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12654">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12654">PDF</a></p>
+<p>研究 agent
+在不可逆行动前的执行/暂缓决策，提出公共事件锚定并带证据反转镜像的工作场景基准。作者报告主要错误是过度暂缓而非不安全放行；基线、数字与适用边界见上文重点关注。</p>
+<h3 id="can-vision-language-models-assess-proxemic-risk-from-egocentric-robot-images">Can
+Vision-Language Models Assess Proxemic Risk from Egocentric Robot
+Images?</h3>
 <p><strong>作者</strong>：Vladyslava Rudas、Dmytro Kuzmenko<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.RO">cs.RO</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12515">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12515">PDF</a></p>
-<p>研究机器人第一视角图像的四级人际距离风险识别；比较 InternVL、Qwen-VL、SmolVLM 的三种提示、两轮 QLoRA 微调与分层随机基线。作者报告未微调模型接近基线，微调总体提升有限，但 Qwen-VL 的高级提示对高危样本召回较高；正确风险标签也不代表更好的人体空间定位。仅依据摘要，数据规模、阈值、完整结果及真实机器人安全性能尚待核验。</p>
-<h3 id="when-can-you-trust-offline-evaluation-of-equal-cost-top-k-allocation-a-controlled-reproducible-benchmark-and-practitioners-guide"><a class="markdownIt-Anchor" href="#when-can-you-trust-offline-evaluation-of-equal-cost-top-k-allocation-a-controlled-reproducible-benchmark-and-practitioners-guide"></a> When Can You Trust Offline Evaluation of Equal-Cost Top-k Allocation? A Controlled, Reproducible Benchmark and Practitioner’s Guide</h3>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.RO<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12515">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12515">PDF</a></p>
+<p>研究机器人第一视角图像的四级人际距离风险识别；比较
+InternVL、Qwen-VL、SmolVLM 的三种提示、两轮 QLoRA
+微调与分层随机基线。作者报告未微调模型接近基线，微调总体提升有限，但
+Qwen-VL
+的高级提示对高危样本召回较高；正确风险标签也不代表更好的人体空间定位。仅依据摘要，数据规模、阈值、完整结果及真实机器人安全性能尚待核验。</p>
+<h3 id="when-can-you-trust-offline-evaluation-of-equal-cost-top-k-allocation-a-controlled-reproducible-benchmark-and-practitioners-guide">When
+Can You Trust Offline Evaluation of Equal-Cost Top-k Allocation? A
+Controlled, Reproducible Benchmark and Practitioner's Guide</h3>
 <p><strong>作者</strong>：Binshuang Li<br>
-<strong>来源/分类</strong>：arXiv · cs.LG、<a target="_blank" rel="noopener" href="http://stat.ME">stat.ME</a>、<a target="_blank" rel="noopener" href="http://stat.ML">stat.ML</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12489">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12489">PDF</a></p>
-<p>研究预算下确定性 top-k 分配策略的离线评估何时可信；在五个数据集、两组已知效应扫描中比较六类估计器，并以非模拟配对参考核验机制。作者报告行动层面记录策略—目标策略不一致会击穿重叠性，结果 nuisance 的 cross-fitting 不能修复同样本拟合—评估偏差，倾向概率误差最具破坏性。仅依据摘要，所有精确值面均为合成或半合成，不能把离线估计直接视为真实部署收益；需要检查有效样本量、选择偏差和样本外验证。</p>
-<h3 id="position-we-need-practical-ai-alignment-methods-to-mirror-human-reasoning"><a class="markdownIt-Anchor" href="#position-we-need-practical-ai-alignment-methods-to-mirror-human-reasoning"></a> Position: We Need Practical AI Alignment Methods to Mirror Human Reasoning</h3>
-<p><strong>作者</strong>：Vijay Keswani、Breanna K. Nguyen、Cyrus Cousins、Vincent Conitzer、Walter Sinnott-Armstrong、Jana Schaich Borg<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CY">cs.CY</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12372">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12372">PDF</a></p>
+<strong>来源/分类</strong>：arXiv · cs.LG、stat.ME、stat.ML<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12489">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12489">PDF</a></p>
+<p>研究预算下确定性 top-k
+分配策略的离线评估何时可信；在五个数据集、两组已知效应扫描中比较六类估计器，并以非模拟配对参考核验机制。作者报告行动层面记录策略—目标策略不一致会击穿重叠性，结果
+nuisance 的 cross-fitting
+不能修复同样本拟合—评估偏差，倾向概率误差最具破坏性。仅依据摘要，所有精确值面均为合成或半合成，不能把离线估计直接视为真实部署收益；需要检查有效样本量、选择偏差和样本外验证。</p>
+<h3 id="position-we-need-practical-ai-alignment-methods-to-mirror-human-reasoning">Position:
+We Need Practical AI Alignment Methods to Mirror Human Reasoning</h3>
+<p><strong>作者</strong>：Vijay Keswani、Breanna K. Nguyen、Cyrus
+Cousins、Vincent Conitzer、Walter Sinnott-Armstrong、Jana Schaich
+Borg<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CY<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12372">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12372">PDF</a></p>
 <p>这是一篇立场论文：主张高风险决策辅助/代理应在推理方式与说明上更贴近用户的认知过程，并以文献回顾和用户调查提出研究议程。作者称许多用户认为认知对齐“必要”。仅依据摘要，规范性主张、调查抽样与“可信赖性”之间不构成因果证明；应区分最终结论一致、理由可解释与真实安全性。</p>
-<h3 id="agreement-is-not-alignment-divergent-moral-grounds-in-human-and-llm-ethical-judgments"><a class="markdownIt-Anchor" href="#agreement-is-not-alignment-divergent-moral-grounds-in-human-and-llm-ethical-judgments"></a> Agreement Is Not Alignment: Divergent Moral Grounds in Human and LLM Ethical Judgments</h3>
-<p><strong>作者</strong>：Octavian M. Machidon、Alina L. Machidon、Vojko Strahovnik、Mateja Centa Strahovnik、Jonas Miklavčič、Marko Robnik Šikonja<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12368">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12368">PDF</a></p>
-<p>研究伦理判断标签一致是否真能代表对齐；在 500 项 ETHICS 衍生题、五个道德领域上收集人类与 LLM 的标签及理由。作者报告多类模型虽与人类多数标签高度一致，理由层面在伤害、尊重、承诺、正义等道德根据的权重上系统分歧。仅依据摘要，理由标注和比较方法、文化/语言覆盖及评测污染均待核查；不能将该发现直接外推为模型的道德能力或治理结论。</p>
-<h3 id="fluctlightdb-a-memory-model-of-data-for-ai-agents"><a class="markdownIt-Anchor" href="#fluctlightdb-a-memory-model-of-data-for-ai-agents"></a> FluctlightDB: A Memory Model of Data for AI Agents</h3>
+<h3 id="agreement-is-not-alignment-divergent-moral-grounds-in-human-and-llm-ethical-judgments">Agreement
+Is Not Alignment: Divergent Moral Grounds in Human and LLM Ethical
+Judgments</h3>
+<p><strong>作者</strong>：Octavian M. Machidon、Alina L. Machidon、Vojko
+Strahovnik、Mateja Centa Strahovnik、Jonas Miklavčič、Marko Robnik
+Šikonja<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12368">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12368">PDF</a></p>
+<p>研究伦理判断标签一致是否真能代表对齐；在 500 项 ETHICS
+衍生题、五个道德领域上收集人类与 LLM
+的标签及理由。作者报告多类模型虽与人类多数标签高度一致，理由层面在伤害、尊重、承诺、正义等道德根据的权重上系统分歧。仅依据摘要，理由标注和比较方法、文化/语言覆盖及评测污染均待核查；不能将该发现直接外推为模型的道德能力或治理结论。</p>
+<h3 id="fluctlightdb-a-memory-model-of-data-for-ai-agents">FluctlightDB:
+A Memory Model of Data for AI Agents</h3>
 <p><strong>作者</strong>：Ganesh S<br>
-<strong>来源/分类</strong>：arXiv · cs.DB、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12365">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12365">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/voxmastery/FluctlightDB">代码/数据</a></p>
-<p>研究长会话 agent 的线索驱动、带溯源的长期记忆是否应视为独立数据模型；提出嵌入式 FluctlightDB 与 experience()/activate() 接口。作者报告 CHORUS 在 LoCoMo 的内部复现实验召回 99.0%，LongMemEval-S session_recall@8 为 97.6%，并在 SciFact 上较 Chroma 略高。仅依据摘要，部分结果为内部复现、作者自设 FAMB 样本极小，且端到端 reader/judge 与供应商榜单协议不同；需独立复跑、核查数据污染和系统资源成本。</p>
-<h3 id="when-ai-is-your-pastor-a-benchmark-for-theological-triage-and-pastoral-guidance-in-large-language-models"><a class="markdownIt-Anchor" href="#when-ai-is-your-pastor-a-benchmark-for-theological-triage-and-pastoral-guidance-in-large-language-models"></a> When AI Is Your Pastor: A Benchmark for Theological Triage and Pastoral Guidance in Large Language Models</h3>
+<strong>来源/分类</strong>：arXiv · cs.DB、cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12365">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12365">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/voxmastery/FluctlightDB">代码/数据</a></p>
+<p>研究长会话 agent
+的线索驱动、带溯源的长期记忆是否应视为独立数据模型；提出嵌入式
+FluctlightDB 与 experience()/activate() 接口。作者报告 CHORUS 在 LoCoMo
+的内部复现实验召回 99.0%，LongMemEval-S <a href="mailto:session_recall@8" class="email">session_recall@8</a> 为
+97.6%，并在 SciFact 上较 Chroma
+略高。仅依据摘要，部分结果为内部复现、作者自设 FAMB 样本极小，且端到端
+reader/judge
+与供应商榜单协议不同；需独立复跑、核查数据污染和系统资源成本。</p>
+<h3 id="when-ai-is-your-pastor-a-benchmark-for-theological-triage-and-pastoral-guidance-in-large-language-models">When
+AI Is Your Pastor: A Benchmark for Theological Triage and Pastoral
+Guidance in Large Language Models</h3>
 <p><strong>作者</strong>：Alex Chao<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CY">cs.CY</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12324">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12324">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/FideAI/fmg-bench">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/FideAI/fmg-bench">数据</a></p>
-<p>研究 LLM 在英语基督教神学分诊与牧灵指导中的行为；FMG-Bench 含 120 个场景，评测 14 个模型的 8,792 个回答及三种引导指令。作者报告结构化引导平均提升 3.96 分，需转介牧师、临床、法律或紧急支持的恰当性升 10.8 分，改写/施压下稳定性从 92.88 升至 98.02。仅依据摘要，基准是测量工具而非授予牧灵权威；宗派代表性、标注标准与高风险转介的真实安全性须另行审查。</p>
-<h3 id="mawqif-xt-an-arabic-benchmark-dataset-for-cross-target-stance-detection"><a class="markdownIt-Anchor" href="#mawqif-xt-an-arabic-benchmark-dataset-for-cross-target-stance-detection"></a> Mawqif-XT: An Arabic Benchmark Dataset for Cross-Target Stance Detection</h3>
-<p><strong>作者</strong>：Rasha Albalawi、Nuha Albadi、Hamzah Luqman、Maram Kurdi、Saad Ezzini、Asma Yamani、Ahmed Ashraf<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.09539">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.09539">PDF</a></p>
-<p>研究阿拉伯语立场识别向相关和未知目标迁移的泛化；新增 996 条人工标注推文，覆盖女性驾驶、电动汽车和学期制，并按立场、情绪、讽刺标注，配阿语/多语 transformer 与零样本 LLM 基线。作者将其定位为 held-out 评测扩展。仅依据摘要，三类公共目标、推文时效性、标注一致性和跨方言表现限制外推；需核查训练—测试切分和模型数据污染。</p>
-<h3 id="tcs-bench-benchmarking-state-of-the-art-generative-ai-theoretical-computer-science-research-ability"><a class="markdownIt-Anchor" href="#tcs-bench-benchmarking-state-of-the-art-generative-ai-theoretical-computer-science-research-ability"></a> TCS-BENCH: Benchmarking State-of-the-Art Generative AI Theoretical Computer Science Research Ability</h3>
-<p><strong>作者</strong>：Vincent Cohen-Addad、Dimitris Paparas、Ernest van Wijland、Max Springer、Julien Canitrot-Paradis、Honghao Lin、David Woodruff、Adarsh Kumarappan、Rajesh Jayaram、Rudrajit Das、Lalit Jain、Ola Svensson、Silvio Lattanzi、Mislav Balunovic、Theophane Weber、Vahab Mirrokni<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.09538">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.09538">PDF</a></p>
-<p>研究 LLM 生成研究级理论计算机科学证明的能力，以顶会论文中的自包含推导任务和验证 agent 评估。作者报告验证器对专家标注证明判断准确率超过 90%；完整证据边界见上文重点关注。</p>
-<h3 id="robust-checkpoint-selection-for-multimodal-llms-via-agentic-evaluation-and-stability-aware-ranking"><a class="markdownIt-Anchor" href="#robust-checkpoint-selection-for-multimodal-llms-via-agentic-evaluation-and-stability-aware-ranking"></a> Robust Checkpoint Selection for Multimodal LLMs via Agentic Evaluation and Stability-Aware Ranking</h3>
+<strong>来源/分类</strong>：arXiv · cs.CY、cs.AI、cs.CL<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12324">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12324">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/FideAI/fmg-bench">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/FideAI/fmg-bench">数据</a></p>
+<p>研究 LLM 在英语基督教神学分诊与牧灵指导中的行为；FMG-Bench 含 120
+个场景，评测 14 个模型的 8,792
+个回答及三种引导指令。作者报告结构化引导平均提升 3.96
+分，需转介牧师、临床、法律或紧急支持的恰当性升 10.8
+分，改写/施压下稳定性从 92.88 升至
+98.02。仅依据摘要，基准是测量工具而非授予牧灵权威；宗派代表性、标注标准与高风险转介的真实安全性须另行审查。</p>
+<h3 id="mawqif-xt-an-arabic-benchmark-dataset-for-cross-target-stance-detection">Mawqif-XT:
+An Arabic Benchmark Dataset for Cross-Target Stance Detection</h3>
+<p><strong>作者</strong>：Rasha Albalawi、Nuha Albadi、Hamzah
+Luqman、Maram Kurdi、Saad Ezzini、Asma Yamani、Ahmed Ashraf<br>
+<strong>来源/分类</strong>：arXiv · cs.CL<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.09539">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.09539">PDF</a></p>
+<p>研究阿拉伯语立场识别向相关和未知目标迁移的泛化；新增 996
+条人工标注推文，覆盖女性驾驶、电动汽车和学期制，并按立场、情绪、讽刺标注，配阿语/多语
+transformer 与零样本 LLM 基线。作者将其定位为 held-out
+评测扩展。仅依据摘要，三类公共目标、推文时效性、标注一致性和跨方言表现限制外推；需核查训练—测试切分和模型数据污染。</p>
+<h3 id="tcs-bench-benchmarking-state-of-the-art-generative-ai-theoretical-computer-science-research-ability">TCS-BENCH:
+Benchmarking State-of-the-Art Generative AI Theoretical Computer Science
+Research Ability</h3>
+<p><strong>作者</strong>：Vincent Cohen-Addad、Dimitris Paparas、Ernest
+van Wijland、Max Springer、Julien Canitrot-Paradis、Honghao Lin、David
+Woodruff、Adarsh Kumarappan、Rajesh Jayaram、Rudrajit Das、Lalit
+Jain、Ola Svensson、Silvio Lattanzi、Mislav Balunovic、Theophane
+Weber、Vahab Mirrokni<br>
+<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.09538">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.09538">PDF</a></p>
+<p>研究 LLM
+生成研究级理论计算机科学证明的能力，以顶会论文中的自包含推导任务和验证
+agent 评估。作者报告验证器对专家标注证明判断准确率超过
+90%；完整证据边界见上文重点关注。</p>
+<h3 id="robust-checkpoint-selection-for-multimodal-llms-via-agentic-evaluation-and-stability-aware-ranking">Robust
+Checkpoint Selection for Multimodal LLMs via Agentic Evaluation and
+Stability-Aware Ranking</h3>
 <p><strong>作者</strong>：Qinwu Xu、Zhuoheng Li、Jessie Salas<br>
-<strong>来源/分类</strong>：arXiv · cs.LG、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.18852">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.18852">PDF</a></p>
-<p>研究 MLLM 后期 checkpoint 分数接近且评测有噪声时的选择；以点式筛选、列表排序、成对细化和重复子抽样描述排名稳定性。作者报告对 OCR 密集样本做质量筛选可将排名翻转率从 32.5% 降至 11.2%、跨运行一致性从 0.61 升至 0.84，且验证损失与下游偏好会分歧。仅依据摘要，需核查评测 agent 的偏置、成对裁决的可复现性、成本及两个 MLLM 场景对其他训练规模的外推。</p>
-<h3 id="ahd-agent-agentic-reinforcement-learning-for-automatic-heuristic-design"><a class="markdownIt-Anchor" href="#ahd-agent-agentic-reinforcement-learning-for-automatic-heuristic-design"></a> AHD Agent: Agentic Reinforcement Learning for Automatic Heuristic Design</h3>
-<p><strong>作者</strong>：Haoze Lv、Ning Lu、Ziang Zhou、Yew-Soon Ong、Shengcai Liu<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.NE">cs.NE</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.08756">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.08756">PDF</a></p>
-<p>研究组合优化的自动启发式设计；让 LLM 多轮决定生成启发式还是调用工具获取求解环境证据，并用环境合成管线训练紧凑 agent。作者报告 4B agent 在八个领域（含四个留出任务）匹配或超过更大模型的 SOTA 基线，并使用更少评估。仅依据摘要，未给任务预算、统计显著性、具体基线和算力；应关注环境合成与真实问题间的分布差及验证次数是否被公平计入。</p>
-<h3 id="natural-language-processing-a-comprehensive-practical-guide-from-tokenisation-to-rlhf"><a class="markdownIt-Anchor" href="#natural-language-processing-a-comprehensive-practical-guide-from-tokenisation-to-rlhf"></a> Natural Language Processing: A Comprehensive Practical Guide from Tokenisation to RLHF</h3>
+<strong>来源/分类</strong>：arXiv · cs.LG、cs.AI、cs.CL<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.18852">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.18852">PDF</a></p>
+<p>研究 MLLM 后期 checkpoint
+分数接近且评测有噪声时的选择；以点式筛选、列表排序、成对细化和重复子抽样描述排名稳定性。作者报告对
+OCR 密集样本做质量筛选可将排名翻转率从 32.5% 降至 11.2%、跨运行一致性从
+0.61 升至 0.84，且验证损失与下游偏好会分歧。仅依据摘要，需核查评测 agent
+的偏置、成对裁决的可复现性、成本及两个 MLLM
+场景对其他训练规模的外推。</p>
+<h3 id="ahd-agent-agentic-reinforcement-learning-for-automatic-heuristic-design">AHD
+Agent: Agentic Reinforcement Learning for Automatic Heuristic
+Design</h3>
+<p><strong>作者</strong>：Haoze Lv、Ning Lu、Ziang Zhou、Yew-Soon
+Ong、Shengcai Liu<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.NE<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.08756">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.08756">PDF</a></p>
+<p>研究组合优化的自动启发式设计；让 LLM
+多轮决定生成启发式还是调用工具获取求解环境证据，并用环境合成管线训练紧凑
+agent。作者报告 4B agent
+在八个领域（含四个留出任务）匹配或超过更大模型的 SOTA
+基线，并使用更少评估。仅依据摘要，未给任务预算、统计显著性、具体基线和算力；应关注环境合成与真实问题间的分布差及验证次数是否被公平计入。</p>
+<h3 id="natural-language-processing-a-comprehensive-practical-guide-from-tokenisation-to-rlhf">Natural
+Language Processing: A Comprehensive Practical Guide from Tokenisation
+to RLHF</h3>
 <p><strong>作者</strong>：Mullosharaf K. Arabov<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.03799">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.03799">PDF</a></p>
-<p>这是一份从分词、向量化到微调、RAG、RLHF、压缩和多模态的 17 节实践型教材，并以塔吉克语、鞑靼语等低资源语言资源为案例，倡导每节公开代码、模型和报告。仅依据摘要，其主要价值是可复现教学工件而非统一实证发现；应核查仓库可访问性、练习许可、实验配置和低资源语言结论是否有独立评测。</p>
+<strong>来源/分类</strong>：arXiv · cs.CL<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.03799">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.03799">PDF</a></p>
+<p>这是一份从分词、向量化到微调、RAG、RLHF、压缩和多模态的 17
+节实践型教材，并以塔吉克语、鞑靼语等低资源语言资源为案例，倡导每节公开代码、模型和报告。仅依据摘要，其主要价值是可复现教学工件而非统一实证发现；应核查仓库可访问性、练习许可、实验配置和低资源语言结论是否有独立评测。</p>
 
                 
               </div>
