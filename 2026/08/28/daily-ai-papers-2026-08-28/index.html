@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注H²MAF：农业视觉模型的分歧，可能需要语义仲裁论文：Fusing Perceptual Vision Experts with Multimodal Large Language Models for Explainable Plant Disease Diagnosis: From Benchmark Imagery to Real-World Robotic Field Valid">
+    <meta name="description" content="重点关注 H²MAF：农业视觉模型的分歧，可能需要语义仲裁 论文：Fusing Perceptual Vision Experts with Multimodal Large Language Models for Explainable Plant Disease Diagnosis: From Benchmark Imagery to Real-World Robotic Field Val">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日AI论文简报｜2026 年 8 月 28 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/08/28/daily-ai-papers-2026-08-28/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注H²MAF：农业视觉模型的分歧，可能需要语义仲裁论文：Fusing Perceptual Vision Experts with Multimodal Large Language Models for Explainable Plant Disease Diagnosis: From Benchmark Imagery to Real-World Robotic Field Valid">
+<meta property="og:description" content="重点关注 H²MAF：农业视觉模型的分歧，可能需要语义仲裁 论文：Fusing Perceptual Vision Experts with Multimodal Large Language Models for Explainable Plant Disease Diagnosis: From Benchmark Imagery to Real-World Robotic Field Val">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-02/pixiv-rank-004-147695650.jpg">
 <meta property="article:published_time" content="2026-08-28T02:15:00.000Z">
@@ -347,75 +347,370 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="H²MAF：农业视觉模型的分歧，可能需要语义仲裁"><a href="#H²MAF：农业视觉模型的分歧，可能需要语义仲裁" class="headerlink" title="H²MAF：农业视觉模型的分歧，可能需要语义仲裁"></a>H²MAF：农业视觉模型的分歧，可能需要语义仲裁</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24934">Fusing Perceptual Vision Experts with Multimodal Large Language Models for Explainable Plant Disease Diagnosis: From Benchmark Imagery to Real-World Robotic Field Validation</a>（arXiv:2608.24934）<br><strong>作者</strong>：Ranjan Sapkota、Konstantinos I. Roumeliotis、Pengyao Xie、Nikolaos D. Tselikas、Lirong Xiang、Manoj Karkee<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>这篇论文研究的问题是：当视觉专家模型对植物病害的判断冲突时，多模态大模型能否在保留证据链的前提下做出更可解释的仲裁。H²MAF 先用 EfficientNet-B3 与 ConvNeXt-Tiny 做感知，再把两者的预测和结构化 JSON 证据交给 Gemma 4 E4B 或 Qwen3.5 4B，生成诊断、风险等级、处置紧迫性和潜在经济暴露。数据共 14,364 张图像、1,370 张测试图，包含公开 PlantDoc（2,922 张、27 类）和 Cornell 机器人连续采集的两个非公开田间集（Stage 2：4,215 张；Stage 4：7,227 张），后者覆盖早疫病、晚疫病和番茄斑枯病。基线是两个 CNN 本身以及不同的 MLLM 仲裁器。</p>
-<p><strong>作者报告的结果</strong>：PlantDoc 测试集上，ConvNeXt-Tiny 准确率为 63.9%，Gemma 仲裁后为 68.5%；在 CNN 冲突的 41.7% 子集上，Gemma 相比 ConvNeXt 提升 7.6 个百分点。Cornell Stage 2/4 的准确率分别达到 99.3%/98.9%，但冲突仅占 1.7%/4.1%，说明仲裁价值主要出现在感知模型不一致时。关键风险校准误差方面，Gemma 为 0.14–0.5 个百分点，Qwen 则高估 3.5–14.4 个百分点。上述均是作者在其数据、切分和模型版本下报告的实验结果，不是生产部署或因果验证。</p>
-<p>创新点是把“是否相信视觉模型”转成可审计的分歧处理流程；但 PlantDoc 每类样本只有约 4–15 张，Cornell 数据和连续采集过程不可公开，时序相关性也可能使测试更容易，不能据此推出田间泛化或病害防治收益。MLLM 的校准差异还表明，解释文字本身不能替代风险校准。适合农业 AI、视觉融合和机器人决策支持读者；建议优先读方法中的层级融合与证据格式、数据/切分说明、冲突子集实验、风险校准和局限部分。</p>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="h²maf农业视觉模型的分歧可能需要语义仲裁">H²MAF：农业视觉模型的分歧，可能需要语义仲裁</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24934">Fusing Perceptual Vision Experts
+with Multimodal Large Language Models for Explainable Plant Disease
+Diagnosis: From Benchmark Imagery to Real-World Robotic Field
+Validation</a>（arXiv:2608.24934）<br>
+<strong>作者</strong>：Ranjan Sapkota、Konstantinos I.
+Roumeliotis、Pengyao Xie、Nikolaos D. Tselikas、Lirong Xiang、Manoj
+Karkee<br>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>这篇论文研究的问题是：当视觉专家模型对植物病害的判断冲突时，多模态大模型能否在保留证据链的前提下做出更可解释的仲裁。H²MAF
+先用 EfficientNet-B3 与 ConvNeXt-Tiny 做感知，再把两者的预测和结构化
+JSON 证据交给 Gemma 4 E4B 或 Qwen3.5
+4B，生成诊断、风险等级、处置紧迫性和潜在经济暴露。数据共 14,364
+张图像、1,370 张测试图，包含公开 PlantDoc（2,922 张、27 类）和 Cornell
+机器人连续采集的两个非公开田间集（Stage 2：4,215 张；Stage 4：7,227
+张），后者覆盖早疫病、晚疫病和番茄斑枯病。基线是两个 CNN 本身以及不同的
+MLLM 仲裁器。</p>
+<p><strong>作者报告的结果</strong>：PlantDoc 测试集上，ConvNeXt-Tiny
+准确率为 63.9%，Gemma 仲裁后为 68.5%；在 CNN 冲突的 41.7% 子集上，Gemma
+相比 ConvNeXt 提升 7.6 个百分点。Cornell Stage 2/4 的准确率分别达到
+99.3%/98.9%，但冲突仅占
+1.7%/4.1%，说明仲裁价值主要出现在感知模型不一致时。关键风险校准误差方面，Gemma
+为 0.14–0.5 个百分点，Qwen 则高估 3.5–14.4
+个百分点。上述均是作者在其数据、切分和模型版本下报告的实验结果，不是生产部署或因果验证。</p>
+<p>创新点是把“是否相信视觉模型”转成可审计的分歧处理流程；但 PlantDoc
+每类样本只有约 4–15 张，Cornell
+数据和连续采集过程不可公开，时序相关性也可能使测试更容易，不能据此推出田间泛化或病害防治收益。MLLM
+的校准差异还表明，解释文字本身不能替代风险校准。适合农业
+AI、视觉融合和机器人决策支持读者；建议优先读方法中的层级融合与证据格式、数据/切分说明、冲突子集实验、风险校准和局限部分。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24934">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24934">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Applied-AI-Research-Lab/Explainable-AI-Plant-Disease-Detection">代码</a></p>
-<h3 id="Retrieval-Augmented-Agentic-Rubric：医学回答评测的瓶颈可能在评分标准"><a href="#Retrieval-Augmented-Agentic-Rubric：医学回答评测的瓶颈可能在评分标准" class="headerlink" title="Retrieval-Augmented Agentic Rubric：医学回答评测的瓶颈可能在评分标准"></a>Retrieval-Augmented Agentic Rubric：医学回答评测的瓶颈可能在评分标准</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.15161">Retrieval-Augmented Agentic Rubric Generation for Reliable Medical Response Evaluation</a>（arXiv:2601.15161）<br><strong>作者</strong>：Yinzhu Chen、Abdine Maiga、Hossein A. Rahmani、Emine Yilmaz<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文问的是：通用 LLM judge 为什么会漏掉医学回答中的细小但关键的临床错误，以及能否自动生成与具体问题匹配的细粒度 rubric。方法是一个检索增强的多智能体流程：先路由权威医学来源，再把检索内容拆成原子事实，结合用户交互意图合成评分标准，并用 audit/refine 环节检查标准。系统还用这些 rubric 指导回答修订。实验使用 HealthBench 的 254 个英文对话子集（约 2,500 个评分项）和中文 LLMEval-Med；统一以 Llama-3.3-70B 执行主要操作，比较 GPT-4o、直接回答和无 rubric 对照，并用 GPT-4.1 做评判。</p>
-<p><strong>作者报告的结果</strong>：HealthBench 上 Clinical Intent Alignment（CIA）为 50.20%，中文 LLMEval-Med 为 31.90%，均高于其 GPT-4o 基线。HealthBench 精度/ F1 为 29.24%/36.96%；在只改变一个临床点的 near-miss 对照中，rubric 的胜率为 0.382，高于 GPT-4o 的 0.304 和无 rubric 的 0.185，平均分差为 8.658 对 4.972。用于回答修订时，基础回答质量从 59.0 提升到 68.2；去除交互意图模块，CIA 下降 14.60/23.90 个百分点。每次评测约需 6 次 LLM 调用、8,508 个输入 token、2,423 个输出 token，约 43.26 秒。这里的“更可靠”仍是基于基准和模型 judge 的评测结果，不是临床结局。</p>
-<p>价值在于把评测对象从“答案像不像正确答案”推进到“是否满足该患者问题的临床约束”；限制包括单一主干模型、LLM judge 不是临床医生、rubric 权重含启发式、单轮受控场景以及显著的延迟和费用。医学基准可能有数据分布和污染风险，论文没有证明真实病人场景中的安全收益。适合医疗 LLM 评测、RAG 和安全对齐读者；建议优先读 rubric 生成流程、near-miss 评测、组件消融、回答修订和成本分析。</p>
+<h3 id="retrieval-augmented-agentic-rubric医学回答评测的瓶颈可能在评分标准">Retrieval-Augmented
+Agentic Rubric：医学回答评测的瓶颈可能在评分标准</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.15161">Retrieval-Augmented Agentic
+Rubric Generation for Reliable Medical Response
+Evaluation</a>（arXiv:2601.15161）<br>
+<strong>作者</strong>：Yinzhu Chen、Abdine Maiga、Hossein A.
+Rahmani、Emine Yilmaz<br>
+<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>论文问的是：通用 LLM judge
+为什么会漏掉医学回答中的细小但关键的临床错误，以及能否自动生成与具体问题匹配的细粒度
+rubric。方法是一个检索增强的多智能体流程：先路由权威医学来源，再把检索内容拆成原子事实，结合用户交互意图合成评分标准，并用
+audit/refine 环节检查标准。系统还用这些 rubric 指导回答修订。实验使用
+HealthBench 的 254 个英文对话子集（约 2,500 个评分项）和中文
+LLMEval-Med；统一以 Llama-3.3-70B 执行主要操作，比较
+GPT-4o、直接回答和无 rubric 对照，并用 GPT-4.1 做评判。</p>
+<p><strong>作者报告的结果</strong>：HealthBench 上 Clinical Intent
+Alignment（CIA）为 50.20%，中文 LLMEval-Med 为 31.90%，均高于其 GPT-4o
+基线。HealthBench 精度/ F1 为 29.24%/36.96%；在只改变一个临床点的
+near-miss 对照中，rubric 的胜率为 0.382，高于 GPT-4o 的 0.304 和无
+rubric 的 0.185，平均分差为 8.658 对
+4.972。用于回答修订时，基础回答质量从 59.0 提升到
+68.2；去除交互意图模块，CIA 下降 14.60/23.90 个百分点。每次评测约需 6 次
+LLM 调用、8,508 个输入 token、2,423 个输出 token，约 43.26
+秒。这里的“更可靠”仍是基于基准和模型 judge
+的评测结果，不是临床结局。</p>
+<p>价值在于把评测对象从“答案像不像正确答案”推进到“是否满足该患者问题的临床约束”；限制包括单一主干模型、LLM
+judge 不是临床医生、rubric
+权重含启发式、单轮受控场景以及显著的延迟和费用。医学基准可能有数据分布和污染风险，论文没有证明真实病人场景中的安全收益。适合医疗
+LLM 评测、RAG 和安全对齐读者；建议优先读 rubric 生成流程、near-miss
+评测、组件消融、回答修订和成本分析。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.15161">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.15161">PDF</a> · <a target="_blank" rel="noopener" href="https://anonymous.4open.science/r/Automated-Rubric-Generation-E716/">代码</a></p>
-<h3 id="EASEL：多模态-agent-的视觉工具使用仍卡在闭环执行"><a href="#EASEL：多模态-agent-的视觉工具使用仍卡在闭环执行" class="headerlink" title="EASEL：多模态 agent 的视觉工具使用仍卡在闭环执行"></a>EASEL：多模态 agent 的视觉工具使用仍卡在闭环执行</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25417">Paint What You See: Benchmarking Dexterous Visual Tool Use in Multimodal Agents</a>（arXiv:2608.25417）<br><strong>作者</strong>：Shudong Liu、Dongyang Chen、Enci Zhang、Jinwei Liang、Zheng Ma、Lewei Lu<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>EASEL 研究的核心问题是：多模态 agent 能否从视觉证据推断精细工具参数，并在每一步根据结果闭环修正，而不只是回答静态问题。主任务是参照图像引导的画布重建，另含区域标注、手写和迷宫路径规划；每一步动作都会直接影响最终相似度。作者提供约 44 万条两阶段课程数据 EASEL-Data，并训练 EASEL-9B；评测覆盖 25 个模型，包括 6 个闭源 API 和 19 个开源模型、约 4B–90B 参数。比较重点是不同模型和 EASEL-9B 相对其基础模型的表现，同时报告轨迹诊断，而不只看最终分数。</p>
-<p><strong>作者报告的结果</strong>：25 个模型的重建相似度大多只有 0.40–0.54，当前 agent 普遍在早期达到峰值，随后因闭环不稳定而退化。最终分数最高的 Gemini 3.1 Pro 为 0.535，Claude Opus 4.7 为 0.472；EASEL-9B 为 0.459，相比基础模型 0.432 提升 6.3%（相对值），在全部评测模型中排名第三。轨迹诊断还显示 GPT-5.5 的最终分数 0.426、AUC 0.440，峰值到结束的差距为 0.073；简单迷宫可达 1.000，但困难迷宫仍未解决，Claude Opus 存在反复绘制/撤销循环。作者另报告数据策略锚点分数为 0.665/0.715，说明任务本身仍有上限。</p>
-<p>创新是把“看懂图”与“精确执行工具”拆开测量，并暴露峰后退化这一常被最终分数掩盖的失败模式。限制包括画布重建只是现实工具使用的代理任务，闭源 API 的工具协议和版本不完全可比，低峰终差距可能意味着模型不再采取动作而非真正纠错；代码和数据公开也不等于所有闭源比较可复现。适合多模态 agent、GUI/机器人工具调用和 test-time 评测读者；建议优先读任务定义、动作/轨迹指标、模型对照、EASEL-Data 训练和失败轨迹分析。</p>
+<h3 id="easel多模态-agent-的视觉工具使用仍卡在闭环执行">EASEL：多模态
+agent 的视觉工具使用仍卡在闭环执行</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25417">Paint What You See: Benchmarking
+Dexterous Visual Tool Use in Multimodal
+Agents</a>（arXiv:2608.25417）<br>
+<strong>作者</strong>：Shudong Liu、Dongyang Chen、Enci Zhang、Jinwei
+Liang、Zheng Ma、Lewei Lu<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>EASEL 研究的核心问题是：多模态 agent
+能否从视觉证据推断精细工具参数，并在每一步根据结果闭环修正，而不只是回答静态问题。主任务是参照图像引导的画布重建，另含区域标注、手写和迷宫路径规划；每一步动作都会直接影响最终相似度。作者提供约
+44 万条两阶段课程数据 EASEL-Data，并训练 EASEL-9B；评测覆盖 25
+个模型，包括 6 个闭源 API 和 19 个开源模型、约 4B–90B
+参数。比较重点是不同模型和 EASEL-9B
+相对其基础模型的表现，同时报告轨迹诊断，而不只看最终分数。</p>
+<p><strong>作者报告的结果</strong>：25 个模型的重建相似度大多只有
+0.40–0.54，当前 agent
+普遍在早期达到峰值，随后因闭环不稳定而退化。最终分数最高的 Gemini 3.1
+Pro 为 0.535，Claude Opus 4.7 为 0.472；EASEL-9B 为 0.459，相比基础模型
+0.432 提升 6.3%（相对值），在全部评测模型中排名第三。轨迹诊断还显示
+GPT-5.5 的最终分数 0.426、AUC 0.440，峰值到结束的差距为
+0.073；简单迷宫可达 1.000，但困难迷宫仍未解决，Claude Opus
+存在反复绘制/撤销循环。作者另报告数据策略锚点分数为
+0.665/0.715，说明任务本身仍有上限。</p>
+<p>创新是把“看懂图”与“精确执行工具”拆开测量，并暴露峰后退化这一常被最终分数掩盖的失败模式。限制包括画布重建只是现实工具使用的代理任务，闭源
+API
+的工具协议和版本不完全可比，低峰终差距可能意味着模型不再采取动作而非真正纠错；代码和数据公开也不等于所有闭源比较可复现。适合多模态
+agent、GUI/机器人工具调用和 test-time
+评测读者；建议优先读任务定义、动作/轨迹指标、模型对照、EASEL-Data
+训练和失败轨迹分析。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25417">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.25417">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/OOOHS/EASEL">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/EASEL-Bench">数据</a></p>
-<h3 id="MMJailBench：多模态越狱风险首先是协议与因素耦合问题"><a href="#MMJailBench：多模态越狱风险首先是协议与因素耦合问题" class="headerlink" title="MMJailBench：多模态越狱风险首先是协议与因素耦合问题"></a>MMJailBench：多模态越狱风险首先是协议与因素耦合问题</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25490">MMJailBench: A Factorized Benchmark for Disentangling Multimodal Jailbreak Vulnerabilities</a>（arXiv:2608.25490）<br><strong>作者</strong>：Tianshi Wang、Jingsong Wang、Yafei Huang、Fengling Li、Xin Li、Lei Zhu<br><strong>来源/分类</strong>：arXiv · cs.CR、cs.AI、cs.MM<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>这篇论文试图解决现有越狱基准的混淆：有害意图、提示措辞、图像语义和指令载体常常一起变化，导致无法知道风险究竟来自哪一个因素。MMJailBench 将 272 个有害意图、6 种提示框架、5 种视觉语义和 TEXT/OCR 指令载体做因子化组合，按模型和配置生成 16,320 个测试实例；16 个多模态模型共得到 261,120 条响应。作者以 GPT-5 judge 计算主要攻击成功率（ASR）和条件攻击成功率（CASR），并提供轻量 judge、全量/轻量套件和表示层诊断。</p>
-<p><strong>作者报告的结果</strong>：不同模型的平均 ASR 从 GPT-5 的 2.17% 到 GLM-4.6V 的 78.38%，表明脆弱性高度异质。提示框架是变化的主要来源，某些任务相关视觉语义相对无图像条件使 ASR 增加：授权类 +12.96 个百分点、身份类 +10.47、任务类 +10.10；空白、噪声和自然场景增幅低于 2.2%。直接文字指令的文本 ASR 为 50.70%，OCR 为 40.59%；CASR 对应为 50.89% 与 42.34%，说明“把指令画进图里”并不普遍更危险，而且结果依赖模型。这里的数字是受控提示协议和自动评判下的安全审计结果，不是生产系统的越狱概率。</p>
-<p>贡献在于让模型、攻击意图和视觉上下文可做因素级归因；限制包括自动 judge 阈值、受控因素覆盖、模型版本和提示差异，以及有害内容本身的伦理与安全约束。表示层相关模式也不等于可泛化的机制解释。适合多模态安全、红队和模型治理读者；建议优先读因子设计、ASR/CASR 定义、跨模型结果、轻量评测配置和 judge/表示诊断。</p>
+<h3 id="mmjailbench多模态越狱风险首先是协议与因素耦合问题">MMJailBench：多模态越狱风险首先是协议与因素耦合问题</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25490">MMJailBench: A Factorized
+Benchmark for Disentangling Multimodal Jailbreak
+Vulnerabilities</a>（arXiv:2608.25490）<br>
+<strong>作者</strong>：Tianshi Wang、Jingsong Wang、Yafei
+Huang、Fengling Li、Xin Li、Lei Zhu<br>
+<strong>来源/分类</strong>：arXiv · cs.CR、cs.AI、cs.MM<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>这篇论文试图解决现有越狱基准的混淆：有害意图、提示措辞、图像语义和指令载体常常一起变化，导致无法知道风险究竟来自哪一个因素。MMJailBench
+将 272 个有害意图、6 种提示框架、5 种视觉语义和 TEXT/OCR
+指令载体做因子化组合，按模型和配置生成 16,320 个测试实例；16
+个多模态模型共得到 261,120 条响应。作者以 GPT-5 judge
+计算主要攻击成功率（ASR）和条件攻击成功率（CASR），并提供轻量
+judge、全量/轻量套件和表示层诊断。</p>
+<p><strong>作者报告的结果</strong>：不同模型的平均 ASR 从 GPT-5 的 2.17%
+到 GLM-4.6V 的
+78.38%，表明脆弱性高度异质。提示框架是变化的主要来源，某些任务相关视觉语义相对无图像条件使
+ASR 增加：授权类 +12.96 个百分点、身份类 +10.47、任务类
++10.10；空白、噪声和自然场景增幅低于 2.2%。直接文字指令的文本 ASR 为
+50.70%，OCR 为 40.59%；CASR 对应为 50.89% 与
+42.34%，说明“把指令画进图里”并不普遍更危险，而且结果依赖模型。这里的数字是受控提示协议和自动评判下的安全审计结果，不是生产系统的越狱概率。</p>
+<p>贡献在于让模型、攻击意图和视觉上下文可做因素级归因；限制包括自动
+judge
+阈值、受控因素覆盖、模型版本和提示差异，以及有害内容本身的伦理与安全约束。表示层相关模式也不等于可泛化的机制解释。适合多模态安全、红队和模型治理读者；建议优先读因子设计、ASR/CASR
+定义、跨模型结果、轻量评测配置和 judge/表示诊断。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25490">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.25490">PDF</a></p>
-<h3 id="BixBench3：AI-科学家离“复现整项研究”还有多远"><a href="#BixBench3：AI-科学家离“复现整项研究”还有多远" class="headerlink" title="BixBench3：AI 科学家离“复现整项研究”还有多远"></a>BixBench3：AI 科学家离“复现整项研究”还有多远</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25286">BixBench3: Benchmarking AI agents on research-study-scale computational biology tasks</a>（arXiv:2608.25286）<br><strong>作者</strong>：Zane Koch、Asmamaw T. Wassie、Javier Valdes-Aleman、Jason Lee、Michaela M. Hinks、Samuel G. Rodriques、Andrew D. White、Jon M. Laurent<br><strong>来源/分类</strong>：arXiv · cs.AI、q-bio.QM<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>BixBench3 把评测单位从单个代码题提升到研究规模的计算生物学任务：科学家给出研究目标、方法指导和原始数据，agent 负责完成一连串分析，并把 peak-call 矩阵、差异表达表等产物与原论文对应产物比较。基准包含 20 项任务、17 种 assay、9 个领域、138 个唯一产物；13 个前沿模型完成 260 次运行，产物评估共 1,794 次。评分阈值是 0.80，要求结果在数值上和生物学意义上都能保留。比较包含不同模型、任务深度、原始数据规模与执行成本。</p>
-<p><strong>作者报告的结果</strong>：最高模型 GPT-5.6 Sol 得分 0.48，Kimi K3 为 0.47，GLM5.2 和 Claude Opus 4.8 为 0.46；最低的 Gemini 3.1 Flash Lite 为 0.00。任务深度为 1/2/3+ 步时，二元通过率分别为 0.30/0.44/0.24；原始数据超过 100GB 的任务得分 0.10，低于 50GB 时为 0.37。平均每项任务使用 1.02 亿 token、6.8 小时、约 43 美元；最长尝试 24 小时、10.7 亿 token、525 美元。作者还报告高分模型反而更省 token、成本更低，但所有数字都受 API、缓存、硬件和任务边界影响。</p>
-<p>创新是用可程序化的研究产物验证“从原始数据到结论”的多步执行，而不是把代码能运行当成科学复现。局限是复现既有产物不等于发现新的生物学真理，任务由人类提供研究问题和方法指导，领域覆盖仍有限，成本和计算配额也可能改变排名；数据污染、外部数据许可和独立重复仍需核查。适合 AI scientist、科学计算平台和 agent 评测读者；建议优先读任务与产物定义、评分阈值、模型/任务结果、深度与数据规模分析、成本表和失败案例。</p>
-<p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25286">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.25286">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/EdisonScientific/BixBench3">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/EdisonScientific/BixBench3">数据</a> · <a target="_blank" rel="noopener" href="https://advances.edisonscientific.com/benchmarks/bixbench3">基准说明</a></p>
-<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><h3 id="Fusing-Perceptual-Vision-Experts-with-Multimodal-Large-Language-Models-for-Explainable-Plant-Disease-Diagnosis：重点论文已在上文详述"><a href="#Fusing-Perceptual-Vision-Experts-with-Multimodal-Large-Language-Models-for-Explainable-Plant-Disease-Diagnosis：重点论文已在上文详述" class="headerlink" title="Fusing Perceptual Vision Experts with Multimodal Large Language Models for Explainable Plant Disease Diagnosis：重点论文已在上文详述"></a>Fusing Perceptual Vision Experts with Multimodal Large Language Models for Explainable Plant Disease Diagnosis：重点论文已在上文详述</h3><p>该论文比较 CNN 感知模型与 MLLM 语义仲裁在植物病害诊断中的组合，作者报告 PlantDoc 冲突子集提升 7.6 个百分点，但田间数据部分非公开、类别样本不均衡，校准差异也很大。</p>
-<h3 id="Retrieval-Augmented-Agentic-Rubric-Generation-for-Reliable-Medical-Response-Evaluation：重点论文已在上文详述"><a href="#Retrieval-Augmented-Agentic-Rubric-Generation-for-Reliable-Medical-Response-Evaluation：重点论文已在上文详述" class="headerlink" title="Retrieval-Augmented Agentic Rubric Generation for Reliable Medical Response Evaluation：重点论文已在上文详述"></a>Retrieval-Augmented Agentic Rubric Generation for Reliable Medical Response Evaluation：重点论文已在上文详述</h3><p>该方法用权威医学检索、原子事实和交互意图生成实例级 rubric；作者报告英文/中文基准 CIA 为 50.20%/31.90%，回答修订提升 9.2%，但 LLM judge 与受控单轮评测不能替代临床验证。</p>
-<h3 id="Paint-What-You-See：重点论文已在上文详述"><a href="#Paint-What-You-See：重点论文已在上文详述" class="headerlink" title="Paint What You See：重点论文已在上文详述"></a>Paint What You See：重点论文已在上文详述</h3><p>EASEL 用画布重建、区域标注、手写和路径规划评估视觉工具闭环；作者报告 EASEL-9B 相对基础模型提升 6.3%，但峰后退化、闭源协议差异和代理任务上限需要一起读取。</p>
-<h3 id="TAU-Agent：把交通视频问答拆成检索与视觉工具调用"><a href="#TAU-Agent：把交通视频问答拆成检索与视觉工具调用" class="headerlink" title="TAU-Agent：把交通视频问答拆成检索与视觉工具调用"></a>TAU-Agent：把交通视频问答拆成检索与视觉工具调用</h3><p><strong>作者</strong>：Yuqiang Lin、Yan Shi、Sam Lockyer、Harish Tayyar Madabushi、Adrian Evans、Wenbin Li、Yinhai Wang、Nic Zhang<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>TAU-Agent 研究交通异常理解是否可以由一个检索 agent 协调视频字幕工具和开放词汇跟踪工具，再把相关时间片、轨迹和采样帧交给微调后的视觉语言模型推理。作者在 AI City Challenge 2026 的域内和域外基准上报告 Track 3/7/8 得分 0.6779、0.3998、67.9275，排名分别为第二、第十二和第五。值得关注之处是它把“找哪段证据”和“如何解释异常”分开，但摘要没有给出无工具 VLM、纯字幕或纯跟踪基线，无法判断提升来自检索、工具还是微调；域外排名也不能等同于真实道路安全能力。代码链接虽已给出，复现实验还需核对视频、工具版本和评测服务器。</p>
+<h3 id="bixbench3ai-科学家离复现整项研究还有多远">BixBench3：AI
+科学家离“复现整项研究”还有多远</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25286">BixBench3: Benchmarking AI
+agents on research-study-scale computational biology
+tasks</a>（arXiv:2608.25286）<br>
+<strong>作者</strong>：Zane Koch、Asmamaw T. Wassie、Javier
+Valdes-Aleman、Jason Lee、Michaela M. Hinks、Samuel G. Rodriques、Andrew
+D. White、Jon M. Laurent<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、q-bio.QM<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>BixBench3
+把评测单位从单个代码题提升到研究规模的计算生物学任务：科学家给出研究目标、方法指导和原始数据，agent
+负责完成一连串分析，并把 peak-call
+矩阵、差异表达表等产物与原论文对应产物比较。基准包含 20 项任务、17 种
+assay、9 个领域、138 个唯一产物；13 个前沿模型完成 260
+次运行，产物评估共 1,794 次。评分阈值是
+0.80，要求结果在数值上和生物学意义上都能保留。比较包含不同模型、任务深度、原始数据规模与执行成本。</p>
+<p><strong>作者报告的结果</strong>：最高模型 GPT-5.6 Sol 得分 0.48，Kimi
+K3 为 0.47，GLM5.2 和 Claude Opus 4.8 为 0.46；最低的 Gemini 3.1 Flash
+Lite 为 0.00。任务深度为 1/2/3+ 步时，二元通过率分别为
+0.30/0.44/0.24；原始数据超过 100GB 的任务得分 0.10，低于 50GB 时为
+0.37。平均每项任务使用 1.02 亿 token、6.8 小时、约 43 美元；最长尝试 24
+小时、10.7 亿 token、525 美元。作者还报告高分模型反而更省
+token、成本更低，但所有数字都受 API、缓存、硬件和任务边界影响。</p>
+<p>创新是用可程序化的研究产物验证“从原始数据到结论”的多步执行，而不是把代码能运行当成科学复现。局限是复现既有产物不等于发现新的生物学真理，任务由人类提供研究问题和方法指导，领域覆盖仍有限，成本和计算配额也可能改变排名；数据污染、外部数据许可和独立重复仍需核查。适合
+AI scientist、科学计算平台和 agent
+评测读者；建议优先读任务与产物定义、评分阈值、模型/任务结果、深度与数据规模分析、成本表和失败案例。</p>
+<p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25286">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.25286">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/EdisonScientific/BixBench3">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/EdisonScientific/BixBench3">数据</a>
+· <a target="_blank" rel="noopener" href="https://advances.edisonscientific.com/benchmarks/bixbench3">基准说明</a></p>
+<h2 id="ai-论文">AI 论文</h2>
+<h3 id="fusing-perceptual-vision-experts-with-multimodal-large-language-models-for-explainable-plant-disease-diagnosis重点论文已在上文详述">Fusing
+Perceptual Vision Experts with Multimodal Large Language Models for
+Explainable Plant Disease Diagnosis：重点论文已在上文详述</h3>
+<p>该论文比较 CNN 感知模型与 MLLM
+语义仲裁在植物病害诊断中的组合，作者报告 PlantDoc 冲突子集提升 7.6
+个百分点，但田间数据部分非公开、类别样本不均衡，校准差异也很大。</p>
+<h3 id="retrieval-augmented-agentic-rubric-generation-for-reliable-medical-response-evaluation重点论文已在上文详述">Retrieval-Augmented
+Agentic Rubric Generation for Reliable Medical Response
+Evaluation：重点论文已在上文详述</h3>
+<p>该方法用权威医学检索、原子事实和交互意图生成实例级
+rubric；作者报告英文/中文基准 CIA 为 50.20%/31.90%，回答修订提升
+9.2%，但 LLM judge 与受控单轮评测不能替代临床验证。</p>
+<h3 id="paint-what-you-see重点论文已在上文详述">Paint What You
+See：重点论文已在上文详述</h3>
+<p>EASEL 用画布重建、区域标注、手写和路径规划评估视觉工具闭环；作者报告
+EASEL-9B 相对基础模型提升
+6.3%，但峰后退化、闭源协议差异和代理任务上限需要一起读取。</p>
+<h3 id="tau-agent把交通视频问答拆成检索与视觉工具调用">TAU-Agent：把交通视频问答拆成检索与视觉工具调用</h3>
+<p><strong>作者</strong>：Yuqiang Lin、Yan Shi、Sam Lockyer、Harish
+Tayyar Madabushi、Adrian Evans、Wenbin Li、Yinhai Wang、Nic Zhang<br>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>TAU-Agent 研究交通异常理解是否可以由一个检索 agent
+协调视频字幕工具和开放词汇跟踪工具，再把相关时间片、轨迹和采样帧交给微调后的视觉语言模型推理。作者在
+AI City Challenge 2026 的域内和域外基准上报告 Track 3/7/8 得分
+0.6779、0.3998、67.9275，排名分别为第二、第十二和第五。值得关注之处是它把“找哪段证据”和“如何解释异常”分开，但摘要没有给出无工具
+VLM、纯字幕或纯跟踪基线，无法判断提升来自检索、工具还是微调；域外排名也不能等同于真实道路安全能力。代码链接虽已给出，复现实验还需核对视频、工具版本和评测服务器。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25935">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.25935">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/siri-rouser/TAU-Agent">代码</a></p>
-<h3 id="AI-Slop-and-Hallucinations-in-Vulnerability-Assessment：安全审计需要可验证推理"><a href="#AI-Slop-and-Hallucinations-in-Vulnerability-Assessment：安全审计需要可验证推理" class="headerlink" title="AI Slop and Hallucinations in Vulnerability Assessment：安全审计需要可验证推理"></a>AI Slop and Hallucinations in Vulnerability Assessment：安全审计需要可验证推理</h3><p><strong>作者</strong>：Junchen Ding、Jialiang Dong、Yichen Zhu、Yi Liu、Gelei Deng、Willy Susilo、Siqi Ma、Yuekang Li<br><strong>来源/分类</strong>：arXiv · cs.CR、cs.AI<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>这篇综述把漏洞评估中的“AI slop”定义为幻觉漏洞、看似合理但错误的补丁和语义改写后的错误报告，研究其如何把人工分诊变成认知层面的拒绝服务。作者通过结构化文献综述建立分类，提出 Deductive Coverage Score 来近似 LLM 推理与安全专家因果演绎之间的差距，并讨论链式思考、工具 agent、被动检测、水印和神经符号验证；还提出 CVE-Bench 与 Slop-Score。价值在于把流畅度转成可验证性问题，但摘要未提供综述检索数量、DCS 的实证校准、数据集和代码可复现细节，也没有证明主动神经符号方案在生产漏洞上减少误报。适合安全工程、漏洞分诊和 AI 治理读者，阅读时应区分作者的路线图与已验证结果。</p>
+<h3 id="ai-slop-and-hallucinations-in-vulnerability-assessment安全审计需要可验证推理">AI
+Slop and Hallucinations in Vulnerability
+Assessment：安全审计需要可验证推理</h3>
+<p><strong>作者</strong>：Junchen Ding、Jialiang Dong、Yichen Zhu、Yi
+Liu、Gelei Deng、Willy Susilo、Siqi Ma、Yuekang Li<br>
+<strong>来源/分类</strong>：arXiv · cs.CR、cs.AI<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>这篇综述把漏洞评估中的“AI
+slop”定义为幻觉漏洞、看似合理但错误的补丁和语义改写后的错误报告，研究其如何把人工分诊变成认知层面的拒绝服务。作者通过结构化文献综述建立分类，提出
+Deductive Coverage Score 来近似 LLM
+推理与安全专家因果演绎之间的差距，并讨论链式思考、工具
+agent、被动检测、水印和神经符号验证；还提出 CVE-Bench 与
+Slop-Score。价值在于把流畅度转成可验证性问题，但摘要未提供综述检索数量、DCS
+的实证校准、数据集和代码可复现细节，也没有证明主动神经符号方案在生产漏洞上减少误报。适合安全工程、漏洞分诊和
+AI 治理读者，阅读时应区分作者的路线图与已验证结果。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25667">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.25667">PDF</a></p>
-<h3 id="FinRiskAtlas：金融-LLM-的评测单位应贴近决策与证据状态"><a href="#FinRiskAtlas：金融-LLM-的评测单位应贴近决策与证据状态" class="headerlink" title="FinRiskAtlas：金融 LLM 的评测单位应贴近决策与证据状态"></a>FinRiskAtlas：金融 LLM 的评测单位应贴近决策与证据状态</h3><p><strong>作者</strong>：Suyang Zhong、Jingzhe Zhu、Qi Xu、Liyao Sun、Yin Wang、Qingqing Sun、Shuai Chen、Tianyi Zhang<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>FinRiskAtlas 研究通用金融能力分数是否足以预测专业风控审查中的可靠性。中文静态基准含 9,742 个实例、53 个任务族，其中 42 个领域知识族和 11 个下游审查操作；FinRisk-Ask 则离线回放 104 条脱敏专业轨迹的 680 个行动前状态，在推理时隐藏未来证据。作者在 33 个模型配置上报告，下游操作间平均 Spearman 相关仅 0.42，以知识分数做 shortlist 在单项操作上可能产生最多 18.01 分 regret；更频繁进入 Ask 分支也不必然提高证据请求命中率或端到端获取效果。它提醒人们评测要同时测“做什么”和“何时认为证据不足”，但摘要没有公开各任务的基线、污染审计、标注协议和成本，结果也不是金融决策的真实损失或投资收益。</p>
+<h3 id="finriskatlas金融-llm-的评测单位应贴近决策与证据状态">FinRiskAtlas：金融
+LLM 的评测单位应贴近决策与证据状态</h3>
+<p><strong>作者</strong>：Suyang Zhong、Jingzhe Zhu、Qi Xu、Liyao
+Sun、Yin Wang、Qingqing Sun、Shuai Chen、Tianyi Zhang<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>FinRiskAtlas
+研究通用金融能力分数是否足以预测专业风控审查中的可靠性。中文静态基准含
+9,742 个实例、53 个任务族，其中 42 个领域知识族和 11
+个下游审查操作；FinRisk-Ask 则离线回放 104 条脱敏专业轨迹的 680
+个行动前状态，在推理时隐藏未来证据。作者在 33
+个模型配置上报告，下游操作间平均 Spearman 相关仅 0.42，以知识分数做
+shortlist 在单项操作上可能产生最多 18.01 分 regret；更频繁进入 Ask
+分支也不必然提高证据请求命中率或端到端获取效果。它提醒人们评测要同时测“做什么”和“何时认为证据不足”，但摘要没有公开各任务的基线、污染审计、标注协议和成本，结果也不是金融决策的真实损失或投资收益。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25325">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.25325">PDF</a></p>
-<h3 id="AFDBench：让天气预报文本对输入数字负责"><a href="#AFDBench：让天气预报文本对输入数字负责" class="headerlink" title="AFDBench：让天气预报文本对输入数字负责"></a>AFDBench：让天气预报文本对输入数字负责</h3><p><strong>作者</strong>：Manmeet Singh、Somnath Luitel、Prabhjot Singh、Manraaj Banga、Naveen Sudharsan、Josh Durkee<br><strong>来源/分类</strong>：arXiv · cs.LG、physics.ao-ph<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>AFDBench 面向高风险气象文本生成，使用 Google WeatherNext 2 的结构化 AI 预报输入和美国国家气象局 13 个办公室的 7,732 份专家 Area Forecast Discussion，分别度量数值准确性（Met-Align）、专业文体（Style-Align）和对输入的忠实性（Input-Grounding）。作者报告零样本开源模型 Style-Align 约 0.33、Grounding 约 0.88；在两个未见办公室的 1,033 个留出样本上，用针对温度、天气系统和格式的 GRPO 训练 7B 模型后，Style-Align 从 0.318 提升到 0.619，Grounding 从 0.881 提升到 0.940。价值在于把幻觉数字与文体问题分开，但摘要没有给具体 backbone、对照训练预算、数据污染和真实预报误差；文本更忠实也不等于预报输入本身正确。</p>
+<h3 id="afdbench让天气预报文本对输入数字负责">AFDBench：让天气预报文本对输入数字负责</h3>
+<p><strong>作者</strong>：Manmeet Singh、Somnath Luitel、Prabhjot
+Singh、Manraaj Banga、Naveen Sudharsan、Josh Durkee<br>
+<strong>来源/分类</strong>：arXiv · cs.LG、physics.ao-ph<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>AFDBench 面向高风险气象文本生成，使用 Google WeatherNext 2 的结构化
+AI 预报输入和美国国家气象局 13 个办公室的 7,732 份专家 Area Forecast
+Discussion，分别度量数值准确性（Met-Align）、专业文体（Style-Align）和对输入的忠实性（Input-Grounding）。作者报告零样本开源模型
+Style-Align 约 0.33、Grounding 约 0.88；在两个未见办公室的 1,033
+个留出样本上，用针对温度、天气系统和格式的 GRPO 训练 7B
+模型后，Style-Align 从 0.318 提升到 0.619，Grounding 从 0.881 提升到
+0.940。价值在于把幻觉数字与文体问题分开，但摘要没有给具体
+backbone、对照训练预算、数据污染和真实预报误差；文本更忠实也不等于预报输入本身正确。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.24954">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.24954">PDF</a></p>
-<h3 id="StarDojo：开放式生产与社交环境暴露-agent-的低层瓶颈"><a href="#StarDojo：开放式生产与社交环境暴露-agent-的低层瓶颈" class="headerlink" title="StarDojo：开放式生产与社交环境暴露 agent 的低层瓶颈"></a>StarDojo：开放式生产与社交环境暴露 agent 的低层瓶颈</h3><p><strong>作者</strong>：Weihao Tan、Changjiu Jiang、Yu Duan、Mingcong Lei、Jiageng Li、Yitian Hong、Xinrun Wang、Bo An<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>StarDojo 用《星露谷物语》构造同时包含种植、制作、探索、战斗和社交的开放式生产—生活模拟，提供 1,000 个任务和 100 个高效评测子集，并以统一接口、并行环境和无需键鼠控制降低运行门槛。作者评测多个多模态 agent，报告最佳 GPT-4.1 的任务成功率只有 12.7%，主要失败在视觉理解、多模态推理和低层操作。它比单一游戏得分更接近长期 agent 的任务组合，但游戏规则、可重复任务和社交关系是现实社会的代理；摘要没有给每个模型的完整基线、随机性、成本和训练数据污染检查，成功率不能直接外推到现实自治能力。</p>
+<h3 id="stardojo开放式生产与社交环境暴露-agent-的低层瓶颈">StarDojo：开放式生产与社交环境暴露
+agent 的低层瓶颈</h3>
+<p><strong>作者</strong>：Weihao Tan、Changjiu Jiang、Yu Duan、Mingcong
+Lei、Jiageng Li、Yitian Hong、Xinrun Wang、Bo An<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>StarDojo
+用《星露谷物语》构造同时包含种植、制作、探索、战斗和社交的开放式生产—生活模拟，提供
+1,000 个任务和 100
+个高效评测子集，并以统一接口、并行环境和无需键鼠控制降低运行门槛。作者评测多个多模态
+agent，报告最佳 GPT-4.1 的任务成功率只有
+12.7%，主要失败在视觉理解、多模态推理和低层操作。它比单一游戏得分更接近长期
+agent
+的任务组合，但游戏规则、可重复任务和社交关系是现实社会的代理；摘要没有给每个模型的完整基线、随机性、成本和训练数据污染检查，成功率不能直接外推到现实自治能力。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.07445">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.07445">PDF</a></p>
-<h3 id="Emergent-Abilities-in-Large-Language-Models：把“涌现”拆成测量与机制问题"><a href="#Emergent-Abilities-in-Large-Language-Models：把“涌现”拆成测量与机制问题" class="headerlink" title="Emergent Abilities in Large Language Models：把“涌现”拆成测量与机制问题"></a>Emergent Abilities in Large Language Models：把“涌现”拆成测量与机制问题</h3><p><strong>作者</strong>：Leonardo Berti、Flavio Giorgi、Gjergji Kasneci<br><strong>来源/分类</strong>：arXiv · cs.LG、cs.AI、cs.CL<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>这篇综述系统讨论大模型能力随规模变化时是否真的“涌现”，还是由任务难度、训练动态、指标选择、量化和提示策略造成的表观跃迁；范围还包括通过强化学习和推理时搜索增强的 Large Reasoning Models。作者同时讨论推理、上下文学习、编码、安全、欺骗、操纵和 reward hacking 的机制与治理含义。价值是提醒读者不要把单一 benchmark 的折线拐点当作自然定律，但摘要没有给出文献筛选流程、统一效应量或新的独立实验，综述结论可能受纳入文献和指标选择影响；应把它当作概念地图而非某个模型能力的验证。</p>
+<h3 id="emergent-abilities-in-large-language-models把涌现拆成测量与机制问题">Emergent
+Abilities in Large Language Models：把“涌现”拆成测量与机制问题</h3>
+<p><strong>作者</strong>：Leonardo Berti、Flavio Giorgi、Gjergji
+Kasneci<br>
+<strong>来源/分类</strong>：arXiv · cs.LG、cs.AI、cs.CL<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>这篇综述系统讨论大模型能力随规模变化时是否真的“涌现”，还是由任务难度、训练动态、指标选择、量化和提示策略造成的表观跃迁；范围还包括通过强化学习和推理时搜索增强的
+Large Reasoning
+Models。作者同时讨论推理、上下文学习、编码、安全、欺骗、操纵和 reward
+hacking 的机制与治理含义。价值是提醒读者不要把单一 benchmark
+的折线拐点当作自然定律，但摘要没有给出文献筛选流程、统一效应量或新的独立实验，综述结论可能受纳入文献和指标选择影响；应把它当作概念地图而非某个模型能力的验证。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2503.05788">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2503.05788">PDF</a></p>
-<h3 id="VBVR-Pro：把视觉生成轨迹变成可验证的推理状态"><a href="#VBVR-Pro：把视觉生成轨迹变成可验证的推理状态" class="headerlink" title="VBVR-Pro：把视觉生成轨迹变成可验证的推理状态"></a>VBVR-Pro：把视觉生成轨迹变成可验证的推理状态</h3><p><strong>作者</strong>：Junxiang Xu、Ruisi Wang、Fanyi Pu、Maijunxian Wang、Ran Ji、Tongxi Zhou 等<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI、cs.LG、cs.MM、cs.RO<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>VBVR-Pro 把“视觉生成就是推理介质”落成 300 个程序生成任务，提供任务特定、规则化的 reward scorer，用于训练和评估图像、视频及交错生成器；作者还报告跨七个外部视觉推理基准的迁移，并比较 30 多种生成器。论文主张确定性 scorer 比 VLM-as-a-judge 更适合细粒度反馈和多任务强化学习，视频在持续时空状态跟踪上更强，交错生成更节省计算。这个方向值得关注，因为它直接触及 reward 可验证性与模态选择；但摘要没有给外部基准的具体分数、RL 预算、训练/测试隔离和污染审计，也没有证明“视觉轨迹”是必要机制而不是任务格式的捷径。适合视觉推理、生成式 RL 和评测器设计读者。</p>
+<h3 id="vbvr-pro把视觉生成轨迹变成可验证的推理状态">VBVR-Pro：把视觉生成轨迹变成可验证的推理状态</h3>
+<p><strong>作者</strong>：Junxiang Xu、Ruisi Wang、Fanyi Pu、Maijunxian
+Wang、Ran Ji、Tongxi Zhou 等<br>
+<strong>来源/分类</strong>：arXiv ·
+cs.CV、cs.AI、cs.LG、cs.MM、cs.RO<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>VBVR-Pro 把“视觉生成就是推理介质”落成 300
+个程序生成任务，提供任务特定、规则化的 reward
+scorer，用于训练和评估图像、视频及交错生成器；作者还报告跨七个外部视觉推理基准的迁移，并比较
+30 多种生成器。论文主张确定性 scorer 比 VLM-as-a-judge
+更适合细粒度反馈和多任务强化学习，视频在持续时空状态跟踪上更强，交错生成更节省计算。这个方向值得关注，因为它直接触及
+reward 可验证性与模态选择；但摘要没有给外部基准的具体分数、RL
+预算、训练/测试隔离和污染审计，也没有证明“视觉轨迹”是必要机制而不是任务格式的捷径。适合视觉推理、生成式
+RL 和评测器设计读者。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26105">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26105">PDF</a></p>
-<h3 id="StreamPI：给单帧-VLA-加上流式时间记忆"><a href="#StreamPI：给单帧-VLA-加上流式时间记忆" class="headerlink" title="StreamPI：给单帧 VLA 加上流式时间记忆"></a>StreamPI：给单帧 VLA 加上流式时间记忆</h3><p><strong>作者</strong>：Zhe Liu、Jinghua Hou、Yuxiang Lu、Zhenya Yang、Xianzhe Fan、Junwei Luo 等<br><strong>来源/分类</strong>：arXiv · cs.CV<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>StreamPI 研究单帧视觉语言动作模型 pi0.5 如何在不增加参数的前提下保留历史观察。它把每个“视觉观察+语言指令”作为原子时间单元，单元内双向注意力融合模态，单元间因果注意力保持流式推理；随机帧间隔训练用于弥合同步训练与异步真实机器人部署的差距，示例间隔为每 3 帧。作者在依赖记忆和精确感知的真实机器人任务以及 LIBERO 仿真上报告优于 pi0.5，并支持单帧/多帧推理。价值在于复用单帧权重、改善时间稳定性；但摘要没有给任务成功率、动作延迟、机器人硬件、帧率敏感性和与更强时序 VLA 的公平基线，不能只凭“优于”判断部署收益。</p>
+<h3 id="streampi给单帧-vla-加上流式时间记忆">StreamPI：给单帧 VLA
+加上流式时间记忆</h3>
+<p><strong>作者</strong>：Zhe Liu、Jinghua Hou、Yuxiang Lu、Zhenya
+Yang、Xianzhe Fan、Junwei Luo 等<br>
+<strong>来源/分类</strong>：arXiv · cs.CV<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>StreamPI 研究单帧视觉语言动作模型 pi0.5
+如何在不增加参数的前提下保留历史观察。它把每个“视觉观察+语言指令”作为原子时间单元，单元内双向注意力融合模态，单元间因果注意力保持流式推理；随机帧间隔训练用于弥合同步训练与异步真实机器人部署的差距，示例间隔为每
+3 帧。作者在依赖记忆和精确感知的真实机器人任务以及 LIBERO 仿真上报告优于
+pi0.5，并支持单帧/多帧推理。价值在于复用单帧权重、改善时间稳定性；但摘要没有给任务成功率、动作延迟、机器人硬件、帧率敏感性和与更强时序
+VLA 的公平基线，不能只凭“优于”判断部署收益。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26067">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26067">PDF</a></p>
-<h3 id="VISA：用失败反馈让多模态指令数据持续进化"><a href="#VISA：用失败反馈让多模态指令数据持续进化" class="headerlink" title="VISA：用失败反馈让多模态指令数据持续进化"></a>VISA：用失败反馈让多模态指令数据持续进化</h3><p><strong>作者</strong>：Min Zeng、Guanxin Tan、Libin Cen、Yafei Wen、Rui Hu、Liuyang Bian、Xiaolong Chen、Xiaoxin Chen<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>VISA 将多模态指令合成从一次性“生成—过滤”改成自进化循环：分析图像、筛掉不兼容约束，从持久记忆中采样多样性/难度感知的约束，生成并用可执行工具和结构化 judge 验证；失败样本触发诊断恢复，目标模型的失败画像和 verifier 信号再写回记忆，且可作为强化学习 reward。作者在 MM-IFEval 上报告持续优于强基线，并在七个公开基准上保持一般多模态能力。它的工程价值在于复用失败信息、减少模板重复；摘要没有给数据规模、每轮成本、数据污染/自增强泄漏、verifier 错误传播和各基线的具体数值，因此“持续提升”不能替代独立复现。</p>
+<h3 id="visa用失败反馈让多模态指令数据持续进化">VISA：用失败反馈让多模态指令数据持续进化</h3>
+<p><strong>作者</strong>：Min Zeng、Guanxin Tan、Libin Cen、Yafei
+Wen、Rui Hu、Liuyang Bian、Xiaolong Chen、Xiaoxin Chen<br>
+<strong>来源/分类</strong>：arXiv · cs.CL<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>VISA
+将多模态指令合成从一次性“生成—过滤”改成自进化循环：分析图像、筛掉不兼容约束，从持久记忆中采样多样性/难度感知的约束，生成并用可执行工具和结构化
+judge 验证；失败样本触发诊断恢复，目标模型的失败画像和 verifier
+信号再写回记忆，且可作为强化学习 reward。作者在 MM-IFEval
+上报告持续优于强基线，并在七个公开基准上保持一般多模态能力。它的工程价值在于复用失败信息、减少模板重复；摘要没有给数据规模、每轮成本、数据污染/自增强泄漏、verifier
+错误传播和各基线的具体数值，因此“持续提升”不能替代独立复现。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26013">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26013">PDF</a></p>
-<h3 id="AsymSpec：让草稿模型看全上下文、验证模型看压缩上下文"><a href="#AsymSpec：让草稿模型看全上下文、验证模型看压缩上下文" class="headerlink" title="AsymSpec：让草稿模型看全上下文、验证模型看压缩上下文"></a>AsymSpec：让草稿模型看全上下文、验证模型看压缩上下文</h3><p><strong>作者</strong>：Sheng Liang、Yongyue Zhang、Nathanael Brian、Hang Lv、Hao Wang、Chen Zhang、Yong Liu<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>AsymSpec 针对 agent 管线中检索、工具和多轮历史不断累积的问题，提出非对称 speculative decoding：轻量 drafter 读取完整输入，大模型 verifier 只读取压缩视图，再通过对比式 δ-fusion 和 divergence-aware acceptance gate 传递被压缩上下文中的关键信号。作者在四类 agent 能力和两个端到端 agent 基准上报告，平均达到完整上下文准确率约 90%，隔离文本能力上取得 1.3–1.7 倍吞吐、0.2–0.3 倍计算成本。这个结果同时涉及速度和准确率的折中，但摘要没有说明压缩方法、draft/verifier 模型配对、缓存和硬件、端到端延迟，也没有展示各任务的最差退化；约 90% 不是无损加速，部署应关注长尾任务而非平均值。</p>
+<h3 id="asymspec让草稿模型看全上下文验证模型看压缩上下文">AsymSpec：让草稿模型看全上下文、验证模型看压缩上下文</h3>
+<p><strong>作者</strong>：Sheng Liang、Yongyue Zhang、Nathanael
+Brian、Hang Lv、Hao Wang、Chen Zhang、Yong Liu<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>AsymSpec 针对 agent
+管线中检索、工具和多轮历史不断累积的问题，提出非对称 speculative
+decoding：轻量 drafter 读取完整输入，大模型 verifier
+只读取压缩视图，再通过对比式 δ-fusion 和 divergence-aware acceptance
+gate 传递被压缩上下文中的关键信号。作者在四类 agent 能力和两个端到端
+agent 基准上报告，平均达到完整上下文准确率约 90%，隔离文本能力上取得
+1.3–1.7 倍吞吐、0.2–0.3
+倍计算成本。这个结果同时涉及速度和准确率的折中，但摘要没有说明压缩方法、draft/verifier
+模型配对、缓存和硬件、端到端延迟，也没有展示各任务的最差退化；约 90%
+不是无损加速，部署应关注长尾任务而非平均值。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26004">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26004">PDF</a></p>
-<h3 id="Key-Point-Analysis-Needs-Structure-Recovery：关键观点抽取先要修复标注结构"><a href="#Key-Point-Analysis-Needs-Structure-Recovery：关键观点抽取先要修复标注结构" class="headerlink" title="Key Point Analysis Needs Structure Recovery：关键观点抽取先要修复标注结构"></a>Key Point Analysis Needs Structure Recovery：关键观点抽取先要修复标注结构</h3><p><strong>作者</strong>：Zhiqiang Shi、Oana Cocarascu<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.LG<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文把 Key Point Analysis 重新定义为结构化预测：不仅要生成代表性关键点，还要恢复语义分组、覆盖论点并估计每个关键点的 prevalence。作者指出现有 benchmark 在分组质量、冗余、覆盖和 argument—key point 映射上存在问题，会造成 reference-based 评测的 ceiling violation 与 selection failure，于是通过 human-in-the-loop 重新标注，建立分布敏感、结构感知的新基准和匹配/解释资源。人类和 LLM 评估均认为新结构更连贯、覆盖和 prevalence 估计更可靠。价值在于先检查 gold structure 再比较模型；摘要没有给重新标注规模、具体分数、标注一致性、模型基线和成本，LLM judge 的改进也不能独立证明真实用户价值。</p>
+<h3 id="key-point-analysis-needs-structure-recovery关键观点抽取先要修复标注结构">Key
+Point Analysis Needs Structure
+Recovery：关键观点抽取先要修复标注结构</h3>
+<p><strong>作者</strong>：Zhiqiang Shi、Oana Cocarascu<br>
+<strong>来源/分类</strong>：arXiv · cs.CL、cs.LG<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文把 Key Point Analysis
+重新定义为结构化预测：不仅要生成代表性关键点，还要恢复语义分组、覆盖论点并估计每个关键点的
+prevalence。作者指出现有 benchmark 在分组质量、冗余、覆盖和 argument—key
+point 映射上存在问题，会造成 reference-based 评测的 ceiling violation 与
+selection failure，于是通过 human-in-the-loop
+重新标注，建立分布敏感、结构感知的新基准和匹配/解释资源。人类和 LLM
+评估均认为新结构更连贯、覆盖和 prevalence 估计更可靠。价值在于先检查
+gold structure
+再比较模型；摘要没有给重新标注规模、具体分数、标注一致性、模型基线和成本，LLM
+judge 的改进也不能独立证明真实用户价值。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25854">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.25854">PDF</a></p>
-<h3 id="VGA-BenchV2：视频生成评测从人类标注走向优化闭环"><a href="#VGA-BenchV2：视频生成评测从人类标注走向优化闭环" class="headerlink" title="VGA-BenchV2：视频生成评测从人类标注走向优化闭环"></a>VGA-BenchV2：视频生成评测从人类标注走向优化闭环</h3><p><strong>作者</strong>：Longteng Jiang、DanDan Zheng、Qianqian Qiao、Heng Huang、Huaye Wang、Yihang Bo、Bao Peng、Jingdong Chen、Jun Zhou、Xin Jin<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>VGA-BenchV2 沿用 Aesthetic 与 Generation 两个维度、52 个子维度，整理 1,016 个 prompt、12 个视频生成模型生成的 6 万多个视频，并新增 36,000 条任务级人工标注：美学质量 16,200、美学标签 13,200、生成质量 6,600。方法包含连续美学评分器 VAQA-Net、Qwen 系 VTag-Net 与 VGQA-Net，并将评分器作为强化学习生成器微调的 reward，形成“人类监督—自动评估—优化”闭环。作者报告与人类判断有较强一致性，但摘要没有给相关系数、跨模型外部验证、人工标注抽样和 reward hacking 检查；用同一分布训练评分器再优化生成器，也可能放大评分器偏好而非人类偏好。</p>
+<h3 id="vga-benchv2视频生成评测从人类标注走向优化闭环">VGA-BenchV2：视频生成评测从人类标注走向优化闭环</h3>
+<p><strong>作者</strong>：Longteng Jiang、DanDan Zheng、Qianqian
+Qiao、Heng Huang、Huaye Wang、Yihang Bo、Bao Peng、Jingdong Chen、Jun
+Zhou、Xin Jin<br>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>VGA-BenchV2 沿用 Aesthetic 与 Generation 两个维度、52 个子维度，整理
+1,016 个 prompt、12 个视频生成模型生成的 6 万多个视频，并新增 36,000
+条任务级人工标注：美学质量 16,200、美学标签 13,200、生成质量
+6,600。方法包含连续美学评分器 VAQA-Net、Qwen 系 VTag-Net 与
+VGQA-Net，并将评分器作为强化学习生成器微调的
+reward，形成“人类监督—自动评估—优化”闭环。作者报告与人类判断有较强一致性，但摘要没有给相关系数、跨模型外部验证、人工标注抽样和
+reward hacking
+检查；用同一分布训练评分器再优化生成器，也可能放大评分器偏好而非人类偏好。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25452">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.25452">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/BestiVictoryLab/VGA-Bench">数据</a></p>
-<h3 id="What-Do-Medical-Vision-Language-Models-Learn-in-Radiology-：分布外可靠性不能由院内分数代表"><a href="#What-Do-Medical-Vision-Language-Models-Learn-in-Radiology-：分布外可靠性不能由院内分数代表" class="headerlink" title="What Do Medical Vision-Language Models Learn in Radiology?：分布外可靠性不能由院内分数代表"></a>What Do Medical Vision-Language Models Learn in Radiology?：分布外可靠性不能由院内分数代表</h3><p><strong>作者</strong>：Ayoub Louaye Bouaziz、Lokmane Chebouba、Yassine Himeur<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文在 NIH ChestXray14 与 CheXpert 上分离“只看视觉的跨数据集迁移”和无监督域适配诊断，再用 PadChest 与 OpenI 做严格配对索引检索，测量冻结嵌入中可恢复的设备/来源代理信息。作者报告自监督视觉初始化在匹配的 ResNet-18 对照中优于 ImageNet 监督初始化；对抗适配只在窄范围有效，压力增大后不稳定；外部 OpenI 的精确配对检索仍低，来源 proxy 仍留在表示中。价值是把迁移、跨模态对齐和 shortcut 分开看，但摘要没有给完整数字、训练数据重叠审计、病人级切分和临床专家盲评；Grad-CAM 的“看起来合理”不能证明模型学习了病理因果特征。适合医疗 VLM、域泛化和数据治理读者。</p>
+<h3 id="what-do-medical-vision-language-models-learn-in-radiology分布外可靠性不能由院内分数代表">What
+Do Medical Vision-Language Models Learn in
+Radiology?：分布外可靠性不能由院内分数代表</h3>
+<p><strong>作者</strong>：Ayoub Louaye Bouaziz、Lokmane
+Chebouba、Yassine Himeur<br>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文在 NIH ChestXray14 与 CheXpert
+上分离“只看视觉的跨数据集迁移”和无监督域适配诊断，再用 PadChest 与 OpenI
+做严格配对索引检索，测量冻结嵌入中可恢复的设备/来源代理信息。作者报告自监督视觉初始化在匹配的
+ResNet-18 对照中优于 ImageNet
+监督初始化；对抗适配只在窄范围有效，压力增大后不稳定；外部 OpenI
+的精确配对检索仍低，来源 proxy 仍留在表示中。价值是把迁移、跨模态对齐和
+shortcut
+分开看，但摘要没有给完整数字、训练数据重叠审计、病人级切分和临床专家盲评；Grad-CAM
+的“看起来合理”不能证明模型学习了病理因果特征。适合医疗
+VLM、域泛化和数据治理读者。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.25251">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.25251">PDF</a></p>
-<h3 id="MMJailBench：重点论文已在上文详述"><a href="#MMJailBench：重点论文已在上文详述" class="headerlink" title="MMJailBench：重点论文已在上文详述"></a>MMJailBench：重点论文已在上文详述</h3><p>该基准以有害意图、提示框架、视觉语义和指令载体的因子化组合拆解越狱风险；作者报告不同模型 ASR 可从 2.17% 到 78.38%，但结果依赖自动 judge、模型版本和受控攻击协议。</p>
-<h3 id="BixBench3：重点论文已在上文详述"><a href="#BixBench3：重点论文已在上文详述" class="headerlink" title="BixBench3：重点论文已在上文详述"></a>BixBench3：重点论文已在上文详述</h3><p>BixBench3 以 20 个研究规模的计算生物学任务评估 agent 从原始数据到分析产物的完整链路；作者报告最高得分仅 0.48，平均约 6.8 小时、1.02 亿 token、43 美元，复现产物仍不等于科学发现。</p>
+<h3 id="mmjailbench重点论文已在上文详述">MMJailBench：重点论文已在上文详述</h3>
+<p>该基准以有害意图、提示框架、视觉语义和指令载体的因子化组合拆解越狱风险；作者报告不同模型
+ASR 可从 2.17% 到 78.38%，但结果依赖自动
+judge、模型版本和受控攻击协议。</p>
+<h3 id="bixbench3重点论文已在上文详述">BixBench3：重点论文已在上文详述</h3>
+<p>BixBench3 以 20 个研究规模的计算生物学任务评估 agent
+从原始数据到分析产物的完整链路；作者报告最高得分仅 0.48，平均约 6.8
+小时、1.02 亿 token、43 美元，复现产物仍不等于科学发现。</p>
 
                 
               </div>

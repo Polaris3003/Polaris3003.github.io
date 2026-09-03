@@ -350,39 +350,183 @@
               <div class="markdown-body">
                 
                 <div class="briefing-masthead">
-  <p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.08.31</p>
-  <p>今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">all-languages 日榜</a> 有 19 个候选，前排项目把 Agent 推进到互动课堂、科研数据库、架构验证、网页采集、实时语音与机器人训练；星标只是注意力快照，不是质量、维护性或安全性的证明。</p>
-  <div class="briefing-masthead__topics"><span>Agent 工程</span><span>科研自动化</span><span>本地虚拟化</span><span>数据采集</span><span>实时语音</span><span>机器人学习</span></div>
+<p class="briefing-masthead__eyebrow">
+GITHUB TRENDING · 2026.08.31
+</p>
+<p>
+今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">all-languages
+日榜</a> 有 19 个候选，前排项目把 Agent
+推进到互动课堂、科研数据库、架构验证、网页采集、实时语音与机器人训练；星标只是注意力快照，不是质量、维护性或安全性的证明。
+</p>
+<div class="briefing-masthead__topics">
+<span>Agent
+工程</span><span>科研自动化</span><span>本地虚拟化</span><span>数据采集</span><span>实时语音</span><span>机器人学习</span>
 </div>
-
+</div>
 <span id="more"></span>
-<h2 id="今日要点"><a href="#今日要点" class="headerlink" title="今日要点"></a>今日要点</h2><p>今天最强的信号不是“又多了几个 Agent 项目”，而是 Agent 开始交付有边界的中间产物：<a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC">OpenMAIC</a> 交付可编辑课程，<a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a> 交付可校验架构图，<a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">GitNexus</a> 交付代码知识图谱。它们共同把输入、状态、导出格式和失败方式暴露出来，比“让模型自己想办法”更接近可维护的软件工程。</p>
-<p>另一条线是基础设施回到使用者手里：<a target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai">Crawl4AI</a> 处理网页到 Markdown 的数据入口，<a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo">OpenSEO</a> 把外部 SEO 数据接入 MCP，<a target="_blank" rel="noopener" href="https://github.com/livekit/agents">LiveKit Agents</a> 把语音、调度和 WebRTC 组合成实时应用，<a target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair">Corsair</a> 则统一第三方应用连接层。本期采用 12 个项目，优先看实际工作流、可复现性和限制条件，而不是只看增长最快的数字。</p>
-<h2 id="值得尝试"><a href="#值得尝试" class="headerlink" title="值得尝试"></a>值得尝试</h2><h3 id="THU-MAIC-OpenMAIC"><a href="#THU-MAIC-OpenMAIC" class="headerlink" title="THU-MAIC/OpenMAIC"></a><a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC">THU-MAIC/OpenMAIC</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC">OpenMAIC</a> 是一个多 Agent 互动课堂平台，可从主题或材料生成幻灯片、测验、交互模拟与项目式学习活动，并支持 AI 教师/同学、白板、TTS 和 .pptx/HTML 导出（见 <a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC#readme">README</a>）。它的 <a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC/releases/tag/v1.0.0">v1.0.0</a> 增加了可暂停、恢复和转向的 Agent workbench 与持久化会话，适合课程原型、教育产品和多 Agent 工作流研究；限制是本地部署需要 Node.js 20、pnpm 10 与模型提供商，音视频能力还带来 ffmpeg、ASR/TTS 和存储配置成本。主要语言为 TypeScript；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 24,230 stars、今日新增 4,901 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC/blob/main/LICENSE">MIT</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC/commit/dfebbcf33f3a56064129903faeab70a9e4243146">dfebbcf</a>（2026-08-29）。</p>
-<h3 id="K-Dense-AI-scientific-agent-skills"><a href="#K-Dense-AI-scientific-agent-skills" class="headerlink" title="K-Dense-AI/scientific-agent-skills"></a><a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">K-Dense-AI/scientific-agent-skills</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">Scientific Agent Skills</a> 把生物、化学、医学、药物发现和数据分析等研究流程封装成可被 Agent 编排的技能，并连接上百个科学数据库与工具（见 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills#readme">README</a>）。它适合科研人员、数据科学家和想学习领域工作流编排的开发者；已知限制是数据库和模型接口需要网络/API 凭证，数据使用条件与每个技能的依赖要单独核验，生成结果不能替代临床或实验结论。主要语言为 Python；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 39,371 stars、今日新增 3,663 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/LICENSE.md">MIT</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills/commit/f6fcafeb1cc8c82eca0160a18bc41c38427b8e0f">f6fcafe</a>（2026-08-29）。</p>
-<h3 id="Lakr233-vphone-cli"><a href="#Lakr233-vphone-cli" class="headerlink" title="Lakr233/vphone-cli"></a><a target="_blank" rel="noopener" href="https://github.com/Lakr233/vphone-cli">Lakr233/vphone-cli</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/Lakr233/vphone-cli">vphone-cli</a> 基于 Apple Virtualization.framework 和 PCC research VM 基础设施，在 Apple Silicon、macOS 15+ 上启动虚拟 iPhone；README 将下载、固件修补、DFU 恢复和自定义固件安装串成一条命令流水线（见 <a target="_blank" rel="noopener" href="https://github.com/Lakr233/vphone-cli#readme">README</a>）。它适合研究 Apple 虚拟化、启动链和设备测试自动化，但不是面向普通用户的模拟器：运行需要 SIP/AMFI 放宽、私有 entitlement、Xcode/iOS SDK 以及一长串工具链，相关安全边界和账号/固件责任必须由使用者承担。主要语言为 Swift；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 9,666 stars、今日新增 1,290 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/Lakr233/vphone-cli/blob/main/LICENSE">MIT</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/Lakr233/vphone-cli/commit/2af884b56c4d9044cdfad8ac94f034ec767d0fb3">2af884b</a>（2026-08-29）。</p>
-<h3 id="tt-a1i-archify"><a href="#tt-a1i-archify" class="headerlink" title="tt-a1i/archify"></a><a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">tt-a1i/archify</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a> 是面向 Cursor、Claude Code、Codex CLI 和 OpenCode 的 Node.js 渲染与校验系统：Agent 先产出 typed JSON IR，再确定性编译成带交互和导出能力的 HTML/SVG，并能比较两个已验证快照的增删改和路由变化（见 <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify#readme">README</a>）。它适合系统设计、代码评审和需要可追溯 Agent 上下文的团队；限制是图表只能证明输入中被声明并通过检查的事实，不能替代运行时观测，具体集成也依赖对应 Agent 主机和 Node.js 工具链。主要语言为 JavaScript；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 34,885 stars、今日新增 3,722 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify/blob/main/LICENSE">MIT</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify/commit/5de7275fe87a66a19d52a4d9b0b3a4f2a5a90115">5de7275</a>（2026-08-30）。</p>
-<h3 id="unclecode-crawl4ai"><a href="#unclecode-crawl4ai" class="headerlink" title="unclecode/crawl4ai"></a><a target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai">unclecode/crawl4ai</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai">Crawl4AI</a> 是面向 LLM 的开源网页爬虫与抓取器，把网页转换成适合 RAG、Agent 和数据管道使用的 Markdown，并提供异步浏览器池、缓存、会话和深度抓取能力（见 <a target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai#readme">README</a>）。README 列出的 v0.9.2 是维护补丁，之前的 v0.9.0 强化了 Docker API 的默认认证与信任边界，适合学习浏览器自动化和网页数据入口；限制是抓取仍要遵守站点条款、robots、隐私与版权边界，浏览器运行时、代理和自托管安全也需要自行维护。主要语言为 Python；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 80,266 stars、今日新增 221 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai/blob/main/LICENSE">Apache-2.0</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai/commit/7e801521428ee12509994d39151006f64055ebe3">7e80152</a>（2026-07-15）。</p>
-<h3 id="mvanhorn-last30days-skill"><a href="#mvanhorn-last30days-skill" class="headerlink" title="mvanhorn/last30days-skill"></a><a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill">mvanhorn/last30days-skill</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill">last30days-skill</a> 是一个 Agent 研究技能，可并行检索 Reddit、X、YouTube、Hacker News、Polymarket、GitHub 和网页，再按互动信号组织摘要（见 <a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill#readme">README</a>）。它适合做趋势扫描和 Agent 搜索工作流实验，但不同来源需要不同的登录、API 或浏览器会话，点赞、赞成票和预测市场赔率都只是信号，不是已核验事实；涉及金融市场时更不能把摘要当投资建议。主要语言为 Python；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 60,527 stars、今日新增 230 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill/blob/main/LICENSE">MIT</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill/commit/a218edadbc3361672f5e5e2cd72a8212b0b3fbb8">a218eda</a>（2026-08-26）。</p>
-<h3 id="majd-ipatool"><a href="#majd-ipatool" class="headerlink" title="majd/ipatool"></a><a target="_blank" rel="noopener" href="https://github.com/majd/ipatool">majd/ipatool</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/majd/ipatool">ipatool</a> 是 Go 编写的命令行工具，可搜索并下载 iOS、iPadOS、tvOS 和 visionOS 的 App Store 应用包 .ipa，同时提供账号认证、搜索、购买和已购列表命令（见 <a target="_blank" rel="noopener" href="https://github.com/majd/ipatool#readme">README</a>）。最新提交加入了 visionOS 搜索与下载支持，适合做 App 包研究、设备测试和可重复的发布排查；限制是需要 Apple ID 和商店访问条件，地区、购买授权、账号风控与应用分发规则仍然有效，它也不是模拟器或构建系统。主要语言为 Go；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 10,236 stars、今日新增 58 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/majd/ipatool/blob/main/LICENSE">MIT</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/majd/ipatool/commit/d5d0b56faf64e3fdef885d49e7928b390aadb6c7">d5d0b56</a>（2026-08-30）。</p>
-<h3 id="pollen-robotics-microduck-rl"><a href="#pollen-robotics-microduck-rl" class="headerlink" title="pollen-robotics/microduck_rl"></a><a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl">pollen-robotics/microduck_rl</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl">microduck_rl</a> 提供 Microduck 双足机器人的强化学习环境：约 800 克、25 厘米高的机器人在 mjlab/MuJoCo Warp 中用 PPO 训练，策略以 50 Hz 导出为 ONNX，再部署到实体机器人（见 <a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl#readme">README</a>）。它把执行器物理、域随机化、反向间隙和奖励设计这些 sim-to-real 细节放进可复现实验，适合机器人学习者；限制是训练需要 CUDA GPU，README 估计 4096 个环境跑出可用步态约需 1–2 小时，且代码的 <a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl/blob/main/LICENSE">Apache-2.0</a> 与硬件设计文件的 CC BY-SA-NC 条款不能混为一谈。主要语言为 Python；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 812 stars、今日新增 168 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl/commit/1e79c29c97d8b38aee9eefde77a545860ba7658e">1e79c29</a>（2026-08-25）。</p>
-<h3 id="corsairdev-corsair"><a href="#corsairdev-corsair" class="headerlink" title="corsairdev/corsair"></a><a target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair">corsairdev/corsair</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair">Corsair</a> 是一个面向 Agent、后端服务和多租户控制台的 REST 应用集成平台，用统一语法连接第三方 API，并提供自托管核心与处理 OAuth 刷新、Webhook 的 Hub 路径（见 <a target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair#readme">README</a>）。它适合学习“连接层”如何从单个 Agent 扩展到产品级集成；限制是适配器、凭证、Webhook 和外部服务稳定性都会变成运维成本，而且 GitHub 当前把许可证元数据标为 NOASSERTION/Other，虽 <a target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair/blob/main/LICENSE">LICENSE</a> 文件正文为 Apache License 2.0，商用或再分发前应按文件和依赖逐项确认。主要语言为 TypeScript；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 10,970 stars、今日新增 126 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair/commit/fed2ffec5bef9c3845a660701ba24694fea3a15c">fed2ffe</a>（2026-08-30）。</p>
-<h3 id="every-app-open-seo"><a href="#every-app-open-seo" class="headerlink" title="every-app/open-seo"></a><a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo">every-app/open-seo</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo">OpenSEO</a> 是面向个人和 Agent 的 SEO 工具，把关键词研究、排名跟踪、竞品洞察、反向链接、站点审计和 AI 可见性接入 MCP 与可复用技能，并提供 Docker/Cloudflare 自托管路径（见 <a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo#readme">README</a>）。它适合内容站点运营者和想把外部数据接入 Agent 的开发者；限制是自托管仍需要 DataForSEO API key 并按供应商用量付费，README 明确 Cloudflare 路径比其他平台更成熟，托管版订阅与开源自托管也要分开计算成本。主要语言为 TypeScript；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 15,196 stars、今日新增 469 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo/blob/main/LICENSE">MIT</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo/commit/c469a48ae90ab58413b198fe3d1ac1aa90a9b070">c469a48</a>（2026-08-24）。</p>
-<h3 id="livekit-agents"><a href="#livekit-agents" class="headerlink" title="livekit/agents"></a><a target="_blank" rel="noopener" href="https://github.com/livekit/agents">livekit/agents</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/livekit/agents">LiveKit Agents</a> 是构建实时语音和多模态 Agent 的 Python 框架，组合 STT、LLM、TTS、WebRTC、电话接入、任务调度、RPC、MCP 和测试工具（见 <a target="_blank" rel="noopener" href="https://github.com/livekit/agents#readme">README</a>）。它适合做语音产品、实时协作和可测试的流式 Agent；限制是延迟、音频供应商、网络质量、电话费用和隐私/同意流程都会直接影响产品，完整自托管还需要配套的 LiveKit Server 与媒体基础设施。主要语言为 Python；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 13,770 stars、今日新增 132 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/livekit/agents/blob/main/LICENSE">Apache-2.0</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/livekit/agents/commit/f8b69d74b186bbc85bcdc3cd7e17c90736726056">f8b69d7</a>（2026-08-30）。</p>
-<h3 id="abhigyanpatwari-GitNexus"><a href="#abhigyanpatwari-GitNexus" class="headerlink" title="abhigyanpatwari/GitNexus"></a><a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">abhigyanpatwari/GitNexus</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">GitNexus</a> 在浏览器侧把 GitHub、GitLab、Azure、本地仓库或 ZIP 建成代码知识图谱，再通过 MCP 与 Graph RAG Agent 提供依赖、调用链、执行流和集群查询（见 <a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus#readme">README</a>）。npx gitnexus analyze 与 setup 可以生成索引、Agent 技能、上下文文件和 MCP 配置，适合代码探索与大型仓库上下文整理；限制是 tree-sitter、ONNX/native 依赖和大仓库索引会增加安装与资源成本，仓库 <a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus/blob/main/LICENSE">LICENSE</a> 是 PolyForm Noncommercial 1.0.0，GitHub 元数据为 NOASSERTION/Other，商业使用边界必须先读清。主要语言为 TypeScript；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 46,582 stars、今日新增 182 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus/commit/19f6731c344f533b39b383034c4a7ef1ddadbc6">19f6731</a>（2026-08-30）。</p>
-<h2 id="快速浏览"><a href="#快速浏览" class="headerlink" title="快速浏览"></a>快速浏览</h2><div class="briefing-quick-list">
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC"><span class="briefing-quick-item__source">互动课堂</span><span class="briefing-quick-item__body"><strong>THU-MAIC/OpenMAIC</strong><small>把主题和材料变成可编辑、可持续的多 Agent 课程。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills"><span class="briefing-quick-item__source">科研技能</span><span class="briefing-quick-item__body"><strong>K-Dense-AI/scientific-agent-skills</strong><small>把科学数据库与研究流程封装成 Agent 可编排技能。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Lakr233/vphone-cli"><span class="briefing-quick-item__source">本地虚拟化</span><span class="briefing-quick-item__body"><strong>Lakr233/vphone-cli</strong><small>研究 Apple Virtualization.framework 上的虚拟 iPhone 流程。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify"><span class="briefing-quick-item__source">架构事实</span><span class="briefing-quick-item__body"><strong>tt-a1i/archify</strong><small>把类型化架构事实编译成可复核、可导出的图。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai"><span class="briefing-quick-item__source">网页采集</span><span class="briefing-quick-item__body"><strong>unclecode/crawl4ai</strong><small>把网页抓取和清洗接入 RAG、Agent 与数据管道。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill"><span class="briefing-quick-item__source">趋势研究</span><span class="briefing-quick-item__body"><strong>mvanhorn/last30days-skill</strong><small>跨社区搜索并把互动信号组织成研究摘要。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/majd/ipatool"><span class="briefing-quick-item__source">App 包研究</span><span class="briefing-quick-item__body"><strong>majd/ipatool</strong><small>搜索和下载 Apple App Store 的应用包。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl"><span class="briefing-quick-item__source">机器人学习</span><span class="briefing-quick-item__body"><strong>pollen-robotics/microduck_rl</strong><small>把双足机器人策略从 MuJoCo 训练导出到实体机。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair"><span class="briefing-quick-item__source">应用连接层</span><span class="briefing-quick-item__body"><strong>corsairdev/corsair</strong><small>用统一 REST 语法连接 Agent、后端和第三方应用。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/every-app/open-seo"><span class="briefing-quick-item__source">SEO 自动化</span><span class="briefing-quick-item__body"><strong>every-app/open-seo</strong><small>通过 MCP 把关键词、竞品和站点审计交给 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/livekit/agents"><span class="briefing-quick-item__source">实时语音</span><span class="briefing-quick-item__body"><strong>livekit/agents</strong><small>把语音、调度、MCP 和 WebRTC 组合成实时 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus"><span class="briefing-quick-item__source">代码知识图谱</span><span class="briefing-quick-item__body"><strong>abhigyanpatwari/GitNexus</strong><small>给 Agent 一张可查询的代码依赖和调用链地图。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+<h2 id="今日要点">今日要点</h2>
+<p>今天最强的信号不是“又多了几个 Agent 项目”，而是 Agent
+开始交付有边界的中间产物：<a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC">OpenMAIC</a>
+交付可编辑课程，<a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a>
+交付可校验架构图，<a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">GitNexus</a>
+交付代码知识图谱。它们共同把输入、状态、导出格式和失败方式暴露出来，比“让模型自己想办法”更接近可维护的软件工程。</p>
+<p>另一条线是基础设施回到使用者手里：<a target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai">Crawl4AI</a>
+处理网页到 Markdown
+的数据入口，<a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo">OpenSEO</a>
+把外部 SEO 数据接入
+MCP，<a target="_blank" rel="noopener" href="https://github.com/livekit/agents">LiveKit Agents</a>
+把语音、调度和 WebRTC
+组合成实时应用，<a target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair">Corsair</a>
+则统一第三方应用连接层。本期采用 12
+个项目，优先看实际工作流、可复现性和限制条件，而不是只看增长最快的数字。</p>
+<h2 id="值得尝试">值得尝试</h2>
+<h3 id="thu-maicopenmaic"><a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC">THU-MAIC/OpenMAIC</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC">OpenMAIC</a> 是一个多
+Agent
+互动课堂平台，可从主题或材料生成幻灯片、测验、交互模拟与项目式学习活动，并支持
+AI 教师/同学、白板、TTS 和 .pptx/HTML 导出（见 <a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC#readme">README</a>）。它的 <a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC/releases/tag/v1.0.0">v1.0.0</a>
+增加了可暂停、恢复和转向的 Agent workbench
+与持久化会话，适合课程原型、教育产品和多 Agent
+工作流研究；限制是本地部署需要 Node.js 20、pnpm 10
+与模型提供商，音视频能力还带来 ffmpeg、ASR/TTS
+和存储配置成本。主要语言为 TypeScript；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+24,230 stars、今日新增 4,901 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC/blob/main/LICENSE">MIT</a>，最近提交为
+<a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC/commit/dfebbcf33f3a56064129903faeab70a9e4243146">dfebbcf</a>（2026-08-29）。</p>
+<h3 id="k-dense-aiscientific-agent-skills"><a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">K-Dense-AI/scientific-agent-skills</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">Scientific
+Agent Skills</a>
+把生物、化学、医学、药物发现和数据分析等研究流程封装成可被 Agent
+编排的技能，并连接上百个科学数据库与工具（见 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills#readme">README</a>）。它适合科研人员、数据科学家和想学习领域工作流编排的开发者；已知限制是数据库和模型接口需要网络/API
+凭证，数据使用条件与每个技能的依赖要单独核验，生成结果不能替代临床或实验结论。主要语言为
+Python；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>
+显示总计 39,371 stars、今日新增 3,663 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/LICENSE.md">MIT</a>，最近提交为
+<a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills/commit/f6fcafeb1cc8c82eca0160a18bc41c38427b8e0f">f6fcafe</a>（2026-08-29）。</p>
+<h3 id="lakr233vphone-cli"><a target="_blank" rel="noopener" href="https://github.com/Lakr233/vphone-cli">Lakr233/vphone-cli</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/Lakr233/vphone-cli">vphone-cli</a> 基于
+Apple Virtualization.framework 和 PCC research VM 基础设施，在 Apple
+Silicon、macOS 15+ 上启动虚拟 iPhone；README 将下载、固件修补、DFU
+恢复和自定义固件安装串成一条命令流水线（见 <a target="_blank" rel="noopener" href="https://github.com/Lakr233/vphone-cli#readme">README</a>）。它适合研究
+Apple
+虚拟化、启动链和设备测试自动化，但不是面向普通用户的模拟器：运行需要
+SIP/AMFI 放宽、私有 entitlement、Xcode/iOS SDK
+以及一长串工具链，相关安全边界和账号/固件责任必须由使用者承担。主要语言为
+Swift；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>
+显示总计 9,666 stars、今日新增 1,290 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/Lakr233/vphone-cli/blob/main/LICENSE">MIT</a>，最近提交为
+<a target="_blank" rel="noopener" href="https://github.com/Lakr233/vphone-cli/commit/2af884b56c4d9044cdfad8ac94f034ec767d0fb3">2af884b</a>（2026-08-29）。</p>
+<h3 id="tt-a1iarchify"><a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">tt-a1i/archify</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a> 是面向
+Cursor、Claude Code、Codex CLI 和 OpenCode 的 Node.js
+渲染与校验系统：Agent 先产出 typed JSON
+IR，再确定性编译成带交互和导出能力的
+HTML/SVG，并能比较两个已验证快照的增删改和路由变化（见 <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify#readme">README</a>）。它适合系统设计、代码评审和需要可追溯
+Agent
+上下文的团队；限制是图表只能证明输入中被声明并通过检查的事实，不能替代运行时观测，具体集成也依赖对应
+Agent 主机和 Node.js 工具链。主要语言为 JavaScript；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+34,885 stars、今日新增 3,722 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify/blob/main/LICENSE">MIT</a>，最近提交为
+<a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify/commit/5de7275fe87a66a19d52a4d9b0b3a4f2a5a90115">5de7275</a>（2026-08-30）。</p>
+<h3 id="unclecodecrawl4ai"><a target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai">unclecode/crawl4ai</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai">Crawl4AI</a> 是面向
+LLM 的开源网页爬虫与抓取器，把网页转换成适合 RAG、Agent 和数据管道使用的
+Markdown，并提供异步浏览器池、缓存、会话和深度抓取能力（见 <a target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai#readme">README</a>）。README
+列出的 v0.9.2 是维护补丁，之前的 v0.9.0 强化了 Docker API
+的默认认证与信任边界，适合学习浏览器自动化和网页数据入口；限制是抓取仍要遵守站点条款、robots、隐私与版权边界，浏览器运行时、代理和自托管安全也需要自行维护。主要语言为
+Python；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>
+显示总计 80,266 stars、今日新增 221 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai/blob/main/LICENSE">Apache-2.0</a>，最近提交为
+<a target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai/commit/7e801521428ee12509994d39151006f64055ebe3">7e80152</a>（2026-07-15）。</p>
+<h3 id="mvanhornlast30days-skill"><a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill">mvanhorn/last30days-skill</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill">last30days-skill</a>
+是一个 Agent 研究技能，可并行检索 Reddit、X、YouTube、Hacker
+News、Polymarket、GitHub 和网页，再按互动信号组织摘要（见 <a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill#readme">README</a>）。它适合做趋势扫描和
+Agent 搜索工作流实验，但不同来源需要不同的登录、API
+或浏览器会话，点赞、赞成票和预测市场赔率都只是信号，不是已核验事实；涉及金融市场时更不能把摘要当投资建议。主要语言为
+Python；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>
+显示总计 60,527 stars、今日新增 230 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill/blob/main/LICENSE">MIT</a>，最近提交为
+<a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill/commit/a218edadbc3361672f5e5e2cd72a8212b0b3fbb8">a218eda</a>（2026-08-26）。</p>
+<h3 id="majdipatool"><a target="_blank" rel="noopener" href="https://github.com/majd/ipatool">majd/ipatool</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/majd/ipatool">ipatool</a> 是 Go
+编写的命令行工具，可搜索并下载 iOS、iPadOS、tvOS 和 visionOS 的 App
+Store 应用包 .ipa，同时提供账号认证、搜索、购买和已购列表命令（见 <a target="_blank" rel="noopener" href="https://github.com/majd/ipatool#readme">README</a>）。最新提交加入了
+visionOS 搜索与下载支持，适合做 App
+包研究、设备测试和可重复的发布排查；限制是需要 Apple ID
+和商店访问条件，地区、购买授权、账号风控与应用分发规则仍然有效，它也不是模拟器或构建系统。主要语言为
+Go；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>
+显示总计 10,236 stars、今日新增 58 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/majd/ipatool/blob/main/LICENSE">MIT</a>，最近提交为
+<a target="_blank" rel="noopener" href="https://github.com/majd/ipatool/commit/d5d0b56faf64e3fdef885d49e7928b390aadb6c7">d5d0b56</a>（2026-08-30）。</p>
+<h3 id="pollen-roboticsmicroduck_rl"><a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl">pollen-robotics/microduck_rl</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl">microduck_rl</a>
+提供 Microduck 双足机器人的强化学习环境：约 800 克、25 厘米高的机器人在
+mjlab/MuJoCo Warp 中用 PPO 训练，策略以 50 Hz 导出为
+ONNX，再部署到实体机器人（见 <a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl#readme">README</a>）。它把执行器物理、域随机化、反向间隙和奖励设计这些
+sim-to-real 细节放进可复现实验，适合机器人学习者；限制是训练需要 CUDA
+GPU，README 估计 4096 个环境跑出可用步态约需 1–2 小时，且代码的 <a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl/blob/main/LICENSE">Apache-2.0</a>
+与硬件设计文件的 CC BY-SA-NC 条款不能混为一谈。主要语言为 Python；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 812
+stars、今日新增 168 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl/commit/1e79c29c97d8b38aee9eefde77a545860ba7658e">1e79c29</a>（2026-08-25）。</p>
+<h3 id="corsairdevcorsair"><a target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair">corsairdev/corsair</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair">Corsair</a>
+是一个面向 Agent、后端服务和多租户控制台的 REST
+应用集成平台，用统一语法连接第三方 API，并提供自托管核心与处理 OAuth
+刷新、Webhook 的 Hub 路径（见 <a target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair#readme">README</a>）。它适合学习“连接层”如何从单个
+Agent 扩展到产品级集成；限制是适配器、凭证、Webhook
+和外部服务稳定性都会变成运维成本，而且 GitHub 当前把许可证元数据标为
+NOASSERTION/Other，虽 <a target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair/blob/main/LICENSE">LICENSE</a>
+文件正文为 Apache License
+2.0，商用或再分发前应按文件和依赖逐项确认。主要语言为 TypeScript；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+10,970 stars、今日新增 126 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair/commit/fed2ffec5bef9c3845a660701ba24694fea3a15c">fed2ffe</a>（2026-08-30）。</p>
+<h3 id="every-appopen-seo"><a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo">every-app/open-seo</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo">OpenSEO</a>
+是面向个人和 Agent 的 SEO
+工具，把关键词研究、排名跟踪、竞品洞察、反向链接、站点审计和 AI
+可见性接入 MCP 与可复用技能，并提供 Docker/Cloudflare 自托管路径（见 <a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo#readme">README</a>）。它适合内容站点运营者和想把外部数据接入
+Agent 的开发者；限制是自托管仍需要 DataForSEO API key
+并按供应商用量付费，README 明确 Cloudflare
+路径比其他平台更成熟，托管版订阅与开源自托管也要分开计算成本。主要语言为
+TypeScript；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+15,196 stars、今日新增 469 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo/blob/main/LICENSE">MIT</a>，最近提交为
+<a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo/commit/c469a48ae90ab58413b198fe3d1ac1aa90a9b070">c469a48</a>（2026-08-24）。</p>
+<h3 id="livekitagents"><a target="_blank" rel="noopener" href="https://github.com/livekit/agents">livekit/agents</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/livekit/agents">LiveKit Agents</a>
+是构建实时语音和多模态 Agent 的 Python 框架，组合
+STT、LLM、TTS、WebRTC、电话接入、任务调度、RPC、MCP 和测试工具（见 <a target="_blank" rel="noopener" href="https://github.com/livekit/agents#readme">README</a>）。它适合做语音产品、实时协作和可测试的流式
+Agent；限制是延迟、音频供应商、网络质量、电话费用和隐私/同意流程都会直接影响产品，完整自托管还需要配套的
+LiveKit Server 与媒体基础设施。主要语言为 Python；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+13,770 stars、今日新增 132 stars，许可证为 <a target="_blank" rel="noopener" href="https://github.com/livekit/agents/blob/main/LICENSE">Apache-2.0</a>，最近提交为
+<a target="_blank" rel="noopener" href="https://github.com/livekit/agents/commit/f8b69d74b186bbc85bcdc3cd7e17c90736726056">f8b69d7</a>（2026-08-30）。</p>
+<h3 id="abhigyanpatwarigitnexus"><a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">abhigyanpatwari/GitNexus</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">GitNexus</a>
+在浏览器侧把 GitHub、GitLab、Azure、本地仓库或 ZIP
+建成代码知识图谱，再通过 MCP 与 Graph RAG Agent
+提供依赖、调用链、执行流和集群查询（见 <a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus#readme">README</a>）。npx
+gitnexus analyze 与 setup 可以生成索引、Agent 技能、上下文文件和 MCP
+配置，适合代码探索与大型仓库上下文整理；限制是 tree-sitter、ONNX/native
+依赖和大仓库索引会增加安装与资源成本，仓库 <a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus/blob/main/LICENSE">LICENSE</a>
+是 PolyForm Noncommercial 1.0.0，GitHub 元数据为
+NOASSERTION/Other，商业使用边界必须先读清。主要语言为 TypeScript；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+46,582 stars、今日新增 182 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus/commit/19f6731c344f533b39b383034c4a7ef1ddadbc6">19f6731</a>（2026-08-30）。</p>
+<h2 id="快速浏览">快速浏览</h2>
+<div class="briefing-quick-list">
+<p><a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC"><span class="briefing-quick-item__source">互动课堂</span><span class="briefing-quick-item__body"><strong>THU-MAIC/OpenMAIC</strong><small>把主题和材料变成可编辑、可持续的多
+Agent 课程。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills"><span class="briefing-quick-item__source">科研技能</span><span class="briefing-quick-item__body"><strong>K-Dense-AI/scientific-agent-skills</strong><small>把科学数据库与研究流程封装成
+Agent 可编排技能。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Lakr233/vphone-cli"><span class="briefing-quick-item__source">本地虚拟化</span><span class="briefing-quick-item__body"><strong>Lakr233/vphone-cli</strong><small>研究
+Apple Virtualization.framework 上的虚拟 iPhone
+流程。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify"><span class="briefing-quick-item__source">架构事实</span><span class="briefing-quick-item__body"><strong>tt-a1i/archify</strong><small>把类型化架构事实编译成可复核、可导出的图。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/unclecode/crawl4ai"><span class="briefing-quick-item__source">网页采集</span><span class="briefing-quick-item__body"><strong>unclecode/crawl4ai</strong><small>把网页抓取和清洗接入
+RAG、Agent 与数据管道。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill"><span class="briefing-quick-item__source">趋势研究</span><span class="briefing-quick-item__body"><strong>mvanhorn/last30days-skill</strong><small>跨社区搜索并把互动信号组织成研究摘要。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/majd/ipatool"><span class="briefing-quick-item__source">App 包研究</span><span class="briefing-quick-item__body"><strong>majd/ipatool</strong><small>搜索和下载
+Apple App Store 的应用包。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl"><span class="briefing-quick-item__source">机器人学习</span><span class="briefing-quick-item__body"><strong>pollen-robotics/microduck_rl</strong><small>把双足机器人策略从
+MuJoCo 训练导出到实体机。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/corsairdev/corsair"><span class="briefing-quick-item__source">应用连接层</span><span class="briefing-quick-item__body"><strong>corsairdev/corsair</strong><small>用统一
+REST 语法连接 Agent、后端和第三方应用。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/every-app/open-seo"><span class="briefing-quick-item__source">SEO 自动化</span><span class="briefing-quick-item__body"><strong>every-app/open-seo</strong><small>通过
+MCP 把关键词、竞品和站点审计交给 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/livekit/agents"><span class="briefing-quick-item__source">实时语音</span><span class="briefing-quick-item__body"><strong>livekit/agents</strong><small>把语音、调度、MCP
+和 WebRTC 组合成实时 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus"><span class="briefing-quick-item__source">代码知识图谱</span><span class="briefing-quick-item__body"><strong>abhigyanpatwari/GitNexus</strong><small>给
+Agent 一张可查询的代码依赖和调用链地图。</small></span><span class="briefing-quick-item__arrow">↗</span></a></p>
 </div>
 
                 
