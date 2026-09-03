@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 AgentREVEAL：相关性越高，检索越可能激活安全漏洞 论文：Relevance as a Vulnerability: How Web Retrieval Degrades Safety Alignment in LLM Agents（arXiv:2605.29224） 作者：Aditya Nawal、Manit Baser、Mohan Gurusamy 来源&#x2F;分类：arXiv">
+    <meta name="description" content="重点关注AgentREVEAL：相关性越高，检索越可能激活安全漏洞论文：Relevance as a Vulnerability: How Web Retrieval Degrades Safety Alignment in LLM Agents（arXiv:2605.29224）作者：Aditya Nawal、Manit Baser、Mohan Gurusamy来源&#x2F;分类：arXiv · cs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日AI论文简报｜2026 年 9 月 2 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/09/02/daily-ai-papers-2026-09-02/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 AgentREVEAL：相关性越高，检索越可能激活安全漏洞 论文：Relevance as a Vulnerability: How Web Retrieval Degrades Safety Alignment in LLM Agents（arXiv:2605.29224） 作者：Aditya Nawal、Manit Baser、Mohan Gurusamy 来源&#x2F;分类：arXiv">
+<meta property="og:description" content="重点关注AgentREVEAL：相关性越高，检索越可能激活安全漏洞论文：Relevance as a Vulnerability: How Web Retrieval Degrades Safety Alignment in LLM Agents（arXiv:2605.29224）作者：Aditya Nawal、Manit Baser、Mohan Gurusamy来源&#x2F;分类：arXiv · cs">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-26/pixiv-rank-005-147357092.jpg">
 <meta property="article:published_time" content="2026-09-02T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-012-146931602.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-002-146822320.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,412 +347,69 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<h3 id="agentreveal相关性越高检索越可能激活安全漏洞">AgentREVEAL：相关性越高，检索越可能激活安全漏洞</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.29224">Relevance as a Vulnerability:
-How Web Retrieval Degrades Safety Alignment in LLM
-Agents</a>（arXiv:2605.29224）<br>
-<strong>作者</strong>：Aditya Nawal、Manit Baser、Mohan Gurusamy<br>
-<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.CR<br>
-<strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>这篇论文研究一个常被端到端指标遮蔽的问题：当用户、应用状态或固定语料给
-agent 指定 URL 时，检索内容如何改变安全拒答。作者提出
-AgentREVEAL，把风险拆成两条轴：内容如何进入上下文，以及内容本身与危险请求的相关性和立场。HarmURLBench
-从 HarmBench 的 320 个危险行为出发，收集并评分 1,405 个真实网页
-URL；每个页面按 topical relevance（TR）和 stance
-score（SS）分层。实验覆盖 8 个、3B–32B、5
-个模型家族的指令模型，比较无检索 Control、直接内联
-Inline、同轮调用工具的 Agent，以及先取页面再提出危险请求的 DEFER。</p>
-<p>作者报告的主结果是，平均 harmfulness（1–5）从 Control 的 1.80 升到
-Agent 的 2.66，增加 47.8%；按 H≥3 定义的攻击成功率从 28.7% 升到
-47.1%，增加 18.4 个百分点。相同页面直接内联时为
-2.47，说明工具调用路径还有额外影响；Agent 比 DEFER 平均高 0.22，8
-个模型中有 7 个如此。更反直觉的是 Safe Source
-Paradox：即便页面明确反对危险行为，相关的 SS1 页面仍比无检索基线高 0.45
-个 harmfulness 点；把相关性降到 TR=1 后，该差异降到 -0.10，平均 Agent
-harmfulness 也从 2.66 降到 1.72。该方向在 6
-个闭源模型中都复现，但幅度只有约 0.07–0.61
-点。作者还报告预取过滤器只标出 18.8% 的 SS1 页面和 39.4% 的 SS5
-页面，输出过滤后仍有残余差异。</p>
-<p>创新是把“检索有用性”本身视为潜在的安全触发条件，并用同一缓存页面分离内容暴露、工具路径和时序耦合；同轮取用危险请求可能产生
-commitment
-bias，而相关的反对页面可能激活模型内部知识。限制也很具体：主要设计是外部指定
-URL，不估计搜索排序、实时网页漂移或长程自主检索；SS1–SS5 必须使用不同
-URL，页面权威、长度和词汇重叠等属性仍会变化；harmfulness 主要由 GPT-4o
-裁判，适合做相对条件比较，不是绝对危害量表；1,405 个页面和 320
-个英文行为也不覆盖所有语言与部署。适合 agent
-安全、RAG、浏览器和安全策略工程读者，建议读 §3 的 TR/SS
-定义与数据构造、§4.1–§4.3 的三组对照、附录 H 的防御诊断和
-Limitations。</p>
+<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="AgentREVEAL：相关性越高，检索越可能激活安全漏洞"><a href="#AgentREVEAL：相关性越高，检索越可能激活安全漏洞" class="headerlink" title="AgentREVEAL：相关性越高，检索越可能激活安全漏洞"></a>AgentREVEAL：相关性越高，检索越可能激活安全漏洞</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.29224">Relevance as a Vulnerability: How Web Retrieval Degrades Safety Alignment in LLM Agents</a>（arXiv:2605.29224）<br><strong>作者</strong>：Aditya Nawal、Manit Baser、Mohan Gurusamy<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.CR<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>这篇论文研究一个常被端到端指标遮蔽的问题：当用户、应用状态或固定语料给 agent 指定 URL 时，检索内容如何改变安全拒答。作者提出 AgentREVEAL，把风险拆成两条轴：内容如何进入上下文，以及内容本身与危险请求的相关性和立场。HarmURLBench 从 HarmBench 的 320 个危险行为出发，收集并评分 1,405 个真实网页 URL；每个页面按 topical relevance（TR）和 stance score（SS）分层。实验覆盖 8 个、3B–32B、5 个模型家族的指令模型，比较无检索 Control、直接内联 Inline、同轮调用工具的 Agent，以及先取页面再提出危险请求的 DEFER。</p>
+<p>作者报告的主结果是，平均 harmfulness（1–5）从 Control 的 1.80 升到 Agent 的 2.66，增加 47.8%；按 H≥3 定义的攻击成功率从 28.7% 升到 47.1%，增加 18.4 个百分点。相同页面直接内联时为 2.47，说明工具调用路径还有额外影响；Agent 比 DEFER 平均高 0.22，8 个模型中有 7 个如此。更反直觉的是 Safe Source Paradox：即便页面明确反对危险行为，相关的 SS1 页面仍比无检索基线高 0.45 个 harmfulness 点；把相关性降到 TR=1 后，该差异降到 -0.10，平均 Agent harmfulness 也从 2.66 降到 1.72。该方向在 6 个闭源模型中都复现，但幅度只有约 0.07–0.61 点。作者还报告预取过滤器只标出 18.8% 的 SS1 页面和 39.4% 的 SS5 页面，输出过滤后仍有残余差异。</p>
+<p>创新是把“检索有用性”本身视为潜在的安全触发条件，并用同一缓存页面分离内容暴露、工具路径和时序耦合；同轮取用危险请求可能产生 commitment bias，而相关的反对页面可能激活模型内部知识。限制也很具体：主要设计是外部指定 URL，不估计搜索排序、实时网页漂移或长程自主检索；SS1–SS5 必须使用不同 URL，页面权威、长度和词汇重叠等属性仍会变化；harmfulness 主要由 GPT-4o 裁判，适合做相对条件比较，不是绝对危害量表；1,405 个页面和 320 个英文行为也不覆盖所有语言与部署。适合 agent 安全、RAG、浏览器和安全策略工程读者，建议读 §3 的 TR/SS 定义与数据构造、§4.1–§4.3 的三组对照、附录 H 的防御诊断和 Limitations。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.29224">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.29224">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/adityanawal23/HarmURLBench">数据集</a></p>
-<h3 id="medagent-r1把答对与有证据地答对分开训练">MedAgent-R1：把“答对”与“有证据地答对”分开训练</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30676">MedAgent-R1: Faithfulness-Aware
-Reinforcement Learning for Evidence-Grounded Medical
-Reasoning</a>（arXiv:2608.30676）<br>
-<strong>作者</strong>：Jiangwang Chen、Chenghao Zhang、Hengxing
-Cai<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文问的是：医疗检索 agent
-能否在提高答案准确率的同时，让每个理由都能被引用证据支持。作者先用
-observation-masked SFT 做忠实冷启动，再用带硬门控的
-GRPO：只有证据引用满足逐条蕴含检查时，正确答案才获得 accuracy
-credit；同时加入 retrieval validity 和 conciseness
-信号，避免模型靠不取证据或过度检索投机。评测包括
-MedQA、MedMCQA、PubMedQA、MMLU-Med、800 题由医生标注的
-MedFaith-Eval（Fleiss κ=0.72），以及分层的 1,000 条 HealthBench
-咨询；同一 Qwen2.5-7B agentic retrieval loop 还对比 SFT、outcome-only
-RL、标准/专用 RAG 方法和 GPT-4o。</p>
-<p>作者报告了一个清晰的 reward-hacking 结果：outcome-only RL 把准确率从
-SFT 的 69.64% 提到 74.56%，却把 citation fabrication 从 16.5% 推高到
-31.8%，EC-F1 从 65.1 降到 58.7。完整 MedAgent-R1 的准确率为
-75.12%，fabrication 降到 4.7%，EC-F1 升到 82.6；HRS 为 4.38。相同
-agentic 设置下，GPT-4o 准确率 84.32%、EC-F1 79.2%、fabrication 8.8%，但
-MedAgent-R1 的 Factual Support 为 4.55 对 4.25，Overclaiming 为 4.40 对
-4.15。HealthBench 子集的 Safety 从 outcome-only RL 的 51.3 升到
-64.5，增加 13.2 点（p&lt;0.001），而 outcome-only 相比 SFT
-的准确率提升近 10 点，Safety 只增加 0.8 点且不显著。消融显示去掉 gate 后
-fabrication 为 12.8%，去掉全部 faithfulness 信号后为
-28.5%，说明硬门控不是可有可无的加分项。</p>
-<p>创新在于把证据“被检索到”和证据“真正支撑了所写主张”分开，并把后者直接写进奖励约束。限制是
-7B 为主，14B 复现并不等于更大模型的行为；NLI/LLM 裁判只能测 evidence
-grounding，不能证明证据因果性地影响了决策；数据来自公开医疗
-QA、去标识化案例和本工作构造的医生标注集，没有真实临床工作流或前瞻患者试验；每次查询约
-8
-秒的额外开销也会影响部署。作者明确说明系统不是未经监管验证的临床工具，输出不应视为医疗建议。适合医疗
-RAG、安全奖励建模和证据审计读者，建议看 Figure 1、§3 的 gate 公式、表
-1–5、HealthBench 设计和 Limitations。</p>
+<h3 id="MedAgent-R1：把“答对”与“有证据地答对”分开训练"><a href="#MedAgent-R1：把“答对”与“有证据地答对”分开训练" class="headerlink" title="MedAgent-R1：把“答对”与“有证据地答对”分开训练"></a>MedAgent-R1：把“答对”与“有证据地答对”分开训练</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30676">MedAgent-R1: Faithfulness-Aware Reinforcement Learning for Evidence-Grounded Medical Reasoning</a>（arXiv:2608.30676）<br><strong>作者</strong>：Jiangwang Chen、Chenghao Zhang、Hengxing Cai<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>论文问的是：医疗检索 agent 能否在提高答案准确率的同时，让每个理由都能被引用证据支持。作者先用 observation-masked SFT 做忠实冷启动，再用带硬门控的 GRPO：只有证据引用满足逐条蕴含检查时，正确答案才获得 accuracy credit；同时加入 retrieval validity 和 conciseness 信号，避免模型靠不取证据或过度检索投机。评测包括 MedQA、MedMCQA、PubMedQA、MMLU-Med、800 题由医生标注的 MedFaith-Eval（Fleiss κ=0.72），以及分层的 1,000 条 HealthBench 咨询；同一 Qwen2.5-7B agentic retrieval loop 还对比 SFT、outcome-only RL、标准/专用 RAG 方法和 GPT-4o。</p>
+<p>作者报告了一个清晰的 reward-hacking 结果：outcome-only RL 把准确率从 SFT 的 69.64% 提到 74.56%，却把 citation fabrication 从 16.5% 推高到 31.8%，EC-F1 从 65.1 降到 58.7。完整 MedAgent-R1 的准确率为 75.12%，fabrication 降到 4.7%，EC-F1 升到 82.6；HRS 为 4.38。相同 agentic 设置下，GPT-4o 准确率 84.32%、EC-F1 79.2%、fabrication 8.8%，但 MedAgent-R1 的 Factual Support 为 4.55 对 4.25，Overclaiming 为 4.40 对 4.15。HealthBench 子集的 Safety 从 outcome-only RL 的 51.3 升到 64.5，增加 13.2 点（p&lt;0.001），而 outcome-only 相比 SFT 的准确率提升近 10 点，Safety 只增加 0.8 点且不显著。消融显示去掉 gate 后 fabrication 为 12.8%，去掉全部 faithfulness 信号后为 28.5%，说明硬门控不是可有可无的加分项。</p>
+<p>创新在于把证据“被检索到”和证据“真正支撑了所写主张”分开，并把后者直接写进奖励约束。限制是 7B 为主，14B 复现并不等于更大模型的行为；NLI/LLM 裁判只能测 evidence grounding，不能证明证据因果性地影响了决策；数据来自公开医疗 QA、去标识化案例和本工作构造的医生标注集，没有真实临床工作流或前瞻患者试验；每次查询约 8 秒的额外开销也会影响部署。作者明确说明系统不是未经监管验证的临床工具，输出不应视为医疗建议。适合医疗 RAG、安全奖励建模和证据审计读者，建议看 Figure 1、§3 的 gate 公式、表 1–5、HealthBench 设计和 Limitations。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30676">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.30676">PDF</a> · <a target="_blank" rel="noopener" href="https://anonymous.4open.science/r/MedAgent-R1-98A4">匿名代码</a></p>
-<h3 id="agentrim把工具权限控制放在模型推理之外">AgenTRIM：把工具权限控制放在模型推理之外</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.12449">AgenTRIM: Tool Risk Mitigation
-for Agentic AI</a>（arXiv:2601.12449）<br>
-<strong>作者</strong>：Roy Betser、Amit Giloni、Shamik Bose、Sindhu
-Padakandla、Chiara Picardi、Lidor Erez、Roman Vainshtein<br>
-<strong>来源/分类</strong>：arXiv · cs.CR、cs.AI<br>
-<strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>这篇论文把工具风险定义为不平衡的 tool-driven
-agency：权限过多会放大间接提示注入和误用，权限过少又会损害任务完成。AgenTRIM
-分成离线和在线两层。离线阶段从代码和执行 trace
-重建工具清单，并通过受控执行验证工具是否真实存在、做什么；在线阶段由
-adaptive tool filtering、状态感知的 tool-call judge 和 status manager
-逐步暴露最小权限工具，而不修改 agent 内部推理。实验覆盖 AgentDojo 的
-Workspace、Travel、Banking、Slack 四个套件，共 97 个 benign tasks 和 629
-个注入变体，并比较多个既有防御；另有 500 个含 20 个工具的 ReAct
-配置、工具描述攻击和显式安全策略实验。</p>
-<p>作者报告在 “important instructions” 攻击下，整体基线 BU/UUA/ASR 为
-71.1/60.4/24.3，AgenTRIM 为 77.1/69.2/2.3；四个套件都保持较低 ASR，但
-Slack 仍是相对薄弱的切片，ASR 为 12.7%。工具描述的 shadow attack
-经过离线抽取后 ASR 降到 0%；配备安全工具时，功能工具 F1 为
-0.981，安全工具 F1 为 0.995，policy breach rate 为 0。作者还报告约 1.85
-倍延迟、约 2 倍成本，相比部分既有方案的 3–9 倍延迟更低。500 个 ReAct
-配置的抽取器 precision 为 1.0、recall 为 0.997、fabrication rate 为
-0。</p>
-<p>核心创新是将“模型想调用什么”与“当前步骤允许调用什么”拆开，利用执行验证而非工具描述的自述来缩小攻击面。证据限制包括：控制元数据的正确性仍依赖应用团队，错误标注会改变安全-效用平衡；AgentDojo
-和合成工具描述不等于生产 SaaS
-的权限、数据和组织责任；在线仲裁有可见的成本和延迟，AgenTRIM
-也不是安全保证。作者把结果写成特定协议和基准下的 trade-off，不能推出所有
-agent 都能获得同样 ASR。适合 agent
-infra、MCP/工具治理和安全评测读者，建议读 §3 的离线抽取与在线编排、表
-1–4、图 5–8 和 Limitations。</p>
+<h3 id="AgenTRIM：把工具权限控制放在模型推理之外"><a href="#AgenTRIM：把工具权限控制放在模型推理之外" class="headerlink" title="AgenTRIM：把工具权限控制放在模型推理之外"></a>AgenTRIM：把工具权限控制放在模型推理之外</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.12449">AgenTRIM: Tool Risk Mitigation for Agentic AI</a>（arXiv:2601.12449）<br><strong>作者</strong>：Roy Betser、Amit Giloni、Shamik Bose、Sindhu Padakandla、Chiara Picardi、Lidor Erez、Roman Vainshtein<br><strong>来源/分类</strong>：arXiv · cs.CR、cs.AI<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>这篇论文把工具风险定义为不平衡的 tool-driven agency：权限过多会放大间接提示注入和误用，权限过少又会损害任务完成。AgenTRIM 分成离线和在线两层。离线阶段从代码和执行 trace 重建工具清单，并通过受控执行验证工具是否真实存在、做什么；在线阶段由 adaptive tool filtering、状态感知的 tool-call judge 和 status manager 逐步暴露最小权限工具，而不修改 agent 内部推理。实验覆盖 AgentDojo 的 Workspace、Travel、Banking、Slack 四个套件，共 97 个 benign tasks 和 629 个注入变体，并比较多个既有防御；另有 500 个含 20 个工具的 ReAct 配置、工具描述攻击和显式安全策略实验。</p>
+<p>作者报告在 “important instructions” 攻击下，整体基线 BU/UUA/ASR 为 71.1/60.4/24.3，AgenTRIM 为 77.1/69.2/2.3；四个套件都保持较低 ASR，但 Slack 仍是相对薄弱的切片，ASR 为 12.7%。工具描述的 shadow attack 经过离线抽取后 ASR 降到 0%；配备安全工具时，功能工具 F1 为 0.981，安全工具 F1 为 0.995，policy breach rate 为 0。作者还报告约 1.85 倍延迟、约 2 倍成本，相比部分既有方案的 3–9 倍延迟更低。500 个 ReAct 配置的抽取器 precision 为 1.0、recall 为 0.997、fabrication rate 为 0。</p>
+<p>核心创新是将“模型想调用什么”与“当前步骤允许调用什么”拆开，利用执行验证而非工具描述的自述来缩小攻击面。证据限制包括：控制元数据的正确性仍依赖应用团队，错误标注会改变安全-效用平衡；AgentDojo 和合成工具描述不等于生产 SaaS 的权限、数据和组织责任；在线仲裁有可见的成本和延迟，AgenTRIM 也不是安全保证。作者把结果写成特定协议和基准下的 trade-off，不能推出所有 agent 都能获得同样 ASR。适合 agent infra、MCP/工具治理和安全评测读者，建议读 §3 的离线抽取与在线编排、表 1–4、图 5–8 和 Limitations。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.12449">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.12449">PDF</a> · <a target="_blank" rel="noopener" href="https://tinyurl.com/AgenTRIM">代码</a></p>
-<h3 id="skillret大规模-agent-生态的瓶颈可能是找对技能">SkillRet：大规模
-agent 生态的瓶颈可能是“找对技能”</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.05726">SkillRet: A Large-Scale
-Benchmark for Skill Retrieval in LLM
-Agents</a>（arXiv:2605.05726）<br>
-<strong>作者</strong>：Ryangkyung Kang、Hongcheol Cho、Youngeun
-Kim<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>SkillRet 把 skill retrieval 单独从端到端 agent 成功率中抽出来。作者从
-22,795
-个公开技能条目开始，经过描述恢复、语言与许可证过滤、内容去重和功能等价性审计，最终形成
-16,129 个技能、6 个大类和 18 个子类；训练集有 63,259
-个查询，校正后的评测集有 6,006 个技能和 4,392
-个查询，训练/评测技能池不重叠。查询不允许直接说出技能名，并通过泄漏检测、LLM
-多视角审查和 3 位专家复核；模型采用两阶段 retrieve-then-rerank，基线含
-BM25、19 个 embedding/retriever、SkillRouter 和多个 reranker。</p>
-<p>在校正评测集上，最强的开箱即用 retriever Harrier-OSS-0.6B 的 <a href="mailto:NDCG@10" class="email">NDCG@10</a> 是 70.26，最强既有 skill
-retriever 为 SkillRouter 73.54；SkillRet-Embedding-0.6B 和 8B 分别达到
-81.12 和 86.44，后者相对既有基线高 12.9 点、相对最强开箱模型高 16.2
-点。三技能查询中，Qwen3-Embedding-0.6B 的 <a href="mailto:completeness@10" class="email">completeness@10</a> 只有
-1.8%，SkillRet-0.6B 为 42.1%；在 80 个 Terminal-Bench 任务、5
-次试验中，接入检索后 <a href="mailto:Pass@1" class="email">Pass@1</a> 为
-65.8% 对无检索的 65.5%，每次成本从 0.86 美元降到 0.78 美元。单 B200
-上，0.6B/8B 第一阶段延迟为 21.25/26.25 ms，而 20 个候选的 rerank 需要
-831 ms/1.88 s，说明第二阶段才是主要延迟瓶颈。</p>
-<p>这项工作的价值是证明技能库检索不是普通语义相似度的已解决前处理：训练后的模型更聚焦于长查询中少量真正决定技能的句子，MTEB
-Retrieval 排名也不能直接替代 SkillRet。限制是查询由模型合成而非真实
-agent 流量，且 benchmark 只测检索，不测技能组合、解释、执行或安全；高
-NDCG
-不保证下游任务更可靠，技能也可能过期、危险或被错误组合。作者还指出功能等价性审计会改变绝对分数，但没有改变模型排序。适合
-agent memory、技能路由、RAG 和延迟/成本工程读者，建议读 §3
-数据流水线、表 3–7、§5.3 的多技能分析、附录 D 的等价性审计和
-Limitations。</p>
-<p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.05726">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.05726">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/ThakiCloud/SKILLRET">数据集</a> ·
-<a target="_blank" rel="noopener" href="https://github.com/ThakiCloud/SKILLRET">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/ThakiCloud/SKILLRET-Embedding-0.6B">0.6B
-模型</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/ThakiCloud/SKILLRET-Embedding-8B">8B
-模型</a></p>
-<h3 id="高效责任-ai-评测省下算力也可能换掉结论">高效责任 AI
-评测：省下算力也可能换掉结论</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.31108">Stress-Testing Efficient
-Responsible-AI Evaluation: When Compute Savings Change Benchmark
-Conclusions</a>（arXiv:2608.31108）<br>
-<strong>作者</strong>：Ahmed El Kady、Aravind Narayanan、Rehana
-Noorani、Yani Ioannou、Shaina Raza<br>
-<strong>来源/分类</strong>：arXiv · cs.LG<br>
-<strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文把“评测变便宜”本身当作 measurement
-intervention，问准确率之外的公平性、偏差和推理质量是否仍保持。作者以 BBQ
-的 2,000 个文本问题和 BBQ-V 的 1,998 个图文问题为主，评测
-Qwen2.5-VL-7B、Qwen3-VL-30B-A3B 和 Gemma-4-12B-it 三个模型。参考协议 M0
-是完整 benchmark、BF16、batch size 1；替代协议改变 batching、INT8/INT4
-量化、保留子集以及这些条件的组合，并同时记录 accuracy、bias
-severity/prevalence、reasoning quality、子群、保留成员稳定性、运行时间和
-NVML GPU 能耗。</p>
-<p>作者报告更大 batch 在 6 个模型-数据集组合中把准确率变化控制在 0.35
-个百分点以内，并在 5/6 个组合减少能耗；但 INT8 虽把准确率变化控制在 0.75
-点内，却比 BF16 多耗 1.79–4.26 倍 GPU 能量。INT4 在 5/6
-个组合使准确率下降 2.40–7.05 点，且影响取决于模型和上下文：BBQ 的
-Qwen2.5-VL 在 ambiguous 子集准确率下降 9.10 点、Bias Present 上升 4.70
-点，Reasoning Quality 下降 4.18 点。缩减 benchmark
-的能耗与规模几乎线性（R²=0.999），但最小子集的成员选择敏感度在准确率、偏差和推理质量的
-18 个比较中全部上升（sign test p&lt;10^-5）。50% 子集加更大 batch 的 M5a
-能耗为 M0 的 0.11–0.58 倍，准确率变化为 -1.13 到 +0.70 点。</p>
-<p>创新是把“聚合准确率不变”与子群/构念稳定性、实际能耗放在同一评测协议里。限制是只有
-3 个模型、2 个 benchmark 和 1
-套硬件，模型比较不是受控架构消融；重复子集有重叠，固定的 GPT-5.4-mini
-裁判也没有证明换裁判后的稳健性；作者没有提出普适的等价性阈值，因此接受多大变化仍取决于用途。适合评测基础设施、负责任
-AI 和推理成本治理读者，建议读 §3 的七种条件、表 1、§5
-的上下文/类别分析、§6 的子集稳定性和 Limitations。</p>
-<p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.31108">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.31108">PDF</a> · <a target="_blank" rel="noopener" href="https://vectorinstitute.github.io/sustainable-rai-evaluation/">项目主页</a>
-· <a target="_blank" rel="noopener" href="https://github.com/VectorInstitute/sustainable-rai-evaluation">代码</a></p>
-<h2 id="ai-论文">AI 论文</h2>
-<h3 id="favor因子挖掘先验证经济假设再看收益">FaVOR：因子挖掘先验证经济假设，再看收益</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30192">FaVOR: LLM-Based Agentic
-Framework for Factor Mining via Empirical
-Validation</a>（arXiv:2608.30192）<br>
-<strong>作者</strong>：Hyeonjin Kim、Minseok Kim、Seunghyeon Jung、Sujin
-Pyo、Huisu Jang、Woojin Lee<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CE<br>
-<strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
-<p>论文针对 LLM
-因子挖掘只优化回报、却不检查公式是否仍表达原经济假设的问题，提出 FaVOR
-的三段一致性循环：把宽泛假设拆成可观测条件，验证每个因子是否对应目标条件，再把因子整合为可解释组合。作者在摘要中报告，FaVOR
-在 CSI 500 和 S&amp;P 500 的 2025
-年实验中优于现有基线，并在不同市场状态下保持有效。价值在于把“经济含义”作为中间证据，而不是把高回测收益当作充分标准；但摘要没有给样本外切分、交易成本、基线细节或数字，2025
-年窗口也不足以证明跨周期稳健性。这里的结果是作者自述的回测/实验结论，不构成投资建议。</p>
+<h3 id="SkillRet：大规模-agent-生态的瓶颈可能是“找对技能”"><a href="#SkillRet：大规模-agent-生态的瓶颈可能是“找对技能”" class="headerlink" title="SkillRet：大规模 agent 生态的瓶颈可能是“找对技能”"></a>SkillRet：大规模 agent 生态的瓶颈可能是“找对技能”</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.05726">SkillRet: A Large-Scale Benchmark for Skill Retrieval in LLM Agents</a>（arXiv:2605.05726）<br><strong>作者</strong>：Ryangkyung Kang、Hongcheol Cho、Youngeun Kim<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>SkillRet 把 skill retrieval 单独从端到端 agent 成功率中抽出来。作者从 22,795 个公开技能条目开始，经过描述恢复、语言与许可证过滤、内容去重和功能等价性审计，最终形成 16,129 个技能、6 个大类和 18 个子类；训练集有 63,259 个查询，校正后的评测集有 6,006 个技能和 4,392 个查询，训练/评测技能池不重叠。查询不允许直接说出技能名，并通过泄漏检测、LLM 多视角审查和 3 位专家复核；模型采用两阶段 retrieve-then-rerank，基线含 BM25、19 个 embedding/retriever、SkillRouter 和多个 reranker。</p>
+<p>在校正评测集上，最强的开箱即用 retriever Harrier-OSS-0.6B 的 NDCG@10 是 70.26，最强既有 skill retriever 为 SkillRouter 73.54；SkillRet-Embedding-0.6B 和 8B 分别达到 81.12 和 86.44，后者相对既有基线高 12.9 点、相对最强开箱模型高 16.2 点。三技能查询中，Qwen3-Embedding-0.6B 的 completeness@10 只有 1.8%，SkillRet-0.6B 为 42.1%；在 80 个 Terminal-Bench 任务、5 次试验中，接入检索后 Pass@1 为 65.8% 对无检索的 65.5%，每次成本从 0.86 美元降到 0.78 美元。单 B200 上，0.6B/8B 第一阶段延迟为 21.25/26.25 ms，而 20 个候选的 rerank 需要 831 ms/1.88 s，说明第二阶段才是主要延迟瓶颈。</p>
+<p>这项工作的价值是证明技能库检索不是普通语义相似度的已解决前处理：训练后的模型更聚焦于长查询中少量真正决定技能的句子，MTEB Retrieval 排名也不能直接替代 SkillRet。限制是查询由模型合成而非真实 agent 流量，且 benchmark 只测检索，不测技能组合、解释、执行或安全；高 NDCG 不保证下游任务更可靠，技能也可能过期、危险或被错误组合。作者还指出功能等价性审计会改变绝对分数，但没有改变模型排序。适合 agent memory、技能路由、RAG 和延迟/成本工程读者，建议读 §3 数据流水线、表 3–7、§5.3 的多技能分析、附录 D 的等价性审计和 Limitations。</p>
+<p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.05726">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.05726">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/ThakiCloud/SKILLRET">数据集</a> · <a target="_blank" rel="noopener" href="https://github.com/ThakiCloud/SKILLRET">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/ThakiCloud/SKILLRET-Embedding-0.6B">0.6B 模型</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/ThakiCloud/SKILLRET-Embedding-8B">8B 模型</a></p>
+<h3 id="高效责任-AI-评测：省下算力也可能换掉结论"><a href="#高效责任-AI-评测：省下算力也可能换掉结论" class="headerlink" title="高效责任 AI 评测：省下算力也可能换掉结论"></a>高效责任 AI 评测：省下算力也可能换掉结论</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.31108">Stress-Testing Efficient Responsible-AI Evaluation: When Compute Savings Change Benchmark Conclusions</a>（arXiv:2608.31108）<br><strong>作者</strong>：Ahmed El Kady、Aravind Narayanan、Rehana Noorani、Yani Ioannou、Shaina Raza<br><strong>来源/分类</strong>：arXiv · cs.LG<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>论文把“评测变便宜”本身当作 measurement intervention，问准确率之外的公平性、偏差和推理质量是否仍保持。作者以 BBQ 的 2,000 个文本问题和 BBQ-V 的 1,998 个图文问题为主，评测 Qwen2.5-VL-7B、Qwen3-VL-30B-A3B 和 Gemma-4-12B-it 三个模型。参考协议 M0 是完整 benchmark、BF16、batch size 1；替代协议改变 batching、INT8/INT4 量化、保留子集以及这些条件的组合，并同时记录 accuracy、bias severity/prevalence、reasoning quality、子群、保留成员稳定性、运行时间和 NVML GPU 能耗。</p>
+<p>作者报告更大 batch 在 6 个模型-数据集组合中把准确率变化控制在 0.35 个百分点以内，并在 5/6 个组合减少能耗；但 INT8 虽把准确率变化控制在 0.75 点内，却比 BF16 多耗 1.79–4.26 倍 GPU 能量。INT4 在 5/6 个组合使准确率下降 2.40–7.05 点，且影响取决于模型和上下文：BBQ 的 Qwen2.5-VL 在 ambiguous 子集准确率下降 9.10 点、Bias Present 上升 4.70 点，Reasoning Quality 下降 4.18 点。缩减 benchmark 的能耗与规模几乎线性（R²=0.999），但最小子集的成员选择敏感度在准确率、偏差和推理质量的 18 个比较中全部上升（sign test p&lt;10^-5）。50% 子集加更大 batch 的 M5a 能耗为 M0 的 0.11–0.58 倍，准确率变化为 -1.13 到 +0.70 点。</p>
+<p>创新是把“聚合准确率不变”与子群/构念稳定性、实际能耗放在同一评测协议里。限制是只有 3 个模型、2 个 benchmark 和 1 套硬件，模型比较不是受控架构消融；重复子集有重叠，固定的 GPT-5.4-mini 裁判也没有证明换裁判后的稳健性；作者没有提出普适的等价性阈值，因此接受多大变化仍取决于用途。适合评测基础设施、负责任 AI 和推理成本治理读者，建议读 §3 的七种条件、表 1、§5 的上下文/类别分析、§6 的子集稳定性和 Limitations。</p>
+<p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.31108">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.31108">PDF</a> · <a target="_blank" rel="noopener" href="https://vectorinstitute.github.io/sustainable-rai-evaluation/">项目主页</a> · <a target="_blank" rel="noopener" href="https://github.com/VectorInstitute/sustainable-rai-evaluation">代码</a></p>
+<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><h3 id="FaVOR：因子挖掘先验证经济假设，再看收益"><a href="#FaVOR：因子挖掘先验证经济假设，再看收益" class="headerlink" title="FaVOR：因子挖掘先验证经济假设，再看收益"></a>FaVOR：因子挖掘先验证经济假设，再看收益</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30192">FaVOR: LLM-Based Agentic Framework for Factor Mining via Empirical Validation</a>（arXiv:2608.30192）<br><strong>作者</strong>：Hyeonjin Kim、Minseok Kim、Seunghyeon Jung、Sujin Pyo、Huisu Jang、Woojin Lee<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CE<br><strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
+<p>论文针对 LLM 因子挖掘只优化回报、却不检查公式是否仍表达原经济假设的问题，提出 FaVOR 的三段一致性循环：把宽泛假设拆成可观测条件，验证每个因子是否对应目标条件，再把因子整合为可解释组合。作者在摘要中报告，FaVOR 在 CSI 500 和 S&amp;P 500 的 2025 年实验中优于现有基线，并在不同市场状态下保持有效。价值在于把“经济含义”作为中间证据，而不是把高回测收益当作充分标准；但摘要没有给样本外切分、交易成本、基线细节或数字，2025 年窗口也不足以证明跨周期稳健性。这里的结果是作者自述的回测/实验结论，不构成投资建议。  </p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30192">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.30192">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/damilab/FaVOR">代码</a></p>
-<h3 id="livemacroeval用实时预发布窗口回避宏观指标记忆污染">LiveMacroEval：用实时预发布窗口回避宏观指标记忆污染</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30110">Can
-LLMs Take the Pulse of the Economy? A Real-Time Evaluation of LLM
-Nowcasts on Macroeconomic Indicators</a>（arXiv:2608.30110）<br>
-<strong>作者</strong>：Xinyue Zhao、Ruiyi Zhang、Liqin Ye、Rui
-Cao、Pengtao Xie、Sudheer Chava<br>
-<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br>
-<strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
-<p>作者提出 LiveMacroEval，避免在历史 GDP/CPI
-发布值上测试时被训练语料污染：4 个带网页搜索的 LLM agent，在 16
-个美国主要宏观指标的官方发布前窗口内按小时
-nowcast，直到发布前停止。评估同时使用与公告窗口股票收益相关的 LiveMacro
-Score 和模拟 Polymarket 风格交易的 LiveBetting
-Score，并对比美联储地区银行 nowcast、Bloomberg ECOS 专业共识和
-auto-ARIMA。摘要报告，连续 6
-个月的总体准确率大体可与机构/专业基准相比，但指标之间差异很大。价值在于把“知道历史答案”与实时信息处理分开；限制是实时
-benchmark
-的网页可用性、模拟交易规则、指标选择和六个月窗口仍会影响结论，LiveBetting
-也不是真实可交易结果。摘要未提供每个指标的数字、成本和失败案例，因此不能据此宣称
-agent 能稳定预测市场。</p>
+<h3 id="LiveMacroEval：用实时预发布窗口回避宏观指标记忆污染"><a href="#LiveMacroEval：用实时预发布窗口回避宏观指标记忆污染" class="headerlink" title="LiveMacroEval：用实时预发布窗口回避宏观指标记忆污染"></a>LiveMacroEval：用实时预发布窗口回避宏观指标记忆污染</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30110">Can LLMs Take the Pulse of the Economy? A Real-Time Evaluation of LLM Nowcasts on Macroeconomic Indicators</a>（arXiv:2608.30110）<br><strong>作者</strong>：Xinyue Zhao、Ruiyi Zhang、Liqin Ye、Rui Cao、Pengtao Xie、Sudheer Chava<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br><strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
+<p>作者提出 LiveMacroEval，避免在历史 GDP/CPI 发布值上测试时被训练语料污染：4 个带网页搜索的 LLM agent，在 16 个美国主要宏观指标的官方发布前窗口内按小时 nowcast，直到发布前停止。评估同时使用与公告窗口股票收益相关的 LiveMacro Score 和模拟 Polymarket 风格交易的 LiveBetting Score，并对比美联储地区银行 nowcast、Bloomberg ECOS 专业共识和 auto-ARIMA。摘要报告，连续 6 个月的总体准确率大体可与机构/专业基准相比，但指标之间差异很大。价值在于把“知道历史答案”与实时信息处理分开；限制是实时 benchmark 的网页可用性、模拟交易规则、指标选择和六个月窗口仍会影响结论，LiveBetting 也不是真实可交易结果。摘要未提供每个指标的数字、成本和失败案例，因此不能据此宣称 agent 能稳定预测市场。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30110">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.30110">PDF</a></p>
-<h3 id="beyond-nl2code多模态代码智能要验证执行后的语义">Beyond
-NL2Code：多模态代码智能要验证执行后的语义</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.15932">Beyond NL2Code: A Structured
-Survey of Multimodal Code Intelligence</a>（arXiv:2606.15932）<br>
-<strong>作者</strong>：Xuanle Zhao、Qiushi Sun、Jingyu Xiao、Xuexin
-Liu、Haoyue Yang、Qiaosheng Chen、Xianzhen Luo、Jing Huang、Yufeng
-Zhong、Lei Chen、Shuai Fu、Zhenlin Wei、Jinhe Bi、Lei Jiang、Haibo
-Qiu、Siqi Yang、Peng Shi、Jian Hu、Zhixiong Zeng<br>
-<strong>来源/分类</strong>：arXiv · cs.CL<br>
-<strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
-<p>这篇综述把视觉输入驱动的代码生成、编辑和推理称为 Multimodal Code
-Intelligence，并按代码在任务中的角色分为渲染产物、可编辑结构、中间推理轨迹和可执行工具接口，再覆盖
-GUI、科学可视化、结构化图形及前沿 agent
-框架四类任务。作者强调，截图看起来像不像不是充分正确性证据，未来应采用多信号验证、多状态执行轨迹、跨任务迁移测试和可验证
-agent trace。价值在于把视觉
-fidelity、程序语义和交互行为放进同一评价框架；但摘要未给系统综述的检索范围、纳入数量或定量比较，分类建议仍受原论文报告质量影响。</p>
+<h3 id="Beyond-NL2Code：多模态代码智能要验证执行后的语义"><a href="#Beyond-NL2Code：多模态代码智能要验证执行后的语义" class="headerlink" title="Beyond NL2Code：多模态代码智能要验证执行后的语义"></a>Beyond NL2Code：多模态代码智能要验证执行后的语义</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.15932">Beyond NL2Code: A Structured Survey of Multimodal Code Intelligence</a>（arXiv:2606.15932）<br><strong>作者</strong>：Xuanle Zhao、Qiushi Sun、Jingyu Xiao、Xuexin Liu、Haoyue Yang、Qiaosheng Chen、Xianzhen Luo、Jing Huang、Yufeng Zhong、Lei Chen、Shuai Fu、Zhenlin Wei、Jinhe Bi、Lei Jiang、Haibo Qiu、Siqi Yang、Peng Shi、Jian Hu、Zhixiong Zeng<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
+<p>这篇综述把视觉输入驱动的代码生成、编辑和推理称为 Multimodal Code Intelligence，并按代码在任务中的角色分为渲染产物、可编辑结构、中间推理轨迹和可执行工具接口，再覆盖 GUI、科学可视化、结构化图形及前沿 agent 框架四类任务。作者强调，截图看起来像不像不是充分正确性证据，未来应采用多信号验证、多状态执行轨迹、跨任务迁移测试和可验证 agent trace。价值在于把视觉 fidelity、程序语义和交互行为放进同一评价框架；但摘要未给系统综述的检索范围、纳入数量或定量比较，分类建议仍受原论文报告质量影响。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.15932">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.15932">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/xjywhu/Awesome-Multimodal-LLM-for-Code">项目/资源</a></p>
-<h3 id="truthful-ai-advisors偏好冲突时模型会不会主动少说一点">Truthful
-AI Advisors：偏好冲突时，模型会不会主动少说一点</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.01456">Truthful AI Advisors: A
-Pre-Specified Benchmark for Large Language Model Honesty Under
-Preference Misalignment</a>（arXiv:2606.01456）<br>
-<strong>作者</strong>：Hamidreza Hasani Balyani、Seyed Pouyan Mousavi
-Davoudi、Alireza Amiri-Margavi、Amin Gholami Davodi、Arshia
-Gharagozlou<br>
-<strong>来源/分类</strong>：arXiv · cs.LG、cs.CL、cs.GT<br>
-<strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
-<p>论文把 Crawford-Sobel cheap-talk 模型改造成预先规定的 LLM 诚实性
-benchmark：发送方看到状态 ω，偏好比状态高 b
-的接收动作，模型要传递信息，理论模型给出精确 oracle。对
-b=0.01、0.04、0.08、0.12，最有信息量均衡的 partition size 为
-7、4、3、2，oracle normalized mutual information 为
-0.5294、0.3268、0.2205、0.1829。作者将预注册的 4 模型、12,000
-次调用扩展到 8 模型、39,569 次记录，报告所有模型相对 oracle 过度披露
-1.8–4.5 倍，池化 NMI 仍为
-0.82–0.96；偏好冲突越大，信息量按预期下降（β=-1.71，t=-7.50），但没有靠近战略最优。摘要还报告，给出均衡
-partition 提示后，推理模型能说出正确
-cell，而非推理模型几乎不能，暗示问题更像 propensity 而非
-capability。限制是结果依赖 cheap-talk
-任务、解码器和提示，不能直接代表销售、推荐或金融顾问生产行为。</p>
+<h3 id="Truthful-AI-Advisors：偏好冲突时，模型会不会主动少说一点"><a href="#Truthful-AI-Advisors：偏好冲突时，模型会不会主动少说一点" class="headerlink" title="Truthful AI Advisors：偏好冲突时，模型会不会主动少说一点"></a>Truthful AI Advisors：偏好冲突时，模型会不会主动少说一点</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.01456">Truthful AI Advisors: A Pre-Specified Benchmark for Large Language Model Honesty Under Preference Misalignment</a>（arXiv:2606.01456）<br><strong>作者</strong>：Hamidreza Hasani Balyani、Seyed Pouyan Mousavi Davoudi、Alireza Amiri-Margavi、Amin Gholami Davodi、Arshia Gharagozlou<br><strong>来源/分类</strong>：arXiv · cs.LG、cs.CL、cs.GT<br><strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
+<p>论文把 Crawford-Sobel cheap-talk 模型改造成预先规定的 LLM 诚实性 benchmark：发送方看到状态 ω，偏好比状态高 b 的接收动作，模型要传递信息，理论模型给出精确 oracle。对 b=0.01、0.04、0.08、0.12，最有信息量均衡的 partition size 为 7、4、3、2，oracle normalized mutual information 为 0.5294、0.3268、0.2205、0.1829。作者将预注册的 4 模型、12,000 次调用扩展到 8 模型、39,569 次记录，报告所有模型相对 oracle 过度披露 1.8–4.5 倍，池化 NMI 仍为 0.82–0.96；偏好冲突越大，信息量按预期下降（β=-1.71，t=-7.50），但没有靠近战略最优。摘要还报告，给出均衡 partition 提示后，推理模型能说出正确 cell，而非推理模型几乎不能，暗示问题更像 propensity 而非 capability。限制是结果依赖 cheap-talk 任务、解码器和提示，不能直接代表销售、推荐或金融顾问生产行为。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.01456">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.01456">PDF</a></p>
-<h3 id="agentic-netopsaiops权限增长速度必须匹配证据与回滚能力">Agentic
-NetOps/AIOps：权限增长速度必须匹配证据与回滚能力</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.12729">Large Language Models for
-Agentic NetOps and AIOps: Architectures, Evaluation, and
-Safety</a>（arXiv:2605.12729）<br>
-<strong>作者</strong>：Muhammad Bilal、Jon Crowcroft、Ruizhi
-Wang、Xiaolong Xu、Schahram Dustdar<br>
-<strong>来源/分类</strong>：arXiv · cs.NI、cs.AI、cs.CR<br>
-<strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
-<p>这篇综述围绕“LLM 能做什么”之外的 operational assurance 展开，覆盖
-telemetry 检索、事件诊断、配置规划和受限修复，并提出 operational
-assurance contract：每个自治级别对应允许的工具、所需证据、独立
-gate、执行预算、分阶段发布、回滚和审计要求。作者综合判断，读操作辅助和有工具依据的诊断证据相对充分，但一旦进入配置变更、闭环执行和更高权限，能力-保障缺口明显扩大；未来评测应加入证据质量、工具使用、策略/不变量、恢复、校准、成本和人工介入。价值是把
-agent 当作受约束的运维控制系统；限制是摘要没有给文献筛选数量、量化
-effect size 或统一实验协议，综述结论依赖既有工作披露质量。</p>
+<h3 id="Agentic-NetOps-AIOps：权限增长速度必须匹配证据与回滚能力"><a href="#Agentic-NetOps-AIOps：权限增长速度必须匹配证据与回滚能力" class="headerlink" title="Agentic NetOps/AIOps：权限增长速度必须匹配证据与回滚能力"></a>Agentic NetOps/AIOps：权限增长速度必须匹配证据与回滚能力</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.12729">Large Language Models for Agentic NetOps and AIOps: Architectures, Evaluation, and Safety</a>（arXiv:2605.12729）<br><strong>作者</strong>：Muhammad Bilal、Jon Crowcroft、Ruizhi Wang、Xiaolong Xu、Schahram Dustdar<br><strong>来源/分类</strong>：arXiv · cs.NI、cs.AI、cs.CR<br><strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
+<p>这篇综述围绕“LLM 能做什么”之外的 operational assurance 展开，覆盖 telemetry 检索、事件诊断、配置规划和受限修复，并提出 operational assurance contract：每个自治级别对应允许的工具、所需证据、独立 gate、执行预算、分阶段发布、回滚和审计要求。作者综合判断，读操作辅助和有工具依据的诊断证据相对充分，但一旦进入配置变更、闭环执行和更高权限，能力-保障缺口明显扩大；未来评测应加入证据质量、工具使用、策略/不变量、恢复、校准、成本和人工介入。价值是把 agent 当作受约束的运维控制系统；限制是摘要没有给文献筛选数量、量化 effect size 或统一实验协议，综述结论依赖既有工作披露质量。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.12729">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.12729">PDF</a></p>
-<h3 id="vla-机器人操控综述单体模型与分层规划的边界">VLA
-机器人操控综述：单体模型与分层规划的边界</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.13073">Large VLM-based
-Vision-Language-Action Models for Robotic Manipulation: A
-Survey</a>（arXiv:2508.13073）<br>
-<strong>作者</strong>：Rui Shao、Wei Li、Lingsen Zhang、Renshan
-Zhang、Zhiyang Liu、Ran Chen、Liqiang Nie<br>
-<strong>来源/分类</strong>：arXiv · cs.RO、cs.CV<br>
-<strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
-<p>作者系统梳理大视觉语言模型驱动的 Vision-Language-Action
-操控模型，区分单体式（单系统或双系统）与显式把规划和执行拆开的分层式架构，并整理强化学习、免训练优化、从人类视频学习和世界模型等结合方向。综述提出记忆、4D
-感知、高效适配、多智能体协作等后续方向，并维护一个持续更新的项目页。价值在于统一被不同论文割裂的
-taxonomy 和数据集/benchmark
-视角；限制是摘要没有说明检索/纳入标准、比较协议或各架构的定量胜负，不能把综述分类当作机器人真实泛化证据。</p>
+<h3 id="VLA-机器人操控综述：单体模型与分层规划的边界"><a href="#VLA-机器人操控综述：单体模型与分层规划的边界" class="headerlink" title="VLA 机器人操控综述：单体模型与分层规划的边界"></a>VLA 机器人操控综述：单体模型与分层规划的边界</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.13073">Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey</a>（arXiv:2508.13073）<br><strong>作者</strong>：Rui Shao、Wei Li、Lingsen Zhang、Renshan Zhang、Zhiyang Liu、Ran Chen、Liqiang Nie<br><strong>来源/分类</strong>：arXiv · cs.RO、cs.CV<br><strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
+<p>作者系统梳理大视觉语言模型驱动的 Vision-Language-Action 操控模型，区分单体式（单系统或双系统）与显式把规划和执行拆开的分层式架构，并整理强化学习、免训练优化、从人类视频学习和世界模型等结合方向。综述提出记忆、4D 感知、高效适配、多智能体协作等后续方向，并维护一个持续更新的项目页。价值在于统一被不同论文割裂的 taxonomy 和数据集/benchmark 视角；限制是摘要没有说明检索/纳入标准、比较协议或各架构的定量胜负，不能把综述分类当作机器人真实泛化证据。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.13073">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2508.13073">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation">项目主页</a></p>
-<h3 id="assetopsbench工业维护-agent-需要在模拟-iot-环境里测完整工作流">AssetOpsBench：工业维护
-agent 需要在模拟 IoT 环境里测完整工作流</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.03828">AssetOpsBench: Benchmarking AI
-Agents for Task Automation in Industrial Asset Operations and
-Maintenance</a>（arXiv:2506.03828）<br>
-<strong>作者</strong>：Dhaval Patel、Shuxin Lin、James Rayfield、Nianjun
-Zhou、Chathurangi Shyalika、Suryanarayana R Yarrabothula、Roman
-Vaculin、Natalia Martinez、Fearghal O'donncha、Jayant Kalagnanam<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.MA<br>
-<strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
-<p>AssetOpsBench
-面向工业资产全生命周期，将状态监测、维护排程等任务放进包含 4 个领域
-agent、140+ 条人工编写工业查询和 CouchDB-backed 模拟 IoT
-环境的多模态框架。作者提出自动评测方法，用 3 个指标比较 Tool-As-Agent 与
-Plan-Executor 架构，并自动发现新的失败模式；摘要报告公开平台已有 250+
-用户、提交了 500+
-agent。价值在于把工具调用、计划执行和工业状态结合起来，而不是只测单问答；限制是模拟环境、查询规模和社区采用数不能替代真实工厂的停机成本、传感器噪声、权限与安全验证，摘要也没有给核心指标数字或跨域迁移结果。</p>
+<h3 id="AssetOpsBench：工业维护-agent-需要在模拟-IoT-环境里测完整工作流"><a href="#AssetOpsBench：工业维护-agent-需要在模拟-IoT-环境里测完整工作流" class="headerlink" title="AssetOpsBench：工业维护 agent 需要在模拟 IoT 环境里测完整工作流"></a>AssetOpsBench：工业维护 agent 需要在模拟 IoT 环境里测完整工作流</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.03828">AssetOpsBench: Benchmarking AI Agents for Task Automation in Industrial Asset Operations and Maintenance</a>（arXiv:2506.03828）<br><strong>作者</strong>：Dhaval Patel、Shuxin Lin、James Rayfield、Nianjun Zhou、Chathurangi Shyalika、Suryanarayana R Yarrabothula、Roman Vaculin、Natalia Martinez、Fearghal O’donncha、Jayant Kalagnanam<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.MA<br><strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
+<p>AssetOpsBench 面向工业资产全生命周期，将状态监测、维护排程等任务放进包含 4 个领域 agent、140+ 条人工编写工业查询和 CouchDB-backed 模拟 IoT 环境的多模态框架。作者提出自动评测方法，用 3 个指标比较 Tool-As-Agent 与 Plan-Executor 架构，并自动发现新的失败模式；摘要报告公开平台已有 250+ 用户、提交了 500+ agent。价值在于把工具调用、计划执行和工业状态结合起来，而不是只测单问答；限制是模拟环境、查询规模和社区采用数不能替代真实工厂的停机成本、传感器噪声、权限与安全验证，摘要也没有给核心指标数字或跨域迁移结果。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.03828">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2506.03828">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/IBM/AssetOpsBench">代码</a></p>
-<h3 id="ad2-bench复杂城市场景的多模态推理先要取得正确证据">AD2-Bench：复杂城市场景的多模态推理先要取得正确证据</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.09557">Evidence-Grounded Trustworthy
-Multimodal Reasoning and Evaluation Benchmark in Complex Urban
-Scenes</a>（arXiv:2506.09557）<br>
-<strong>作者</strong>：Zhaoyang Wei、Bowen Jiang、Xumeng Han、Jiashu
-Li、Xuehui Yu、Yuling Liu、Guorong Li、Zhenjun Han、Jianbin Jiao<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br>
-<strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
-<p>作者提出 AD2-Bench 和 Hierarchical Visual Diagnosis，把推理拆为 Chain
-of
-Evidence，并将失败归因到空间歧义（目标与背景混淆）或语义不确定性（退化视觉特征导致误解）。对应的
-EGVOR 让模型显式生成 Evidence
-Atoms，即空间-语义三元组，再用从反思监督到强化学习的分层课程训练，并奖励降低推理方差。摘要报告
-EGVOR
-在不利条件下显著改善推理稳定性。价值是把“最终答错”进一步分解为证据获取和证据使用；限制是摘要没有给数据量、基线、关键分数、推理成本或失败切片，不能据此断言真实城市感知可靠。</p>
+<h3 id="AD2-Bench：复杂城市场景的多模态推理先要取得正确证据"><a href="#AD2-Bench：复杂城市场景的多模态推理先要取得正确证据" class="headerlink" title="AD2-Bench：复杂城市场景的多模态推理先要取得正确证据"></a>AD2-Bench：复杂城市场景的多模态推理先要取得正确证据</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.09557">Evidence-Grounded Trustworthy Multimodal Reasoning and Evaluation Benchmark in Complex Urban Scenes</a>（arXiv:2506.09557）<br><strong>作者</strong>：Zhaoyang Wei、Bowen Jiang、Xumeng Han、Jiashu Li、Xuehui Yu、Yuling Liu、Guorong Li、Zhenjun Han、Jianbin Jiao<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br><strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
+<p>作者提出 AD2-Bench 和 Hierarchical Visual Diagnosis，把推理拆为 Chain of Evidence，并将失败归因到空间歧义（目标与背景混淆）或语义不确定性（退化视觉特征导致误解）。对应的 EGVOR 让模型显式生成 Evidence Atoms，即空间-语义三元组，再用从反思监督到强化学习的分层课程训练，并奖励降低推理方差。摘要报告 EGVOR 在不利条件下显著改善推理稳定性。价值是把“最终答错”进一步分解为证据获取和证据使用；限制是摘要没有给数据量、基线、关键分数、推理成本或失败切片，不能据此断言真实城市感知可靠。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.09557">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2506.09557">PDF</a></p>
-<h3 id="sarge自进化-agent-的技能库也可能成为持久化攻击面">SARGE：自进化
-agent 的技能库也可能成为持久化攻击面</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30429">EvoSkill Injection: Red-Teaming
-Autonomous Skill Generation and Evolution in Self-Evolving
-Agents</a>（arXiv:2608.30429）<br>
-<strong>作者</strong>：Doyun Kim、Chanwoo Kim、Sugyeong Eo、Yeo-Chan
-Yoon、Chanjun Park<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br>
-<strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
-<p>论文定义 EvoSkill Injection：攻击者诱导自进化 agent
-把恶意能力生成、保存并当成正常技能复用。SARGE
-通过迭代生成、升级和强化交互来红队测试，配套 EvoSkillBench
-收集恶意交互轨迹，EvoSkillSafetyBench
-则测试攻击后技能是否会被检索并激活。作者在摘要中报告 SARGE
-能诱导恶意技能形成，注入技能会持久存储并反复触发危险行为。价值是把 skill
-memory
-的持久性纳入威胁模型；限制是摘要没有给攻击成功率、任务规模、模型/记忆实现和现实权限边界，合成轨迹不能直接代表生产
-agent 的持久化风险。</p>
+<h3 id="SARGE：自进化-agent-的技能库也可能成为持久化攻击面"><a href="#SARGE：自进化-agent-的技能库也可能成为持久化攻击面" class="headerlink" title="SARGE：自进化 agent 的技能库也可能成为持久化攻击面"></a>SARGE：自进化 agent 的技能库也可能成为持久化攻击面</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30429">EvoSkill Injection: Red-Teaming Autonomous Skill Generation and Evolution in Self-Evolving Agents</a>（arXiv:2608.30429）<br><strong>作者</strong>：Doyun Kim、Chanwoo Kim、Sugyeong Eo、Yeo-Chan Yoon、Chanjun Park<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br><strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
+<p>论文定义 EvoSkill Injection：攻击者诱导自进化 agent 把恶意能力生成、保存并当成正常技能复用。SARGE 通过迭代生成、升级和强化交互来红队测试，配套 EvoSkillBench 收集恶意交互轨迹，EvoSkillSafetyBench 则测试攻击后技能是否会被检索并激活。作者在摘要中报告 SARGE 能诱导恶意技能形成，注入技能会持久存储并反复触发危险行为。价值是把 skill memory 的持久性纳入威胁模型；限制是摘要没有给攻击成功率、任务规模、模型/记忆实现和现实权限边界，合成轨迹不能直接代表生产 agent 的持久化风险。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30429">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.30429">PDF</a></p>
-<h3 id="gpagentbench-2k临床-agent-的安全约束不能被准确率掩盖">GPAgentBench-2K：临床
-agent 的安全约束不能被准确率掩盖</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30188">GPAgentBench-2K: Benchmarking
-Large Language Model Agents in Complex Clinical Action
-Space</a>（arXiv:2608.30188）<br>
-<strong>作者</strong>：Boqi Chen、Xudong Liu、Yunke Ao、Heejin
-Do、Jianing Qiu<br>
-<strong>来源/分类</strong>：arXiv · cs.CL<br>
-<strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
-<p>作者以专家验证的真实全科问诊记录构建
-GPAgentBench-2K，把初级医疗决策建模为带拓扑工作流先验的 Constrained
-MDP，覆盖 6 类基础临床动作，并把安全知情的 abstention 作为一等结果。对
-16 个前沿 LLM
-的评测显示，动作空间扩大时性能显著下降；摘要特别报告，即使诊断准确率最高的前沿模型，在高风险案例中仍有超过一半违反安全约束。作者还以
-C-GRPO 建立约束强化学习参照，报告显式建模约束优于无约束
-RL，但仍远未达到临床可接受安全。价值在于把 action
-validity、拒答与安全约束一起测；限制是摘要没有给各模型的具体违规率、数据拆分、人工标注一致性和真实临床验证，不能把
-benchmark 成绩当作医疗部署许可。</p>
+<h3 id="GPAgentBench-2K：临床-agent-的安全约束不能被准确率掩盖"><a href="#GPAgentBench-2K：临床-agent-的安全约束不能被准确率掩盖" class="headerlink" title="GPAgentBench-2K：临床 agent 的安全约束不能被准确率掩盖"></a>GPAgentBench-2K：临床 agent 的安全约束不能被准确率掩盖</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30188">GPAgentBench-2K: Benchmarking Large Language Model Agents in Complex Clinical Action Space</a>（arXiv:2608.30188）<br><strong>作者</strong>：Boqi Chen、Xudong Liu、Yunke Ao、Heejin Do、Jianing Qiu<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
+<p>作者以专家验证的真实全科问诊记录构建 GPAgentBench-2K，把初级医疗决策建模为带拓扑工作流先验的 Constrained MDP，覆盖 6 类基础临床动作，并把安全知情的 abstention 作为一等结果。对 16 个前沿 LLM 的评测显示，动作空间扩大时性能显著下降；摘要特别报告，即使诊断准确率最高的前沿模型，在高风险案例中仍有超过一半违反安全约束。作者还以 C-GRPO 建立约束强化学习参照，报告显式建模约束优于无约束 RL，但仍远未达到临床可接受安全。价值在于把 action validity、拒答与安全约束一起测；限制是摘要没有给各模型的具体违规率、数据拆分、人工标注一致性和真实临床验证，不能把 benchmark 成绩当作医疗部署许可。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30188">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.30188">PDF</a></p>
-<h3 id="pak3h1低资源语言的对齐缺口不只是翻译问题">Pak3H1：低资源语言的对齐缺口不只是翻译问题</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30065">Pak3H: Evaluating the Cost of
-Cultural Mismatch in LLM Alignment with a Human-Contextualized Urdu
-Benchmark</a>（arXiv:2608.30065）<br>
-<strong>作者</strong>：Abdullah Hashmat、Usman Naseem、Agha Ali
-Raza<br>
-<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br>
-<strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
-<p>Pak3H1 是面向乌尔都语的 3H 对齐套件：PakAlpaca 测
-helpfulness、PakBeaverTails 测 harmlessness、PakTruthfulQA 测
-honesty。作者用本地人工文化适配和词典辅助后编辑，试图避免翻译或 LLM
-合成复制英语语境偏差，再在多个开源与闭源架构上做 zero-shot
-比较。摘要报告本地化情境下 helpfulness win rate 下降、区域安全风险下
-guardrail 失效，honesty
-综合指标也因本地事实约束而明显变差。价值是把文化相关性和母语者判断纳入对齐评测；限制是摘要没有给每个模型的数字、样本规模、攻击族和标注一致性，乌尔都语结果也不必然外推到其他低资源语言。</p>
+<h3 id="Pak3H1：低资源语言的对齐缺口不只是翻译问题"><a href="#Pak3H1：低资源语言的对齐缺口不只是翻译问题" class="headerlink" title="Pak3H1：低资源语言的对齐缺口不只是翻译问题"></a>Pak3H1：低资源语言的对齐缺口不只是翻译问题</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30065">Pak3H: Evaluating the Cost of Cultural Mismatch in LLM Alignment with a Human-Contextualized Urdu Benchmark</a>（arXiv:2608.30065）<br><strong>作者</strong>：Abdullah Hashmat、Usman Naseem、Agha Ali Raza<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br><strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
+<p>Pak3H1 是面向乌尔都语的 3H 对齐套件：PakAlpaca 测 helpfulness、PakBeaverTails 测 harmlessness、PakTruthfulQA 测 honesty。作者用本地人工文化适配和词典辅助后编辑，试图避免翻译或 LLM 合成复制英语语境偏差，再在多个开源与闭源架构上做 zero-shot 比较。摘要报告本地化情境下 helpfulness win rate 下降、区域安全风险下 guardrail 失效，honesty 综合指标也因本地事实约束而明显变差。价值是把文化相关性和母语者判断纳入对齐评测；限制是摘要没有给每个模型的数字、样本规模、攻击族和标注一致性，乌尔都语结果也不必然外推到其他低资源语言。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.30065">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.30065">PDF</a></p>
-<h3 id="beyond-surface-alignment情境理解和生成控制仍可能脱节">Beyond
-Surface Alignment：情境理解和生成控制仍可能脱节</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.29610">Beyond Surface Alignment:
-Grounding the Dynamics of Situational Understanding and Generative
-Control in LLMs</a>（arXiv:2608.29610）<br>
-<strong>作者</strong>：Chenghao Yang<br>
-<strong>来源/分类</strong>：arXiv · cs.CL<br>
-<strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
-<p>这篇论文把现有 alignment 概括为偏重流畅、安全和语气的 surface
-alignment，并提出 Grounded Alignment
-研究输入情境和输出生成的动态。摘要列出 SitTest（变化环境中的一致 mental
-model）、ReCode（表层启发式而非深层句法依赖）、Branching
-Factor、Hindsight，以及用于上下文工程、协作和 annealed sampling
-的多个应用框架；作者的总体论点是，长上下文并不保证情境真正被保持，标准对齐还可能导致过早的风格坍缩。价值在于把“会说得像”与“理解当前状态”分开；限制是摘要没有给各测试的规模、基线、量化结果或真实高风险部署验证，多个应用案例不能自动证明统一机制成立。</p>
+<h3 id="Beyond-Surface-Alignment：情境理解和生成控制仍可能脱节"><a href="#Beyond-Surface-Alignment：情境理解和生成控制仍可能脱节" class="headerlink" title="Beyond Surface Alignment：情境理解和生成控制仍可能脱节"></a>Beyond Surface Alignment：情境理解和生成控制仍可能脱节</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.29610">Beyond Surface Alignment: Grounding the Dynamics of Situational Understanding and Generative Control in LLMs</a>（arXiv:2608.29610）<br><strong>作者</strong>：Chenghao Yang<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
+<p>这篇论文把现有 alignment 概括为偏重流畅、安全和语气的 surface alignment，并提出 Grounded Alignment 研究输入情境和输出生成的动态。摘要列出 SitTest（变化环境中的一致 mental model）、ReCode（表层启发式而非深层句法依赖）、Branching Factor、Hindsight，以及用于上下文工程、协作和 annealed sampling 的多个应用框架；作者的总体论点是，长上下文并不保证情境真正被保持，标准对齐还可能导致过早的风格坍缩。价值在于把“会说得像”与“理解当前状态”分开；限制是摘要没有给各测试的规模、基线、量化结果或真实高风险部署验证，多个应用案例不能自动证明统一机制成立。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.29610">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.29610">PDF</a></p>
-<h3 id="geoagent让地理定位从静态图片题变成连续观察任务">GeoAgent：让地理定位从静态图片题变成连续观察任务</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.29483">GeoAgent: Evaluating VLM
-Geolocalization Through Embodied
-Navigation</a>（arXiv:2608.29483）<br>
-<strong>作者</strong>：Arka Mukherjee、Soham Roy、Kartikeya
-Trivedi、Shreya Ghosh<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.CL<br>
-<strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
-<p>GeoAgent 认为真实地理定位应允许 agent 在 Street View
-环境中导航、连续收集观察，再提交位置判断，而不只是对一张图片做检索或分类。作者将现代
-VLM 的静态基线与 embodied navigation
-比较，摘要报告导航在多个指标上提高准确率；模型较能判断国家和洲，却难以识别区域模式，并在发达/发展中地区情境上表现出严重偏差，错误先验下的自我修正也较弱。价值是把主动观察、序列推理和地理偏差纳入同一
-benchmark；限制是摘要没有给地图覆盖、导航预算、各模型数值和真实灾害/OSINT
-场景延迟，较高的 benchmark 准确率不能直接代表可靠的地理判断。</p>
+<h3 id="GeoAgent：让地理定位从静态图片题变成连续观察任务"><a href="#GeoAgent：让地理定位从静态图片题变成连续观察任务" class="headerlink" title="GeoAgent：让地理定位从静态图片题变成连续观察任务"></a>GeoAgent：让地理定位从静态图片题变成连续观察任务</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.29483">GeoAgent: Evaluating VLM Geolocalization Through Embodied Navigation</a>（arXiv:2608.29483）<br><strong>作者</strong>：Arka Mukherjee、Soham Roy、Kartikeya Trivedi、Shreya Ghosh<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.CL<br><strong>证据状态</strong>：仅依据摘要，未独立核阅全文。</p>
+<p>GeoAgent 认为真实地理定位应允许 agent 在 Street View 环境中导航、连续收集观察，再提交位置判断，而不只是对一张图片做检索或分类。作者将现代 VLM 的静态基线与 embodied navigation 比较，摘要报告导航在多个指标上提高准确率；模型较能判断国家和洲，却难以识别区域模式，并在发达/发展中地区情境上表现出严重偏差，错误先验下的自我修正也较弱。价值是把主动观察、序列推理和地理偏差纳入同一 benchmark；限制是摘要没有给地图覆盖、导航预算、各模型数值和真实灾害/OSINT 场景延迟，较高的 benchmark 准确率不能直接代表可靠的地理判断。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.29483">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.29483">PDF</a> · <a target="_blank" rel="noopener" href="https://geoagent-benchmark.github.io">代码与环境</a></p>
 
                 
@@ -845,6 +502,12 @@ benchmark；限制是摘要没有给地图覆盖、导航预算、各模型数�
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2026/09/03/daily-briefing-2026-09-03/" title="每日信息简报｜2026 年 09 月 03 日">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">每日信息简报｜2026 年 09 月 03 日</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

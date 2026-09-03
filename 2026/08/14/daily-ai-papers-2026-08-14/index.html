@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 ToolHazard：让提示注入评测从手工场景走向可扩展环境 论文：ToolHazard: Scaling Adversarial Environments for Security Evaluation and Alignment of LLM-based Agents（arXiv:2608.11878） 全文状态：已核阅公开 PDF。 问题是间接提示注入常被固定在少数人工脚本，难以">
+    <meta name="description" content="重点关注ToolHazard：让提示注入评测从手工场景走向可扩展环境论文：ToolHazard: Scaling Adversarial Environments for Security Evaluation and Alignment of LLM-based Agents（arXiv:2608.11878）全文状态：已核阅公开 PDF。 问题是间接提示注入常被固定在少数人工脚本，难以覆盖长">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日AI论文简报｜2026 年 8 月 14 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/08/14/daily-ai-papers-2026-08-14/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 ToolHazard：让提示注入评测从手工场景走向可扩展环境 论文：ToolHazard: Scaling Adversarial Environments for Security Evaluation and Alignment of LLM-based Agents（arXiv:2608.11878） 全文状态：已核阅公开 PDF。 问题是间接提示注入常被固定在少数人工脚本，难以">
+<meta property="og:description" content="重点关注ToolHazard：让提示注入评测从手工场景走向可扩展环境论文：ToolHazard: Scaling Adversarial Environments for Security Evaluation and Alignment of LLM-based Agents（arXiv:2608.11878）全文状态：已核阅公开 PDF。 问题是间接提示注入常被固定在少数人工脚本，难以覆盖长">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-02/pixiv-rank-006-147702281.jpg">
 <meta property="article:published_time" content="2026-08-14T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-012-146931602.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-002-146822320.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,254 +347,50 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<h3 id="toolhazard让提示注入评测从手工场景走向可扩展环境">ToolHazard：让提示注入评测从手工场景走向可扩展环境</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11878">ToolHazard: Scaling Adversarial
-Environments for Security Evaluation and Alignment of LLM-based
-Agents</a>（arXiv:2608.11878）<br>
-<strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>问题是间接提示注入常被固定在少数人工脚本，难以覆盖长链工具工作流。论文用环境模拟器、攻击者和用户模拟器合成可执行的有状态环境，自动寻找注入点并产生随环境变化的载荷；比较对象是既有手工/复用环境、随机
-LLM
-工具模拟和预先规定注入位置的做法。作者报告攻击时机和位置会显著影响攻击效果，且由
-ToolHazard 生成的对齐数据在 ToolHazard-Bench 与 AgentDojo
-上提高安全性而未损失正常任务效用。创新是把攻击、环境和任务共同生成；局限是合成环境是否覆盖真实
-SaaS、权限模型与人机协作，仍需外部红队验证。适合智能体安全、评测与对齐工程读者，建议先读摘要、§1
-的威胁模型、§3 的环境生成和实验中的跨基准结果。</p>
-<h3 id="mobilejudgebench评测器的可靠性不能默认成立">MobileJudgeBench：评测器的可靠性不能默认成立</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11434">Benchmarking LLM Judges for
-Mobile Agent Evaluation</a>（arXiv:2608.11434）<br>
-<strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>问题是手机智能体常把 LLM 裁判当作任务完成的地面真相。论文以 931
-条人工标注轨迹、6 个手机基准、4 类智能体和 68 个 App 为样本，横向比较 6
-种裁判方法及多个 LLM
-后端；基线是用采样截图的简单裁判。作者报告该简单基线最高可达 90.9%
-准确率，复杂专用管线并不稳定占优，截图数比 UI
-元数据或推理文本更关键；裁判质量也与代理排名保真和 RL
-下游表现相关。创新在于同时把分类、排名和训练效用纳入验证；局限是人工标签与
-App 覆盖仍有限，后端更替也会改变结论。适合做 GUI agent
-评测/奖励建模的人，建议优先读 §3、§4.2、§5 和失败分析。</p>
-<h3 id="uav-mas无训练多智能体系统如何对抗航拍推理失误">UAV-MAS：无训练多智能体系统如何对抗航拍推理失误</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11738">Advancing MLLM-based UAV Image
-Understanding and Reasoning: A Benchmark and a Training-Free Multi-Agent
-System</a>（arXiv:2608.11738）<br>
-<strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>问题是无人机图像中的极端尺度、任意朝向和高密度目标，使一般 MLLM
-的视觉工具与任务不匹配。作者建立含 1,500 条人工标注 QA、13
-个公开数据集、6 项能力和 16 个任务的 UAVQA-Bench；方法由 DSPE
-工具路由、CAIR 中间校验和 DAAS 难度自适应搜索组成，基线覆盖开源/闭源
-MLLM 与一般多智能体系统。作者报告 32B 开源模型配 UAV-MAS 的总体准确率
-77.0%，比 Gemini 3 Pro 高 4.0 个百分点；8B 版本比基础模型高 8.7
-个百分点。创新是为领域工具、验证和搜索深度分别对症设计；局限是单一基准的工具选择与推理成本，不能直接证明真实无人机端侧部署。适合遥感视觉和
-agent 工程读者，建议读表 I、§3 基准、§4 系统与消融。</p>
-<h3 id="jiezi将古文字释读变成可审计的多层评测">JieZi：将古文字释读变成可审计的多层评测</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11741">JieZi: A Large-Scale
-Expert-Audited Dataset and Benchmark for Ancient Chinese Character
-Exegesis</a>（arXiv:2608.11741）<br>
-<strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>问题是传统古文字 AI
-多停在识别或检索，缺少对字形、语义与历时演变的联合任务。作者定义四级
-ACCE，构建超过 50
-万条、由专家模板和原始文献约束生成再经分阶段人工验证的训练集，并以约 8
-千条专家完全构建、与训练隔离的基准评测；基线是多种
-MLLM。作者报告现有模型在基础识别较好、在字形分析/语义/演变较弱，微调后四层均提升。创新是把数据污染控制和专家审核嵌入生产流程；局限是权威辞书的观点并不穷尽学术争议，且尚需跨时代、跨材料验证。适合数字人文与多模态数据集建设者，建议读
-§1、§3 数据流水线、§4 基准和误差分析。代码与数据链接已在条目保留。</p>
-<h2 id="ai-论文">AI 论文</h2>
-<h3 id="agentictwin-an-agentic-llm-framework-integrated-with-digital-twin-for-anomaly-detection">AgenticTwin:
-An Agentic LLM Framework Integrated with Digital Twin for Anomaly
-Detection</h3>
-<p><strong>作者</strong>：Touseef Hasan、Mounika Ghanta、Souvika
-Sarkar、Ujjwal Guin<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.IR、cs.MA<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11679">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11679">PDF</a></p>
-<p>研究数字孪生告警为何难以被运营人员解释；以真实气象传感器数据注入合成异常，并把分类器输出接入多智能体
-LLM
-问答。作者报告诊断、上下文检索和缓解建议质量均改善。价值在于把生成式解释锚定在检测流水线；证据仍来自受控异常，真实工厂迁移与误导性解释风险尚待检验。</p>
-<h3 id="advancing-mllm-based-uav-image-understanding-and-reasoning-a-benchmark-and-a-training-free-multi-agent-system">Advancing
-MLLM-based UAV Image Understanding and Reasoning: A Benchmark and a
-Training-Free Multi-Agent System</h3>
-<p><strong>作者</strong>：Haoyu Zhang、Shuoxun Zhang、Peng Ye、Lin
-Zhang、Jiakang Yuan、Shenghong Yi、Yuening Wang、Tao Chen<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11738">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11738">PDF</a></p>
-<p>研究无人机俯视图的尺度、方向和密集小目标如何使通用多模态模型失效；建立
-13 个公开数据集、1,500
-条人工标注问答的基准，并以工具路由、迭代校验和自适应搜索组成无训练多智能体系统。作者报告该系统优于所比较模型。价值在于将“会看图”拆为可测的感知与推理环节；跨传感器、极端天气和实际飞行延迟仍未由摘要证明。</p>
-<h3 id="toolhazard-scaling-adversarial-environments-for-security-evaluation-and-alignment-of-llm-based-agents">ToolHazard:
-Scaling Adversarial Environments for Security Evaluation and Alignment
-of LLM-based Agents</h3>
-<p><strong>作者</strong>：Yutao Mou、Pengfei Yang、Zhe Yin、Zhangchi
-Xue、Xiaotian Luan、Dingyao Yu、Tong Zhang、Shikun Zhang、Wei Ye<br>
-<strong>来源/分类</strong>：arXiv · cs.CR、cs.CL<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11878">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11878">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/MurrayTom/ToolHazard">代码</a></p>
-<p>研究带工具 LLM
-智能体面对间接提示注入时，如何规模化构造可执行攻击环境；框架由环境模拟器、攻击者和用户模拟器生成状态化任务与注入点，并产出安全对齐数据。作者报告攻击时机与位置会改变成功率，新增数据能改善两套基准安全性且保留正常效用。价值在于可扩展的红队评测；结论依赖合成环境与所选攻击模型。</p>
-<h3 id="grpo-for-financial-advice-generation-outperforming-commercial-llms-under-cate-evaluation">GRPO
-for Financial Advice Generation: Outperforming Commercial LLMs under
-CATE Evaluation</h3>
-<p><strong>作者</strong>：Ofir Ben Shoham、Shrutendra Harsola、Vignesh
-Subrahmaniam、Shravan Mohan、Yakov Gazman、Oded Vainas<br>
-<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.LG<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11787">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11787">PDF</a></p>
-<p>研究如何从业务记录生成可执行但安全的财务建议；用 GRPO
-微调开源模型，奖励由 LLM 裁判量表和安全门组成，并以双重稳健 CATE
-做离线审计。作者报告估计毛利提升为 0.0228，对照最强商用模型为
-0.0104。价值在于裁判与因果离线评估分离；这是观察性、离策略估计，不等同于真实业务增益或投资建议。</p>
-<h3 id="jiezi-a-large-scale-expert-audited-dataset-and-benchmark-for-ancient-chinese-character-exegesis">JieZi:
-A Large-Scale Expert-Audited Dataset and Benchmark for Ancient Chinese
-Character Exegesis</h3>
-<p><strong>作者</strong>：Ran Li、Huiguo He、Jiahuan Cao、Junle
-Liu、Hiuyi Cheng、Lianwen Jin<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11741">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11741">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Ran00w/JieZi">代码/数据</a></p>
-<p>研究古文字释读能否从识别扩展为字形、语义和演变的多层视觉问答；提出
-ACCE，发布 50
-万以上专家审核问答与独立专家验证基准。作者报告微调后四层表现提升，而现有模型在深层释读仍弱。价值在于数据来源约束和训练/评测隔离；专家一致性、史学争议与跨材料泛化仍需审阅。</p>
-<h3 id="benchmarking-llm-judges-for-mobile-agent-evaluation">Benchmarking
-LLM Judges for Mobile Agent Evaluation</h3>
-<p><strong>作者</strong>：Ziqiang Wan、Li Gu、Zhixiang Chi、Zhi
-Liu、Seyed Mehdi Ayyoubzadeh、Yuanhao Yu、Yang Wang<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、cs.CV<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11434">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11434">PDF</a></p>
-<p>研究手机智能体评测中 LLM 裁判是否可靠；汇集 6 个基准、68 个 App 的
-931
-条人工标注轨迹，比较多种裁判方法与模型后端。作者报告简单的截图采样基线常不逊于复杂管线，骨干模型是主要决定因素。价值在于提醒评测器本身需要验证；基准覆盖和人工标注尺度仍限制外推。</p>
-<h3 id="glance-scrutinize-and-think-advancing-video-anomaly-detection-from-training-free-to-agentic-reasoning">Glance,
-Scrutinize, and Think: Advancing Video Anomaly Detection from
-Training-Free to Agentic Reasoning</h3>
-<p><strong>作者</strong>：Shibo Gao、Peipei Yang、Xu-Yao Zhang、Linlin
-Huang<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CV<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11260">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11260">PDF</a></p>
-<p>研究视频异常检测如何同时回答“何时发生”和“发生什么”；提出免训练的粗到细
-GtS，以及经监督微调和强化学习训练的工具调用智能体，并扩展 7,567
-段真实视频基准。作者报告智能体在准确度和推理速度上均有提升。价值在于把语义与时序定位联合评测；摘要未给出各类异常、算力和失败案例明细。</p>
-<h3 id="designing-agentic-ai-based-screening-for-portfolio-investment">Designing
-Agentic AI-Based Screening for Portfolio Investment</h3>
-<p><strong>作者</strong>：Mehmet Caner、Agostino Capponi、Nathan
-Sun、Jonathan Y. Tan<br>
-<strong>来源/分类</strong>：arXiv ·
-q-fin.PM、cs.AI、cs.MA、q-fin.ST<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.23300">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.23300">PDF</a></p>
-<p>【跨主题】研究智能体筛选能否改善组合构建；两个 LLM
-分别筛基本面与新闻情绪，经协商形成信号，再用高维精度矩阵配权，并在标普
-500
-数据上比较。作者报告夏普率优于未筛选和传统筛选基线。价值在于把信息筛选与风险配权分层；回测期、成本、样本外稳定性和可交易性必须另行核查。</p>
-<h3 id="large-language-model-driven-small-capitalization-trading-integrating-financial-news-sentiment-macroeconomic-indicators-and-technical-signals">Large
-Language Model-Driven Small-Capitalization Trading: Integrating
-Financial News Sentiment, Macroeconomic Indicators, and Technical
-Signals</h3>
-<p><strong>作者</strong>：Alireza Kargarzadeh、Nariman Khaledian、Navid
-Parvini、Arman Khaledian<br>
-<strong>来源/分类</strong>：arXiv · q-fin.PM、cs.CL<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12283">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12283">PDF</a></p>
-<p>【跨主题】研究 LLM
-新闻情绪与宏观、技术信号如何用于小盘股组合；将预测风险直接写入协方差矩阵，并比较不同触发机制与持有期。作者报告
-40 日纯 beta、GPT-4o mini 情绪与风险平价在 100bp 成本假设下夏普为
-2.33。价值在于显式纳入成本；结果仍是特定样本与回测设定，并非可复制的交易承诺。</p>
-<h3 id="benchmark-based-comparative-assessment-of-publicly-benchmarked-indian-foundation-models-a-capability-and-evaluation-maturity-framework">Benchmark-Based
-Comparative Assessment of Publicly Benchmarked Indian Foundation Models:
-A Capability and Evaluation-Maturity Framework</h3>
-<p><strong>作者</strong>：Avinash Agarwal、Vridhi Jain<br>
-<strong>来源/分类</strong>：arXiv · cs.CY、cs.AI、cs.HC<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11891">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11891">PDF</a></p>
+<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="ToolHazard：让提示注入评测从手工场景走向可扩展环境"><a href="#ToolHazard：让提示注入评测从手工场景走向可扩展环境" class="headerlink" title="ToolHazard：让提示注入评测从手工场景走向可扩展环境"></a>ToolHazard：让提示注入评测从手工场景走向可扩展环境</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11878">ToolHazard: Scaling Adversarial Environments for Security Evaluation and Alignment of LLM-based Agents</a>（arXiv:2608.11878）<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>问题是间接提示注入常被固定在少数人工脚本，难以覆盖长链工具工作流。论文用环境模拟器、攻击者和用户模拟器合成可执行的有状态环境，自动寻找注入点并产生随环境变化的载荷；比较对象是既有手工/复用环境、随机 LLM 工具模拟和预先规定注入位置的做法。作者报告攻击时机和位置会显著影响攻击效果，且由 ToolHazard 生成的对齐数据在 ToolHazard-Bench 与 AgentDojo 上提高安全性而未损失正常任务效用。创新是把攻击、环境和任务共同生成；局限是合成环境是否覆盖真实 SaaS、权限模型与人机协作，仍需外部红队验证。适合智能体安全、评测与对齐工程读者，建议先读摘要、§1 的威胁模型、§3 的环境生成和实验中的跨基准结果。</p>
+<h3 id="MobileJudgeBench：评测器的可靠性不能默认成立"><a href="#MobileJudgeBench：评测器的可靠性不能默认成立" class="headerlink" title="MobileJudgeBench：评测器的可靠性不能默认成立"></a>MobileJudgeBench：评测器的可靠性不能默认成立</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11434">Benchmarking LLM Judges for Mobile Agent Evaluation</a>（arXiv:2608.11434）<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>问题是手机智能体常把 LLM 裁判当作任务完成的地面真相。论文以 931 条人工标注轨迹、6 个手机基准、4 类智能体和 68 个 App 为样本，横向比较 6 种裁判方法及多个 LLM 后端；基线是用采样截图的简单裁判。作者报告该简单基线最高可达 90.9% 准确率，复杂专用管线并不稳定占优，截图数比 UI 元数据或推理文本更关键；裁判质量也与代理排名保真和 RL 下游表现相关。创新在于同时把分类、排名和训练效用纳入验证；局限是人工标签与 App 覆盖仍有限，后端更替也会改变结论。适合做 GUI agent 评测/奖励建模的人，建议优先读 §3、§4.2、§5 和失败分析。</p>
+<h3 id="UAV-MAS：无训练多智能体系统如何对抗航拍推理失误"><a href="#UAV-MAS：无训练多智能体系统如何对抗航拍推理失误" class="headerlink" title="UAV-MAS：无训练多智能体系统如何对抗航拍推理失误"></a>UAV-MAS：无训练多智能体系统如何对抗航拍推理失误</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11738">Advancing MLLM-based UAV Image Understanding and Reasoning: A Benchmark and a Training-Free Multi-Agent System</a>（arXiv:2608.11738）<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>问题是无人机图像中的极端尺度、任意朝向和高密度目标，使一般 MLLM 的视觉工具与任务不匹配。作者建立含 1,500 条人工标注 QA、13 个公开数据集、6 项能力和 16 个任务的 UAVQA-Bench；方法由 DSPE 工具路由、CAIR 中间校验和 DAAS 难度自适应搜索组成，基线覆盖开源/闭源 MLLM 与一般多智能体系统。作者报告 32B 开源模型配 UAV-MAS 的总体准确率 77.0%，比 Gemini 3 Pro 高 4.0 个百分点；8B 版本比基础模型高 8.7 个百分点。创新是为领域工具、验证和搜索深度分别对症设计；局限是单一基准的工具选择与推理成本，不能直接证明真实无人机端侧部署。适合遥感视觉和 agent 工程读者，建议读表 I、§3 基准、§4 系统与消融。</p>
+<h3 id="JieZi：将古文字释读变成可审计的多层评测"><a href="#JieZi：将古文字释读变成可审计的多层评测" class="headerlink" title="JieZi：将古文字释读变成可审计的多层评测"></a>JieZi：将古文字释读变成可审计的多层评测</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11741">JieZi: A Large-Scale Expert-Audited Dataset and Benchmark for Ancient Chinese Character Exegesis</a>（arXiv:2608.11741）<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>问题是传统古文字 AI 多停在识别或检索，缺少对字形、语义与历时演变的联合任务。作者定义四级 ACCE，构建超过 50 万条、由专家模板和原始文献约束生成再经分阶段人工验证的训练集，并以约 8 千条专家完全构建、与训练隔离的基准评测；基线是多种 MLLM。作者报告现有模型在基础识别较好、在字形分析/语义/演变较弱，微调后四层均提升。创新是把数据污染控制和专家审核嵌入生产流程；局限是权威辞书的观点并不穷尽学术争议，且尚需跨时代、跨材料验证。适合数字人文与多模态数据集建设者，建议读 §1、§3 数据流水线、§4 基准和误差分析。代码与数据链接已在条目保留。</p>
+<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><h3 id="AgenticTwin-An-Agentic-LLM-Framework-Integrated-with-Digital-Twin-for-Anomaly-Detection"><a href="#AgenticTwin-An-Agentic-LLM-Framework-Integrated-with-Digital-Twin-for-Anomaly-Detection" class="headerlink" title="AgenticTwin: An Agentic LLM Framework Integrated with Digital Twin for Anomaly Detection"></a>AgenticTwin: An Agentic LLM Framework Integrated with Digital Twin for Anomaly Detection</h3><p><strong>作者</strong>：Touseef Hasan、Mounika Ghanta、Souvika Sarkar、Ujjwal Guin<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.IR、cs.MA<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11679">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11679">PDF</a></p>
+<p>研究数字孪生告警为何难以被运营人员解释；以真实气象传感器数据注入合成异常，并把分类器输出接入多智能体 LLM 问答。作者报告诊断、上下文检索和缓解建议质量均改善。价值在于把生成式解释锚定在检测流水线；证据仍来自受控异常，真实工厂迁移与误导性解释风险尚待检验。</p>
+<h3 id="Advancing-MLLM-based-UAV-Image-Understanding-and-Reasoning-A-Benchmark-and-a-Training-Free-Multi-Agent-System"><a href="#Advancing-MLLM-based-UAV-Image-Understanding-and-Reasoning-A-Benchmark-and-a-Training-Free-Multi-Agent-System" class="headerlink" title="Advancing MLLM-based UAV Image Understanding and Reasoning: A Benchmark and a Training-Free Multi-Agent System"></a>Advancing MLLM-based UAV Image Understanding and Reasoning: A Benchmark and a Training-Free Multi-Agent System</h3><p><strong>作者</strong>：Haoyu Zhang、Shuoxun Zhang、Peng Ye、Lin Zhang、Jiakang Yuan、Shenghong Yi、Yuening Wang、Tao Chen<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11738">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11738">PDF</a></p>
+<p>研究无人机俯视图的尺度、方向和密集小目标如何使通用多模态模型失效；建立 13 个公开数据集、1,500 条人工标注问答的基准，并以工具路由、迭代校验和自适应搜索组成无训练多智能体系统。作者报告该系统优于所比较模型。价值在于将“会看图”拆为可测的感知与推理环节；跨传感器、极端天气和实际飞行延迟仍未由摘要证明。</p>
+<h3 id="ToolHazard-Scaling-Adversarial-Environments-for-Security-Evaluation-and-Alignment-of-LLM-based-Agents"><a href="#ToolHazard-Scaling-Adversarial-Environments-for-Security-Evaluation-and-Alignment-of-LLM-based-Agents" class="headerlink" title="ToolHazard: Scaling Adversarial Environments for Security Evaluation and Alignment of LLM-based Agents"></a>ToolHazard: Scaling Adversarial Environments for Security Evaluation and Alignment of LLM-based Agents</h3><p><strong>作者</strong>：Yutao Mou、Pengfei Yang、Zhe Yin、Zhangchi Xue、Xiaotian Luan、Dingyao Yu、Tong Zhang、Shikun Zhang、Wei Ye<br><strong>来源/分类</strong>：arXiv · cs.CR、cs.CL<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11878">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11878">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/MurrayTom/ToolHazard">代码</a></p>
+<p>研究带工具 LLM 智能体面对间接提示注入时，如何规模化构造可执行攻击环境；框架由环境模拟器、攻击者和用户模拟器生成状态化任务与注入点，并产出安全对齐数据。作者报告攻击时机与位置会改变成功率，新增数据能改善两套基准安全性且保留正常效用。价值在于可扩展的红队评测；结论依赖合成环境与所选攻击模型。</p>
+<h3 id="GRPO-for-Financial-Advice-Generation-Outperforming-Commercial-LLMs-under-CATE-Evaluation"><a href="#GRPO-for-Financial-Advice-Generation-Outperforming-Commercial-LLMs-under-CATE-Evaluation" class="headerlink" title="GRPO for Financial Advice Generation: Outperforming Commercial LLMs under CATE Evaluation"></a>GRPO for Financial Advice Generation: Outperforming Commercial LLMs under CATE Evaluation</h3><p><strong>作者</strong>：Ofir Ben Shoham、Shrutendra Harsola、Vignesh Subrahmaniam、Shravan Mohan、Yakov Gazman、Oded Vainas<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.LG<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11787">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11787">PDF</a></p>
+<p>研究如何从业务记录生成可执行但安全的财务建议；用 GRPO 微调开源模型，奖励由 LLM 裁判量表和安全门组成，并以双重稳健 CATE 做离线审计。作者报告估计毛利提升为 0.0228，对照最强商用模型为 0.0104。价值在于裁判与因果离线评估分离；这是观察性、离策略估计，不等同于真实业务增益或投资建议。</p>
+<h3 id="JieZi-A-Large-Scale-Expert-Audited-Dataset-and-Benchmark-for-Ancient-Chinese-Character-Exegesis"><a href="#JieZi-A-Large-Scale-Expert-Audited-Dataset-and-Benchmark-for-Ancient-Chinese-Character-Exegesis" class="headerlink" title="JieZi: A Large-Scale Expert-Audited Dataset and Benchmark for Ancient Chinese Character Exegesis"></a>JieZi: A Large-Scale Expert-Audited Dataset and Benchmark for Ancient Chinese Character Exegesis</h3><p><strong>作者</strong>：Ran Li、Huiguo He、Jiahuan Cao、Junle Liu、Hiuyi Cheng、Lianwen Jin<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11741">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11741">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Ran00w/JieZi">代码/数据</a></p>
+<p>研究古文字释读能否从识别扩展为字形、语义和演变的多层视觉问答；提出 ACCE，发布 50 万以上专家审核问答与独立专家验证基准。作者报告微调后四层表现提升，而现有模型在深层释读仍弱。价值在于数据来源约束和训练/评测隔离；专家一致性、史学争议与跨材料泛化仍需审阅。</p>
+<h3 id="Benchmarking-LLM-Judges-for-Mobile-Agent-Evaluation"><a href="#Benchmarking-LLM-Judges-for-Mobile-Agent-Evaluation" class="headerlink" title="Benchmarking LLM Judges for Mobile Agent Evaluation"></a>Benchmarking LLM Judges for Mobile Agent Evaluation</h3><p><strong>作者</strong>：Ziqiang Wan、Li Gu、Zhixiang Chi、Zhi Liu、Seyed Mehdi Ayyoubzadeh、Yuanhao Yu、Yang Wang<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、cs.CV<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11434">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11434">PDF</a></p>
+<p>研究手机智能体评测中 LLM 裁判是否可靠；汇集 6 个基准、68 个 App 的 931 条人工标注轨迹，比较多种裁判方法与模型后端。作者报告简单的截图采样基线常不逊于复杂管线，骨干模型是主要决定因素。价值在于提醒评测器本身需要验证；基准覆盖和人工标注尺度仍限制外推。</p>
+<h3 id="Glance-Scrutinize-and-Think-Advancing-Video-Anomaly-Detection-from-Training-Free-to-Agentic-Reasoning"><a href="#Glance-Scrutinize-and-Think-Advancing-Video-Anomaly-Detection-from-Training-Free-to-Agentic-Reasoning" class="headerlink" title="Glance, Scrutinize, and Think: Advancing Video Anomaly Detection from Training-Free to Agentic Reasoning"></a>Glance, Scrutinize, and Think: Advancing Video Anomaly Detection from Training-Free to Agentic Reasoning</h3><p><strong>作者</strong>：Shibo Gao、Peipei Yang、Xu-Yao Zhang、Linlin Huang<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CV<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11260">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11260">PDF</a></p>
+<p>研究视频异常检测如何同时回答“何时发生”和“发生什么”；提出免训练的粗到细 GtS，以及经监督微调和强化学习训练的工具调用智能体，并扩展 7,567 段真实视频基准。作者报告智能体在准确度和推理速度上均有提升。价值在于把语义与时序定位联合评测；摘要未给出各类异常、算力和失败案例明细。</p>
+<h3 id="Designing-Agentic-AI-Based-Screening-for-Portfolio-Investment"><a href="#Designing-Agentic-AI-Based-Screening-for-Portfolio-Investment" class="headerlink" title="Designing Agentic AI-Based Screening for Portfolio Investment"></a>Designing Agentic AI-Based Screening for Portfolio Investment</h3><p><strong>作者</strong>：Mehmet Caner、Agostino Capponi、Nathan Sun、Jonathan Y. Tan<br><strong>来源/分类</strong>：arXiv · q-fin.PM、cs.AI、cs.MA、q-fin.ST<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.23300">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.23300">PDF</a></p>
+<p>【跨主题】研究智能体筛选能否改善组合构建；两个 LLM 分别筛基本面与新闻情绪，经协商形成信号，再用高维精度矩阵配权，并在标普 500 数据上比较。作者报告夏普率优于未筛选和传统筛选基线。价值在于把信息筛选与风险配权分层；回测期、成本、样本外稳定性和可交易性必须另行核查。</p>
+<h3 id="Large-Language-Model-Driven-Small-Capitalization-Trading-Integrating-Financial-News-Sentiment-Macroeconomic-Indicators-and-Technical-Signals"><a href="#Large-Language-Model-Driven-Small-Capitalization-Trading-Integrating-Financial-News-Sentiment-Macroeconomic-Indicators-and-Technical-Signals" class="headerlink" title="Large Language Model-Driven Small-Capitalization Trading: Integrating Financial News Sentiment, Macroeconomic Indicators, and Technical Signals"></a>Large Language Model-Driven Small-Capitalization Trading: Integrating Financial News Sentiment, Macroeconomic Indicators, and Technical Signals</h3><p><strong>作者</strong>：Alireza Kargarzadeh、Nariman Khaledian、Navid Parvini、Arman Khaledian<br><strong>来源/分类</strong>：arXiv · q-fin.PM、cs.CL<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12283">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12283">PDF</a></p>
+<p>【跨主题】研究 LLM 新闻情绪与宏观、技术信号如何用于小盘股组合；将预测风险直接写入协方差矩阵，并比较不同触发机制与持有期。作者报告 40 日纯 beta、GPT-4o mini 情绪与风险平价在 100bp 成本假设下夏普为 2.33。价值在于显式纳入成本；结果仍是特定样本与回测设定，并非可复制的交易承诺。</p>
+<h3 id="Benchmark-Based-Comparative-Assessment-of-Publicly-Benchmarked-Indian-Foundation-Models-A-Capability-and-Evaluation-Maturity-Framework"><a href="#Benchmark-Based-Comparative-Assessment-of-Publicly-Benchmarked-Indian-Foundation-Models-A-Capability-and-Evaluation-Maturity-Framework" class="headerlink" title="Benchmark-Based Comparative Assessment of Publicly Benchmarked Indian Foundation Models: A Capability and Evaluation-Maturity Framework"></a>Benchmark-Based Comparative Assessment of Publicly Benchmarked Indian Foundation Models: A Capability and Evaluation-Maturity Framework</h3><p><strong>作者</strong>：Avinash Agarwal、Vridhi Jain<br><strong>来源/分类</strong>：arXiv · cs.CY、cs.AI、cs.HC<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11891">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11891">PDF</a></p>
 <p>研究印度基础模型的公开能力证据是否可比；汇总八类能力的公开基准并提出四维“基准成熟度指数”。作者发现旧基准分数较强但新型智能体和垂直评测参与不足。价值在于把能力缺口与评测生态缺口区分；资料只限公开披露，不能推断真实模型上限。</p>
-<h3 id="how-china-origin-vision-language-models-move-from-refusal-to-reframing-in-state-alignment">How
-China-Origin Vision-Language Models Move from Refusal to Reframing in
-State Alignment</h3>
-<p><strong>作者</strong>：Guang Yang、Fengchen Liu、Alex Wang、Homa
-Hosseinmardi、Amir Ghasemian<br>
-<strong>来源/分类</strong>：arXiv · cs.CR、cs.AI、cs.CL<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11816">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11816">PDF</a></p>
-<p>研究中国来源视觉语言模型的对齐如何从直接拒答转为重构表述；以 200
-个敏感主题、四种诱导范式和双语提示进行 21,708
-次试验，并由两类裁判与专家抽检。作者报告中文提示与来源差异相关。价值在于分别测量拒答和框架化；政治分类、裁判偏差和样本覆盖会影响结论。</p>
-<h3 id="frontierfinance-a-challenging-benchmark-for-measuring-frontier-intelligence-of-finance-agents">FrontierFinance:
-A Challenging Benchmark for Measuring Frontier Intelligence of Finance
-Agents</h3>
-<p><strong>作者</strong>：Yuhao Zhang、O. Ozan Koyluoglu、Thejas
-Venkatesh、Richard Diehl Martinez、Vishank Bhatia、Arash
-Alidoust、Ashwin Paranjape<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11683">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11683">PDF</a></p>
-<p>【跨主题】研究金融智能体能否完成真实投资研究工作流；发布 220
-个专家问题和 11,543
-条可追溯评分规则的开放基准，限制使用公开数据。作者报告工具编排显著影响质量与成本，并给出
-56.0%、49.2%
-等系统分数。价值在于把模型与工具栈同时比较；评分规则和任务分布不代表投资收益。</p>
-<h3 id="enterpriserag-benchmarking-llm-instruction-adherence-and-robustness-under-non-ideal-enterprise-retrieval">EnterpriseRAG:
-Benchmarking LLM Instruction Adherence and Robustness under Non-Ideal
-Enterprise Retrieval</h3>
-<p><strong>作者</strong>：Huiqi Miao、Xinbao Sun、Bo Wang、Fanyu
-Meng、Lijun Mei、Na Wu、Di Jin、Chao Deng、Junlan Feng<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11584">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11584">PDF</a></p>
-<p>研究企业检索不完美时 LLM
-的指令遵循与鲁棒性；构建包含非理想检索条件的评测基准。作者报告该设置可暴露企业知识检索中的脆弱环节。价值在于贴近生产检索噪声；仅依据摘要，数据分布、基线与量化结果需读全文核验。</p>
-<h3 id="backtrader-bench-benchmarking-llm-agents-on-algorithmic-trading-with-self-generated-mcqs">Backtrader-Bench:
-Benchmarking LLM Agents on Algorithmic Trading with Self-Generated
-MCQs</h3>
-<p><strong>作者</strong>：Ruoxi Zhao、Maziar Raissi<br>
-<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11232">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11232">PDF</a></p>
-<p>【跨主题】研究 LLM
-能否在算法交易知识与推理任务上被系统评估；提出由智能体自生成选择题的
-Backtrader-Bench。作者以基准形式报告模型比较。价值在于可复现的能力测量；选择题表现不是回测表现，更不代表真实可交易收益。仅依据摘要。</p>
-<h3 id="lakequest-a-three-domain-benchmark-for-grounded-question-answering-across-data-lakes">LakeQuest:
-A Three-Domain Benchmark for Grounded Question Answering across Data
-Lakes</h3>
-<p><strong>作者</strong>：Michael Solodko、Steven Gong、Guangwei
-Yu、Satya Krishna Gorti、Jesse C. Cresswell、Victor Zhong<br>
-<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.12310">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.12310">PDF</a></p>
-<p>研究跨数据湖的有据问答如何评测；提出覆盖三个领域的 LakeQuest
-基准。作者将其定位为检验模型检索、依据与回答能力的任务。价值在于数据治理场景的可测性；仅依据摘要，数据规模、污染控制、基线和误差分析需要全文核实。</p>
-<h3 id="teaching-agentic-ai-to-learn-expert-reasoning-for-rare-disease-diagnosis">Teaching
-agentic AI to learn expert reasoning for rare disease diagnosis</h3>
-<p><strong>作者</strong>：Minh-Ha Nguyen、Erica Gray、Bryce A.
-Schuler、Kevin W. Byram、Chih-Ting Yang、Fan Ma、Hua Xu、Wu-Chen
-Su、Chao Yan、Wei-Qi Wei、Adam Wright、Lisa Bastarache、Josh
-Peterson、Lingyao Li、Siyuan Ma、Undiagnosed Diseases Network、Rizwan
-Hamid、Thomas A. Cassini、Cathy Shyr<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.16149">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.16149">PDF</a></p>
+<h3 id="How-China-Origin-Vision-Language-Models-Move-from-Refusal-to-Reframing-in-State-Alignment"><a href="#How-China-Origin-Vision-Language-Models-Move-from-Refusal-to-Reframing-in-State-Alignment" class="headerlink" title="How China-Origin Vision-Language Models Move from Refusal to Reframing in State Alignment"></a>How China-Origin Vision-Language Models Move from Refusal to Reframing in State Alignment</h3><p><strong>作者</strong>：Guang Yang、Fengchen Liu、Alex Wang、Homa Hosseinmardi、Amir Ghasemian<br><strong>来源/分类</strong>：arXiv · cs.CR、cs.AI、cs.CL<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11816">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11816">PDF</a></p>
+<p>研究中国来源视觉语言模型的对齐如何从直接拒答转为重构表述；以 200 个敏感主题、四种诱导范式和双语提示进行 21,708 次试验，并由两类裁判与专家抽检。作者报告中文提示与来源差异相关。价值在于分别测量拒答和框架化；政治分类、裁判偏差和样本覆盖会影响结论。</p>
+<h3 id="FrontierFinance-A-Challenging-Benchmark-for-Measuring-Frontier-Intelligence-of-Finance-Agents"><a href="#FrontierFinance-A-Challenging-Benchmark-for-Measuring-Frontier-Intelligence-of-Finance-Agents" class="headerlink" title="FrontierFinance: A Challenging Benchmark for Measuring Frontier Intelligence of Finance Agents"></a>FrontierFinance: A Challenging Benchmark for Measuring Frontier Intelligence of Finance Agents</h3><p><strong>作者</strong>：Yuhao Zhang、O. Ozan Koyluoglu、Thejas Venkatesh、Richard Diehl Martinez、Vishank Bhatia、Arash Alidoust、Ashwin Paranjape<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11683">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11683">PDF</a></p>
+<p>【跨主题】研究金融智能体能否完成真实投资研究工作流；发布 220 个专家问题和 11,543 条可追溯评分规则的开放基准，限制使用公开数据。作者报告工具编排显著影响质量与成本，并给出 56.0%、49.2% 等系统分数。价值在于把模型与工具栈同时比较；评分规则和任务分布不代表投资收益。</p>
+<h3 id="EnterpriseRAG-Benchmarking-LLM-Instruction-Adherence-and-Robustness-under-Non-Ideal-Enterprise-Retrieval"><a href="#EnterpriseRAG-Benchmarking-LLM-Instruction-Adherence-and-Robustness-under-Non-Ideal-Enterprise-Retrieval" class="headerlink" title="EnterpriseRAG: Benchmarking LLM Instruction Adherence and Robustness under Non-Ideal Enterprise Retrieval"></a>EnterpriseRAG: Benchmarking LLM Instruction Adherence and Robustness under Non-Ideal Enterprise Retrieval</h3><p><strong>作者</strong>：Huiqi Miao、Xinbao Sun、Bo Wang、Fanyu Meng、Lijun Mei、Na Wu、Di Jin、Chao Deng、Junlan Feng<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11584">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11584">PDF</a></p>
+<p>研究企业检索不完美时 LLM 的指令遵循与鲁棒性；构建包含非理想检索条件的评测基准。作者报告该设置可暴露企业知识检索中的脆弱环节。价值在于贴近生产检索噪声；仅依据摘要，数据分布、基线与量化结果需读全文核验。</p>
+<h3 id="Backtrader-Bench-Benchmarking-LLM-Agents-on-Algorithmic-Trading-with-Self-Generated-MCQs"><a href="#Backtrader-Bench-Benchmarking-LLM-Agents-on-Algorithmic-Trading-with-Self-Generated-MCQs" class="headerlink" title="Backtrader-Bench: Benchmarking LLM Agents on Algorithmic Trading with Self-Generated MCQs"></a>Backtrader-Bench: Benchmarking LLM Agents on Algorithmic Trading with Self-Generated MCQs</h3><p><strong>作者</strong>：Ruoxi Zhao、Maziar Raissi<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.11232">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.11232">PDF</a></p>
+<p>【跨主题】研究 LLM 能否在算法交易知识与推理任务上被系统评估；提出由智能体自生成选择题的 Backtrader-Bench。作者以基准形式报告模型比较。价值在于可复现的能力测量；选择题表现不是回测表现，更不代表真实可交易收益。仅依据摘要。</p>
+<h3 id="LakeQuest-A-Three-Domain-Benchmark-for-Grounded-Question-Answering-across-Data-Lakes"><a href="#LakeQuest-A-Three-Domain-Benchmark-for-Grounded-Question-Answering-across-Data-Lakes" class="headerlink" title="LakeQuest: A Three-Domain Benchmark for Grounded Question Answering across Data Lakes"></a>LakeQuest: A Three-Domain Benchmark for Grounded Question Answering across Data Lakes</h3><p><strong>作者</strong>：Michael Solodko、Steven Gong、Guangwei Yu、Satya Krishna Gorti、Jesse C. Cresswell、Victor Zhong<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.12310">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.12310">PDF</a></p>
+<p>研究跨数据湖的有据问答如何评测；提出覆盖三个领域的 LakeQuest 基准。作者将其定位为检验模型检索、依据与回答能力的任务。价值在于数据治理场景的可测性；仅依据摘要，数据规模、污染控制、基线和误差分析需要全文核实。</p>
+<h3 id="Teaching-agentic-AI-to-learn-expert-reasoning-for-rare-disease-diagnosis"><a href="#Teaching-agentic-AI-to-learn-expert-reasoning-for-rare-disease-diagnosis" class="headerlink" title="Teaching agentic AI to learn expert reasoning for rare disease diagnosis"></a>Teaching agentic AI to learn expert reasoning for rare disease diagnosis</h3><p><strong>作者</strong>：Minh-Ha Nguyen、Erica Gray、Bryce A. Schuler、Kevin W. Byram、Chih-Ting Yang、Fan Ma、Hua Xu、Wu-Chen Su、Chao Yan、Wei-Qi Wei、Adam Wright、Lisa Bastarache、Josh Peterson、Lingyao Li、Siyuan Ma、Undiagnosed Diseases Network、Rizwan Hamid、Thomas A. Cassini、Cathy Shyr<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.16149">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.16149">PDF</a></p>
 <p>研究智能体如何学习罕见病诊断中的专家推理；论文将专家知识与智能体学习结合，用于罕见病诊断。作者报告该方向的可行性。价值在于高价值医疗决策支持；仅依据摘要，患者数据、临床验证、偏差与安全边界均不可省略，不能作诊疗建议。</p>
-<h3 id="causal-agent-based-on-large-language-model">Causal Agent based
-on Large Language Model</h3>
-<p><strong>作者</strong>：Kairong Han、Kun Kuang、Ziyu Zhao、Junjian
-Ye、Fei Wu<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2408.06849">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2408.06849">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/kairong-han/causal_agent">代码/数据</a></p>
-<p>研究大语言模型智能体能否纳入因果推断；提出 Causal Agent
-的建模框架。作者将其用于因果推理任务。价值在于把文本推理与结构因果问题连接；仅依据摘要，识别假设、合成/真实数据和对照实验需全文确认。</p>
-<h3 id="ava-encoder-towards-agent-native-video-representation-learning">AVA-Encoder:
-Towards Agent-Native Video Representation Learning</h3>
-<p><strong>作者</strong>：Chuyue Li、Jinpeng Yu、Haozhe Wang、Tian
-Xueyun、Zhijing Zhang、Bingnan Li、Shuqi Gu、Kan Ren、Jiaming
-Liu、Ruihua Hua<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.CL<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12313">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12313">PDF</a></p>
-<p>研究面向智能体的视频表征学习；提出
-AVA-Encoder，目标是让视频特征更适合下游智能体使用。作者将其定位为
-agent-native
-表征。价值在于从感知接口而非单项基准设计视频编码；仅依据摘要，训练数据、算力、基线和实际智能体收益未获核查。</p>
+<h3 id="Causal-Agent-based-on-Large-Language-Model"><a href="#Causal-Agent-based-on-Large-Language-Model" class="headerlink" title="Causal Agent based on Large Language Model"></a>Causal Agent based on Large Language Model</h3><p><strong>作者</strong>：Kairong Han、Kun Kuang、Ziyu Zhao、Junjian Ye、Fei Wu<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2408.06849">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2408.06849">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/kairong-han/causal_agent">代码/数据</a></p>
+<p>研究大语言模型智能体能否纳入因果推断；提出 Causal Agent 的建模框架。作者将其用于因果推理任务。价值在于把文本推理与结构因果问题连接；仅依据摘要，识别假设、合成/真实数据和对照实验需全文确认。</p>
+<h3 id="AVA-Encoder-Towards-Agent-Native-Video-Representation-Learning"><a href="#AVA-Encoder-Towards-Agent-Native-Video-Representation-Learning" class="headerlink" title="AVA-Encoder: Towards Agent-Native Video Representation Learning"></a>AVA-Encoder: Towards Agent-Native Video Representation Learning</h3><p><strong>作者</strong>：Chuyue Li、Jinpeng Yu、Haozhe Wang、Tian Xueyun、Zhijing Zhang、Bingnan Li、Shuqi Gu、Kan Ren、Jiaming Liu、Ruihua Hua<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.CL<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12313">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12313">PDF</a></p>
+<p>研究面向智能体的视频表征学习；提出 AVA-Encoder，目标是让视频特征更适合下游智能体使用。作者将其定位为 agent-native 表征。价值在于从感知接口而非单项基准设计视频编码；仅依据摘要，训练数据、算力、基线和实际智能体收益未获核查。</p>
 
                 
               </div>
