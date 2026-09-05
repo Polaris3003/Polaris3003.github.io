@@ -357,120 +357,63 @@
       <div class="quant-doc-tape" aria-label="文章阅读信息">
         <div><span>类型</span><strong>核心课程</strong></div>
         <div><span>模块</span><strong>基础语言</strong></div>
-        <div><span>阅读</span><strong>约 8 分钟</strong></div>
+        <div><span>阅读</span><strong>约 7 分钟</strong></div>
         <div><span>材料</span><strong>10 节 · 1 段代码</strong></div>
       </div>
-    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题">本节解决什么问题</h2>
-<p>“策略年化
-20%”几乎不能单独说明好坏：它可能承受巨大波动，长期跑输可比指数，依赖一次幸运交易，或在扣除成本后消失。绩效评价必须同时回答赚了多少、承担了什么风险、相对谁、经历了怎样的路径，以及收益是否可实现。</p>
-</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标">前置知识与学习目标</h2>
-<p>前置知识是第 01 讲的复利、第 02 讲的协方差和第 03
-讲的抽样不确定性。学完后你应该能：</p>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题"><a href="#本节解决什么问题" class="headerlink" title="本节解决什么问题"></a>本节解决什么问题</h2><p>“策略年化 20%”几乎不能单独说明好坏：它可能承受巨大波动，长期跑输可比指数，依赖一次幸运交易，或在扣除成本后消失。绩效评价必须同时回答赚了多少、承担了什么风险、相对谁、经历了怎样的路径，以及收益是否可实现。</p>
+</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标"><a href="#前置知识与学习目标" class="headerlink" title="前置知识与学习目标"></a>前置知识与学习目标</h2><p>前置知识是第 01 讲的复利、第 02 讲的协方差和第 03 讲的抽样不确定性。学完后你应该能：</p>
 <ul>
 <li>用权重计算组合收益和风险；</li>
 <li>区分绝对收益、无风险超额收益和主动收益；</li>
-<li>计算并解释 Sharpe、Sortino、信息比率、跟踪误差、最大回撤和
-Calmar；</li>
+<li>计算并解释 Sharpe、Sortino、信息比率、跟踪误差、最大回撤和 Calmar；</li>
 <li>为 A 股策略选择可比且可投资的基准；</li>
 <li>说明为什么绩效数字不能脱离样本、成本和约束。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算">直觉与手算</h2>
-<p>组合在资产 A 投 60%，在资产 B 投 40%。某期 A 涨 10%，B 跌
-5%，期初权重下组合收益为：</p>
-<p><span class="math display">\[
-R_p=0.6\times10\%+0.4\times(-5\%)=4\%
-\]</span></p>
-<p>若 A 年化波动 20%，B 为 10%，相关系数 0.25，则组合方差为：</p>
-<p><span class="math display">\[
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算"><a href="#直觉与手算" class="headerlink" title="直觉与手算"></a>直觉与手算</h2><p>组合在资产 A 投 60%，在资产 B 投 40%。某期 A 涨 10%，B 跌 5%，期初权重下组合收益为：</p>
+<script type="math/tex; mode=display">
+R_p=0.6\times10\%+0.4\times(-5\%)=4\%</script><p>若 A 年化波动 20%，B 为 10%，相关系数 0.25，则组合方差为：</p>
+<script type="math/tex; mode=display">
 0.6^2\times0.2^2+0.4^2\times0.1^2
 +2\times0.6\times0.4\times0.25\times0.2\times0.1
-=0.0184
-\]</span></p>
-<p>组合波动约 13.56%，不是
-0.6×20%+0.4×10%=16%。少掉的部分来自不完全相关。</p>
-<p>现在假设策略年收益 12%、无风险收益 2%、年化波动 10%，Sharpe 为
-1。若同期可比基准收益 10%，策略主动收益只有
-2%。这两个比较没有冲突：Sharpe
-问相对无风险资产的风险效率，主动收益问相对基准是否增加价值。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式">定义与公式</h2>
-<h3 id="组合权重收益与风险">组合权重、收益与风险</h3>
-<p>N 个资产的期初权重 w 和同一期简单收益 R 都是 N×1：</p>
-<p><span class="math display">\[
-R_{p,t}=w_t^{\prime}R_t
-\]</span></p>
-<p><span class="math display">\[
-\sigma_p^2=w^{\prime}\Sigma w
-\]</span></p>
-<p>多头完全投资组合通常满足权重和为 1
-且每个权重非负；多空、杠杆和持有现金时必须另外报告总敞口、净敞口和融资方式。</p>
-<h3 id="基准与主动收益">基准与主动收益</h3>
-<p>基准是与策略投资范围和风险来源可比的参照。主动收益：</p>
-<p><span class="math display">\[
-AR_t=R_{p,t}-R_{b,t}
-\]</span></p>
-<p>一个合格基准至少应当明确、可衡量、事前指定、与投资范围一致，并尽可能可投资。用沪深
-300 评价全市场微盘策略，会把规模暴露误当作选股能力。</p>
-<h3 id="sharpe-比率">Sharpe 比率</h3>
-<p><span class="math display">\[
-SR=\bar R_e/s(R_e)
-\]</span></p>
-<p>R(e)=R(p)-R(f)。月频年化常乘根号 12，日频常乘根号
-252，但只在收益频率一致、序列相关较弱时成立。Sharpe
-无量纲；它把所有波动都视为风险，对非正态、卖期权和流动性策略可能过于乐观。</p>
-<h3 id="sortino-比率">Sortino 比率</h3>
-<p><span class="math display">\[
+=0.0184</script><p>组合波动约 13.56%，不是 0.6×20%+0.4×10%=16%。少掉的部分来自不完全相关。</p>
+<p>现在假设策略年收益 12%、无风险收益 2%、年化波动 10%，Sharpe 为 1。若同期可比基准收益 10%，策略主动收益只有 2%。这两个比较没有冲突：Sharpe 问相对无风险资产的风险效率，主动收益问相对基准是否增加价值。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式"><a href="#定义与公式" class="headerlink" title="定义与公式"></a>定义与公式</h2><h3 id="组合权重、收益与风险"><a href="#组合权重、收益与风险" class="headerlink" title="组合权重、收益与风险"></a>组合权重、收益与风险</h3><p>N 个资产的期初权重 w 和同一期简单收益 R 都是 N×1：</p>
+<script type="math/tex; mode=display">
+R_{p,t}=w_t^{\prime}R_t</script><script type="math/tex; mode=display">
+\sigma_p^2=w^{\prime}\Sigma w</script><p>多头完全投资组合通常满足权重和为 1 且每个权重非负；多空、杠杆和持有现金时必须另外报告总敞口、净敞口和融资方式。</p>
+<h3 id="基准与主动收益"><a href="#基准与主动收益" class="headerlink" title="基准与主动收益"></a>基准与主动收益</h3><p>基准是与策略投资范围和风险来源可比的参照。主动收益：</p>
+<script type="math/tex; mode=display">
+AR_t=R_{p,t}-R_{b,t}</script><p>一个合格基准至少应当明确、可衡量、事前指定、与投资范围一致，并尽可能可投资。用沪深 300 评价全市场微盘策略，会把规模暴露误当作选股能力。</p>
+<h3 id="Sharpe-比率"><a href="#Sharpe-比率" class="headerlink" title="Sharpe 比率"></a>Sharpe 比率</h3><script type="math/tex; mode=display">
+SR=\bar R_e/s(R_e)</script><p>R(e)=R(p)-R(f)。月频年化常乘根号 12，日频常乘根号 252，但只在收益频率一致、序列相关较弱时成立。Sharpe 无量纲；它把所有波动都视为风险，对非正态、卖期权和流动性策略可能过于乐观。</p>
+<h3 id="Sortino-比率"><a href="#Sortino-比率" class="headerlink" title="Sortino 比率"></a>Sortino 比率</h3><script type="math/tex; mode=display">
 Sortino=(\bar R_p-MAR)/
-\sqrt{(1/T)\sum_t\min(R_{p,t}-MAR,0)^2}
-\]</span></p>
-<p>MAR 是最低可接受收益。Sortino
-只惩罚低于目标的波动，但对目标和样本内少数亏损十分敏感。</p>
-<h3 id="跟踪误差与信息比率">跟踪误差与信息比率</h3>
-<p><span class="math display">\[
-TE=s(R_p-R_b)
-\]</span></p>
-<p><span class="math display">\[
-IR=\overline{(R_p-R_b)}/TE
-\]</span></p>
-<p>TE 与收益使用相同频率单位，IR
-无量纲。信息比率适合主动管理评价：它衡量每单位相对基准波动获得多少平均主动收益。</p>
-<h3 id="最大回撤与-calmar">最大回撤与 Calmar</h3>
-<p>净值 W(t) 的回撤：</p>
-<p><span class="math display">\[
-DD_t=W_t/\max_{u\le t}W_u-1
-\]</span></p>
-<p>最大回撤 MDD 是样本中最负的 DD。若用正数绝对回撤报告：</p>
-<p><span class="math display">\[
-Calmar=R_{ann}/|MDD|
-\]</span></p>
-<p>回撤保留路径信息，能表达投资者经历；但只观察到一次最坏路径，估计非常不稳定。Calmar
-也同时依赖年化收益和单次极端回撤，不能作为唯一排序指标。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验">Python 最小实验</h2>
-<figure class="highlight python quant-code-block">
+\sqrt{(1/T)\sum_t\min(R_{p,t}-MAR,0)^2}</script><p>MAR 是最低可接受收益。Sortino 只惩罚低于目标的波动，但对目标和样本内少数亏损十分敏感。</p>
+<h3 id="跟踪误差与信息比率"><a href="#跟踪误差与信息比率" class="headerlink" title="跟踪误差与信息比率"></a>跟踪误差与信息比率</h3><script type="math/tex; mode=display">
+TE=s(R_p-R_b)</script><script type="math/tex; mode=display">
+IR=\overline{(R_p-R_b)}/TE</script><p>TE 与收益使用相同频率单位，IR 无量纲。信息比率适合主动管理评价：它衡量每单位相对基准波动获得多少平均主动收益。</p>
+<h3 id="最大回撤与-Calmar"><a href="#最大回撤与-Calmar" class="headerlink" title="最大回撤与 Calmar"></a>最大回撤与 Calmar</h3><p>净值 W(t) 的回撤：</p>
+<script type="math/tex; mode=display">
+DD_t=W_t/\max_{u\le t}W_u-1</script><p>最大回撤 MDD 是样本中最负的 DD。若用正数绝对回撤报告：</p>
+<script type="math/tex; mode=display">
+Calmar=R_{ann}/|MDD|</script><p>回撤保留路径信息，能表达投资者经历；但只观察到一次最坏路径，估计非常不稳定。Calmar 也同时依赖年化收益和单次极端回撤，不能作为唯一排序指标。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="Python-最小实验"><a href="#Python-最小实验" class="headerlink" title="Python 最小实验"></a>Python 最小实验</h2><figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>monthly = np.array([<br>    <span class="hljs-number">0.02</span>, -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.03</span>, <span class="hljs-number">0.01</span>, -<span class="hljs-number">0.04</span>, <span class="hljs-number">0.02</span>,<br>    <span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.03</span>, -<span class="hljs-number">0.02</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span><br>])<br>benchmark = np.array([<br>    <span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.01</span>, -<span class="hljs-number">0.03</span>, <span class="hljs-number">0.01</span>,<br>    <span class="hljs-number">0.01</span>, <span class="hljs-number">0.00</span>, <span class="hljs-number">0.02</span>, -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.01</span><br>])<br>rf_monthly = <span class="hljs-number">0.001</span><br><br>wealth = np.cumprod(<span class="hljs-number">1</span> + monthly)<br>drawdown = wealth / np.maximum.accumulate(wealth) - <span class="hljs-number">1</span><br>excess = monthly - rf_monthly<br>active = monthly - benchmark<br><br>sharpe = np.sqrt(<span class="hljs-number">12</span>) * excess.mean() / excess.std(ddof=<span class="hljs-number">1</span>)<br>tracking_error = np.sqrt(<span class="hljs-number">12</span>) * active.std(ddof=<span class="hljs-number">1</span>)<br>information_ratio = np.sqrt(<span class="hljs-number">12</span>) * active.mean() / active.std(ddof=<span class="hljs-number">1</span>)<br>maximum_drawdown = drawdown.<span class="hljs-built_in">min</span>()<br><br><span class="hljs-keyword">assert</span> maximum_drawdown &lt;= <span class="hljs-number">0</span><br><span class="hljs-built_in">print</span>(sharpe, tracking_error, information_ratio, maximum_drawdown)<br></code></pre></td></tr></table></figure>
 <p>这个例子没有扣交易成本，也没有给指标置信区间，所以只能用来学习计算，不能据此评价真实策略。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项">A 股实现注意事项</h2>
-<ol type="1">
-<li><strong>基准口径。</strong>
-价格指数与全收益指数的分红处理不同。长期股票策略应优先比较含分红再投资的可比基准，或明确解释差异。</li>
-<li><strong>投资范围。</strong> 沪深 300、中证 500、中证 1000、国证 2000
-与全市场的市值、行业和流动性结构不同。基准应在研究前固定。</li>
-<li><strong>费用与税。</strong>
-佣金、过户费、卖出印花税、冲击成本、基金管理费和融资融券成本应按策略实际结构进入净收益。</li>
-<li><strong>不可成交。</strong>
-涨停买入失败、跌停卖出失败和停牌会让实际持仓偏离目标权重，不能只用理论组合收益。</li>
-<li><strong>现金收益。</strong>
-未投资现金和保证金有收益或资金成本；默认现金收益为零会在不同利率时期扭曲绩效。</li>
-<li><strong>净值时间。</strong>
-信号在收盘后生成却用同一收盘价建仓，会同时夸大收益并低估跟踪误差和回撤。</li>
-<li><strong>指数成分历史。</strong>
-用今天的指数成分回测过去，会产生幸存者和前视偏差；基准和策略股票池都要使用历史成分。</li>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="A-股实现注意事项"><a href="#A-股实现注意事项" class="headerlink" title="A 股实现注意事项"></a>A 股实现注意事项</h2><ol>
+<li><strong>基准口径。</strong> 价格指数与全收益指数的分红处理不同。长期股票策略应优先比较含分红再投资的可比基准，或明确解释差异。</li>
+<li><strong>投资范围。</strong> 沪深 300、中证 500、中证 1000、国证 2000 与全市场的市值、行业和流动性结构不同。基准应在研究前固定。</li>
+<li><strong>费用与税。</strong> 佣金、过户费、卖出印花税、冲击成本、基金管理费和融资融券成本应按策略实际结构进入净收益。</li>
+<li><strong>不可成交。</strong> 涨停买入失败、跌停卖出失败和停牌会让实际持仓偏离目标权重，不能只用理论组合收益。</li>
+<li><strong>现金收益。</strong> 未投资现金和保证金有收益或资金成本；默认现金收益为零会在不同利率时期扭曲绩效。</li>
+<li><strong>净值时间。</strong> 信号在收盘后生成却用同一收盘价建仓，会同时夸大收益并低估跟踪误差和回撤。</li>
+<li><strong>指数成分历史。</strong> 用今天的指数成分回测过去，会产生幸存者和前视偏差；基准和策略股票池都要使用历史成分。</li>
 </ol>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界">常见错误与边界</h2>
-<ul>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界"><a href="#常见错误与边界" class="headerlink" title="常见错误与边界"></a>常见错误与边界</h2><ul>
 <li>只报年化收益，不报区间长度、最大回撤和波动。</li>
 <li>用算术日均收益乘 252 作为复合年收益，却用复合净值解释。</li>
 <li>策略换了股票池或风格后仍沿用一个方便跑赢的基准。</li>
@@ -479,37 +422,19 @@ Calmar=R_{ann}/|MDD|
 <li>最大回撤取绝对值后又保留负号，导致 Calmar 符号混乱。</li>
 <li>同时比较几十个策略后只展示 Sharpe 最高者，不做选择偏差修正。</li>
 </ul>
-<p>绩效指标有根本边界：它们是历史路径的压缩摘要。同一个 Sharpe
-可以来自稳定小收益或少量大赢大亏；同一个最大回撤也可能对应完全不同的恢复时间。至少同时展示净值、月度收益分布、回撤、换手和暴露。</p>
-</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文">原书与论文</h2>
-<p>原书第 1 章（PDF 文件页 7–26）建立因子投资框架，第 4、5
-章（158–223）进一步涉及组合管理与实践问题。绩效评价应贯穿研究，而不是只在最后添加一张表。</p>
-<p>Sharpe（1964）给出市场均衡中风险与预期收益的基准关系：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/j.1540-6261.1964.tb02865.x">DOI
-10.1111/j.1540-6261.1964.tb02865.x</a>。Gibbons、Ross 与
-Shanken（1989）进一步提醒我们，多资产模型评价需要联合检验而非逐个挑
-Alpha：<a target="_blank" rel="noopener" href="https://doi.org/10.2307/1913625">DOI
-10.2307/1913625</a>。</p>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习">练习</h2>
-<ol type="1">
-<li>A、B 权重各 50%，收益分别为
-8%、-2%，计算组合收益。若期末不再平衡，下一期期初两者权重是否仍各半？</li>
-<li>某策略月均无风险超额收益 0.6%，月波动 2%，在独立近似下计算年化
-Sharpe。</li>
+<p>绩效指标有根本边界：它们是历史路径的压缩摘要。同一个 Sharpe 可以来自稳定小收益或少量大赢大亏；同一个最大回撤也可能对应完全不同的恢复时间。至少同时展示净值、月度收益分布、回撤、换手和暴露。</p>
+</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文"><a href="#原书与论文" class="headerlink" title="原书与论文"></a>原书与论文</h2><p>原书第 1 章（PDF 文件页 7–26）建立因子投资框架，第 4、5 章（158–223）进一步涉及组合管理与实践问题。绩效评价应贯穿研究，而不是只在最后添加一张表。</p>
+<p>Sharpe（1964）给出市场均衡中风险与预期收益的基准关系：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/j.1540-6261.1964.tb02865.x">DOI 10.1111/j.1540-6261.1964.tb02865.x</a>。Gibbons、Ross 与 Shanken（1989）进一步提醒我们，多资产模型评价需要联合检验而非逐个挑 Alpha：<a target="_blank" rel="noopener" href="https://doi.org/10.2307/1913625">DOI 10.2307/1913625</a>。</p>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><ol>
+<li>A、B 权重各 50%，收益分别为 8%、-2%，计算组合收益。若期末不再平衡，下一期期初两者权重是否仍各半？</li>
+<li>某策略月均无风险超额收益 0.6%，月波动 2%，在独立近似下计算年化 Sharpe。</li>
 <li>策略年收益 15%，基准 12%，主动收益年化标准差 6%，计算信息比率。</li>
-<li>净值序列为
-1、1.10、1.05、0.88、0.95、1.12，逐期计算回撤和最大回撤。</li>
-<li>给一个全市场小盘选股策略选择基准，并写出你拒绝使用沪深 300
-的理由。</li>
+<li>净值序列为 1、1.10、1.05、0.88、0.95、1.12，逐期计算回撤和最大回撤。</li>
+<li>给一个全市场小盘选股策略选择基准，并写出你拒绝使用沪深 300 的理由。</li>
 </ol>
-<p>校验：第 1 题组合收益 3%，上涨资产的期末权重会提高；第 2 题 Sharpe 约
-1.04；第 3 题信息比率 0.5；第 4 题最大回撤为 0.88/1.10-1=-20%。</p>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步">小结与下一步</h2>
-<p>组合收益是权重与简单收益的内积，组合风险还取决于完整协方差结构。Sharpe
-和
-Sortino评价绝对风险效率，信息比率和跟踪误差评价相对基准表现，最大回撤与
-Calmar保留部分路径信息。所有指标都必须与样本、基准、成本、约束和置信度一起解释。</p>
-<p>下一阶段将用这些基础进入 CAPM：Beta 表示什么，Alpha
-又为什么不能简单等同于“真本事”。</p>
+<p>校验：第 1 题组合收益 3%，上涨资产的期末权重会提高；第 2 题 Sharpe 约 1.04；第 3 题信息比率 0.5；第 4 题最大回撤为 0.88/1.10-1=-20%。</p>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步"><a href="#小结与下一步" class="headerlink" title="小结与下一步"></a>小结与下一步</h2><p>组合收益是权重与简单收益的内积，组合风险还取决于完整协方差结构。Sharpe 和 Sortino评价绝对风险效率，信息比率和跟踪误差评价相对基准表现，最大回撤与 Calmar保留部分路径信息。所有指标都必须与样本、基准、成本、约束和置信度一起解释。</p>
+<p>下一阶段将用这些基础进入 CAPM：Beta 表示什么，Alpha 又为什么不能简单等同于“真本事”。</p>
 </section></div>
                 
               </div>
