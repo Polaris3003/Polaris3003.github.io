@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本期收录 18 篇 AI 论文，重点覆盖 agent 评测与安全、科学&#x2F;数学推理、多模态数据和领域应用。重点论文均已核阅公开 PDF；其余条目按官方摘要整理。 重点关注BALMS：纵向健康传感中的 agent 还没有解决时间对齐论文：BALMS: Benchmarking Agentic LLMs for Longitudinal Mental Health Sensing（arXiv:2608">
+    <meta name="description" content="本期收录 18 篇 AI 论文，重点覆盖 agent 评测与安全、科学&#x2F;数学推理、多模态数据和领域应用。重点论文均已核阅公开 PDF；其余条目按官方摘要整理。 重点关注 BALMS：纵向健康传感中的 agent 还没有解决时间对齐 论文：BALMS: Benchmarking Agentic LLMs for Longitudinal Mental Health Sensing（arXiv:26">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日AI论文简报｜2026 年 8 月 29 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/08/29/daily-ai-papers-2026-08-29/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="本期收录 18 篇 AI 论文，重点覆盖 agent 评测与安全、科学&#x2F;数学推理、多模态数据和领域应用。重点论文均已核阅公开 PDF；其余条目按官方摘要整理。 重点关注BALMS：纵向健康传感中的 agent 还没有解决时间对齐论文：BALMS: Benchmarking Agentic LLMs for Longitudinal Mental Health Sensing（arXiv:2608">
+<meta property="og:description" content="本期收录 18 篇 AI 论文，重点覆盖 agent 评测与安全、科学&#x2F;数学推理、多模态数据和领域应用。重点论文均已核阅公开 PDF；其余条目按官方摘要整理。 重点关注 BALMS：纵向健康传感中的 agent 还没有解决时间对齐 论文：BALMS: Benchmarking Agentic LLMs for Longitudinal Mental Health Sensing（arXiv:26">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-19/pixiv-rank-004-147136554.jpg">
 <meta property="article:published_time" content="2026-08-29T02:15:00.000Z">
@@ -347,70 +347,351 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<p>本期收录 18 篇 AI 论文，重点覆盖 agent 评测与安全、科学/数学推理、多模态数据和领域应用。重点论文均已核阅公开 PDF；其余条目按官方摘要整理。</p>
-<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="BALMS：纵向健康传感中的-agent-还没有解决时间对齐"><a href="#BALMS：纵向健康传感中的-agent-还没有解决时间对齐" class="headerlink" title="BALMS：纵向健康传感中的 agent 还没有解决时间对齐"></a>BALMS：纵向健康传感中的 agent 还没有解决时间对齐</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27219">BALMS: Benchmarking Agentic LLMs for Longitudinal Mental Health Sensing</a>（arXiv:2608.27219）<br><strong>作者</strong>：Yu Yvonne Wu、Arvind Pillai、Yuliang Chen、Yuwei Zhang、Sudarshan Regmi、Tess Z. Griffin、Michael V. Heinz、Lisa A. Marsch、Nicholas C. Jacobson、Andrew Campbell<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>这篇论文问的是：LLM agent 能否把跨天、跨传感器的行为记录转成可靠的心理健康状态估计，并给出可追溯的时间推理。作者在三个真实纵向数据集上比较两类任务：DiversityOne 为 782 名、覆盖 8 个国家的大学生，连续 28 天记录手机原始信号与每日情绪；PMData 为 16 名参与者、约 5 个月的 Fitbit 与每日压力；GLOBEM 为 497 名大学生的多年手机/Fitbit 数据与每周 PHQ-4 焦虑子量表。任务一是封闭式数值预测，任务二是开放式解释并由 LLM judge 检查六种时间操作，包括对齐、切片、差分、滞后、结构和交互。</p>
-<p>方法对照了 Health-LLM 提示式基线、可调用 DataFrame 的 PHIA/ReAct，以及按天切块的 RAG 和 RAPTOR 两层记忆；主干包括 Qwen2.5-7B/14B、Mistral-7B、DeepSeek-R1-Distill-Qwen-14B 与 Claude Haiku 4.5。实验在本地使用 4 张 A6000，ReAct 最多 10 次迭代；数值任务以 MAE 和“预测均值”基线为主。作者报告的代表性结果是：均值基线在 DiversityOne、PMData、GLOBEM 的 MAE 分别为 0.58、0.48、0.80；Claude 的 Health-LLM 在 DiversityOne 达到 0.42，但在 PMData/GLOBEM 为 0.64/0.83，未超过均值基线。RAG 对 PMData 的 MAE 约改善 29%，对 GLOBEM 约改善 9%；较长历史会让 Health-LLM 变差，而 RAG 更能从历史中受益。CoT 主要帮助推理型主干，最高改善可达 41.4%，模型更大并不保证时间对齐或数值正确。</p>
-<p>创新是把“会不会解释”拆成可检查的时间操作，并把传感器粒度、记忆结构和工具调用放在同一基准中。证据限制很重要：数据是回顾性学生队列，不是前瞻性干预；LLM judge 不是临床医生，也没有人体专家评估；只有单 agent 提示/工具/记忆方案，没有多 agent 或 planner-executor 对照。GLOBEM 中 Fitbit-only 输入有时不逊于完整移动端输入，也提醒高频原始信号可能增加噪声。结果适合健康 AI、时序 agent 和决策支持系统读者，不构成诊断依据；建议优先读数据集与任务定义、表 3 的 MAE、时间推理评分、历史长度/RAG 消融和局限章节。</p>
+<p>本期收录 18 篇 AI 论文，重点覆盖 agent
+评测与安全、科学/数学推理、多模态数据和领域应用。重点论文均已核阅公开
+PDF；其余条目按官方摘要整理。</p>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="balms纵向健康传感中的-agent-还没有解决时间对齐">BALMS：纵向健康传感中的
+agent 还没有解决时间对齐</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27219">BALMS: Benchmarking Agentic LLMs
+for Longitudinal Mental Health Sensing</a>（arXiv:2608.27219）<br>
+<strong>作者</strong>：Yu Yvonne Wu、Arvind Pillai、Yuliang Chen、Yuwei
+Zhang、Sudarshan Regmi、Tess Z. Griffin、Michael V. Heinz、Lisa A.
+Marsch、Nicholas C. Jacobson、Andrew Campbell<br>
+<strong>来源/分类</strong>：arXiv · cs.CL<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>这篇论文问的是：LLM agent
+能否把跨天、跨传感器的行为记录转成可靠的心理健康状态估计，并给出可追溯的时间推理。作者在三个真实纵向数据集上比较两类任务：DiversityOne
+为 782 名、覆盖 8 个国家的大学生，连续 28
+天记录手机原始信号与每日情绪；PMData 为 16 名参与者、约 5 个月的 Fitbit
+与每日压力；GLOBEM 为 497 名大学生的多年手机/Fitbit 数据与每周 PHQ-4
+焦虑子量表。任务一是封闭式数值预测，任务二是开放式解释并由 LLM judge
+检查六种时间操作，包括对齐、切片、差分、滞后、结构和交互。</p>
+<p>方法对照了 Health-LLM 提示式基线、可调用 DataFrame 的
+PHIA/ReAct，以及按天切块的 RAG 和 RAPTOR 两层记忆；主干包括
+Qwen2.5-7B/14B、Mistral-7B、DeepSeek-R1-Distill-Qwen-14B 与 Claude Haiku
+4.5。实验在本地使用 4 张 A6000，ReAct 最多 10 次迭代；数值任务以 MAE
+和“预测均值”基线为主。作者报告的代表性结果是：均值基线在
+DiversityOne、PMData、GLOBEM 的 MAE 分别为 0.58、0.48、0.80；Claude 的
+Health-LLM 在 DiversityOne 达到 0.42，但在 PMData/GLOBEM 为
+0.64/0.83，未超过均值基线。RAG 对 PMData 的 MAE 约改善 29%，对 GLOBEM
+约改善 9%；较长历史会让 Health-LLM 变差，而 RAG 更能从历史中受益。CoT
+主要帮助推理型主干，最高改善可达
+41.4%，模型更大并不保证时间对齐或数值正确。</p>
+<p>创新是把“会不会解释”拆成可检查的时间操作，并把传感器粒度、记忆结构和工具调用放在同一基准中。证据限制很重要：数据是回顾性学生队列，不是前瞻性干预；LLM
+judge 不是临床医生，也没有人体专家评估；只有单 agent
+提示/工具/记忆方案，没有多 agent 或 planner-executor 对照。GLOBEM 中
+Fitbit-only
+输入有时不逊于完整移动端输入，也提醒高频原始信号可能增加噪声。结果适合健康
+AI、时序 agent
+和决策支持系统读者，不构成诊断依据；建议优先读数据集与任务定义、表 3 的
+MAE、时间推理评分、历史长度/RAG 消融和局限章节。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27219">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27219">PDF</a></p>
-<h3 id="AgentJudgeBench：LLM-judge-的难点可能是任务上限，不是提示词"><a href="#AgentJudgeBench：LLM-judge-的难点可能是任务上限，不是提示词" class="headerlink" title="AgentJudgeBench：LLM judge 的难点可能是任务上限，不是提示词"></a>AgentJudgeBench：LLM judge 的难点可能是任务上限，不是提示词</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26623">AgentJudgeBench: A Multi-Difficulty Benchmark for Evaluating LLM Judges on Agentic Tool-Calling</a>（arXiv:2608.26623）<br><strong>作者</strong>：Abhigya Verma、Amit Kumar Saha、Seganrasan Subramanian、Sai Harshitha Aluru<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文研究如何评估 agent 的工具选择、参数结构和调用顺序，而不是把整条轨迹交给一个不可审计的总分。AgentJudgeBench 以 BFCL 风格的合成任务构造 3,808 条记录，覆盖 15 个企业领域、每条 8–19 个工具、线性/扇出/扇入/菱形/可选增强/循环样式 6 种 DAG，设置简单、中等、困难三级，并生成有验证地面真值的轨迹。5 个生成器（从 SmolLM3-3B 到 GPT-5.4）与 6 个主要 judge 组成 321,648 个有效评测组合；程序化指标拆成工具选择、参数结构、序列准确率和查询覆盖。</p>
-<p>作者报告，人类对 120 条记录的复核与程序评分总体有 92.7% 的指标级一致；但参数结构对“多余参数是否算错”的判定较敏感。30 个成对比较的难度趋势全部单调，缺少 ground truth 时的性能跌幅约是有 ground truth 的 1.5 倍；困难集在没有 ground truth 时，6 个 judge 对 5 个生成器的结果收敛到约 77%–82%，暗示任务难度形成了更强的评测上限。真值也不是总有益：作者报告 GPT-5.4 加入真值下降 1.5 个百分点，Gemini-2.5-Pro 下降 3.9 个百分点，原因被解释为过度锚定。带真值的对照中，QwQ-32B 在 15 个单元中的 10 个领先；但人类验证里 GPT-OSS-120B 与人类判断最接近。CoT 平均只带来约 0.11 个百分点，结构化 JSON rubric 在第一组配对中提高约 4.8–6.5 个百分点，换到更难的第二组后收益缩小甚至反转。</p>
-<p>创新是把 agent 评测拆为可验证的原子操作，并同时观察 judge 的一致性、难度敏感度与真值依赖。限制包括合成轨迹与真实企业域的差距、GPT-5.4 Azure 版本不可完全复现、judge 自评偏差（序列指标约高 0.172）、确定性评分器的设计选择，以及中等难度仅 58.1% 全体同意、困难难度反而 93.9% 同意的反常分布。它是评测方法研究，不直接提供训练信号，也没有理由把任何单一 judge 当作标准答案。适合 agent 评测、奖励建模和企业工具调用系统读者；建议先读任务/DAG 生成、程序评分定义、人类验证、真值/提示消融与失败案例。</p>
-<p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26623">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26623">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/ServiceNow/SyGra/tree/scratch/agent_judge_bench/tasks/agentic_bfcl_judge_eval/">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/ServiceNow-AI/AgentJudgeBench">数据</a></p>
-<h3 id="Multi2AV-Safety：音视频生成的安全风险会随模态组合改变"><a href="#Multi2AV-Safety：音视频生成的安全风险会随模态组合改变" class="headerlink" title="Multi2AV-Safety：音视频生成的安全风险会随模态组合改变"></a>Multi2AV-Safety：音视频生成的安全风险会随模态组合改变</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26535">Multi2AV-Safety: Benchmarking Safety in Multimodal-to-Audio-Video Generation</a>（arXiv:2608.26535）<br><strong>作者</strong>：Kaichao Jiang、Changtao Miao、Baiqi Wu、Zhiyuan Lu、Kang Yang、Peiwei Zhao、Junchi Chen、Yunfeng Diao、He Liu、Qi Chu、Tao Gong、Nenghai Yu<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>这项工作问的是：当文本、图像、音频和视频同时作为生成条件时，哪些模态携带有害证据，安全防护是否真的能把证据组合识别出来。基准包含 11,024 个攻击实例，覆盖 11 种非单模组合：8,849 个双模态、1,500 个三模态、675 个四模态；攻击机制为 Direct 6,475、Jailbreak 2,849、Adversarial 975、Temporal 725，伤害类别包括暴力/血腥、色情、违法、仇恨/歧视和政治。作者进一步按有害证据结构分成 Composed Harm（13.2%）、Diluted（65.5%）和 Full（21.3%），并经过 Claude Opus 4.6 与 3 位专家的两阶段质量控制。</p>
-<p>生成器为 LTX-2，防护对照为可读取全模态的 Qwen3-Omni-30B-A3B 与 GuardReasoner-Omni-3B，另有只处理文本/图像诊断的视觉 guard。作者报告所有配置的攻击成功率（ASR）都很高，为 83.7%–99.1%，总体 91.7%；拒绝率（RHR）只有 Qwen3-Omni 34.1%、GuardReasoner-Omni 24.2%。随着双模到四模，Qwen 的 RHR 从 32.8% 升到 40.4%，GuardReasoner 从 22.1% 升到 32.9%，但四模态的全访问召回率仍只有 52.6%/61.2%。在 Composed Harm 的双模实例上，ASR 为 85.7%，两个 guard 的召回仅 46.2%/50.4%；Direct 的召回随携带有害信息的模态数增加并不稳定。</p>
-<p>创新是把“有害意图”“证据载体”和“攻击方法”因子化，并区分证据被组合、稀释还是完整呈现，避免一个总 ASR 掩盖失败结构。局限也同样明确：数据发布计划在 2026 年 10 月，图像/视频对抗攻击因方法迁移不稳定没有纳入；只测特定生成器、guard 版本和有害内容，没有良性效用、拒答误伤或真实产品流量评估。ASR/RHR 是受控红队与专家标签下的审计数字，不是任何生产系统的越狱概率。适合多模态安全、红队和内容治理读者；建议先读因素设计、Composed/Diluted 定义、表格中的模态阶数结果、guard 消融与伦理限制。</p>
+<h3 id="agentjudgebenchllm-judge-的难点可能是任务上限不是提示词">AgentJudgeBench：LLM
+judge 的难点可能是任务上限，不是提示词</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26623">AgentJudgeBench: A
+Multi-Difficulty Benchmark for Evaluating LLM Judges on Agentic
+Tool-Calling</a>（arXiv:2608.26623）<br>
+<strong>作者</strong>：Abhigya Verma、Amit Kumar Saha、Seganrasan
+Subramanian、Sai Harshitha Aluru<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>论文研究如何评估 agent
+的工具选择、参数结构和调用顺序，而不是把整条轨迹交给一个不可审计的总分。AgentJudgeBench
+以 BFCL 风格的合成任务构造 3,808 条记录，覆盖 15 个企业领域、每条 8–19
+个工具、线性/扇出/扇入/菱形/可选增强/循环样式 6 种
+DAG，设置简单、中等、困难三级，并生成有验证地面真值的轨迹。5
+个生成器（从 SmolLM3-3B 到 GPT-5.4）与 6 个主要 judge 组成 321,648
+个有效评测组合；程序化指标拆成工具选择、参数结构、序列准确率和查询覆盖。</p>
+<p>作者报告，人类对 120 条记录的复核与程序评分总体有 92.7%
+的指标级一致；但参数结构对“多余参数是否算错”的判定较敏感。30
+个成对比较的难度趋势全部单调，缺少 ground truth 时的性能跌幅约是有
+ground truth 的 1.5 倍；困难集在没有 ground truth 时，6 个 judge 对 5
+个生成器的结果收敛到约
+77%–82%，暗示任务难度形成了更强的评测上限。真值也不是总有益：作者报告
+GPT-5.4 加入真值下降 1.5 个百分点，Gemini-2.5-Pro 下降 3.9
+个百分点，原因被解释为过度锚定。带真值的对照中，QwQ-32B 在 15 个单元中的
+10 个领先；但人类验证里 GPT-OSS-120B 与人类判断最接近。CoT 平均只带来约
+0.11 个百分点，结构化 JSON rubric 在第一组配对中提高约 4.8–6.5
+个百分点，换到更难的第二组后收益缩小甚至反转。</p>
+<p>创新是把 agent 评测拆为可验证的原子操作，并同时观察 judge
+的一致性、难度敏感度与真值依赖。限制包括合成轨迹与真实企业域的差距、GPT-5.4
+Azure 版本不可完全复现、judge 自评偏差（序列指标约高
+0.172）、确定性评分器的设计选择，以及中等难度仅 58.1%
+全体同意、困难难度反而 93.9%
+同意的反常分布。它是评测方法研究，不直接提供训练信号，也没有理由把任何单一
+judge 当作标准答案。适合 agent
+评测、奖励建模和企业工具调用系统读者；建议先读任务/DAG
+生成、程序评分定义、人类验证、真值/提示消融与失败案例。</p>
+<p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26623">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26623">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/ServiceNow/SyGra/tree/scratch/agent_judge_bench/tasks/agentic_bfcl_judge_eval/">代码</a>
+· <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/ServiceNow-AI/AgentJudgeBench">数据</a></p>
+<h3 id="multi2av-safety音视频生成的安全风险会随模态组合改变">Multi2AV-Safety：音视频生成的安全风险会随模态组合改变</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26535">Multi2AV-Safety: Benchmarking
+Safety in Multimodal-to-Audio-Video
+Generation</a>（arXiv:2608.26535）<br>
+<strong>作者</strong>：Kaichao Jiang、Changtao Miao、Baiqi Wu、Zhiyuan
+Lu、Kang Yang、Peiwei Zhao、Junchi Chen、Yunfeng Diao、He Liu、Qi
+Chu、Tao Gong、Nenghai Yu<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>这项工作问的是：当文本、图像、音频和视频同时作为生成条件时，哪些模态携带有害证据，安全防护是否真的能把证据组合识别出来。基准包含
+11,024 个攻击实例，覆盖 11 种非单模组合：8,849 个双模态、1,500
+个三模态、675 个四模态；攻击机制为 Direct 6,475、Jailbreak
+2,849、Adversarial 975、Temporal
+725，伤害类别包括暴力/血腥、色情、违法、仇恨/歧视和政治。作者进一步按有害证据结构分成
+Composed Harm（13.2%）、Diluted（65.5%）和 Full（21.3%），并经过 Claude
+Opus 4.6 与 3 位专家的两阶段质量控制。</p>
+<p>生成器为 LTX-2，防护对照为可读取全模态的 Qwen3-Omni-30B-A3B 与
+GuardReasoner-Omni-3B，另有只处理文本/图像诊断的视觉
+guard。作者报告所有配置的攻击成功率（ASR）都很高，为 83.7%–99.1%，总体
+91.7%；拒绝率（RHR）只有 Qwen3-Omni 34.1%、GuardReasoner-Omni
+24.2%。随着双模到四模，Qwen 的 RHR 从 32.8% 升到 40.4%，GuardReasoner 从
+22.1% 升到 32.9%，但四模态的全访问召回率仍只有 52.6%/61.2%。在 Composed
+Harm 的双模实例上，ASR 为 85.7%，两个 guard 的召回仅 46.2%/50.4%；Direct
+的召回随携带有害信息的模态数增加并不稳定。</p>
+<p>创新是把“有害意图”“证据载体”和“攻击方法”因子化，并区分证据被组合、稀释还是完整呈现，避免一个总
+ASR 掩盖失败结构。局限也同样明确：数据发布计划在 2026 年 10
+月，图像/视频对抗攻击因方法迁移不稳定没有纳入；只测特定生成器、guard
+版本和有害内容，没有良性效用、拒答误伤或真实产品流量评估。ASR/RHR
+是受控红队与专家标签下的审计数字，不是任何生产系统的越狱概率。适合多模态安全、红队和内容治理读者；建议先读因素设计、Composed/Diluted
+定义、表格中的模态阶数结果、guard 消融与伦理限制。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26535">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26535">PDF</a></p>
-<h3 id="Cold-Start-Safety-Gap：智能体第一轮交互的安全状态几乎是空白"><a href="#Cold-Start-Safety-Gap：智能体第一轮交互的安全状态几乎是空白" class="headerlink" title="Cold-Start Safety Gap：智能体第一轮交互的安全状态几乎是空白"></a>Cold-Start Safety Gap：智能体第一轮交互的安全状态几乎是空白</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.07867">The Cold-Start Safety Gap in LLM Agents</a>（arXiv:2606.07867）<br><strong>作者</strong>：Chung-En Sun、Linbo Liu、Tsui-Wei Weng<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文研究一个部署上容易被忽略的问题：模型在没有先前交互时，是否还没有形成足以约束有害工具行为的内部安全状态。SODA 将 16 个工具环境、每个环境 5 个场景和 5 个有害威胁组成 400 个威胁，再按交互深度 0、1、3、5、7、10、15、20 展开为 3,200 个测试案例；每个环境还配有 20 个正常任务。作者测试 Llama、Qwen 和 Gemma 四个家族的 7 个开源模型，使用真实工具调用、Claude Opus 4.6 作安全 judge，每个条件运行 3 次。</p>
-<p>作者报告的安全分数从深度 0 到 20 的变化很大：Llama3.1-8B 为 5.7%→57.8%，Llama3.3-70B 为 23.6%→61.9%，Qwen3-4B 为 44.1%→72.5%，Qwen3-30B-A3B 为 59.1%→79.1%，Gemma4-4B 为 61.8%→75.0%，Gemma4-26B 为 82.9%→91.8%。隐藏状态的 PCA 与线性分类能以超过 0.9 的效果区分安全状态，且状态随深度向安全边界移动。消融显示，正常任务请求是主要驱动：从 All Empty 出发，只加入请求平均增加约 17%，只加入 agent 回答约 8%；不过回答对保留效用仍然必要。外部 AgentHarm 测试中，完整交互、合规回答和随机回答大约各增加 23% 的安全分，空响应约增加 14%；ASB 上完整交互约增加 8%，空响应只有约 2%。</p>
-<p>创新是把“安全”当作跨交互积累的状态，而不是只看当前 prompt 的属性；部署建议是先进行约 5–10 次真实正常交互，或用空响应预填充替代。作者也报告安全提示词不能消除缺口，ICL 拒答会带来不稳定和过度拒答，SFT 虽提高安全却可能严重损害工具效用（例如 Qwen3-4B 的 BFCL 由 64 降至 17，API 任务由 85.6 降至 64.8）。限制是只测开源模型，闭源模型的隐藏状态和系统提示不可比较；真实部署的上下文、权限和威胁分布也可能不同。适合 agent 安全和上线策略读者，建议读 SODA 环境、深度曲线、隐藏状态分析、交互/响应消融和外部泛化表。</p>
+<h3 id="cold-start-safety-gap智能体第一轮交互的安全状态几乎是空白">Cold-Start
+Safety Gap：智能体第一轮交互的安全状态几乎是空白</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.07867">The
+Cold-Start Safety Gap in LLM Agents</a>（arXiv:2606.07867）<br>
+<strong>作者</strong>：Chung-En Sun、Linbo Liu、Tsui-Wei Weng<br>
+<strong>来源/分类</strong>：arXiv · cs.CL<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>论文研究一个部署上容易被忽略的问题：模型在没有先前交互时，是否还没有形成足以约束有害工具行为的内部安全状态。SODA
+将 16 个工具环境、每个环境 5 个场景和 5 个有害威胁组成 400
+个威胁，再按交互深度 0、1、3、5、7、10、15、20 展开为 3,200
+个测试案例；每个环境还配有 20 个正常任务。作者测试 Llama、Qwen 和 Gemma
+四个家族的 7 个开源模型，使用真实工具调用、Claude Opus 4.6 作安全
+judge，每个条件运行 3 次。</p>
+<p>作者报告的安全分数从深度 0 到 20 的变化很大：Llama3.1-8B 为
+5.7%→57.8%，Llama3.3-70B 为 23.6%→61.9%，Qwen3-4B 为
+44.1%→72.5%，Qwen3-30B-A3B 为 59.1%→79.1%，Gemma4-4B 为
+61.8%→75.0%，Gemma4-26B 为 82.9%→91.8%。隐藏状态的 PCA
+与线性分类能以超过 0.9
+的效果区分安全状态，且状态随深度向安全边界移动。消融显示，正常任务请求是主要驱动：从
+All Empty 出发，只加入请求平均增加约 17%，只加入 agent 回答约
+8%；不过回答对保留效用仍然必要。外部 AgentHarm
+测试中，完整交互、合规回答和随机回答大约各增加 23%
+的安全分，空响应约增加 14%；ASB 上完整交互约增加 8%，空响应只有约
+2%。</p>
+<p>创新是把“安全”当作跨交互积累的状态，而不是只看当前 prompt
+的属性；部署建议是先进行约 5–10
+次真实正常交互，或用空响应预填充替代。作者也报告安全提示词不能消除缺口，ICL
+拒答会带来不稳定和过度拒答，SFT 虽提高安全却可能严重损害工具效用（例如
+Qwen3-4B 的 BFCL 由 64 降至 17，API 任务由 85.6 降至
+64.8）。限制是只测开源模型，闭源模型的隐藏状态和系统提示不可比较；真实部署的上下文、权限和威胁分布也可能不同。适合
+agent 安全和上线策略读者，建议读 SODA
+环境、深度曲线、隐藏状态分析、交互/响应消融和外部泛化表。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.07867">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.07867">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Trustworthy-ML-Lab/Agent-Cold-Start-Safety-Gap">代码</a></p>
-<h3 id="AgenticMathBench：端到端数学分数高，不代表-agent-会规划和纠错"><a href="#AgenticMathBench：端到端数学分数高，不代表-agent-会规划和纠错" class="headerlink" title="AgenticMathBench：端到端数学分数高，不代表 agent 会规划和纠错"></a>AgenticMathBench：端到端数学分数高，不代表 agent 会规划和纠错</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26950">From Atomic to Agentic: Towards Interpretable Evaluation of LLMs’ Agentic Mathematical Capabilities</a>（arXiv:2608.26950）<br><strong>作者</strong>：Jiayi Kuang、Yinghui Li、Yunze Song、Keyu Chen、Zhifeng Shen、Yangning Li、Yidong Wang、Di Yin、Ruizhi Qiao、Xing Sun、Kai Jin、Ying Shen、Liang Lin、Philip S. Yu<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>AgenticMathBench 把数学 agent 拆成 planning、action、feedback 三个环节，再向下分解为符号识别、概念理解、计算、空间、形式化、演绎/归纳、建模、定理应用、自反思和学习新知识等原子能力。作者从 150 多个数学 benchmark 中筛选 27 个数据集，合成带有计划、动作和反馈轨迹的评测任务，覆盖纯文本和较小规模的多模态任务。模型对照包括 Llama4、DeepSeek、Qwen、GLM 等开源模型，数学专用模型，以及 GPT-5.2、Claude 4.5 Sonnet Thinking、Gemini 3 Pro 等商业模型。</p>
-<p>作者报告，端到端数学成绩相近的模型，agentic 剖面可以明显不同：GPT-5.2 在 MATH/AIME 达到 100/99，但 planning、feedback、action 综合指标约为 41.0/53.7/89.3；Gemini 为 100/95.7 与 34.2/48.3/80.6；GLM4.7 虽为 98.8/95.7，planning/feedback/action 只有 29.0/29.7/64.5。反馈是明显瓶颈，作者报告多模型的反馈正确性仍低于 65%，修复建议综合分在 GPT/Claude/Gemini 约为 34.7/32.8/28.6。案例分析显示常见失败是下一步重复展开、直接跳到答案和生成与当前代数状态无关的操作。</p>
-<p>创新是把“数学能力”从最终答案扩展为可解释的计划—动作—反馈链，并用原子任务定位失败位置。限制包括分类法尚未覆盖长时记忆、迭代新知识学习和完整部署 agent，多模态样本较少，没有细粒度 token/延迟指标；LLM judge 与数据污染仍需独立审计。模型在 MATH 上做得好也不意味着它能在长轨迹中自我纠错。适合推理评测、数学 agent 和训练数据设计读者；建议优先读原子能力定义、计划/反馈/动作表、端到端对照表、失败案例和数据构造流程。</p>
+<h3 id="agenticmathbench端到端数学分数高不代表-agent-会规划和纠错">AgenticMathBench：端到端数学分数高，不代表
+agent 会规划和纠错</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26950">From Atomic to Agentic: Towards
+Interpretable Evaluation of LLMs' Agentic Mathematical
+Capabilities</a>（arXiv:2608.26950）<br>
+<strong>作者</strong>：Jiayi Kuang、Yinghui Li、Yunze Song、Keyu
+Chen、Zhifeng Shen、Yangning Li、Yidong Wang、Di Yin、Ruizhi Qiao、Xing
+Sun、Kai Jin、Ying Shen、Liang Lin、Philip S. Yu<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>AgenticMathBench 把数学 agent 拆成 planning、action、feedback
+三个环节，再向下分解为符号识别、概念理解、计算、空间、形式化、演绎/归纳、建模、定理应用、自反思和学习新知识等原子能力。作者从
+150 多个数学 benchmark 中筛选 27
+个数据集，合成带有计划、动作和反馈轨迹的评测任务，覆盖纯文本和较小规模的多模态任务。模型对照包括
+Llama4、DeepSeek、Qwen、GLM 等开源模型，数学专用模型，以及
+GPT-5.2、Claude 4.5 Sonnet Thinking、Gemini 3 Pro 等商业模型。</p>
+<p>作者报告，端到端数学成绩相近的模型，agentic 剖面可以明显不同：GPT-5.2
+在 MATH/AIME 达到 100/99，但 planning、feedback、action 综合指标约为
+41.0/53.7/89.3；Gemini 为 100/95.7 与 34.2/48.3/80.6；GLM4.7 虽为
+98.8/95.7，planning/feedback/action 只有
+29.0/29.7/64.5。反馈是明显瓶颈，作者报告多模型的反馈正确性仍低于
+65%，修复建议综合分在 GPT/Claude/Gemini 约为
+34.7/32.8/28.6。案例分析显示常见失败是下一步重复展开、直接跳到答案和生成与当前代数状态无关的操作。</p>
+<p>创新是把“数学能力”从最终答案扩展为可解释的计划—动作—反馈链，并用原子任务定位失败位置。限制包括分类法尚未覆盖长时记忆、迭代新知识学习和完整部署
+agent，多模态样本较少，没有细粒度 token/延迟指标；LLM judge
+与数据污染仍需独立审计。模型在 MATH
+上做得好也不意味着它能在长轨迹中自我纠错。适合推理评测、数学 agent
+和训练数据设计读者；建议优先读原子能力定义、计划/反馈/动作表、端到端对照表、失败案例和数据构造流程。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26950">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26950">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Eternity-gaga/Agentic-Math-Bench">代码</a></p>
-<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><h3 id="Thinking-on-Shots：多镜头视频编辑的-agent-推理"><a href="#Thinking-on-Shots：多镜头视频编辑的-agent-推理" class="headerlink" title="Thinking on Shots：多镜头视频编辑的 agent 推理"></a>Thinking on Shots：多镜头视频编辑的 agent 推理</h3><p><strong>作者</strong>：Chenyang Wu、Fuchen Long、Binyuan Huang、Xinlong Sun、Xi Chen、Chun-Le Guo、Chongyi Li<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.MM<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文研究多镜头视频编辑中，LLM/VLM 能否把复杂时空指令拆成镜头级任务，并维持跨镜头一致性。作者提出 MMLVE 任务与 MMLVE-Bench，针对稀疏/随机实体、密集异构指令和时空关系，结合 agentic LLM+VLM 做镜头解耦和指令解析，目标指标包括 CSEC、MID、ZDSS。摘要称系统超过包括 Seedance 2.0 在内的闭源 SOTA，并减少幻觉、改善一致性和转场；但没有给出具体分数、模型/数据规模、无 agent 基线或人工评测协议。适合视频生成和多模态 agent 读者，当前只能把它看作摘要层面的结果，需重点核查数据泄漏、镜头边界定义和长视频失败案例。</p>
+<h2 id="ai-论文">AI 论文</h2>
+<h3 id="thinking-on-shots多镜头视频编辑的-agent-推理">Thinking on
+Shots：多镜头视频编辑的 agent 推理</h3>
+<p><strong>作者</strong>：Chenyang Wu、Fuchen Long、Binyuan
+Huang、Xinlong Sun、Xi Chen、Chun-Le Guo、Chongyi Li<br>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.MM<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文研究多镜头视频编辑中，LLM/VLM
+能否把复杂时空指令拆成镜头级任务，并维持跨镜头一致性。作者提出 MMLVE
+任务与 MMLVE-Bench，针对稀疏/随机实体、密集异构指令和时空关系，结合
+agentic LLM+VLM 做镜头解耦和指令解析，目标指标包括
+CSEC、MID、ZDSS。摘要称系统超过包括 Seedance 2.0 在内的闭源
+SOTA，并减少幻觉、改善一致性和转场；但没有给出具体分数、模型/数据规模、无
+agent 基线或人工评测协议。适合视频生成和多模态 agent
+读者，当前只能把它看作摘要层面的结果，需重点核查数据泄漏、镜头边界定义和长视频失败案例。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26809">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26809">PDF</a></p>
-<h3 id="Don’t-Overthink-Don’t-Underthink：agent-的推理预算应随任务变化"><a href="#Don’t-Overthink-Don’t-Underthink：agent-的推理预算应随任务变化" class="headerlink" title="Don’t Overthink, Don’t Underthink：agent 的推理预算应随任务变化"></a>Don’t Overthink, Don’t Underthink：agent 的推理预算应随任务变化</h3><p><strong>作者</strong>：Md Jueal Mia、M. Hadi Amini<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文把过度推理与不足推理视为 agent 中“推理分配错误”，而不是单纯的 token 数问题；评测 MATH-500 与 GAIA public validation，以工具决策延迟、token 消耗、达到上限与答案正确性刻画动态需求。摘要报告过度推理增加计算、延迟和工具使用，却没有成比例的准确率收益；不足推理则持续关联错误或不完整答案。价值在于把规划、工具、记忆和 agent 间交互纳入推理控制，但摘要没有给分类阈值、具体数值、固定预算/难度估计基线或成本曲线，不能据此选择生产预算。</p>
+<h3 id="dont-overthink-dont-underthinkagent-的推理预算应随任务变化">Don't
+Overthink, Don't Underthink：agent 的推理预算应随任务变化</h3>
+<p><strong>作者</strong>：Md Jueal Mia、M. Hadi Amini<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文把过度推理与不足推理视为 agent 中“推理分配错误”，而不是单纯的
+token 数问题；评测 MATH-500 与 GAIA public
+validation，以工具决策延迟、token
+消耗、达到上限与答案正确性刻画动态需求。摘要报告过度推理增加计算、延迟和工具使用，却没有成比例的准确率收益；不足推理则持续关联错误或不完整答案。价值在于把规划、工具、记忆和
+agent
+间交互纳入推理控制，但摘要没有给分类阈值、具体数值、固定预算/难度估计基线或成本曲线，不能据此选择生产预算。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26442">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26442">PDF</a></p>
-<h3 id="DSA：多市场股票研究先解决证据编排，再谈模型意见"><a href="#DSA：多市场股票研究先解决证据编排，再谈模型意见" class="headerlink" title="DSA：多市场股票研究先解决证据编排，再谈模型意见"></a>DSA：多市场股票研究先解决证据编排，再谈模型意见</h3><p><strong>作者</strong>：Linsen Zhu、Yi Shi<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.MA<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>DSA 将多市场股票研究拆成证据获取、结构化上下文、模型路由、可选角色/Strategy Skill 推理、报告生成和风险覆盖；默认报告与 agentic profile 共享证据和路由服务，但使用不同的输出校验。参考实现覆盖 6 个区域市场、15 个策略技能，并在冻结软件快照上通过 1,457 个可移植离线后端契约测试，其中 596 个回溯映射到 6 类架构契约。作者明确说这些数字只证明实现符合测试契约，不证明报告质量、预测准确率或投资回报；摘要也没有给收益/回测。它适合研究工具链和可审计研究流程，金融场景的结论仍不能当作投资建议。</p>
+<h3 id="dsa多市场股票研究先解决证据编排再谈模型意见">DSA：多市场股票研究先解决证据编排，再谈模型意见</h3>
+<p><strong>作者</strong>：Linsen Zhu、Yi Shi<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.MA<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>DSA
+将多市场股票研究拆成证据获取、结构化上下文、模型路由、可选角色/Strategy
+Skill 推理、报告生成和风险覆盖；默认报告与 agentic profile
+共享证据和路由服务，但使用不同的输出校验。参考实现覆盖 6 个区域市场、15
+个策略技能，并在冻结软件快照上通过 1,457 个可移植离线后端契约测试，其中
+596 个回溯映射到 6
+类架构契约。作者明确说这些数字只证明实现符合测试契约，不证明报告质量、预测准确率或投资回报；摘要也没有给收益/回测。它适合研究工具链和可审计研究流程，金融场景的结论仍不能当作投资建议。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26990">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26990">PDF</a></p>
-<h3 id="ACE-Lens：agent-数据的关键不是数量，而是有效支持集与覆盖"><a href="#ACE-Lens：agent-数据的关键不是数量，而是有效支持集与覆盖" class="headerlink" title="ACE Lens：agent 数据的关键不是数量，而是有效支持集与覆盖"></a>ACE Lens：agent 数据的关键不是数量，而是有效支持集与覆盖</h3><p><strong>作者</strong>：Xingshan Zeng、Zishan Xu、Boju Zhang、Yuzhou Wu、Lingzhi Wang、Jianghao Lin、Liangyou Li、Yasheng Wang、Lifeng Shang、Xin Jiang、Weinan Zhang、Yong Yu、Qun Liu、Weiwen Liu<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>这篇框架论文把 agent 数据表示为环境 E、任务信号 q、交互轨迹 τ 与可选验证器 v，并以 ACE（Accuracy、Complexity、divErsity）组织生成、验证、难度校准和行为覆盖。作者认为准确性先确定接地且内部一致的数据支持集，复杂度应相对声明的 learner/执行配置分配，diversity 则控制覆盖与冗余。摘要的主要证据是对领域工作的归纳，未给出一个统一新 benchmark 或可复现的效果增益；复杂度、数据质量和覆盖之间如何量化仍需读全文。它适合作为 agent 数据工程的概念检查表，不能把框架术语当成已经验证的训练配方。</p>
+<h3 id="ace-lensagent-数据的关键不是数量而是有效支持集与覆盖">ACE
+Lens：agent 数据的关键不是数量，而是有效支持集与覆盖</h3>
+<p><strong>作者</strong>：Xingshan Zeng、Zishan Xu、Boju Zhang、Yuzhou
+Wu、Lingzhi Wang、Jianghao Lin、Liangyou Li、Yasheng Wang、Lifeng
+Shang、Xin Jiang、Weinan Zhang、Yong Yu、Qun Liu、Weiwen Liu<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>这篇框架论文把 agent 数据表示为环境 E、任务信号 q、交互轨迹 τ
+与可选验证器 v，并以
+ACE（Accuracy、Complexity、divErsity）组织生成、验证、难度校准和行为覆盖。作者认为准确性先确定接地且内部一致的数据支持集，复杂度应相对声明的
+learner/执行配置分配，diversity
+则控制覆盖与冗余。摘要的主要证据是对领域工作的归纳，未给出一个统一新
+benchmark
+或可复现的效果增益；复杂度、数据质量和覆盖之间如何量化仍需读全文。它适合作为
+agent 数据工程的概念检查表，不能把框架术语当成已经验证的训练配方。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27260">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27260">PDF</a></p>
-<h3 id="GRAIN：用结构不变性奖励压低图推理的表面过拟合"><a href="#GRAIN：用结构不变性奖励压低图推理的表面过拟合" class="headerlink" title="GRAIN：用结构不变性奖励压低图推理的表面过拟合"></a>GRAIN：用结构不变性奖励压低图推理的表面过拟合</h3><p><strong>作者</strong>：Zike Yuan、Han Zhang、Jianzhi Yan、Le Liu、Cai Ke、Huozhi Zhou、Jian Xie、Jiran Yin、Yukun Cao、Yue Yu、Hui Wang、Ming Liu、Bing Qin<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>GRAIN 研究图节点名称和任务叙述改变后，LLM 从噪声文本恢复拓扑结构的鲁棒性。它以单 agent 的语义解析—工具执行管线训练，设计 Structure Invariance Reward，用地面真值拓扑校验中间图；同时发布 GRIT benchmark 测量名称/叙述变化。作者报告相对多 agent 基线准确率提高 16.45%，延迟约低 24%，并把 SFT 模型的 OOD gap 从 15.77% 降到 7.80%，在训练分布之外的大图上保持鲁棒。局限是摘要没有给图规模、RL 预算、单 agent 与多 agent 的工具/模型公平性和各类 shift 的分解；这些结果还不是现实知识图谱部署保证。</p>
+<h3 id="grain用结构不变性奖励压低图推理的表面过拟合">GRAIN：用结构不变性奖励压低图推理的表面过拟合</h3>
+<p><strong>作者</strong>：Zike Yuan、Han Zhang、Jianzhi Yan、Le Liu、Cai
+Ke、Huozhi Zhou、Jian Xie、Jiran Yin、Yukun Cao、Yue Yu、Hui Wang、Ming
+Liu、Bing Qin<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>GRAIN 研究图节点名称和任务叙述改变后，LLM
+从噪声文本恢复拓扑结构的鲁棒性。它以单 agent
+的语义解析—工具执行管线训练，设计 Structure Invariance
+Reward，用地面真值拓扑校验中间图；同时发布 GRIT benchmark
+测量名称/叙述变化。作者报告相对多 agent 基线准确率提高 16.45%，延迟约低
+24%，并把 SFT 模型的 OOD gap 从 15.77% 降到
+7.80%，在训练分布之外的大图上保持鲁棒。局限是摘要没有给图规模、RL
+预算、单 agent 与多 agent 的工具/模型公平性和各类 shift
+的分解；这些结果还不是现实知识图谱部署保证。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27142">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27142">PDF</a></p>
-<h3 id="DocTalkBN：孟加拉语远程医疗语料的规模与安全标注"><a href="#DocTalkBN：孟加拉语远程医疗语料的规模与安全标注" class="headerlink" title="DocTalkBN：孟加拉语远程医疗语料的规模与安全标注"></a>DocTalkBN：孟加拉语远程医疗语料的规模与安全标注</h3><p><strong>作者</strong>：Anik Saha、Fahmida Sultana Naznin、Sadatul Islam Sadi、Ananya Shahrin Promi、Wahid Al Azad Navid、Rifat Shahriyar<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>DocTalkBN 发布专家远程医疗对话数据：557.63 小时配对音频/文本、1,515 个患者电话、10,274 个 host-doctor 问答、约 170 万 token，覆盖 26 个专科。作者在分诊、建议安全和实体识别等下游任务展示用途。价值是填补孟加拉语医疗语音和对话数据缺口；但摘要没有给去标识化细节、患者同意、医生标注一致性、跨医院切分和模型基线，医疗建议任务也不能当作临床效能。代码/数据入口为匿名仓库，需核对访问权限和许可。</p>
+<h3 id="doctalkbn孟加拉语远程医疗语料的规模与安全标注">DocTalkBN：孟加拉语远程医疗语料的规模与安全标注</h3>
+<p><strong>作者</strong>：Anik Saha、Fahmida Sultana Naznin、Sadatul
+Islam Sadi、Ananya Shahrin Promi、Wahid Al Azad Navid、Rifat
+Shahriyar<br>
+<strong>来源/分类</strong>：arXiv · cs.CL<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>DocTalkBN 发布专家远程医疗对话数据：557.63 小时配对音频/文本、1,515
+个患者电话、10,274 个 host-doctor 问答、约 170 万 token，覆盖 26
+个专科。作者在分诊、建议安全和实体识别等下游任务展示用途。价值是填补孟加拉语医疗语音和对话数据缺口；但摘要没有给去标识化细节、患者同意、医生标注一致性、跨医院切分和模型基线，医疗建议任务也不能当作临床效能。代码/数据入口为匿名仓库，需核对访问权限和许可。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27110">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27110">PDF</a> · <a target="_blank" rel="noopener" href="https://anonymous.4open.science/r/doctalk">代码/数据</a></p>
-<h3 id="VIPER：兽医病理的视觉语言评测不能直接借用人类病理"><a href="#VIPER：兽医病理的视觉语言评测不能直接借用人类病理" class="headerlink" title="VIPER：兽医病理的视觉语言评测不能直接借用人类病理"></a>VIPER：兽医病理的视觉语言评测不能直接借用人类病理</h3><p><strong>作者</strong>：Luca L. Weishaupt、Simone de Brot、Javier Asin、Llorenç Grau-Roma、Nic G. Reitsam、Andrew H. Song、Dongmin Bang、Stefan T. Kaluziak、Long Phi Le、Jakob Nikolas Kather、Faisal Mahmood、Guillaume Jaume<br><strong>来源/分类</strong>：arXiv · cs.CV<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>VIPER 面向毒理病理，包含 419 张大鼠 H&amp;E 组织图像和 1,251 个问题，覆盖 7 个器官系统、选择题/KPrim/自由文本，全部由认证兽医病理专家编写与验证。作者评测 16 个模型，包括兽医病理、人类病理和通用前沿模型，报告人类病理与兽医病理之间存在明显领域差距，前沿模型可能把正常组织过度诊断为异常，领域训练仍是视觉接地的关键。摘要没有给各模型分数、病种/器官切分和训练污染审计，不能把“暴露风险”理解为临床误诊率；适合医疗 VLM 数据集和领域迁移读者。</p>
+<h3 id="viper兽医病理的视觉语言评测不能直接借用人类病理">VIPER：兽医病理的视觉语言评测不能直接借用人类病理</h3>
+<p><strong>作者</strong>：Luca L. Weishaupt、Simone de Brot、Javier
+Asin、Llorenç Grau-Roma、Nic G. Reitsam、Andrew H. Song、Dongmin
+Bang、Stefan T. Kaluziak、Long Phi Le、Jakob Nikolas Kather、Faisal
+Mahmood、Guillaume Jaume<br>
+<strong>来源/分类</strong>：arXiv · cs.CV<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>VIPER 面向毒理病理，包含 419 张大鼠 H&amp;E 组织图像和 1,251
+个问题，覆盖 7
+个器官系统、选择题/KPrim/自由文本，全部由认证兽医病理专家编写与验证。作者评测
+16
+个模型，包括兽医病理、人类病理和通用前沿模型，报告人类病理与兽医病理之间存在明显领域差距，前沿模型可能把正常组织过度诊断为异常，领域训练仍是视觉接地的关键。摘要没有给各模型分数、病种/器官切分和训练污染审计，不能把“暴露风险”理解为临床误诊率；适合医疗
+VLM 数据集和领域迁移读者。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26382">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26382">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/mahmoodlab/viper">代码</a></p>
-<h3 id="Anian：高风险心理健康场景把生成模型放到安全门之后"><a href="#Anian：高风险心理健康场景把生成模型放到安全门之后" class="headerlink" title="Anian：高风险心理健康场景把生成模型放到安全门之后"></a>Anian：高风险心理健康场景把生成模型放到安全门之后</h3><p><strong>作者</strong>：Lei Wang、Xiao Wang、Lei Li<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>Anian 面向围产期心理健康支持和正念干预路由，把文本/语音转写映射为情绪、心理社会构念、安全风险和干预路径四层状态，用最高风险优先规则融合本地文本与外部语音证据；中高风险时屏蔽自由生成与 TTS，改用固定安全内容和人工支持提示。内部原型使用约 858,295 条公共语料归一化记录，作者报告 L1/L2/L4 Micro-F1 为 0.9604/0.9144/0.9742，233 条受控压力样本中 L3 高风险召回为 1.0000。论文明确这些结果只证明标签框架与门控逻辑的内部可行性，不证明临床有效性、诊断准确率或真实安全；摘要也没有独立临床专家验证，不能用于诊疗或危机干预替代。</p>
+<h3 id="anian高风险心理健康场景把生成模型放到安全门之后">Anian：高风险心理健康场景把生成模型放到安全门之后</h3>
+<p><strong>作者</strong>：Lei Wang、Xiao Wang、Lei Li<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>Anian
+面向围产期心理健康支持和正念干预路由，把文本/语音转写映射为情绪、心理社会构念、安全风险和干预路径四层状态，用最高风险优先规则融合本地文本与外部语音证据；中高风险时屏蔽自由生成与
+TTS，改用固定安全内容和人工支持提示。内部原型使用约 858,295
+条公共语料归一化记录，作者报告 L1/L2/L4 Micro-F1 为
+0.9604/0.9144/0.9742，233 条受控压力样本中 L3 高风险召回为
+1.0000。论文明确这些结果只证明标签框架与门控逻辑的内部可行性，不证明临床有效性、诊断准确率或真实安全；摘要也没有独立临床专家验证，不能用于诊疗或危机干预替代。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26162">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26162">PDF</a></p>
-<h3 id="HPC-编程综述：LLM-在-MPI-与生产级扩展性上仍脆弱"><a href="#HPC-编程综述：LLM-在-MPI-与生产级扩展性上仍脆弱" class="headerlink" title="HPC 编程综述：LLM 在 MPI 与生产级扩展性上仍脆弱"></a>HPC 编程综述：LLM 在 MPI 与生产级扩展性上仍脆弱</h3><p><strong>作者</strong>：Strahinja Ljaljevic、Josep Jorba、Sergio Iserte<br><strong>来源/分类</strong>：arXiv · cs.DC、cs.AI<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>综述将 LLM 在高性能计算中的应用分为代码生成、并行化/优化、框架与架构、评测/benchmark 和一般挑战。作者总结通用 LLM 在串行与 OpenMP 类任务尚可，但在 MPI 等分布式范式上常无法同时保证正确性和可扩展性；HPC-Coder、HPC-GPT、chatHPC 等专门模型通过微调、精选数据和 RAG 提升准确率，却多限于 benchmark 或 micro-kernel。价值在于把“代码能生成”与生产级性能可移植性分开；摘要没有统一效应量、检索流程细节或完整复现实验，属于综述判断而非新模型验证。</p>
+<h3 id="hpc-编程综述llm-在-mpi-与生产级扩展性上仍脆弱">HPC 编程综述：LLM
+在 MPI 与生产级扩展性上仍脆弱</h3>
+<p><strong>作者</strong>：Strahinja Ljaljevic、Josep Jorba、Sergio
+Iserte<br>
+<strong>来源/分类</strong>：arXiv · cs.DC、cs.AI<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>综述将 LLM
+在高性能计算中的应用分为代码生成、并行化/优化、框架与架构、评测/benchmark
+和一般挑战。作者总结通用 LLM 在串行与 OpenMP 类任务尚可，但在 MPI
+等分布式范式上常无法同时保证正确性和可扩展性；HPC-Coder、HPC-GPT、chatHPC
+等专门模型通过微调、精选数据和 RAG 提升准确率，却多限于 benchmark 或
+micro-kernel。价值在于把“代码能生成”与生产级性能可移植性分开；摘要没有统一效应量、检索流程细节或完整复现实验，属于综述判断而非新模型验证。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26110">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26110">PDF</a></p>
-<h3 id="ICU-Mortality-Explanations：agent-分解改善接地，但会牺牲-SHAP-对齐"><a href="#ICU-Mortality-Explanations：agent-分解改善接地，但会牺牲-SHAP-对齐" class="headerlink" title="ICU Mortality Explanations：agent 分解改善接地，但会牺牲 SHAP 对齐"></a>ICU Mortality Explanations：agent 分解改善接地，但会牺牲 SHAP 对齐</h3><p><strong>作者</strong>：Di Zhu、Chen Xie、Haoyun Zhang、Zihan Wei、Ziwei Wang、Jiazhao Shi、Ziyu Wang、Qiyang Xie<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>这项 eICU Demo 可行性研究比较独立 LLM 与四步 agentic pipeline，后者分开处理数据解释、指南检查和最终说明，并用 SHAP 结果做约束。保留数据集含 2,353 次 ICU 住院、死亡率 8.1%；XGBoost 的 AUROC/AUPRC 为 0.855/0.332。在 38 个解释样本中，独立 LLM 有 1 例显式泄漏结局，agent 为 0；14 个与 SHAP 审查重叠的病例中，独立 LLM 的 Jaccard 0.171 对 agent 0.077、方向一致性 92.9% 对 78.6%，而 agent 的指南接地 0.762 对 0.143、值具体性 0.236 对 0.143、可 plausibility 0.700 对 0.671。样本极小且是解释子集，结果是作者报告的可行性信号，不是临床安全验证；作者也建议必须配合归因检查后才能考虑高风险使用。</p>
+<h3 id="icu-mortality-explanationsagent-分解改善接地但会牺牲-shap-对齐">ICU
+Mortality Explanations：agent 分解改善接地，但会牺牲 SHAP 对齐</h3>
+<p><strong>作者</strong>：Di Zhu、Chen Xie、Haoyun Zhang、Zihan
+Wei、Ziwei Wang、Jiazhao Shi、Ziyu Wang、Qiyang Xie<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>这项 eICU Demo 可行性研究比较独立 LLM 与四步 agentic
+pipeline，后者分开处理数据解释、指南检查和最终说明，并用 SHAP
+结果做约束。保留数据集含 2,353 次 ICU 住院、死亡率 8.1%；XGBoost 的
+AUROC/AUPRC 为 0.855/0.332。在 38 个解释样本中，独立 LLM 有 1
+例显式泄漏结局，agent 为 0；14 个与 SHAP 审查重叠的病例中，独立 LLM 的
+Jaccard 0.171 对 agent 0.077、方向一致性 92.9% 对 78.6%，而 agent
+的指南接地 0.762 对 0.143、值具体性 0.236 对 0.143、可 plausibility
+0.700 对
+0.671。样本极小且是解释子集，结果是作者报告的可行性信号，不是临床安全验证；作者也建议必须配合归因检查后才能考虑高风险使用。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26109">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26109">PDF</a></p>
-<h3 id="MentorQA：教育问答的目标不应只有事实正确"><a href="#MentorQA：教育问答的目标不应只有事实正确" class="headerlink" title="MentorQA：教育问答的目标不应只有事实正确"></a>MentorQA：教育问答的目标不应只有事实正确</h3><p><strong>作者</strong>：Parth Bhalerao、Diola Dsouza、Ruiwen Guan、Oana Ignat<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>MentorQA 将长视频问答扩展为导师式回答，收集约 9,000 个问答对、180 小时内容、4 种语言，并以清晰度、意图对齐和学习价值等维度评估。作者比较 Single-Agent、Dual-Agent、RAG 和 Multi-Agent，报告多 agent 在复杂主题和低资源语言上回答质量更高，同时发现自动 LLM 评估与人工判断存在显著波动。价值在于把教育支持与事实检索区分；摘要没有给具体分数、人工标注协议、语言/主题切分、成本和污染审计，不能仅凭 agent 排名推断学习效果。</p>
+<h3 id="mentorqa教育问答的目标不应只有事实正确">MentorQA：教育问答的目标不应只有事实正确</h3>
+<p><strong>作者</strong>：Parth Bhalerao、Diola Dsouza、Ruiwen
+Guan、Oana Ignat<br>
+<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>MentorQA 将长视频问答扩展为导师式回答，收集约 9,000 个问答对、180
+小时内容、4 种语言，并以清晰度、意图对齐和学习价值等维度评估。作者比较
+Single-Agent、Dual-Agent、RAG 和 Multi-Agent，报告多 agent
+在复杂主题和低资源语言上回答质量更高，同时发现自动 LLM
+评估与人工判断存在显著波动。价值在于把教育支持与事实检索区分；摘要没有给具体分数、人工标注协议、语言/主题切分、成本和污染审计，不能仅凭
+agent 排名推断学习效果。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.17173">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.17173">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/AIM-SCU/MentorQA">代码/数据</a></p>
-<h3 id="LLM-Specific-Utility：最相关的证据未必最适合当前生成器"><a href="#LLM-Specific-Utility：最相关的证据未必最适合当前生成器" class="headerlink" title="LLM-Specific Utility：最相关的证据未必最适合当前生成器"></a>LLM-Specific Utility：最相关的证据未必最适合当前生成器</h3><p><strong>作者</strong>：Hengran Zhang、Keping Bi、Jiafeng Guo、Jiaming Zhang、Shuaiqiang Wang、Dawei Yin、Xueqi Cheng<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.IR<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文把检索段落的效用定义为：给定段落后，目标 LLM 相比无证据回答的性能提升，并在 Qwen3-8B/14B/32B、Llama 3.1-8B 与 Natural Questions、TriviaQA、MS MARCO-FQA 上构造 model-specific gold passages。作者报告最有用的段落依赖生成模型，针对其他模型优化的证据持续次优；人工标注证据仍是强基线，却不能完全满足每个模型的需求。SpecUBench 进一步评估能否判断这种专属效用。限制是摘要未给检索器、效用阈值和完整数字，也未证明生成器专属检索在真实业务中扣除延迟/成本后提高端到端收益。</p>
+<h3 id="llm-specific-utility最相关的证据未必最适合当前生成器">LLM-Specific
+Utility：最相关的证据未必最适合当前生成器</h3>
+<p><strong>作者</strong>：Hengran Zhang、Keping Bi、Jiafeng Guo、Jiaming
+Zhang、Shuaiqiang Wang、Dawei Yin、Xueqi Cheng<br>
+<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.IR<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文把检索段落的效用定义为：给定段落后，目标 LLM
+相比无证据回答的性能提升，并在 Qwen3-8B/14B/32B、Llama 3.1-8B 与 Natural
+Questions、TriviaQA、MS MARCO-FQA 上构造 model-specific gold
+passages。作者报告最有用的段落依赖生成模型，针对其他模型优化的证据持续次优；人工标注证据仍是强基线，却不能完全满足每个模型的需求。SpecUBench
+进一步评估能否判断这种专属效用。限制是摘要未给检索器、效用阈值和完整数字，也未证明生成器专属检索在真实业务中扣除延迟/成本后提高端到端收益。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2510.11358">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2510.11358">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Trustworthy-Information-Access/LLM_specific_utility">代码/数据</a></p>
-<h3 id="Safety-Does-Not-Compose：循环-agent-需要持久而非衰减的安全状态"><a href="#Safety-Does-Not-Compose：循环-agent-需要持久而非衰减的安全状态" class="headerlink" title="Safety Does Not Compose：循环 agent 需要持久而非衰减的安全状态"></a>Safety Does Not Compose：循环 agent 需要持久而非衰减的安全状态</h3><p><strong>作者</strong>：Chenhao Wu、Haoxuan Jia、Yang Liu、Yingguang Yang、Yuhan Lin、Chongyang Zhang、Hao Zheng、Yulin Huang、Yongzhi Qi、Shang Luo、Kefu Xu、Jifeng Zhu、Bin Chong<br><strong>来源/分类</strong>：arXiv · cs.CR、cs.AI<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文研究自主循环中跨迭代碎片化攻击为何能绕过只看单条轨迹的监控器。作者给出理论分离：若决定性证据被拆在多个迭代窗口之外，任何只看单轨迹的 monitor 真阳性率会退化到假阳性率；几何衰减的风险分数也无法使冷却时间随总迭代数 N 增长。提出 LoopHarness，把安全状态持久化且不衰减，在 mediated commit 与 arbiter detection floor δ_M 下将未经授权的不可逆动作期望数界定为 B+m-1+m/δ_M，并计划在原生 Agent-SafetyBench、跨迭代攻击、模块消融和自适应白盒红队上验证。理论边界依赖监控窗口、提交仲裁和威胁模型；摘要未给实验数字、开源协议或真实工具权限场景，不能把上界直接当作生产风险。</p>
+<h3 id="safety-does-not-compose循环-agent-需要持久而非衰减的安全状态">Safety
+Does Not Compose：循环 agent 需要持久而非衰减的安全状态</h3>
+<p><strong>作者</strong>：Chenhao Wu、Haoxuan Jia、Yang Liu、Yingguang
+Yang、Yuhan Lin、Chongyang Zhang、Hao Zheng、Yulin Huang、Yongzhi
+Qi、Shang Luo、Kefu Xu、Jifeng Zhu、Bin Chong<br>
+<strong>来源/分类</strong>：arXiv · cs.CR、cs.AI<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文研究自主循环中跨迭代碎片化攻击为何能绕过只看单条轨迹的监控器。作者给出理论分离：若决定性证据被拆在多个迭代窗口之外，任何只看单轨迹的
+monitor
+真阳性率会退化到假阳性率；几何衰减的风险分数也无法使冷却时间随总迭代数 N
+增长。提出 LoopHarness，把安全状态持久化且不衰减，在 mediated commit 与
+arbiter detection floor δ_M 下将未经授权的不可逆动作期望数界定为
+B+m-1+m/δ_M，并计划在原生
+Agent-SafetyBench、跨迭代攻击、模块消融和自适应白盒红队上验证。理论边界依赖监控窗口、提交仲裁和威胁模型；摘要未给实验数字、开源协议或真实工具权限场景，不能把上界直接当作生产风险。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27141">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27141">PDF</a></p>
 
                 
