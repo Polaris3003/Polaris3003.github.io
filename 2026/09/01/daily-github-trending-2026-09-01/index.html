@@ -350,35 +350,158 @@
               <div class="markdown-body">
                 
                 <div class="briefing-masthead">
-  <p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.09.01</p>
-  <p>今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">all-languages 日榜</a> 有 16 个候选，前排项目把 Agent 推进到可编辑课程、可验证架构图、科研工作流和本地 AI 服务；星标只是注意力快照，不是质量、维护性或安全性的证明。</p>
-  <div class="briefing-masthead__topics"><span>Agent 工作流</span><span>本地 AI</span><span>模型训练</span><span>文档解析</span><span>应用研究</span><span>机器人学习</span></div>
+<p class="briefing-masthead__eyebrow">
+GITHUB TRENDING · 2026.09.01
+</p>
+<p>
+今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">all-languages
+日榜</a> 有 16 个候选，前排项目把 Agent
+推进到可编辑课程、可验证架构图、科研工作流和本地 AI
+服务；星标只是注意力快照，不是质量、维护性或安全性的证明。
+</p>
+<div class="briefing-masthead__topics">
+<span>Agent 工作流</span><span>本地
+AI</span><span>模型训练</span><span>文档解析</span><span>应用研究</span><span>机器人学习</span>
 </div>
-
+</div>
 <span id="more"></span>
-<h2 id="今日要点"><a href="#今日要点" class="headerlink" title="今日要点"></a>今日要点</h2><p>今天最清晰的信号，是 Agent 正从“会调用工具”转向交付可复核的中间产物：<a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC">OpenMAIC</a> 交付可编辑课程，<a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a> 交付带类型约束的系统图，<a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">Scientific Agent Skills</a> 交付可编排的科研技能。它们把输入、状态、导出格式和失败边界显式化，比“让模型自己想办法”更接近可维护的软件工程。</p>
-<p>另一条线是把能力搬回开发者自己的机器：<a target="_blank" rel="noopener" href="https://github.com/Osmantic/ODS">ODS</a> 组装私有 AI 服务栈，<a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind">MiniMind</a> 把小模型训练链路摊开，<a target="_blank" rel="noopener" href="https://github.com/firecrawl/pdf-inspector">pdf-inspector</a> 将 PDF 预处理放到本地，<a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl">Microduck RL</a> 则把仿真策略送到实体机器人。本期从 16 个候选中采用 10 个，优先看真实工作流、可复现性和限制条件，而不是单看增长最快的数字。</p>
-<h2 id="值得尝试"><a href="#值得尝试" class="headerlink" title="值得尝试"></a>值得尝试</h2><h3 id="THU-MAIC-OpenMAIC"><a href="#THU-MAIC-OpenMAIC" class="headerlink" title="THU-MAIC/OpenMAIC"></a><a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC">THU-MAIC/OpenMAIC</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC">OpenMAIC</a> 是多 Agent 互动课堂平台，可从主题或材料生成幻灯片、测验、交互模拟和项目式学习活动；README 记录的 <a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC/releases/tag/v1.0.0">v1.0.0</a> 又加入了可暂停、恢复和转向的 Agent workbench、持久化会话、材料上传与 20 个内置技能。它适合课程原型、教育产品和多 Agent 工作流研究，但本地部署仍需要 Node.js、pnpm、模型/媒体/搜索/存储供应商，完整音视频链路还会增加运行时与配置成本。主要语言为 TypeScript，许可证为 <a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC/blob/main/LICENSE">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 27,283 stars、今日新增 2,824 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC/commit/f6cf8fd4b74ac83ea969e88b6dc2c974931b4d65">f6cf8fd</a>（2026-08-31）。</p>
-<h3 id="tt-a1i-archify"><a href="#tt-a1i-archify" class="headerlink" title="tt-a1i/archify"></a><a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">tt-a1i/archify</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a> 面向 Cursor、Claude Code、Codex CLI 和 OpenCode：Agent 先产出类型化 JSON IR，再确定性编译成 HTML/SVG，并支持架构、工作流、时序、数据流和生命周期图，以及已验证快照的 Before/Delta/After 对比。它适合系统设计、代码评审和需要可追溯上下文的团队；限制是验证约束的只是输入中被声明并通过检查的事实，不能替代运行时观测，具体集成也依赖 Node.js 和对应 Agent 主机。主要语言为 JavaScript，许可证为 <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify/blob/main/LICENSE">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 38,964 stars、今日新增 3,991 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify/commit/2bfb47132c057195d8dddb3e25ae966dd7c7a72e">2bfb471</a>（2026-08-31）。</p>
-<h3 id="K-Dense-AI-scientific-agent-skills"><a href="#K-Dense-AI-scientific-agent-skills" class="headerlink" title="K-Dense-AI/scientific-agent-skills"></a><a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">K-Dense-AI/scientific-agent-skills</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">Scientific Agent Skills</a> 把生物、化学、医学、药物发现、数据分析和科学通信等研究流程封装成 163 个可复用技能，并连接 100+ 个科学数据库与工具，兼容开放 Agent Skills 标准及多个代码 Agent。它适合科研人员、数据科学家和想学习领域工作流编排的开发者；限制是数据库/API 凭证、数据使用条件和外部 Python 依赖需要逐项核验，生成结果不能替代临床、实验或监管结论。主要语言为 Python，许可证为 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/LICENSE.md">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 40,784 stars、今日新增 1,980 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills/commit/1dd0fccf46fc3c9855c4a0c313a0c57fe4319883">1dd0fcc</a>（2026-08-31）。</p>
-<h3 id="majd-ipatool"><a href="#majd-ipatool" class="headerlink" title="majd/ipatool"></a><a target="_blank" rel="noopener" href="https://github.com/majd/ipatool">majd/ipatool</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/majd/ipatool">ipatool</a> 是 Go 编写的命令行工具，可搜索并下载 iOS、iPadOS、tvOS 和 visionOS 的 App Store 应用包，并提供账号认证、搜索、购买和已购列表命令。它适合做 App 包研究、设备测试和可重复的发布排查；限制是需要 Apple ID 和 App Store 访问条件，地区、购买授权、账号风控与应用分发规则仍然有效，它不是模拟器或构建系统。主要语言为 Go，许可证为 <a target="_blank" rel="noopener" href="https://github.com/majd/ipatool/blob/main/LICENSE">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 10,564 stars、今日新增 373 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/majd/ipatool/commit/d5d0b56faf64e3fdef885d49e7928b390aadb6c7">d5d0b56</a>（2026-08-30）。</p>
-<h3 id="jingyaogong-minimind"><a href="#jingyaogong-minimind" class="headerlink" title="jingyaogong/minimind"></a><a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind">jingyaogong/minimind</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind">MiniMind</a> 用尽量少的抽象从零实现约 64M 参数语言模型及其完整训练链路，覆盖预训练、SFT、LoRA、RLHF-DPO、RLAIF、Tool Use、Agentic RL、蒸馏和极简服务端。它适合想理解 LLM 内部机制、训练数据与算法实现的学习者；README 中“2 小时、3 元”的口径只是单张 RTX 3090 上 SFT 一个 epoch 的实测，不代表完整训练成本、效果或跨硬件复现结果。主要语言为 Python，许可证为 <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind/blob/master/LICENSE">Apache-2.0</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 56,201 stars、今日新增 495 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind/commit/7a6fddd63a30c06b2fdd5fac4089922b29bc841b">7a6fddd</a>（2026-08-31）。</p>
-<h3 id="Osmantic-ODS"><a href="#Osmantic-ODS" class="headerlink" title="Osmantic/ODS"></a><a target="_blank" rel="noopener" href="https://github.com/Osmantic/ODS">Osmantic/ODS</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/Osmantic/ODS">ODS</a> 把本地模型推理、Open WebUI、控制面板、语音、Agent、工作流、RAG、搜索和图像生成组装成一个私有 AI 服务栈，README 还列出 Linux、Windows/WSL2 与 Apple Silicon macOS 支持。它适合家庭实验室、工作站和希望少手工拼装服务的开发者；限制是 Docker 必须先可用，项目的 <code>main</code> 分支变化很快，生产式或长期运行的安装应锁定发行版/审计过的提交，并承担整套服务的运维与安全责任。主要语言为 Python，许可证为 <a target="_blank" rel="noopener" href="https://github.com/Osmantic/ODS/blob/main/LICENSE">Apache-2.0</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 5,533 stars、今日新增 77 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/Osmantic/ODS/commit/6ff9b4fc5190099705043acaab7e9b6ad9c8b8f1">6ff9b4f</a>（2026-08-21）。</p>
-<h3 id="affaan-m-ECC"><a href="#affaan-m-ECC" class="headerlink" title="affaan-m/ECC"></a><a target="_blank" rel="noopener" href="https://github.com/affaan-m/ECC">affaan-m/ECC</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/affaan-m/ECC">ECC</a> 是面向 Claude Code、Codex、OpenCode、Cursor 等客户端的 Agent harness 体系，把技能、记忆、研究优先、安全策略和插件 hooks 放进一套可安装的工作流；README 推荐通过 <code>npx ecc-universal setup</code> 或原生插件路径安装。它适合希望统一 Agent 开发规范、复用经验并增加安全检查的个人或团队；限制是 hooks 和多客户端配置会改变 Agent 行为，项目明确要求只从官方仓库、npm 包或 GitHub App 获取，安装后仍需审计权限范围和自动化副作用。主要语言为 JavaScript，许可证为 <a target="_blank" rel="noopener" href="https://github.com/affaan-m/ECC/blob/main/LICENSE">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 245,276 stars、今日新增 512 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/affaan-m/ECC/commit/ca185ef5f7667078a1e70a763bd3a9c71c48acf0">ca185ef</a>（2026-08-31）。</p>
-<h3 id="every-app-open-seo"><a href="#every-app-open-seo" class="headerlink" title="every-app/open-seo"></a><a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo">every-app/open-seo</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo">OpenSEO</a> 是面向个人和 Agent 的 SEO 工具，把关键词研究、排名跟踪、竞品洞察、反向链接、站点审计和 AI 可见性接入 MCP 与可复用技能，并提供 Docker 与 Cloudflare 自托管路径。它适合内容站点运营者和想把外部数据接入 Agent 的开发者；限制是自托管仍需要 DataForSEO API key 并按供应商用量付费，托管订阅与自托管的基础设施成本也要分开计算。主要语言为 TypeScript，许可证为 <a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo/blob/main/LICENSE">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 15,789 stars、今日新增 610 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo/commit/c469a48ae90ab58413b198fe3d1ac1aa90a9b070">c469a48</a>（2026-08-24）。</p>
-<h3 id="firecrawl-pdf-inspector"><a href="#firecrawl-pdf-inspector" class="headerlink" title="firecrawl/pdf-inspector"></a><a target="_blank" rel="noopener" href="https://github.com/firecrawl/pdf-inspector">firecrawl/pdf-inspector</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/firecrawl/pdf-inspector">pdf-inspector</a> 是 Rust PDF 分类与文本提取库，默认区分文本型、扫描型、图像型和混合 PDF，提供带位置感知的提取、Markdown 转换，以及 Python、Node.js 和浏览器 WebAssembly 绑定；需要时可只对部分页面接入 OCR。它适合 RAG、研究资料、财务文档和本地文档管道的预处理；限制是默认能力更适合原生文本 PDF，OCR 依赖额外的 PDFium/ONNX/模型文件，复杂表格、阅读顺序和扫描页仍应在自己的语料上验收。主要语言为 Rust，许可证为 <a target="_blank" rel="noopener" href="https://github.com/firecrawl/pdf-inspector/blob/main/LICENSE">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 17,398 stars、今日新增 228 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/firecrawl/pdf-inspector/commit/23cf1ad7b37eec6e3a21df61f8e6d5dce66c46bd">23cf1ad</a>（2026-08-21）。</p>
-<h3 id="pollen-robotics-microduck-rl"><a href="#pollen-robotics-microduck-rl" class="headerlink" title="pollen-robotics/microduck_rl"></a><a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl">pollen-robotics/microduck_rl</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl">Microduck RL</a> 为约 800 克、25 厘米高的双足机器人提供基于 mjlab/MuJoCo Warp 和 PPO 的强化学习环境，策略以 50 Hz 训练、导出为 ONNX，再交给实体机器人运行；仓库还把执行器物理、域随机化、反向间隙和奖励设计纳入 sim-to-real 配方。它适合机器人学习者研究从仿真到部署的完整链路；限制是本地训练需要 CUDA GPU 与 uv，README 估计 4096 个环境训练出可用步态约需 1–2 小时，实体部署还需要对应机器人运行时和硬件。主要语言为 Python，许可证为 <a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl/blob/develop/LICENSE">Apache-2.0</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计 1,164 stars、今日新增 385 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl/commit/d424a0c899f6b33cbd3daeb279913134349c0b63">d424a0c</a>（2026-08-27）。</p>
-<h2 id="快速浏览"><a href="#快速浏览" class="headerlink" title="快速浏览"></a>快速浏览</h2><div class="briefing-quick-list">
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC"><span class="briefing-quick-item__source">互动课堂</span><span class="briefing-quick-item__body"><strong>THU-MAIC/OpenMAIC</strong><small>把主题和材料变成可编辑、可持续的多 Agent 课程。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify"><span class="briefing-quick-item__source">架构事实</span><span class="briefing-quick-item__body"><strong>tt-a1i/archify</strong><small>把类型化架构事实编译成可复核、可导出的图。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills"><span class="briefing-quick-item__source">科研技能</span><span class="briefing-quick-item__body"><strong>K-Dense-AI/scientific-agent-skills</strong><small>把科学数据库与研究流程封装成 Agent 可编排技能。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/majd/ipatool"><span class="briefing-quick-item__source">App 包研究</span><span class="briefing-quick-item__body"><strong>majd/ipatool</strong><small>搜索和下载 Apple App Store 的应用包。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind"><span class="briefing-quick-item__source">模型训练</span><span class="briefing-quick-item__body"><strong>jingyaogong/minimind</strong><small>用可读代码从零训练并理解一个小型语言模型。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Osmantic/ODS"><span class="briefing-quick-item__source">本地 AI</span><span class="briefing-quick-item__body"><strong>Osmantic/ODS</strong><small>把推理、聊天、Agent、RAG 和工作流装进私有 AI 服务栈。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/affaan-m/ECC"><span class="briefing-quick-item__source">Agent harness</span><span class="briefing-quick-item__body"><strong>affaan-m/ECC</strong><small>把技能、记忆、安全和研究优先规则接入代码 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/every-app/open-seo"><span class="briefing-quick-item__source">SEO 自动化</span><span class="briefing-quick-item__body"><strong>every-app/open-seo</strong><small>通过 MCP 把关键词、竞品和站点审计接给 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/firecrawl/pdf-inspector"><span class="briefing-quick-item__source">PDF 解析</span><span class="briefing-quick-item__body"><strong>firecrawl/pdf-inspector</strong><small>在本地识别 PDF 类型并提取结构化 Markdown。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl"><span class="briefing-quick-item__source">机器人学习</span><span class="briefing-quick-item__body"><strong>pollen-robotics/microduck_rl</strong><small>把双足机器人策略从 MuJoCo 训练导出到实体机。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+<h2 id="今日要点">今日要点</h2>
+<p>今天最清晰的信号，是 Agent
+正从“会调用工具”转向交付可复核的中间产物：<a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC">OpenMAIC</a>
+交付可编辑课程，<a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a>
+交付带类型约束的系统图，<a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">Scientific
+Agent Skills</a>
+交付可编排的科研技能。它们把输入、状态、导出格式和失败边界显式化，比“让模型自己想办法”更接近可维护的软件工程。</p>
+<p>另一条线是把能力搬回开发者自己的机器：<a target="_blank" rel="noopener" href="https://github.com/Osmantic/ODS">ODS</a>
+组装私有 AI
+服务栈，<a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind">MiniMind</a>
+把小模型训练链路摊开，<a target="_blank" rel="noopener" href="https://github.com/firecrawl/pdf-inspector">pdf-inspector</a>
+将 PDF
+预处理放到本地，<a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl">Microduck
+RL</a> 则把仿真策略送到实体机器人。本期从 16 个候选中采用 10
+个，优先看真实工作流、可复现性和限制条件，而不是单看增长最快的数字。</p>
+<h2 id="值得尝试">值得尝试</h2>
+<h3 id="thu-maicopenmaic"><a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC">THU-MAIC/OpenMAIC</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC">OpenMAIC</a> 是多
+Agent
+互动课堂平台，可从主题或材料生成幻灯片、测验、交互模拟和项目式学习活动；README
+记录的 <a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC/releases/tag/v1.0.0">v1.0.0</a>
+又加入了可暂停、恢复和转向的 Agent workbench、持久化会话、材料上传与 20
+个内置技能。它适合课程原型、教育产品和多 Agent
+工作流研究，但本地部署仍需要
+Node.js、pnpm、模型/媒体/搜索/存储供应商，完整音视频链路还会增加运行时与配置成本。主要语言为
+TypeScript，许可证为 <a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC/blob/main/LICENSE">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+27,283 stars、今日新增 2,824 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC/commit/f6cf8fd4b74ac83ea969e88b6dc2c974931b4d65">f6cf8fd</a>（2026-08-31）。</p>
+<h3 id="tt-a1iarchify"><a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">tt-a1i/archify</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a> 面向
+Cursor、Claude Code、Codex CLI 和 OpenCode：Agent 先产出类型化 JSON
+IR，再确定性编译成
+HTML/SVG，并支持架构、工作流、时序、数据流和生命周期图，以及已验证快照的
+Before/Delta/After
+对比。它适合系统设计、代码评审和需要可追溯上下文的团队；限制是验证约束的只是输入中被声明并通过检查的事实，不能替代运行时观测，具体集成也依赖
+Node.js 和对应 Agent 主机。主要语言为 JavaScript，许可证为 <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify/blob/main/LICENSE">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+38,964 stars、今日新增 3,991 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify/commit/2bfb47132c057195d8dddb3e25ae966dd7c7a72e">2bfb471</a>（2026-08-31）。</p>
+<h3 id="k-dense-aiscientific-agent-skills"><a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">K-Dense-AI/scientific-agent-skills</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">Scientific
+Agent Skills</a>
+把生物、化学、医学、药物发现、数据分析和科学通信等研究流程封装成 163
+个可复用技能，并连接 100+ 个科学数据库与工具，兼容开放 Agent Skills
+标准及多个代码
+Agent。它适合科研人员、数据科学家和想学习领域工作流编排的开发者；限制是数据库/API
+凭证、数据使用条件和外部 Python
+依赖需要逐项核验，生成结果不能替代临床、实验或监管结论。主要语言为
+Python，许可证为 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/LICENSE.md">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+40,784 stars、今日新增 1,980 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills/commit/1dd0fccf46fc3c9855c4a0c313a0c57fe4319883">1dd0fcc</a>（2026-08-31）。</p>
+<h3 id="majdipatool"><a target="_blank" rel="noopener" href="https://github.com/majd/ipatool">majd/ipatool</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/majd/ipatool">ipatool</a> 是 Go
+编写的命令行工具，可搜索并下载 iOS、iPadOS、tvOS 和 visionOS 的 App
+Store 应用包，并提供账号认证、搜索、购买和已购列表命令。它适合做 App
+包研究、设备测试和可重复的发布排查；限制是需要 Apple ID 和 App Store
+访问条件，地区、购买授权、账号风控与应用分发规则仍然有效，它不是模拟器或构建系统。主要语言为
+Go，许可证为 <a target="_blank" rel="noopener" href="https://github.com/majd/ipatool/blob/main/LICENSE">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+10,564 stars、今日新增 373 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/majd/ipatool/commit/d5d0b56faf64e3fdef885d49e7928b390aadb6c7">d5d0b56</a>（2026-08-30）。</p>
+<h3 id="jingyaogongminimind"><a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind">jingyaogong/minimind</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind">MiniMind</a>
+用尽量少的抽象从零实现约 64M
+参数语言模型及其完整训练链路，覆盖预训练、SFT、LoRA、RLHF-DPO、RLAIF、Tool
+Use、Agentic RL、蒸馏和极简服务端。它适合想理解 LLM
+内部机制、训练数据与算法实现的学习者；README 中“2 小时、3
+元”的口径只是单张 RTX 3090 上 SFT 一个 epoch
+的实测，不代表完整训练成本、效果或跨硬件复现结果。主要语言为
+Python，许可证为 <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind/blob/master/LICENSE">Apache-2.0</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+56,201 stars、今日新增 495 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind/commit/7a6fddd63a30c06b2fdd5fac4089922b29bc841b">7a6fddd</a>（2026-08-31）。</p>
+<h3 id="osmanticods"><a target="_blank" rel="noopener" href="https://github.com/Osmantic/ODS">Osmantic/ODS</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/Osmantic/ODS">ODS</a>
+把本地模型推理、Open
+WebUI、控制面板、语音、Agent、工作流、RAG、搜索和图像生成组装成一个私有
+AI 服务栈，README 还列出 Linux、Windows/WSL2 与 Apple Silicon macOS
+支持。它适合家庭实验室、工作站和希望少手工拼装服务的开发者；限制是
+Docker 必须先可用，项目的 <code>main</code>
+分支变化很快，生产式或长期运行的安装应锁定发行版/审计过的提交，并承担整套服务的运维与安全责任。主要语言为
+Python，许可证为 <a target="_blank" rel="noopener" href="https://github.com/Osmantic/ODS/blob/main/LICENSE">Apache-2.0</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+5,533 stars、今日新增 77 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/Osmantic/ODS/commit/6ff9b4fc5190099705043acaab7e9b6ad9c8b8f1">6ff9b4f</a>（2026-08-21）。</p>
+<h3 id="affaan-mecc"><a target="_blank" rel="noopener" href="https://github.com/affaan-m/ECC">affaan-m/ECC</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/affaan-m/ECC">ECC</a> 是面向 Claude
+Code、Codex、OpenCode、Cursor 等客户端的 Agent harness
+体系，把技能、记忆、研究优先、安全策略和插件 hooks
+放进一套可安装的工作流；README 推荐通过
+<code>npx ecc-universal setup</code> 或原生插件路径安装。它适合希望统一
+Agent 开发规范、复用经验并增加安全检查的个人或团队；限制是 hooks
+和多客户端配置会改变 Agent 行为，项目明确要求只从官方仓库、npm 包或
+GitHub App 获取，安装后仍需审计权限范围和自动化副作用。主要语言为
+JavaScript，许可证为 <a target="_blank" rel="noopener" href="https://github.com/affaan-m/ECC/blob/main/LICENSE">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+245,276 stars、今日新增 512 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/affaan-m/ECC/commit/ca185ef5f7667078a1e70a763bd3a9c71c48acf0">ca185ef</a>（2026-08-31）。</p>
+<h3 id="every-appopen-seo"><a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo">every-app/open-seo</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo">OpenSEO</a>
+是面向个人和 Agent 的 SEO
+工具，把关键词研究、排名跟踪、竞品洞察、反向链接、站点审计和 AI
+可见性接入 MCP 与可复用技能，并提供 Docker 与 Cloudflare
+自托管路径。它适合内容站点运营者和想把外部数据接入 Agent
+的开发者；限制是自托管仍需要 DataForSEO API key
+并按供应商用量付费，托管订阅与自托管的基础设施成本也要分开计算。主要语言为
+TypeScript，许可证为 <a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo/blob/main/LICENSE">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+15,789 stars、今日新增 610 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/every-app/open-seo/commit/c469a48ae90ab58413b198fe3d1ac1aa90a9b070">c469a48</a>（2026-08-24）。</p>
+<h3 id="firecrawlpdf-inspector"><a target="_blank" rel="noopener" href="https://github.com/firecrawl/pdf-inspector">firecrawl/pdf-inspector</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/firecrawl/pdf-inspector">pdf-inspector</a> 是
+Rust PDF 分类与文本提取库，默认区分文本型、扫描型、图像型和混合
+PDF，提供带位置感知的提取、Markdown 转换，以及 Python、Node.js 和浏览器
+WebAssembly 绑定；需要时可只对部分页面接入 OCR。它适合
+RAG、研究资料、财务文档和本地文档管道的预处理；限制是默认能力更适合原生文本
+PDF，OCR 依赖额外的
+PDFium/ONNX/模型文件，复杂表格、阅读顺序和扫描页仍应在自己的语料上验收。主要语言为
+Rust，许可证为 <a target="_blank" rel="noopener" href="https://github.com/firecrawl/pdf-inspector/blob/main/LICENSE">MIT</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+17,398 stars、今日新增 228 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/firecrawl/pdf-inspector/commit/23cf1ad7b37eec6e3a21df61f8e6d5dce66c46bd">23cf1ad</a>（2026-08-21）。</p>
+<h3 id="pollen-roboticsmicroduck_rl"><a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl">pollen-robotics/microduck_rl</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl">Microduck
+RL</a> 为约 800 克、25 厘米高的双足机器人提供基于 mjlab/MuJoCo Warp 和
+PPO 的强化学习环境，策略以 50 Hz 训练、导出为
+ONNX，再交给实体机器人运行；仓库还把执行器物理、域随机化、反向间隙和奖励设计纳入
+sim-to-real
+配方。它适合机器人学习者研究从仿真到部署的完整链路；限制是本地训练需要
+CUDA GPU 与 uv，README 估计 4096 个环境训练出可用步态约需 1–2
+小时，实体部署还需要对应机器人运行时和硬件。主要语言为 Python，许可证为
+<a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl/blob/develop/LICENSE">Apache-2.0</a>；<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a> 显示总计
+1,164 stars、今日新增 385 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl/commit/d424a0c899f6b33cbd3daeb279913134349c0b63">d424a0c</a>（2026-08-27）。</p>
+<h2 id="快速浏览">快速浏览</h2>
+<div class="briefing-quick-list">
+<p><a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/THU-MAIC/OpenMAIC"><span class="briefing-quick-item__source">互动课堂</span><span class="briefing-quick-item__body"><strong>THU-MAIC/OpenMAIC</strong><small>把主题和材料变成可编辑、可持续的多
+Agent 课程。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify"><span class="briefing-quick-item__source">架构事实</span><span class="briefing-quick-item__body"><strong>tt-a1i/archify</strong><small>把类型化架构事实编译成可复核、可导出的图。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills"><span class="briefing-quick-item__source">科研技能</span><span class="briefing-quick-item__body"><strong>K-Dense-AI/scientific-agent-skills</strong><small>把科学数据库与研究流程封装成
+Agent 可编排技能。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/majd/ipatool"><span class="briefing-quick-item__source">App 包研究</span><span class="briefing-quick-item__body"><strong>majd/ipatool</strong><small>搜索和下载
+Apple App Store 的应用包。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind"><span class="briefing-quick-item__source">模型训练</span><span class="briefing-quick-item__body"><strong>jingyaogong/minimind</strong><small>用可读代码从零训练并理解一个小型语言模型。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Osmantic/ODS"><span class="briefing-quick-item__source">本地 AI</span><span class="briefing-quick-item__body"><strong>Osmantic/ODS</strong><small>把推理、聊天、Agent、RAG
+和工作流装进私有 AI 服务栈。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/affaan-m/ECC"><span class="briefing-quick-item__source">Agent harness</span><span class="briefing-quick-item__body"><strong>affaan-m/ECC</strong><small>把技能、记忆、安全和研究优先规则接入代码
+Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/every-app/open-seo"><span class="briefing-quick-item__source">SEO 自动化</span><span class="briefing-quick-item__body"><strong>every-app/open-seo</strong><small>通过
+MCP 把关键词、竞品和站点审计接给 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/firecrawl/pdf-inspector"><span class="briefing-quick-item__source">PDF 解析</span><span class="briefing-quick-item__body"><strong>firecrawl/pdf-inspector</strong><small>在本地识别
+PDF 类型并提取结构化 Markdown。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/pollen-robotics/microduck_rl"><span class="briefing-quick-item__source">机器人学习</span><span class="briefing-quick-item__body"><strong>pollen-robotics/microduck_rl</strong><small>把双足机器人策略从
+MuJoCo 训练导出到实体机。</small></span><span class="briefing-quick-item__arrow">↗</span></a></p>
 </div>
 
                 
