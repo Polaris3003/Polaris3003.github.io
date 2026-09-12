@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注  1. Q2D-Web：Agentic RAG 的检索评测，真正难的是判断集与成本 论文：Q2D-Web: A Large-Scale Benchmark for Retrieval in Agentic RAG Systems（PDF，arXiv:2609.08887） 全文状态：已核阅公开 PDF（25 页）。 研究问题：面向 agent 的检索请求通常先经过查询改写，既有检索基">
+    <meta name="description" content="重点关注 1. Q2D-Web：Agentic RAG 的检索评测，真正难的是判断集与成本 论文：Q2D-Web: A Large-Scale Benchmark for Retrieval in Agentic RAG Systems（PDF，arXiv:2609.08887） 全文状态：已核阅公开 PDF（25 页）。 研究问题：面向 agent 的检索请求通常先经过查询改写，既有检索基准却">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 9 月 10 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/09/10/daily-ai-papers-2026-09-10/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注  1. Q2D-Web：Agentic RAG 的检索评测，真正难的是判断集与成本 论文：Q2D-Web: A Large-Scale Benchmark for Retrieval in Agentic RAG Systems（PDF，arXiv:2609.08887） 全文状态：已核阅公开 PDF（25 页）。 研究问题：面向 agent 的检索请求通常先经过查询改写，既有检索基">
+<meta property="og:description" content="重点关注 1. Q2D-Web：Agentic RAG 的检索评测，真正难的是判断集与成本 论文：Q2D-Web: A Large-Scale Benchmark for Retrieval in Agentic RAG Systems（PDF，arXiv:2609.08887） 全文状态：已核阅公开 PDF（25 页）。 研究问题：面向 agent 的检索请求通常先经过查询改写，既有检索基准却">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-008-146057185.jpg">
 <meta property="article:published_time" content="2026-09-10T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-09-06/pixiv-rank-010-149090291.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-009-146587687.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,106 +347,332 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
-<h3 id="1-q2d-webagentic-rag-的检索评测真正难的是判断集与成本"><a class="markdownIt-Anchor" href="#1-q2d-webagentic-rag-的检索评测真正难的是判断集与成本"></a> 1. Q2D-Web：Agentic RAG 的检索评测，真正难的是判断集与成本</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.08887">Q2D-Web: A Large-Scale Benchmark for Retrieval in Agentic RAG Systems</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.08887">PDF</a>，arXiv:2609.08887）<br>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="q2d-webagentic-rag-的检索评测真正难的是判断集与成本">1.
+Q2D-Web：Agentic RAG 的检索评测，真正难的是判断集与成本</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.08887">Q2D-Web: A Large-Scale Benchmark
+for Retrieval in Agentic RAG Systems</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.08887">PDF</a>，arXiv:2609.08887）<br>
 <strong>全文状态</strong>：已核阅公开 PDF（25 页）。</p>
-<p><strong>研究问题</strong>：面向 agent 的检索请求通常先经过查询改写，既有检索基准却多是短查询、单一领域和静态人工判断。论文要回答的是：在真实生产搜索分布下，不同判断集会不会改变检索器排序，以及大规模网页语料是否可以用较小但有代表性的子集评测。</p>
-<p><strong>方法与数据</strong>：作者从约 23,000 次生产搜索、9 个月流量中得到 69,721 个 agent-reformulated queries，覆盖 10 种语言；语料约 1.9 亿文档，包含 Citation、Web Ranking、Combined 三种判断集。实验比较 13 个检索器，在 Recall@1000、Recall@100 和 nDCG@10 上评估；文档只取前 512 个 token，部分神经检索器使用留出日期后的版本。完整实验约需 4,608 个 H200 GPU-hours，并测试约三分之一文档的 RRF 子集。</p>
-<p><strong>作者报告的结果</strong>：不同判断集大体保持模型相对排序，但在领域、语言和 query type 上会分化。Combined 判断下，EmbeddingGemma、Nemotron-3-Embed-8B、pplx-embed-v1-4b 的 full-corpus Recall@1000 约为 65.45、68.58、69.11；RRF 选出的约三分之一语料把模型排序保持在 Kendall τ=1.00，绝对 Recall@1000 平均抬高约 5.1 个百分点，并把计算量降到约 1,500 H200 GPU-hours。BM25 虽然总体较低，却找到 14,621 个几乎被神经检索器漏掉的正例，约为下一名的 6 倍。</p>
-<p><strong>创新、局限与复现边界</strong>：价值在于把“评测排序是否稳定”和“绝对分数是否可信”分开；子集适合排榜，却不能把抬高后的绝对 Recall 当成真实覆盖率。生产流量来自单一商业会话助手，语料与判断集不公开，存在 PII 过滤、LLM 标注偏差和 512-token 截断偏差；supporting queries 上 BM25 的相对优势也说明只看聚合平均值会误导。论文的结果是作者实验，不能替代目标业务自己的检索回放。</p>
-<p><strong>适合谁读</strong>：搜索、RAG 评测和大规模 embedding 基准建设团队。建议先读 §3 的查询/语料/判断集、§3.4 的抽样方法、§4.1–§4.3 的检索器与结果，以及 §5.1 的成本—排序权衡。</p>
-<h3 id="2-safire火焰与烟雾理解不能用一个能否识别火灾分数概括"><a class="markdownIt-Anchor" href="#2-safire火焰与烟雾理解不能用一个能否识别火灾分数概括"></a> 2. SAFIRE：火焰与烟雾理解不能用一个“能否识别火灾”分数概括</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.07823">SAFIRE: Safety-Critical Benchmark for Fine-grained Fire and Smoke Understanding in Multimodal LLMs</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.07823">PDF</a>，arXiv:2609.07823）<br>
+<p><strong>研究问题</strong>：面向 agent
+的检索请求通常先经过查询改写，既有检索基准却多是短查询、单一领域和静态人工判断。论文要回答的是：在真实生产搜索分布下，不同判断集会不会改变检索器排序，以及大规模网页语料是否可以用较小但有代表性的子集评测。</p>
+<p><strong>方法与数据</strong>：作者从约 23,000 次生产搜索、9
+个月流量中得到 69,721 个 agent-reformulated queries，覆盖 10
+种语言；语料约 1.9 亿文档，包含 Citation、Web Ranking、Combined
+三种判断集。实验比较 13 个检索器，在 <a href="mailto:Recall@1000" class="email">Recall@1000</a>、<a href="mailto:Recall@100" class="email">Recall@100</a> 和 <a href="mailto:nDCG@10" class="email">nDCG@10</a> 上评估；文档只取前 512 个
+token，部分神经检索器使用留出日期后的版本。完整实验约需 4,608 个 H200
+GPU-hours，并测试约三分之一文档的 RRF 子集。</p>
+<p><strong>作者报告的结果</strong>：不同判断集大体保持模型相对排序，但在领域、语言和
+query type 上会分化。Combined
+判断下，EmbeddingGemma、Nemotron-3-Embed-8B、pplx-embed-v1-4b 的
+full-corpus <a href="mailto:Recall@1000" class="email">Recall@1000</a>
+约为 65.45、68.58、69.11；RRF 选出的约三分之一语料把模型排序保持在
+Kendall τ=1.00，绝对 <a href="mailto:Recall@1000" class="email">Recall@1000</a> 平均抬高约 5.1 个百分点，并把计算量降到约
+1,500 H200 GPU-hours。BM25 虽然总体较低，却找到 14,621
+个几乎被神经检索器漏掉的正例，约为下一名的 6 倍。</p>
+<p><strong>创新、局限与复现边界</strong>：价值在于把“评测排序是否稳定”和“绝对分数是否可信”分开；子集适合排榜，却不能把抬高后的绝对
+Recall
+当成真实覆盖率。生产流量来自单一商业会话助手，语料与判断集不公开，存在
+PII 过滤、LLM 标注偏差和 512-token 截断偏差；supporting queries 上 BM25
+的相对优势也说明只看聚合平均值会误导。论文的结果是作者实验，不能替代目标业务自己的检索回放。</p>
+<p><strong>适合谁读</strong>：搜索、RAG 评测和大规模 embedding
+基准建设团队。建议先读 §3 的查询/语料/判断集、§3.4 的抽样方法、§4.1–§4.3
+的检索器与结果，以及 §5.1 的成本—排序权衡。</p>
+<h3 id="safire火焰与烟雾理解不能用一个能否识别火灾分数概括">2.
+SAFIRE：火焰与烟雾理解不能用一个“能否识别火灾”分数概括</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.07823">SAFIRE: Safety-Critical
+Benchmark for Fine-grained Fire and Smoke Understanding in Multimodal
+LLMs</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.07823">PDF</a>，arXiv:2609.07823）<br>
 <strong>项目页</strong>：<a target="_blank" rel="noopener" href="https://risys-lab.github.io/SAFIRE/">SAFIRE</a><br>
 <strong>全文状态</strong>：已核阅公开 PDF（25 页）。</p>
 <p><strong>研究问题</strong>：消防场景的错误不仅是把烟认成雾，还包括火源位置、人员是否受威胁、危险等级和需要采取的行动。论文构建细粒度基准，检查多模态大模型能否在安全关键场景中同时完成视觉识别、空间关系、常识推理和情绪/行动判断。</p>
-<p><strong>方法与数据</strong>：SAFIRE 含 82,842 张带 caption 的图像、9,668 张进入问答评测的图像和 192,904 个多选 VQA，覆盖 20 个场景与约 10 个评测维度。数据由 GPT-5.4 复核并结合多模型投票，另对 2,800 个答案做人工审计；实验比较 10 个 8B–38B 的开源 MLLM，并做 CLIP zero-shot、少样本线性分类和 Qwen3-VL-8B 的 SFT。</p>
-<p><strong>作者报告的结果</strong>：10 个 MLLM 的平均 MCVQA 约 61.9；分类平均 76.39，但空间关联仅 42.90、一般推理约 53.30，说明“看见火”远不等于理解火灾。作者在一个分类设置中报告，约 7% 监督数据可把性能从 20.1% 提到 64.5%；SFT 附录中 Qwen3-VL-8B 从 63.02 提到 70.83，错误数下降 21.12%。人工审计准确率为 87.1%，且模型规模增大并不保证所有维度同步提升，部分 thinking 配置反而下降。</p>
-<p><strong>创新、局限与复现边界</strong>：它把安全视觉评测拆成可诊断维度，并明确报告生成标注与人工审计之间仍有约 12.9% 的残余错误。样本主要由 VLM 生成和 GPT-5.4/refiner 处理，可能继承生成器偏差；人工审计规模有限，提示词、SFT 和数据划分也不能代表真实消防调度。分类提升是受控实验，不应直接解读为现场告警准确率或可部署能力。</p>
-<p><strong>适合谁读</strong>：安全多模态、视觉问答、消防智能化和数据标注质量团队。建议读 §3 的数据集、§4.2–§4.3 的维度结果，以及附录 C、F、I、J 的人工审计和 SFT 分析。</p>
-<h3 id="3-agos-bench具身空地协同搜索的瓶颈是候选状态管理不是单纯换更大-vlm"><a class="markdownIt-Anchor" href="#3-agos-bench具身空地协同搜索的瓶颈是候选状态管理不是单纯换更大-vlm"></a> 3. AGOS-Bench：具身空地协同搜索的瓶颈是候选状态管理，不是单纯换更大 VLM</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.08402">Towards Embodied Air-Ground Cooperative Object Search: Benchmark, Dataset and Agentic Method</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.08402">PDF</a>，arXiv:2609.08402）<br>
+<p><strong>方法与数据</strong>：SAFIRE 含 82,842 张带 caption
+的图像、9,668 张进入问答评测的图像和 192,904 个多选 VQA，覆盖 20
+个场景与约 10 个评测维度。数据由 GPT-5.4 复核并结合多模型投票，另对
+2,800 个答案做人工审计；实验比较 10 个 8B–38B 的开源 MLLM，并做 CLIP
+zero-shot、少样本线性分类和 Qwen3-VL-8B 的 SFT。</p>
+<p><strong>作者报告的结果</strong>：10 个 MLLM 的平均 MCVQA 约
+61.9；分类平均 76.39，但空间关联仅 42.90、一般推理约
+53.30，说明“看见火”远不等于理解火灾。作者在一个分类设置中报告，约 7%
+监督数据可把性能从 20.1% 提到 64.5%；SFT 附录中 Qwen3-VL-8B 从 63.02
+提到 70.83，错误数下降 21.12%。人工审计准确率为
+87.1%，且模型规模增大并不保证所有维度同步提升，部分 thinking
+配置反而下降。</p>
+<p><strong>创新、局限与复现边界</strong>：它把安全视觉评测拆成可诊断维度，并明确报告生成标注与人工审计之间仍有约
+12.9% 的残余错误。样本主要由 VLM 生成和 GPT-5.4/refiner
+处理，可能继承生成器偏差；人工审计规模有限，提示词、SFT
+和数据划分也不能代表真实消防调度。分类提升是受控实验，不应直接解读为现场告警准确率或可部署能力。</p>
+<p><strong>适合谁读</strong>：安全多模态、视觉问答、消防智能化和数据标注质量团队。建议读
+§3 的数据集、§4.2–§4.3 的维度结果，以及附录 C、F、I、J 的人工审计和 SFT
+分析。</p>
+<h3 id="agos-bench具身空地协同搜索的瓶颈是候选状态管理不是单纯换更大-vlm">3.
+AGOS-Bench：具身空地协同搜索的瓶颈是候选状态管理，不是单纯换更大
+VLM</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.08402">Towards Embodied Air-Ground
+Cooperative Object Search: Benchmark, Dataset and Agentic Method</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.08402">PDF</a>，arXiv:2609.08402）<br>
 <strong>全文状态</strong>：已核阅公开 PDF（16 页）。</p>
-<p><strong>研究问题</strong>：无人机拥有俯视视角但定位粗糙，地面机器人能近距离确认却容易在大场景中迷失；现有 VLM agent 往往把“发现候选物”和“到达并确认”混在一个长文本决策里。AGOS-Bench 问的是：在空地协同、障碍物和干扰物同时存在时，结构化候选状态与交接流程能否降低搜索失败。</p>
-<p><strong>方法与数据</strong>：基准在 CARLA-Air 的 5 个地图上生成 7,700 个 episode，训练/验证为 5,500/2,200；另在未见过的 Town03 上测试 210 个 episode，分 Easy、Medium、Hard 三档，每档 70 个。AGOS-Agent 采用角色条件化策略、结构化候选状态、确定性的空中到地面投影（E2A）和道路图路径规划，流程是 search–handoff–verify；对比 9 个 VLM，并记录 SR、OSR、SPL、导航误差、候选关联准确率等。</p>
-<p><strong>作者报告的结果</strong>：AGOS-Agent 在 9 个 VLM 中有 8 个提高宏平均成功率；作者报告 Gemini-3.6-Flash 在 Hard 上的 SR/SPL 从 8.6/7.6 提到 55.7/44.0，平均每次决策数下降 33.3%。但 9 个模型在 Easy/Medium/Hard 的 AGOS 平均 SR 仍只有 48.8/26.2/23.2；Hard 人类参考约 89.3%，Gemini 的提升后仍有约 33.6 个百分点差距。消融显示去掉道路图路径规划后总 SR 约降至 0.8%，说明动作约束和状态交接是主要贡献来源。</p>
-<p><strong>创新、局限与复现边界</strong>：论文把协同搜索拆成“候选生成—跨平台交接—近距离确认”，比单一 VLM 端到端输出更容易定位失败。限制很具体：测试只有一个未见 Town、210 个 episode，车辆与干扰物静态、通信理想、地图已知、动作是高层离散指令，也没有 sim-to-real；确认是场景级而非实例框或精确身份。仿真 SR/SPL 不能直接外推真实无人机或地面机器人的安全性能。</p>
-<p><strong>适合谁读</strong>：具身 agent、机器人规划、VLM 工具调用和仿真评测团队。建议读基准设计、实验与消融章节，以及附录 A.4–A.5 的任务和失败样例。</p>
-<h3 id="4-truthinsightbench科学发现-agent-的能运行与能证伪之间有明显断层"><a class="markdownIt-Anchor" href="#4-truthinsightbench科学发现-agent-的能运行与能证伪之间有明显断层"></a> 4. TruthInsightBench：科学发现 agent 的“能运行”与“能证伪”之间有明显断层</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.05079">TruthInsightBench: An Evidence-Grounded Benchmark for Automated Evaluation of Open-Ended Scientific Discovery Agents</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.05079">PDF</a>，arXiv:2609.05079）<br>
+<p><strong>研究问题</strong>：无人机拥有俯视视角但定位粗糙，地面机器人能近距离确认却容易在大场景中迷失；现有
+VLM agent
+往往把“发现候选物”和“到达并确认”混在一个长文本决策里。AGOS-Bench
+问的是：在空地协同、障碍物和干扰物同时存在时，结构化候选状态与交接流程能否降低搜索失败。</p>
+<p><strong>方法与数据</strong>：基准在 CARLA-Air 的 5 个地图上生成 7,700
+个 episode，训练/验证为 5,500/2,200；另在未见过的 Town03 上测试 210 个
+episode，分 Easy、Medium、Hard 三档，每档 70 个。AGOS-Agent
+采用角色条件化策略、结构化候选状态、确定性的空中到地面投影（E2A）和道路图路径规划，流程是
+search–handoff–verify；对比 9 个 VLM，并记录
+SR、OSR、SPL、导航误差、候选关联准确率等。</p>
+<p><strong>作者报告的结果</strong>：AGOS-Agent 在 9 个 VLM 中有 8
+个提高宏平均成功率；作者报告 Gemini-3.6-Flash 在 Hard 上的 SR/SPL 从
+8.6/7.6 提到 55.7/44.0，平均每次决策数下降 33.3%。但 9 个模型在
+Easy/Medium/Hard 的 AGOS 平均 SR 仍只有 48.8/26.2/23.2；Hard 人类参考约
+89.3%，Gemini 的提升后仍有约 33.6
+个百分点差距。消融显示去掉道路图路径规划后总 SR 约降至
+0.8%，说明动作约束和状态交接是主要贡献来源。</p>
+<p><strong>创新、局限与复现边界</strong>：论文把协同搜索拆成“候选生成—跨平台交接—近距离确认”，比单一
+VLM 端到端输出更容易定位失败。限制很具体：测试只有一个未见 Town、210 个
+episode，车辆与干扰物静态、通信理想、地图已知、动作是高层离散指令，也没有
+sim-to-real；确认是场景级而非实例框或精确身份。仿真 SR/SPL
+不能直接外推真实无人机或地面机器人的安全性能。</p>
+<p><strong>适合谁读</strong>：具身 agent、机器人规划、VLM
+工具调用和仿真评测团队。建议读基准设计、实验与消融章节，以及附录 A.4–A.5
+的任务和失败样例。</p>
+<h3 id="truthinsightbench科学发现-agent-的能运行与能证伪之间有明显断层">4.
+TruthInsightBench：科学发现 agent
+的“能运行”与“能证伪”之间有明显断层</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.05079">TruthInsightBench: An
+Evidence-Grounded Benchmark for Automated Evaluation of Open-Ended
+Scientific Discovery Agents</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.05079">PDF</a>，arXiv:2609.05079）<br>
 <strong>代码/数据</strong>：<a target="_blank" rel="noopener" href="https://github.com/TruthInsight-stack/TruthInsightBench">TruthInsightBench</a><br>
 <strong>全文状态</strong>：已核阅公开 PDF（27 页）。</p>
-<p><strong>研究问题</strong>：科学发现 agent 可以产出漂亮的解释、写出能运行的代码，却未必能控制混杂、跨数据集复核或提出可证伪的结论。该基准尝试在隐藏原论文结论和预期数值的条件下，评估开放式发现是否有可审计证据，而不是只给最终答案打分。</p>
-<p><strong>方法与数据</strong>：数据包括 40 个 blind task，对应 2018–2024 年 40 篇同行评议研究，覆盖 10 个领域；每个任务按 evidence auditability、robustness、controls、cross-dataset、novelty、falsifiability 六维 29 个条目评分。四个 coding agent 使用相同的 DeepSeek-V4-Flash frozen base，运行在固定协议下；评测由固定的 GLM-5.1 W4A8 judge 聚合，单次实验共 160 个 task runs，并记录 724 条发现、去重后 630 条。</p>
-<p><strong>作者报告的结果</strong>：Claude Code、OpenScience、Codex CLI、DeepSeek Harness 总分约 58.40–60.27/100，最小两两比较 p=0.118，实践等价检验也落在 ±4 分范围内，未形成可靠的模型排序。证据可审计性约 78%–81%、新颖性约 83%–87%，但 controls 仅 11%–16%、robustness 约 9%–14%、falsifiability 约 29%–33%，cross-dataset 复核几乎为零。论文的中心结论是：执行能力较强并不代表科学主张已被证据支撑。</p>
-<p><strong>创新、局限与复现边界</strong>：盲化原论文结论、冻结数据和细粒度证据 rubric，使“会写分析”与“能留下可复核证据”分开。局限是单一中等能力基础模型、每任务单次运行、单一 LLM judge、任务主要是 computational/dry-lab；预训练污染仍无法完全排除，跨数据集维度也可能被静态单阶段协议低估。分数更像协议下的审计信号，不是对一般科学推理能力的完整排名。</p>
-<p><strong>适合谁读</strong>：科学 agent、自动化实验、统计审计和 LLM-as-a-Judge 评测团队。建议读 §3 的任务/rubric、§4.2–§4.3 的维度结果、§5 的失败模式和 §6 的局限。</p>
-<h3 id="5-wolfsociety有害金融-agent-的风险边界随群体规模出现有限尺寸效应"><a class="markdownIt-Anchor" href="#5-wolfsociety有害金融-agent-的风险边界随群体规模出现有限尺寸效应"></a> 5. WolfSociety：有害金融 agent 的风险边界随群体规模出现有限尺寸效应</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.05591">WolfSociety: Understanding Collective Risk from Harmful-Agent Scaling in Financial Agent Societies</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.05591">PDF</a>，arXiv:2609.05591）<br>
+<p><strong>研究问题</strong>：科学发现 agent
+可以产出漂亮的解释、写出能运行的代码，却未必能控制混杂、跨数据集复核或提出可证伪的结论。该基准尝试在隐藏原论文结论和预期数值的条件下，评估开放式发现是否有可审计证据，而不是只给最终答案打分。</p>
+<p><strong>方法与数据</strong>：数据包括 40 个 blind task，对应
+2018–2024 年 40 篇同行评议研究，覆盖 10 个领域；每个任务按 evidence
+auditability、robustness、controls、cross-dataset、novelty、falsifiability
+六维 29 个条目评分。四个 coding agent 使用相同的 DeepSeek-V4-Flash
+frozen base，运行在固定协议下；评测由固定的 GLM-5.1 W4A8 judge
+聚合，单次实验共 160 个 task runs，并记录 724 条发现、去重后 630
+条。</p>
+<p><strong>作者报告的结果</strong>：Claude Code、OpenScience、Codex
+CLI、DeepSeek Harness 总分约 58.40–60.27/100，最小两两比较
+p=0.118，实践等价检验也落在 ±4
+分范围内，未形成可靠的模型排序。证据可审计性约 78%–81%、新颖性约
+83%–87%，但 controls 仅 11%–16%、robustness 约 9%–14%、falsifiability 约
+29%–33%，cross-dataset
+复核几乎为零。论文的中心结论是：执行能力较强并不代表科学主张已被证据支撑。</p>
+<p><strong>创新、局限与复现边界</strong>：盲化原论文结论、冻结数据和细粒度证据
+rubric，使“会写分析”与“能留下可复核证据”分开。局限是单一中等能力基础模型、每任务单次运行、单一
+LLM judge、任务主要是
+computational/dry-lab；预训练污染仍无法完全排除，跨数据集维度也可能被静态单阶段协议低估。分数更像协议下的审计信号，不是对一般科学推理能力的完整排名。</p>
+<p><strong>适合谁读</strong>：科学 agent、自动化实验、统计审计和
+LLM-as-a-Judge 评测团队。建议读 §3 的任务/rubric、§4.2–§4.3
+的维度结果、§5 的失败模式和 §6 的局限。</p>
+<h3 id="wolfsociety有害金融-agent-的风险边界随群体规模出现有限尺寸效应">5.
+WolfSociety：有害金融 agent 的风险边界随群体规模出现有限尺寸效应</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.05591">WolfSociety: Understanding
+Collective Risk from Harmful-Agent Scaling in Financial Agent
+Societies</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.05591">PDF</a>，arXiv:2609.05591）<br>
 <strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/SAIL-Research-Lab/WolfSociety">WolfSociety</a><br>
 <strong>全文状态</strong>：已核阅公开 PDF（30 页）。</p>
-<p><strong>研究问题</strong>：单个金融 agent 的不当行为，何时会通过社交网络、跟随和市场冲击变成群体性风险？论文不试图预测真实市场，而是在可控金融 agent society 中研究有害 agent 比例、总人数、网络可达性与系统性崩溃概率的关系。</p>
-<p><strong>方法与数据</strong>：模拟 30 天、带社交网络与市场机制的 agent society，主场景为 pump-and-dump，并扩展 finfluencer scalping、spoofing/layering 和 wash trading。预先定义的崩溃条件要求有害行为扩散比例 q≥0.55，并同时满足价格错位或流动性压力阈值；每个实验单元使用 12 个随机种子，扫描 N=100–2,000 和不同有害 agent 比例，另以 5 个 LLM backbone 做稳健性测试。</p>
-<p><strong>作者报告的结果</strong>：崩溃概率为 0.5 的有害比例边界，从 N=100 的约 0.047 降到 N=2,000 的约 0.022，有限尺寸指数 ν≈0.222（区间约 0.206–0.277）。在固定有害 agent 数量时，群体变大反而减轻平均严重度；扩大网络 reach 会把崩溃边界向更低有害比例移动，而单独提高 conformity 的边界移动仅约 0.003。换用其他 LLM 后指数趋势仍在约 0.273–0.325 范围，说明结果对模型有一定稳健性，但不是现实市场估计。</p>
-<p><strong>创新、局限与安全边界</strong>：论文把“有害 agent scaling”变成可重复的相变/响应面问题，并预先写出崩溃阈值、种子和干预。最大限制也是其价值边界：策略、网络、流动性和阈值都来自模拟器，阈值不是监管或交易定义，不能建立真实市场因果关系；控制器审计和 LLM 调用缓存也会影响复现。它适合做风险机制实验，不构成投资建议或现实交易预警。</p>
-<p><strong>适合谁读</strong>：多智能体社会模拟、金融风险治理、agent 安全和复杂系统读者。建议读 §3 的社会动力学、§4 的实验设置、§5.1–§5.5 的 scaling/intervention 结果，以及 §6 和附录 E 的稳健性。</p>
-<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
-<p>以下包含本次 arXiv RSS 候选的全部 18 篇。除“重点关注”中明确标注已核阅 PDF 的论文外，其余条目仅依据摘要，未把摘要中的自述结果扩写成独立复核结论。</p>
-<h3 id="1-q2d-web-a-large-scale-benchmark-for-retrieval-in-agentic-rag-systems"><a class="markdownIt-Anchor" href="#1-q2d-web-a-large-scale-benchmark-for-retrieval-in-agentic-rag-systems"></a> 1. Q2D-Web: A Large-Scale Benchmark for Retrieval in Agentic RAG Systems</h3>
+<p><strong>研究问题</strong>：单个金融 agent
+的不当行为，何时会通过社交网络、跟随和市场冲击变成群体性风险？论文不试图预测真实市场，而是在可控金融
+agent society 中研究有害 agent
+比例、总人数、网络可达性与系统性崩溃概率的关系。</p>
+<p><strong>方法与数据</strong>：模拟 30 天、带社交网络与市场机制的 agent
+society，主场景为 pump-and-dump，并扩展 finfluencer
+scalping、spoofing/layering 和 wash
+trading。预先定义的崩溃条件要求有害行为扩散比例
+q≥0.55，并同时满足价格错位或流动性压力阈值；每个实验单元使用 12
+个随机种子，扫描 N=100–2,000 和不同有害 agent 比例，另以 5 个 LLM
+backbone 做稳健性测试。</p>
+<p><strong>作者报告的结果</strong>：崩溃概率为 0.5 的有害比例边界，从
+N=100 的约 0.047 降到 N=2,000 的约 0.022，有限尺寸指数 ν≈0.222（区间约
+0.206–0.277）。在固定有害 agent
+数量时，群体变大反而减轻平均严重度；扩大网络 reach
+会把崩溃边界向更低有害比例移动，而单独提高 conformity 的边界移动仅约
+0.003。换用其他 LLM 后指数趋势仍在约 0.273–0.325
+范围，说明结果对模型有一定稳健性，但不是现实市场估计。</p>
+<p><strong>创新、局限与安全边界</strong>：论文把“有害 agent
+scaling”变成可重复的相变/响应面问题，并预先写出崩溃阈值、种子和干预。最大限制也是其价值边界：策略、网络、流动性和阈值都来自模拟器，阈值不是监管或交易定义，不能建立真实市场因果关系；控制器审计和
+LLM
+调用缓存也会影响复现。它适合做风险机制实验，不构成投资建议或现实交易预警。</p>
+<p><strong>适合谁读</strong>：多智能体社会模拟、金融风险治理、agent
+安全和复杂系统读者。建议读 §3 的社会动力学、§4 的实验设置、§5.1–§5.5 的
+scaling/intervention 结果，以及 §6 和附录 E 的稳健性。</p>
+<h2 id="ai-论文">AI 论文</h2>
+<p>以下包含本次 arXiv RSS 候选的全部 18 篇。除“重点关注”中明确标注已核阅
+PDF
+的论文外，其余条目仅依据摘要，未把摘要中的自述结果扩写成独立复核结论。</p>
+<h3 id="q2d-web-a-large-scale-benchmark-for-retrieval-in-agentic-rag-systems">1.
+Q2D-Web: A Large-Scale Benchmark for Retrieval in Agentic RAG
+Systems</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.08887">arXiv:2609.08887</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.08887">PDF</a>）<br>
-<strong>中文导读</strong>：研究问题是如何在 agent 改写查询和超大网页库上稳定评测检索器；方法是 1.9 亿文档、约 7 万条十语言生产查询、三类判断集和 13 个检索器；作者报告判断集大体保持排序，约三分之一的 RRF 子集可保持排序但会抬高绝对召回；值得关注的是它把评测成本、判断集偏差和 query type 分开；<strong>证据状态</strong>：已核阅 PDF，生产数据私有、512-token 截断和单一业务流量限制外推。</p>
-<h3 id="2-safire-safety-critical-benchmark-for-fine-grained-fire-and-smoke-understanding-in-multimodal-llms"><a class="markdownIt-Anchor" href="#2-safire-safety-critical-benchmark-for-fine-grained-fire-and-smoke-understanding-in-multimodal-llms"></a> 2. SAFIRE: Safety-Critical Benchmark for Fine-grained Fire and Smoke Understanding in Multimodal LLMs</h3>
+<strong>中文导读</strong>：研究问题是如何在 agent
+改写查询和超大网页库上稳定评测检索器；方法是 1.9 亿文档、约 7
+万条十语言生产查询、三类判断集和 13
+个检索器；作者报告判断集大体保持排序，约三分之一的 RRF
+子集可保持排序但会抬高绝对召回；值得关注的是它把评测成本、判断集偏差和
+query type 分开；<strong>证据状态</strong>：已核阅
+PDF，生产数据私有、512-token 截断和单一业务流量限制外推。</p>
+<h3 id="safire-safety-critical-benchmark-for-fine-grained-fire-and-smoke-understanding-in-multimodal-llms">2.
+SAFIRE: Safety-Critical Benchmark for Fine-grained Fire and Smoke
+Understanding in Multimodal LLMs</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.07823">arXiv:2609.07823</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.07823">PDF</a>）·<a target="_blank" rel="noopener" href="https://risys-lab.github.io/SAFIRE/">项目页</a><br>
-<strong>中文导读</strong>：研究问题是多模态模型能否理解火焰/烟雾的细粒度安全语义，而非只做二分类；方法是 82,842 张图像、192,904 个 VQA、20 个场景和 10 个 MLLM；作者报告平均 MCVQA 约 61.9，空间关系和推理维度明显弱于分类；值得关注的是它提供了安全视觉的维度化诊断和人工审计；<strong>证据状态</strong>：已核阅 PDF，生成式标注、人工审计规模和受控提示限制现场泛化。</p>
-<h3 id="3-empowering-vlms-for-few-shot-multimodal-time-series-classification-via-tailored-agentic-reasoning"><a class="markdownIt-Anchor" href="#3-empowering-vlms-for-few-shot-multimodal-time-series-classification-via-tailored-agentic-reasoning"></a> 3. Empowering VLMs for Few-Shot Multimodal Time Series Classification via Tailored Agentic Reasoning</h3>
+<strong>中文导读</strong>：研究问题是多模态模型能否理解火焰/烟雾的细粒度安全语义，而非只做二分类；方法是
+82,842 张图像、192,904 个 VQA、20 个场景和 10 个 MLLM；作者报告平均
+MCVQA 约
+61.9，空间关系和推理维度明显弱于分类；值得关注的是它提供了安全视觉的维度化诊断和人工审计；<strong>证据状态</strong>：已核阅
+PDF，生成式标注、人工审计规模和受控提示限制现场泛化。</p>
+<h3 id="empowering-vlms-for-few-shot-multimodal-time-series-classification-via-tailored-agentic-reasoning">3.
+Empowering VLMs for Few-Shot Multimodal Time Series Classification via
+Tailored Agentic Reasoning</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.09395">arXiv:2605.09395</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.09395">PDF</a>）·代码：<a target="_blank" rel="noopener" href="https://github.com/HuangJW0821/MarsTSC">MarsTSC</a><br>
-<strong>中文导读</strong>：研究问题是视觉语言模型在少样本多模态时间序列分类中如何利用领域知识；方法是 MarsTSC 知识库与 Generator/Reflector/Modifier 自演化 agent，并在 12 个数据集、5 个 VLM backbone 上做测试时更新；摘要报告各 backbone 获得一致提升；值得关注的是把推理轨迹和知识库更新纳入时序分类；<strong>证据状态</strong>：仅依据摘要，未展开 PDF 的数据泄漏、测试时更新预算和各数据集数值。</p>
-<h3 id="4-graph-based-personalized-memory-for-llm-agents-representation-evolution-retrieval-and-evaluation"><a class="markdownIt-Anchor" href="#4-graph-based-personalized-memory-for-llm-agents-representation-evolution-retrieval-and-evaluation"></a> 4. Graph-Based Personalized Memory for LLM Agents: Representation, Evolution, Retrieval, and Evaluation</h3>
+<strong>中文导读</strong>：研究问题是视觉语言模型在少样本多模态时间序列分类中如何利用领域知识；方法是
+MarsTSC 知识库与 Generator/Reflector/Modifier 自演化 agent，并在 12
+个数据集、5 个 VLM backbone 上做测试时更新；摘要报告各 backbone
+获得一致提升；值得关注的是把推理轨迹和知识库更新纳入时序分类；<strong>证据状态</strong>：仅依据摘要，未展开
+PDF 的数据泄漏、测试时更新预算和各数据集数值。</p>
+<h3 id="graph-based-personalized-memory-for-llm-agents-representation-evolution-retrieval-and-evaluation">4.
+Graph-Based Personalized Memory for LLM Agents: Representation,
+Evolution, Retrieval, and Evaluation</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.08599">arXiv:2609.08599</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.08599">PDF</a>）<br>
-<strong>中文导读</strong>：研究问题是如何表示、演化、检索和评估面向个人用户的 agent 记忆图；方法是围绕图记忆生命周期整理表示、更新、检索与评测范式；摘要报告图结构有助于处理关系和长期上下文；值得关注的是它把“记住什么”与“何时检索”放到同一生命周期；<strong>证据状态</strong>：仅依据摘要，综述不等于统一实证基准，具体结论需结合全文文献核验。</p>
-<h3 id="5-towards-embodied-air-ground-cooperative-object-search-benchmark-dataset-and-agentic-method"><a class="markdownIt-Anchor" href="#5-towards-embodied-air-ground-cooperative-object-search-benchmark-dataset-and-agentic-method"></a> 5. Towards Embodied Air-Ground Cooperative Object Search: Benchmark, Dataset and Agentic Method</h3>
+<strong>中文导读</strong>：研究问题是如何表示、演化、检索和评估面向个人用户的
+agent
+记忆图；方法是围绕图记忆生命周期整理表示、更新、检索与评测范式；摘要报告图结构有助于处理关系和长期上下文；值得关注的是它把“记住什么”与“何时检索”放到同一生命周期；<strong>证据状态</strong>：仅依据摘要，综述不等于统一实证基准，具体结论需结合全文文献核验。</p>
+<h3 id="towards-embodied-air-ground-cooperative-object-search-benchmark-dataset-and-agentic-method">5.
+Towards Embodied Air-Ground Cooperative Object Search: Benchmark,
+Dataset and Agentic Method</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.08402">arXiv:2609.08402</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.08402">PDF</a>）<br>
-<strong>中文导读</strong>：研究问题是 UAV/UGV 如何在城市环境协同搜索与确认目标；方法是 7,700 个 episode 的 AGOS-Bench、三档难度和 9 个 VLM，并用结构化 agent 做搜索—交接—确认；作者报告 AGOS-Agent 在 9 个模型中提升 8 个，困难设置的 Gemini-3.6-Flash SR 从 8.6 提到 55.7；值得关注的是候选状态和路径规划比单纯增加模型规模更关键；<strong>证据状态</strong>：已核阅 PDF，仿真单城镇、静态干扰与理想通信限制现实外推。</p>
-<h3 id="6-wolfsociety-understanding-collective-risk-from-harmful-agent-scaling-in-financial-agent-societies"><a class="markdownIt-Anchor" href="#6-wolfsociety-understanding-collective-risk-from-harmful-agent-scaling-in-financial-agent-societies"></a> 6. WolfSociety: Understanding Collective Risk from Harmful-Agent Scaling in Financial Agent Societies</h3>
+<strong>中文导读</strong>：研究问题是 UAV/UGV
+如何在城市环境协同搜索与确认目标；方法是 7,700 个 episode 的
+AGOS-Bench、三档难度和 9 个 VLM，并用结构化 agent
+做搜索—交接—确认；作者报告 AGOS-Agent 在 9 个模型中提升 8 个，困难设置的
+Gemini-3.6-Flash SR 从 8.6 提到
+55.7；值得关注的是候选状态和路径规划比单纯增加模型规模更关键；<strong>证据状态</strong>：已核阅
+PDF，仿真单城镇、静态干扰与理想通信限制现实外推。</p>
+<h3 id="wolfsociety-understanding-collective-risk-from-harmful-agent-scaling-in-financial-agent-societies">6.
+WolfSociety: Understanding Collective Risk from Harmful-Agent Scaling in
+Financial Agent Societies</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.05591">arXiv:2609.05591</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.05591">PDF</a>）·代码：<a target="_blank" rel="noopener" href="https://github.com/SAIL-Research-Lab/WolfSociety">WolfSociety</a><br>
-<strong>中文导读</strong>：研究问题是有害金融 agent 如何通过网络扩散形成集体风险；方法是 30 天金融社会模拟、四类有害策略、N=100–2,000 扫描和多随机种子；摘要报告群体规模增大时崩溃边界下降，网络 reach 比 conformity 更敏感；值得关注的是它为 agent 风险提供了有限尺寸和干预视角；<strong>证据状态</strong>：已核阅 PDF，模拟阈值、策略抽象和市场机制不支持现实因果或投资推断。</p>
-<h3 id="7-truthinsightbench-an-evidence-grounded-benchmark-for-automated-evaluation-of-open-ended-scientific-discovery-agents"><a class="markdownIt-Anchor" href="#7-truthinsightbench-an-evidence-grounded-benchmark-for-automated-evaluation-of-open-ended-scientific-discovery-agents"></a> 7. TruthInsightBench: An Evidence-Grounded Benchmark for Automated Evaluation of Open-Ended Scientific Discovery Agents</h3>
+<strong>中文导读</strong>：研究问题是有害金融 agent
+如何通过网络扩散形成集体风险；方法是 30
+天金融社会模拟、四类有害策略、N=100–2,000
+扫描和多随机种子；摘要报告群体规模增大时崩溃边界下降，网络 reach 比
+conformity 更敏感；值得关注的是它为 agent
+风险提供了有限尺寸和干预视角；<strong>证据状态</strong>：已核阅
+PDF，模拟阈值、策略抽象和市场机制不支持现实因果或投资推断。</p>
+<h3 id="truthinsightbench-an-evidence-grounded-benchmark-for-automated-evaluation-of-open-ended-scientific-discovery-agents">7.
+TruthInsightBench: An Evidence-Grounded Benchmark for Automated
+Evaluation of Open-Ended Scientific Discovery Agents</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.05079">arXiv:2609.05079</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.05079">PDF</a>）·代码：<a target="_blank" rel="noopener" href="https://github.com/TruthInsight-stack/TruthInsightBench">TruthInsightBench</a><br>
-<strong>中文导读</strong>：研究问题是科学发现 agent 能否提供可审计、可证伪而非仅能运行的结论；方法是 40 个盲任务、六维 29 项 rubric、四个 agent 和固定 judge；作者报告总分约 58.4–60.3/100，执行强但控制、稳健性、跨数据集和可证伪性弱；值得关注的是它把证据链质量从“最终答案正确”中拆出来；<strong>证据状态</strong>：已核阅 PDF，单次运行、单一 judge、冻结基础模型和 dry-lab 任务限制排名解释。</p>
-<h3 id="8-exaone-finance-10-an-attention-free-time-series-foundation-model-for-financial-time-series"><a class="markdownIt-Anchor" href="#8-exaone-finance-10-an-attention-free-time-series-foundation-model-for-financial-time-series"></a> 8. EXAONE Finance 1.0: An Attention-free Time Series Foundation Model for Financial Time Series</h3>
+<strong>中文导读</strong>：研究问题是科学发现 agent
+能否提供可审计、可证伪而非仅能运行的结论；方法是 40 个盲任务、六维 29 项
+rubric、四个 agent 和固定 judge；作者报告总分约
+58.4–60.3/100，执行强但控制、稳健性、跨数据集和可证伪性弱；值得关注的是它把证据链质量从“最终答案正确”中拆出来；<strong>证据状态</strong>：已核阅
+PDF，单次运行、单一 judge、冻结基础模型和 dry-lab 任务限制排名解释。</p>
+<h3 id="exaone-finance-1.0-an-attention-free-time-series-foundation-model-for-financial-time-series">8.
+EXAONE Finance 1.0: An Attention-free Time Series Foundation Model for
+Financial Time Series</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.04239">arXiv:2609.04239</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.04239">PDF</a>）<br>
-<strong>中文导读</strong>：研究问题是金融时间序列基础模型是否必须依赖 self-attention；方法是 attention-free causal convolution、group-aware pooling MLP、缺失片段掩码和合成金融语料，并在 FinVerse 上比较不同规模；摘要报告各规模达到 SOTA；值得关注的是它把长序列建模的计算归因转向卷积与分组池化；<strong>证据状态</strong>：仅依据摘要，需核验数据时间切分、跨市场 OOS、基线调参和经济显著性。</p>
-<h3 id="9-ai-snitches-get-glitches-towards-evading-agentic-surveillance"><a class="markdownIt-Anchor" href="#9-ai-snitches-get-glitches-towards-evading-agentic-surveillance"></a> 9. AI Snitches Get Glitches: Towards Evading Agentic Surveillance</h3>
+<strong>中文导读</strong>：研究问题是金融时间序列基础模型是否必须依赖
+self-attention；方法是 attention-free causal convolution、group-aware
+pooling MLP、缺失片段掩码和合成金融语料，并在 FinVerse
+上比较不同规模；摘要报告各规模达到
+SOTA；值得关注的是它把长序列建模的计算归因转向卷积与分组池化；<strong>证据状态</strong>：仅依据摘要，需核验数据时间切分、跨市场
+OOS、基线调参和经济显著性。</p>
+<h3 id="ai-snitches-get-glitches-towards-evading-agentic-surveillance">9. AI
+Snitches Get Glitches: Towards Evading Agentic Surveillance</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.25836">arXiv:2606.25836</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.25836">PDF</a>）<br>
-<strong>中文导读</strong>：研究问题是 agentic surveillance 场景中的模型会否主动上报用户，以及用户如何规避；方法是 SURVEILBENCH 的 300+ 场景、多个 LLM 和三类 evasion technique；摘要报告部分模型在无提示时仍会在 3%–30% 场景上报，prompt tuning 后超过 75%；值得关注的是它把监控行为当成多轮策略交互来测；<strong>证据状态</strong>：仅依据摘要，规避技术具有双重用途，且场景、模型版本和 judge 细节需全文核验。</p>
-<h3 id="10-unlocking-multimodal-document-intelligence-from-current-triumphs-to-future-frontiers-of-visual-document-retrieval"><a class="markdownIt-Anchor" href="#10-unlocking-multimodal-document-intelligence-from-current-triumphs-to-future-frontiers-of-visual-document-retrieval"></a> 10. Unlocking Multimodal Document Intelligence: From Current Triumphs to Future Frontiers of Visual Document Retrieval</h3>
+<strong>中文导读</strong>：研究问题是 agentic surveillance
+场景中的模型会否主动上报用户，以及用户如何规避；方法是 SURVEILBENCH 的
+300+ 场景、多个 LLM 和三类 evasion
+technique；摘要报告部分模型在无提示时仍会在 3%–30% 场景上报，prompt
+tuning 后超过
+75%；值得关注的是它把监控行为当成多轮策略交互来测；<strong>证据状态</strong>：仅依据摘要，规避技术具有双重用途，且场景、模型版本和
+judge 细节需全文核验。</p>
+<h3 id="unlocking-multimodal-document-intelligence-from-current-triumphs-to-future-frontiers-of-visual-document-retrieval">10.
+Unlocking Multimodal Document Intelligence: From Current Triumphs to
+Future Frontiers of Visual Document Retrieval</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.19961">arXiv:2602.19961</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.19961">PDF</a>）<br>
-<strong>中文导读</strong>：研究问题是如何从视觉文档中检索布局、表格、图像和跨页语义；方法是围绕 visual document retrieval 的数据、模型、评测与未来方向做综述；摘要报告该领域从 OCR 文本匹配走向多模态结构理解；值得关注的是它覆盖文档检索与后续 agent 处理之间的接口；<strong>证据状态</strong>：仅依据摘要，综述性判断需结合表格、分类法和引用文献核验。</p>
-<h3 id="11-safety-boundary-maintenance-in-consumer-ai-systems-responding-to-pediatric-health-queries-a-cross-platform-benchmark-evaluation-under-naturalistic-and-adversarially-pressured-conditions"><a class="markdownIt-Anchor" href="#11-safety-boundary-maintenance-in-consumer-ai-systems-responding-to-pediatric-health-queries-a-cross-platform-benchmark-evaluation-under-naturalistic-and-adversarially-pressured-conditions"></a> 11. Safety boundary maintenance in consumer AI systems responding to pediatric health queries: a cross-platform benchmark evaluation under naturalistic and adversarially pressured conditions</h3>
+<strong>中文导读</strong>：研究问题是如何从视觉文档中检索布局、表格、图像和跨页语义；方法是围绕
+visual document retrieval
+的数据、模型、评测与未来方向做综述；摘要报告该领域从 OCR
+文本匹配走向多模态结构理解；值得关注的是它覆盖文档检索与后续 agent
+处理之间的接口；<strong>证据状态</strong>：仅依据摘要，综述性判断需结合表格、分类法和引用文献核验。</p>
+<h3 id="safety-boundary-maintenance-in-consumer-ai-systems-responding-to-pediatric-health-queries-a-cross-platform-benchmark-evaluation-under-naturalistic-and-adversarially-pressured-conditions">11.
+Safety boundary maintenance in consumer AI systems responding to
+pediatric health queries: a cross-platform benchmark evaluation under
+naturalistic and adversarially pressured conditions</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.09721">arXiv:2601.09721</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.09721">PDF</a>）<br>
-<strong>中文导读</strong>：研究问题是面向儿童健康问题的消费级 AI 能否在自然和施压对话中保持安全边界；方法是 600 个查询（300 个真实、300 个对抗）和 4 个系统的跨平台评估；摘要报告 95.5% 的回答达到安全适宜，系统提示提升约 5.9 个百分点，虚假专业感与情绪升级最脆弱；值得关注的是它同时测“内容风险”和“互动压力”；<strong>证据状态</strong>：仅依据摘要，医疗风险等级、人工判定协议和平台版本需要全文核验，不构成医疗建议。</p>
-<h3 id="12-alpha-r1-alpha-screening-with-llm-reasoning-via-reinforcement-learning"><a class="markdownIt-Anchor" href="#12-alpha-r1-alpha-screening-with-llm-reasoning-via-reinforcement-learning"></a> 12. Alpha-R1: Alpha Screening with LLM Reasoning via Reinforcement Learning</h3>
+<strong>中文导读</strong>：研究问题是面向儿童健康问题的消费级 AI
+能否在自然和施压对话中保持安全边界；方法是 600 个查询（300 个真实、300
+个对抗）和 4 个系统的跨平台评估；摘要报告 95.5%
+的回答达到安全适宜，系统提示提升约 5.9
+个百分点，虚假专业感与情绪升级最脆弱；值得关注的是它同时测“内容风险”和“互动压力”；<strong>证据状态</strong>：仅依据摘要，医疗风险等级、人工判定协议和平台版本需要全文核验，不构成医疗建议。</p>
+<h3 id="alpha-r1-alpha-screening-with-llm-reasoning-via-reinforcement-learning">12.
+Alpha-R1: Alpha Screening with LLM Reasoning via Reinforcement
+Learning</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.23515">arXiv:2512.23515</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.23515">PDF</a>）·代码：<a target="_blank" rel="noopener" href="https://github.com/FinStep-AI/Alpha-R1">Alpha-R1</a><br>
-<strong>中文导读</strong>：这是本批 AI/金融交叉候选，研究问题是 LLM 能否用强化学习在受限因子池中做语义 alpha screening；摘要报告在 S&amp;P 500、CSI 300 的 12 个月测试中取得较高回测收益和 Sharpe；值得关注的是它把新闻、因子语义与 RL 选择结合；<strong>证据状态</strong>：AI篇只保留交叉索引，详细的 OOS、回测成本、基线和局限见金融简报，不能将回测指标理解为未来收益承诺。</p>
-<h3 id="13-dochop-qa-towards-multi-hop-reasoning-over-multimodal-document-collections"><a class="markdownIt-Anchor" href="#13-dochop-qa-towards-multi-hop-reasoning-over-multimodal-document-collections"></a> 13. DocHop-QA: Towards Multi-Hop Reasoning over Multimodal Document Collections</h3>
+<strong>中文导读</strong>：这是本批 AI/金融交叉候选，研究问题是 LLM
+能否用强化学习在受限因子池中做语义 alpha screening；摘要报告在 S&amp;P
+500、CSI 300 的 12 个月测试中取得较高回测收益和
+Sharpe；值得关注的是它把新闻、因子语义与 RL
+选择结合；<strong>证据状态</strong>：AI篇只保留交叉索引，详细的
+OOS、回测成本、基线和局限见金融简报，不能将回测指标理解为未来收益承诺。</p>
+<h3 id="dochop-qa-towards-multi-hop-reasoning-over-multimodal-document-collections">13.
+DocHop-QA: Towards Multi-Hop Reasoning over Multimodal Document
+Collections</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.15851">arXiv:2508.15851</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2508.15851">PDF</a>）<br>
-<strong>中文导读</strong>：研究问题是模型如何跨多个含图文文档完成多跳科学问答；方法是从 PubMed 构建 11,379 条多模态、多文档、多跳 QA，并评估检索与推理链；摘要强调跨文档视觉证据组合是主要难点；值得关注的是它连接了文档级检索、图表理解和多跳推理；<strong>证据状态</strong>：仅依据摘要，数据许可、问题构造、负例难度和污染检查需全文核验。</p>
-<h3 id="14-towards-vision-language-geo-foundation-model-a-survey"><a class="markdownIt-Anchor" href="#14-towards-vision-language-geo-foundation-model-a-survey"></a> 14. Towards Vision-Language Geo-Foundation Model: A Survey</h3>
+<strong>中文导读</strong>：研究问题是模型如何跨多个含图文文档完成多跳科学问答；方法是从
+PubMed 构建 11,379 条多模态、多文档、多跳
+QA，并评估检索与推理链；摘要强调跨文档视觉证据组合是主要难点；值得关注的是它连接了文档级检索、图表理解和多跳推理；<strong>证据状态</strong>：仅依据摘要，数据许可、问题构造、负例难度和污染检查需全文核验。</p>
+<h3 id="towards-vision-language-geo-foundation-model-a-survey">14.
+Towards Vision-Language Geo-Foundation Model: A Survey</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.09385">arXiv:2406.09385</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2406.09385">PDF</a>）<br>
-<strong>中文导读</strong>：研究问题是视觉—语言模型如何服务遥感、地理空间理解和 geo-foundation model；方法是整理数据、预训练、任务、评测和应用路线；摘要报告该领域正从通用视觉语言能力走向空间关系、跨模态地理语义和规模化预训练；值得关注的是可作为遥感 agent 选数据与基线的地图；<strong>证据状态</strong>：仅依据摘要，综述时效、任务分类和模型比较需结合全文核验。</p>
-<h3 id="15-localizing-emergent-failures-in-agentic-ai-recovering-minimal-repair-families-via-counterfactual-replay"><a class="markdownIt-Anchor" href="#15-localizing-emergent-failures-in-agentic-ai-recovering-minimal-repair-families-via-counterfactual-replay"></a> 15. Localizing Emergent Failures in Agentic AI: Recovering Minimal Repair Families via Counterfactual Replay</h3>
+<strong>中文导读</strong>：研究问题是视觉—语言模型如何服务遥感、地理空间理解和
+geo-foundation
+model；方法是整理数据、预训练、任务、评测和应用路线；摘要报告该领域正从通用视觉语言能力走向空间关系、跨模态地理语义和规模化预训练；值得关注的是可作为遥感
+agent
+选数据与基线的地图；<strong>证据状态</strong>：仅依据摘要，综述时效、任务分类和模型比较需结合全文核验。</p>
+<h3 id="localizing-emergent-failures-in-agentic-ai-recovering-minimal-repair-families-via-counterfactual-replay">15.
+Localizing Emergent Failures in Agentic AI: Recovering Minimal Repair
+Families via Counterfactual Replay</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.29228">arXiv:2608.29228</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.29228">PDF</a>）<br>
-<strong>中文导读</strong>：研究问题是如何定位 agent 工作流中涌现失败的最小修复集合；方法是 MRFR/GCJR 与反事实重放，在 120-DAG、90 个受控案例和 4-agent pilot 上搜索调用或边的修复；摘要报告 Family Exact Match 达 1.000，调用数从 56.3 降到 25.3，pilot 从 21 降到 10；值得关注的是把 debug 从整条轨迹归因转为最小干预定位；<strong>证据状态</strong>：仅依据摘要，需核验 DAG 分布、失败注入、修复成本和真实 agent 泛化。</p>
-<h3 id="16-geoheight-bench-towards-height-aware-multimodal-reasoning-in-remote-sensing"><a class="markdownIt-Anchor" href="#16-geoheight-bench-towards-height-aware-multimodal-reasoning-in-remote-sensing"></a> 16. GeoHeight-Bench: Towards Height-Aware Multimodal Reasoning in Remote Sensing</h3>
+<strong>中文导读</strong>：研究问题是如何定位 agent
+工作流中涌现失败的最小修复集合；方法是 MRFR/GCJR 与反事实重放，在
+120-DAG、90 个受控案例和 4-agent pilot 上搜索调用或边的修复；摘要报告
+Family Exact Match 达 1.000，调用数从 56.3 降到 25.3，pilot 从 21 降到
+10；值得关注的是把 debug
+从整条轨迹归因转为最小干预定位；<strong>证据状态</strong>：仅依据摘要，需核验
+DAG 分布、失败注入、修复成本和真实 agent 泛化。</p>
+<h3 id="geoheight-bench-towards-height-aware-multimodal-reasoning-in-remote-sensing">16.
+GeoHeight-Bench: Towards Height-Aware Multimodal Reasoning in Remote
+Sensing</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.25565">arXiv:2603.25565</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.25565">PDF</a>）<br>
-<strong>中文导读</strong>：研究问题是遥感多模态模型能否理解建筑、植被和地形的高度，而不是只识别平面外观；方法是构建 height-aware benchmark，结合图像、空间关系与高度推理任务评测模型；摘要将高度估计与地理视觉推理联系起来；值得关注的是它补足了二维遥感 VQA 对垂直结构的遗漏；<strong>证据状态</strong>：仅依据摘要，数据源、标注误差、跨区域 OOS 和与传统测高方法的公平基线需阅读全文。</p>
-<h3 id="17-popresume-causal-fairness-evaluation-of-llmvlm-resume-screeners-with-population-representative-dataset"><a class="markdownIt-Anchor" href="#17-popresume-causal-fairness-evaluation-of-llmvlm-resume-screeners-with-population-representative-dataset"></a> 17. PopResume: Causal Fairness Evaluation of LLM/VLM Resume Screeners with Population-Representative Dataset</h3>
+<strong>中文导读</strong>：研究问题是遥感多模态模型能否理解建筑、植被和地形的高度，而不是只识别平面外观；方法是构建
+height-aware
+benchmark，结合图像、空间关系与高度推理任务评测模型；摘要将高度估计与地理视觉推理联系起来；值得关注的是它补足了二维遥感
+VQA
+对垂直结构的遗漏；<strong>证据状态</strong>：仅依据摘要，数据源、标注误差、跨区域
+OOS 和与传统测高方法的公平基线需阅读全文。</p>
+<h3 id="popresume-causal-fairness-evaluation-of-llmvlm-resume-screeners-with-population-representative-dataset">17.
+PopResume: Causal Fairness Evaluation of LLM/VLM Resume Screeners with
+Population-Representative Dataset</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.22714">arXiv:2603.22714</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.22714">PDF</a>）<br>
-<strong>中文导读</strong>：研究问题是简历筛选 LLM/VLM 的群体差异是否会被总体平均指标掩盖；方法是 60,800 份、覆盖 5 个职业的人口代表性简历数据，并用因果 fairness/PSE 框架比较 4 个 LLM 与 4 个 VLM；摘要报告 PSE 能识别 aggregate metric 看不到的模式；值得关注的是把筛选器评测从相关差异推进到干预式分解；<strong>证据状态</strong>：仅依据摘要，人口抽样、敏感属性处理、因果假设和真实招聘有效性需全文核验。</p>
-<h3 id="18-learning-to-configure-agentic-ai-systems"><a class="markdownIt-Anchor" href="#18-learning-to-configure-agentic-ai-systems"></a> 18. Learning to Configure Agentic AI Systems</h3>
+<strong>中文导读</strong>：研究问题是简历筛选 LLM/VLM
+的群体差异是否会被总体平均指标掩盖；方法是 60,800 份、覆盖 5
+个职业的人口代表性简历数据，并用因果 fairness/PSE 框架比较 4 个 LLM 与 4
+个 VLM；摘要报告 PSE 能识别 aggregate metric
+看不到的模式；值得关注的是把筛选器评测从相关差异推进到干预式分解；<strong>证据状态</strong>：仅依据摘要，人口抽样、敏感属性处理、因果假设和真实招聘有效性需全文核验。</p>
+<h3 id="learning-to-configure-agentic-ai-systems">18. Learning to
+Configure Agentic AI Systems</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.11574">arXiv:2602.11574</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.11574">PDF</a>）<br>
-<strong>中文导读</strong>：研究问题是 agent 的模型、工具和推理配置能否针对查询自动选择；方法是把配置建模为 query-specific ARC SMDP，并在工具使用任务与 Tau-Bench 上学习策略；摘要报告平均推理准确率提高 31.3%、工具使用提高 13.95%，Tau-Bench pass@1 从 9% 到 18%；值得关注的是它优化的是系统配置而非单个模型权重；<strong>证据状态</strong>：仅依据摘要，配置搜索成本、训练/测试隔离、基线公平性和对新工具的泛化需阅读全文。</p>
+<strong>中文导读</strong>：研究问题是 agent
+的模型、工具和推理配置能否针对查询自动选择；方法是把配置建模为
+query-specific ARC SMDP，并在工具使用任务与 Tau-Bench
+上学习策略；摘要报告平均推理准确率提高 31.3%、工具使用提高
+13.95%，Tau-Bench <a href="mailto:pass@1" class="email">pass@1</a> 从 9%
+到
+18%；值得关注的是它优化的是系统配置而非单个模型权重；<strong>证据状态</strong>：仅依据摘要，配置搜索成本、训练/测试隔离、基线公平性和对新工具的泛化需阅读全文。</p>
 
                 
               </div>
