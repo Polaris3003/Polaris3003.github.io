@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 FinRCA-Bench：把“取证失败”和“推理失败”拆开量化 论文：FinRCA-Bench: Benchmarking Evidence Retrieval and Reasoning for Financial AI Systems（arXiv:2608.18534，跨主题） 全文状态：已核阅公开 PDF。 问题是财务对账诊断的答案对不对，常把“模型没拿到关键流水”误当成“模型不">
+    <meta name="description" content="重点关注FinRCA-Bench：把“取证失败”和“推理失败”拆开量化论文：FinRCA-Bench: Benchmarking Evidence Retrieval and Reasoning for Financial AI Systems（arXiv:2608.18534，跨主题）全文状态：已核阅公开 PDF。 问题是财务对账诊断的答案对不对，常把“模型没拿到关键流水”误当成“模型不会推理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 8 月 21 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/08/21/daily-ai-papers-2026-08-21/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 FinRCA-Bench：把“取证失败”和“推理失败”拆开量化 论文：FinRCA-Bench: Benchmarking Evidence Retrieval and Reasoning for Financial AI Systems（arXiv:2608.18534，跨主题） 全文状态：已核阅公开 PDF。 问题是财务对账诊断的答案对不对，常把“模型没拿到关键流水”误当成“模型不">
+<meta property="og:description" content="重点关注FinRCA-Bench：把“取证失败”和“推理失败”拆开量化论文：FinRCA-Bench: Benchmarking Evidence Retrieval and Reasoning for Financial AI Systems（arXiv:2608.18534，跨主题）全文状态：已核阅公开 PDF。 问题是财务对账诊断的答案对不对，常把“模型没拿到关键流水”误当成“模型不会推理">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-09/pixiv-rank-008-147970498.jpg">
 <meta property="article:published_time" content="2026-08-21T02:15:00.000Z">
@@ -347,247 +347,54 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<h3 id="finrca-bench把取证失败和推理失败拆开量化">FinRCA-Bench：把“取证失败”和“推理失败”拆开量化</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18534">FinRCA-Bench: Benchmarking
-Evidence Retrieval and Reasoning for Financial AI
-Systems</a>（arXiv:2608.18534，跨主题）<br>
-<strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>问题是财务对账诊断的答案对不对，常把“模型没拿到关键流水”误当成“模型不会推理”。论文构造
-2,250 个应付账款至银行对账的确定性合成案例：14 张运营表、15
-类注入原因中的 1,500 个失败案例，以及 750
-个正常或困难负例；模型看得到记录，评测方私有根因与逐记录证据契约。作者固定下游推理模型、提示与生成设置，只更换检索器，比对
-Rules/SQL、经典 ML、稠密语义检索、关系扩展和仅沿持久化交易关系遍历的
-TPGR。</p>
-<p>作者报告 Rules/SQL 的留出精确准确率为 84.97%，经典 ML 为
-95.44%；在固定推理设置下，宏观必需记录召回从 0.83% 升至 77.70%，16
-类精确准确率从 2.05% 升至 72.44%（配对差 70.39 个百分点，95% bootstrap
-CI 为 66.06–74.72），而 TPGR 使用的记录和源 token
-更少。更关键的是，结构性检索失败与“证据已足仍推理错”的数量为
-95:15；即使标签答对，严格返回证据契约的准确率也仅
-5.72%。创新不是宣称图检索普遍更好，而是用受限、可解释的检索干预识别证据访问的作用。限制很明确：数据为合成、因果类别与持久化关系是人为设计的；经典结构化方法已很强，结果不能外推成所有财务
-RAG 的结论，更不能替代审计或业务判断。适合财务 AI、企业 RAG 和可审计
-agent 读者；建议先读摘要、§3–5、表 1 与 §7 的失败归因。</p>
+<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="FinRCA-Bench：把“取证失败”和“推理失败”拆开量化"><a href="#FinRCA-Bench：把“取证失败”和“推理失败”拆开量化" class="headerlink" title="FinRCA-Bench：把“取证失败”和“推理失败”拆开量化"></a>FinRCA-Bench：把“取证失败”和“推理失败”拆开量化</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18534">FinRCA-Bench: Benchmarking Evidence Retrieval and Reasoning for Financial AI Systems</a>（arXiv:2608.18534，跨主题）<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>问题是财务对账诊断的答案对不对，常把“模型没拿到关键流水”误当成“模型不会推理”。论文构造 2,250 个应付账款至银行对账的确定性合成案例：14 张运营表、15 类注入原因中的 1,500 个失败案例，以及 750 个正常或困难负例；模型看得到记录，评测方私有根因与逐记录证据契约。作者固定下游推理模型、提示与生成设置，只更换检索器，比对 Rules/SQL、经典 ML、稠密语义检索、关系扩展和仅沿持久化交易关系遍历的 TPGR。</p>
+<p>作者报告 Rules/SQL 的留出精确准确率为 84.97%，经典 ML 为 95.44%；在固定推理设置下，宏观必需记录召回从 0.83% 升至 77.70%，16 类精确准确率从 2.05% 升至 72.44%（配对差 70.39 个百分点，95% bootstrap CI 为 66.06–74.72），而 TPGR 使用的记录和源 token 更少。更关键的是，结构性检索失败与“证据已足仍推理错”的数量为 95:15；即使标签答对，严格返回证据契约的准确率也仅 5.72%。创新不是宣称图检索普遍更好，而是用受限、可解释的检索干预识别证据访问的作用。限制很明确：数据为合成、因果类别与持久化关系是人为设计的；经典结构化方法已很强，结果不能外推成所有财务 RAG 的结论，更不能替代审计或业务判断。适合财务 AI、企业 RAG 和可审计 agent 读者；建议先读摘要、§3–5、表 1 与 §7 的失败归因。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18534">PDF</a></p>
-<h3 id="afanet多-agent-失败归因未必需要长上下文大模型">AFANet：多 agent
-失败归因未必需要长上下文大模型</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18575">Beyond LLM-Based Reasoning:
-Lightweight GNNs for Agent Failure
-Attribution</a>（arXiv:2608.18575）<br>
-<strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文研究失败的多 agent 轨迹中，哪一个 agent
-以及哪种错误类型是根因。AFANet 将逐步语义信号与 agent
-间关系编码为对话图，用 GNN 消息传递归因；基线包括直接提示、Qwen 2.5/3
-的预训练、SFT 与 GRPO 版本。它在 AEGIS-Bench 与 Who&amp;When
-上报告与或优于这些 LLM 基线的表现，并在 OOD
-基准上尝试低成本测试时适配。</p>
-<p>图 1 报告相对 LLM 路线最高约 70 倍训练加速与 300 倍推理加速；表 1
-同时显示该任务本身仍难，尤其错误类型与 agent-错误配对分数远低于单纯
-agent
-识别。贡献在于把“读完整轨迹后生成解释”的问题重构为结构化归因，并显式将成本纳入比较。需要谨慎：两项基准及其标签定义决定了图结构可利用程度；论文的“近零推理成本”不包含生成/提取轨迹语义特征的端到端系统成本，且
-OOD 的可迁移性仍依赖适配数据。适合维护生产 agent、关注 observability
-和成本的工程团队；建议读摘要、§3–5、表 1、图 1 与消融实验。</p>
+<h3 id="AFANet：多-agent-失败归因未必需要长上下文大模型"><a href="#AFANet：多-agent-失败归因未必需要长上下文大模型" class="headerlink" title="AFANet：多 agent 失败归因未必需要长上下文大模型"></a>AFANet：多 agent 失败归因未必需要长上下文大模型</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18575">Beyond LLM-Based Reasoning: Lightweight GNNs for Agent Failure Attribution</a>（arXiv:2608.18575）<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>论文研究失败的多 agent 轨迹中，哪一个 agent 以及哪种错误类型是根因。AFANet 将逐步语义信号与 agent 间关系编码为对话图，用 GNN 消息传递归因；基线包括直接提示、Qwen 2.5/3 的预训练、SFT 与 GRPO 版本。它在 AEGIS-Bench 与 Who&amp;When 上报告与或优于这些 LLM 基线的表现，并在 OOD 基准上尝试低成本测试时适配。</p>
+<p>图 1 报告相对 LLM 路线最高约 70 倍训练加速与 300 倍推理加速；表 1 同时显示该任务本身仍难，尤其错误类型与 agent-错误配对分数远低于单纯 agent 识别。贡献在于把“读完整轨迹后生成解释”的问题重构为结构化归因，并显式将成本纳入比较。需要谨慎：两项基准及其标签定义决定了图结构可利用程度；论文的“近零推理成本”不包含生成/提取轨迹语义特征的端到端系统成本，且 OOD 的可迁移性仍依赖适配数据。适合维护生产 agent、关注 observability 和成本的工程团队；建议读摘要、§3–5、表 1、图 1 与消融实验。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18575">PDF</a></p>
-<h3 id="fm-bench把长期经营与竞争放进无-llm-裁判的环境">FM-Bench：把长期经营与竞争放进无
-LLM 裁判的环境</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18423">FM-Bench: A Benchmark for
-Long-Horizon Management with Competing
-Agents</a>（arXiv:2608.18423）<br>
-<strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>FM-Bench 用足球俱乐部管理检验语言模型 agent
-的长期决策，而非单回合工具调用：每个 agent 在 20 个赛季、约 340–400
-个决策点、26
-个工具下完成引援、合同、设施、青训、阵容与董事会约束；最终分由确定性引擎累计，不用
-LLM judge。论文让 15 个前沿模型分别面对冻结脚本世界（solo），并在共享的
-20 年经济体中竞争（Arena），另有脚本与人类首玩对照。</p>
-<p>作者报告所有模型在 3 个种子下走完全程，盲脚本基线的 9 次运行中有 7
-次“死亡”；claude-fable-5 在 solo 和 Arena 均居首，solo 分数
-90.94，接近可见隐藏状态的脚本上界 95.54。联赛冠军却轮转于 10
-个模型，说明静态 solo
-排名不能预测对抗环境；高分行为与临近终点减少长周期投资（Spearman
-−0.58）、少持闲置现金（−0.50）、提早续约（+0.45）相关，token
-消耗则不相关。创新是把长期、竞争、部分可观测和多目标压力放入同一可重复、无裁判模型的基准。限制是足球模拟器及其分数函数仍是作者设定，跨模型、种子和价格的结论不等于现实企业经营；“人类较低”也只是首玩对照。适合
-agent
-benchmark、记忆系统与经济仿真读者；建议读摘要、§3、两个赛道设置、图表与行为分析章节。</p>
+<h3 id="FM-Bench：把长期经营与竞争放进无-LLM-裁判的环境"><a href="#FM-Bench：把长期经营与竞争放进无-LLM-裁判的环境" class="headerlink" title="FM-Bench：把长期经营与竞争放进无 LLM 裁判的环境"></a>FM-Bench：把长期经营与竞争放进无 LLM 裁判的环境</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18423">FM-Bench: A Benchmark for Long-Horizon Management with Competing Agents</a>（arXiv:2608.18423）<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>FM-Bench 用足球俱乐部管理检验语言模型 agent 的长期决策，而非单回合工具调用：每个 agent 在 20 个赛季、约 340–400 个决策点、26 个工具下完成引援、合同、设施、青训、阵容与董事会约束；最终分由确定性引擎累计，不用 LLM judge。论文让 15 个前沿模型分别面对冻结脚本世界（solo），并在共享的 20 年经济体中竞争（Arena），另有脚本与人类首玩对照。</p>
+<p>作者报告所有模型在 3 个种子下走完全程，盲脚本基线的 9 次运行中有 7 次“死亡”；claude-fable-5 在 solo 和 Arena 均居首，solo 分数 90.94，接近可见隐藏状态的脚本上界 95.54。联赛冠军却轮转于 10 个模型，说明静态 solo 排名不能预测对抗环境；高分行为与临近终点减少长周期投资（Spearman −0.58）、少持闲置现金（−0.50）、提早续约（+0.45）相关，token 消耗则不相关。创新是把长期、竞争、部分可观测和多目标压力放入同一可重复、无裁判模型的基准。限制是足球模拟器及其分数函数仍是作者设定，跨模型、种子和价格的结论不等于现实企业经营；“人类较低”也只是首玩对照。适合 agent benchmark、记忆系统与经济仿真读者；建议读摘要、§3、两个赛道设置、图表与行为分析章节。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18423">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Analogy-AI/fm-bench">代码</a></p>
-<h2 id="ai-论文">AI 论文</h2>
-<h3 id="vision-language-models-for-egocentric-video-from-hand-object-interaction-to-embodied-ai">Vision-Language
-Models for Egocentric Video: From Hand-Object Interaction to Embodied
-AI</h3>
-<p><strong>作者</strong>：Mohammad Zamani、Fatemeh Ziaeetabar<br>
-<strong>来源/分类</strong>：arXiv · cs.CV<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18671">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18671">PDF</a></p>
-<p>仅依据摘要：综述第一视角视频
-VLM，从手—物交互、时序推理、采样、对齐到具身应用。作者综合文献后认为可见物体比长时活动、交互和意图更易识别。价值是定位可穿戴与机器人感知的瓶颈；综述的覆盖和判断取决于选文，未提供独立基准比较。</p>
-<h3 id="beyond-llm-based-reasoning-lightweight-gnns-for-agent-failure-attribution">Beyond
-LLM-Based Reasoning: Lightweight GNNs for Agent Failure Attribution</h3>
-<p><strong>作者</strong>：Ting-Wei Li、Yuanchen Bei、Xiao Lin、Hanghang
-Tong<br>
-<strong>来源/分类</strong>：arXiv · cs.CL<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18575">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18575">PDF</a></p>
-<p>研究失败多 agent 轨迹的责任 agent 与错误类型归因，以逐步语义和 agent
-关系的图网络替代重型 LLM 推理。作者报告 AFANet 在域内匹配或超过微调
-LLM，并可在 OOD
-上做低成本适配。价值在于将可观测性转为结构化学习问题；基准标签、特征提取成本和真实系统迁移仍需审计。</p>
-<h3 id="finrca-bench-benchmarking-evidence-retrieval-and-reasoning-for-financial-ai-systems">FinRCA-Bench:
-Benchmarking Evidence Retrieval and Reasoning for Financial AI
-Systems</h3>
-<p><strong>作者</strong>：Pratik Ghawate<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.IR · 【跨主题】<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18534">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18534">PDF</a></p>
-<p>研究财务对账中证据检索与根因推理的可分离评测，覆盖 2,250 个合成案例与
-14
-张表。作者报告只改检索即可大幅改变必需记录召回和分类准确率。价值是防止把答案正确误判为可审计；合成关系图与真实企业数据质量、权限和流程差异限制外推。</p>
-<h3 id="cl4d-contrastive-language-4d-pretraining-for-vision-language-reasoning-in-dynamic-scenes">CL4D:
-Contrastive Language-4D Pretraining for Vision-Language Reasoning in
-Dynamic Scenes</h3>
-<p><strong>作者</strong>：Kumal Hewagamage 等 7 位作者<br>
-<strong>来源/分类</strong>：arXiv · cs.CV<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18734">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18734">PDF</a></p>
-<p>仅依据摘要：以动态点云和文本对比预训练 CL4D，并在 DynAction4D
-上训练直接读 4D 点云的 4DVLM。作者报告多项 4D 动作基准约提升
-16.75%，且胜过给 RGB 视频的
-Gemini/GPT-5。价值在于把几何与运动共同建模；数据集构成、2D/4D
-输入公平性、闭源模型版本和算力均需阅读全文核查。</p>
-<h3 id="finskillbench-evaluating-ai-agents-and-domain-skills-for-investment-management">FinSkillBench:
-Evaluating AI Agents and Domain Skills for Investment Management</h3>
-<p><strong>作者</strong>：Jermyn Zhen Yong Bek、Zhuang Qiang
-Bok、Zhongtian Sun<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、q-fin.PM · 【跨主题】<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18099">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18099">PDF</a></p>
-<p>仅依据摘要：评测 agent 在组合、风险和基本面 12 个子任务、2,603 个点时
-episode 中调用金融技能的能力。作者报告 9 个模型的均分从无技能的 0.366
-升至策划技能的 0.528，自生成技能成本更高且收益很小；另一框架的 5,280
-episode
-复现方向。价值是将“模型能力”与可验证流程区分；是任务成功分而非投资业绩，数据、执行摩擦与可交易性未由摘要证明。</p>
-<h3 id="large-language-model-for-verilog-code-generation-literature-review-and-the-road-ahead">Large
-Language Model for Verilog Code Generation: Literature Review and the
-Road Ahead</h3>
-<p><strong>作者</strong>：Guang Yang 等 17 位作者<br>
-<strong>来源/分类</strong>：arXiv · cs.AR、cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.00020">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.00020">PDF</a></p>
-<p>仅依据摘要：系统回顾 102 篇 Verilog/RTL LLM
-研究，归纳模型、数据、指标、技术路线和对齐方法。价值是硬件代码生成的研究地图；文献筛选与质量评估会影响路线判断，综述本身不验证任何模型效果。</p>
-<h3 id="conspired-a-dataset-for-cognitive-traits-of-conspiracy-theories-and-large-language-model-safety">ConspirED:
-A Dataset for Cognitive Traits of Conspiracy Theories and Large Language
-Model Safety</h3>
-<p><strong>作者</strong>：Luke Bates、Max Glockner、Preslav Nakov、Iryna
-Gurevych<br>
-<strong>来源/分类</strong>：arXiv · cs.CL<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.20468">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2508.20468">PDF</a></p>
-<p>仅依据摘要：建立以 CONSPIR
-认知框架标注的阴谋论语段数据集，并测模型识别特征与面对阴谋叙事的稳健性。作者称模型即使能回避可核查的错误信息，仍会复现阴谋论修辞。价值在于把安全风险从真假扩展到话语模式；在线文本抽样、标注框架与评测提示会限制对真实危害的推断。</p>
-<h3 id="mise-en-scène-implicit-layout-emergence-in-diffusion-transformers-for-human-ai-design-co-creation">Mise-en-Scène:
-Implicit Layout Emergence in Diffusion Transformers for Human-AI Design
-Co-Creation</h3>
-<p><strong>作者</strong>：Zipeng Xu、Ryan Murdock、Umberto
-Michieli<br>
-<strong>来源/分类</strong>：arXiv · cs.CV<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.19000">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.19000">PDF</a></p>
-<p>仅依据摘要：两阶段扩散设计流程先隐式生成布局草图，再确定性匹配放回原始高分辨率资产，以保留可编辑图层。作者称
-PrismLayersPlus 上感知质量优于 LLM 布局器和专用布局
-Transformer。价值在于不把规划和渲染完全割裂；真实设计偏好、资产匹配失败与评价器偏差仍需核验。</p>
-<h3 id="dentagent-evidence-centric-multi-agent-coordination-for-multimodal-dental-reasoning">DentAgent:
-Evidence-Centric Multi-Agent Coordination for Multimodal Dental
-Reasoning</h3>
-<p><strong>作者</strong>：Zijie Meng 等 9 位作者<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.MA<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18878">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18878">PDF</a></p>
-<p>仅依据摘要：以协调器、五个专门 agent 和共享证据黑板整合影像、照片、3D
-与知识。作者报告四项基准领先，并在多标签诊断上高于资深专科医师 17.3
-个百分点。价值在于显式记录证据缺口与冲突；临床样本、专家比较协议和诊疗安全性不能由摘要独立确认。</p>
-<h3 id="the-lifecycle-of-llm-as-a-judge-for-large-scale-recommendation-explanations">The
-Lifecycle of LLM-as-a-Judge for Large-Scale Recommendation
-Explanations</h3>
-<p><strong>作者</strong>：Emma Yanyang Kong 等 10 位作者<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18300">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18300">PDF</a></p>
-<p>仅依据摘要：描述 Netflix 推荐解释评审器从人工标注、RART
-训练、上线门控到人工在环监控的生命周期。作者报告五周、数千万会员 A/B
-测试中，解释使新内容观看和 browse-to-play 增加且无质量下架。价值是把
-judge
-的漂移纳入工程治理；结果为单一产品与内部指标，因果归因、长期满意度和可复现细节仍需全文审查。</p>
-<h3 id="evaluating-structured-information-extraction-with-open-models-in-a-high-risk-public-sector-application">Evaluating
-Structured Information Extraction with Open Models in a High Risk Public
-Sector Application</h3>
-<p><strong>作者</strong>：Elias Schubert、Felix Bießmann<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CR、cs.IR、cs.LG<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18289">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18289">PDF</a></p>
-<p>仅依据摘要：评估开源 OCR、LLM 与 VLM
-在高风险公共部门文档结构化抽取中的表现与部署权衡。价值在于将开放模型放进真实高风险流程；任务错误代价、数据保密、标注协议与人工复核门槛决定其是否可用，不能以离线分数替代合规结论。</p>
-<h3 id="stockstalk-a-voice-enabled-conversational-agent-for-structured-query-generation-over-web-data">StocksTalk:
-A Voice-Enabled Conversational Agent for Structured Query Generation
-over Web Data</h3>
-<p><strong>作者</strong>：Akshat Parmar 等 7 位作者<br>
-<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.LG<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18105">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18105">PDF</a></p>
+<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><h3 id="Vision-Language-Models-for-Egocentric-Video-From-Hand-Object-Interaction-to-Embodied-AI"><a href="#Vision-Language-Models-for-Egocentric-Video-From-Hand-Object-Interaction-to-Embodied-AI" class="headerlink" title="Vision-Language Models for Egocentric Video: From Hand-Object Interaction to Embodied AI"></a>Vision-Language Models for Egocentric Video: From Hand-Object Interaction to Embodied AI</h3><p><strong>作者</strong>：Mohammad Zamani、Fatemeh Ziaeetabar<br><strong>来源/分类</strong>：arXiv · cs.CV<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18671">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18671">PDF</a></p>
+<p>仅依据摘要：综述第一视角视频 VLM，从手—物交互、时序推理、采样、对齐到具身应用。作者综合文献后认为可见物体比长时活动、交互和意图更易识别。价值是定位可穿戴与机器人感知的瓶颈；综述的覆盖和判断取决于选文，未提供独立基准比较。</p>
+<h3 id="Beyond-LLM-Based-Reasoning-Lightweight-GNNs-for-Agent-Failure-Attribution"><a href="#Beyond-LLM-Based-Reasoning-Lightweight-GNNs-for-Agent-Failure-Attribution" class="headerlink" title="Beyond LLM-Based Reasoning: Lightweight GNNs for Agent Failure Attribution"></a>Beyond LLM-Based Reasoning: Lightweight GNNs for Agent Failure Attribution</h3><p><strong>作者</strong>：Ting-Wei Li、Yuanchen Bei、Xiao Lin、Hanghang Tong<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18575">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18575">PDF</a></p>
+<p>研究失败多 agent 轨迹的责任 agent 与错误类型归因，以逐步语义和 agent 关系的图网络替代重型 LLM 推理。作者报告 AFANet 在域内匹配或超过微调 LLM，并可在 OOD 上做低成本适配。价值在于将可观测性转为结构化学习问题；基准标签、特征提取成本和真实系统迁移仍需审计。</p>
+<h3 id="FinRCA-Bench-Benchmarking-Evidence-Retrieval-and-Reasoning-for-Financial-AI-Systems"><a href="#FinRCA-Bench-Benchmarking-Evidence-Retrieval-and-Reasoning-for-Financial-AI-Systems" class="headerlink" title="FinRCA-Bench: Benchmarking Evidence Retrieval and Reasoning for Financial AI Systems"></a>FinRCA-Bench: Benchmarking Evidence Retrieval and Reasoning for Financial AI Systems</h3><p><strong>作者</strong>：Pratik Ghawate<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.IR · 【跨主题】<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18534">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18534">PDF</a></p>
+<p>研究财务对账中证据检索与根因推理的可分离评测，覆盖 2,250 个合成案例与 14 张表。作者报告只改检索即可大幅改变必需记录召回和分类准确率。价值是防止把答案正确误判为可审计；合成关系图与真实企业数据质量、权限和流程差异限制外推。</p>
+<h3 id="CL4D-Contrastive-Language-4D-Pretraining-for-Vision-Language-Reasoning-in-Dynamic-Scenes"><a href="#CL4D-Contrastive-Language-4D-Pretraining-for-Vision-Language-Reasoning-in-Dynamic-Scenes" class="headerlink" title="CL4D: Contrastive Language-4D Pretraining for Vision-Language Reasoning in Dynamic Scenes"></a>CL4D: Contrastive Language-4D Pretraining for Vision-Language Reasoning in Dynamic Scenes</h3><p><strong>作者</strong>：Kumal Hewagamage 等 7 位作者<br><strong>来源/分类</strong>：arXiv · cs.CV<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18734">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18734">PDF</a></p>
+<p>仅依据摘要：以动态点云和文本对比预训练 CL4D，并在 DynAction4D 上训练直接读 4D 点云的 4DVLM。作者报告多项 4D 动作基准约提升 16.75%，且胜过给 RGB 视频的 Gemini/GPT-5。价值在于把几何与运动共同建模；数据集构成、2D/4D 输入公平性、闭源模型版本和算力均需阅读全文核查。</p>
+<h3 id="FinSkillBench-Evaluating-AI-Agents-and-Domain-Skills-for-Investment-Management"><a href="#FinSkillBench-Evaluating-AI-Agents-and-Domain-Skills-for-Investment-Management" class="headerlink" title="FinSkillBench: Evaluating AI Agents and Domain Skills for Investment Management"></a>FinSkillBench: Evaluating AI Agents and Domain Skills for Investment Management</h3><p><strong>作者</strong>：Jermyn Zhen Yong Bek、Zhuang Qiang Bok、Zhongtian Sun<br><strong>来源/分类</strong>：arXiv · cs.AI、q-fin.PM · 【跨主题】<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18099">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18099">PDF</a></p>
+<p>仅依据摘要：评测 agent 在组合、风险和基本面 12 个子任务、2,603 个点时 episode 中调用金融技能的能力。作者报告 9 个模型的均分从无技能的 0.366 升至策划技能的 0.528，自生成技能成本更高且收益很小；另一框架的 5,280 episode 复现方向。价值是将“模型能力”与可验证流程区分；是任务成功分而非投资业绩，数据、执行摩擦与可交易性未由摘要证明。</p>
+<h3 id="Large-Language-Model-for-Verilog-Code-Generation-Literature-Review-and-the-Road-Ahead"><a href="#Large-Language-Model-for-Verilog-Code-Generation-Literature-Review-and-the-Road-Ahead" class="headerlink" title="Large Language Model for Verilog Code Generation: Literature Review and the Road Ahead"></a>Large Language Model for Verilog Code Generation: Literature Review and the Road Ahead</h3><p><strong>作者</strong>：Guang Yang 等 17 位作者<br><strong>来源/分类</strong>：arXiv · cs.AR、cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.00020">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.00020">PDF</a></p>
+<p>仅依据摘要：系统回顾 102 篇 Verilog/RTL LLM 研究，归纳模型、数据、指标、技术路线和对齐方法。价值是硬件代码生成的研究地图；文献筛选与质量评估会影响路线判断，综述本身不验证任何模型效果。</p>
+<h3 id="ConspirED-A-Dataset-for-Cognitive-Traits-of-Conspiracy-Theories-and-Large-Language-Model-Safety"><a href="#ConspirED-A-Dataset-for-Cognitive-Traits-of-Conspiracy-Theories-and-Large-Language-Model-Safety" class="headerlink" title="ConspirED: A Dataset for Cognitive Traits of Conspiracy Theories and Large Language Model Safety"></a>ConspirED: A Dataset for Cognitive Traits of Conspiracy Theories and Large Language Model Safety</h3><p><strong>作者</strong>：Luke Bates、Max Glockner、Preslav Nakov、Iryna Gurevych<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.20468">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2508.20468">PDF</a></p>
+<p>仅依据摘要：建立以 CONSPIR 认知框架标注的阴谋论语段数据集，并测模型识别特征与面对阴谋叙事的稳健性。作者称模型即使能回避可核查的错误信息，仍会复现阴谋论修辞。价值在于把安全风险从真假扩展到话语模式；在线文本抽样、标注框架与评测提示会限制对真实危害的推断。</p>
+<h3 id="Mise-en-Scene-Implicit-Layout-Emergence-in-Diffusion-Transformers-for-Human-AI-Design-Co-Creation"><a href="#Mise-en-Scene-Implicit-Layout-Emergence-in-Diffusion-Transformers-for-Human-AI-Design-Co-Creation" class="headerlink" title="Mise-en-Scène: Implicit Layout Emergence in Diffusion Transformers for Human-AI Design Co-Creation"></a>Mise-en-Scène: Implicit Layout Emergence in Diffusion Transformers for Human-AI Design Co-Creation</h3><p><strong>作者</strong>：Zipeng Xu、Ryan Murdock、Umberto Michieli<br><strong>来源/分类</strong>：arXiv · cs.CV<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.19000">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.19000">PDF</a></p>
+<p>仅依据摘要：两阶段扩散设计流程先隐式生成布局草图，再确定性匹配放回原始高分辨率资产，以保留可编辑图层。作者称 PrismLayersPlus 上感知质量优于 LLM 布局器和专用布局 Transformer。价值在于不把规划和渲染完全割裂；真实设计偏好、资产匹配失败与评价器偏差仍需核验。</p>
+<h3 id="DentAgent-Evidence-Centric-Multi-Agent-Coordination-for-Multimodal-Dental-Reasoning"><a href="#DentAgent-Evidence-Centric-Multi-Agent-Coordination-for-Multimodal-Dental-Reasoning" class="headerlink" title="DentAgent: Evidence-Centric Multi-Agent Coordination for Multimodal Dental Reasoning"></a>DentAgent: Evidence-Centric Multi-Agent Coordination for Multimodal Dental Reasoning</h3><p><strong>作者</strong>：Zijie Meng 等 9 位作者<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.MA<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18878">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18878">PDF</a></p>
+<p>仅依据摘要：以协调器、五个专门 agent 和共享证据黑板整合影像、照片、3D 与知识。作者报告四项基准领先，并在多标签诊断上高于资深专科医师 17.3 个百分点。价值在于显式记录证据缺口与冲突；临床样本、专家比较协议和诊疗安全性不能由摘要独立确认。</p>
+<h3 id="The-Lifecycle-of-LLM-as-a-Judge-for-Large-Scale-Recommendation-Explanations"><a href="#The-Lifecycle-of-LLM-as-a-Judge-for-Large-Scale-Recommendation-Explanations" class="headerlink" title="The Lifecycle of LLM-as-a-Judge for Large-Scale Recommendation Explanations"></a>The Lifecycle of LLM-as-a-Judge for Large-Scale Recommendation Explanations</h3><p><strong>作者</strong>：Emma Yanyang Kong 等 10 位作者<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18300">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18300">PDF</a></p>
+<p>仅依据摘要：描述 Netflix 推荐解释评审器从人工标注、RART 训练、上线门控到人工在环监控的生命周期。作者报告五周、数千万会员 A/B 测试中，解释使新内容观看和 browse-to-play 增加且无质量下架。价值是把 judge 的漂移纳入工程治理；结果为单一产品与内部指标，因果归因、长期满意度和可复现细节仍需全文审查。</p>
+<h3 id="Evaluating-Structured-Information-Extraction-with-Open-Models-in-a-High-Risk-Public-Sector-Application"><a href="#Evaluating-Structured-Information-Extraction-with-Open-Models-in-a-High-Risk-Public-Sector-Application" class="headerlink" title="Evaluating Structured Information Extraction with Open Models in a High Risk Public Sector Application"></a>Evaluating Structured Information Extraction with Open Models in a High Risk Public Sector Application</h3><p><strong>作者</strong>：Elias Schubert、Felix Bießmann<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CR、cs.IR、cs.LG<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18289">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18289">PDF</a></p>
+<p>仅依据摘要：评估开源 OCR、LLM 与 VLM 在高风险公共部门文档结构化抽取中的表现与部署权衡。价值在于将开放模型放进真实高风险流程；任务错误代价、数据保密、标注协议与人工复核门槛决定其是否可用，不能以离线分数替代合规结论。</p>
+<h3 id="StocksTalk-A-Voice-Enabled-Conversational-Agent-for-Structured-Query-Generation-over-Web-Data"><a href="#StocksTalk-A-Voice-Enabled-Conversational-Agent-for-Structured-Query-Generation-over-Web-Data" class="headerlink" title="StocksTalk: A Voice-Enabled Conversational Agent for Structured Query Generation over Web Data"></a>StocksTalk: A Voice-Enabled Conversational Agent for Structured Query Generation over Web Data</h3><p><strong>作者</strong>：Akshat Parmar 等 7 位作者<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.LG<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18105">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18105">PDF</a></p>
 <p>仅依据摘要：研究语音对话如何生成面向网页数据的结构化查询，以支持股票信息检索。价值是把自然语言、语音和结构化查询连接；网页数据点时性、语音误识别、查询安全和结果是否可作为投资依据均未由摘要证明。</p>
-<h3 id="deeptcm1.0-a-multi-expert-ai-agent-for-deciphering-mechanisms-of-chinese-herbal-formulae-based-on-general-large-language-models">DeepTCM1.0:
-A Multi-Expert AI Agent for Deciphering Mechanisms of Chinese Herbal
-Formulae Based on General Large Language Models</h3>
-<p><strong>作者</strong>：Wenxin Duan 等 7 位作者<br>
-<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18103">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18103">PDF</a></p>
-<p>仅依据摘要：以多专家 agent 利用通用 LLM
-解读中药复方机制。价值是尝试把领域推理拆分并留下协作链；机制生成不等于药理或临床有效性，知识来源、评审协议和幻觉控制必须独立验证。</p>
-<h3 id="amplifai-a-multiphase-ct-dataset-for-benchmarking-clinical-reasoning-in-li-rads-assessment-of-liver-lesions">AMPLIFAI:
-A Multiphase CT Dataset for Benchmarking Clinical Reasoning in LI-RADS
-Assessment of Liver Lesions</h3>
-<p><strong>作者</strong>：Pranav Kulkarni 等 12 位作者<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.LG<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14778">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.14778">PDF</a></p>
-<p>仅依据摘要：发布多期 CT 数据集以基准化肝脏病灶 LI-RADS
-临床推理。价值是为跨期影像与诊断链提供公开评测对象；病例分布、标注一致性、医院迁移与临床效用仍需阅读全文核验，不能替代放射科医师。</p>
-<h3 id="lt-mem-volatility-aware-spatio-temporal-memory-for-lifelong-scene-understanding">LT-Mem:
-Volatility-Aware Spatio-Temporal Memory for Lifelong Scene
-Understanding</h3>
-<p><strong>作者</strong>：Yumin Lee、Hyoseok Ju、Giseop Kim<br>
-<strong>来源/分类</strong>：arXiv · cs.RO、cs.CV<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.19059">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.19059">PDF</a></p>
+<h3 id="DeepTCM1-0-A-Multi-Expert-AI-Agent-for-Deciphering-Mechanisms-of-Chinese-Herbal-Formulae-Based-on-General-Large-Language-Models"><a href="#DeepTCM1-0-A-Multi-Expert-AI-Agent-for-Deciphering-Mechanisms-of-Chinese-Herbal-Formulae-Based-on-General-Large-Language-Models" class="headerlink" title="DeepTCM1.0: A Multi-Expert AI Agent for Deciphering Mechanisms of Chinese Herbal Formulae Based on General Large Language Models"></a>DeepTCM1.0: A Multi-Expert AI Agent for Deciphering Mechanisms of Chinese Herbal Formulae Based on General Large Language Models</h3><p><strong>作者</strong>：Wenxin Duan 等 7 位作者<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18103">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18103">PDF</a></p>
+<p>仅依据摘要：以多专家 agent 利用通用 LLM 解读中药复方机制。价值是尝试把领域推理拆分并留下协作链；机制生成不等于药理或临床有效性，知识来源、评审协议和幻觉控制必须独立验证。</p>
+<h3 id="AMPLIFAI-A-Multiphase-CT-Dataset-for-Benchmarking-Clinical-Reasoning-in-LI-RADS-Assessment-of-Liver-Lesions"><a href="#AMPLIFAI-A-Multiphase-CT-Dataset-for-Benchmarking-Clinical-Reasoning-in-LI-RADS-Assessment-of-Liver-Lesions" class="headerlink" title="AMPLIFAI: A Multiphase CT Dataset for Benchmarking Clinical Reasoning in LI-RADS Assessment of Liver Lesions"></a>AMPLIFAI: A Multiphase CT Dataset for Benchmarking Clinical Reasoning in LI-RADS Assessment of Liver Lesions</h3><p><strong>作者</strong>：Pranav Kulkarni 等 12 位作者<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.LG<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14778">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.14778">PDF</a></p>
+<p>仅依据摘要：发布多期 CT 数据集以基准化肝脏病灶 LI-RADS 临床推理。价值是为跨期影像与诊断链提供公开评测对象；病例分布、标注一致性、医院迁移与临床效用仍需阅读全文核验，不能替代放射科医师。</p>
+<h3 id="LT-Mem-Volatility-Aware-Spatio-Temporal-Memory-for-Lifelong-Scene-Understanding"><a href="#LT-Mem-Volatility-Aware-Spatio-Temporal-Memory-for-Lifelong-Scene-Understanding" class="headerlink" title="LT-Mem: Volatility-Aware Spatio-Temporal Memory for Lifelong Scene Understanding"></a>LT-Mem: Volatility-Aware Spatio-Temporal Memory for Lifelong Scene Understanding</h3><p><strong>作者</strong>：Yumin Lee、Hyoseok Ju、Giseop Kim<br><strong>来源/分类</strong>：arXiv · cs.RO、cs.CV<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.19059">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.19059">PDF</a></p>
 <p>仅依据摘要：提出感知场景变化强度的时空记忆，用于终身场景理解。价值在于把记忆更新与环境非平稳性关联；遗忘、长期误差累积、传感器变化和与标准持续学习基线的公平比较须全文检查。</p>
-<h3 id="when-safety-overrides-vision-exploring-dynamics-between-vision-influence-and-safety-alignment-in-vision-language-models">When
-Safety Overrides Vision: Exploring Dynamics between Vision Influence and
-Safety Alignment in Vision-Language Models</h3>
-<p><strong>作者</strong>：Mehak Gupta、Tanmoy Chakraborty<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.CL<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18628">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18628">PDF</a></p>
-<p>仅依据摘要：分析视觉输入影响与安全对齐在 VLM
-中的动态关系。价值是将多模态安全从文本提示扩展到视觉证据冲突；攻击集、模型版本、拒答正确性和对真实有害行为的映射决定结论强度。</p>
-<h3 id="can-a-lightweight-multimodal-model-estimate-llm-reasoning-performance-a-study-for-compute-optimal-document-inference">Can
-a Lightweight Multimodal Model Estimate LLM Reasoning Performance? A
-Study for Compute-Optimal Document Inference</h3>
-<p><strong>作者</strong>：Zishan Ahmad、Vishal Vaddina<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18591">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18591">PDF</a></p>
-<p>仅依据摘要：研究轻量多模态模型能否预估 LLM
-在文档推理任务的表现，以实现算力最优的路由。价值在于把昂贵推理留给必要样本；代理指标的校准、误路由代价、数据泄漏与端到端节省必须和强路由基线同测。</p>
-<h3 id="fm-bench-a-benchmark-for-long-horizon-management-with-competing-agents">FM-Bench:
-A Benchmark for Long-Horizon Management with Competing Agents</h3>
-<p><strong>作者</strong>：Tianyou Wang 等 9 位作者<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18423">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18423">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Analogy-AI/fm-bench">代码</a></p>
-<p>研究竞争环境中 20 年长期管理，以确定性模拟器评分 15
-个模型。作者报告能力差异更受现金、续约和临近终点投资行为影响，而非 token
-消耗。价值在于减少 LLM judge
-影响；模拟世界与真实组织之间仍有显著构念距离。</p>
+<h3 id="When-Safety-Overrides-Vision-Exploring-Dynamics-between-Vision-Influence-and-Safety-Alignment-in-Vision-Language-Models"><a href="#When-Safety-Overrides-Vision-Exploring-Dynamics-between-Vision-Influence-and-Safety-Alignment-in-Vision-Language-Models" class="headerlink" title="When Safety Overrides Vision: Exploring Dynamics between Vision Influence and Safety Alignment in Vision-Language Models"></a>When Safety Overrides Vision: Exploring Dynamics between Vision Influence and Safety Alignment in Vision-Language Models</h3><p><strong>作者</strong>：Mehak Gupta、Tanmoy Chakraborty<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.CL<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18628">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18628">PDF</a></p>
+<p>仅依据摘要：分析视觉输入影响与安全对齐在 VLM 中的动态关系。价值是将多模态安全从文本提示扩展到视觉证据冲突；攻击集、模型版本、拒答正确性和对真实有害行为的映射决定结论强度。</p>
+<h3 id="Can-a-Lightweight-Multimodal-Model-Estimate-LLM-Reasoning-Performance-A-Study-for-Compute-Optimal-Document-Inference"><a href="#Can-a-Lightweight-Multimodal-Model-Estimate-LLM-Reasoning-Performance-A-Study-for-Compute-Optimal-Document-Inference" class="headerlink" title="Can a Lightweight Multimodal Model Estimate LLM Reasoning Performance? A Study for Compute-Optimal Document Inference"></a>Can a Lightweight Multimodal Model Estimate LLM Reasoning Performance? A Study for Compute-Optimal Document Inference</h3><p><strong>作者</strong>：Zishan Ahmad、Vishal Vaddina<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18591">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18591">PDF</a></p>
+<p>仅依据摘要：研究轻量多模态模型能否预估 LLM 在文档推理任务的表现，以实现算力最优的路由。价值在于把昂贵推理留给必要样本；代理指标的校准、误路由代价、数据泄漏与端到端节省必须和强路由基线同测。</p>
+<h3 id="FM-Bench-A-Benchmark-for-Long-Horizon-Management-with-Competing-Agents"><a href="#FM-Bench-A-Benchmark-for-Long-Horizon-Management-with-Competing-Agents" class="headerlink" title="FM-Bench: A Benchmark for Long-Horizon Management with Competing Agents"></a>FM-Bench: A Benchmark for Long-Horizon Management with Competing Agents</h3><p><strong>作者</strong>：Tianyou Wang 等 9 位作者<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18423">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18423">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Analogy-AI/fm-bench">代码</a></p>
+<p>研究竞争环境中 20 年长期管理，以确定性模拟器评分 15 个模型。作者报告能力差异更受现金、续约和临近终点投资行为影响，而非 token 消耗。价值在于减少 LLM judge 影响；模拟世界与真实组织之间仍有显著构念距离。</p>
 
                 
               </div>

@@ -360,43 +360,22 @@
         <div><span>阅读</span><strong>约 6 分钟</strong></div>
         <div><span>材料</span><strong>9 节 · 1 段代码</strong></div>
       </div>
-    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="问题">问题</h2>
-<p>把股票信号转成受约束多头权重：单股≤35%，两个行业相对各 50%
-基准偏离≤10%，单边换手≤30%。随后计算佣金、卖出印花税与滑点，断言净收益不高于毛收益且所有约束在
-1e-8 内满足。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="输入数据">输入数据</h2>
-<p>6 只股票，前三只属于 X 行业，后三只属于 Y；当前与基准均等权。信号从 1
-降到 0，未来收益仅用于事后计算，不进入优化。</p>
-<p>成本参数：佣金 3bp（买卖双边）、卖出印花税 5bp、滑点
-10bp（买卖双边）。这是教学参数，不代表任一历史日期的真实费率。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="逐步实现">逐步实现</h2>
-<p>优化目标最大化信号暴露；用辅助变量表示每只股票的绝对交易量，再交给
-HiGHS
-线性规划。行业约束写成上下两个不等式，换手使用当前漂移后权重与目标权重之差。</p>
-<p>交易分为 buy=max(Δw,0)、sell=max(-Δw,0)。印花税只加在
-sell，其他线性成本加在两边。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="完整代码">完整代码</h2>
-<figure class="highlight python quant-code-block">
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>把股票信号转成受约束多头权重：单股≤35%，两个行业相对各 50% 基准偏离≤10%，单边换手≤30%。随后计算佣金、卖出印花税与滑点，断言净收益不高于毛收益且所有约束在 1e-8 内满足。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="输入数据"><a href="#输入数据" class="headerlink" title="输入数据"></a>输入数据</h2><p>6 只股票，前三只属于 X 行业，后三只属于 Y；当前与基准均等权。信号从 1 降到 0，未来收益仅用于事后计算，不进入优化。</p>
+<p>成本参数：佣金 3bp（买卖双边）、卖出印花税 5bp、滑点 10bp（买卖双边）。这是教学参数，不代表任一历史日期的真实费率。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="逐步实现"><a href="#逐步实现" class="headerlink" title="逐步实现"></a>逐步实现</h2><p>优化目标最大化信号暴露；用辅助变量表示每只股票的绝对交易量，再交给 HiGHS 线性规划。行业约束写成上下两个不等式，换手使用当前漂移后权重与目标权重之差。</p>
+<p>交易分为 buy=max(Δw,0)、sell=max(-Δw,0)。印花税只加在 sell，其他线性成本加在两边。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> scipy.optimize <span class="hljs-keyword">import</span> linprog<br><br>signal = np.array([<span class="hljs-number">1.0</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">0.0</span>])<br>industry_x = np.array([<span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">False</span>, <span class="hljs-literal">False</span>, <span class="hljs-literal">False</span>])<br>previous = np.repeat(<span class="hljs-number">1</span> / <span class="hljs-number">6</span>, <span class="hljs-number">6</span>)<br>benchmark = np.repeat(<span class="hljs-number">1</span> / <span class="hljs-number">6</span>, <span class="hljs-number">6</span>)<br>future_return = np.array([<span class="hljs-number">0.03</span>, <span class="hljs-number">0.01</span>, -<span class="hljs-number">0.01</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.00</span>, -<span class="hljs-number">0.02</span>])<br><br>stock_cap = <span class="hljs-number">0.35</span><br>industry_limit = <span class="hljs-number">0.10</span><br>turnover_limit = <span class="hljs-number">0.30</span><br><br><span class="hljs-comment"># 决策向量为 [w_1...w_6, u_1...u_6]，u_i &gt;= |w_i-previous_i|。</span><br>n = <span class="hljs-built_in">len</span>(signal)<br>c = np.r_[-signal, np.zeros(n)]<br>a_ub = []<br>b_ub = []<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):<br>    row_positive = np.zeros(<span class="hljs-number">2</span> * n)<br>    row_positive[i] = <span class="hljs-number">1</span><br>    row_positive[n + i] = -<span class="hljs-number">1</span><br>    a_ub.append(row_positive)<br>    b_ub.append(previous[i])<br><br>    row_negative = np.zeros(<span class="hljs-number">2</span> * n)<br>    row_negative[i] = -<span class="hljs-number">1</span><br>    row_negative[n + i] = -<span class="hljs-number">1</span><br>    a_ub.append(row_negative)<br>    b_ub.append(-previous[i])<br><br>turnover_row = np.r_[np.zeros(n), <span class="hljs-number">0.5</span> * np.ones(n)]<br>a_ub.append(turnover_row)<br>b_ub.append(turnover_limit)<br><br>industry_row = np.r_[industry_x.astype(<span class="hljs-built_in">float</span>), np.zeros(n)]<br>a_ub.extend([industry_row, -industry_row])<br>b_ub.extend([<span class="hljs-number">0.5</span> + industry_limit, -(<span class="hljs-number">0.5</span> - industry_limit)])<br><br>a_eq = np.r_[np.ones(n), np.zeros(n)].reshape(<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>)<br>result = linprog(<br>    c,<br>    A_ub=np.asarray(a_ub),<br>    b_ub=np.asarray(b_ub),<br>    A_eq=a_eq,<br>    b_eq=np.array([<span class="hljs-number">1.0</span>]),<br>    bounds=[(<span class="hljs-number">0.0</span>, stock_cap)] * n + [(<span class="hljs-number">0.0</span>, <span class="hljs-literal">None</span>)] * n,<br>    method=<span class="hljs-string">&quot;highs&quot;</span>,<br>)<br>weights = result.x[:n]<br><br>trade = weights - previous<br>buy = np.clip(trade, <span class="hljs-number">0</span>, <span class="hljs-literal">None</span>).<span class="hljs-built_in">sum</span>()<br>sell = np.clip(-trade, <span class="hljs-number">0</span>, <span class="hljs-literal">None</span>).<span class="hljs-built_in">sum</span>()<br>one_way_turnover = <span class="hljs-number">0.5</span> * np.<span class="hljs-built_in">abs</span>(trade).<span class="hljs-built_in">sum</span>()<br><br>commission = <span class="hljs-number">0.0003</span><br>stamp_tax = <span class="hljs-number">0.0005</span><br>slippage = <span class="hljs-number">0.0010</span><br>cost = (<br>    commission * (buy + sell)<br>    + stamp_tax * sell<br>    + slippage * (buy + sell)<br>)<br>gross = weights @ future_return<br>net = gross - cost<br><br>tol = <span class="hljs-number">1e-8</span><br>industry_x_weight = weights[industry_x].<span class="hljs-built_in">sum</span>()<br><span class="hljs-keyword">assert</span> result.success<br><span class="hljs-keyword">assert</span> np.isclose(weights.<span class="hljs-built_in">sum</span>(), <span class="hljs-number">1.0</span>, atol=tol)<br><span class="hljs-keyword">assert</span> np.<span class="hljs-built_in">all</span>(weights &gt;= -tol)<br><span class="hljs-keyword">assert</span> np.<span class="hljs-built_in">all</span>(weights &lt;= stock_cap + tol)<br><span class="hljs-keyword">assert</span> <span class="hljs-number">0.5</span> - industry_limit - tol &lt;= industry_x_weight<br><span class="hljs-keyword">assert</span> industry_x_weight &lt;= <span class="hljs-number">0.5</span> + industry_limit + tol<br><span class="hljs-keyword">assert</span> one_way_turnover &lt;= turnover_limit + tol<br><span class="hljs-keyword">assert</span> net &lt;= gross + tol<br><br><span class="hljs-built_in">print</span>(weights.<span class="hljs-built_in">round</span>(<span class="hljs-number">6</span>))<br><span class="hljs-built_in">print</span>(gross, cost, net, one_way_turnover, industry_x_weight)<br></code></pre></td></tr></table></figure>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="预期输出">预期输出</h2>
-<p>高信号股票获得更高权重，但单股不超过 35%，X 行业不超过
-60%，换手不超过
-30%。成本为非负，净收益≤毛收益。具体最优权重最后几位可能随优化器版本略变，结构断言应稳定。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="断言">断言</h2>
-<p>资金和为 1、权重在 [0,0.35]、行业 X 在
-[0.4,0.6]、单边换手≤0.3、净收益≤毛收益，容差均为
-1e-8。真实项目还需对每个行业、风格、不可交易股票、整手和现金逐项复核，不能只相信优化器
-success。</p>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="结果解释">结果解释</h2>
-<p>约束改变的是可行集合。最高信号不能无限集中；行业中性避免把行业押注误称选股；换手预算迫使组合保留部分旧持仓。成本是由实际交易而非目标权重水平产生。</p>
-<p>未来收益只在优化完成后用于评价。若把它放入目标函数，代码会变成完美前视优化；真实
-μ 只能来自形成日可得模型。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见故障">常见故障</h2>
-<ul>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="预期输出"><a href="#预期输出" class="headerlink" title="预期输出"></a>预期输出</h2><p>高信号股票获得更高权重，但单股不超过 35%，X 行业不超过 60%，换手不超过 30%。成本为非负，净收益≤毛收益。具体最优权重最后几位可能随优化器版本略变，结构断言应稳定。</p>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>资金和为 1、权重在 [0,0.35]、行业 X 在 [0.4,0.6]、单边换手≤0.3、净收益≤毛收益，容差均为 1e-8。真实项目还需对每个行业、风格、不可交易股票、整手和现金逐项复核，不能只相信优化器 success。</p>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="结果解释"><a href="#结果解释" class="headerlink" title="结果解释"></a>结果解释</h2><p>约束改变的是可行集合。最高信号不能无限集中；行业中性避免把行业押注误称选股；换手预算迫使组合保留部分旧持仓。成本是由实际交易而非目标权重水平产生。</p>
+<p>未来收益只在优化完成后用于评价。若把它放入目标函数，代码会变成完美前视优化；真实 μ 只能来自形成日可得模型。</p>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见故障"><a href="#常见故障" class="headerlink" title="常见故障"></a>常见故障</h2><ul>
 <li>使用调仓前目标而非收益漂移后权重算换手。</li>
 <li>印花税同时加买卖两边。</li>
 <li>行业约束只写上限没有下限。</li>
@@ -405,8 +384,7 @@ success。</p>
 <li>成本单位把 bp 写成百分数。</li>
 <li>用未来收益当预期收益。</li>
 </ul>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习">练习</h2>
-<ol type="1">
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><ol>
 <li>将单股上限改为 20%，观察可行性。</li>
 <li>加入第三行业和相对基准约束。</li>
 <li>用漂移后权重计算换手。</li>
