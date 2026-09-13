@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注1. AI Economist Agent：把金融情景分析拆成证据、模型和验收测试论文：AI Economist Agent: An Agentic Framework for Evidence-Based Economic and Financial Analysis with RAG, Knowledge Graphs, and Large Language Models（PDF，a">
+    <meta name="description" content="重点关注 1. AI Economist Agent：把金融情景分析拆成证据、模型和验收测试 论文：AI Economist Agent: An Agentic Framework for Evidence-Based Economic and Financial Analysis with RAG, Knowledge Graphs, and Large Language Models（PDF">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日金融论文简报｜2026 年 9 月 12 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/09/12/daily-finance-papers-2026-09-12/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注1. AI Economist Agent：把金融情景分析拆成证据、模型和验收测试论文：AI Economist Agent: An Agentic Framework for Evidence-Based Economic and Financial Analysis with RAG, Knowledge Graphs, and Large Language Models（PDF，a">
+<meta property="og:description" content="重点关注 1. AI Economist Agent：把金融情景分析拆成证据、模型和验收测试 论文：AI Economist Agent: An Agentic Framework for Evidence-Based Economic and Financial Analysis with RAG, Knowledge Graphs, and Large Language Models（PDF">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-16/pixiv-rank-006-148183006.jpg">
 <meta property="article:published_time" content="2026-09-12T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-009-146587687.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-011-147051939.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,69 +347,408 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="1-AI-Economist-Agent：把金融情景分析拆成证据、模型和验收测试"><a href="#1-AI-Economist-Agent：把金融情景分析拆成证据、模型和验收测试" class="headerlink" title="1. AI Economist Agent：把金融情景分析拆成证据、模型和验收测试"></a>1. AI Economist Agent：把金融情景分析拆成证据、模型和验收测试</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.20041">AI Economist Agent: An Agentic Framework for Evidence-Based Economic and Financial Analysis with RAG, Knowledge Graphs, and Large Language Models</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.20041">PDF</a>，arXiv:2606.20041）<br><strong>作者</strong>：Masahiro Kato<br><strong>来源/类别</strong>：arXiv RSS；econ.GN、cs.AI、cs.LG、q-fin.EC、q-fin.GN；AI 与金融风险分析<br><strong>全文状态</strong>：已核阅公开 PDF（49 页）。</p>
-<p><strong>核心问题</strong>：宏观金融压力情景经常需要在历史先例有限时汇总大量资料，并把定性的传导机制转换成一致的数量路径。论文试图解决的不是让 LLM 自己“预测数字”，而是让它负责检索、组织和选择证据，再由注册的定量模型生成数值结果。</p>
-<p><strong>方法与基线</strong>：系统把协调、证据检索、模型请求、执行、测试、一致性检查和报告生成分给七类 agent。资料库有 51 个文件（41 个 PDF、10 个表格），严格使用 2024 年 12 月 31 日历史信息截点；图谱检索结合 BM25 与语义检索，保留带符号、来源和范围的有向经济关系。情景阶段比较直接让 LLM 输出年度路径、Document RAG、GraphRAG 和 Hybrid RAG；数量模型是六变量、两阶滞后的季度 VAR，进行 20,000 次残差 bootstrap，再用固定效应动态分位数模型和固定效应线性模型映射到银行资本。银行模型只有通过 CET1 损耗平均绝对误差不超过 2 个百分点、Spearman 相关至少 0.5、区间覆盖至少 0.75 三项阈值，才允许支持个体银行结论。</p>
-<p><strong>作者报告的结果</strong>：记录的 G0 图保留 123 条证据记录和 81 个带符号关系，G1 扩展到 4,785 条关系记录，G2 在逐条验证后保留 1,494 条记录、479 个不同关系。七种 prompt 配置共 372 次 LLM 调用，记录成本为 1.9882 美元；但工程上的失败很明显：市场流动性风险的两条候选路径方向冲突，因而在后续配置中每次都在模型调用前停止；提高报告长度后，Run 7 的五次重复全部完成房地产修正风险，只有两次同时完成贸易碎片化。另有报告超出 token 上限、引用 ID 多一个字符、把关系 ID 写进数值 token 等可复现的契约失败。</p>
-<p><strong>创新、局限与金融边界</strong>：它把“资料支持的关系”“模型生成的路径”“银行应用计算”和“报告中的数字”分开，并将失败保存在记录中；这比让 LLM 直接写压力数字更可审计。这里的银行验证是与同一假设不利情景下官方压力计算的一致性比较，不是对随后真实银行损失的预测；2025 年官方材料在开发阶段已被看过，也不是完全未见的前瞻样本。图谱关系仍可能是描述性而非因果关系，选择规则、VAR 设定、资料截点和模型阈值会影响结果，LLM 成本也不等于完整系统成本。它是风险分析工作流的工程/方法论文，不是投资建议或收益预测器。</p>
-<p><strong>适合谁读</strong>：金融机构压力测试、模型风险管理、经济研究自动化和可审计 agent 团队。建议读 §§3–5、表 3–5、§5.4、附录 D/F/K/L，重点看停止规则、数据 vintage 和验证对象。</p>
-<h3 id="2-Market-Informed-Networks：用历史共同极值改进尾部预测，但不是交易回测"><a href="#2-Market-Informed-Networks：用历史共同极值改进尾部预测，但不是交易回测" class="headerlink" title="2. Market-Informed Networks：用历史共同极值改进尾部预测，但不是交易回测"></a>2. Market-Informed Networks：用历史共同极值改进尾部预测，但不是交易回测</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11575">Market-Informed Networks for Modeling and Forecast Evaluation of Financial Extremes</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11575">PDF</a>，arXiv:2609.11575）<br><strong>作者</strong>：Ayla Jungbluth、Johannes Lederer、Simon Trimborn<br><strong>来源/类别</strong>：arXiv RSS；stat.ME、econ.EM、q-fin.RM、stat.AP；金融极值与风险预测<br><strong>全文状态</strong>：已核阅公开 PDF（19 页）。</p>
-<p><strong>核心问题</strong>：高维金融极值稀疏，局部窗口里的极端值未必相对于自身全边际分布也极端；同时，极值往往在资产之间共同出现。论文研究能否把“单个观测有多极端”和“当前共同极值模式像不像历史模式”同时用于 Hüsler–Reiss 尾部模型。</p>
-<p><strong>方法与基线</strong>：作者提出带时间依赖网络的 Hüsler–Reiss 模型，用二元或加权邻接矩阵进入 score-matching；核心 JEAM（Joint Extremes Adjacency Matrix）同时使用边际极端程度和历史共同极值的相似度。实证先把 S&amp;P 100 的信息技术、医疗和金融板块 2021–2024 年一分钟收益转换为 5 分钟 block maxima/minima，再做 Pareto 变换；每次用三个月滚动窗口训练、下一周做逐点样本外一步预测，并以 AIC 决定滞后。对照是时间依赖但无市场网络的 HR TimeDep，以及只标记极端观测的 Binary Adjacency Matrix。</p>
-<p><strong>作者报告的关键结果</strong>：三个板块和上下两侧尾部中，JEAM 都取得最好的样本外 log score。相对 HR TimeDep，最佳 JEAM 在下尾的 log score 改善为 12.5%–13.6%，上尾为 11.4%–14.9%；例如金融板块基线下尾/上尾 log score 为 3.478/3.812，JEAM 的一组参数为 2.923/3.212，log score 越低越好。模拟中网络权重也改善极值预测评价，且作者认为较稳定的参数组合减少了实践中的网格搜索。</p>
-<p><strong>创新、局限与金融边界</strong>：它把网络结构作为随极值状态变化的正则化信息，而不是把所有局部极端同等处理。样本外在这里指下一周的概率预测评分，不是样本外收益、PnL 或可交易策略；log score 的改善也没有给出扣除交易成本、滑点、延迟和容量后的经济收益。板块、时间窗口、5 分钟分块与网络构造规则限定了外推范围，预测相关性不能被改写成因果关系。适合风险预测和极值统计，不构成投资建议。</p>
-<p><strong>适合谁读</strong>：市场风险、极值理论、概率预测和高频数据研究者。建议读 §§2–5、表 2–4、滚动窗口设定和 §6 结论；先确认预测评分与经济价值的区别。</p>
-<h3 id="3-Expected-Shortfall-Factor-Models：尾部损失的严重程度可能是独立定价维度"><a href="#3-Expected-Shortfall-Factor-Models：尾部损失的严重程度可能是独立定价维度" class="headerlink" title="3. Expected Shortfall Factor Models：尾部损失的严重程度可能是独立定价维度"></a>3. Expected Shortfall Factor Models：尾部损失的严重程度可能是独立定价维度</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10587">Expected Shortfall Factor Models: Common Tail Losses and Expected Returns</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10587">PDF</a>，arXiv:2609.10587）<br><strong>作者</strong>：Yujie Hou、Xinbing Kong、Yalin Wang、Bin Wu<br><strong>来源/类别</strong>：arXiv RSS；econ.EM、econ.GN、q-fin.EC、stat.ME；尾部风险与资产定价<br><strong>全文状态</strong>：已核阅公开 PDF/HTML（105 页）。</p>
-<p><strong>核心问题</strong>：条件均值描述平均回报，条件分位数描述尾部阈值，但两只股票可能有相同的 10% 分位数，却在最差 10% 情况下遭受完全不同的平均损失。论文研究这种“分位数以下损失的严重程度”能否在大面板中形成共同因子，并与预期收益相关。</p>
-<p><strong>方法与基线</strong>：ESFM 用正交化两步估计：先估计每只资产的条件分位数，再构造正交化尾部损失响应，同时估计观测风险暴露、潜在共同因子和载荷；理论部分给出非渐近误差界、有限样本 Gaussian approximation 和因子数量选择。经验部分使用 CSI 300 流动性股票日收益，覆盖 2000 年 1 月至 2023 年 12 月，包括 2015 年股灾、2018 年贸易摩擦和疫情期；每月用此前 60 个月估计暴露，持有组合一个月，并与 mean factor model、quantile factor model（QFM）和 Fama–French 五因子比较。</p>
-<p><strong>作者报告的关键结果</strong>：按 ESFM 暴露形成的高减低组合，在尾部概率 τ=0.10、0.20、0.30 下的年化平均收益为 8.0%–11.7%，Fama–French 五因子 alpha 为 10.3%–15.0%，Newey–West t 统计量高于 3.2。更严格的条件排序后，股票层面的年化条件高减低差约 5.6%–9.9%；因子层面控制市场、规模、价值、盈利、投资、动量以及 Mean/QFM 因子后，ESFM alpha 为 6.6%–9.4%，t 统计量 2.48–3.39。加入 ESFM 后，作者报告最大 Sharpe 比率从基准的 1.52–1.81 提升到 1.78–2.05。</p>
-<p><strong>创新、局限与金融边界</strong>：ESFM 测量的是“共同损失严重程度”，不是单纯的崩盘概率或市场下跌暴露；正交化也减少了第一阶段分位数估计误差对第二阶段系数的一阶影响。需要分开看证据：t 统计量支持统计显著性，年化收益、alpha 和 Sharpe 区间是经济量级，但它们仍来自历史组合构造与资产定价检验，不是因果识别或真实管理账户的净收益。即便滚动使用此前 60 个月，交易成本、换手、容量、数据修订和模型选择都可能改变可实现结果；论文的高减低组合不能直接转成投资建议。</p>
-<p><strong>适合谁读</strong>：尾部风险、面板因子模型、资产定价和风险管理研究者。建议读 §§1–5，尤其是 §2 的两步估计、§4 模拟、§5.2–5.3 的组合和 spanning tests，并核对附录中的稳健性与样本设定。</p>
-<h3 id="4-The-Privacy-Subsidy：交易所隐私是转移，不等于同等大小的社会损失"><a href="#4-The-Privacy-Subsidy：交易所隐私是转移，不等于同等大小的社会损失" class="headerlink" title="4. The Privacy Subsidy：交易所隐私是转移，不等于同等大小的社会损失"></a>4. The Privacy Subsidy：交易所隐私是转移，不等于同等大小的社会损失</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10543">The Privacy Subsidy in Market Microstructure</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10543">PDF</a>，arXiv:2609.10543）<br><strong>作者</strong>：Yuki Nakamura<br><strong>来源/类别</strong>：arXiv RSS；cs.GT、cs.CR、q-fin.TR；市场微观结构与隐私机制设计<br><strong>全文状态</strong>：已核阅公开 PDF（31 页）。</p>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="ai-economist-agent把金融情景分析拆成证据模型和验收测试">1. AI
+Economist Agent：把金融情景分析拆成证据、模型和验收测试</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.20041">AI
+Economist Agent: An Agentic Framework for Evidence-Based Economic and
+Financial Analysis with RAG, Knowledge Graphs, and Large Language
+Models</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.20041">PDF</a>，arXiv:2606.20041）<br>
+<strong>作者</strong>：Masahiro Kato<br>
+<strong>来源/类别</strong>：arXiv
+RSS；econ.GN、cs.AI、cs.LG、q-fin.EC、q-fin.GN；AI 与金融风险分析<br>
+<strong>全文状态</strong>：已核阅公开 PDF（49 页）。</p>
+<p><strong>核心问题</strong>：宏观金融压力情景经常需要在历史先例有限时汇总大量资料，并把定性的传导机制转换成一致的数量路径。论文试图解决的不是让
+LLM
+自己“预测数字”，而是让它负责检索、组织和选择证据，再由注册的定量模型生成数值结果。</p>
+<p><strong>方法与基线</strong>：系统把协调、证据检索、模型请求、执行、测试、一致性检查和报告生成分给七类
+agent。资料库有 51 个文件（41 个 PDF、10 个表格），严格使用 2024 年 12
+月 31 日历史信息截点；图谱检索结合 BM25
+与语义检索，保留带符号、来源和范围的有向经济关系。情景阶段比较直接让 LLM
+输出年度路径、Document RAG、GraphRAG 和 Hybrid
+RAG；数量模型是六变量、两阶滞后的季度 VAR，进行 20,000 次残差
+bootstrap，再用固定效应动态分位数模型和固定效应线性模型映射到银行资本。银行模型只有通过
+CET1 损耗平均绝对误差不超过 2 个百分点、Spearman 相关至少
+0.5、区间覆盖至少 0.75 三项阈值，才允许支持个体银行结论。</p>
+<p><strong>作者报告的结果</strong>：记录的 G0 图保留 123 条证据记录和 81
+个带符号关系，G1 扩展到 4,785 条关系记录，G2 在逐条验证后保留 1,494
+条记录、479 个不同关系。七种 prompt 配置共 372 次 LLM 调用，记录成本为
+1.9882
+美元；但工程上的失败很明显：市场流动性风险的两条候选路径方向冲突，因而在后续配置中每次都在模型调用前停止；提高报告长度后，Run
+7
+的五次重复全部完成房地产修正风险，只有两次同时完成贸易碎片化。另有报告超出
+token 上限、引用 ID 多一个字符、把关系 ID 写进数值 token
+等可复现的契约失败。</p>
+<p><strong>创新、局限与金融边界</strong>：它把“资料支持的关系”“模型生成的路径”“银行应用计算”和“报告中的数字”分开，并将失败保存在记录中；这比让
+LLM
+直接写压力数字更可审计。这里的银行验证是与同一假设不利情景下官方压力计算的一致性比较，不是对随后真实银行损失的预测；2025
+年官方材料在开发阶段已被看过，也不是完全未见的前瞻样本。图谱关系仍可能是描述性而非因果关系，选择规则、VAR
+设定、资料截点和模型阈值会影响结果，LLM
+成本也不等于完整系统成本。它是风险分析工作流的工程/方法论文，不是投资建议或收益预测器。</p>
+<p><strong>适合谁读</strong>：金融机构压力测试、模型风险管理、经济研究自动化和可审计
+agent 团队。建议读 §§3–5、表 3–5、§5.4、附录
+D/F/K/L，重点看停止规则、数据 vintage 和验证对象。</p>
+<h3 id="market-informed-networks用历史共同极值改进尾部预测但不是交易回测">2.
+Market-Informed
+Networks：用历史共同极值改进尾部预测，但不是交易回测</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11575">Market-Informed Networks for
+Modeling and Forecast Evaluation of Financial Extremes</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11575">PDF</a>，arXiv:2609.11575）<br>
+<strong>作者</strong>：Ayla Jungbluth、Johannes Lederer、Simon
+Trimborn<br>
+<strong>来源/类别</strong>：arXiv
+RSS；stat.ME、econ.EM、q-fin.RM、stat.AP；金融极值与风险预测<br>
+<strong>全文状态</strong>：已核阅公开 PDF（19 页）。</p>
+<p><strong>核心问题</strong>：高维金融极值稀疏，局部窗口里的极端值未必相对于自身全边际分布也极端；同时，极值往往在资产之间共同出现。论文研究能否把“单个观测有多极端”和“当前共同极值模式像不像历史模式”同时用于
+Hüsler–Reiss 尾部模型。</p>
+<p><strong>方法与基线</strong>：作者提出带时间依赖网络的 Hüsler–Reiss
+模型，用二元或加权邻接矩阵进入 score-matching；核心 JEAM（Joint Extremes
+Adjacency Matrix）同时使用边际极端程度和历史共同极值的相似度。实证先把
+S&amp;P 100 的信息技术、医疗和金融板块 2021–2024 年一分钟收益转换为 5
+分钟 block maxima/minima，再做 Pareto
+变换；每次用三个月滚动窗口训练、下一周做逐点样本外一步预测，并以 AIC
+决定滞后。对照是时间依赖但无市场网络的 HR TimeDep，以及只标记极端观测的
+Binary Adjacency Matrix。</p>
+<p><strong>作者报告的关键结果</strong>：三个板块和上下两侧尾部中，JEAM
+都取得最好的样本外 log score。相对 HR TimeDep，最佳 JEAM 在下尾的 log
+score 改善为 12.5%–13.6%，上尾为 11.4%–14.9%；例如金融板块基线下尾/上尾
+log score 为 3.478/3.812，JEAM 的一组参数为 2.923/3.212，log score
+越低越好。模拟中网络权重也改善极值预测评价，且作者认为较稳定的参数组合减少了实践中的网格搜索。</p>
+<p><strong>创新、局限与金融边界</strong>：它把网络结构作为随极值状态变化的正则化信息，而不是把所有局部极端同等处理。样本外在这里指下一周的概率预测评分，不是样本外收益、PnL
+或可交易策略；log score
+的改善也没有给出扣除交易成本、滑点、延迟和容量后的经济收益。板块、时间窗口、5
+分钟分块与网络构造规则限定了外推范围，预测相关性不能被改写成因果关系。适合风险预测和极值统计，不构成投资建议。</p>
+<p><strong>适合谁读</strong>：市场风险、极值理论、概率预测和高频数据研究者。建议读
+§§2–5、表 2–4、滚动窗口设定和 §6
+结论；先确认预测评分与经济价值的区别。</p>
+<h3 id="expected-shortfall-factor-models尾部损失的严重程度可能是独立定价维度">3.
+Expected Shortfall Factor
+Models：尾部损失的严重程度可能是独立定价维度</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10587">Expected Shortfall Factor
+Models: Common Tail Losses and Expected Returns</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10587">PDF</a>，arXiv:2609.10587）<br>
+<strong>作者</strong>：Yujie Hou、Xinbing Kong、Yalin Wang、Bin Wu<br>
+<strong>来源/类别</strong>：arXiv
+RSS；econ.EM、econ.GN、q-fin.EC、stat.ME；尾部风险与资产定价<br>
+<strong>全文状态</strong>：已核阅公开 PDF/HTML（105 页）。</p>
+<p><strong>核心问题</strong>：条件均值描述平均回报，条件分位数描述尾部阈值，但两只股票可能有相同的
+10% 分位数，却在最差 10%
+情况下遭受完全不同的平均损失。论文研究这种“分位数以下损失的严重程度”能否在大面板中形成共同因子，并与预期收益相关。</p>
+<p><strong>方法与基线</strong>：ESFM
+用正交化两步估计：先估计每只资产的条件分位数，再构造正交化尾部损失响应，同时估计观测风险暴露、潜在共同因子和载荷；理论部分给出非渐近误差界、有限样本
+Gaussian approximation 和因子数量选择。经验部分使用 CSI 300
+流动性股票日收益，覆盖 2000 年 1 月至 2023 年 12 月，包括 2015
+年股灾、2018 年贸易摩擦和疫情期；每月用此前 60
+个月估计暴露，持有组合一个月，并与 mean factor model、quantile factor
+model（QFM）和 Fama–French 五因子比较。</p>
+<p><strong>作者报告的关键结果</strong>：按 ESFM
+暴露形成的高减低组合，在尾部概率 τ=0.10、0.20、0.30 下的年化平均收益为
+8.0%–11.7%，Fama–French 五因子 alpha 为 10.3%–15.0%，Newey–West t
+统计量高于 3.2。更严格的条件排序后，股票层面的年化条件高减低差约
+5.6%–9.9%；因子层面控制市场、规模、价值、盈利、投资、动量以及 Mean/QFM
+因子后，ESFM alpha 为 6.6%–9.4%，t 统计量 2.48–3.39。加入 ESFM
+后，作者报告最大 Sharpe 比率从基准的 1.52–1.81 提升到 1.78–2.05。</p>
+<p><strong>创新、局限与金融边界</strong>：ESFM
+测量的是“共同损失严重程度”，不是单纯的崩盘概率或市场下跌暴露；正交化也减少了第一阶段分位数估计误差对第二阶段系数的一阶影响。需要分开看证据：t
+统计量支持统计显著性，年化收益、alpha 和 Sharpe
+区间是经济量级，但它们仍来自历史组合构造与资产定价检验，不是因果识别或真实管理账户的净收益。即便滚动使用此前
+60
+个月，交易成本、换手、容量、数据修订和模型选择都可能改变可实现结果；论文的高减低组合不能直接转成投资建议。</p>
+<p><strong>适合谁读</strong>：尾部风险、面板因子模型、资产定价和风险管理研究者。建议读
+§§1–5，尤其是 §2 的两步估计、§4 模拟、§5.2–5.3 的组合和 spanning
+tests，并核对附录中的稳健性与样本设定。</p>
+<h3 id="the-privacy-subsidy交易所隐私是转移不等于同等大小的社会损失">4.
+The Privacy Subsidy：交易所隐私是转移，不等于同等大小的社会损失</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10543">The
+Privacy Subsidy in Market Microstructure</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10543">PDF</a>，arXiv:2609.10543）<br>
+<strong>作者</strong>：Yuki Nakamura<br>
+<strong>来源/类别</strong>：arXiv
+RSS；cs.GT、cs.CR、q-fin.TR；市场微观结构与隐私机制设计<br>
+<strong>全文状态</strong>：已核阅公开 PDF（31 页）。</p>
 <p><strong>核心问题</strong>：隐私交易所可能只让做市商看到被粗化或加噪的订单流，但实际结算的仍是真实订单流；如果做市商按较粗信号的后验均值定价，效率与零利润能否同时成立，隐私的福利代价有多大？</p>
-<p><strong>方法与基线</strong>：论文先给出一般的 coarse-signal impossibility theorem，再分别在单期 Gaussian Kyle、带二元方向信号的 Glosten–Milgrom 和连续时间 Kyle–Back 中求闭式结果，并讨论与 AMM 的 Loss-Versus-Rebalancing 对应。隐私层被视为黑盒，只研究它把真实流量 y 变成粗信号 S 后的均衡；作者进一步加入收支平衡费率、交易量扭曲和内生隐私水平。附录用 BTC/USDT 的尺度校准作数量示例，但不是用真实订单簿估计均衡。</p>
-<p><strong>作者报告的关键结果</strong>：在严格粗化且 wedge covariance 为正时，按后验均值有效定价的做市商会对真实结算流产生严格负利润，并不存在同时有效且对真实流量零利润的仅依赖粗信号报价规则；这部分是一般理论，不依赖 Gaussian 假设。收支平衡费率把 gross subsidy 作为转移收回后，真正的 deadweight 在噪声尺度上是四阶，而 gross subsidy 是二阶，因此小噪声下隐私的福利损失低一个阶。示例校准取每天价值不确定性 3,000 美元/BTC、噪声流 1,000 BTC/day；噪声与流量相等时，模型中的 subsidy 约为 106 万美元/day，对应的 break-even fee 约 92 bp，这只是该模型尺度下的数量化。</p>
-<p><strong>创新、局限与金融边界</strong>：论文把“做市商看不到什么”和“市场实际结算什么”放在同一个信息结构里，澄清了 gross transfer、fee distortion 与 net welfare loss 的区别。机制设计结果是小噪声、部分均衡的一阶/高阶近似，深度 λ 暂固定在无费率值；完整固定点费率均衡、连续价格发现路径上的补偿和更丰富隐私机制留待后续。BTC/USDT 数字是模型校准，不是交易所真实损益，也没有实盘可交易结果；不能把“补贴”或 break-even fee 解读成投资机会。</p>
-<p><strong>适合谁读</strong>：市场微观结构、DeFi/隐私交易协议、机制设计和金融监管研究者。建议读 §§2–8、§9.5、§10，以及附录 B 的无量纲和 BTC/USDT 校准；先看 scope，避免把加密层安全性当成本文已验证内容。</p>
-<h3 id="5-Deep-Learning-of-Robust-Market-Making：真正的压力测试是持续方向性订单流"><a href="#5-Deep-Learning-of-Robust-Market-Making：真正的压力测试是持续方向性订单流" class="headerlink" title="5. Deep Learning of Robust Market Making：真正的压力测试是持续方向性订单流"></a>5. Deep Learning of Robust Market Making：真正的压力测试是持续方向性订单流</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11614">Deep Learning of Robust Market Making under Regime-Switching Order Flow</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11614">PDF</a>，arXiv:2609.11614）<br><strong>作者</strong>：Felipe Moret、Fabrizio Lillo<br><strong>来源/类别</strong>：arXiv RSS；q-fin.TR；市场做市与强化学习<br><strong>全文状态</strong>：已核阅公开 PDF（40 页）。</p>
-<p><strong>核心问题</strong>：Avellaneda–Stoikov/GLFT 等闭式做市策略通常假定订单流平稳且方向对称，但真实微观结构可能出现由 meta-order 或拥挤交易引起的持续买卖偏斜。论文研究分布式 DQN 是否能学到更好的风险—收益边界，以及如何让策略识别方向状态、避免库存饱和。</p>
-<p><strong>方法与基线</strong>：作者在校准的 Santa Fe zero-intelligence 事件驱动限价簿中估计成交强度和波动率，再比较 at-best、GLFT 和 Rainbow-style distributional DQN（C51）。Algorithm A 在平稳流上训练；Algorithm B 在状态中加入 Bayesian online change-point filter 和 queue-adjusted quote-exposure imbalance，并在 regime-switching 流上微调；Algorithm C 再用 scenario bandit 提高低收益压力情景的采样权重。平稳评估使用 1,000 个、每个 5,000 个 LOB events 的 paired-seed episodes；压力评估使用每个 100,000 events 的 100 个 episode。</p>
-<p><strong>作者报告的关键结果</strong>：在平稳环境下，Rainbow DQN 在观测到的整个风险—收益前沿上高于 GLFT；在真实买单概率偏离 0.5 约 0.08 后，GLFT 进入亏损区间，而 RLMM 在 p_buy∈[0.40,0.60] 仍保持盈利。regime-switching 压力下，以 Algorithm A 对称流的平均终端 PnL 归一化，未适应的 Algorithm A 约为 −46%，Algorithm B 约为 37%；库存波动标准差从基准的 1.89 倍降到 0.55 倍。对相关方向压力做 scenario-bandit 微调后，作者报告相对 Algorithm B 的平均终端 PnL 约提高 17%，标准差约降至其 76%。</p>
-<p><strong>创新、局限与金融边界</strong>：论文的实质贡献不是“深度学习必然赚钱”，而是把平稳训练的结构性失效——库存被持续方向性流量推到边界——明确作为压力测试对象，并用可解释的状态信号修复。所有结果都来自模拟 zero-intelligence LOB；只报单位 lot、每侧最多一个 resting order，不含更丰富的策略性对手、多层报价、订单规模、日内季节性或真实成交成本。因而这是模拟回测/控制实验，不是样本外实盘收益，更不构成做市或投资建议。</p>
-<p><strong>适合谁读</strong>：算法交易、限价簿模拟、强化学习控制和执行风险团队。建议读 §§2–5、图 3/6/9–13、§9 的 scenario bandit，以及 §10 的限制；重点区分模拟 PnL、库存风险与真实可交易性。</p>
-<h2 id="金融论文"><a href="#金融论文" class="headerlink" title="金融论文"></a>金融论文</h2><p>以下为本次金融主题 arXiv RSS 的全部 16 篇候选。金融条目分别标注相关性/因果识别、样本内/样本外、统计/经济显著性以及回测/真实可交易性；模型或组合结果不构成投资建议。除“重点关注”中明确标注已核阅 PDF 的论文外，其余条目仅依据摘要；NBER 工作论文同行评审提示不适用于本批候选。</p>
-<h3 id="1-AI-Economist-Agent-An-Agentic-Framework-for-Evidence-Based-Economic-and-Financial-Analysis-with-RAG-Knowledge-Graphs-and-Large-Language-Models"><a href="#1-AI-Economist-Agent-An-Agentic-Framework-for-Evidence-Based-Economic-and-Financial-Analysis-with-RAG-Knowledge-Graphs-and-Large-Language-Models" class="headerlink" title="1. AI Economist Agent: An Agentic Framework for Evidence-Based Economic and Financial Analysis with RAG, Knowledge Graphs, and Large Language Models"></a>1. AI Economist Agent: An Agentic Framework for Evidence-Based Economic and Financial Analysis with RAG, Knowledge Graphs, and Large Language Models</h3><p><strong>作者</strong>：Masahiro Kato<br><strong>来源/分类</strong>：arXiv · econ.GN、cs.AI、cs.LG、q-fin.EC、q-fin.GN · AI 与金融风险分析<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.20041">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.20041">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是如何把多来源经济证据转成可审计的宏观金融压力路径与银行资本计算；方法是 RAG、知识图谱、七类 agent、六变量季度 VAR、20,000 次残差 bootstrap 和带验收阈值的银行模型；作者报告系统能区分证据检索、机制构造、模型执行和报告生成，并记录 372 次调用、1.9882 美元成本及多类停止原因；关注价值在于不让 LLM 直接替代定量计算，限制是描述性关系不自动具有因果性，验证针对假设情景而非真实损失。<strong>证据状态</strong>：已核阅公开 PDF，详细分析见“重点关注”。</p>
-<h3 id="2-Market-Informed-Networks-for-Modeling-and-Forecast-Evaluation-of-Financial-Extremes"><a href="#2-Market-Informed-Networks-for-Modeling-and-Forecast-Evaluation-of-Financial-Extremes" class="headerlink" title="2. Market-Informed Networks for Modeling and Forecast Evaluation of Financial Extremes"></a>2. Market-Informed Networks for Modeling and Forecast Evaluation of Financial Extremes</h3><p><strong>作者</strong>：Ayla Jungbluth、Johannes Lederer、Simon Trimborn<br><strong>来源/分类</strong>：arXiv · stat.ME、econ.EM、q-fin.RM、stat.AP · 金融极值与风险预测<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11575">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11575">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是历史共同极值网络能否改善高维尾部预测；方法是 JEAM 加权的时间依赖 Hüsler–Reiss 模型、5 分钟极值转换和三个月训练/下一周样本外一步预测，数据为 2021–2024 年 S&amp;P 100 三板块一分钟收益；作者报告下尾 log score 改善 12.5%–13.6%、上尾 11.4%–14.9%；关注价值在于建模风险联动，限制是 log score 是预测评价而非收益或因果效果，没有证明扣成本后可交易。<strong>证据状态</strong>：已核阅公开 PDF，详细分析见“重点关注”。</p>
-<h3 id="3-Expected-Shortfall-Factor-Models-Common-Tail-Losses-and-Expected-Returns"><a href="#3-Expected-Shortfall-Factor-Models-Common-Tail-Losses-and-Expected-Returns" class="headerlink" title="3. Expected Shortfall Factor Models: Common Tail Losses and Expected Returns"></a>3. Expected Shortfall Factor Models: Common Tail Losses and Expected Returns</h3><p><strong>作者</strong>：Yujie Hou、Xinbing Kong、Yalin Wang、Bin Wu<br><strong>来源/分类</strong>：arXiv · econ.EM、econ.GN、q-fin.EC、stat.ME · 尾部风险与资产定价<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10587">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10587">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是分位数以下损失的平均严重程度能否形成共同因子并解释预期收益；方法是正交化两步 ESFM、潜在因子和因子数量选择，应用于 2000–2023 年 CSI 300 流动性股票面板；作者报告高减低组合年化收益 8.0%–11.7%、Fama–French 五因子 alpha 10.3%–15.0%，并报告显著 t 统计量与更高最大 Sharpe；关注价值在于区分尾部阈值和尾部损失幅度，限制是这些是历史资产定价组合检验而非因果或实盘净收益，交易成本和容量仍需核验。<strong>证据状态</strong>：已核阅公开 PDF，详细分析见“重点关注”。</p>
-<h3 id="4-The-Privacy-Subsidy-in-Market-Microstructure"><a href="#4-The-Privacy-Subsidy-in-Market-Microstructure" class="headerlink" title="4. The Privacy Subsidy in Market Microstructure"></a>4. The Privacy Subsidy in Market Microstructure</h3><p><strong>作者</strong>：Yuki Nakamura<br><strong>来源/分类</strong>：arXiv · cs.GT、cs.CR、q-fin.TR · 市场微观结构与隐私机制设计<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10543">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10543">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是做市商按粗化订单流定价时，效率与零利润是否可同时实现；方法是一般不可能定理、Kyle/Glosten–Milgrom/Kyle–Back 三个闭式模型、AMM 类比和隐私费率分析；作者报告 gross subsidy 是转移，扣除费率造成的交易量扭曲后 deadweight 对噪声为四阶而 subsidy 为二阶，并给出 BTC/USDT 尺度例子；关注价值在于拆分转移、净福利成本和信息损失，限制是部分均衡与小噪声近似，没有真实交易所损益或实盘结果。<strong>证据状态</strong>：已核阅公开 PDF，详细分析见“重点关注”。</p>
-<h3 id="5-Revisiting-the-Rules-versus-Discretion-Debate-Forecasting-Evidence-from-the-Bank-of-England-1870-1913"><a href="#5-Revisiting-the-Rules-versus-Discretion-Debate-Forecasting-Evidence-from-the-Bank-of-England-1870-1913" class="headerlink" title="5. Revisiting the Rules-versus-Discretion Debate: Forecasting Evidence from the Bank of England, 1870-1913"></a>5. Revisiting the Rules-versus-Discretion Debate: Forecasting Evidence from the Bank of England, 1870-1913</h3><p><strong>作者</strong>：Xi Chen<br><strong>来源/分类</strong>：arXiv · econ.EM · 历史货币政策与计量预测<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10544">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10544">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是金本位时期英格兰银行调节 Bank Rate 更像机械规则还是有状态的裁量；方法是 1870–1913 年伦敦月度面板，同时检验十个国内与外部指标；作者报告贸易结算、黄金流、城市资产价格、票据市场和可兑换压力共同具有预测内容，确认设定中出口、黄金流和工业股价最清晰，黄金流在控制储备存量后仍有预测力；关注价值在于用多变量信息集细化规则/裁量争论，限制是摘要层面是预测关联而非政策冲击的因果识别，也不是现代市场交易信号。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="6-Modeling-financial-time-series-with-phi-4-quantum-field-theory"><a href="#6-Modeling-financial-time-series-with-phi-4-quantum-field-theory" class="headerlink" title="6. Modeling financial time series with $\phi^{4}$ quantum field theory"></a>6. Modeling financial time series with $\phi^{4}$ quantum field theory</h3><p><strong>作者</strong>：Dimitrios Bachtis、David S. Berman、Arabella Schelpe<br><strong>来源/分类</strong>：arXiv · q-fin.ST、cond-mat.dis-nn、cs.CE、hep-th · 金融时间序列与统计物理<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.17225">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.17225">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是连续的 φ⁴ 场模型能否比二值 Ising 模型更好地重现股票收益的高阶统计；方法是带非齐次耦合和显式对称破缺的 φ⁴ 模型，用 S&amp;P 500 集合和 2008 年危机示例比较高峰度，再对 AAPL、MSFT、NVDA 做价格变化预测；作者报告 φ⁴ 可重现高峰度，并讨论耦合随股票数的缩放与策略启发；关注价值在于强调离散化会损失尾部信息，限制是摘要未说明严格样本外、交易成本和预测收益，模型例子不等于可交易策略。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="7-Entropic-Value-at-Risk-parity-for-tempered-stable-returns"><a href="#7-Entropic-Value-at-Risk-parity-for-tempered-stable-returns" class="headerlink" title="7. Entropic Value-at-Risk parity for tempered stable returns"></a>7. Entropic Value-at-Risk parity for tempered stable returns</h3><p><strong>作者</strong>：Jaehyung Choi<br><strong>来源/分类</strong>：arXiv · q-fin.PM、q-fin.RM · 非高斯组合风险平价<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11905">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11905">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是厚尾 tempered-stable 收益下如何定义 EVaR 风险贡献与风险平价组合；方法是 multivariate normal tempered stable、独立成分分析，以及 EVaR-based inverse risk parity/ERC，另证明 Gaussian 情形退化到传统波动率权重；作者报告在三个投资集合中 EVaR ERC 相对等权取得正的 Sharpe 差；关注价值在于把尾部风险而非方差作为配权对象，限制是摘要未给出样本外窗口、成本、统计显著性或容量，Sharpe 差不是保证的经济收益。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="8-Fundamental-Properties-of-Linear-Factor-Models"><a href="#8-Fundamental-Properties-of-Linear-Factor-Models" class="headerlink" title="8. Fundamental Properties of Linear Factor Models"></a>8. Fundamental Properties of Linear Factor Models</h3><p><strong>作者</strong>：Damir Filipovic、Paul Schneider<br><strong>来源/分类</strong>：arXiv · q-fin.ST、stat.AP · 线性因子模型基础<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2409.02521">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2409.02521">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是交易因子、无定价残差和 beta 解释同时成立时，因子载荷矩阵需要满足什么条件；方法是给出无需秩假设的联合刻画，并证明给定载荷时唯一满足条件的交易因子表示是 moment-weighted factor portfolios；作者报告在 Fama–French 面板中，characteristic loadings 与因子回归 loadings 在所有窗口相差其规模的 19%–48%；关注价值在于澄清因子表示的结构限制，限制是理论刻画与历史面板差异不等于因果定价或未来收益。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="9-Deep-Learning-of-Robust-Market-Making-under-Regime-Switching-Order-Flow"><a href="#9-Deep-Learning-of-Robust-Market-Making-under-Regime-Switching-Order-Flow" class="headerlink" title="9. Deep Learning of Robust Market Making under Regime-Switching Order Flow"></a>9. Deep Learning of Robust Market Making under Regime-Switching Order Flow</h3><p><strong>作者</strong>：Felipe Moret、Fabrizio Lillo<br><strong>来源/分类</strong>：arXiv · q-fin.TR · 市场做市与强化学习<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11614">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11614">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是订单流状态切换和持续方向偏斜如何破坏平稳做市策略；方法是 Santa Fe 事件驱动限价簿、GLFT 基线、C51 分布式 DQN、Bayesian change-point filter、队列调整的报价暴露和 scenario bandit；作者报告平稳环境中 RLMM 优于 GLFT，加入两个辅助信号后在 regime-switching 下恢复盈利；关注价值在于暴露库存饱和这一失败条件，限制是全为模拟控制实验，不是实盘或真实订单流样本。<strong>证据状态</strong>：已核阅公开 PDF，详细分析见“重点关注”。</p>
-<h3 id="10-Short-maturity-skew-stickiness-ratio-under-local-volatility"><a href="#10-Short-maturity-skew-stickiness-ratio-under-local-volatility" class="headerlink" title="10. Short-maturity skew stickiness ratio under local volatility"></a>10. Short-maturity skew stickiness ratio under local volatility</h3><p><strong>作者</strong>：Masaaki Fukasawa<br><strong>来源/分类</strong>：arXiv · math.PR、q-fin.MF · 局部波动率与隐含波动率偏斜<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11586">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11586">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是短期限局部波动率模型下 skew stickiness ratio 的极限能否被严格证明；方法是一般时间依赖局部波动函数和一阶 Watanabe 展开，并放宽二阶空间导数的椭圆性与全局有界条件；作者报告该比率趋近 2，并强化 implied-volatility skew 的 one-half rule；关注价值在于给出更一般的理论边界，限制是没有市场校准、样本外定价或交易收益。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="11-The-Elliptically-Optimal-Confidence-Interval-A-Bivariate-Extension-of-Wilson’s-Score-Method"><a href="#11-The-Elliptically-Optimal-Confidence-Interval-A-Bivariate-Extension-of-Wilson’s-Score-Method" class="headerlink" title="11. The Elliptically Optimal Confidence Interval: A Bivariate Extension of Wilson’s Score Method"></a>11. The Elliptically Optimal Confidence Interval: A Bivariate Extension of Wilson’s Score Method</h3><p><strong>作者</strong>：Nawaf Mohammed<br><strong>来源/分类</strong>：arXiv · math.ST、q-fin.ST、stat.CO、stat.ME、stat.TH · 二项比例区间估计<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10865">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10865">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是两个独立二项比例之差存在未识别 nuisance direction 时，如何构造可接受且覆盖率可靠的区间；方法是投影联合正态近似得到椭圆区域，解析求出差值的六种边界，并做精确二项覆盖枚举；作者报告 EO 区间在正态近似下不低于名义覆盖，Wald 区间在平衡分配下几乎处处低覆盖，但极端比例下 EO 会过度覆盖；关注价值在于防止方差估计偏差造成虚假精度，限制是统计区间方法不是资产收益或风险预测证据。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="12-Predicting-Startup-Exit-from-Textual-Descriptors-A-Computational-Linguistics-Framework"><a href="#12-Predicting-Startup-Exit-from-Textual-Descriptors-A-Computational-Linguistics-Framework" class="headerlink" title="12. Predicting Startup Exit from Textual Descriptors - A Computational Linguistics Framework"></a>12. Predicting Startup Exit from Textual Descriptors - A Computational Linguistics Framework</h3><p><strong>作者</strong>：Alberto M. G. Saruggia、Sebastien Germano<br><strong>来源/分类</strong>：arXiv · cs.CL、econ.GN、q-fin.EC · 创业融资与文本预测<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.00045">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.00045">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是只用创业叙事文本能否预测早期公司的 Exit；方法是覆盖 20 年、7,419 家初创企业的 VC 筛选数据，构造 850 个叙事特征和 embedding，并比较六种监督学习模型；作者报告 LightGBM 的 F1 为 0.48，文本描述单独为 0.30，夸张标记密度与更高 Exit 概率相关，过长陈述/名称与较低概率相关；关注价值在于量化信息不对称下的叙事信号，限制是预测关联不等于因果机制，样本选择、类别不平衡和样本外/真实投资收益需阅读全文。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="13-Group-Quantization-and-Mellin-Representations-of-the-Heston-Model"><a href="#13-Group-Quantization-and-Mellin-Representations-of-the-Heston-Model" class="headerlink" title="13. Group Quantization and Mellin Representations of the Heston Model"></a>13. Group Quantization and Mellin Representations of the Heston Model</h3><p><strong>作者</strong>：Santiago Garcia<br><strong>来源/分类</strong>：arXiv · q-fin.MF、q-fin.PR · Heston 定价理论<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.13992">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.13992">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是如何用 Affine Holonomy Group Quantization 重写 Heston 随机波动率定价；方法是分解有限辛二次部分和 holonomy 部分，用 Poincaré–Cartan 形式得到 Riccati 动力学，以动量极化导出 Mellin 表示并做 projective linearization；作者报告数值定价与标准 Heston 解一致，并在极限下恢复 Black–Scholes；关注价值在于提供另一种结构化表示，限制是数值一致性不是定价误差的实盘检验，也不提供交易收益。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="14-Average-Treatment-Effect-Localization-Projection-Methods-in-Synthetic-Control"><a href="#14-Average-Treatment-Effect-Localization-Projection-Methods-in-Synthetic-Control" class="headerlink" title="14. Average Treatment Effect Localization: Projection Methods in Synthetic Control"></a>14. Average Treatment Effect Localization: Projection Methods in Synthetic Control</h3><p><strong>作者</strong>：Ruei-Chi Lee<br><strong>来源/分类</strong>：arXiv · econ.EM · 合成控制与短期因果效应<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10617">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10617">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是单一处理单位的面板政策评估如何识别局部、短期而非只看长期平均处理效应；方法是 ATEL、允许观测/未观测协变量时变非线性的 sieve 时间变系数因子模型，以及缓解边界偏差和识别问题的 diversified projection，并给出渐近推断；作者在 right-to-carry laws 与暴力犯罪率案例中应用；关注价值在于为及时政策反馈提供估计对象，限制是摘要未给出具体效应数字，识别假设与案例外部效度需核验。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="15-Estimating-Sloppy-Directions-via-KDE-The-Case-of-Kirman’s-Ants"><a href="#15-Estimating-Sloppy-Directions-via-KDE-The-Case-of-Kirman’s-Ants" class="headerlink" title="15. Estimating Sloppy Directions via KDE: The Case of Kirman’s Ants"></a>15. Estimating Sloppy Directions via KDE: The Case of Kirman’s Ants</h3><p><strong>作者</strong>：Karl Naumann-Woleske<br><strong>来源/分类</strong>：arXiv · econ.EM、econ.GN、q-fin.EC · 随机模型信息几何<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.14887">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.14887">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是分布只能通过模拟样本得到时，能否用 KDE 估计 sloppy stochastic model 的 Fisher 信息矩阵方向；方法是以 Kirman 蚂蚁招募模型为例，推导解析 Hessian，比较模拟预算下 KDE 的特征向量/值收敛，并用 stiff direction 探索单峰与双峰区域；作者报告在实践可承受模拟预算下能收敛到解析结果；关注价值在于连接 agent-based 模型和可估计性诊断，限制是示例模型与金融市场不同，不能直接外推为资产定价或风险预测。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="16-The-evolving-boundary-of-green-technology"><a href="#16-The-evolving-boundary-of-green-technology" class="headerlink" title="16. The evolving boundary of green technology"></a>16. The evolving boundary of green technology</h3><p><strong>作者</strong>：Nicol`o Barbieri、Kerstin H\”otte、Peter Persoon<br><strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC · 绿色技术测量与创新政策<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2503.21310">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2503.21310">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是绿色专利分类体系变化如何改变我们看到的绿色创新；方法是把 1980–2016 年专利族与 2019/2023 PATSTAT 版本合并，区分重新分类、机构集合扩展和用户筛选三种可见性机制；作者报告重新分类和集合扩展使观察到的绿色专利数分别增加约 9% 和 10%，常用筛选会排除 42%–93%，新显现专利更具新颖性且更常被引用；关注价值在于提醒政策、技术领导和投资主题研究存在测量边界，限制是指标变化不等于创新活动或资产收益的因果变化。<strong>证据状态</strong>：仅依据摘要。</p>
+<p><strong>方法与基线</strong>：论文先给出一般的 coarse-signal
+impossibility theorem，再分别在单期 Gaussian Kyle、带二元方向信号的
+Glosten–Milgrom 和连续时间 Kyle–Back 中求闭式结果，并讨论与 AMM 的
+Loss-Versus-Rebalancing 对应。隐私层被视为黑盒，只研究它把真实流量 y
+变成粗信号 S
+后的均衡；作者进一步加入收支平衡费率、交易量扭曲和内生隐私水平。附录用
+BTC/USDT 的尺度校准作数量示例，但不是用真实订单簿估计均衡。</p>
+<p><strong>作者报告的关键结果</strong>：在严格粗化且 wedge covariance
+为正时，按后验均值有效定价的做市商会对真实结算流产生严格负利润，并不存在同时有效且对真实流量零利润的仅依赖粗信号报价规则；这部分是一般理论，不依赖
+Gaussian 假设。收支平衡费率把 gross subsidy 作为转移收回后，真正的
+deadweight 在噪声尺度上是四阶，而 gross subsidy
+是二阶，因此小噪声下隐私的福利损失低一个阶。示例校准取每天价值不确定性
+3,000 美元/BTC、噪声流 1,000 BTC/day；噪声与流量相等时，模型中的 subsidy
+约为 106 万美元/day，对应的 break-even fee 约 92
+bp，这只是该模型尺度下的数量化。</p>
+<p><strong>创新、局限与金融边界</strong>：论文把“做市商看不到什么”和“市场实际结算什么”放在同一个信息结构里，澄清了
+gross transfer、fee distortion 与 net welfare loss
+的区别。机制设计结果是小噪声、部分均衡的一阶/高阶近似，深度 λ
+暂固定在无费率值；完整固定点费率均衡、连续价格发现路径上的补偿和更丰富隐私机制留待后续。BTC/USDT
+数字是模型校准，不是交易所真实损益，也没有实盘可交易结果；不能把“补贴”或
+break-even fee 解读成投资机会。</p>
+<p><strong>适合谁读</strong>：市场微观结构、DeFi/隐私交易协议、机制设计和金融监管研究者。建议读
+§§2–8、§9.5、§10，以及附录 B 的无量纲和 BTC/USDT 校准；先看
+scope，避免把加密层安全性当成本文已验证内容。</p>
+<h3 id="deep-learning-of-robust-market-making真正的压力测试是持续方向性订单流">5.
+Deep Learning of Robust Market
+Making：真正的压力测试是持续方向性订单流</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11614">Deep Learning of Robust Market
+Making under Regime-Switching Order Flow</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11614">PDF</a>，arXiv:2609.11614）<br>
+<strong>作者</strong>：Felipe Moret、Fabrizio Lillo<br>
+<strong>来源/类别</strong>：arXiv
+RSS；q-fin.TR；市场做市与强化学习<br>
+<strong>全文状态</strong>：已核阅公开 PDF（40 页）。</p>
+<p><strong>核心问题</strong>：Avellaneda–Stoikov/GLFT
+等闭式做市策略通常假定订单流平稳且方向对称，但真实微观结构可能出现由
+meta-order 或拥挤交易引起的持续买卖偏斜。论文研究分布式 DQN
+是否能学到更好的风险—收益边界，以及如何让策略识别方向状态、避免库存饱和。</p>
+<p><strong>方法与基线</strong>：作者在校准的 Santa Fe zero-intelligence
+事件驱动限价簿中估计成交强度和波动率，再比较 at-best、GLFT 和
+Rainbow-style distributional DQN（C51）。Algorithm A
+在平稳流上训练；Algorithm B 在状态中加入 Bayesian online change-point
+filter 和 queue-adjusted quote-exposure imbalance，并在 regime-switching
+流上微调；Algorithm C 再用 scenario bandit
+提高低收益压力情景的采样权重。平稳评估使用 1,000 个、每个 5,000 个 LOB
+events 的 paired-seed episodes；压力评估使用每个 100,000 events 的 100
+个 episode。</p>
+<p><strong>作者报告的关键结果</strong>：在平稳环境下，Rainbow DQN
+在观测到的整个风险—收益前沿上高于 GLFT；在真实买单概率偏离 0.5 约 0.08
+后，GLFT 进入亏损区间，而 RLMM 在 p_buy∈[0.40,0.60]
+仍保持盈利。regime-switching 压力下，以 Algorithm A 对称流的平均终端 PnL
+归一化，未适应的 Algorithm A 约为 −46%，Algorithm B 约为
+37%；库存波动标准差从基准的 1.89 倍降到 0.55 倍。对相关方向压力做
+scenario-bandit 微调后，作者报告相对 Algorithm B 的平均终端 PnL 约提高
+17%，标准差约降至其 76%。</p>
+<p><strong>创新、局限与金融边界</strong>：论文的实质贡献不是“深度学习必然赚钱”，而是把平稳训练的结构性失效——库存被持续方向性流量推到边界——明确作为压力测试对象，并用可解释的状态信号修复。所有结果都来自模拟
+zero-intelligence LOB；只报单位 lot、每侧最多一个 resting
+order，不含更丰富的策略性对手、多层报价、订单规模、日内季节性或真实成交成本。因而这是模拟回测/控制实验，不是样本外实盘收益，更不构成做市或投资建议。</p>
+<p><strong>适合谁读</strong>：算法交易、限价簿模拟、强化学习控制和执行风险团队。建议读
+§§2–5、图 3/6/9–13、§9 的 scenario bandit，以及 §10 的限制；重点区分模拟
+PnL、库存风险与真实可交易性。</p>
+<h2 id="金融论文">金融论文</h2>
+<p>以下为本次金融主题 arXiv RSS 的全部 16
+篇候选。金融条目分别标注相关性/因果识别、样本内/样本外、统计/经济显著性以及回测/真实可交易性；模型或组合结果不构成投资建议。除“重点关注”中明确标注已核阅
+PDF 的论文外，其余条目仅依据摘要；NBER
+工作论文同行评审提示不适用于本批候选。</p>
+<h3 id="ai-economist-agent-an-agentic-framework-for-evidence-based-economic-and-financial-analysis-with-rag-knowledge-graphs-and-large-language-models">1.
+AI Economist Agent: An Agentic Framework for Evidence-Based Economic and
+Financial Analysis with RAG, Knowledge Graphs, and Large Language
+Models</h3>
+<p><strong>作者</strong>：Masahiro Kato<br>
+<strong>来源/分类</strong>：arXiv ·
+econ.GN、cs.AI、cs.LG、q-fin.EC、q-fin.GN · AI 与金融风险分析<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.20041">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.20041">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是如何把多来源经济证据转成可审计的宏观金融压力路径与银行资本计算；方法是
+RAG、知识图谱、七类 agent、六变量季度 VAR、20,000 次残差 bootstrap
+和带验收阈值的银行模型；作者报告系统能区分证据检索、机制构造、模型执行和报告生成，并记录
+372 次调用、1.9882 美元成本及多类停止原因；关注价值在于不让 LLM
+直接替代定量计算，限制是描述性关系不自动具有因果性，验证针对假设情景而非真实损失。<strong>证据状态</strong>：已核阅公开
+PDF，详细分析见“重点关注”。</p>
+<h3 id="market-informed-networks-for-modeling-and-forecast-evaluation-of-financial-extremes">2.
+Market-Informed Networks for Modeling and Forecast Evaluation of
+Financial Extremes</h3>
+<p><strong>作者</strong>：Ayla Jungbluth、Johannes Lederer、Simon
+Trimborn<br>
+<strong>来源/分类</strong>：arXiv · stat.ME、econ.EM、q-fin.RM、stat.AP
+· 金融极值与风险预测<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11575">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11575">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是历史共同极值网络能否改善高维尾部预测；方法是
+JEAM 加权的时间依赖 Hüsler–Reiss 模型、5
+分钟极值转换和三个月训练/下一周样本外一步预测，数据为 2021–2024 年
+S&amp;P 100 三板块一分钟收益；作者报告下尾 log score 改善
+12.5%–13.6%、上尾 11.4%–14.9%；关注价值在于建模风险联动，限制是 log
+score
+是预测评价而非收益或因果效果，没有证明扣成本后可交易。<strong>证据状态</strong>：已核阅公开
+PDF，详细分析见“重点关注”。</p>
+<h3 id="expected-shortfall-factor-models-common-tail-losses-and-expected-returns">3.
+Expected Shortfall Factor Models: Common Tail Losses and Expected
+Returns</h3>
+<p><strong>作者</strong>：Yujie Hou、Xinbing Kong、Yalin Wang、Bin
+Wu<br>
+<strong>来源/分类</strong>：arXiv · econ.EM、econ.GN、q-fin.EC、stat.ME
+· 尾部风险与资产定价<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10587">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10587">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是分位数以下损失的平均严重程度能否形成共同因子并解释预期收益；方法是正交化两步
+ESFM、潜在因子和因子数量选择，应用于 2000–2023 年 CSI 300
+流动性股票面板；作者报告高减低组合年化收益 8.0%–11.7%、Fama–French
+五因子 alpha 10.3%–15.0%，并报告显著 t 统计量与更高最大
+Sharpe；关注价值在于区分尾部阈值和尾部损失幅度，限制是这些是历史资产定价组合检验而非因果或实盘净收益，交易成本和容量仍需核验。<strong>证据状态</strong>：已核阅公开
+PDF，详细分析见“重点关注”。</p>
+<h3 id="the-privacy-subsidy-in-market-microstructure">4. The Privacy
+Subsidy in Market Microstructure</h3>
+<p><strong>作者</strong>：Yuki Nakamura<br>
+<strong>来源/分类</strong>：arXiv · cs.GT、cs.CR、q-fin.TR ·
+市场微观结构与隐私机制设计<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10543">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10543">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是做市商按粗化订单流定价时，效率与零利润是否可同时实现；方法是一般不可能定理、Kyle/Glosten–Milgrom/Kyle–Back
+三个闭式模型、AMM 类比和隐私费率分析；作者报告 gross subsidy
+是转移，扣除费率造成的交易量扭曲后 deadweight 对噪声为四阶而 subsidy
+为二阶，并给出 BTC/USDT
+尺度例子；关注价值在于拆分转移、净福利成本和信息损失，限制是部分均衡与小噪声近似，没有真实交易所损益或实盘结果。<strong>证据状态</strong>：已核阅公开
+PDF，详细分析见“重点关注”。</p>
+<h3 id="revisiting-the-rules-versus-discretion-debate-forecasting-evidence-from-the-bank-of-england-1870-1913">5.
+Revisiting the Rules-versus-Discretion Debate: Forecasting Evidence from
+the Bank of England, 1870-1913</h3>
+<p><strong>作者</strong>：Xi Chen<br>
+<strong>来源/分类</strong>：arXiv · econ.EM ·
+历史货币政策与计量预测<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10544">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10544">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是金本位时期英格兰银行调节 Bank
+Rate 更像机械规则还是有状态的裁量；方法是 1870–1913
+年伦敦月度面板，同时检验十个国内与外部指标；作者报告贸易结算、黄金流、城市资产价格、票据市场和可兑换压力共同具有预测内容，确认设定中出口、黄金流和工业股价最清晰，黄金流在控制储备存量后仍有预测力；关注价值在于用多变量信息集细化规则/裁量争论，限制是摘要层面是预测关联而非政策冲击的因果识别，也不是现代市场交易信号。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="modeling-financial-time-series-with-phi4-quantum-field-theory">6.
+Modeling financial time series with <span class="math inline">\(\phi^{4}\)</span> quantum field theory</h3>
+<p><strong>作者</strong>：Dimitrios Bachtis、David S. Berman、Arabella
+Schelpe<br>
+<strong>来源/分类</strong>：arXiv ·
+q-fin.ST、cond-mat.dis-nn、cs.CE、hep-th · 金融时间序列与统计物理<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.17225">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.17225">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是连续的 φ⁴ 场模型能否比二值 Ising
+模型更好地重现股票收益的高阶统计；方法是带非齐次耦合和显式对称破缺的 φ⁴
+模型，用 S&amp;P 500 集合和 2008 年危机示例比较高峰度，再对
+AAPL、MSFT、NVDA 做价格变化预测；作者报告 φ⁴
+可重现高峰度，并讨论耦合随股票数的缩放与策略启发；关注价值在于强调离散化会损失尾部信息，限制是摘要未说明严格样本外、交易成本和预测收益，模型例子不等于可交易策略。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="entropic-value-at-risk-parity-for-tempered-stable-returns">7.
+Entropic Value-at-Risk parity for tempered stable returns</h3>
+<p><strong>作者</strong>：Jaehyung Choi<br>
+<strong>来源/分类</strong>：arXiv · q-fin.PM、q-fin.RM ·
+非高斯组合风险平价<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11905">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11905">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是厚尾 tempered-stable
+收益下如何定义 EVaR 风险贡献与风险平价组合；方法是 multivariate normal
+tempered stable、独立成分分析，以及 EVaR-based inverse risk
+parity/ERC，另证明 Gaussian
+情形退化到传统波动率权重；作者报告在三个投资集合中 EVaR ERC
+相对等权取得正的 Sharpe
+差；关注价值在于把尾部风险而非方差作为配权对象，限制是摘要未给出样本外窗口、成本、统计显著性或容量，Sharpe
+差不是保证的经济收益。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="fundamental-properties-of-linear-factor-models">8. Fundamental
+Properties of Linear Factor Models</h3>
+<p><strong>作者</strong>：Damir Filipovic、Paul Schneider<br>
+<strong>来源/分类</strong>：arXiv · q-fin.ST、stat.AP ·
+线性因子模型基础<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2409.02521">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2409.02521">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是交易因子、无定价残差和 beta
+解释同时成立时，因子载荷矩阵需要满足什么条件；方法是给出无需秩假设的联合刻画，并证明给定载荷时唯一满足条件的交易因子表示是
+moment-weighted factor portfolios；作者报告在 Fama–French
+面板中，characteristic loadings 与因子回归 loadings
+在所有窗口相差其规模的
+19%–48%；关注价值在于澄清因子表示的结构限制，限制是理论刻画与历史面板差异不等于因果定价或未来收益。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="deep-learning-of-robust-market-making-under-regime-switching-order-flow">9.
+Deep Learning of Robust Market Making under Regime-Switching Order
+Flow</h3>
+<p><strong>作者</strong>：Felipe Moret、Fabrizio Lillo<br>
+<strong>来源/分类</strong>：arXiv · q-fin.TR · 市场做市与强化学习<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11614">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11614">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是订单流状态切换和持续方向偏斜如何破坏平稳做市策略；方法是
+Santa Fe 事件驱动限价簿、GLFT 基线、C51 分布式 DQN、Bayesian
+change-point filter、队列调整的报价暴露和 scenario
+bandit；作者报告平稳环境中 RLMM 优于 GLFT，加入两个辅助信号后在
+regime-switching
+下恢复盈利；关注价值在于暴露库存饱和这一失败条件，限制是全为模拟控制实验，不是实盘或真实订单流样本。<strong>证据状态</strong>：已核阅公开
+PDF，详细分析见“重点关注”。</p>
+<h3 id="short-maturity-skew-stickiness-ratio-under-local-volatility">10.
+Short-maturity skew stickiness ratio under local volatility</h3>
+<p><strong>作者</strong>：Masaaki Fukasawa<br>
+<strong>来源/分类</strong>：arXiv · math.PR、q-fin.MF ·
+局部波动率与隐含波动率偏斜<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11586">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11586">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是短期限局部波动率模型下 skew
+stickiness ratio
+的极限能否被严格证明；方法是一般时间依赖局部波动函数和一阶 Watanabe
+展开，并放宽二阶空间导数的椭圆性与全局有界条件；作者报告该比率趋近
+2，并强化 implied-volatility skew 的 one-half
+rule；关注价值在于给出更一般的理论边界，限制是没有市场校准、样本外定价或交易收益。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="the-elliptically-optimal-confidence-interval-a-bivariate-extension-of-wilsons-score-method">11.
+The Elliptically Optimal Confidence Interval: A Bivariate Extension of
+Wilson's Score Method</h3>
+<p><strong>作者</strong>：Nawaf Mohammed<br>
+<strong>来源/分类</strong>：arXiv ·
+math.ST、q-fin.ST、stat.CO、stat.ME、stat.TH · 二项比例区间估计<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10865">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10865">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是两个独立二项比例之差存在未识别
+nuisance direction
+时，如何构造可接受且覆盖率可靠的区间；方法是投影联合正态近似得到椭圆区域，解析求出差值的六种边界，并做精确二项覆盖枚举；作者报告
+EO 区间在正态近似下不低于名义覆盖，Wald
+区间在平衡分配下几乎处处低覆盖，但极端比例下 EO
+会过度覆盖；关注价值在于防止方差估计偏差造成虚假精度，限制是统计区间方法不是资产收益或风险预测证据。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="predicting-startup-exit-from-textual-descriptors---a-computational-linguistics-framework">12.
+Predicting Startup Exit from Textual Descriptors - A Computational
+Linguistics Framework</h3>
+<p><strong>作者</strong>：Alberto M. G. Saruggia、Sebastien
+Germano<br>
+<strong>来源/分类</strong>：arXiv · cs.CL、econ.GN、q-fin.EC ·
+创业融资与文本预测<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.00045">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.00045">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是只用创业叙事文本能否预测早期公司的
+Exit；方法是覆盖 20 年、7,419 家初创企业的 VC 筛选数据，构造 850
+个叙事特征和 embedding，并比较六种监督学习模型；作者报告 LightGBM 的 F1
+为 0.48，文本描述单独为 0.30，夸张标记密度与更高 Exit
+概率相关，过长陈述/名称与较低概率相关；关注价值在于量化信息不对称下的叙事信号，限制是预测关联不等于因果机制，样本选择、类别不平衡和样本外/真实投资收益需阅读全文。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="group-quantization-and-mellin-representations-of-the-heston-model">13.
+Group Quantization and Mellin Representations of the Heston Model</h3>
+<p><strong>作者</strong>：Santiago Garcia<br>
+<strong>来源/分类</strong>：arXiv · q-fin.MF、q-fin.PR · Heston
+定价理论<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.13992">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.13992">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是如何用 Affine Holonomy Group
+Quantization 重写 Heston 随机波动率定价；方法是分解有限辛二次部分和
+holonomy 部分，用 Poincaré–Cartan 形式得到 Riccati
+动力学，以动量极化导出 Mellin 表示并做 projective
+linearization；作者报告数值定价与标准 Heston 解一致，并在极限下恢复
+Black–Scholes；关注价值在于提供另一种结构化表示，限制是数值一致性不是定价误差的实盘检验，也不提供交易收益。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="average-treatment-effect-localization-projection-methods-in-synthetic-control">14.
+Average Treatment Effect Localization: Projection Methods in Synthetic
+Control</h3>
+<p><strong>作者</strong>：Ruei-Chi Lee<br>
+<strong>来源/分类</strong>：arXiv · econ.EM ·
+合成控制与短期因果效应<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10617">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10617">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是单一处理单位的面板政策评估如何识别局部、短期而非只看长期平均处理效应；方法是
+ATEL、允许观测/未观测协变量时变非线性的 sieve
+时间变系数因子模型，以及缓解边界偏差和识别问题的 diversified
+projection，并给出渐近推断；作者在 right-to-carry laws
+与暴力犯罪率案例中应用；关注价值在于为及时政策反馈提供估计对象，限制是摘要未给出具体效应数字，识别假设与案例外部效度需核验。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="estimating-sloppy-directions-via-kde-the-case-of-kirmans-ants">15.
+Estimating Sloppy Directions via KDE: The Case of Kirman's Ants</h3>
+<p><strong>作者</strong>：Karl Naumann-Woleske<br>
+<strong>来源/分类</strong>：arXiv · econ.EM、econ.GN、q-fin.EC ·
+随机模型信息几何<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.14887">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.14887">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是分布只能通过模拟样本得到时，能否用
+KDE 估计 sloppy stochastic model 的 Fisher 信息矩阵方向；方法是以 Kirman
+蚂蚁招募模型为例，推导解析 Hessian，比较模拟预算下 KDE
+的特征向量/值收敛，并用 stiff direction
+探索单峰与双峰区域；作者报告在实践可承受模拟预算下能收敛到解析结果；关注价值在于连接
+agent-based
+模型和可估计性诊断，限制是示例模型与金融市场不同，不能直接外推为资产定价或风险预测。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="the-evolving-boundary-of-green-technology">16. The evolving
+boundary of green technology</h3>
+<p><strong>作者</strong>：Nicol`o Barbieri、Kerstin H"otte、Peter
+Persoon<br>
+<strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC ·
+绿色技术测量与创新政策<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2503.21310">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2503.21310">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是绿色专利分类体系变化如何改变我们看到的绿色创新；方法是把
+1980–2016 年专利族与 2019/2023 PATSTAT
+版本合并，区分重新分类、机构集合扩展和用户筛选三种可见性机制；作者报告重新分类和集合扩展使观察到的绿色专利数分别增加约
+9% 和 10%，常用筛选会排除
+42%–93%，新显现专利更具新颖性且更常被引用；关注价值在于提醒政策、技术领导和投资主题研究存在测量边界，限制是指标变化不等于创新活动或资产收益的因果变化。<strong>证据状态</strong>：仅依据摘要。</p>
 
                 
               </div>
