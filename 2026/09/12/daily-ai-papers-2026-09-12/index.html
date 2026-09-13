@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 1. Benchmark Radar：先把评测证据整理好，再谈模型分数 论文：Benchmark Radar: A Living Database and Search Engine for AI Benchmarks and Evaluation（PDF，arXiv:2609.11115） 作者：Koutian Wu、Junjie Zhou、Ergan Shang、Jiayu Wan">
+    <meta name="description" content="重点关注  1. Benchmark Radar：先把评测证据整理好，再谈模型分数 论文：Benchmark Radar: A Living Database and Search Engine for AI Benchmarks and Evaluation（PDF，arXiv:2609.11115） 作者：Koutian Wu、Junjie Zhou、Ergan Shang、Jiayu W">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 9 月 12 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/09/12/daily-ai-papers-2026-09-12/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 1. Benchmark Radar：先把评测证据整理好，再谈模型分数 论文：Benchmark Radar: A Living Database and Search Engine for AI Benchmarks and Evaluation（PDF，arXiv:2609.11115） 作者：Koutian Wu、Junjie Zhou、Ergan Shang、Jiayu Wan">
+<meta property="og:description" content="重点关注  1. Benchmark Radar：先把评测证据整理好，再谈模型分数 论文：Benchmark Radar: A Living Database and Search Engine for AI Benchmarks and Evaluation（PDF，arXiv:2609.11115） 作者：Koutian Wu、Junjie Zhou、Ergan Shang、Jiayu W">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-02/pixiv-rank-006-147702281.jpg">
 <meta property="article:published_time" content="2026-09-12T02:15:00.000Z">
@@ -347,462 +347,151 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<h3 id="benchmark-radar先把评测证据整理好再谈模型分数">1. Benchmark
-Radar：先把评测证据整理好，再谈模型分数</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11115">Benchmark Radar: A Living
-Database and Search Engine for AI Benchmarks and Evaluation</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11115">PDF</a>，arXiv:2609.11115）<br>
-<strong>作者</strong>：Koutian Wu、Junjie Zhou、Ergan Shang、Jiayu
-Wang、Pengqian Han、Junkai Wang、Wanghan Xu<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI、cs.IR；AI
-评测基础设施<br>
+<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
+<h3 id="1-benchmark-radar先把评测证据整理好再谈模型分数"><a class="markdownIt-Anchor" href="#1-benchmark-radar先把评测证据整理好再谈模型分数"></a> 1. Benchmark Radar：先把评测证据整理好，再谈模型分数</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11115">Benchmark Radar: A Living Database and Search Engine for AI Benchmarks and Evaluation</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11115">PDF</a>，arXiv:2609.11115）<br>
+<strong>作者</strong>：Koutian Wu、Junjie Zhou、Ergan Shang、Jiayu Wang、Pengqian Han、Junkai Wang、Wanghan Xu<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a>；AI 评测基础设施<br>
 <strong>代码/项目</strong>：<a target="_blank" rel="noopener" href="https://benchmark-radar.org/">Benchmark Radar</a>、<a target="_blank" rel="noopener" href="https://github.com/ktwu01/benchmark-radar">GitHub</a><br>
 <strong>全文状态</strong>：已核阅公开 PDF（28 页）。</p>
-<p><strong>核心问题</strong>：模型评测的困难不只是找到一个分数，而是确认它对应哪个
-benchmark 版本、哪些设置、哪些模型和哪一份原始证据。论文试图把 benchmark
-的发现、身份对齐、分数历史和引用来源放进同一个可追溯目录。</p>
-<p><strong>方法与基线</strong>：系统从 LLM Stats、OpenCompass
-Hub、Artificial Analysis 和模型报告四类目录构建目录，并通过 13
-个直接连接器和 24 个一方研究/工程 feed 做每日发现。v0.11.0 目录包含
-1,283 条 source records、12,916 条数值观察，另有 11,068 条发现观察和
-6,546 个通过精确标识符关联的 artifacts。检索使用带字段权重的
-BM25F；论文还以已有目录和模型报告中的记录作为来源对照，而不是把不同来源的同名记录未经审计地合并。</p>
-<p><strong>作者报告的关键结果</strong>：1,283 条记录中只有 790
-条有数值分数，且按“明确百分比单位、方向和范围都可确认”的严格规则，只有
-82 条可以进入尺度特定的汇总；493 条没有数值分数。系统记录了 1,208
-份不同引用文档，1,278
-条记录至少有一份文档。作者还指出，统一分数尺度并不等价于统一测试版本、提示词、工具、尝试次数或评测器；有
-668 条记录没有可靠的 benchmark 发布日期。</p>
-<p><strong>创新、局限与失败条件</strong>：价值在于把“分数”降格为带来源和设置的观察值，避免榜单把不可比的数字拼在一起。论文并没有证明检索准确率、节省了多少研究时间，也没有把模型排名当作能力真值；成本、延迟和思考预算在当前数据里尚未系统记录。目录仍受上游来源缺失、标识符不一致和记录身份判断影响，未来新增来源也可能改变统计构成。它更像评测证据层，而不是新的模型
-benchmark。</p>
-<p><strong>适合谁读</strong>：benchmark 维护者、模型评测平台、AI
-工程和治理团队。建议优先读 §§3.1–3.5、§4 的完整人口普查、附录
-C–F，以及项目的离线查询接口。</p>
-<h3 id="v-retrver让多模态检索-agent-先看证据再做重排">2.
-V-Retrver：让多模态检索 agent 先看证据，再做重排</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.06034">V-Retrver: Evidence-Driven
-Agentic Reasoning for Universal Multimodal Retrieval</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.06034">PDF</a>，arXiv:2602.06034）<br>
-<strong>作者</strong>：Dongyang Chen、Chaoyang Wang、Dezhao Su、Xi
-Xiao、Zeyu Zhang、Jing Xiong、Qing Li、Yuzhang Shang、Shichao Kan<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.CV；多模态检索与 agent
-推理<br>
+<p><strong>核心问题</strong>：模型评测的困难不只是找到一个分数，而是确认它对应哪个 benchmark 版本、哪些设置、哪些模型和哪一份原始证据。论文试图把 benchmark 的发现、身份对齐、分数历史和引用来源放进同一个可追溯目录。</p>
+<p><strong>方法与基线</strong>：系统从 LLM Stats、OpenCompass Hub、Artificial Analysis 和模型报告四类目录构建目录，并通过 13 个直接连接器和 24 个一方研究/工程 feed 做每日发现。v0.11.0 目录包含 1,283 条 source records、12,916 条数值观察，另有 11,068 条发现观察和 6,546 个通过精确标识符关联的 artifacts。检索使用带字段权重的 BM25F；论文还以已有目录和模型报告中的记录作为来源对照，而不是把不同来源的同名记录未经审计地合并。</p>
+<p><strong>作者报告的关键结果</strong>：1,283 条记录中只有 790 条有数值分数，且按“明确百分比单位、方向和范围都可确认”的严格规则，只有 82 条可以进入尺度特定的汇总；493 条没有数值分数。系统记录了 1,208 份不同引用文档，1,278 条记录至少有一份文档。作者还指出，统一分数尺度并不等价于统一测试版本、提示词、工具、尝试次数或评测器；有 668 条记录没有可靠的 benchmark 发布日期。</p>
+<p><strong>创新、局限与失败条件</strong>：价值在于把“分数”降格为带来源和设置的观察值，避免榜单把不可比的数字拼在一起。论文并没有证明检索准确率、节省了多少研究时间，也没有把模型排名当作能力真值；成本、延迟和思考预算在当前数据里尚未系统记录。目录仍受上游来源缺失、标识符不一致和记录身份判断影响，未来新增来源也可能改变统计构成。它更像评测证据层，而不是新的模型 benchmark。</p>
+<p><strong>适合谁读</strong>：benchmark 维护者、模型评测平台、AI 工程和治理团队。建议优先读 §§3.1–3.5、§4 的完整人口普查、附录 C–F，以及项目的离线查询接口。</p>
+<h3 id="2-v-retrver让多模态检索-agent-先看证据再做重排"><a class="markdownIt-Anchor" href="#2-v-retrver让多模态检索-agent-先看证据再做重排"></a> 2. V-Retrver：让多模态检索 agent 先看证据，再做重排</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.06034">V-Retrver: Evidence-Driven Agentic Reasoning for Universal Multimodal Retrieval</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.06034">PDF</a>，arXiv:2602.06034）<br>
+<strong>作者</strong>：Dongyang Chen、Chaoyang Wang、Dezhao Su、Xi Xiao、Zeyu Zhang、Jing Xiong、Qing Li、Yuzhang Shang、Shichao Kan<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>；多模态检索与 agent 推理<br>
 <strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/chendy25/V-Retrver">V-Retrver</a><br>
 <strong>全文状态</strong>：已核阅公开 PDF（26 页）。</p>
-<p><strong>核心问题</strong>：传统多模态检索器通常把图像压成静态表示，再用语言推理做候选重排；遇到全局语义相似、但细节不同的
-hard negative
-时，模型可能是在猜，而不是核对视觉证据。论文研究能否让模型在生成假设和针对性视觉检查之间交替。</p>
-<p><strong>方法与基线</strong>：模型从 Qwen2.5-VL-7B-Instruct
-初始化，冻结视觉编码器，只微调语言模型。它先用 embedding
-模型召回候选，再在 M-BEIR 中对 top-50、未见数据集中对 top-10 做 listwise
-重排；训练覆盖 8 类任务、10 个数据集和约 110
-万训练样本，结合冷启动监督、拒绝采样微调和带证据对齐奖励的强化学习。基线包括
-CLIP、SigLIP、BLIP/BLIP-2、MM-Embed、U-MARVEL、Retrv-R1
-等通用或专用检索器，并设置“无视觉工具”的同训练流程消融。</p>
-<p><strong>作者报告的关键结果</strong>：M-BEIR 上 V-Retrver-7B 平均
-Recall 为 69.7%，比 U-MARVEL-7B 的 64.8% 高 4.9 个百分点，比 Retrv-R1-7B
-高 0.5 个百分点；在细粒度 FIQ 和 CIRR 上分别为 51.2% 和 73.5%。表 4
-的相同强化学习设置中，文本基线平均为 61.8%，加入视觉工具的完整模型平均为
-67.2%；去掉排序奖励、工具奖励和格式奖励，平均召回分别下降约 2.4%、1.1%
-和 1.7%。作者在 CIRCO、GeneCIS、Visual Storytelling、Visual Dialog 和
-Multi-round FashionIQ
-等未见数据上也报告提升，说明并非只在训练集内记忆。</p>
-<p><strong>创新、局限与失败条件</strong>：核心创新是把“是否调用视觉工具”纳入训练目标，并奖励有效而非频繁调用。限制包括视觉编码器冻结、候选召回质量仍是上限、工具调用带来延迟，主要跨模型族的证据不足，论文也没有给出面向真实业务的成本—收益曲线。M-BEIR
-上的提升是 benchmark
-指标，不等于开放世界检索或医疗、商标等场景的可靠性；如果第一阶段漏掉正确候选，后续推理无法恢复。</p>
-<p><strong>适合谁读</strong>：多模态检索、视觉工具调用和 agent
-训练团队。建议读 §3 的 interleaved reasoning、§4.1–4.4、表 1–5，以及附录
-B、F 的奖励和训练阶段消融。</p>
-<h3 id="think-before-you-link长尾实体的主要瓶颈可能是跨语言检索">3.
-Think Before You Link：长尾实体的主要瓶颈可能是跨语言检索</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10745">Think Before You Link: Rarity,
-Reasoning, and Retrieval in Multilingual Entity Linking</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10745">PDF</a>，arXiv:2609.10745）<br>
-<strong>作者</strong>：Parinthapat Pengpun、Simran Khanuja、Graham
-Neubig<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.CL；多语言多模态实体链接<br>
+<p><strong>核心问题</strong>：传统多模态检索器通常把图像压成静态表示，再用语言推理做候选重排；遇到全局语义相似、但细节不同的 hard negative 时，模型可能是在猜，而不是核对视觉证据。论文研究能否让模型在生成假设和针对性视觉检查之间交替。</p>
+<p><strong>方法与基线</strong>：模型从 Qwen2.5-VL-7B-Instruct 初始化，冻结视觉编码器，只微调语言模型。它先用 embedding 模型召回候选，再在 M-BEIR 中对 top-50、未见数据集中对 top-10 做 listwise 重排；训练覆盖 8 类任务、10 个数据集和约 110 万训练样本，结合冷启动监督、拒绝采样微调和带证据对齐奖励的强化学习。基线包括 CLIP、SigLIP、BLIP/BLIP-2、MM-Embed、U-MARVEL、Retrv-R1 等通用或专用检索器，并设置“无视觉工具”的同训练流程消融。</p>
+<p><strong>作者报告的关键结果</strong>：M-BEIR 上 V-Retrver-7B 平均 Recall 为 69.7%，比 U-MARVEL-7B 的 64.8% 高 4.9 个百分点，比 Retrv-R1-7B 高 0.5 个百分点；在细粒度 FIQ 和 CIRR 上分别为 51.2% 和 73.5%。表 4 的相同强化学习设置中，文本基线平均为 61.8%，加入视觉工具的完整模型平均为 67.2%；去掉排序奖励、工具奖励和格式奖励，平均召回分别下降约 2.4%、1.1% 和 1.7%。作者在 CIRCO、GeneCIS、Visual Storytelling、Visual Dialog 和 Multi-round FashionIQ 等未见数据上也报告提升，说明并非只在训练集内记忆。</p>
+<p><strong>创新、局限与失败条件</strong>：核心创新是把“是否调用视觉工具”纳入训练目标，并奖励有效而非频繁调用。限制包括视觉编码器冻结、候选召回质量仍是上限、工具调用带来延迟，主要跨模型族的证据不足，论文也没有给出面向真实业务的成本—收益曲线。M-BEIR 上的提升是 benchmark 指标，不等于开放世界检索或医疗、商标等场景的可靠性；如果第一阶段漏掉正确候选，后续推理无法恢复。</p>
+<p><strong>适合谁读</strong>：多模态检索、视觉工具调用和 agent 训练团队。建议读 §3 的 interleaved reasoning、§4.1–4.4、表 1–5，以及附录 B、F 的奖励和训练阶段消融。</p>
+<h3 id="3-think-before-you-link长尾实体的主要瓶颈可能是跨语言检索"><a class="markdownIt-Anchor" href="#3-think-before-you-link长尾实体的主要瓶颈可能是跨语言检索"></a> 3. Think Before You Link：长尾实体的主要瓶颈可能是跨语言检索</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10745">Think Before You Link: Rarity, Reasoning, and Retrieval in Multilingual Entity Linking</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10745">PDF</a>，arXiv:2609.10745）<br>
+<strong>作者</strong>：Parinthapat Pengpun、Simran Khanuja、Graham Neubig<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；多语言多模态实体链接<br>
 <strong>全文状态</strong>：已核阅公开 PDF（23 页）。</p>
 <p><strong>核心问题</strong>：稀有实体不只是“页面浏览量低”的实体；知识图谱中的链接、陈述、限定词和语言版本同样决定它是否容易被找到。论文研究结构性稀有度、推理和检索三者如何共同影响多语言图文实体链接。</p>
-<p><strong>方法与基线</strong>：作者在覆盖印地语、印度尼西亚语、日语、泰米尔语和越南语的
-MERLIN 上构造多种稀有实体切片，用 Wikidata 结构指标和 Wikipedia
-engagement
-指标定义不同长尾。系统采用无需训练的迭代检索—推理流程，让视觉语言模型主动搜索
-Wikipedia；实验用 Qwen3-VL 的 2B/4B/8B instruct 与 thinking 版本做 18
-个配置的析因比较，基线包括 Cultural Pangea、GEMEL、mGENRE 以及
-BM25/embedding 检索。</p>
-<p><strong>作者报告的关键结果</strong>：最佳 8B-Think+Embed 在 MERLIN
-全集上比 Pangea 高 6.9 个百分点；在最难的稀有实体切片，优势最高达
-23.3%。检索带推理的增益从全数据集的 3.8% 增至结构稀疏实体的
-18.8%，扩大约 5 倍；BM25 对 instruct 模型在全集上反而下降
-4.9%，但在稀有切片可上升 8.1%–12.6%。4B reasoning+retrieval
-在稀有实体上比 8B instruct 高 5–7 个百分点。残余错误中约 72%
-被归为检索失败，长尾消歧仍未解决。</p>
-<p><strong>创新、局限与失败条件</strong>：论文把“稀有”从单一流行度指标扩展为可诊断的结构属性，并展示
-reasoning 与 retrieval 的互补关系。主要局限是受控析因实验集中在
-Qwen3-VL；作者的 GLM 检查支持稀有实体检索收益，但非 thinking GLM
-无法稳定维持检索循环，因此不能据此确认完整交互效应跨模型族成立。Wikipedia
-标题、转写差异和 exact-match
-评价也会放大跨语言检索错误；提升分数不代表实体知识已经被模型稳健理解。</p>
-<p><strong>适合谁读</strong>：多语言检索、知识增强 VLM
-和长尾实体应用团队。建议读 §§3–5、表 2–4、§8 的误差分解和 §9
-的局限。</p>
-<h3 id="mr.lhdr最终答案正确不代表深度研究链条正确">4.
-Mr.LHDR：最终答案正确，不代表深度研究链条正确</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11318">Mr.LHDR: A Benchmark for
-Multimodal Real-World Long-Horizon Deep Research Agents</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11318">PDF</a>，arXiv:2609.11318）<br>
-<strong>作者</strong>：Minghao Guo、Meng Cao、Sui Zhao、Siyu Ning、Xin
-Wang、Haoze Zhao、Jiaxuan Yang、Haihong Hao、Mingfei Han、Shunlin
-Rong、Haijun Wu、Xiaodan Liang、Xiaojun Chang<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI；多模态长链研究 agent
-评测<br>
+<p><strong>方法与基线</strong>：作者在覆盖印地语、印度尼西亚语、日语、泰米尔语和越南语的 MERLIN 上构造多种稀有实体切片，用 Wikidata 结构指标和 Wikipedia engagement 指标定义不同长尾。系统采用无需训练的迭代检索—推理流程，让视觉语言模型主动搜索 Wikipedia；实验用 Qwen3-VL 的 2B/4B/8B instruct 与 thinking 版本做 18 个配置的析因比较，基线包括 Cultural Pangea、GEMEL、mGENRE 以及 BM25/embedding 检索。</p>
+<p><strong>作者报告的关键结果</strong>：最佳 8B-Think+Embed 在 MERLIN 全集上比 Pangea 高 6.9 个百分点；在最难的稀有实体切片，优势最高达 23.3%。检索带推理的增益从全数据集的 3.8% 增至结构稀疏实体的 18.8%，扩大约 5 倍；BM25 对 instruct 模型在全集上反而下降 4.9%，但在稀有切片可上升 8.1%–12.6%。4B reasoning+retrieval 在稀有实体上比 8B instruct 高 5–7 个百分点。残余错误中约 72% 被归为检索失败，长尾消歧仍未解决。</p>
+<p><strong>创新、局限与失败条件</strong>：论文把“稀有”从单一流行度指标扩展为可诊断的结构属性，并展示 reasoning 与 retrieval 的互补关系。主要局限是受控析因实验集中在 Qwen3-VL；作者的 GLM 检查支持稀有实体检索收益，但非 thinking GLM 无法稳定维持检索循环，因此不能据此确认完整交互效应跨模型族成立。Wikipedia 标题、转写差异和 exact-match 评价也会放大跨语言检索错误；提升分数不代表实体知识已经被模型稳健理解。</p>
+<p><strong>适合谁读</strong>：多语言检索、知识增强 VLM 和长尾实体应用团队。建议读 §§3–5、表 2–4、§8 的误差分解和 §9 的局限。</p>
+<h3 id="4-mrlhdr最终答案正确不代表深度研究链条正确"><a class="markdownIt-Anchor" href="#4-mrlhdr最终答案正确不代表深度研究链条正确"></a> 4. Mr.LHDR：最终答案正确，不代表深度研究链条正确</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11318">Mr.LHDR: A Benchmark for Multimodal Real-World Long-Horizon Deep Research Agents</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11318">PDF</a>，arXiv:2609.11318）<br>
+<strong>作者</strong>：Minghao Guo、Meng Cao、Sui Zhao、Siyu Ning、Xin Wang、Haoze Zhao、Jiaxuan Yang、Haihong Hao、Mingfei Han、Shunlin Rong、Haijun Wu、Xiaodan Liang、Xiaojun Chang<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；多模态长链研究 agent 评测<br>
 <strong>全文状态</strong>：已核阅公开 PDF（40 页）。</p>
-<p><strong>核心问题</strong>：现有 deep-research benchmark
-往往只有中等长度的证据探索，最终答案可能正确，但中间结论没有覆盖或互相矛盾。Mr.LHDR
-试图测量 agent
-是否能在多来源、图像、地图、PDF、表格和视频帧之间维持一条依赖一致的证据链。</p>
-<p><strong>方法与基线</strong>：数据集有 102 个真实研究任务，来自隐藏
-Node-Relation 图；每题平均包含 12.1 个必要中间结论、平均依赖深度
-10.4，证据来源平均 8.0 个。评价同时报告 Overall Accuracy（OA）、Strict
-Accuracy（SA）、Checklist Score（CS）和 Dependency-Aware Checklist
-Score（DACS），分别区分最终答案、已写出的完整结论、结论覆盖和依赖一致覆盖。作者比较
-11 个带工具 VLM、7 个无工具 VLM、4 个专用 deep-research 系统和 3 个
-DeerFlow 框架配置，并做同一 Qwen3-VL-235B 的有图/无图消融。</p>
-<p><strong>作者报告的关键结果</strong>：最高 OA 的 GPT-5.5 为 43.1%，SA
-只有 34.3%；专用 deep-research 系统中 o3 Deep Research 的 OA 为
-32.4%、SA 为 19.6%。GPT-5.5 的 OA 95% bootstrap 区间为 33.3%–52.9%，102
-题的样本量使相邻系统排序不宜过度解读。图像消融中，CS 从无图的 26.9%
-提升到 39.3%，DACS 从 21.6% 提升到 34.2%，增幅分别为 12.4 和 12.6
-个百分点，说明图像主要帮助模型补全依赖链，而不只是回答最终问题。</p>
-<p><strong>创新、局限与失败条件</strong>：DACS
-将上游结论错误对下游结论的影响显式化，适合审计“看起来答对”的研究输出。局限是只有
-102 题、LLM judge
-仍参与评分；框架组只使用一个开源框架，工具失败可能与推理失败混在一起，结果不能推广为所有
-agent 框架的排名。长 checklist
-是证据密度代理，不是浏览步数或真实研究成本；最终答案和过程指标必须分开解读。</p>
-<p><strong>适合谁读</strong>：深度研究
-agent、浏览工具、过程监督和评测设计团队。建议读 §§3–4.3、表 4/6/9、图
-5–6，以及 §5 的限制和跨系统比较。</p>
-<h3 id="sci-mmr科学多模态推理的第一瓶颈是组装完整证据">5.
-Sci-MMR：科学多模态推理的第一瓶颈是组装完整证据</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11243">Sci-MMR: Benchmarking Multi-Step
-Evidence-Grounded Scientific Reasoning in Multimodal Agents</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11243">PDF</a>，arXiv:2609.11243）<br>
-<strong>作者</strong>：Jiaqiang Li、Yajie Yang、Zhiheng Xi、Jiadong
-Chen、Enyu Zhou、Senjie Jin、Yang Nan、Jiazheng Zhang、Han Wang、Yanxin
-Li、Dingwei Zhu、Bicheng Deng、Yuhui Wang、Xiang Zheng、Qi Zhang、Lei
-Bai、Xingjun Ma、Tao Gui<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI；科学证据链与多模态 agent
-评测<br>
+<p><strong>核心问题</strong>：现有 deep-research benchmark 往往只有中等长度的证据探索，最终答案可能正确，但中间结论没有覆盖或互相矛盾。Mr.LHDR 试图测量 agent 是否能在多来源、图像、地图、PDF、表格和视频帧之间维持一条依赖一致的证据链。</p>
+<p><strong>方法与基线</strong>：数据集有 102 个真实研究任务，来自隐藏 Node-Relation 图；每题平均包含 12.1 个必要中间结论、平均依赖深度 10.4，证据来源平均 8.0 个。评价同时报告 Overall Accuracy（OA）、Strict Accuracy（SA）、Checklist Score（CS）和 Dependency-Aware Checklist Score（DACS），分别区分最终答案、已写出的完整结论、结论覆盖和依赖一致覆盖。作者比较 11 个带工具 VLM、7 个无工具 VLM、4 个专用 deep-research 系统和 3 个 DeerFlow 框架配置，并做同一 Qwen3-VL-235B 的有图/无图消融。</p>
+<p><strong>作者报告的关键结果</strong>：最高 OA 的 GPT-5.5 为 43.1%，SA 只有 34.3%；专用 deep-research 系统中 o3 Deep Research 的 OA 为 32.4%、SA 为 19.6%。GPT-5.5 的 OA 95% bootstrap 区间为 33.3%–52.9%，102 题的样本量使相邻系统排序不宜过度解读。图像消融中，CS 从无图的 26.9% 提升到 39.3%，DACS 从 21.6% 提升到 34.2%，增幅分别为 12.4 和 12.6 个百分点，说明图像主要帮助模型补全依赖链，而不只是回答最终问题。</p>
+<p><strong>创新、局限与失败条件</strong>：DACS 将上游结论错误对下游结论的影响显式化，适合审计“看起来答对”的研究输出。局限是只有 102 题、LLM judge 仍参与评分；框架组只使用一个开源框架，工具失败可能与推理失败混在一起，结果不能推广为所有 agent 框架的排名。长 checklist 是证据密度代理，不是浏览步数或真实研究成本；最终答案和过程指标必须分开解读。</p>
+<p><strong>适合谁读</strong>：深度研究 agent、浏览工具、过程监督和评测设计团队。建议读 §§3–4.3、表 4/6/9、图 5–6，以及 §5 的限制和跨系统比较。</p>
+<h3 id="5-sci-mmr科学多模态推理的第一瓶颈是组装完整证据"><a class="markdownIt-Anchor" href="#5-sci-mmr科学多模态推理的第一瓶颈是组装完整证据"></a> 5. Sci-MMR：科学多模态推理的第一瓶颈是组装完整证据</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11243">Sci-MMR: Benchmarking Multi-Step Evidence-Grounded Scientific Reasoning in Multimodal Agents</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11243">PDF</a>，arXiv:2609.11243）<br>
+<strong>作者</strong>：Jiaqiang Li、Yajie Yang、Zhiheng Xi、Jiadong Chen、Enyu Zhou、Senjie Jin、Yang Nan、Jiazheng Zhang、Han Wang、Yanxin Li、Dingwei Zhu、Bicheng Deng、Yuhui Wang、Xiang Zheng、Qi Zhang、Lei Bai、Xingjun Ma、Tao Gui<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；科学证据链与多模态 agent 评测<br>
 <strong>全文状态</strong>：已核阅公开 PDF（37 页）。</p>
-<p><strong>核心问题</strong>：科学问答只检查最终答案，会掩盖模型是否找到全部图表证据、是否恢复了中间主张，以及结论是否真的由证据支持。论文把论文中的视觉来源、证据、引用知识和主张组织成层级论证图，并将评测从
-answer accuracy 扩展到 evidence/claim coverage。</p>
-<p><strong>方法与基线</strong>：Sci-MMR 包含 235 个任务、4 个学科、35
-个领域，平均每题 9 个 figure panels；任务来自 170
-篇论文，经过确定性筛选、rubric 筛选和专家复核。作者比较 8 个 frontier
-multimodal models，在 Direct Visual Reasoning 与 Agentic Tool-Use
-两种设置下报告答案准确率、证据覆盖和主张覆盖；所有响应由 Gemini 3.5
-Flash 按统一 rubric 评分，并补充人工一致性与跨 judge 检验。</p>
-<p><strong>作者报告的关键结果</strong>：答案准确率持续高于完整证据恢复率
-20 个百分点以上；Direct Visual Reasoning 中 GPT-5.5 的总体答案准确率为
-67.7%，但不同模型的答案、证据和主张排名并不一致。错误分解中 57.2%
-属证据获取/组装问题，31.8% 属证据整合问题；裁剪工具平均只带来约 4.5
-个百分点提升，直接提供 gold evidence 可提升 19.1–37.0 个百分点，但即使有
-gold evidence，最强模型在最难任务上也只有 69.1% 准确率。</p>
-<p><strong>创新、局限与失败条件</strong>：论文将“找到一个相关区域”与“恢复全部必要证据”区分开，并用图结构度量多步科学推理。任务构造不可避免带有主观性；Evidence/Claim
-Coverage 只评分最终响应中明确写出的内容，不等于内部思考过程；LLM judge
-仍可能受表达方式和语义歧义影响。gold evidence
-实验是诊断上限，不是可部署工具，且 benchmark
-提升不能替代真实科研复核。</p>
-<p><strong>适合谁读</strong>：科学 agent、论文图表理解、RAG
-评测和过程可验证性团队。建议读 §§3–4、表 2、图 6，以及补充材料 C.3、F 的
-judge 与干预分析。</p>
-<h2 id="ai-论文">AI 论文</h2>
-<p>以下为本次 AI 主题 arXiv RSS 的全部 18
-篇候选。除“重点关注”中明确标注已核阅 PDF
-的论文外，其余条目仅依据摘要；“作者报告”表示论文摘要中的自述，不代表独立复核。AI
-评测中的基准提升、闭源模型结果和 LLM judge
-分数，均不自动等于真实能力；阅读时应同时检查基线公平性、数据污染、可复现性和算力/调用成本。</p>
-<h3 id="benchmark-radar-a-living-database-and-search-engine-for-ai-benchmarks-and-evaluation">1.
-Benchmark Radar: A Living Database and Search Engine for AI Benchmarks
-and Evaluation</h3>
-<p><strong>作者</strong>：Koutian Wu、Junjie Zhou、Ergan Shang、Jiayu
-Wang、Pengqian Han、Junkai Wang、Wanghan Xu<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.IR · AI 评测基础设施<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11115">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11115">PDF</a> · <a target="_blank" rel="noopener" href="https://benchmark-radar.org/">项目</a> · <a target="_blank" rel="noopener" href="https://github.com/ktwu01/benchmark-radar">代码</a></p>
-<p><strong>中文简介</strong>：研究问题是如何发现、检索并审计
-LLM、agent、编码、推理和安全 benchmark 的原始证据；方法是把 4 类目录、37
-个公开来源、benchmark
-身份、引用、分数历史和可复现离线查询统一起来；作者报告目录包含 1,283 条
-source records 和 12,916 条数值观察，并指出只有 82
-条记录满足严格百分比尺度条件；关注价值在于把评测分数还原为有设置和来源的证据，限制是目录覆盖、身份对齐和成本字段仍不完整。<strong>证据状态</strong>：已核阅公开
-PDF，详细分析见“重点关注”。</p>
-<h3 id="from-agent-traces-to-trust-a-survey-of-evidence-tracing-and-execution-provenance-in-llm-agents">2.
-From Agent Traces to Trust: A Survey of Evidence Tracing and Execution
-Provenance in LLM Agents</h3>
-<p><strong>作者</strong>：Yiqi Wang、Jiaqi Zhang、Zhangkai Wu、Taotao
-Cai、Zirui Liu、Zequn Sun、Manqing Dong、Mingkai Zheng、Yiqun
-Duan、Xuefei Yin、Yanming Zhu<br>
-<strong>来源/分类</strong>：arXiv · cs.CR、cs.AI · agent
-过程证据与执行溯源<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.04990">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.04990">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是最终答案之外，如何追踪 agent
-的证据、工具调用、记忆影响和失败来源；方法是综述 execution provenance 和
-evidence
-tracing，把执行表示为带类型的图，并整理表示、归因、运行时护栏、记忆谱系、可观测性和故障诊断方向；作者报告提出覆盖
-trace source、证据单元、关系、粒度、时机和 trust function
-的分类框架；关注价值在于为可审计、可恢复 agent
-提供共同语言，限制是综述不提供新的独立实验，分类覆盖和指标有效性仍依赖后续
-benchmark。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="v-retrver-evidence-driven-agentic-reasoning-for-universal-multimodal-retrieval">3.
-V-Retrver: Evidence-Driven Agentic Reasoning for Universal Multimodal
-Retrieval</h3>
-<p><strong>作者</strong>：Dongyang Chen、Chaoyang Wang、Dezhao Su、Xi
-Xiao、Zeyu Zhang、Jing Xiong、Qing Li、Yuzhang Shang、Shichao Kan<br>
-<strong>来源/分类</strong>：arXiv · cs.CV · 多模态检索与 agent
-推理<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.06034">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.06034">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/chendy25/V-Retrver">代码</a></p>
-<p><strong>中文简介</strong>：研究问题是多模态检索中的语言推理如何主动核对细粒度视觉证据；方法是
-embedding
-召回、视觉工具检查、交错推理与课程式监督/拒绝采样/强化学习；作者报告多个
-benchmark 平均检索准确率提升
-23.0%；关注价值在于把“看图”转为可训练的证据获取动作，限制是候选召回、视觉编码器冻结、调用延迟与跨模型族泛化仍需核验。<strong>证据状态</strong>：已核阅公开
-PDF，详细分析见“重点关注”。</p>
-<h3 id="from-evaluation-to-enhancement-benchmarking-and-improving-think-with-video-reasoning-for-video-generative-models">4.
-From Evaluation to Enhancement: Benchmarking and Improving
-Think-with-Video Reasoning for Video Generative Models</h3>
-<p><strong>作者</strong>：Meng Luo、Yicheng Liu、Jiahao Wang、Yuanxing
-Zhang、Xin Tao、Pengfei Wan、Kun Gai、Hao Fei<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI ·
-视频生成推理评测<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11242">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11242">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/KlingTeam/VWG-Bench">数据集</a></p>
-<p><strong>中文简介</strong>：研究问题是视频生成模型是否真正遵守符号规则、物理规律和目标，而非只生成视觉上流畅的视频；方法是包含
-9 个推理维度、38 个细任务的
-VWG-Bench，以及分别评价视频流畅度、规则遵守和目标实现的三级 VLM
-judge，并用文本奖励训练的 Vid-PRE
-重写提示；作者报告领先模型渲染分数强但逻辑/规则任务持续失败，Vid-PRE
-在不改生成器架构的情况下改善推理表现；关注价值在于将视觉质量与认知正确性拆开，限制是
-judge、生成器覆盖、提示改写成本和数据污染需要阅读全文核验。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="evaluating-scaffolding-oriented-multi-agent-large-language-model-system-for-clinical-interview-training">5.
-Evaluating Scaffolding-Oriented Multi-Agent Large Language Model System
-for Clinical Interview Training</h3>
-<p><strong>作者</strong>：Luming Yang、Haoxian Liu、Siqing Li、Rong
-Jia、Yue Xiao、Guanhua Chen、Li Lu<br>
-<strong>来源/分类</strong>：arXiv · cs.MA、cs.AI、cs.HC · 医疗教学
-agent<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10939">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10939">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是多 agent
-脚手架能否在不泄露诊断答案的情况下改善医学生访谈训练；方法是患者
-agent、苏格拉底式 tutor agent 和逐轮 evaluator agent 的平台，并在 100
-名医学生中做随机对照学习实验，后测在 patient-only
-环境完成；作者报告最终诊断准确率无显著差异，但结构化渐进披露提高 OSCE
-总分，沟通、共情和问诊行为改善最稳定，并发布多专家标注数据；关注价值在于区分过程能力与最终诊断，限制是样本量、训练时长、模拟患者与
-LLM judge 的外部效度需核验。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="ai-economist-agent-an-agentic-framework-for-evidence-based-economic-and-financial-analysis-with-rag-knowledge-graphs-and-large-language-models">6.
-AI Economist Agent: An Agentic Framework for Evidence-Based Economic and
-Financial Analysis with RAG, Knowledge Graphs, and Large Language
-Models</h3>
+<p><strong>核心问题</strong>：科学问答只检查最终答案，会掩盖模型是否找到全部图表证据、是否恢复了中间主张，以及结论是否真的由证据支持。论文把论文中的视觉来源、证据、引用知识和主张组织成层级论证图，并将评测从 answer accuracy 扩展到 evidence/claim coverage。</p>
+<p><strong>方法与基线</strong>：Sci-MMR 包含 235 个任务、4 个学科、35 个领域，平均每题 9 个 figure panels；任务来自 170 篇论文，经过确定性筛选、rubric 筛选和专家复核。作者比较 8 个 frontier multimodal models，在 Direct Visual Reasoning 与 Agentic Tool-Use 两种设置下报告答案准确率、证据覆盖和主张覆盖；所有响应由 Gemini 3.5 Flash 按统一 rubric 评分，并补充人工一致性与跨 judge 检验。</p>
+<p><strong>作者报告的关键结果</strong>：答案准确率持续高于完整证据恢复率 20 个百分点以上；Direct Visual Reasoning 中 GPT-5.5 的总体答案准确率为 67.7%，但不同模型的答案、证据和主张排名并不一致。错误分解中 57.2% 属证据获取/组装问题，31.8% 属证据整合问题；裁剪工具平均只带来约 4.5 个百分点提升，直接提供 gold evidence 可提升 19.1–37.0 个百分点，但即使有 gold evidence，最强模型在最难任务上也只有 69.1% 准确率。</p>
+<p><strong>创新、局限与失败条件</strong>：论文将“找到一个相关区域”与“恢复全部必要证据”区分开，并用图结构度量多步科学推理。任务构造不可避免带有主观性；Evidence/Claim Coverage 只评分最终响应中明确写出的内容，不等于内部思考过程；LLM judge 仍可能受表达方式和语义歧义影响。gold evidence 实验是诊断上限，不是可部署工具，且 benchmark 提升不能替代真实科研复核。</p>
+<p><strong>适合谁读</strong>：科学 agent、论文图表理解、RAG 评测和过程可验证性团队。建议读 §§3–4、表 2、图 6，以及补充材料 C.3、F 的 judge 与干预分析。</p>
+<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
+<p>以下为本次 AI 主题 arXiv RSS 的全部 18 篇候选。除“重点关注”中明确标注已核阅 PDF 的论文外，其余条目仅依据摘要；“作者报告”表示论文摘要中的自述，不代表独立复核。AI 评测中的基准提升、闭源模型结果和 LLM judge 分数，均不自动等于真实能力；阅读时应同时检查基线公平性、数据污染、可复现性和算力/调用成本。</p>
+<h3 id="1-benchmark-radar-a-living-database-and-search-engine-for-ai-benchmarks-and-evaluation"><a class="markdownIt-Anchor" href="#1-benchmark-radar-a-living-database-and-search-engine-for-ai-benchmarks-and-evaluation"></a> 1. Benchmark Radar: A Living Database and Search Engine for AI Benchmarks and Evaluation</h3>
+<p><strong>作者</strong>：Koutian Wu、Junjie Zhou、Ergan Shang、Jiayu Wang、Pengqian Han、Junkai Wang、Wanghan Xu<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a> · AI 评测基础设施<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11115">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11115">PDF</a> · <a target="_blank" rel="noopener" href="https://benchmark-radar.org/">项目</a> · <a target="_blank" rel="noopener" href="https://github.com/ktwu01/benchmark-radar">代码</a></p>
+<p><strong>中文简介</strong>：研究问题是如何发现、检索并审计 LLM、agent、编码、推理和安全 benchmark 的原始证据；方法是把 4 类目录、37 个公开来源、benchmark 身份、引用、分数历史和可复现离线查询统一起来；作者报告目录包含 1,283 条 source records 和 12,916 条数值观察，并指出只有 82 条记录满足严格百分比尺度条件；关注价值在于把评测分数还原为有设置和来源的证据，限制是目录覆盖、身份对齐和成本字段仍不完整。<strong>证据状态</strong>：已核阅公开 PDF，详细分析见“重点关注”。</p>
+<h3 id="2-from-agent-traces-to-trust-a-survey-of-evidence-tracing-and-execution-provenance-in-llm-agents"><a class="markdownIt-Anchor" href="#2-from-agent-traces-to-trust-a-survey-of-evidence-tracing-and-execution-provenance-in-llm-agents"></a> 2. From Agent Traces to Trust: A Survey of Evidence Tracing and Execution Provenance in LLM Agents</h3>
+<p><strong>作者</strong>：Yiqi Wang、Jiaqi Zhang、Zhangkai Wu、Taotao Cai、Zirui Liu、Zequn Sun、Manqing Dong、Mingkai Zheng、Yiqun Duan、Xuefei Yin、Yanming Zhu<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> · agent 过程证据与执行溯源<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.04990">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.04990">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是最终答案之外，如何追踪 agent 的证据、工具调用、记忆影响和失败来源；方法是综述 execution provenance 和 evidence tracing，把执行表示为带类型的图，并整理表示、归因、运行时护栏、记忆谱系、可观测性和故障诊断方向；作者报告提出覆盖 trace source、证据单元、关系、粒度、时机和 trust function 的分类框架；关注价值在于为可审计、可恢复 agent 提供共同语言，限制是综述不提供新的独立实验，分类覆盖和指标有效性仍依赖后续 benchmark。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="3-v-retrver-evidence-driven-agentic-reasoning-for-universal-multimodal-retrieval"><a class="markdownIt-Anchor" href="#3-v-retrver-evidence-driven-agentic-reasoning-for-universal-multimodal-retrieval"></a> 3. V-Retrver: Evidence-Driven Agentic Reasoning for Universal Multimodal Retrieval</h3>
+<p><strong>作者</strong>：Dongyang Chen、Chaoyang Wang、Dezhao Su、Xi Xiao、Zeyu Zhang、Jing Xiong、Qing Li、Yuzhang Shang、Shichao Kan<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a> · 多模态检索与 agent 推理<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.06034">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.06034">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/chendy25/V-Retrver">代码</a></p>
+<p><strong>中文简介</strong>：研究问题是多模态检索中的语言推理如何主动核对细粒度视觉证据；方法是 embedding 召回、视觉工具检查、交错推理与课程式监督/拒绝采样/强化学习；作者报告多个 benchmark 平均检索准确率提升 23.0%；关注价值在于把“看图”转为可训练的证据获取动作，限制是候选召回、视觉编码器冻结、调用延迟与跨模型族泛化仍需核验。<strong>证据状态</strong>：已核阅公开 PDF，详细分析见“重点关注”。</p>
+<h3 id="4-from-evaluation-to-enhancement-benchmarking-and-improving-think-with-video-reasoning-for-video-generative-models"><a class="markdownIt-Anchor" href="#4-from-evaluation-to-enhancement-benchmarking-and-improving-think-with-video-reasoning-for-video-generative-models"></a> 4. From Evaluation to Enhancement: Benchmarking and Improving Think-with-Video Reasoning for Video Generative Models</h3>
+<p><strong>作者</strong>：Meng Luo、Yicheng Liu、Jiahao Wang、Yuanxing Zhang、Xin Tao、Pengfei Wan、Kun Gai、Hao Fei<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> · 视频生成推理评测<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11242">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11242">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/KlingTeam/VWG-Bench">数据集</a></p>
+<p><strong>中文简介</strong>：研究问题是视频生成模型是否真正遵守符号规则、物理规律和目标，而非只生成视觉上流畅的视频；方法是包含 9 个推理维度、38 个细任务的 VWG-Bench，以及分别评价视频流畅度、规则遵守和目标实现的三级 VLM judge，并用文本奖励训练的 Vid-PRE 重写提示；作者报告领先模型渲染分数强但逻辑/规则任务持续失败，Vid-PRE 在不改生成器架构的情况下改善推理表现；关注价值在于将视觉质量与认知正确性拆开，限制是 judge、生成器覆盖、提示改写成本和数据污染需要阅读全文核验。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="5-evaluating-scaffolding-oriented-multi-agent-large-language-model-system-for-clinical-interview-training"><a class="markdownIt-Anchor" href="#5-evaluating-scaffolding-oriented-multi-agent-large-language-model-system-for-clinical-interview-training"></a> 5. Evaluating Scaffolding-Oriented Multi-Agent Large Language Model System for Clinical Interview Training</h3>
+<p><strong>作者</strong>：Luming Yang、Haoxian Liu、Siqing Li、Rong Jia、Yue Xiao、Guanhua Chen、Li Lu<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.MA">cs.MA</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.HC · 医疗教学 agent<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10939">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10939">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是多 agent 脚手架能否在不泄露诊断答案的情况下改善医学生访谈训练；方法是患者 agent、苏格拉底式 tutor agent 和逐轮 evaluator agent 的平台，并在 100 名医学生中做随机对照学习实验，后测在 patient-only 环境完成；作者报告最终诊断准确率无显著差异，但结构化渐进披露提高 OSCE 总分，沟通、共情和问诊行为改善最稳定，并发布多专家标注数据；关注价值在于区分过程能力与最终诊断，限制是样本量、训练时长、模拟患者与 LLM judge 的外部效度需核验。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="6-ai-economist-agent-an-agentic-framework-for-evidence-based-economic-and-financial-analysis-with-rag-knowledge-graphs-and-large-language-models"><a class="markdownIt-Anchor" href="#6-ai-economist-agent-an-agentic-framework-for-evidence-based-economic-and-financial-analysis-with-rag-knowledge-graphs-and-large-language-models"></a> 6. AI Economist Agent: An Agentic Framework for Evidence-Based Economic and Financial Analysis with RAG, Knowledge Graphs, and Large Language Models</h3>
 <p><strong>作者</strong>：Masahiro Kato<br>
-<strong>来源/分类</strong>：arXiv ·
-econ.GN、cs.AI、cs.LG、q-fin.EC、q-fin.GN · AI 与金融分析<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.20041">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.20041">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是 LLM agent
-如何在有限历史信息下构造经济/金融压力情景，同时避免把流畅叙事当成数量结论；方法是
-RAG、知识图谱、签名的定量模型和预定义验收测试，应用于欧洲宏观金融压力情景与银行资本分析；作者报告系统能把经济机制检索、情景构造、模型执行和报告生成连接到可识别来源与显式计算；关注价值在于把
-agent
-灵活性与模型校验分层，限制是结果依赖资料截点、注册模型和验证阈值，不能直接等于预测或投资能力。<strong>证据状态</strong>：仅依据摘要；金融细节见金融简报的重点关注。</p>
-<h3 id="misedu-rag-a-misconception-aware-dual-hypergraph-rag-for-novice-math-teachers">7.
-MisEdu-RAG: A Misconception-Aware Dual-Hypergraph RAG for Novice Math
-Teachers</h3>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG、<a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a>、<a target="_blank" rel="noopener" href="http://q-fin.GN">q-fin.GN</a> · AI 与金融分析<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.20041">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.20041">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是 LLM agent 如何在有限历史信息下构造经济/金融压力情景，同时避免把流畅叙事当成数量结论；方法是 RAG、知识图谱、签名的定量模型和预定义验收测试，应用于欧洲宏观金融压力情景与银行资本分析；作者报告系统能把经济机制检索、情景构造、模型执行和报告生成连接到可识别来源与显式计算；关注价值在于把 agent 灵活性与模型校验分层，限制是结果依赖资料截点、注册模型和验证阈值，不能直接等于预测或投资能力。<strong>证据状态</strong>：仅依据摘要；金融细节见金融简报的重点关注。</p>
+<h3 id="7-misedu-rag-a-misconception-aware-dual-hypergraph-rag-for-novice-math-teachers"><a class="markdownIt-Anchor" href="#7-misedu-rag-a-misconception-aware-dual-hypergraph-rag-for-novice-math-teachers"></a> 7. MisEdu-RAG: A Misconception-Aware Dual-Hypergraph RAG for Novice Math Teachers</h3>
 <p><strong>作者</strong>：Zhihan Guo、Yuting Lu、Jionghao Lin<br>
-<strong>来源/分类</strong>：arXiv · cs.IR、cs.CL · 教育 RAG<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.04036">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.04036">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/GEMLab-HKU/MisEdu-RAG">代码</a></p>
-<p><strong>中文简介</strong>：研究问题是如何把数学概念知识与学生真实错误连接起来，生成可执行的纠错教学建议；方法是概念
-hypergraph 与错误案例 instance hypergraph 的双层检索，在 MisstepMath
-上评测并用 221 名教师问卷、6 名新教师访谈做应用性试验；作者报告 token-F1
-提升 10.95%，五维回答质量最高提升
-15.3%，并称在高需求误解场景中能给出诊断和教学动作；关注价值在于让教育
-RAG
-面向误解类型而不只是关键词，限制是人工评价、问卷偏好和教学长期效果仍未独立验证。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="an-agentic-evaluation-framework-for-ai-generated-scientific-code-in-petsc">8.
-An Agentic Evaluation Framework for AI-Generated Scientific Code in
-PETSc</h3>
-<p><strong>作者</strong>：Hong Zhang、Barry Smith、Satish Balay、Le
-Chen、Murat Keceli、Lois Curfman McInnes、Junchao Zhang<br>
-<strong>来源/分类</strong>：arXiv · cs.AI · 科学代码与 HPC agent
-评测<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.15976">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.15976">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是科学代码能编译并运行，是否仍可能在求解器选择、API
-习惯、内存管理、并行性和性能上不合格；方法是 PETSCAgent-Bench 的 14
-评估器流水线，结合确定性检查和 LLM
-评价，从正确性、性能、代码质量、算法适配和库约定五维评测，并用 A2A/MCP
-支持黑盒 agent；作者报告前沿模型代码可读但在困难问题的正确性和 PETSc
-特定约定上仍弱；关注价值在于把“能跑”与“像专家一样使用 HPC
-库”分开，限制是摘要未给出完整模型/成本/失败分布。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="rag-safety-bench-reliable-evaluation-of-retrieval-augmented-llm-safety">9.
-RAG-Safety-Bench: Reliable Evaluation of Retrieval-Augmented LLM
-Safety</h3>
-<p><strong>作者</strong>：Adithiyan Rajan Indira Saravanan、Kathleen C.
-Fraser<br>
-<strong>来源/分类</strong>：arXiv · cs.CL、cs.IR · RAG 安全评测<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11758">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11758">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是 RAG
-资料如何改变有害请求下的安全性，以及如何排除 retriever
-质量这一混淆因素；方法是把 non-RAG、含答案的 oracle
-文档、相关但不含答案的文档和随机安全文档四种条件分开，在 5 个开源 LLM
-上评测；作者报告 benign capability 与 unsafe capability
-存在反向关系，基础安全护栏不能保证 RAG 下游安全，甚至 benign
-文档也可能诱发不安全生成；关注价值在于为企业知识库提供分层安全测试，限制是摘要未给出各模型数值、攻击覆盖和污染控制。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="promediconv-benchmarking-proactive-conversational-agents-in-legal-dispute-mediation">10.
-ProMediConv: Benchmarking Proactive Conversational Agents in Legal
-Dispute Mediation</h3>
-<p><strong>作者</strong>：Zesheng Wei、Mengfan Li、Wenhao Liu、Yixin
-Zhang、Zilei Wang、Yang Deng<br>
-<strong>来源/分类</strong>：arXiv · cs.CL · 法律调解对话 agent<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11101">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11101">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/ZsWei66/ProMediConv_repo">代码</a></p>
-<p><strong>中文简介</strong>：研究问题是多方调解中的主动发言、策略切换和当事人行为变化如何被真实评测；方法是基于
-972
-个完整真实案例构建逐话语策略和四类行为状态标注，并提出衡量行为状态变化的
-MAD 指标；作者报告现有模型在动态、多方调解中仍有明显困难，ProMediAgent
-提供针对性基线；关注价值在于把“对话是否有效”从最终文本扩展到逐轮影响，限制是案例分布、法律文化、标注一致性和隐私处理需阅读全文核验。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="defining-ai-agents-a-compendium-of-criteria-metrics-and-benchmarks">11.
-Defining AI Agents: A Compendium of Criteria, Metrics, and
-Benchmarks</h3>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a> · 教育 RAG<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.04036">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.04036">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/GEMLab-HKU/MisEdu-RAG">代码</a></p>
+<p><strong>中文简介</strong>：研究问题是如何把数学概念知识与学生真实错误连接起来，生成可执行的纠错教学建议；方法是概念 hypergraph 与错误案例 instance hypergraph 的双层检索，在 MisstepMath 上评测并用 221 名教师问卷、6 名新教师访谈做应用性试验；作者报告 token-F1 提升 10.95%，五维回答质量最高提升 15.3%，并称在高需求误解场景中能给出诊断和教学动作；关注价值在于让教育 RAG 面向误解类型而不只是关键词，限制是人工评价、问卷偏好和教学长期效果仍未独立验证。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="8-an-agentic-evaluation-framework-for-ai-generated-scientific-code-in-petsc"><a class="markdownIt-Anchor" href="#8-an-agentic-evaluation-framework-for-ai-generated-scientific-code-in-petsc"></a> 8. An Agentic Evaluation Framework for AI-Generated Scientific Code in PETSc</h3>
+<p><strong>作者</strong>：Hong Zhang、Barry Smith、Satish Balay、Le Chen、Murat Keceli、Lois Curfman McInnes、Junchao Zhang<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> · 科学代码与 HPC agent 评测<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.15976">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.15976">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是科学代码能编译并运行，是否仍可能在求解器选择、API 习惯、内存管理、并行性和性能上不合格；方法是 PETSCAgent-Bench 的 14 评估器流水线，结合确定性检查和 LLM 评价，从正确性、性能、代码质量、算法适配和库约定五维评测，并用 A2A/MCP 支持黑盒 agent；作者报告前沿模型代码可读但在困难问题的正确性和 PETSc 特定约定上仍弱；关注价值在于把“能跑”与“像专家一样使用 HPC 库”分开，限制是摘要未给出完整模型/成本/失败分布。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="9-rag-safety-bench-reliable-evaluation-of-retrieval-augmented-llm-safety"><a class="markdownIt-Anchor" href="#9-rag-safety-bench-reliable-evaluation-of-retrieval-augmented-llm-safety"></a> 9. RAG-Safety-Bench: Reliable Evaluation of Retrieval-Augmented LLM Safety</h3>
+<p><strong>作者</strong>：Adithiyan Rajan Indira Saravanan、Kathleen C. Fraser<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a> · RAG 安全评测<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11758">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11758">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是 RAG 资料如何改变有害请求下的安全性，以及如何排除 retriever 质量这一混淆因素；方法是把 non-RAG、含答案的 oracle 文档、相关但不含答案的文档和随机安全文档四种条件分开，在 5 个开源 LLM 上评测；作者报告 benign capability 与 unsafe capability 存在反向关系，基础安全护栏不能保证 RAG 下游安全，甚至 benign 文档也可能诱发不安全生成；关注价值在于为企业知识库提供分层安全测试，限制是摘要未给出各模型数值、攻击覆盖和污染控制。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="10-promediconv-benchmarking-proactive-conversational-agents-in-legal-dispute-mediation"><a class="markdownIt-Anchor" href="#10-promediconv-benchmarking-proactive-conversational-agents-in-legal-dispute-mediation"></a> 10. ProMediConv: Benchmarking Proactive Conversational Agents in Legal Dispute Mediation</h3>
+<p><strong>作者</strong>：Zesheng Wei、Mengfan Li、Wenhao Liu、Yixin Zhang、Zilei Wang、Yang Deng<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a> · 法律调解对话 agent<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11101">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11101">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/ZsWei66/ProMediConv_repo">代码</a></p>
+<p><strong>中文简介</strong>：研究问题是多方调解中的主动发言、策略切换和当事人行为变化如何被真实评测；方法是基于 972 个完整真实案例构建逐话语策略和四类行为状态标注，并提出衡量行为状态变化的 MAD 指标；作者报告现有模型在动态、多方调解中仍有明显困难，ProMediAgent 提供针对性基线；关注价值在于把“对话是否有效”从最终文本扩展到逐轮影响，限制是案例分布、法律文化、标注一致性和隐私处理需阅读全文核验。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="11-defining-ai-agents-a-compendium-of-criteria-metrics-and-benchmarks"><a class="markdownIt-Anchor" href="#11-defining-ai-agents-a-compendium-of-criteria-metrics-and-benchmarks"></a> 11. Defining AI Agents: A Compendium of Criteria, Metrics, and Benchmarks</h3>
 <p><strong>作者</strong>：Mia Lassiter、Brinnae Bent<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.MA · agent
-定义与评测综述<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11018">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11018">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是“agent”缺乏统一定义如何妨碍比较、复现和评测；方法是围绕环境交互、学习适应、自主性、目标导向和时间连贯性五个维度综述指标、benchmark
-与评价框架，并提供公开 Agent
-Compendium；作者报告形成结构化术语和方法资源；关注价值在于让研究者先说明测量的是哪种
-agenticness，限制是综述和资源汇编不构成新的能力实验，维度间重叠和指标有效性仍需实践验证。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="think-before-you-link-rarity-reasoning-and-retrieval-in-multilingual-entity-linking">12.
-Think Before You Link: Rarity, Reasoning, and Retrieval in Multilingual
-Entity Linking</h3>
-<p><strong>作者</strong>：Parinthapat Pengpun、Simran Khanuja、Graham
-Neubig<br>
-<strong>来源/分类</strong>：arXiv · cs.CL · 多语言多模态实体链接<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10745">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10745">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是不同稀有度定义如何暴露实体链接失败，以及检索和推理能否互补；方法是
-Wikidata 结构指标、Wikipedia 动态证据、五语言 MERLIN 与 MERLIN-Rare
-切片；作者报告 SOTA 在稀有实体上下降 15.4%–39.9%，组合系统总体提升
-6.9%、稀有切片最高提升
-23.3%；关注价值在于把长尾错误定位到跨语言检索，限制是主要实验集中在
-Qwen3-VL、retrieval failure 占残余错误
-72%，跨模型族结论有限。<strong>证据状态</strong>：已核阅公开
-PDF，详细分析见“重点关注”。</p>
-<h3 id="target-leakage-not-model-class-explains-reported-accuracy-in-survey-based-cardiovascular-screening-a-leakage-tiered-audit-of-glass-box-and-tabular-foundation-models">13.
-Target leakage, not model class, explains reported accuracy in
-survey-based cardiovascular screening: a leakage-tiered audit of
-glass-box and tabular foundation models</h3>
-<p><strong>作者</strong>：Raad Bin Tareaf、Murad Al-Rajab、Samia
-Loucif、Samer Ellaham、Cedric Schmitz<br>
-<strong>来源/分类</strong>：arXiv · cs.CL ·
-医疗表格模型与数据泄漏审计<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11838">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11838">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是心血管筛查中接近 0.89 的 AUROC
-来自学习能力还是目标泄漏，以及基础模型能否改善部署属性；方法是在 2022
-BRFSS 的 442,067 名受访者上比较 10 类模型、5
-个泄漏层级，并冻结模型/阈值外测 2023 BRFSS 的 430,755
-人，检查校准、公平、conformal
-coverage、解释忠实性和推理成本；作者报告去掉两个诊断后特征后所有模型
-AUROC 下降 0.049–0.051，模型差距压缩到 0.0045，EBM 速度约为最强 tabular
-foundation model 的 104
-倍；关注价值在于把数据协议放在模型类别之前，限制是调查数据、筛查阈值与外部效度不代表临床诊断。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="mr.lhdr-a-benchmark-for-multimodal-real-world-long-horizon-deep-research-agents">14.
-Mr.LHDR: A Benchmark for Multimodal Real-World Long-Horizon Deep
-Research Agents</h3>
-<p><strong>作者</strong>：Minghao Guo、Meng Cao、Sui Zhao、Siyu
-Ning、Xin Wang、Haoze Zhao、Jiaxuan Yang、Haihong Hao、Mingfei
-Han、Shunlin Rong、Haijun Wu、Xiaodan Liang、Xiaojun Chang<br>
-<strong>来源/分类</strong>：arXiv · cs.AI · 多模态长链研究 agent
-评测<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11318">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11318">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是 agent
-能否维持长、相互依赖的研究过程；方法是隐藏 Node-Relation 图、平均 12.1
-个中间结论和 OA/SA/CS/DACS
-四指标，任务包含图片、地图、PDF、表格和视频帧；作者报告最强系统 OA
-43.1%、SA 34.3%，去掉图片使 DACS 下降 12.6
-个百分点；关注价值在于揭示最终答案对完整研究成功的高估，限制是 102
-题、单一框架和 judge/工具失败混淆。<strong>证据状态</strong>：已核阅公开
-PDF，详细分析见“重点关注”。</p>
-<h3 id="sci-mmr-benchmarking-multi-step-evidence-grounded-scientific-reasoning-in-multimodal-agents">15.
-Sci-MMR: Benchmarking Multi-Step Evidence-Grounded Scientific Reasoning
-in Multimodal Agents</h3>
-<p><strong>作者</strong>：Jiaqiang Li、Yajie Yang、Zhiheng Xi、Jiadong
-Chen、Enyu Zhou、Senjie Jin、Yang Nan、Jiazheng Zhang、Han Wang、Yanxin
-Li、Dingwei Zhu、Bicheng Deng、Yuhui Wang、Xiang Zheng、Qi Zhang、Lei
-Bai、Xingjun Ma、Tao Gui<br>
-<strong>来源/分类</strong>：arXiv · cs.AI · 科学证据链与多模态 agent
-评测<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11243">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11243">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是科学 agent
-是否真正找齐并整合支持答案的图表证据；方法是 235
-个多跳任务、论证图、引用知识、视觉区域及 answer/evidence/claim coverage
-三类指标，比较 8 个多模态模型；作者报告答案准确率比完整证据恢复高 20
-个百分点以上，57.2% 的失败来自证据获取、31.8% 来自推理整合，gold
-evidence 最多提升 37.0
-个百分点；关注价值在于把证据链纳入科学评测，限制是任务构造、显式响应评分和
-LLM judge 会影响结果。<strong>证据状态</strong>：已核阅公开
-PDF，详细分析见“重点关注”。</p>
-<h3 id="agentic-share-of-search-a-multi-agent-ai-system-for-competitive-decision-making-in-llm-mediated-e-commerce">16.
-Agentic Share-of-Search: A Multi-Agent AI System for Competitive
-Decision-Making in LLM-Mediated E-Commerce</h3>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.MA">cs.MA</a> · agent 定义与评测综述<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11018">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11018">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是“agent”缺乏统一定义如何妨碍比较、复现和评测；方法是围绕环境交互、学习适应、自主性、目标导向和时间连贯性五个维度综述指标、benchmark 与评价框架，并提供公开 Agent Compendium；作者报告形成结构化术语和方法资源；关注价值在于让研究者先说明测量的是哪种 agenticness，限制是综述和资源汇编不构成新的能力实验，维度间重叠和指标有效性仍需实践验证。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="12-think-before-you-link-rarity-reasoning-and-retrieval-in-multilingual-entity-linking"><a class="markdownIt-Anchor" href="#12-think-before-you-link-rarity-reasoning-and-retrieval-in-multilingual-entity-linking"></a> 12. Think Before You Link: Rarity, Reasoning, and Retrieval in Multilingual Entity Linking</h3>
+<p><strong>作者</strong>：Parinthapat Pengpun、Simran Khanuja、Graham Neubig<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a> · 多语言多模态实体链接<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10745">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10745">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是不同稀有度定义如何暴露实体链接失败，以及检索和推理能否互补；方法是 Wikidata 结构指标、Wikipedia 动态证据、五语言 MERLIN 与 MERLIN-Rare 切片；作者报告 SOTA 在稀有实体上下降 15.4%–39.9%，组合系统总体提升 6.9%、稀有切片最高提升 23.3%；关注价值在于把长尾错误定位到跨语言检索，限制是主要实验集中在 Qwen3-VL、retrieval failure 占残余错误 72%，跨模型族结论有限。<strong>证据状态</strong>：已核阅公开 PDF，详细分析见“重点关注”。</p>
+<h3 id="13-target-leakage-not-model-class-explains-reported-accuracy-in-survey-based-cardiovascular-screening-a-leakage-tiered-audit-of-glass-box-and-tabular-foundation-models"><a class="markdownIt-Anchor" href="#13-target-leakage-not-model-class-explains-reported-accuracy-in-survey-based-cardiovascular-screening-a-leakage-tiered-audit-of-glass-box-and-tabular-foundation-models"></a> 13. Target leakage, not model class, explains reported accuracy in survey-based cardiovascular screening: a leakage-tiered audit of glass-box and tabular foundation models</h3>
+<p><strong>作者</strong>：Raad Bin Tareaf、Murad Al-Rajab、Samia Loucif、Samer Ellaham、Cedric Schmitz<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a> · 医疗表格模型与数据泄漏审计<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11838">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11838">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是心血管筛查中接近 0.89 的 AUROC 来自学习能力还是目标泄漏，以及基础模型能否改善部署属性；方法是在 2022 BRFSS 的 442,067 名受访者上比较 10 类模型、5 个泄漏层级，并冻结模型/阈值外测 2023 BRFSS 的 430,755 人，检查校准、公平、conformal coverage、解释忠实性和推理成本；作者报告去掉两个诊断后特征后所有模型 AUROC 下降 0.049–0.051，模型差距压缩到 0.0045，EBM 速度约为最强 tabular foundation model 的 104 倍；关注价值在于把数据协议放在模型类别之前，限制是调查数据、筛查阈值与外部效度不代表临床诊断。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="14-mrlhdr-a-benchmark-for-multimodal-real-world-long-horizon-deep-research-agents"><a class="markdownIt-Anchor" href="#14-mrlhdr-a-benchmark-for-multimodal-real-world-long-horizon-deep-research-agents"></a> 14. Mr.LHDR: A Benchmark for Multimodal Real-World Long-Horizon Deep Research Agents</h3>
+<p><strong>作者</strong>：Minghao Guo、Meng Cao、Sui Zhao、Siyu Ning、Xin Wang、Haoze Zhao、Jiaxuan Yang、Haihong Hao、Mingfei Han、Shunlin Rong、Haijun Wu、Xiaodan Liang、Xiaojun Chang<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> · 多模态长链研究 agent 评测<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11318">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11318">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是 agent 能否维持长、相互依赖的研究过程；方法是隐藏 Node-Relation 图、平均 12.1 个中间结论和 OA/SA/CS/DACS 四指标，任务包含图片、地图、PDF、表格和视频帧；作者报告最强系统 OA 43.1%、SA 34.3%，去掉图片使 DACS 下降 12.6 个百分点；关注价值在于揭示最终答案对完整研究成功的高估，限制是 102 题、单一框架和 judge/工具失败混淆。<strong>证据状态</strong>：已核阅公开 PDF，详细分析见“重点关注”。</p>
+<h3 id="15-sci-mmr-benchmarking-multi-step-evidence-grounded-scientific-reasoning-in-multimodal-agents"><a class="markdownIt-Anchor" href="#15-sci-mmr-benchmarking-multi-step-evidence-grounded-scientific-reasoning-in-multimodal-agents"></a> 15. Sci-MMR: Benchmarking Multi-Step Evidence-Grounded Scientific Reasoning in Multimodal Agents</h3>
+<p><strong>作者</strong>：Jiaqiang Li、Yajie Yang、Zhiheng Xi、Jiadong Chen、Enyu Zhou、Senjie Jin、Yang Nan、Jiazheng Zhang、Han Wang、Yanxin Li、Dingwei Zhu、Bicheng Deng、Yuhui Wang、Xiang Zheng、Qi Zhang、Lei Bai、Xingjun Ma、Tao Gui<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> · 科学证据链与多模态 agent 评测<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11243">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11243">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是科学 agent 是否真正找齐并整合支持答案的图表证据；方法是 235 个多跳任务、论证图、引用知识、视觉区域及 answer/evidence/claim coverage 三类指标，比较 8 个多模态模型；作者报告答案准确率比完整证据恢复高 20 个百分点以上，57.2% 的失败来自证据获取、31.8% 来自推理整合，gold evidence 最多提升 37.0 个百分点；关注价值在于把证据链纳入科学评测，限制是任务构造、显式响应评分和 LLM judge 会影响结果。<strong>证据状态</strong>：已核阅公开 PDF，详细分析见“重点关注”。</p>
+<h3 id="16-agentic-share-of-search-a-multi-agent-ai-system-for-competitive-decision-making-in-llm-mediated-e-commerce"><a class="markdownIt-Anchor" href="#16-agentic-share-of-search-a-multi-agent-ai-system-for-competitive-decision-making-in-llm-mediated-e-commerce"></a> 16. Agentic Share-of-Search: A Multi-Agent AI System for Competitive Decision-Making in LLM-Mediated E-Commerce</h3>
 <p><strong>作者</strong>：Spandan Ghose Chowdhury<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.IR · LLM 电商可见性与多
-agent 决策<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11190">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11190">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是 AI
-购物助手改变发现入口后，卖家如何测量自身在 LLM
-结果中的可见性并诊断原因；方法是定义 Agentic Share-of-Search，使用查询
-agent 与 ReAct 诊断 agent，并在 100
-次消融试验中测试信号恢复；作者报告总体恢复率 39%（95% CI
-30.0%–48.8%），高相关消融时为 63.9%，相对机会基线约 5.5
-倍；关注价值在于把 LLM
-渠道可见性变成可测决策目标，限制是原型可行性试验、样本量、平台变化和“信号恢复”与真实销售之间的距离。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="but-how-would-ai-agents-run-a-towns-economy">17. But How Would
-AI Agents Run a Town's Economy?</h3>
-<p><strong>作者</strong>：Sajal Regmi、Siddhartha Pudasaini、Chetan
-Phakami Pun<br>
-<strong>来源/分类</strong>：arXiv · cs.MA、cs.ET · 多 agent
-经济仿真<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11108">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11108">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是记忆型 LLM agent
-在更长时间尺度的封闭经济中是否会形成价格、工资和财富传导；方法是把 100
-个 agent 放在基于 Pokhara Lakeside 地理的货币守恒经济里运行最多 26
-周，91 次有效运行、244 万次决策和 215 亿
-tokens，并做需求冲击、现金转移和记忆/模型消融；作者报告 12
-倍旅游需求使企业收入增至 4.62 倍但工资约 1.03 倍、菜单仅 0.3%
-重定价，现金转移 311 个 pulse 后 96.7%
-仍被持有；关注价值在于暴露长期仿真与短期 agent-society
-研究的差别，限制是封闭规则、模型选择、仿真货币与现实经济外部效度。<strong>证据状态</strong>：仅依据摘要。</p>
-<h3 id="the-agent-incident-registry-toward-preventing-repeated-ai-agent-failures">18.
-The Agent Incident Registry: Toward Preventing Repeated AI Agent
-Failures</h3>
-<p><strong>作者</strong>：Divyanshu Kumar、Rohith HN、Nitin Aravind
-Birur、Sahil Agarwal、Prashanth Harshangi<br>
-<strong>来源/分类</strong>：arXiv · cs.AI · agent
-事故与安全事件登记<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11030">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11030">PDF</a></p>
-<p><strong>中文简介</strong>：研究问题是一般事故库为何难以比较 agent
-失效机制，以及如何将公开事件按因果角色、披露类别、机制和结果做可追溯登记；方法是构建带来源链接、稳定
-ID 和缺失感知标签的 Agent Incident
-Registry，并由第二位人工复核者检查记录；作者报告把登记库定位为案例检索和评测范围审计，而不是失败率或控制效果估计；关注价值在于避免把研究演示、责任披露和真实伤害混成一个分母。摘要中的部分数量使用未解析的占位符（如
-<code>\N&#123;&#125;</code>、<code>\Yfirst</code>），因此不能据此写出事件比例；<strong>证据状态</strong>：仅依据摘要。</p>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a> · LLM 电商可见性与多 agent 决策<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11190">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11190">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是 AI 购物助手改变发现入口后，卖家如何测量自身在 LLM 结果中的可见性并诊断原因；方法是定义 Agentic Share-of-Search，使用查询 agent 与 ReAct 诊断 agent，并在 100 次消融试验中测试信号恢复；作者报告总体恢复率 39%（95% CI 30.0%–48.8%），高相关消融时为 63.9%，相对机会基线约 5.5 倍；关注价值在于把 LLM 渠道可见性变成可测决策目标，限制是原型可行性试验、样本量、平台变化和“信号恢复”与真实销售之间的距离。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="17-but-how-would-ai-agents-run-a-towns-economy"><a class="markdownIt-Anchor" href="#17-but-how-would-ai-agents-run-a-towns-economy"></a> 17. But How Would AI Agents Run a Town’s Economy?</h3>
+<p><strong>作者</strong>：Sajal Regmi、Siddhartha Pudasaini、Chetan Phakami Pun<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.MA">cs.MA</a>、<a target="_blank" rel="noopener" href="http://cs.ET">cs.ET</a> · 多 agent 经济仿真<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11108">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11108">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是记忆型 LLM agent 在更长时间尺度的封闭经济中是否会形成价格、工资和财富传导；方法是把 100 个 agent 放在基于 Pokhara Lakeside 地理的货币守恒经济里运行最多 26 周，91 次有效运行、244 万次决策和 215 亿 tokens，并做需求冲击、现金转移和记忆/模型消融；作者报告 12 倍旅游需求使企业收入增至 4.62 倍但工资约 1.03 倍、菜单仅 0.3% 重定价，现金转移 311 个 pulse 后 96.7% 仍被持有；关注价值在于暴露长期仿真与短期 agent-society 研究的差别，限制是封闭规则、模型选择、仿真货币与现实经济外部效度。<strong>证据状态</strong>：仅依据摘要。</p>
+<h3 id="18-the-agent-incident-registry-toward-preventing-repeated-ai-agent-failures"><a class="markdownIt-Anchor" href="#18-the-agent-incident-registry-toward-preventing-repeated-ai-agent-failures"></a> 18. The Agent Incident Registry: Toward Preventing Repeated AI Agent Failures</h3>
+<p><strong>作者</strong>：Divyanshu Kumar、Rohith HN、Nitin Aravind Birur、Sahil Agarwal、Prashanth Harshangi<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a> · agent 事故与安全事件登记<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.11030">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.11030">PDF</a></p>
+<p><strong>中文简介</strong>：研究问题是一般事故库为何难以比较 agent 失效机制，以及如何将公开事件按因果角色、披露类别、机制和结果做可追溯登记；方法是构建带来源链接、稳定 ID 和缺失感知标签的 Agent Incident Registry，并由第二位人工复核者检查记录；作者报告把登记库定位为案例检索和评测范围审计，而不是失败率或控制效果估计；关注价值在于避免把研究演示、责任披露和真实伤害混成一个分母。摘要中的部分数量使用未解析的占位符（如 <code>\N&#123;&#125;</code>、<code>\Yfirst</code>），因此不能据此写出事件比例；<strong>证据状态</strong>：仅依据摘要。</p>
 
                 
               </div>
@@ -895,9 +584,9 @@ Registry，并由第二位人工复核者检查记录；作者报告把登记库
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/09/13/daily-briefing-2026-09-13/" title="每日信息简报｜2026 年 09 月 13 日">
+                      <a href="/2026/09/13/daily-github-trending-2026-09-13/" title="2026-09-13 GitHub 热榜简报：Agent 开始进入真实世界">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">每日信息简报｜2026 年 09 月 13 日</span>
+                        <span class="hidden-mobile">2026-09-13 GitHub 热榜简报：Agent 开始进入真实世界</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
