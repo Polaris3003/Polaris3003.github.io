@@ -1,0 +1,845 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="GITHUB TRENDING · 2026.09.16   今天的 all-languages 日榜 返回 14 个卡片，其中 4 个是 Sponsor；剔除赞助位后有 10 个技术仓库候选，本期全部收录。共同信号不是“又一个聊天壳”，而是 Agent 正在获得可追踪的工程边界：审查需要确定性定位，研究需要实验谱系，协作需要会话级 checkpoint，模型和音频工作流则更愿意在本地承担算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-09-16 GitHub 热榜简报：Agent 进入可追踪工作流，模型与工具回到本地">
+<meta property="og:url" content="https://www.polarishaw.top/2026/09/16/daily-github-trending-2026-09-16/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="GITHUB TRENDING · 2026.09.16   今天的 all-languages 日榜 返回 14 个卡片，其中 4 个是 Sponsor；剔除赞助位后有 10 个技术仓库候选，本期全部收录。共同信号不是“又一个聊天壳”，而是 Agent 正在获得可追踪的工程边界：审查需要确定性定位，研究需要实验谱系，协作需要会话级 checkpoint，模型和音频工作流则更愿意在本地承担算">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-02/pixiv-rank-008-147630033.jpg">
+<meta property="article:published_time" content="2026-09-16T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-16T02:11:32.547Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="开发工具">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="本地优先">
+<meta property="article:tag" content="逆向工程">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-02/pixiv-rank-008-147630033.jpg">
+  
+  
+  
+  <title>2026-09-16 GitHub 热榜简报：Agent 进入可追踪工作流，模型与工具回到本地 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
+<link rel="stylesheet" href="/css/dailyBriefing.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-011-147051939.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2026-09-16 GitHub 热榜简报：Agent 进入可追踪工作流，模型与工具回到本地"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-09-16 09:00" pubdate>
+          2026年9月16日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2026-09-16 GitHub 热榜简报：Agent 进入可追踪工作流，模型与工具回到本地</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="briefing-masthead">
+  <p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.09.16</p>
+  <p>今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">all-languages 日榜</a> 返回 14 个卡片，其中 4 个是 Sponsor；剔除赞助位后有 10 个技术仓库候选，本期全部收录。共同信号不是“又一个聊天壳”，而是 Agent 正在获得可追踪的工程边界：审查需要确定性定位，研究需要实验谱系，协作需要会话级 checkpoint，模型和音频工作流则更愿意在本地承担算力与数据。日增和总 stars 只是注意力快照，不是质量、维护性或安全性的证明。</p>
+  <div class="briefing-masthead__topics"><span>可追踪 Agent</span><span>本地推理</span><span>研究自动化</span><span>反向工程</span><span>端侧工作流</span></div>
+</div>
+<span id="more"></span>
+<h2 id="今日要点"><a class="markdownIt-Anchor" href="#今日要点"></a> 今日要点</h2>
+<p>这批项目把 Agent 从“会调用工具”推进到“能留下可复核记录”：<a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review">Open Code Review</a> 把文件选择、规则匹配和行级定位交给确定性模块，<a target="_blank" rel="noopener" href="https://github.com/alphaXiv/OpenResearch">OpenResearch</a> 用 git-native 实验树保存研究谱系，<a target="_blank" rel="noopener" href="https://github.com/pacifio/atlas">Atlas</a> 把会话、提示词和工具调用挂回 commit，<a target="_blank" rel="noopener" href="https://github.com/earendil-works/pi">Pi</a> 则把多提供商模型 API、Agent runtime 与 coding CLI 组合成可扩展 harness。值得学习的不是“Agent 更像人”，而是失败、上下文和变更是否能被重新定位。</p>
+<p>本地优先仍是另一条清晰主线：<a target="_blank" rel="noopener" href="https://github.com/JustVugg/colibri">colibri</a> 把 VRAM、RAM 与存储组织成推理层级，<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio">VoiceStudio</a> 把克隆、配音和转写留在用户设备，<a target="_blank" rel="noopener" href="https://github.com/melgarafael/DeskcommCRM">DeskcommCRM</a> 则把 WhatsApp 销售、RAG 和 CRM 运营放进自托管服务器。它们同时提醒了真实代价：模型权重、硬件、密钥、备份、平台账号与更新责任不会因为“开源”自动消失。</p>
+<p>最后两项把“理解系统”拉回底层：<a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra">Ghidra</a> 继续提供跨平台反汇编、反编译和脚本化分析，<a target="_blank" rel="noopener" href="https://github.com/MG1937/ASC">Droid ASC</a> 尝试把 APK 当作只读数据库按需查询；<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills">Agent Skills</a> 则把规格、测试、审查和发布组织为可安装的工作流。三者适合学习不同层次的“约束”：二进制结构、分析算法，以及人机协作流程。</p>
+<h2 id="值得尝试"><a class="markdownIt-Anchor" href="#值得尝试"></a> 值得尝试</h2>
+<h3 id="a-hrefhttpsgithubcomalibabaopen-code-reviewalibabaopen-code-reviewa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomalibabaopen-code-reviewalibabaopen-code-reviewa"></a> <a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review">alibaba/open-code-review</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review#readme">Open Code Review</a> 是 AI 代码审查 CLI，读取 diff 或完整文件，让 Agent 生成带行级定位的结构化评论，同时用确定性流水线处理文件选择、规则匹配、分组和定位。它适合研究怎样把通用模型约束成可接入 CI 的审查流程；限制是 README 中的 benchmark 属于项目方自述，而且项目明确承认以 precision 换 recall，仍需用自己的代码库验证漏报率。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示日增 2,756、总 stars 28,748；<a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review">仓库页</a>显示主要语言 Go、许可证 Apache-2.0，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review/commit/71ed3a288df6435f240b7194f19041b4fcc4ab7d">71ed3a2（2026-09-16 UTC）</a>。</p>
+<h3 id="a-hrefhttpsgithubcomjustvuggcolibrijustvuggcolibria"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomjustvuggcolibrijustvuggcolibria"></a> <a target="_blank" rel="noopener" href="https://github.com/JustVugg/colibri">JustVugg/colibri</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/JustVugg/colibri#readme">colibri</a> 是纯 C、零推理引擎依赖的 MoE 推理项目，把 VRAM、RAM 与存储视为一套多级推理层，README 列出从 744B 到 2.8T 参数的模型家族。它适合研究专家流式加载、缓存预取、调度和 CPU/GPU 协同；限制是项目明确没有速度 SLA，性能取决于硬件、模型、缓存状态与工作负载，模型权重许可也要与引擎许可证分开确认。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示日增 2,026、总 stars 33,913；<a target="_blank" rel="noopener" href="https://github.com/JustVugg/colibri">仓库页</a>显示主要语言 C、许可证 Apache-2.0，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/JustVugg/colibri/commit/a8f2ca623ffe9de9df11d56f34d11d2d501493d3">a8f2ca6（2026-09-15 UTC）</a>。</p>
+<h3 id="a-hrefhttpsgithubcomdebpalashvoicestudiodebpalashvoicestudioa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomdebpalashvoicestudiodebpalashvoicestudioa"></a> <a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio">debpalash/VoiceStudio</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio#readme">VoiceStudio</a> 是本地语音工作台，覆盖声音克隆与设计、视频配音、听写、转写、故事和有声书，README 列出 16 个 TTS 引擎、11 个 ASR 引擎和 646 语言目录。它适合隐私敏感的音频处理、批量内容制作和本地模型路由研究；限制是项目标注为 Active beta，语言覆盖、音质、速度和显存会随引擎与硬件变化，下载的模型还要遵守各自上游条款。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示日增 2,072、总 stars 31,059；<a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio">仓库页</a>显示主要语言 Python、许可证 AGPL-3.0，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio/commit/4e55180f700e2ce1b39195ec7377b9b3da8e20b2">4e55180（2026-09-14 UTC）</a>。</p>
+<h3 id="a-hrefhttpsgithubcommelgarafaeldeskcommcrmmelgarafaeldeskcommcrma"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcommelgarafaeldeskcommcrmmelgarafaeldeskcommcrma"></a> <a target="_blank" rel="noopener" href="https://github.com/melgarafael/DeskcommCRM">melgarafael/DeskcommCRM</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/melgarafael/DeskcommCRM#readme">DeskcommCRM</a> 是面向 WhatsApp 销售的自托管 CRM，组合多租户 RAG、AI Agent、MCP、漏斗、自动化、RBAC 和审计日志，并提供 Docker/VPS 的安装、更新、回滚与备份脚本。它适合研究“Agent 直接操作业务系统”时的租户隔离、人工交接和运维闭环；限制是仍依赖 VPS、Docker、Supabase、模型提供商与 WhatsApp 通道，README 还提醒 Supabase 免费计划不会自动备份，文中的 HostGator 合作链接也不应当被当作技术质量证明。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示日增 193、总 stars 2,865；<a target="_blank" rel="noopener" href="https://github.com/melgarafael/DeskcommCRM">仓库页</a>显示主要语言 TypeScript、许可证 MIT，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/melgarafael/DeskcommCRM/commit/7128f331b04cd5a6addaa7f5825d7919ff769932">7128f33（2026-09-16 UTC）</a>。</p>
+<h3 id="a-hrefhttpsgithubcomalphaxivopenresearchalphaxivopenresearcha"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomalphaxivopenresearchalphaxivopenresearcha"></a> <a target="_blank" rel="noopener" href="https://github.com/alphaXiv/OpenResearch">alphaXiv/OpenResearch</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/alphaXiv/OpenResearch#readme">OpenResearch</a> 是 local-first 的研究 Agent 工作区，能用独立 git worktree 并行探索方向，把实验变体、日志、diff、结果和产物绑定到提交谱系，并支持本地模型和多种 coding agent。它适合研究自动化实验的可复现性与证据链；限制是 Windows 仍标为 beta，远程服务只绑定 loopback 且没有应用层认证，同一主机上的其他用户可能访问，官方 release 还默认发送可退出的粗粒度使用事件。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示日增 531、总 stars 3,407；<a target="_blank" rel="noopener" href="https://github.com/alphaXiv/OpenResearch">仓库页</a>显示主要语言 Rust、许可证 MIT，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/alphaXiv/OpenResearch/commit/c5f2c02cca63f2847e7dd33aa2fc776af0a375cf">c5f2c02（2026-09-16 UTC）</a>。</p>
+<h3 id="a-hrefhttpsgithubcomnationalsecurityagencyghidranationalsecurityagencyghidraa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomnationalsecurityagencyghidranationalsecurityagencyghidraa"></a> <a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra">NationalSecurityAgency/ghidra</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra#readme">Ghidra</a> 是 NSA Research Directorate 维护的跨平台软件逆向工程框架，覆盖反汇编、反编译、图分析、脚本和扩展开发，既能交互使用也能自动化运行。它适合系统学习二进制分析、恶意代码研究和 Java/Python 扩展；限制是官方 README 对某些版本的已知安全漏洞给出明确警告，安装当前开发版还需要 JDK 25、Gradle 和本地编译工具，不能把最新版源码直接当稳定发行版。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示日增 725、总 stars 76,751；<a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra">仓库页</a>显示主要语言 Java、许可证 Apache-2.0，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra/commit/263160cf57db21a9e25f1e0a8bc42fde5b8824eb">263160c（2026-09-15 UTC）</a>。</p>
+<h3 id="a-hrefhttpsgithubcompacifioatlaspacifioatlasa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcompacifioatlaspacifioatlasa"></a> <a target="_blank" rel="noopener" href="https://github.com/pacifio/atlas">pacifio/atlas</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/pacifio/atlas#readme">Atlas</a> 把自己定位为 coding agent 的 source control：每次 Agent 会话可以把提示词、工具调用、文件变更和最终 commit 关联为 checkpoint，并让 Claude Code、Codex 等 Agent 共享本地记忆。它适合研究 Agent 协作中的上下文交接、可追溯变更和会话级审计；限制是 macOS 才是支持平台，Linux/Windows 虽可从同一 Tauri 代码构建但尚未测试，匿名粗粒度使用分析默认开启。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示日增 91、总 stars 4,649；<a target="_blank" rel="noopener" href="https://github.com/pacifio/atlas">仓库页</a>显示主要语言 Rust、许可证 MIT，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/pacifio/atlas/commit/81e6384c7cc962ab6ddde278f76f843b6370f1b3">81e6384（2026-09-13 UTC）</a>。</p>
+<h3 id="a-hrefhttpsgithubcommg1937ascmg1937asca"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcommg1937ascmg1937asca"></a> <a target="_blank" rel="noopener" href="https://github.com/MG1937/ASC">MG1937/ASC</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/MG1937/ASC#readme">Droid ASC</a> 针对大型 Android APK，尝试直接探测 Deflate 位流、按需提取 DEX 与方法依赖，把编译产物当作只读数据库来做跨 DEX 搜索和局部反编译，而不是先完整膨胀并建立重量级索引。它适合学习压缩格式、R8 布局、常数时间定位和“只重建需要的代码”这类底层工程；限制是 README 的 352MB APK 基准属于项目方单案例数据，真实 APK 兼容性、反编译正确性与速度仍应独立复测。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示日增 129、总 stars 1,203；<a target="_blank" rel="noopener" href="https://github.com/MG1937/ASC">仓库页</a>显示主要语言 Python、许可证 Apache-2.0，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/MG1937/ASC/commit/ff1df854bb9db63066364bbb0d16484fcc72fb75">ff1df85（2026-09-15 UTC）</a>。</p>
+<h3 id="a-hrefhttpsgithubcomaddyosmaniagent-skillsaddyosmaniagent-skillsa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomaddyosmaniagent-skillsaddyosmaniagent-skillsa"></a> <a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills">addyosmani/agent-skills</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills#readme">Agent Skills</a> 把规格、规划、构建、测试、审查和发布组织为 9 个命令、25 个可复用技能，并提供面向多个 Agent 宿主的安装适配。它适合把团队工程习惯变成可执行的质量门，而不是把“请写测试”留在提示词里；限制是单独安装某个技能时不会带上仓库级 <code>references/</code>，README 已把这列为已知可移植性缺口，而且 Markdown 工作流不能替代对脚本、钩子和宿主权限的逐项审查。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示日增 307、总 stars 94,838；<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills">仓库页</a>显示主要语言 JavaScript、许可证 MIT，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills/commit/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39">be4e44a（2026-09-12 UTC）</a>。</p>
+<h3 id="a-hrefhttpsgithubcomearendil-workspiearendil-workspia"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomearendil-workspiearendil-workspia"></a> <a target="_blank" rel="noopener" href="https://github.com/earendil-works/pi">earendil-works/pi</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/earendil-works/pi#readme">Pi Agent Harness</a> 把统一多提供商 LLM API、带工具调用和状态管理的 Agent runtime、交互式 coding agent CLI 与终端 UI 放进同一 monorepo，并强调可扩展和供应链检查。它适合研究 Agent harness 的分层、模型提供商适配、会话状态与可发布 CLI；限制是项目明确没有内置的文件系统、进程、网络或凭据权限系统，实际使用需要自行容器化或放进策略控制的 sandbox。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示日增 458、总 stars 105,760；<a target="_blank" rel="noopener" href="https://github.com/earendil-works/pi">仓库页</a>显示主要语言 TypeScript、许可证 MIT，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/earendil-works/pi/commit/60e7e76bd7ea25cad1dd6f3f1ce0d18814a42759">60e7e76（2026-09-15 UTC）</a>。</p>
+<h2 id="快速浏览"><a class="markdownIt-Anchor" href="#快速浏览"></a> 快速浏览</h2>
+<div class="briefing-quick-list">
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review"><span class="briefing-quick-item__source">确定性审查</span><span class="briefing-quick-item__body"><strong>alibaba/open-code-review</strong><small>用确定性流水线约束 Agent 的行级代码审查。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/JustVugg/colibri"><span class="briefing-quick-item__source">MoE 推理</span><span class="briefing-quick-item__body"><strong>JustVugg/colibri</strong><small>用 VRAM、RAM 与存储分层运行超大 MoE。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/debpalash/VoiceStudio"><span class="briefing-quick-item__source">本地语音</span><span class="briefing-quick-item__body"><strong>debpalash/VoiceStudio</strong><small>在本机完成克隆、配音、转写和长音频制作。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/melgarafael/DeskcommCRM"><span class="briefing-quick-item__source">销售 Agent</span><span class="briefing-quick-item__body"><strong>melgarafael/DeskcommCRM</strong><small>把 WhatsApp 销售、RAG 与 CRM 运营放进自托管服务器。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/alphaXiv/OpenResearch"><span class="briefing-quick-item__source">研究自动化</span><span class="briefing-quick-item__body"><strong>alphaXiv/OpenResearch</strong><small>用实验谱系和本地工作区组织研究 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra"><span class="briefing-quick-item__source">逆向工程</span><span class="briefing-quick-item__body"><strong>NationalSecurityAgency/ghidra</strong><small>跨平台完成反汇编、反编译、图分析与脚本化研究。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/pacifio/atlas"><span class="briefing-quick-item__source">Agent 版本控制</span><span class="briefing-quick-item__body"><strong>pacifio/atlas</strong><small>把会话、工具调用和 commit 关联为可追踪 checkpoint。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/MG1937/ASC"><span class="briefing-quick-item__source">APK 分析</span><span class="briefing-quick-item__body"><strong>MG1937/ASC</strong><small>把 APK 当只读数据库，按需搜索和局部反编译。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills"><span class="briefing-quick-item__source">工程工作流</span><span class="briefing-quick-item__body"><strong>addyosmani/agent-skills</strong><small>把规格、测试、审查与发布变成可安装技能包。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/earendil-works/pi"><span class="briefing-quick-item__source">Agent Harness</span><span class="briefing-quick-item__body"><strong>earendil-works/pi</strong><small>组合多提供商 API、Agent runtime 与 coding CLI。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+</div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/GitHub-%E7%83%AD%E6%A6%9C/" class="category-chain-item">GitHub 热榜</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/tags/GitHub/" class="print-no-link">#GitHub</a>
+      
+        <a href="/tags/%E5%BC%80%E6%BA%90/" class="print-no-link">#开源</a>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="print-no-link">#开发工具</a>
+      
+        <a href="/tags/Agent/" class="print-no-link">#Agent</a>
+      
+        <a href="/tags/%E6%9C%AC%E5%9C%B0%E4%BC%98%E5%85%88/" class="print-no-link">#本地优先</a>
+      
+        <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" class="print-no-link">#逆向工程</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2026-09-16 GitHub 热榜简报：Agent 进入可追踪工作流，模型与工具回到本地</div>
+      <div>https://www.polarishaw.top/2026/09/16/daily-github-trending-2026-09-16/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年9月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/09/16/daily-briefing-2026-09-16/" title="每日信息简报｜2026 年 09 月 16 日">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">每日信息简报｜2026 年 09 月 16 日</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/09/15/daily-finance-papers-2026-09-15/" title="每日金融论文简报｜2026 年 9 月 15 日">
+                        <span class="hidden-mobile">每日金融论文简报｜2026 年 9 月 15 日</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
