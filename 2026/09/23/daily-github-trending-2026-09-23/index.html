@@ -1,0 +1,841 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="GITHUB TRENDING · 2026.09.23   截至采集时，GitHub all-languages 日榜呈现 8 个条目，主线已经从“让模型调用工具”延伸到“让长时间运行的 Agent 有隔离、有状态、有工作区”：Agent Substrate负责运行时，AX负责声明式编排，Univer把办公文档变成可嵌入的产品能力。其余项目分别把金融工作流、工具路由、移动取证和视频剪辑做成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-09-23 GitHub 热榜简报：Agent 基础设施、办公运行时与工具编排">
+<meta property="og:url" content="https://www.polarishaw.top/2026/09/23/daily-github-trending-2026-09-23/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="GITHUB TRENDING · 2026.09.23   截至采集时，GitHub all-languages 日榜呈现 8 个条目，主线已经从“让模型调用工具”延伸到“让长时间运行的 Agent 有隔离、有状态、有工作区”：Agent Substrate负责运行时，AX负责声明式编排，Univer把办公文档变成可嵌入的产品能力。其余项目分别把金融工作流、工具路由、移动取证和视频剪辑做成">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-02/pixiv-rank-002-147711670.jpg">
+<meta property="article:published_time" content="2026-09-23T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-23T02:23:35.525Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="开发工具">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="基础设施">
+<meta property="article:tag" content="自托管">
+<meta property="article:tag" content="数字安全">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-02/pixiv-rank-002-147711670.jpg">
+  
+  
+  
+  <title>2026-09-23 GitHub 热榜简报：Agent 基础设施、办公运行时与工具编排 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
+<link rel="stylesheet" href="/css/dailyBriefing.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/covers/pixiv-weekly/2026-07-19/pixiv-rank-006-147092236.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2026-09-23 GitHub 热榜简报：Agent 基础设施、办公运行时与工具编排"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-09-23 09:00" pubdate>
+          2026年9月23日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2026-09-23 GitHub 热榜简报：Agent 基础设施、办公运行时与工具编排</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="briefing-masthead">
+  <p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.09.23</p>
+  <p>截至采集时，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub all-languages 日榜</a>呈现 8 个条目，主线已经从“让模型调用工具”延伸到“让长时间运行的 Agent 有隔离、有状态、有工作区”：<a target="_blank" rel="noopener" href="https://github.com/agent-substrate/substrate">Agent Substrate</a>负责运行时，<a target="_blank" rel="noopener" href="https://github.com/google/ax">AX</a>负责声明式编排，<a target="_blank" rel="noopener" href="https://github.com/dream-num/univer">Univer</a>把办公文档变成可嵌入的产品能力。其余项目分别把金融工作流、工具路由、移动取证和视频剪辑做成可研究的工程样本；日增和总 stars 只是注意力快照，不是质量、维护性或安全性的证明。</p>
+  <div class="briefing-masthead__topics"><span>Agent 运行时</span><span>Kubernetes 编排</span><span>办公 SDK</span><span>工具路由</span><span>数字取证</span><span>视频流水线</span></div>
+</div>
+<span id="more"></span>
+<h2 id="今日要点"><a class="markdownIt-Anchor" href="#今日要点"></a> 今日要点</h2>
+<p>今天最值得观察的不是某个 Agent 的回答能力，而是它开始被当成一种需要调度和治理的工作负载：<a target="_blank" rel="noopener" href="https://github.com/agent-substrate/substrate#readme">Substrate 的 README</a>把 actor 的暂停、恢复、状态持久化与 worker 复用放在运行时层，<a target="_blank" rel="noopener" href="https://github.com/google/ax#readme">AX 的 README</a>再用 Task、Workspace、Gateway、Model 四类声明式资源把隔离、代码、网络和模型接起来。二者仍处于早期阶段，但它们把“Agent 工程”的学习重点从 prompt 技巧拉回到生命周期、凭据、网络出口和成本控制。</p>
+<p>另一条线是生产力表面和工具边界：<a target="_blank" rel="noopener" href="https://github.com/dream-num/univer#readme">Univer</a>尝试用统一 Facade API、插件架构和 Node.js 无头运行时承载表格、文档与演示文稿；<a target="_blank" rel="noopener" href="https://github.com/superdesigndev/treg#readme">Treg</a>则把外部 API、CLI 和技能放进带凭据注入的工具注册表。<a target="_blank" rel="noopener" href="https://github.com/mvt-project/mvt#readme">MVT</a>和<a target="_blank" rel="noopener" href="https://github.com/browser-use/video-use#readme">video-use</a>提醒我们，真正可用的自动化必须把证据、输入、失败模式和人工确认写进流程，而不是只展示一段演示。</p>
+<h2 id="值得尝试"><a class="markdownIt-Anchor" href="#值得尝试"></a> 值得尝试</h2>
+<h3 id="a-hrefhttpsgithubcomagent-substratesubstrateagent-substratesubstratea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomagent-substratesubstrateagent-substratesubstratea"></a> <a target="_blank" rel="noopener" href="https://github.com/agent-substrate/substrate">agent-substrate/substrate</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/agent-substrate/substrate#readme">Agent Substrate</a>是一个面向 Agent 工作负载的 Go 运行时：它把大量有状态 actor 映射到较少的 worker，并提供创建、销毁、暂停、恢复、状态持久化和流量路由等生命周期能力，底层依托 Kubernetes，支持 microVM 与 gVisor 等沙箱技术。它适合平台工程师和做 Agent 基础设施的人研究“隔离、唤醒和状态如何成为一等资源”；限制是仓库明确处于 early development、尚未准备好生产使用且 API 几乎肯定会变化，许可证为<a target="_blank" rel="noopener" href="https://github.com/agent-substrate/substrate/blob/main/LICENSE">Apache License 2.0</a>。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>显示新增 245 stars，<a target="_blank" rel="noopener" href="https://github.com/agent-substrate/substrate">仓库页</a>显示主要语言 Go、总 stars 3,007，最近提交为<a target="_blank" rel="noopener" href="https://github.com/agent-substrate/substrate/commit/d277088bc1d081ef716d81dd7986d05d0a36ad3a">d277088b（2026-09-22 UTC）</a>，最新 Release 为<a target="_blank" rel="noopener" href="https://github.com/agent-substrate/substrate/releases/tag/v0.1.0">v0.1.0</a>。</p>
+<h3 id="a-hrefhttpsgithubcomgoogleaxgoogleaxa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomgoogleaxgoogleaxa"></a> <a target="_blank" rel="noopener" href="https://github.com/google/ax">google/ax</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/google/ax#readme">AX</a>是 Google 的 Go 编写声明式 Agent 编排运行时，用 Task、Workspace、Gateway 和 Model 清单描述代码仓库、MCP/技能、网络允许列表、模型凭据与沙箱任务，并提供类似 kubectl 的 apply、watch、ssh、suspend 和 resume 命令。它适合熟悉 Kubernetes、希望研究 Agent 长任务治理和可审计操作面的工程师；限制是 README 明确警告核心概念和协议仍在调整、稳定版前可能发生重大 breaking change，部署还需要 Kubernetes、Redis、镜像仓库和 Agent Substrate，许可证为<a target="_blank" rel="noopener" href="https://github.com/google/ax/blob/main/LICENSE">Apache License 2.0</a>。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>显示新增 2,305 stars，<a target="_blank" rel="noopener" href="https://github.com/google/ax">仓库页</a>显示主要语言 Go、总 stars 7,699，最近提交为<a target="_blank" rel="noopener" href="https://github.com/google/ax/commit/d8ed0fe38bceb7842d3c47817d53d16ccdfcb601">d8ed0fe（2026-09-20 UTC）</a>，最新 Release 为<a target="_blank" rel="noopener" href="https://github.com/google/ax/releases/tag/v0.3.0">v0.3.0</a>。</p>
+<h3 id="a-hrefhttpsgithubcomdream-numuniverdream-numunivera"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomdream-numuniverdream-numunivera"></a> <a target="_blank" rel="noopener" href="https://github.com/dream-num/univer">dream-num/univer</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/dream-num/univer#readme">Univer</a>是一个可嵌入产品的 TypeScript Office SDK，覆盖表格、文档、演示文稿、画板和 Base，核心提供插件架构、Canvas 渲染、公式引擎、统一 Facade API，以及浏览器和 Node.js 无头运行路径。它适合做内部办公、BI、知识工作台或 Agent 共同编辑产品的人学习大型文档表面的模块化设计；限制是 PDF 仍标为 coming soon，实时协作、共享修订和 Worktree 流程依赖对应 Web SDK，功能可用性和许可证范围需要按具体包核对，仓库许可证为<a target="_blank" rel="noopener" href="https://github.com/dream-num/univer/blob/dev/LICENSE">Apache License 2.0</a>。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>显示新增 255 stars，<a target="_blank" rel="noopener" href="https://github.com/dream-num/univer">仓库页</a>显示主要语言 TypeScript、总 stars 15,511，最近提交为<a target="_blank" rel="noopener" href="https://github.com/dream-num/univer/commit/d31d624165d0b544f60cbdeea5aa9bb9e89637f1">d31d624（2026-09-22 UTC）</a>，最新 Release 为<a target="_blank" rel="noopener" href="https://github.com/dream-num/univer/releases/tag/v0.25.2">v0.25.2</a>。</p>
+<h3 id="a-hrefhttpsgithubcomanthropicsfinancial-servicesanthropicsfinancial-servicesa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomanthropicsfinancial-servicesanthropicsfinancial-servicesa"></a> <a target="_blank" rel="noopener" href="https://github.com/anthropics/financial-services">anthropics/financial-services</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/anthropics/financial-services#readme">Claude for Financial Services</a>是面向投行、股票研究、私募和财富管理流程的参考实现，仓库同时提供可安装的 Cowork 插件、技能、数据连接器和 Managed Agents cookbooks，覆盖 pitch、研究、收益回顾、估值审核、对账和 KYC 等工作流。它适合有专业复核能力的人研究“文件式 Agent 组件如何组合成受控流程”；限制是 README 明确声明它不提供投资、法律、税务或会计建议，不做交易执行或风险批准，外部数据连接器还可能需要订阅与凭据，许可证为<a target="_blank" rel="noopener" href="https://github.com/anthropics/financial-services/blob/main/LICENSE">Apache License 2.0</a>。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>显示新增 438 stars，<a target="_blank" rel="noopener" href="https://github.com/anthropics/financial-services">仓库页</a>显示主要语言 Python、总 stars 36,390，最近提交为<a target="_blank" rel="noopener" href="https://github.com/anthropics/financial-services/commit/574ed3624aebd0418c7e96cd101262f30210ab26">574ed362（2026-09-21 UTC）</a>；当前未读取到可用 Release。</p>
+<h3 id="a-hrefhttpsgithubcomdavila7claude-code-templatesdavila7claude-code-templatesa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomdavila7claude-code-templatesdavila7claude-code-templatesa"></a> <a target="_blank" rel="noopener" href="https://github.com/davila7/claude-code-templates">davila7/claude-code-templates</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/davila7/claude-code-templates#readme">Claude Code Templates</a>提供一个 CLI，把 Agent、命令、MCP、设置、Hook 和技能组件安装到 Claude Code，并额外提供会话分析、聊天监控、健康检查和插件面板。它值得关注的部分是“配置、诊断和组件安装”被做成了可操作的命令行入口，适合维护个人或团队 coding-agent 环境的人；已知限制是仓库本身也包含大量模板和第三方组件，README 有赞助与外部服务推广，安装前应审计来源、权限和凭据，不应把组件数量当成质量证明，许可证为<a target="_blank" rel="noopener" href="https://github.com/davila7/claude-code-templates/blob/main/LICENSE">MIT</a>。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>显示新增 64 stars，<a target="_blank" rel="noopener" href="https://github.com/davila7/claude-code-templates">仓库页</a>显示主要语言 Python、总 stars 31,152，最近提交为<a target="_blank" rel="noopener" href="https://github.com/davila7/claude-code-templates/commit/590d437baf1e53d934a976bd8a06af54607ed7e1">590d437（2026-09-22 UTC）</a>，最新 Release 为<a target="_blank" rel="noopener" href="https://github.com/davila7/claude-code-templates/releases/tag/v1.29.6">v1.29.6</a>。</p>
+<h3 id="a-hrefhttpsgithubcomsuperdesigndevtregsuperdesigndevtrega"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomsuperdesigndevtregsuperdesigndevtrega"></a> <a target="_blank" rel="noopener" href="https://github.com/superdesigndev/treg">superdesigndev/treg</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/superdesigndev/treg#readme">Treg</a>把“Agent 要做什么”与“具体调用哪个工具”分离：它提供外部 API、CLI、技能和团队凭据的注册表，支持服务端注入认证，并允许自托管。它适合研究多供应商工具路由、MCP 边界和凭据不离开服务端的设计；限制是 README 同时把 hosted service、按调用计费、团队余额和供应商 relay 作为核心路径，使用前要核对数据去向、费用、密钥优先级和上游服务条款，仓库有<a target="_blank" rel="noopener" href="https://github.com/superdesigndev/treg/blob/main/LICENSE">LICENSE 文件</a>但 GitHub API 未识别出 SPDX 许可证。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>显示新增 230 stars，<a target="_blank" rel="noopener" href="https://github.com/superdesigndev/treg">仓库页</a>显示主要语言 Python、总 stars 2,260，最近提交为<a target="_blank" rel="noopener" href="https://github.com/superdesigndev/treg/commit/46f7b6265f7bea393cd2c78fa40be478823d3596">46f7b626（2026-09-23 UTC）</a>；当前未读取到可用 Release。</p>
+<h3 id="a-hrefhttpsgithubcommvt-projectmvtmvt-projectmvta"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcommvt-projectmvtmvt-projectmvta"></a> <a target="_blank" rel="noopener" href="https://github.com/mvt-project/mvt">mvt-project/mvt</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/mvt-project/mvt#readme">Mobile Verification Toolkit</a>是 Amnesty International Security Lab 维护的 Android/iOS 移动取证工具集合，用于收集可能指向已知间谍软件攻击的取证痕迹，提供 <code>mvt-ios</code>、<code>mvt-android</code> 和插件式检查命令。它适合数字取证人员和研究者学习 IOC 扫描、插件扩展与命令行工具链；限制是 v3 带来 breaking changes，README 明确说明它不是终端用户自测工具，公开 IOC 也不足以证明设备“干净”，许可证应以<a target="_blank" rel="noopener" href="https://github.com/mvt-project/mvt/blob/main/LICENSE">MVT License 1.1</a>为准。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>显示新增 441 stars，<a target="_blank" rel="noopener" href="https://github.com/mvt-project/mvt">仓库页</a>显示主要语言 Python、总 stars 14,141，最近提交为<a target="_blank" rel="noopener" href="https://github.com/mvt-project/mvt/commit/777db67291876c026506e5a53c92b88e86f06626">777db672（2026-09-22 UTC）</a>，最新 Release 为<a target="_blank" rel="noopener" href="https://github.com/mvt-project/mvt/releases/tag/v2026.9.21">v2026.9.21</a>。</p>
+<h3 id="a-hrefhttpsgithubcombrowser-usevideo-usebrowser-usevideo-usea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcombrowser-usevideo-usebrowser-usevideo-usea"></a> <a target="_blank" rel="noopener" href="https://github.com/browser-use/video-use">browser-use/video-use</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/browser-use/video-use#readme">video-use</a>把视频剪辑变成 Agent 可执行的工作流：先用逐词时间戳、说话人和音频事件整理文本，再生成 EDL、渲染 FFmpeg 流程，并在每个切点自评音频和画面，结果写入 <code>edit/final.mp4</code>。它适合做播客、课程、访谈或宣传片的半自动剪辑，也适合研究“结构化文本 + 按需视觉检查”怎样减少模型处理视频的成本；限制是安装依赖 FFmpeg、<code>uv</code> 和 ElevenLabs API key，README 还说明 LLM 不直接观看原视频，最近提交停在 2026-08-30、当前没有 Release，因此不应把它视为已验证的生产剪辑系统，许可证为<a target="_blank" rel="noopener" href="https://github.com/browser-use/video-use/blob/main/LICENSE">MIT</a>。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>显示新增 191 stars，<a target="_blank" rel="noopener" href="https://github.com/browser-use/video-use">仓库页</a>显示主要语言 Python、总 stars 25,886，最近提交为<a target="_blank" rel="noopener" href="https://github.com/browser-use/video-use/commit/9575612f066aa517354790a645fd90f9f95a743b">9575612（2026-08-30 UTC）</a>。</p>
+<h2 id="快速浏览"><a class="markdownIt-Anchor" href="#快速浏览"></a> 快速浏览</h2>
+<div class="briefing-quick-list">
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/agent-substrate/substrate"><span class="briefing-quick-item__source">Agent 运行时 · Go · +245/日</span><span class="briefing-quick-item__body"><strong>agent-substrate/substrate</strong><small>为大量有状态 Agent 提供沙箱、暂停恢复与 worker 复用。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/google/ax"><span class="briefing-quick-item__source">声明式编排 · Go · +2,305/日</span><span class="briefing-quick-item__body"><strong>google/ax</strong><small>用 Task、Workspace、Gateway、Model 管理 Agent 长任务。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/dream-num/univer"><span class="briefing-quick-item__source">办公 SDK · TypeScript · +255/日</span><span class="briefing-quick-item__body"><strong>dream-num/univer</strong><small>把表格、文档和演示表面做成可嵌入、可扩展的 SDK。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/anthropics/financial-services"><span class="briefing-quick-item__source">金融工作流 · Python · +438/日</span><span class="briefing-quick-item__body"><strong>anthropics/financial-services</strong><small>展示专业复核前提下的金融 Agent、技能与连接器组合。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/davila7/claude-code-templates"><span class="briefing-quick-item__source">Coding Agent CLI · Python · +64/日</span><span class="briefing-quick-item__body"><strong>davila7/claude-code-templates</strong><small>把 Claude Code 组件安装、监控和健康检查集中到 CLI。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/superdesigndev/treg"><span class="briefing-quick-item__source">工具路由 · Python · +230/日</span><span class="briefing-quick-item__body"><strong>superdesigndev/treg</strong><small>用统一注册表连接 API、CLI、技能和团队凭据。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/mvt-project/mvt"><span class="briefing-quick-item__source">移动取证 · Python · +441/日</span><span class="briefing-quick-item__body"><strong>mvt-project/mvt</strong><small>为 Android/iOS 取证和 IOC 检查提供命令行工具链。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/browser-use/video-use"><span class="briefing-quick-item__source">视频流水线 · Python · +191/日</span><span class="briefing-quick-item__body"><strong>browser-use/video-use</strong><small>用转录、EDL、FFmpeg 和切点自评完成 Agent 剪辑。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+</div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/GitHub-%E7%83%AD%E6%A6%9C/" class="category-chain-item">GitHub 热榜</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/tags/GitHub/" class="print-no-link">#GitHub</a>
+      
+        <a href="/tags/%E5%BC%80%E6%BA%90/" class="print-no-link">#开源</a>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="print-no-link">#开发工具</a>
+      
+        <a href="/tags/Agent/" class="print-no-link">#Agent</a>
+      
+        <a href="/tags/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/" class="print-no-link">#基础设施</a>
+      
+        <a href="/tags/%E8%87%AA%E6%89%98%E7%AE%A1/" class="print-no-link">#自托管</a>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%97%E5%AE%89%E5%85%A8/" class="print-no-link">#数字安全</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2026-09-23 GitHub 热榜简报：Agent 基础设施、办公运行时与工具编排</div>
+      <div>https://www.polarishaw.top/2026/09/23/daily-github-trending-2026-09-23/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年9月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/09/23/daily-briefing-2026-09-23/" title="每日信息简报｜2026 年 09 月 23 日">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">每日信息简报｜2026 年 09 月 23 日</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/09/22/daily-ai-papers-2026-09-22/" title="每日 AI 论文简报｜2026 年 9 月 22 日">
+                        <span class="hidden-mobile">每日 AI 论文简报｜2026 年 9 月 22 日</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
