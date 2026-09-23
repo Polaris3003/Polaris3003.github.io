@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注  金融论文中的相关性、因果性、样本内&#x2F;样本外、统计显著性和经济显著性不是同一件事。本文只转述论文报告的研究设计与结果，不构成投资建议。   1. PRFS：测量算法 DEX 交易中被拒决策的后续结果  作者：Arati Uday Kamat 来源：arXiv 摘要页 · PDF · 数据 DOI · 代码 DOI 证据状态：已核阅公开 PDF；这是观测性测量，不是交易策略的因果或收益">
+    <meta name="description" content="重点关注  金融论文中的相关性、因果性、样本内&#x2F;样本外、统计显著性和经济显著性不是同一件事。本文只转述论文报告的研究设计与结果，不构成投资建议。  1. PRFS：测量算法 DEX 交易中被拒决策的后续结果  作者：Arati Uday Kamat 来源：arXiv 摘要页 · PDF · 数据 DOI · 代码 DOI 证据状态：已核阅公开 PDF；这是观测性测量，不是交易策略的因果或收益验证">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日金融论文简报｜2026 年 9 月 22 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/09/22/daily-finance-papers-2026-09-22/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注  金融论文中的相关性、因果性、样本内&#x2F;样本外、统计显著性和经济显著性不是同一件事。本文只转述论文报告的研究设计与结果，不构成投资建议。   1. PRFS：测量算法 DEX 交易中被拒决策的后续结果  作者：Arati Uday Kamat 来源：arXiv 摘要页 · PDF · 数据 DOI · 代码 DOI 证据状态：已核阅公开 PDF；这是观测性测量，不是交易策略的因果或收益">
+<meta property="og:description" content="重点关注  金融论文中的相关性、因果性、样本内&#x2F;样本外、统计显著性和经济显著性不是同一件事。本文只转述论文报告的研究设计与结果，不构成投资建议。  1. PRFS：测量算法 DEX 交易中被拒决策的后续结果  作者：Arati Uday Kamat 来源：arXiv 摘要页 · PDF · 数据 DOI · 代码 DOI 证据状态：已核阅公开 PDF；这是观测性测量，不是交易策略的因果或收益验证">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-09/pixiv-rank-005-147905084.jpg">
 <meta property="article:published_time" content="2026-09-22T02:15:00.000Z">
@@ -347,143 +347,303 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
+<h2 id="重点关注">重点关注</h2>
 <blockquote>
 <p>金融论文中的相关性、因果性、样本内/样本外、统计显著性和经济显著性不是同一件事。本文只转述论文报告的研究设计与结果，不构成投资建议。</p>
 </blockquote>
-<h3 id="1-prfs测量算法-dex-交易中被拒决策的后续结果"><a class="markdownIt-Anchor" href="#1-prfs测量算法-dex-交易中被拒决策的后续结果"></a> 1. PRFS：测量算法 DEX 交易中被拒决策的后续结果</h3>
+<h3 id="prfs测量算法-dex-交易中被拒决策的后续结果">1. PRFS：测量算法 DEX
+交易中被拒决策的后续结果</h3>
 <ul>
 <li>作者：Arati Uday Kamat</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.08228">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.08228">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.20043515">数据 DOI</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.19672363">代码 DOI</a></li>
-<li>证据状态：已核阅公开 PDF；这是观测性测量，不是交易策略的因果或收益验证。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.08228">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.08228">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.20043515">数据 DOI</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.19672363">代码 DOI</a></li>
+<li>证据状态：已核阅公开
+PDF；这是观测性测量，不是交易策略的因果或收益验证。</li>
 </ul>
-<p><strong>核心问题。</strong> 算法交易过滤器拒绝一笔候选交易后，若继续沿同一预言机路径观察，能否系统地记录后续结果？论文提出 Post-Rejection Follow-up Sampling（PRFS），重点不是证明过滤器有效，而是把“拒绝时点”和后续观察结果可靠地对齐。</p>
-<p><strong>方法与数据。</strong> 系统在 Solana pump.fun AMM 单一子市场上运行 8.63 天，按 5、15、60、240、1440 分钟等固定 tick 观察价格，直到资产消失。数据包含 67,000 条前向观察行、2,997 个拒绝事件、457 个 mint。主键严格匹配了 1,455/2,997 个事件（48.55%），两个字段的诊断口径可对齐 1,641 个（54.75%）；每个 mint 都有事件，但事件级覆盖明显较低。</p>
-<p><strong>论文报告的主要结果。</strong> 过滤器覆盖率随原因不同为 32.83%–72.01%，source_a 为 62.48%、source_b 为 35.49%；六类过滤器的覆盖差异卡方统计量为 401.29，z 值为 14.78。剔除最初 774 个暖机事件后，稳态覆盖率为 62.8%；简单事件级 Wilson 区间为 46.76%–50.34%，但 2,997 个事件嵌套在 457 个 mint 中，论文明确提醒该区间低估了聚类不确定性，mint 级均值覆盖率为 77.71%。</p>
-<p><strong>因果、可交易性与局限。</strong> 论文估计的是“被拒后实际观察到的 forward return/状态”，没有构造“若接受则如何”的反事实，因此不能把覆盖率或后续价格变化解释为过滤器的因果效果。该实现也不是实盘 P&amp;L、滑点、容量或可交易策略回测；单一 venue、短窗口、选择性缺失、warm-up、稀疏的 filter_6、删失和 source/time MNAR 都限制外推。建议读第 III、VI–IX、XI 节。对做链上数据管道、算法交易实验设计和观测性评估的人有价值，但不能据此买卖代币。</p>
-<h3 id="2-面向高频交易的-actor-模型同步消息投递与-tick-to-book-延迟"><a class="markdownIt-Anchor" href="#2-面向高频交易的-actor-模型同步消息投递与-tick-to-book-延迟"></a> 2. 面向高频交易的 actor 模型：同步消息投递与 tick-to-book 延迟</h3>
+<p><strong>核心问题。</strong>
+算法交易过滤器拒绝一笔候选交易后，若继续沿同一预言机路径观察，能否系统地记录后续结果？论文提出
+Post-Rejection Follow-up
+Sampling（PRFS），重点不是证明过滤器有效，而是把“拒绝时点”和后续观察结果可靠地对齐。</p>
+<p><strong>方法与数据。</strong> 系统在 Solana pump.fun AMM
+单一子市场上运行 8.63 天，按 5、15、60、240、1440 分钟等固定 tick
+观察价格，直到资产消失。数据包含 67,000 条前向观察行、2,997
+个拒绝事件、457 个 mint。主键严格匹配了 1,455/2,997
+个事件（48.55%），两个字段的诊断口径可对齐 1,641 个（54.75%）；每个 mint
+都有事件，但事件级覆盖明显较低。</p>
+<p><strong>论文报告的主要结果。</strong> 过滤器覆盖率随原因不同为
+32.83%–72.01%，source_a 为 62.48%、source_b 为
+35.49%；六类过滤器的覆盖差异卡方统计量为 401.29，z 值为 14.78。剔除最初
+774 个暖机事件后，稳态覆盖率为 62.8%；简单事件级 Wilson 区间为
+46.76%–50.34%，但 2,997 个事件嵌套在 457 个 mint
+中，论文明确提醒该区间低估了聚类不确定性，mint 级均值覆盖率为
+77.71%。</p>
+<p><strong>因果、可交易性与局限。</strong>
+论文估计的是“被拒后实际观察到的 forward
+return/状态”，没有构造“若接受则如何”的反事实，因此不能把覆盖率或后续价格变化解释为过滤器的因果效果。该实现也不是实盘
+P&amp;L、滑点、容量或可交易策略回测；单一
+venue、短窗口、选择性缺失、warm-up、稀疏的 filter_6、删失和 source/time
+MNAR 都限制外推。建议读第 III、VI–IX、XI
+节。对做链上数据管道、算法交易实验设计和观测性评估的人有价值，但不能据此买卖代币。</p>
+<h3 id="面向高频交易的-actor-模型同步消息投递与-tick-to-book-延迟">2.
+面向高频交易的 actor 模型：同步消息投递与 tick-to-book 延迟</h3>
 <ul>
 <li>作者：Vincent Maciejewski</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21173">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21173">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/vincent212/kaspar-hft">代码</a></li>
-<li>证据状态：已核阅公开 PDF；延迟数字是单机、单次实盘行情观测，不是交易收益证据。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21173">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21173">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/vincent212/kaspar-hft">代码</a></li>
+<li>证据状态：已核阅公开
+PDF；延迟数字是单机、单次实盘行情观测，不是交易收益证据。</li>
 </ul>
-<p><strong>核心问题。</strong> actor 模型的隔离和无数据竞争特性通常被认为不适合微秒级交易。论文问的是：把共址 actor 放到共享线程和同步调用链上，能否保留模型优点而把消息开销降到可接受水平。</p>
-<p><strong>方法与基线。</strong> 开源 C++20 框架 kaspar-hft 加入 fast_send（发送线程内联运行接收 handler）、actor group、可选 mailbox queue 和内存池，并用 thread-local 调用链检测循环。基准比较异步跨线程、分组同步发送和完全内联 fast_send；实盘案例接入 CME MDP 3.0 的 ES、NQ、ZN，测量软件 socket 到订单簿更新的延迟，而不是交易所网卡到策略的完整 wire-to-book 延迟。</p>
-<p><strong>论文报告的主要结果。</strong> 微基准中，未分组异步跳转加队列约 3,370ns p50，分组同步发送约 90ns，fast_send 约 30ns；作者以此报告约 37 倍和 110 倍差异。内存池将分组发送均值约从 128ns 降到 92ns，并把最大值从 5.5ms 降到 33μs。53 分钟 CME 行情、约 829 万条消息中，book p50/p99 约为 ES 7.1/18.5μs、NQ 7.3/13.6μs、ZN 7.1/57.0μs；trade 的 ZN p99 达 219μs。框架自身每跳约 10ns，论文估计低于约 7μs 解码与建簿地板的 1%。</p>
-<p><strong>可交易性与局限。</strong> 这是一项工程性能和部署测量，不是样本内/样本外收益回测，更不是证明 actor 架构能提高 alpha。单机、一个 53 分钟 session、软件时间戳、无饱和/多核竞争实验，以及尾部仍存在的毫秒级停顿，都阻止了更广泛结论；同步调用在热 actor 争用时也可能阻塞。建议读第 7.1–7.7、9、10.1–10.7、12 节。适合 HFT 基础设施和低延迟系统研究者，不构成投资建议。</p>
-<h3 id="3-透明参数化模型损失-cat-债券德国风暴应用"><a class="markdownIt-Anchor" href="#3-透明参数化模型损失-cat-债券德国风暴应用"></a> 3. 透明参数化—模型损失 CAT 债券：德国风暴应用</h3>
+<p><strong>核心问题。</strong> actor
+模型的隔离和无数据竞争特性通常被认为不适合微秒级交易。论文问的是：把共址
+actor
+放到共享线程和同步调用链上，能否保留模型优点而把消息开销降到可接受水平。</p>
+<p><strong>方法与基线。</strong> 开源 C++20 框架 kaspar-hft 加入
+fast_send（发送线程内联运行接收 handler）、actor group、可选 mailbox
+queue 和内存池，并用 thread-local
+调用链检测循环。基准比较异步跨线程、分组同步发送和完全内联
+fast_send；实盘案例接入 CME MDP 3.0 的 ES、NQ、ZN，测量软件 socket
+到订单簿更新的延迟，而不是交易所网卡到策略的完整 wire-to-book 延迟。</p>
+<p><strong>论文报告的主要结果。</strong>
+微基准中，未分组异步跳转加队列约 3,370ns p50，分组同步发送约
+90ns，fast_send 约 30ns；作者以此报告约 37 倍和 110
+倍差异。内存池将分组发送均值约从 128ns 降到 92ns，并把最大值从 5.5ms
+降到 33μs。53 分钟 CME 行情、约 829 万条消息中，book p50/p99 约为 ES
+7.1/18.5μs、NQ 7.3/13.6μs、ZN 7.1/57.0μs；trade 的 ZN p99 达
+219μs。框架自身每跳约 10ns，论文估计低于约 7μs 解码与建簿地板的 1%。</p>
+<p><strong>可交易性与局限。</strong>
+这是一项工程性能和部署测量，不是样本内/样本外收益回测，更不是证明 actor
+架构能提高 alpha。单机、一个 53 分钟
+session、软件时间戳、无饱和/多核竞争实验，以及尾部仍存在的毫秒级停顿，都阻止了更广泛结论；同步调用在热
+actor 争用时也可能阻塞。建议读第 7.1–7.7、9、10.1–10.7、12 节。适合 HFT
+基础设施和低延迟系统研究者，不构成投资建议。</p>
+<h3 id="透明参数化模型损失-cat-债券德国风暴应用">3. 透明参数化—模型损失
+CAT 债券：德国风暴应用</h3>
 <ul>
 <li>作者：John Ery、Erwan Koch</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.22052">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.22052">PDF</a></li>
-<li>证据状态：已核阅公开 PDF；定价数字来自历史校准和模拟，不是市场成交或样本外预测。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.22052">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.22052">PDF</a></li>
+<li>证据状态：已核阅公开
+PDF；定价数字来自历史校准和模拟，不是市场成交或样本外预测。</li>
 </ul>
-<p><strong>核心问题。</strong> 赔付型触发器透明度较低，纯参数触发器又有 basis risk。论文提出基于 cost random field 的混合触发器，把物理风速、脆弱性函数和暴露拆开，在透明度与触发误差之间折中，并以德国风暴定价。</p>
-<p><strong>方法与基线。</strong> 研究用 1999–2020 年德国历史风暴数据、行业损失和暴露数据，在保险业常用的 CRESTA 空间分辨率上拟合带 Cauchy 相关的 extremal-t max-stable random field，并以脆弱性参数校准损失。模型用 2,000,000 个年度模拟、约 9,090,933 个事件评估全年损失分布，与 Brown–Resnick 和单变量 benchmark 比较，再以不同 attachment/exhaustion point 计算一年的 CAT bond 分层价格。</p>
-<p><strong>论文报告的主要结果。</strong> 完整模型的 Q-Q 图显示，所提触发器和 benchmark 在右尾都低估损失；小样本使 95% 区间很宽，论文还明确说由于数据不足无法做样本外验证。一个示例中，extremal-t/Cauchy 模型的平均年损失约 0.891×10^9 欧元，100 年和 150 年回报期 attachment 分别为 7.861×10^9 和 9.593×10^9 欧元；在设定 spread 为 7%、用 λ=0.737 校准 tranche A 市价为 100 欧元后，tranche B 的模型价格为 100.69 欧元。换用 Brown–Resnick 时，论文报告 A/B 为 100.11/100.79 欧元；这些是模型内定价比较，不是可交易报价预测。</p>
-<p><strong>经济解释与局限。</strong> 优势是把 basis risk、空间极值和可解释触发规则放在同一个框架里；局限是历史期短、极端右尾样本少、暴露调整和脆弱性设定有模型风险，并且没有样本外验证。价格对 catastrophe risk premium、attachment 点和触发定义敏感，不能从 100 欧元的校准价格推断真实回报或风险调整收益。建议读第 3–4.6 节和第 5 节。适合巨灾保险、极值统计和保险连接证券研究者，不构成投资建议。</p>
-<h3 id="4-bricks-or-cash-高密度城市住房升级的外部性"><a class="markdownIt-Anchor" href="#4-bricks-or-cash-高密度城市住房升级的外部性"></a> 4. Bricks or Cash? 高密度城市住房升级的外部性</h3>
+<p><strong>核心问题。</strong> 赔付型触发器透明度较低，纯参数触发器又有
+basis risk。论文提出基于 cost random field
+的混合触发器，把物理风速、脆弱性函数和暴露拆开，在透明度与触发误差之间折中，并以德国风暴定价。</p>
+<p><strong>方法与基线。</strong> 研究用 1999–2020
+年德国历史风暴数据、行业损失和暴露数据，在保险业常用的 CRESTA
+空间分辨率上拟合带 Cauchy 相关的 extremal-t max-stable random
+field，并以脆弱性参数校准损失。模型用 2,000,000 个年度模拟、约 9,090,933
+个事件评估全年损失分布，与 Brown–Resnick 和单变量 benchmark
+比较，再以不同 attachment/exhaustion point 计算一年的 CAT bond
+分层价格。</p>
+<p><strong>论文报告的主要结果。</strong> 完整模型的 Q-Q
+图显示，所提触发器和 benchmark 在右尾都低估损失；小样本使 95%
+区间很宽，论文还明确说由于数据不足无法做样本外验证。一个示例中，extremal-t/Cauchy
+模型的平均年损失约 0.891×10<sup>9</sup> 欧元，100 年和 150 年回报期
+attachment 分别为 7.861×10<sup>9</sup> 和 9.593×10<sup>9</sup>
+欧元；在设定 spread 为 7%、用 λ=0.737 校准 tranche A 市价为 100
+欧元后，tranche B 的模型价格为 100.69 欧元。换用 Brown–Resnick
+时，论文报告 A/B 为 100.11/100.79
+欧元；这些是模型内定价比较，不是可交易报价预测。</p>
+<p><strong>经济解释与局限。</strong> 优势是把 basis
+risk、空间极值和可解释触发规则放在同一个框架里；局限是历史期短、极端右尾样本少、暴露调整和脆弱性设定有模型风险，并且没有样本外验证。价格对
+catastrophe risk premium、attachment 点和触发定义敏感，不能从 100
+欧元的校准价格推断真实回报或风险调整收益。建议读第 3–4.6 节和第 5
+节。适合巨灾保险、极值统计和保险连接证券研究者，不构成投资建议。</p>
+<h3 id="bricks-or-cash-高密度城市住房升级的外部性">4. Bricks or Cash?
+高密度城市住房升级的外部性</h3>
 <ul>
 <li>作者：Sumit Agarwal、Ying Deng、Yi Fan、Qi Gao、Jing Li、Lin Ma</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21478">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21478">PDF</a></li>
-<li>证据状态：已核阅公开 PDF；这是新加坡公共住房的准实验因果估计，不是一般房地产投资回报预测。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21478">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21478">PDF</a></li>
+<li>证据状态：已核阅公开
+PDF；这是新加坡公共住房的准实验因果估计，不是一般房地产投资回报预测。</li>
 </ul>
-<p><strong>核心问题。</strong> 公共住房升级对本楼和邻楼的价格影响，是否足以构成住房实物供给相对现金补贴的外部性理由？论文利用新加坡 Main Upgrading Programme 的分期 rollout，同时观察交易、升级时点和居民行政数据。</p>
-<p><strong>方法与数据。</strong> 数据包含 1990–2024 年 942,883 笔 HDB 转售、886 栋楼、128 个 precinct、约 131,000 户家庭和 2,171,383 名居民；主要估计样本为 531,836 笔交易。方法使用 TWFE、Callaway–Sant’Anna staggered DiD，并用 5,000 次保留月度进度的随机重分配模拟构造预期邻里暴露；控制楼、户型、年月和 street×year，标准误按楼聚类。论文做了 event study、CSDID 与 HonestDiD 稳健性检验，并非简单相关回归。</p>
-<p><strong>论文报告的主要结果。</strong> 升级完成后，处理楼价格提高 11.47%，500 米内每增加一栋处理邻楼价格约提高 0.15%，平均约 13 栋对应约 1.95% 的邻里总效应；1,000 米以上没有稳定的正向溢出。作者报告自己的住房支付相对现金支付福利约为 2.78% 对 2.43%（高密度情形），但在低密度情形优势消失甚至反转。行政数据中，升级后本楼居民流动率下降、年龄上升；这支持年龄相关便利设施可能是机制，但不能把机制结果解释为资产收益。</p>
-<p><strong>因果边界与局限。</strong> 分期政策和预期暴露设计增强了因果解释，但估计的是特定新加坡公共住房环境下的 ATT，不是所有住宅或所有购房者的普遍回报。福利计算依赖偏好同质等假设，未完整处理一般均衡、迁入选择和更丰富的收入/教育差异；价格效应也不等于可实现的投资收益。建议读第 3–6 节、第 7 节机制和第 8 节局限。该文适合城市经济、公共政策和住房外部性研究，不构成投资建议。</p>
-<h3 id="5-screening-out-the-needysnap-工作要求的筛选效应"><a class="markdownIt-Anchor" href="#5-screening-out-the-needysnap-工作要求的筛选效应"></a> 5. Screening Out the Needy：SNAP 工作要求的筛选效应</h3>
+<p><strong>核心问题。</strong>
+公共住房升级对本楼和邻楼的价格影响，是否足以构成住房实物供给相对现金补贴的外部性理由？论文利用新加坡
+Main Upgrading Programme 的分期
+rollout，同时观察交易、升级时点和居民行政数据。</p>
+<p><strong>方法与数据。</strong> 数据包含 1990–2024 年 942,883 笔 HDB
+转售、886 栋楼、128 个 precinct、约 131,000 户家庭和 2,171,383
+名居民；主要估计样本为 531,836 笔交易。方法使用 TWFE、Callaway–Sant’Anna
+staggered DiD，并用 5,000
+次保留月度进度的随机重分配模拟构造预期邻里暴露；控制楼、户型、年月和
+street×year，标准误按楼聚类。论文做了 event study、CSDID 与 HonestDiD
+稳健性检验，并非简单相关回归。</p>
+<p><strong>论文报告的主要结果。</strong> 升级完成后，处理楼价格提高
+11.47%，500 米内每增加一栋处理邻楼价格约提高 0.15%，平均约 13 栋对应约
+1.95% 的邻里总效应；1,000
+米以上没有稳定的正向溢出。作者报告自己的住房支付相对现金支付福利约为
+2.78% 对
+2.43%（高密度情形），但在低密度情形优势消失甚至反转。行政数据中，升级后本楼居民流动率下降、年龄上升；这支持年龄相关便利设施可能是机制，但不能把机制结果解释为资产收益。</p>
+<p><strong>因果边界与局限。</strong>
+分期政策和预期暴露设计增强了因果解释，但估计的是特定新加坡公共住房环境下的
+ATT，不是所有住宅或所有购房者的普遍回报。福利计算依赖偏好同质等假设，未完整处理一般均衡、迁入选择和更丰富的收入/教育差异；价格效应也不等于可实现的投资收益。建议读第
+3–6 节、第 7 节机制和第 8
+节局限。该文适合城市经济、公共政策和住房外部性研究，不构成投资建议。</p>
+<h3 id="screening-out-the-needysnap-工作要求的筛选效应">5. Screening Out
+the Needy：SNAP 工作要求的筛选效应</h3>
 <ul>
 <li>作者：Lexin Cai、Hyewon Kim、Pauline Leung</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.19660">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.19660">PDF</a></li>
-<li>证据状态：已核阅公开 PDF；这是政策准实验和福利校准，不是金融市场回测。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.19660">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.19660">PDF</a></li>
+<li>证据状态：已核阅公开
+PDF；这是政策准实验和福利校准，不是金融市场回测。</li>
 </ul>
-<p><strong>核心问题。</strong> SNAP 的 ABAWD 工作要求是否通过提高就业来筛选出更适合领取者，还是主要把低收入人群挡在项目外？论文利用大衰退后各县、各州逐步恢复要求的时间差，连接五州行政 SNAP 与就业数据。</p>
-<p><strong>方法与基线。</strong> 研究对部分恢复的 Colorado、Connecticut、Maryland、Massachusetts、New Jersey 使用 triple differences，并以 45–49 岁 ABAWD 与 50–55 岁非 ABAWD、恢复区与 waiver 区以及恢复前后构造比较；另报告包含四个全州恢复州的样本。事件研究检查动态效果，结果同时报告 DDD 与 DiD，避免把单一 TWFE 系数当成全部证据。福利部分把退出者纳入 MVPF，并设定合规时间成本与申请成本；因此福利数字是校准结果，不是直接观测的消费损失。</p>
-<p><strong>论文报告的主要结果。</strong> 表 3 的 DDD 估计中，部分州 SNAP 参与率下降 0.044 或 0.057 个点，全州样本下降 0.087 个点；相对基线约为 7%–13%，SNAP 福利分别下降约 7.91、9.55 和 15.43 美元。部分州的就业估计为 -0.004 或 0.014，全州样本为 0.018；收入估计在可披露样本中为 -15.49 或 114.70 美元，规格间不完全一致。参与者构成中，作者报告低收入、领取最高福利者减少更多；基准合规时间成本下，MVPF 不计退出者为 1.27、计入退出者为 2.19，说明福利成本估计高于预算节省。</p>
-<p><strong>因果边界与局限。</strong> triple differences 和事件研究支持工作要求导致的参与变化，但就业、收入结果依赖行政数据覆盖与样本选择，且各州制度和劳动市场不同；MVPF 对社会权重、退出者参与成本和不可行性假设敏感。本文没有金融资产收益、回测或投资含义；建议读第 2–5 节的设计与结果、第 6 节福利框架、第 7 节结论及附录 B。适合公共经济、社会安全网和政策评估读者。</p>
-<h2 id="金融论文"><a class="markdownIt-Anchor" href="#金融论文"></a> 金融论文</h2>
-<h3 id="1-equilibrium-prices-under-hidden-markov-fundamentals"><a class="markdownIt-Anchor" href="#1-equilibrium-prices-under-hidden-markov-fundamentals"></a> 1. Equilibrium prices under hidden Markov fundamentals</h3>
+<p><strong>核心问题。</strong> SNAP 的 ABAWD
+工作要求是否通过提高就业来筛选出更适合领取者，还是主要把低收入人群挡在项目外？论文利用大衰退后各县、各州逐步恢复要求的时间差，连接五州行政
+SNAP 与就业数据。</p>
+<p><strong>方法与基线。</strong> 研究对部分恢复的
+Colorado、Connecticut、Maryland、Massachusetts、New Jersey 使用 triple
+differences，并以 45–49 岁 ABAWD 与 50–55 岁非 ABAWD、恢复区与 waiver
+区以及恢复前后构造比较；另报告包含四个全州恢复州的样本。事件研究检查动态效果，结果同时报告
+DDD 与 DiD，避免把单一 TWFE 系数当成全部证据。福利部分把退出者纳入
+MVPF，并设定合规时间成本与申请成本；因此福利数字是校准结果，不是直接观测的消费损失。</p>
+<p><strong>论文报告的主要结果。</strong> 表 3 的 DDD 估计中，部分州 SNAP
+参与率下降 0.044 或 0.057 个点，全州样本下降 0.087 个点；相对基线约为
+7%–13%，SNAP 福利分别下降约 7.91、9.55 和 15.43 美元。部分州的就业估计为
+-0.004 或 0.014，全州样本为 0.018；收入估计在可披露样本中为 -15.49 或
+114.70
+美元，规格间不完全一致。参与者构成中，作者报告低收入、领取最高福利者减少更多；基准合规时间成本下，MVPF
+不计退出者为 1.27、计入退出者为 2.19，说明福利成本估计高于预算节省。</p>
+<p><strong>因果边界与局限。</strong> triple differences
+和事件研究支持工作要求导致的参与变化，但就业、收入结果依赖行政数据覆盖与样本选择，且各州制度和劳动市场不同；MVPF
+对社会权重、退出者参与成本和不可行性假设敏感。本文没有金融资产收益、回测或投资含义；建议读第
+2–5 节的设计与结果、第 6 节福利框架、第 7 节结论及附录
+B。适合公共经济、社会安全网和政策评估读者。</p>
+<h2 id="金融论文">金融论文</h2>
+<h3 id="equilibrium-prices-under-hidden-markov-fundamentals">1.
+Equilibrium prices under hidden Markov fundamentals</h3>
 <ul>
 <li>作者：Henri Pagès、Dylan Possamaï、Mateo Rodriguez Polo</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21684">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21684">PDF</a></li>
-<li>简介：在代表性经济人和 Epstein–Zin 偏好下，研究带隐藏有限状态 Markov 增长率的几何股利模型，证明信念 Markov 化价格的存在唯一性，并讨论期权 PDE、偏度等含义。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21684">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21684">PDF</a></li>
+<li>简介：在代表性经济人和 Epstein–Zin 偏好下，研究带隐藏有限状态 Markov
+增长率的几何股利模型，证明信念 Markov 化价格的存在唯一性，并讨论期权
+PDE、偏度等含义。</li>
 <li>证据状态：仅依据摘要；这是理论模型，没有样本内/样本外资产定价检验或可交易结果。</li>
 </ul>
-<h3 id="2-uefa-俱乐部赛事比赛预测elo-评级与-transfermarkt-估值"><a class="markdownIt-Anchor" href="#2-uefa-俱乐部赛事比赛预测elo-评级与-transfermarkt-估值"></a> 2. UEFA 俱乐部赛事比赛预测：Elo 评级与 Transfermarkt 估值</h3>
+<h3 id="uefa-俱乐部赛事比赛预测elo-评级与-transfermarkt-估值">2. UEFA
+俱乐部赛事比赛预测：Elo 评级与 Transfermarkt 估值</h3>
 <ul>
 <li>作者：Gergely Csurilla、László Csato</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21674">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21674">PDF</a></li>
-<li>简介：比较 2020/21–2024/25 赛季欧冠和欧联比赛中 Elo 与 Transfermarkt 阵容估值的预测能力。摘要报告二者单独使用时样本外准确率几乎相同，组合后只有 modest improvement，最佳组合对预测目标敏感。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21674">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21674">PDF</a></li>
+<li>简介：比较 2020/21–2024/25 赛季欧冠和欧联比赛中 Elo 与 Transfermarkt
+阵容估值的预测能力。摘要报告二者单独使用时样本外准确率几乎相同，组合后只有
+modest improvement，最佳组合对预测目标敏感。</li>
 <li>证据状态：仅依据摘要；这是体育比赛预测，不是金融回测，也没有足够信息判断概率校准、交易成本或经济显著性。</li>
 </ul>
-<h3 id="3-通过算子分裂方案模拟随机波动率模型"><a class="markdownIt-Anchor" href="#3-通过算子分裂方案模拟随机波动率模型"></a> 3. 通过算子分裂方案模拟随机波动率模型</h3>
+<h3 id="通过算子分裂方案模拟随机波动率模型">3.
+通过算子分裂方案模拟随机波动率模型</h3>
 <ul>
 <li>作者：Lilian Hu、Congxin He、Yue Kuen Kwok、Gongqiu Zhang</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21301">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21301">PDF</a></li>
-<li>简介：用 Strang operator splitting 构造随机波动率模型的模拟方案，避免条件积分方差的数值求解，并在 Heston、lifted Heston、Hull–White 和 BNS 模型上比较准确性、效率和可靠性，另证明二阶收敛。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21301">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21301">PDF</a></li>
+<li>简介：用 Strang operator splitting
+构造随机波动率模型的模拟方案，避免条件积分方差的数值求解，并在
+Heston、lifted Heston、Hull–White 和 BNS
+模型上比较准确性、效率和可靠性，另证明二阶收敛。</li>
 <li>证据状态：仅依据摘要；未核阅全文，不能判断不同步长、路径依赖期权和基准实现的公平成本比较。</li>
 </ul>
-<h3 id="4-带状态切换和违约传染的最优信用组合与消费"><a class="markdownIt-Anchor" href="#4-带状态切换和违约传染的最优信用组合与消费"></a> 4. 带状态切换和违约传染的最优信用组合与消费</h3>
+<h3 id="带状态切换和违约传染的最优信用组合与消费">4.
+带状态切换和违约传染的最优信用组合与消费</h3>
 <ul>
 <li>作者：Fei Sun、Wenyuan Wang、Kaixin Yan</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.10542">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.10542">PDF</a></li>
-<li>简介：研究状态切换、多名称信用市场和违约传染下的组合与消费问题，用 Cobb–Douglas 效用把 HJB 方程降为按违约状态索引的递归常微分方程，给出存在唯一性、反馈控制和数值敏感性分析。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.10542">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.10542">PDF</a></li>
+<li>简介：研究状态切换、多名称信用市场和违约传染下的组合与消费问题，用
+Cobb–Douglas 效用把 HJB
+方程降为按违约状态索引的递归常微分方程，给出存在唯一性、反馈控制和数值敏感性分析。</li>
 <li>证据状态：仅依据摘要；没有真实信用组合的样本内/样本外收益，也没有扣除交易成本的可交易验证。</li>
 </ul>
-<h3 id="5-ou-驱动随机波动率模型下的期权高效模拟"><a class="markdownIt-Anchor" href="#5-ou-驱动随机波动率模型下的期权高效模拟"></a> 5. OU 驱动随机波动率模型下的期权高效模拟</h3>
+<h3 id="ou-驱动随机波动率模型下的期权高效模拟">5. OU
+驱动随机波动率模型下的期权高效模拟</h3>
 <ul>
 <li>作者：Congxin He、Yue Kuen Kwok</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21291">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21291">PDF</a></li>
-<li>简介：为 Ornstein–Uhlenbeck 驱动的随机波动率模型提出算子分裂 Monte Carlo 方法，每个子步骤有解析解，只需少量正态变量；摘要报告其在路径依赖期权、大监测次数下与三种既有方案相比具有有竞争力的准确性—速度折中。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21291">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21291">PDF</a></li>
+<li>简介：为 Ornstein–Uhlenbeck 驱动的随机波动率模型提出算子分裂 Monte
+Carlo
+方法，每个子步骤有解析解，只需少量正态变量；摘要报告其在路径依赖期权、大监测次数下与三种既有方案相比具有有竞争力的准确性—速度折中。</li>
 <li>证据状态：仅依据摘要；未核阅全文，不能将数值定价优势解释成交易优势。</li>
 </ul>
-<h3 id="6-高阶现代投资组合理论的几何"><a class="markdownIt-Anchor" href="#6-高阶现代投资组合理论的几何"></a> 6. 高阶现代投资组合理论的几何</h3>
+<h3 id="高阶现代投资组合理论的几何">6. 高阶现代投资组合理论的几何</h3>
 <ul>
 <li>作者：Emil Horobet</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.20674">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.20674">PDF</a></li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.20674">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.20674">PDF</a></li>
 <li>简介：将包含高阶累积量的效用函数推广到现代投资组合理论，研究复数临界点、判别簇以及可行组合集合的维数与次数。</li>
 <li>证据状态：仅依据摘要；这是组合几何理论，没有资产回报样本、回测或经济显著性结果。</li>
 </ul>
-<h3 id="7-早期风险投资中的排序分位均值场博弈"><a class="markdownIt-Anchor" href="#7-早期风险投资中的排序分位均值场博弈"></a> 7. 早期风险投资中的排序分位均值场博弈</h3>
+<h3 id="早期风险投资中的排序分位均值场博弈">7.
+早期风险投资中的排序分位均值场博弈</h3>
 <ul>
 <li>作者：Rinel Foguen Tchuendom、Dena Firoozi、Michèle Breton</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.00853">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.00853">PDF</a></li>
-<li>简介：研究以总体 α 分位数筛选前若干代理人的 quantilized mean-field games，给出 target-based 与 threshold-based 两种表述、ε-Nash 性质和数值一致性条件，并将其解释为早期创业投资的下一轮筛选。</li>
-<li>证据状态：仅依据摘要；数值实验不是实际 VC 基金样本，也没有投资回报或样本外结果。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.00853">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.00853">PDF</a></li>
+<li>简介：研究以总体 α 分位数筛选前若干代理人的 quantilized mean-field
+games，给出 target-based 与 threshold-based 两种表述、ε-Nash
+性质和数值一致性条件，并将其解释为早期创业投资的下一轮筛选。</li>
+<li>证据状态：仅依据摘要；数值实验不是实际 VC
+基金样本，也没有投资回报或样本外结果。</li>
 </ul>
-<h3 id="8-逆向选择下的风险最小化再保险"><a class="markdownIt-Anchor" href="#8-逆向选择下的风险最小化再保险"></a> 8. 逆向选择下的风险最小化再保险</h3>
+<h3 id="逆向选择下的风险最小化再保险">8.
+逆向选择下的风险最小化再保险</h3>
 <ul>
-<li>作者：Ka Chun Cheung、Sheung Chi Phillip Yam、Fei Lung Yuen、Yiying Zhang</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2504.17468">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2504.17468">PDF</a></li>
-<li>简介：研究垄断再保险人面对具有多维损失暴露和 VaR 偏好的保险人时的机制设计，用 VaR 重参数化和间接效用表示处理无限维、非凸筛选问题，并比较 stop-loss、quota-share 和 change-loss 合约。</li>
+<li>作者：Ka Chun Cheung、Sheung Chi Phillip Yam、Fei Lung Yuen、Yiying
+Zhang</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2504.17468">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2504.17468">PDF</a></li>
+<li>简介：研究垄断再保险人面对具有多维损失暴露和 VaR
+偏好的保险人时的机制设计，用 VaR
+重参数化和间接效用表示处理无限维、非凸筛选问题，并比较
+stop-loss、quota-share 和 change-loss 合约。</li>
 <li>证据状态：仅依据摘要；结论来自理论与数值例子，没有实际保单数据、样本外风险或投资结果。</li>
 </ul>
-<h3 id="9-nested-clustered-optimization-与-schur-bridge"><a class="markdownIt-Anchor" href="#9-nested-clustered-optimization-与-schur-bridge"></a> 9. Nested Clustered Optimization 与 Schur bridge</h3>
+<h3 id="nested-clustered-optimization-与-schur-bridge">9. Nested
+Clustered Optimization 与 Schur bridge</h3>
 <ul>
 <li>作者：Peter Cotton</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21271">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21271">PDF</a></li>
-<li>简介：把按簇嵌套的最小方差组合与全局最优解连接为一个由 γ∈[0,1] 控制的 Schur bridge，在估计误差下证明内部 γ 可能最优，并给出 rank-one 依赖下的精确性和例子。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21271">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21271">PDF</a></li>
+<li>简介：把按簇嵌套的最小方差组合与全局最优解连接为一个由 γ∈[0,1]
+控制的 Schur bridge，在估计误差下证明内部 γ 可能最优，并给出 rank-one
+依赖下的精确性和例子。</li>
 <li>证据状态：仅依据摘要；理论最优不等于样本外收益、风险调整收益或扣成本的可交易结果。</li>
 </ul>
-<h3 id="10-随机符号-takagilandsberg-bridge-的二次与-p-次变差"><a class="markdownIt-Anchor" href="#10-随机符号-takagilandsberg-bridge-的二次与-p-次变差"></a> 10. 随机符号 Takagi–Landsberg bridge 的二次与 p 次变差</h3>
+<h3 id="随机符号-takagilandsberg-bridge-的二次与-p-次变差">10. 随机符号
+Takagi–Landsberg bridge 的二次与 p 次变差</h3>
 <ul>
 <li>作者：Purba Das、Alexander Schied</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21688">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21688">PDF</a></li>
-<li>简介：研究随机符号 Takagi–Landsberg bridge 在 H=1/2 时沿确定细化分割的二次变差，以及 H≠1/2 时临界 p 次和的聚点性质，结论属于随机过程理论。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21688">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21688">PDF</a></li>
+<li>简介：研究随机符号 Takagi–Landsberg bridge 在 H=1/2
+时沿确定细化分割的二次变差，以及 H≠1/2 时临界 p
+次和的聚点性质，结论属于随机过程理论。</li>
 <li>证据状态：仅依据摘要；没有金融市场数据或资产定价应用证据，不能把变差性质解读成交易信号。</li>
 </ul>
-<h3 id="11-带分数-lévy-动力学的随机死亡率模型"><a class="markdownIt-Anchor" href="#11-带分数-lévy-动力学的随机死亡率模型"></a> 11. 带分数 Lévy 动力学的随机死亡率模型</h3>
+<h3 id="带分数-lévy-动力学的随机死亡率模型">11. 带分数 Lévy
+动力学的随机死亡率模型</h3>
 <ul>
 <li>作者：Congxin He、Lilian Hu、Yue Kuen Kwok、Yifan Ye</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21232">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21232">PDF</a></li>
-<li>简介：用分数 Lévy 过程与 Brownian motion 的混合模型描述长期依赖死亡率冲击，并在二战和 COVID-19 期间的死亡率冲击上做经验研究，另提出 SVD 近似与残差校正以定价长寿衍生品。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21232">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21232">PDF</a></li>
+<li>简介：用分数 Lévy 过程与 Brownian motion
+的混合模型描述长期依赖死亡率冲击，并在二战和 COVID-19
+期间的死亡率冲击上做经验研究，另提出 SVD
+近似与残差校正以定价长寿衍生品。</li>
 <li>证据状态：仅依据摘要；未核阅全文，不能核查样本外寿命预测、参数稳定性或实际衍生品可交易性。</li>
 </ul>
-<h3 id="12-hilbert-空间相互作用粒子系统的随机最优控制"><a class="markdownIt-Anchor" href="#12-hilbert-空间相互作用粒子系统的随机最优控制"></a> 12. Hilbert 空间相互作用粒子系统的随机最优控制</h3>
+<h3 id="hilbert-空间相互作用粒子系统的随机最优控制">12. Hilbert
+空间相互作用粒子系统的随机最优控制</h3>
 <ul>
-<li>作者：Filippo de Feo、Fausto Gozzi、Andrzej Święch、Lukas Wessels</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.21646">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.21646">PDF</a></li>
-<li>简介：研究随机偏微分方程、延迟/Volterra 系统和部分观测系统中的相互作用粒子控制，证明有限粒子价值函数向均值场 HJB 粘性解收敛，并讨论最优反馈控制对应关系和经济应用。</li>
+<li>作者：Filippo de Feo、Fausto Gozzi、Andrzej Święch、Lukas
+Wessels</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.21646">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.21646">PDF</a></li>
+<li>简介：研究随机偏微分方程、延迟/Volterra
+系统和部分观测系统中的相互作用粒子控制，证明有限粒子价值函数向均值场 HJB
+粘性解收敛，并讨论最优反馈控制对应关系和经济应用。</li>
 <li>证据状态：仅依据摘要；这是理论控制结果，没有金融资产的样本内/样本外检验或真实可交易收益。</li>
 </ul>
 
