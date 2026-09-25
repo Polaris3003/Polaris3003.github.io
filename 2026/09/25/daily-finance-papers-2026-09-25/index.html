@@ -1,0 +1,1258 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="重点关注  以下 5 篇重点论文已核阅公开 PDF；数字和结论均为作者报告，未做独立复现。金融论文中的预测、回测或模拟结果不等于真实可交易收益，也不构成投资建议。阅读时应区分相关性与因果识别、样本内与样本外、统计显著性与经济显著性，以及回测&#x2F;模拟与真实执行。  1. Propose, Don&#39;t Judge：让 agent 提案，让冻结统计裁判控制发现率  论文：Propose, Don&#39;t J">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日金融论文简报｜2026 年 9 月 25 日">
+<meta property="og:url" content="https://www.polarishaw.top/2026/09/25/daily-finance-papers-2026-09-25/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="重点关注  以下 5 篇重点论文已核阅公开 PDF；数字和结论均为作者报告，未做独立复现。金融论文中的预测、回测或模拟结果不等于真实可交易收益，也不构成投资建议。阅读时应区分相关性与因果识别、样本内与样本外、统计显著性与经济显著性，以及回测&#x2F;模拟与真实执行。  1. Propose, Don&#39;t Judge：让 agent 提案，让冻结统计裁判控制发现率  论文：Propose, Don&#39;t J">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-16/pixiv-rank-004-148227456.jpg">
+<meta property="article:published_time" content="2026-09-25T02:15:00.000Z">
+<meta property="article:modified_time" content="2026-09-25T02:28:35.588Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="论文">
+<meta property="article:tag" content="金融">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-16/pixiv-rank-004-148227456.jpg">
+  
+  
+  
+  <title>每日金融论文简报｜2026 年 9 月 25 日 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
+<link rel="stylesheet" href="/css/dailyBriefing.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/covers/pixiv-weekly/2026-09-13/pixiv-rank-002-149365167.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="每日金融论文简报｜2026 年 9 月 25 日"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-09-25 10:15" pubdate>
+          2026年9月25日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          48 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">每日金融论文简报｜2026 年 9 月 25 日</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+<h2 id="重点关注">重点关注</h2>
+<blockquote>
+<p>以下 5 篇重点论文已核阅公开
+PDF；数字和结论均为作者报告，未做独立复现。金融论文中的预测、回测或模拟结果不等于真实可交易收益，也不构成投资建议。阅读时应区分相关性与因果识别、样本内与样本外、统计显著性与经济显著性，以及回测/模拟与真实执行。</p>
+</blockquote>
+<h3 id="propose-dont-judge让-agent-提案让冻结统计裁判控制发现率">1.
+Propose, Don't Judge：让 agent 提案，让冻结统计裁判控制发现率</h3>
+<ul>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27051">Propose, Don't
+Judge: An Anytime-Valid Referee for LLM Agents That Mine Investment
+Factors</a>（arXiv:2609.27051）</li>
+<li>作者：Bo Qu、Mingguang Chen、Licheng Wang</li>
+<li>来源与链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27051">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27051">PDF</a></li>
+<li>证据状态：已核阅公开
+PDF；结果是论文报告，尚未独立复核；不构成投资建议。</li>
+</ul>
+<p><strong>核心问题。</strong> LLM agent
+可以持续提出因子、回测因子、选择幸存者并淘汰旧因子，但如果提出者能看到反复测试结果，传统固定样本显著性会被
+optional stopping 和多重挖掘击穿。论文问：能否让 agent
+保留提案、诊断和工具制作能力，同时把“是否接纳”交给它不能修改的统计裁判。</p>
+<p><strong>方法与基线。</strong> 冻结 referee
+只使用因子提交之后才揭示的市场结果，以 rank-IC 的 betting capital 做
+anytime-valid 判断，并在任意停止时控制 false-discovery rate；提案端比较
+round-robin script、bandit 和 language model，裁判端比较冻结
+referee、peeking、adaptive-threshold 和 no-gate 三种有意泄漏/简化的
+referee。实验包含带 planted truth 的合成世界、可写诊断 probe
+的环境，以及 point-in-time 的 CSI 500 十年
+walk-forward。作者同时将已接纳因子放入扣成本组合，但 referee
+认证统计边际与组合执行收益是两个层次。</p>
+<p><strong>论文报告的主要结果。</strong> 合成实验中冻结 referee
+的每次提交假因子接纳率为 0，三个泄漏 referee 为 0.26–0.85；CSI 500
+真实价格的四因子库中，round-robin 下冻结 referee 每 campaign 的
+registered false admissions 为 11.7，而三个泄漏 referee 为 86.2、105.2
+和 196.0。作者据此报告约 5–11 倍的差距，且换提案者不能弥补裁判泄漏。LLM
+提案者在冻结 referee 下的 yield 高于 script、与 bandit 接近，并能写出
+bandit 无法生成的诊断 probe；代价是强因子通常要等待约 500
+个交易日，认证组合的 Sharpe 低于不门控组合。文中还给出 500 日 t 检验加
+Benjamini–Hochberg 的耐心 desk 作为程序对照，但该比较是冻结提交流的
+counterfactual，不是一次独立重跑。</p>
+<p><strong>创新、局限与适用边界。</strong>
+贡献是把“谁提出”和“谁判断”明确分离，并把提案者不能接触未来
+post-submission stream
+作为有效性边界。局限包括真实数据只有一个市场和历史 replay，没有 live
+deployment；保证依赖提案者无法预知提交后的结果，历史重放可能有
+information leakage；false admission 的标签和 break-even threshold
+会改变数量，统计 referee 认证的 edge
+也不保证扣费后赚钱。组合结果是十年回测，不是因果识别、真实可交易业绩或投资建议。适合量化研究平台、因子挖掘与统计治理读者，建议读
+§3–§5 的威胁模型和 referee、§7 的 walk-forward 协议、§8.4–§8.7
+的真实数据结果及附录的标签定义。</p>
+<h3 id="surface-driven-stochastic-volatility让商品期权-smile-参与识别波动率状态">2.
+Surface-Driven Stochastic Volatility：让商品期权 smile
+参与识别波动率状态</h3>
+<ul>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27138">Surface-Driven
+Stochastic Volatility for Commodity Options: Identification of
+Stochastic Vol-of-Vol and Leverage from Smile
+Dynamics</a>（arXiv:2609.27138）</li>
+<li>作者：Arthur Steve Tchoneteck、Tingjia Zhang、Frederi Viens</li>
+<li>来源与链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27138">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27138">PDF</a></li>
+<li>证据状态：已核阅公开
+PDF；结果是论文报告，尚未独立复核；不构成定价或交易建议。</li>
+</ul>
+<p><strong>核心问题。</strong> 商品期权隐含波动率 surface 的 ATM
+level、skew 和 convexity
+含有不同的信息，但常见模型可能用同一扩散类描述所有指标。论文研究：这些
+smile 动态能否分别识别 latent volatility、有效 vol-of-vol 和
+leverage，并用于更快的商品期权定价。</p>
+<p><strong>方法与基线。</strong> 样本是 2013 年 10 月至 2025 年 8 月的
+CME soybean futures options 日度 CVOL 指标。论文对 level、additive
+skew、skew ratio 和 convexity 比较 OU、CIR、log-OU；再建立 joint
+mean-reverting surface-factor system，把 ATM level
+映射到隐含波动率状态、convexity 映射到有效 vol-of-vol、skew 映射到
+leverage。定价部分用 risk-neutral log-OU、Monte Carlo 作为
+benchmark、Crank–Nicolson finite difference 独立校验，并训练
+neural-network surrogate 做快速重复估值。</p>
+<p><strong>论文报告的主要结果。</strong> level、skew ratio 和 convexity
+的 log-OU AIC 分别比次优模型低 195.1、124.6 和 45.2；additive skew
+在样本中有 14.5% 为负，因此 OU 是唯一可行的候选。COVID 窗口的平均 Monte
+Carlo 期权价格比全样本低 12.45%、隐含波动率低约 131bp；2021 La Niña
+窗口价格高 37.66%、隐含波动率高约 298bp。180 日验证网格上
+finite-difference 平均绝对相对误差约 0.10%，neural surrogate 约
+0.35%；在 15 合约计时中，网络推理每份约 0.000188 秒、相对 Monte Carlo 约
+5,060 倍加速。</p>
+<p><strong>创新、局限与适用边界。</strong> 价值在于不把 implied surface
+仅当作模型输出，而是把 level/skew/convexity
+作为识别与模型诊断输入，并让数值定价与快速近似共享同一映射。局限是 smile
+关系在 small-vol-of-vol 下是 leading-order 结果，定价时把
+surface-implied vol-of-vol 和 leverage 在期权寿命内冻结；网络标签来自
+Monte Carlo，不是独立市场价格，论文没有给出真实交易或长期 hedging
+P&amp;L。样本集中于一种商品和 CVOL
+指标，风险溢价、跳跃与流动性可能被扩散状态吸收。适合随机波动率、商品期权和数值定价读者，建议读
+§2.4 的模型选择、§3.5–§3.6 的 surface identification、§4.4–§4.6
+的事件与数值验证。</p>
+<h3 id="sdot半离散最优输运对重尾风险的生成能力">3.
+SDOT：半离散最优输运对重尾风险的生成能力</h3>
+<ul>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27785">Financial Tail Risk
+Beyond Lipschitz Continuity via Semi-Discrete Optimal
+Transport</a>（arXiv:2609.27785）</li>
+<li>作者：Ryan M. Engel、Kibaek Lee、Namid Stillman</li>
+<li>来源与链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27785">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27785">PDF</a></li>
+<li>证据状态：已核阅公开
+PDF；结果是论文报告，尚未独立复核；回测不构成投资建议。</li>
+</ul>
+<p><strong>核心问题。</strong> 金融收益重尾，而从 Gaussian base
+distribution 学习映射的 flow、GAN、diffusion 等生成器通常受到
+Lipschitz/平滑约束。论文从理论上说明有限 Lipschitz 映射无法精确产生比
+Gaussian 更重的尾部，并提出 SDOT 通过 power diagram 的 cell boundary
+而非连续拉伸来保留尾部频率。</p>
+<p><strong>方法与基线。</strong> SDOT 与 five neural generators：flow
+matching、CNF、OT-Flow、DDPM、WGAN 比较，也加入 bootstrap、Gaussian 和
+minimum-variance 非神经基线。实验从校准的 Merton jump-diffusion
+开始，kurtosis 从 94 扫到 1,679；再做 S&amp;P 500 1962–2026 的跨域与
+held-out 评估。最后进行 2005–2026、258 个月、月度再平衡、每年
+expanding-window retraining 的 mean-CVaR long-short 回测，10,000
+个情景、零净敞口、2 倍 gross leverage、单股 5% 权重上限和 5bp turnover
+cost。</p>
+<p><strong>论文报告的主要结果。</strong> 在五随机种子的合成重尾 sweep
+中，SDOT 的 3σ/4σ tail ratio 保持在约 0.85–0.94，跨种子标准差低于
+0.025；极端 regime 下 FM 的 4σ ratio 为 4.88±1.94、CNF 为 311±34，而
+SDOT 为 0.89±0.02。真实数据 held-out 试验中所有方法的 CVaR 误差仍为约
+38%–82%，显示非平稳性本身是困难来源。回测中 SDOT 组合
+Sharpe=0.70、Sortino=1.16、最大回撤 -2.60%；CNF Sharpe=0.40，SPY 参考为
+0.64、最大回撤
+-55.2%。这些是特定情景生成器、优化约束和历史回测条件下的风险调整结果，不是实盘收益或因果证据。</p>
+<p><strong>创新、局限与适用边界。</strong>
+论文把“尾部被架构约束压扁”与一般训练失败区分开，并用跨模型、跨严重程度和回测验证这一机制。局限是所有生成器都从
+Gaussian base 出发，SDOT
+当前主要处理无条件样本而非条件/路径序列；S&amp;P 500
+回测仍依赖模型选择、每年再训练、5bp 成本和 CVaR 目标，不能替代 live
+slippage、容量和市场冲击测试。更重要的是，较低尾部误差不自动转化为经济显著性。适合生成式风险模型、CVaR
+和重尾统计读者，建议读 §3 的 Lipschitz 障碍、§5.2/§5.4 的尾部实验、§5.5
+的组合回测和 §6 Limitations。</p>
+<h3 id="active-portfolio-management在等权与市值权之间动态调节">4. Active
+Portfolio Management：在等权与市值权之间动态调节</h3>
+<ul>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27113">Active Portfolio
+Management in Concentrated Equity Markets</a>（arXiv:2609.27113）</li>
+<li>作者：Brian Ceco、Xiaofei Shi、Ting-Kam Leonard Wong</li>
+<li>来源与链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27113">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27113">PDF</a></li>
+<li>证据状态：已核阅公开
+PDF；结果是论文报告，尚未独立复核；回测不构成投资建议。</li>
+</ul>
+<p><strong>核心问题。</strong> 等权组合相对市值权的优势依赖市场
+diversity 和 dispersion
+状态，在集中度上升、相关性变高的阶段可能反转。论文把投资者的选择写成在
+equal-weighted 与 market portfolio
+之间动态分配，并研究交易摩擦是否会改变最优倾斜，而不是只比较静态等权和市值权。</p>
+<p><strong>方法与基线。</strong> 作者建立 stochastic
+diversity–dispersion（SDD）模型，用 stochastic portfolio theory 推导
+frictionless 与 frictional 的 stochastic control；交易摩擦先用二次
+surrogate 使其可解，再在回测中直接从财富扣除 15bp proportional
+transaction costs。参数用 1977–1994 数据估计和校准，1995–2024
+做样本外月度再平衡；比较 mean-reverting 与 trending
+SDD、frictionless/frictional/clipped 策略、等权和 market portfolio。</p>
+<p><strong>论文报告的主要结果。</strong> 1995–2024 样本外、扣除 15bp
+成本后，mean-reverting frictional 策略累计净回报 44.92%、净 Sharpe
+0.72、information ratio 0.35；equal-weighted 组合对应 24.33%、0.58 和
+0.13。该策略平均 turnover 从 frictionless 的 0.41 降到 0.15；trending
+策略的 information ratio 为
+0.29。作者同时指出各组合绝对平均回报和波动相近，Sharpe
+差异并不都具有材料显著性，近期市场 diversity 的结构是否已发生 break
+也不确定。</p>
+<p><strong>创新、局限与适用边界。</strong>
+亮点是把多样性/离散度状态、主动风险和交易摩擦放进一个可解析的控制问题，并把
+surrogate 只作为政策设计工具、把真实 proportional cost
+用于样本外财富。局限是 quadratic surrogate 仍为 in-sample effect
+calibration，模型参数在样本外不再估计；样本只有 S&amp;P 500，策略存在
+gross exposure 与做空，且没有 live
+execution、容量、借券和制度变化证据。历史样本外回测不是因果识别，也不代表未来超额收益。适合随机组合理论、动态资产配置和交易成本建模读者，建议读
+§2–§3 的控制推导、§4.3.3 的回测协议、Table 3 和 §4.3.5 敏感性分析。</p>
+<h3 id="feasible-multi-asset-optimal-execution把现金可行性放进执行路径">5.
+Feasible Multi-Asset Optimal Execution：把现金可行性放进执行路径</h3>
+<ul>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27786">Feasible
+Multi-Asset Optimal Execution under Cash
+Constraints</a>（arXiv:2609.27786）</li>
+<li>作者：Ryuji Hashimoto、Namid R. Stillman</li>
+<li>来源与链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27786">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27786">PDF</a></li>
+<li>证据状态：已核阅公开
+PDF；结果是论文报告，尚未独立复核；执行模拟不构成投资建议。</li>
+</ul>
+<p><strong>核心问题。</strong>
+多资产再平衡可能在最终目标可融资的情况下，因买单先于卖单而在执行中途耗尽现金。论文把每个交易时点的
+expected cumulative cash consumption 约束加入经典 Almgren–Chriss optimal
+execution，研究可行性是否仍能保持解析和计算上的 tractability。</p>
+<p><strong>方法与基线。</strong> 在线性 permanent/temporary market
+impact 下，作者将带 intertemporal cash constraint 的 mean–variance IS
+问题等价改写为 QCQP，并证明在非负参数条件下是
+convex，可由现有求解器得到全局最优 schedule。实验一改变现金预算斜率观察
+buy/sell 排程；实验二用 Simudyne Pulse market simulator，在 2025-09-15
+calibration、2025-10-14 validation 的两资产、六个有序资产对和 300
+次独立模拟中，比较 Ours、去约束的 AC free、TWAP 和 VWAP。</p>
+<p><strong>论文报告的主要结果。</strong>
+现金约束越紧，策略越倾向先卖后买；在 benchmark 的 0.5M 订单量下，AC free
+的 peak cash drawdown 为 57.06%–88.45%，Ours 降到 0.03%–11.81%。Ours
+在六个资产对的平均 combined implementation shortfall 都低于 AC
+free，聚合五种交易规模、六个资产对和 300 个观测时，Ours−AC free
+的平均差为 -6.68bp；但 TWAP/VWAP 在部分资产对的 IS 更低，因此 Ours
+不是单独以 IS 统治所有基线，而是改善现金可行性与执行成本的折中。</p>
+<p><strong>创新、局限与适用边界。</strong>
+贡献是把“过程中的资金约束”从启发式规则变成可解的凸
+QCQP，并明确卖出现金流与买入需求之间的跨资产耦合。局限是线性冲击只是理论基准，约束的是
+expected cash
+而非随机实现路径，真实现金仍可能超预算；实证仅有两个资产且市场参数来自
+agent-based
+simulator，不能替代真实订单簿、冲击、流动性和大组合验证。这里的结果是执行模拟，不是投资组合回报或因果证据。适合交易执行、组合再平衡和凸优化读者，建议读
+§3–§4 的建模与 QCQP 证明、§5 的 out-of-sample protocol、Table 4 和 §7
+Limitations。</p>
+<h2 id="金融论文">金融论文</h2>
+<h3 id="propose-dont-judge-an-anytime-valid-referee-for-llm-agents-that-mine-investment-factorsarxiv2609.27051">1.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27051">Propose, Don't Judge: An
+Anytime-Valid Referee for LLM Agents That Mine Investment
+Factors</a>（arXiv:2609.27051）</h3>
+<ul>
+<li>作者：Bo Qu、Mingguang Chen、Licheng Wang</li>
+<li>来源/分类：arXiv · cs.AI、q-fin.PM、q-fin.ST</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27051">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27051">PDF</a></li>
+<li>简介：重点论文已在上文详述。它同时属于 AI
+与金融，本篇展开统计裁判、CSI 500 walk-forward 和 false-discovery
+边界；论文报告的 Sharpe/因子结果是历史回测，不是实盘或投资建议。</li>
+</ul>
+<h3 id="multi-agent-ai-architecture-for-regulated-insurers-a-generic-ai-framework-under-solvency-ii-and-the-ai-act-in-austria-and-germanyarxiv2609.27636">2.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27636">Multi-Agent AI Architecture
+for Regulated Insurers: A generic AI framework under Solvency II and the
+AI Act in Austria and Germany</a>（arXiv:2609.27636）</h3>
+<ul>
+<li>作者：Walter Kurz</li>
+<li>来源/分类：arXiv · q-fin.GN、cs.MA、q-fin.RM</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27636">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27636">PDF</a></li>
+<li>简介：<strong>仅依据摘要。</strong>
+论文提出面向奥地利/德国保险公司的多 agent 架构，把 Arrow 风险池化、Nash
+均衡和 Principal–Agent
+理论映射到资本管理、核保、理赔、合规、反欺诈与客户交互
+agent，并以分层权限、MCP/A2A 通信和编排 agent 对接 Solvency II、AI Act
+等约束。价值是把机构设计与 AI
+治理放在一起；摘要没有实证系统、保险损失或合规误报/漏报结果，属于架构性主张，不应当作已验证的监管方案。</li>
+</ul>
+<h3 id="surface-driven-stochastic-volatility-for-commodity-options-identification-of-stochastic-vol-of-vol-and-leverage-from-smile-dynamicsarxiv2609.27138">3.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27138">Surface-Driven Stochastic
+Volatility for Commodity Options: Identification of Stochastic
+Vol-of-Vol and Leverage from Smile Dynamics</a>（arXiv:2609.27138）</h3>
+<ul>
+<li>作者：Arthur Steve Tchoneteck、Tingjia Zhang、Frederi Viens</li>
+<li>来源/分类：arXiv · q-fin.MF</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27138">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27138">PDF</a></li>
+<li>简介：重点论文已在上文详述。作者报告的是 soybean option surface
+的模型选择、风险中性定价和数值验证，不是预测现货或回测交易策略；冻结
+surface 状态与 leading-order 假设限制了直接交易解释。</li>
+</ul>
+<h3 id="loss-choice-or-model-choice-the-role-of-forecast-level-in-cryptocurrency-volatility-forecastingarxiv2609.27024">4.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27024">Loss Choice or Model Choice?
+The Role of Forecast Level in Cryptocurrency Volatility
+Forecasting</a>（arXiv:2609.27024）</h3>
+<ul>
+<li>作者：Andrzej Tokajuk、Jarosław A. Chudziak</li>
+<li>来源/分类：arXiv · q-fin.CP、cs.AI、cs.CE、q-fin.RM</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27024">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27024">PDF</a></li>
+<li>简介：<strong>仅依据摘要。</strong> 论文比较七种
+loss、五种模型在主要加密货币上的波动率预测，先用 validation 对齐预测
+level，再分别看统计评分和 one-day VaR。作者报告 raw forecast 中 loss
+差异更大；对齐后 model choice 成为较大来源，VaR breach rate 的跨 loss
+差异明显收窄。摘要未给出资产样本、滚动样本外细节、交易成本或经济显著性，因此不能把预测评分转成交易优势。</li>
+</ul>
+<h3 id="mining-meaning-measurement-error-in-ai-assisted-literature-reviewsarxiv2609.27686">5.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27686">Mining Meaning: Measurement
+Error in AI-Assisted Literature Reviews</a>（arXiv:2609.27686）</h3>
+<ul>
+<li>作者：Jeffrey D. Michler、Kieran Douglas、Anna Josephson</li>
+<li>来源/分类：arXiv · econ.GN、q-fin.EC</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27686">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27686">PDF</a></li>
+<li>简介：<strong>仅依据摘要。</strong> 论文把 LLM 辅助文献综述看作
+measurement system，以三个 ChatGPT 实现识别使用 rainfall as an
+instrumental variable
+的经济学论文并抽取元数据。作者报告二分类尚可，但上下文解释越复杂性能越差；同样的测量误差对
+paper-level claim 影响大，对宏观 literature-level claim
+影响小。价值在于提醒研究者测量准确率不等于下游推断可信度；摘要没有给出完整人工标注协议和误差传播数值，也没有证明某个金融因果结论被可靠恢复。</li>
+</ul>
+<h3 id="financial-tail-risk-beyond-lipschitz-continuity-via-semi-discrete-optimal-transportarxiv2609.27785">6.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27785">Financial Tail Risk Beyond
+Lipschitz Continuity via Semi-Discrete Optimal
+Transport</a>（arXiv:2609.27785）</h3>
+<ul>
+<li>作者：Ryan M. Engel、Kibaek Lee、Namid Stillman</li>
+<li>来源/分类：arXiv · q-fin.RM、cs.CE、q-fin.CP、stat.ML</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27785">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27785">PDF</a></li>
+<li>简介：重点论文已在上文详述。其 .70 Sharpe 是 2005–2026
+mean-CVaR、月度再平衡和 5bp 成本设定下的样本外回测结果；它既不是 live
+trading，也没有排除模型、容量和尾部非平稳性风险。</li>
+</ul>
+<h3 id="sovereign-grassroots-currencies-a-cbdc-architecture-for-credit-and-monetary-policy-full-versionarxiv2609.27727">7.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27727">Sovereign Grassroots
+Currencies: A CBDC Architecture for Credit and Monetary Policy (Full
+Version)</a>（arXiv:2609.27727）</h3>
+<ul>
+<li>作者：Ehud Shapiro</li>
+<li>来源/分类：arXiv · econ.GN、cs.DC、cs.MA、q-fin.EC</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27727">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27727">PDF</a></li>
+<li>简介：<strong>仅依据摘要。</strong> 论文提出由 sovereign grassroots
+coins、可由任意主体发行的 non-sovereign coins 和 grassroots bonds 组成的
+CBDC
+架构，目标是同时处理存款挤兑、信用创造与货币政策工具。作者证明按需兑付的非主权
+coin
+的无套利价格为一单位法币，并称小规模实现已测试；这属于机制设计和理论结果，摘要没有给出规模、挤兑压力、监管资本或宏观福利的实证结果。</li>
+</ul>
+<h3 id="compliant-ai-infrastructure-for-regulated-finance-a-tiered-multi-agent-framework-with-dlt-audit-trails-for-financial-operations-in-dacharxiv2609.27632">8.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27632">Compliant AI Infrastructure
+for Regulated Finance: A tiered multi-agent framework with DLT audit
+trails for financial operations in DACH</a>（arXiv:2609.27632）</h3>
+<ul>
+<li>作者：Walter Kurz、Reinhard Magg</li>
+<li>来源/分类：arXiv · q-fin.GN、cs.AI</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27632">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27632">PDF</a></li>
+<li>简介：<strong>仅依据摘要。</strong> 论文提出合规优先的金融 agent
+基础设施：用 regulatory intent/exposure 矩阵交给 policy compiler，区分
+prohibitions、obligations 和 runtime budgets，再用 permissioned DAG
+记录证据、决策和 reason
+code，并按生效日期做条款索引和能力路由。价值是把可审计工件嵌入执行过程；摘要没有真实机构部署、延迟、误报/漏报、成本或监管认可证据，不能把“assurance
+by construction”当成已证实效果。</li>
+</ul>
+<h3 id="active-portfolio-management-in-concentrated-equity-marketsarxiv2609.27113">9.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27113">Active Portfolio Management
+in Concentrated Equity Markets</a>（arXiv:2609.27113）</h3>
+<ul>
+<li>作者：Brian Ceco、Xiaofei Shi、Ting-Kam Leonard Wong</li>
+<li>来源/分类：arXiv · q-fin.PM、math.OC、q-fin.MF</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27113">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27113">PDF</a></li>
+<li>简介：重点论文已在上文详述。论文提供 1995–2024 的历史样本外回测和
+15bp
+成本扣除，但没有实时交易、容量、借券或未来结构稳定性证据；高净回报不应直接解释为可复制
+alpha。</li>
+</ul>
+<h3 id="nonlinear-drivers-of-macroeconomic-tail-risk-a-threshold-stochastic-volatility-in-mean-var-with-regime-dependent-leveragearxiv2609.26994">10.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.26994">Nonlinear Drivers of
+Macroeconomic Tail Risk: A Threshold Stochastic Volatility-in-Mean VAR
+with Regime-Dependent Leverage</a>（arXiv:2609.26994）</h3>
+<ul>
+<li>作者：Haroon Mumtaz、Sofia Velasco</li>
+<li>来源/分类：arXiv · econ.EM</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.26994">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.26994">PDF</a></li>
+<li>简介：<strong>仅依据摘要。</strong> 论文以近 150 年美国数据建立
+threshold stochastic-volatility-in-mean VAR 和 regime-dependent
+leverage，在三种以通胀定义的状态中识别商业周期、金融、宏观不确定性和金融不确定性冲击，分解
+growth-at-risk 与 inflation-at-risk。作者报告商业周期冲击主导 GNP
+增长中位数却不是
+growth-at-risk，宏观不确定性对尾部贡献更大；这是结构模型下的识别和分解，不等于冲击的因果效应已被实验验证，也没有交易回测收益。</li>
+</ul>
+<h3 id="shopping-by-algorithm-how-agentic-ai-deploys-human-heuristics-as-a-surrogate-consumerarxiv2609.28372">11.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.28372">Shopping by algorithm: How
+agentic AI deploys human heuristics as a surrogate
+consumer</a>（arXiv:2609.28372）</h3>
+<ul>
+<li>作者：Davood Wadi、Yu Ma</li>
+<li>来源/分类：arXiv · econ.GN、cs.AI、q-fin.EC</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.28372">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.28372">PDF</a></li>
+<li>简介：<strong>仅依据摘要。</strong> Tool-Lab
+把商品属性放在有成本的工具调用后，追踪三家供应商八个商业 LLM
+的购买前信息搜寻。零成本时 just-below pricing 和促销 framing
+很少误导；在模糊目标且获取成本存在时，agent
+会遗漏计算单位价格所需的诊断属性，选择类似人类启发式的次优商品，而具体目标提示可保留更好的搜索。价值是把失败归因于
+storefront information
+architecture；实验是消费决策实验，不是金融交易或投资建议。</li>
+</ul>
+<h3 id="feasible-multi-asset-optimal-execution-under-cash-constraintsarxiv2609.27786">12.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27786">Feasible Multi-Asset Optimal
+Execution under Cash Constraints</a>（arXiv:2609.27786）</h3>
+<ul>
+<li>作者：Ryuji Hashimoto、Namid R. Stillman</li>
+<li>来源/分类：arXiv · q-fin.TR、cs.CE、math.OC、q-fin.CP、q-fin.RM</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27786">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27786">PDF</a></li>
+<li>简介：重点论文已在上文详述。它解决的是执行可行性和 implementation
+shortfall
+的模拟问题，不提供资产选择、方向性收益或投资建议；关键证据来自两资产
+agent-based market simulator，仍需真实订单簿和随机现金约束验证。</li>
+</ul>
+<h3 id="cross-market-alpha-testing-short-term-trading-factors-in-the-u.s.-market-via-double-selection-lassoarxiv2601.06499">13.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.06499">Cross-Market Alpha: Testing
+Short-Term Trading Factors in the U.S. Market via Double-Selection
+LASSO</a>（arXiv:2601.06499）</h3>
+<ul>
+<li>作者：Jin Du、Alexander Walter、Maxim Ulrich</li>
+<li>来源/分类：arXiv · q-fin.ST</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.06499">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.06499">PDF</a></li>
+<li>简介：<strong>仅依据摘要。</strong> 论文把中国 A 股 Alpha191 的 168
+个短期价量信号带到美国 S&amp;P 500 股票 2002–2022 数据，在 153
+个既有美国因子之外用 double-selection LASSO 检验 SDF loading。基准
+test-asset 设计中 17 个信号显著，但更细 test-asset grid、Elastic Net 和
+PCA 控制后只有 3 个信号稳定，另 6 个多数检查通过，其余 8
+个依赖规格；这更像稳健性审计而非已确认
+alpha，摘要未给出交易成本、样本外收益或容量。</li>
+</ul>
+<h3 id="a-declining-cvar-glidepath-framework-for-target-date-fund-design-with-an-application-to-the-chilean-pension-systemarxiv2606.13618">14.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.13618">A Declining CVaR Glidepath
+Framework for Target-Date Fund Design with an Application to the Chilean
+Pension System</a>（arXiv:2606.13618）</h3>
+<ul>
+<li>作者：Israel Muñoz、Fernando Suárez、Omar Larré、Arturo
+Cifuentes</li>
+<li>来源/分类：arXiv · q-fin.PM</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.13618">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.13618">PDF</a></li>
+<li>简介：<strong>仅依据摘要。</strong> 论文以明确的目标回报和逐渐下降的
+portfolio-level CVaR 约束设计 target-date
+fund，不假设管理者每月选最优组合，而是从满足约束的组合集合随机抽取，计算达到目标概率和生命周期累计风险。对智利
+2025 养老金改革的九类资产、40 年 horizon 应用显示风险下降的 transition
+age 最重要，缴费密度低于阈值时仅调组合无法弥补；这是设计框架和 proof of
+concept，不是个人养老金建议，也未证明真实未来回报分布。</li>
+</ul>
+<h3 id="global-tree-forecasters-collapse-at-the-hierarchical-aggregate-a-five-panel-failure-characterizationarxiv2609.27912">15.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27912">Global tree forecasters
+collapse at the hierarchical aggregate: a five-panel failure
+characterization</a>（arXiv:2609.27912）</h3>
+<ul>
+<li>作者：Md Rezwanul Islam、Wael Mohammed</li>
+<li>来源/分类：arXiv · cs.LG、econ.EM、stat.AP</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27912">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27912">PDF</a></li>
+<li>简介：<strong>仅依据摘要。</strong> 论文发现把 global
+gradient-boosted tree
+训练在层级的单条序列上、再要求它预测远超训练尺度的总量时，会因树在训练范围外输出常数而崩溃：生产部署低估
+30–50 倍，公开 M5 重建最高 496 倍。五个 panel、三种 tree library 和不同
+seed 都复现该机制；按序列缩放、加权 aggregate row 或 seasonal
+differencing
+可修复不同程度的问题。它是预测系统的失败模式刻画，不是投资策略结果，摘要未给出每个
+panel 的统计检验细节。</li>
+</ul>
+<h3 id="when-trust-attracts-fraud-ai-and-trust-arbitragearxiv2609.27404">16.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27404">When Trust Attracts Fraud: AI
+and Trust Arbitrage</a>（arXiv:2609.27404）</h3>
+<ul>
+<li>作者：Xieyu Yin、Fenghua Wen</li>
+<li>来源/分类：arXiv · econ.GN、q-fin.EC</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27404">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27404">PDF</a></li>
+<li>简介：<strong>仅依据摘要。</strong> 论文构建两个市场的 signaling
+model，假设生成式 AI 同时降低 fabrication、verification 和 targeting
+cost。当伪造在验证前变得有利时，可信度先下降后恢复；高先验质量市场若因信任而较晚验证，会短暂形成
+protection
+gap，吸引欺诈卖家进入，这一流入又触发验证并抑制后续进入。价值是提出
+trust arbitrage
+的机制解释；没有真实市场数据或因果估计，不能把理论区间当成欺诈率预测。</li>
+</ul>
+<h3 id="local-weak-limits-for-equilibrium-and-risk-in-economic-networksarxiv2609.27107">17.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27107">Local Weak Limits for
+Equilibrium and Risk in Economic Networks</a>（arXiv:2609.27107）</h3>
+<ul>
+<li>作者：Hamed Amini、Zhecheng Wu</li>
+<li>来源/分类：arXiv · math.PR、q-fin.MF、q-fin.RM</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.27107">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.27107">PDF</a></li>
+<li>简介：<strong>仅依据摘要。</strong> 论文用 marked local weak
+convergence，把大规模稀疏经济网络的均衡分布和风险评价近似为 rooted
+network 上的局部计算；在 contractive response 或 bounded monotone
+nonexpansive response 下证明经验分布收敛，并在连续性条件下扩展到包括
+CVaR 的 law-invariant risk measures。生产网络和 payment clearing
+数值实验据称显示准确与计算收益；这是理论/数值结果，不提供资产回报或真实清算风险的因果验证。</li>
+</ul>
+<h3 id="proof-of-stake-economy-under-centralized-exchanges--a-mean-field-modelarxiv2606.09003">18.
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.09003">Proof of Stake economy under
+centralized exchanges--a mean field model</a>（arXiv:2606.09003）</h3>
+<ul>
+<li>作者：Wenpin Tang</li>
+<li>来源/分类：arXiv · q-fin.MF、math.OC、q-fin.TR</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.09003">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.09003">PDF</a></li>
+<li>简介：<strong>仅依据摘要。</strong> 论文用连续时间 mean-field model
+描述中心化交易所的交易与 PoS 验证者行为、价格冲击、交易成本和 token
+supply，证明系统局部适定并给出半显式均衡策略。数值结果提示中心化流动性可能提高
+staking participation、改善 staking distribution
+的分散度；这些是模型数值推论，不是对加密市场的实证因果结论，摘要未给出校准数据和外部验证。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/" class="category-chain-item">每日论文</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%BA%E6%96%87/" class="print-no-link">#论文</a>
+      
+        <a href="/tags/%E9%87%91%E8%9E%8D/" class="print-no-link">#金融</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>每日金融论文简报｜2026 年 9 月 25 日</div>
+      <div>https://www.polarishaw.top/2026/09/25/daily-finance-papers-2026-09-25/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年9月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/09/25/daily-ai-papers-2026-09-25/" title="每日 AI 论文简报｜2026 年 9 月 25 日">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">每日 AI 论文简报｜2026 年 9 月 25 日</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/09/25/daily-github-trending-2026-09-25/" title="2026-09-25 GitHub 热榜简报：Agent 记忆、模型优化与本地工具">
+                        <span class="hidden-mobile">2026-09-25 GitHub 热榜简报：Agent 记忆、模型优化与本地工具</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
