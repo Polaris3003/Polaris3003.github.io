@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注  1. PhysAI-Bench：面向无人机物理 AI 的 agent 决策评测  作者：Mohamed Amine Ferrag、Merouane Debbah、Abderrahmane Lakas、Manu Perumkunnil、Norbert Tihanyi 来源：arXiv 摘要页 · PDF · 数据集与代码 证据状态：已核阅公开 PDF；数字和结论均为论文报告，尚未独立">
+    <meta name="description" content="重点关注 1. PhysAI-Bench：面向无人机物理 AI 的 agent 决策评测  作者：Mohamed Amine Ferrag、Merouane Debbah、Abderrahmane Lakas、Manu Perumkunnil、Norbert Tihanyi 来源：arXiv 摘要页 · PDF · 数据集与代码 证据状态：已核阅公开 PDF；数字和结论均为论文报告，尚未独立复核">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 9 月 23 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/09/23/daily-ai-papers-2026-09-23/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注  1. PhysAI-Bench：面向无人机物理 AI 的 agent 决策评测  作者：Mohamed Amine Ferrag、Merouane Debbah、Abderrahmane Lakas、Manu Perumkunnil、Norbert Tihanyi 来源：arXiv 摘要页 · PDF · 数据集与代码 证据状态：已核阅公开 PDF；数字和结论均为论文报告，尚未独立">
+<meta property="og:description" content="重点关注 1. PhysAI-Bench：面向无人机物理 AI 的 agent 决策评测  作者：Mohamed Amine Ferrag、Merouane Debbah、Abderrahmane Lakas、Manu Perumkunnil、Norbert Tihanyi 来源：arXiv 摘要页 · PDF · 数据集与代码 证据状态：已核阅公开 PDF；数字和结论均为论文报告，尚未独立复核">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-06-27/pixiv-rank-005-146320513.jpg">
 <meta property="article:published_time" content="2026-09-23T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-08-23/pixiv-rank-014-148546035.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-09-13/pixiv-rank-002-149365167.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,148 +347,394 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
-<h3 id="1-physai-bench面向无人机物理-ai-的-agent-决策评测"><a class="markdownIt-Anchor" href="#1-physai-bench面向无人机物理-ai-的-agent-决策评测"></a> 1. PhysAI-Bench：面向无人机物理 AI 的 agent 决策评测</h3>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="physai-bench面向无人机物理-ai-的-agent-决策评测">1.
+PhysAI-Bench：面向无人机物理 AI 的 agent 决策评测</h3>
 <ul>
-<li>作者：Mohamed Amine Ferrag、Merouane Debbah、Abderrahmane Lakas、Manu Perumkunnil、Norbert Tihanyi</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.23695">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.23695">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/maferrag/physai-bench">数据集与代码</a></li>
-<li>证据状态：已核阅公开 PDF；数字和结论均为论文报告，尚未独立复核。</li>
+<li>作者：Mohamed Amine Ferrag、Merouane Debbah、Abderrahmane
+Lakas、Manu Perumkunnil、Norbert Tihanyi</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.23695">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.23695">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/maferrag/physai-bench">数据集与代码</a></li>
+<li>证据状态：已核阅公开
+PDF；数字和结论均为论文报告，尚未独立复核。</li>
 </ul>
-<p><strong>核心问题。</strong> 现有物理 AI benchmark 多测感知、导航或直觉物理，较少测量 agent 在真实约束下如何连续感知、规划、调用工具并作出下一步决策。PhysAI-Bench 将问题限定到无人机任务，试图测量模型在只有决策前信息时能否保持任务上下文、时间依赖、物理约束和通信条件的一致性。</p>
-<p><strong>方法与基线。</strong> 数据集包含 10,178 个从无人机任务对话轨迹自动抽取的决策实例，保留 MCP/A2A 交互、传感器观察以及延迟、丢包、吞吐、边缘负载等 6G 条件，并通过只暴露决策前信息避免未来事件泄漏。作者评测 29 个基础模型：先在 35 个人工核验开发实例上，从 zero/three/five-shot 与四个温度组成的 12 个配置中选模型专属配置，再在 episode-disjoint 的 500 个固定测试实例上冻结配置，三次重复报告准确率和按任务 episode 聚类的置信区间。这个设计比单次 prompt 排名更接近在线决策，但开发集很小，配置选择也可能放大偶然性。</p>
-<p><strong>论文报告的主要结果。</strong> 测试集最高准确率为 GPT-5.3 的 52.00%±0.72%，其次是 GPT-5.2 的 49.40%±1.44% 和 Grok 4.5 的 49.07%±0.81%；对应的 95% 区间约为 [47.87%, 56.40%]、[45.40%, 53.47%] 和 [45.07%, 53.33%]。开发集峰值可达 70.48%，但部分模型从开发到测试出现约 21–24 个百分点的正向泛化差距，说明小开发集选参的乐观偏差不可忽略。作者还报告五次示例通常有帮助、温度影响有限；不同模型的延迟和 token 消耗差异很大，前沿准确率并不自动等于在线效率。</p>
-<p><strong>创新、局限与适用边界。</strong> 价值在于把任务上下文、工具协议和网络状态放进同一套 agent 决策评测，而不是只测静态问答。限制包括 UAV 中心的场景、文本化任务轨迹与真实多模态传感器的差距、模型和供应商接口会变化，以及没有独立复现；因此 52% 不能直接解释为真实飞行安全概率。建议读第 3 节的数据构造、第 4 节评测协议、第 5 节结果和第 6 节限制；适合做具身 agent、物理 AI benchmark 与在线推理效率的人优先阅读。</p>
-<h3 id="2-deepinstructor从学术经验图谱中评估研究想法"><a class="markdownIt-Anchor" href="#2-deepinstructor从学术经验图谱中评估研究想法"></a> 2. DeepInstructor：从学术经验图谱中评估研究想法</h3>
+<p><strong>核心问题。</strong> 现有物理 AI benchmark
+多测感知、导航或直觉物理，较少测量 agent
+在真实约束下如何连续感知、规划、调用工具并作出下一步决策。PhysAI-Bench
+将问题限定到无人机任务，试图测量模型在只有决策前信息时能否保持任务上下文、时间依赖、物理约束和通信条件的一致性。</p>
+<p><strong>方法与基线。</strong> 数据集包含 10,178
+个从无人机任务对话轨迹自动抽取的决策实例，保留 MCP/A2A
+交互、传感器观察以及延迟、丢包、吞吐、边缘负载等 6G
+条件，并通过只暴露决策前信息避免未来事件泄漏。作者评测 29
+个基础模型：先在 35 个人工核验开发实例上，从 zero/three/five-shot
+与四个温度组成的 12 个配置中选模型专属配置，再在 episode-disjoint 的 500
+个固定测试实例上冻结配置，三次重复报告准确率和按任务 episode
+聚类的置信区间。这个设计比单次 prompt
+排名更接近在线决策，但开发集很小，配置选择也可能放大偶然性。</p>
+<p><strong>论文报告的主要结果。</strong> 测试集最高准确率为 GPT-5.3 的
+52.00%±0.72%，其次是 GPT-5.2 的 49.40%±1.44% 和 Grok 4.5 的
+49.07%±0.81%；对应的 95% 区间约为 [47.87%, 56.40%]、[45.40%, 53.47%] 和
+[45.07%, 53.33%]。开发集峰值可达 70.48%，但部分模型从开发到测试出现约
+21–24
+个百分点的正向泛化差距，说明小开发集选参的乐观偏差不可忽略。作者还报告五次示例通常有帮助、温度影响有限；不同模型的延迟和
+token 消耗差异很大，前沿准确率并不自动等于在线效率。</p>
+<p><strong>创新、局限与适用边界。</strong>
+价值在于把任务上下文、工具协议和网络状态放进同一套 agent
+决策评测，而不是只测静态问答。限制包括 UAV
+中心的场景、文本化任务轨迹与真实多模态传感器的差距、模型和供应商接口会变化，以及没有独立复现；因此
+52% 不能直接解释为真实飞行安全概率。建议读第 3 节的数据构造、第 4
+节评测协议、第 5 节结果和第 6 节限制；适合做具身 agent、物理 AI
+benchmark 与在线推理效率的人优先阅读。</p>
+<h3 id="deepinstructor从学术经验图谱中评估研究想法">2.
+DeepInstructor：从学术经验图谱中评估研究想法</h3>
 <ul>
-<li>作者：Rongcan Pei、Fang Guo、Qinglin Qi、Qi Zhu、Yun Luo、Jianhao Yan、Minjun Zhu、Qiujie Xie、Dehong Zheng、Yue Zhang</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.22104">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.22104">PDF</a></li>
-<li>证据状态：已核阅公开 PDF；人工对齐结果和消融均为论文报告，尚未独立复核。</li>
+<li>作者：Rongcan Pei、Fang Guo、Qinglin Qi、Qi Zhu、Yun Luo、Jianhao
+Yan、Minjun Zhu、Qiujie Xie、Dehong Zheng、Yue Zhang</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.22104">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.22104">PDF</a></li>
+<li>证据状态：已核阅公开
+PDF；人工对齐结果和消融均为论文报告，尚未独立复核。</li>
 </ul>
-<p><strong>核心问题。</strong> 当 LLM 可以批量提出研究想法后，瓶颈从生成转向判断新颖性、重要性和可行性。DeepInstructor 试图回答：把同行评审中的具体经验组织成可检索的结构化证据，是否比只依赖参数记忆或普通段落检索更接近人类导师的评价。</p>
-<p><strong>方法与基线。</strong> 作者从 ICLR 2024/2025 的 58,607 条同行评审中抽取 416,330 个实体—关系三元组，构建 Experience Graph；系统使用两阶段实体/关系检索和 ReAct agent，按 novelty、significance、feasibility 三个维度检索证据并生成可追溯判断。DeepInstruct 数据集包含 398 个研究想法和 289 个受控成对比较，另有 147 个带人工分数的 ExpertEval 想法；比较对象包括 DeepReview、段落 RAG、ChatGPT-4o-mini、ChatGPT-4o 和 DeepSeek-V4-Pro，检索用 BGE-M3，实体和关系候选数各为 5。数据主要来自两个 ICLR 年份，跨学科外推仍未知。</p>
-<p><strong>论文报告的主要结果。</strong> 在 ExpertEval 上，与同一 backbone 的普通 ChatGPT-4o 相比，作者报告 DeepInstructor 的平均 Hit@1 和 Hit@2 分别提高 24.4% 和 29.7%；论文表格中，4o backbone 的 novelty Hit@1/2 为 0.622/0.867、significance 为 0.126/0.356、feasibility 为 0.726/0.941，而对应普通 4o 的 novelty 为 0.089/0.215、significance 为 0/0.133。DeepInstruct 的成对判断仍有明显维度差异，说明“更像人类”并不代表三个维度都同样可靠。作者还报告带经验检索的反馈比泛化的 LLM 反馈能带来更大的评价改进，但这些判断依赖人工标注和 LLM 评审的一致性。</p>
-<p><strong>创新、局限与适用边界。</strong> 亮点是将“学术经验”变成可检索、可审计的关系结构，并把检索过程嵌入 agent 推理。局限是语料集中于 ICLR 计算机科学评审、三种评价维度仍有主观性，图谱抽取本身可能带入 LLM 错误；论文没有证明它能预测真实投稿后的学术影响。建议读第 3 节图谱与 agent、第 4 节数据集、第 5 节结果和附录检索设置；适合科研辅助、RAG 评测和科学发现方向。</p>
-<h3 id="3-videogen-agent用工具链强化视频生成-agent"><a class="markdownIt-Anchor" href="#3-videogen-agent用工具链强化视频生成-agent"></a> 3. VideoGen-Agent：用工具链强化视频生成 agent</h3>
+<p><strong>核心问题。</strong> 当 LLM
+可以批量提出研究想法后，瓶颈从生成转向判断新颖性、重要性和可行性。DeepInstructor
+试图回答：把同行评审中的具体经验组织成可检索的结构化证据，是否比只依赖参数记忆或普通段落检索更接近人类导师的评价。</p>
+<p><strong>方法与基线。</strong> 作者从 ICLR 2024/2025 的 58,607
+条同行评审中抽取 416,330 个实体—关系三元组，构建 Experience
+Graph；系统使用两阶段实体/关系检索和 ReAct agent，按
+novelty、significance、feasibility
+三个维度检索证据并生成可追溯判断。DeepInstruct 数据集包含 398
+个研究想法和 289 个受控成对比较，另有 147 个带人工分数的 ExpertEval
+想法；比较对象包括 DeepReview、段落 RAG、ChatGPT-4o-mini、ChatGPT-4o 和
+DeepSeek-V4-Pro，检索用 BGE-M3，实体和关系候选数各为 5。数据主要来自两个
+ICLR 年份，跨学科外推仍未知。</p>
+<p><strong>论文报告的主要结果。</strong> 在 ExpertEval 上，与同一
+backbone 的普通 ChatGPT-4o 相比，作者报告 DeepInstructor 的平均 <a href="mailto:Hit@1" class="email">Hit@1</a> 和 <a href="mailto:Hit@2" class="email">Hit@2</a> 分别提高 24.4% 和 29.7%；论文表格中，4o backbone
+的 novelty <a href="mailto:Hit@1" class="email">Hit@1</a>/2 为
+0.622/0.867、significance 为 0.126/0.356、feasibility 为
+0.726/0.941，而对应普通 4o 的 novelty 为 0.089/0.215、significance 为
+0/0.133。DeepInstruct
+的成对判断仍有明显维度差异，说明“更像人类”并不代表三个维度都同样可靠。作者还报告带经验检索的反馈比泛化的
+LLM 反馈能带来更大的评价改进，但这些判断依赖人工标注和 LLM
+评审的一致性。</p>
+<p><strong>创新、局限与适用边界。</strong>
+亮点是将“学术经验”变成可检索、可审计的关系结构，并把检索过程嵌入 agent
+推理。局限是语料集中于 ICLR
+计算机科学评审、三种评价维度仍有主观性，图谱抽取本身可能带入 LLM
+错误；论文没有证明它能预测真实投稿后的学术影响。建议读第 3 节图谱与
+agent、第 4 节数据集、第 5 节结果和附录检索设置；适合科研辅助、RAG
+评测和科学发现方向。</p>
+<h3 id="videogen-agent用工具链强化视频生成-agent">3.
+VideoGen-Agent：用工具链强化视频生成 agent</h3>
 <ul>
-<li>作者：Binxu Li、Haoyi Duan、Yuhui Zhang、Yaohui Zhang、Zihao Lin、Kaituo Feng、Suozhi Huang、Xiangyi Li、Yu Li、Chunyuan Li、Shilong Liu、Mengdi Wang</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.24997">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.24997">PDF</a> · <a target="_blank" rel="noopener" href="https://andyca111.github.io/VideoGen_Agent">项目页</a></li>
-<li>证据状态：已核阅公开 PDF；benchmark 与人评结果均为论文报告，尚未独立复核。</li>
+<li>作者：Binxu Li、Haoyi Duan、Yuhui Zhang、Yaohui Zhang、Zihao
+Lin、Kaituo Feng、Suozhi Huang、Xiangyi Li、Yu Li、Chunyuan Li、Shilong
+Liu、Mengdi Wang</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.24997">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.24997">PDF</a> · <a target="_blank" rel="noopener" href="https://andyca111.github.io/VideoGen_Agent">项目页</a></li>
+<li>证据状态：已核阅公开 PDF；benchmark
+与人评结果均为论文报告，尚未独立复核。</li>
 </ul>
-<p><strong>核心问题。</strong> 专门知识、指定身份、物理一致性和有序事件往往超出一次性文本到视频模型的稳定能力。VideoGen-Agent 让一个共享策略在增强、生成和验证工具之间多轮交互，研究“学会调用工具”能否跨任务迁移，而不是为每种视频需求单独训练一个模型。</p>
-<p><strong>方法与基线。</strong> 训练覆盖程序性知识、单/多实体身份、物理模拟、组合场景和多镜头六类任务，使用 24K prompts/trajectories，其中 16K 做 SFT、8K 做 RL；基座是 Qwen3-VL-8B-Instruct，SFT 两个 epoch、GRPO 一​​个 epoch，训练和工具服务各使用 8 张 H200。混合奖励由格式、VLM 质量和工具奖励组成，作者还比较训练工具集与升级后的生成工具集。VABench 为留出集，600 个 prompt 每类 100 个，使用 Gemini 3.1 Pro 评判，并以独立视频生成模型和工具配置作比较；因此评判器及工具质量是实验的重要条件。</p>
-<p><strong>论文报告的主要结果。</strong> 在 VABench 上，基础生成器得分 56.5，加入 agent 和训练工具集后为 75.6，提升 19.1 个百分点；只升级生成工具、不再训练 agent，得分进一步到 86.1。100 个成对比较、4 名人类评审中，升级工具配置相对最强独立基线获得 84.3% 偏好；Gemini 判断与人评在 600 个比较中的一致率为 92%。消融中，去掉 VLM 奖励降至 73.3，去掉工具奖励降至 71.2；RL 版本从 SFT 的 69.2 升到 75.6。数字说明工具升级有很大贡献，不能把全部增益归因于 agent policy。</p>
-<p><strong>创新、局限与适用边界。</strong> 论文把“会生成”拆成观察—调用—验证的闭环，并检验后续更强工具能否被已有策略利用。局限是只覆盖六类任务、工具的延迟和错误分布可能决定结果，VLM judge 与小规模人评不能替代大规模用户评价，也未提供独立复现。建议读第 2–3 节、表 2–3、附录 A.5/B.2 和限制章节；适合视频生成、工具使用 RL 和多模态 agent 研究者。</p>
-<h3 id="4-chartjudgebench图表转代码中的多模态评判器是否可靠"><a class="markdownIt-Anchor" href="#4-chartjudgebench图表转代码中的多模态评判器是否可靠"></a> 4. ChartJudgeBench：图表转代码中的多模态评判器是否可靠</h3>
+<p><strong>核心问题。</strong>
+专门知识、指定身份、物理一致性和有序事件往往超出一次性文本到视频模型的稳定能力。VideoGen-Agent
+让一个共享策略在增强、生成和验证工具之间多轮交互，研究“学会调用工具”能否跨任务迁移，而不是为每种视频需求单独训练一个模型。</p>
+<p><strong>方法与基线。</strong>
+训练覆盖程序性知识、单/多实体身份、物理模拟、组合场景和多镜头六类任务，使用
+24K prompts/trajectories，其中 16K 做 SFT、8K 做 RL；基座是
+Qwen3-VL-8B-Instruct，SFT 两个 epoch、GRPO 一​​个
+epoch，训练和工具服务各使用 8 张 H200。混合奖励由格式、VLM
+质量和工具奖励组成，作者还比较训练工具集与升级后的生成工具集。VABench
+为留出集，600 个 prompt 每类 100 个，使用 Gemini 3.1 Pro
+评判，并以独立视频生成模型和工具配置作比较；因此评判器及工具质量是实验的重要条件。</p>
+<p><strong>论文报告的主要结果。</strong> 在 VABench 上，基础生成器得分
+56.5，加入 agent 和训练工具集后为 75.6，提升 19.1
+个百分点；只升级生成工具、不再训练 agent，得分进一步到 86.1。100
+个成对比较、4 名人类评审中，升级工具配置相对最强独立基线获得 84.3%
+偏好；Gemini 判断与人评在 600 个比较中的一致率为 92%。消融中，去掉 VLM
+奖励降至 73.3，去掉工具奖励降至 71.2；RL 版本从 SFT 的 69.2 升到
+75.6。数字说明工具升级有很大贡献，不能把全部增益归因于 agent
+policy。</p>
+<p><strong>创新、局限与适用边界。</strong>
+论文把“会生成”拆成观察—调用—验证的闭环，并检验后续更强工具能否被已有策略利用。局限是只覆盖六类任务、工具的延迟和错误分布可能决定结果，VLM
+judge 与小规模人评不能替代大规模用户评价，也未提供独立复现。建议读第 2–3
+节、表 2–3、附录 A.5/B.2 和限制章节；适合视频生成、工具使用 RL 和多模态
+agent 研究者。</p>
+<h3 id="chartjudgebench图表转代码中的多模态评判器是否可靠">4.
+ChartJudgeBench：图表转代码中的多模态评判器是否可靠</h3>
 <ul>
-<li>作者：Lijian Wu、Henry Hengyuan Zhao、Zijian Zhang、Jiahao Tang、Jiajun Wu、Alex Jinpeng Wang</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.24210">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.24210">PDF</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.24210">代码与数据说明</a></li>
-<li>证据状态：已核阅公开 PDF；评判器分数、人工一致性和下游关联均为论文报告，尚未独立复核。</li>
+<li>作者：Lijian Wu、Henry Hengyuan Zhao、Zijian Zhang、Jiahao
+Tang、Jiajun Wu、Alex Jinpeng Wang</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.24210">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.24210">PDF</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.24210">代码与数据说明</a></li>
+<li>证据状态：已核阅公开
+PDF；评判器分数、人工一致性和下游关联均为论文报告，尚未独立复核。</li>
 </ul>
-<p><strong>核心问题。</strong> 图表转代码的 RL 或 agent 优化依赖视觉评判器提供奖励，但“看起来更好”与数据编码正确、布局合理并不相同。ChartJudgeBench 评估 LMM 能否稳定完成成对比较和 Accept/Reject 验证，特别关注位置偏差、过度接受和对审美差异的不敏感。</p>
-<p><strong>方法与基线。</strong> 基准含 1,653 个实例：CPA 成对比较 1,003 个，CRJ 二元验证 650 个，覆盖视觉效果、布局和数据保真三类、七项标准；来源为 315 张 arXiv 计算机科学图表和 ChartMimic、Chart2Code、ChartEdit 的 494 个图表—代码对。作者由 5 名专家标注，并将 5,180 个受控候选过滤成可比较样本；评测 26 个 LMM，成对比较使用位置交换两遍，只有两遍选择一致才算严格正确。对照包括 Gemini-3-Pro、GPT-5.2 和 7B–72B 开放模型，不能简单把闭源和开放模型分数当成同预算排名。</p>
-<p><strong>论文报告的主要结果。</strong> CPA 平均严格准确率中，Gemini-3-Pro 为 95.0，GPT-5.2 为 79.7；CRJ 中两者在图表编辑任务的分数分别为 79.1 和 75.6，在图表复现任务为 74.3 和 75.6。视觉错误在候选中占 20.3%–26.7%；GPT-5.2 约 35% 的错误与位置偏差有关，Qwen3-VL-32B 为 32.8%。LLaVA-Critic-R1 在复现任务召回率 98.1%，但特异性只有 9.4%，体现出“几乎都接受”的宽松偏差。四-shot 后 Gemini 的特异性增加 20.3 个百分点、GPT 增加 12.9 个百分点；在 100 个 ChartMimic 下游样本上，CPA 与评分增益的 Pearson 相关为 0.859，但这仍是小样本代理关联。</p>
-<p><strong>创新、局限与适用边界。</strong> 价值在于把评判器的可靠性作为独立 benchmark，而不是默认更大的 LMM 就是更好的 reward model。局限是专家标准、少量学生人评、图表领域和两遍协议都可能影响结论；与生产任务的实际收益也只通过小型下游实验间接观察。建议读第 3–4.5 节和附录 C/D；做 chart-to-code、视觉 reward model 和 RL 评测的人应先读。</p>
-<h3 id="5-mcp-granitemcp-工具粒度对-agent-的影响"><a class="markdownIt-Anchor" href="#5-mcp-granitemcp-工具粒度对-agent-的影响"></a> 5. MCP-GRANITE：MCP 工具粒度对 agent 的影响</h3>
+<p><strong>核心问题。</strong> 图表转代码的 RL 或 agent
+优化依赖视觉评判器提供奖励，但“看起来更好”与数据编码正确、布局合理并不相同。ChartJudgeBench
+评估 LMM 能否稳定完成成对比较和 Accept/Reject
+验证，特别关注位置偏差、过度接受和对审美差异的不敏感。</p>
+<p><strong>方法与基线。</strong> 基准含 1,653 个实例：CPA 成对比较 1,003
+个，CRJ 二元验证 650
+个，覆盖视觉效果、布局和数据保真三类、七项标准；来源为 315 张 arXiv
+计算机科学图表和 ChartMimic、Chart2Code、ChartEdit 的 494
+个图表—代码对。作者由 5 名专家标注，并将 5,180
+个受控候选过滤成可比较样本；评测 26 个
+LMM，成对比较使用位置交换两遍，只有两遍选择一致才算严格正确。对照包括
+Gemini-3-Pro、GPT-5.2 和 7B–72B
+开放模型，不能简单把闭源和开放模型分数当成同预算排名。</p>
+<p><strong>论文报告的主要结果。</strong> CPA
+平均严格准确率中，Gemini-3-Pro 为 95.0，GPT-5.2 为 79.7；CRJ
+中两者在图表编辑任务的分数分别为 79.1 和 75.6，在图表复现任务为 74.3 和
+75.6。视觉错误在候选中占 20.3%–26.7%；GPT-5.2 约 35%
+的错误与位置偏差有关，Qwen3-VL-32B 为 32.8%。LLaVA-Critic-R1
+在复现任务召回率 98.1%，但特异性只有
+9.4%，体现出“几乎都接受”的宽松偏差。四-shot 后 Gemini 的特异性增加 20.3
+个百分点、GPT 增加 12.9 个百分点；在 100 个 ChartMimic 下游样本上，CPA
+与评分增益的 Pearson 相关为 0.859，但这仍是小样本代理关联。</p>
+<p><strong>创新、局限与适用边界。</strong>
+价值在于把评判器的可靠性作为独立 benchmark，而不是默认更大的 LMM
+就是更好的 reward
+model。局限是专家标准、少量学生人评、图表领域和两遍协议都可能影响结论；与生产任务的实际收益也只通过小型下游实验间接观察。建议读第
+3–4.5 节和附录 C/D；做 chart-to-code、视觉 reward model 和 RL
+评测的人应先读。</p>
+<h3 id="mcp-granitemcp-工具粒度对-agent-的影响">5. MCP-GRANITE：MCP
+工具粒度对 agent 的影响</h3>
 <ul>
-<li>作者：Demetris Paschalides、Moysis Symeonides、George Pallis、Marios D. Dikaiakos</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.24161">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.24161">PDF</a></li>
-<li>证据状态：已核阅公开 PDF；结果来自作者构造的本地 benchmark，尚未在真实 MCP 服务上独立复核。</li>
+<li>作者：Demetris Paschalides、Moysis Symeonides、George Pallis、Marios
+D. Dikaiakos</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.24161">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.24161">PDF</a></li>
+<li>证据状态：已核阅公开 PDF；结果来自作者构造的本地
+benchmark，尚未在真实 MCP 服务上独立复核。</li>
 </ul>
-<p><strong>核心问题。</strong> 同一功能拆成很多原子工具、少数任务级工具或一个单体工具，会改变 agent 的工具选择、参数构造和调用成本。MCP-GRANITE 把接口粒度设为可控变量，专门研究边缘设备不能无限增大模型时，接口设计是否比参数规模更关键。</p>
-<p><strong>方法与基线。</strong> benchmark 有 9 个领域的 81 个多步场景，四个粒度级别从 8–10 个原子工具、4 个任务级工具、2 个读写工具到 1 个单体工具；9 个本地模型为 268M–20.9B 参数，共 8,748 次试验。指标包括任务完成率、工具选择 F1、参数准确率、延迟、资源和能耗，统一在 T4 16GB 环境运行。由于 MCP 服务是 mock server、响应固定且模型做了本地量化，结果更像接口设计的受控实验，不是线上故障率估计。</p>
-<p><strong>论文报告的主要结果。</strong> 四工具接口相对原子工具接口将任务完成率提高 16.4%，相对单体工具提高 33.6%；参数准确率接近翻倍。原子工具配置的零工具率为 10.2%，单体工具为 28.2%，四工具为 10.7%；逻辑回归中四工具相对原子工具的优势 odds ratio 为 1.36，95% 区间 [1.12, 1.66]，p=.002。Llama 3.2 3.2B 在四工具级别约 6.7 秒、完成率 0.58；Qwen3 14.8B 约 164.5 秒、完成率 0.76；参数规模与完成率的相关性仅 .285、p=.458，而与延迟相关约 .946。论文还报告 3.2B 模型在匹配粒度时可超过 20.9B 模型在不匹配粒度时的表现。</p>
-<p><strong>创新、局限与适用边界。</strong> 贡献是将“工具接口设计”从实现细节提升为可测的 agent 系统变量。局限包括 mock 工具、固定响应、仅 9 个本地模型和 T4 环境，模型规模相关性仍是描述性证据；真实服务的错误、权限和网络延迟可能改变最优粒度。建议读第 III–V 节及表 I–V；适合 MCP 生态、边缘部署和工具调用评测。</p>
-<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
-<h3 id="1-金融语言模型在摩擦约束下的新闻交易系统双主题"><a class="markdownIt-Anchor" href="#1-金融语言模型在摩擦约束下的新闻交易系统双主题"></a> 1. 金融语言模型在摩擦约束下的新闻交易系统（双主题）</h3>
+<p><strong>核心问题。</strong>
+同一功能拆成很多原子工具、少数任务级工具或一个单体工具，会改变 agent
+的工具选择、参数构造和调用成本。MCP-GRANITE
+把接口粒度设为可控变量，专门研究边缘设备不能无限增大模型时，接口设计是否比参数规模更关键。</p>
+<p><strong>方法与基线。</strong> benchmark 有 9 个领域的 81
+个多步场景，四个粒度级别从 8–10 个原子工具、4 个任务级工具、2
+个读写工具到 1 个单体工具；9 个本地模型为 268M–20.9B 参数，共 8,748
+次试验。指标包括任务完成率、工具选择
+F1、参数准确率、延迟、资源和能耗，统一在 T4 16GB 环境运行。由于 MCP
+服务是 mock
+server、响应固定且模型做了本地量化，结果更像接口设计的受控实验，不是线上故障率估计。</p>
+<p><strong>论文报告的主要结果。</strong>
+四工具接口相对原子工具接口将任务完成率提高 16.4%，相对单体工具提高
+33.6%；参数准确率接近翻倍。原子工具配置的零工具率为 10.2%，单体工具为
+28.2%，四工具为 10.7%；逻辑回归中四工具相对原子工具的优势 odds ratio 为
+1.36，95% 区间 [1.12, 1.66]，p=.002。Llama 3.2 3.2B 在四工具级别约 6.7
+秒、完成率 0.58；Qwen3 14.8B 约 164.5 秒、完成率
+0.76；参数规模与完成率的相关性仅 .285、p=.458，而与延迟相关约
+.946。论文还报告 3.2B 模型在匹配粒度时可超过 20.9B
+模型在不匹配粒度时的表现。</p>
+<p><strong>创新、局限与适用边界。</strong>
+贡献是将“工具接口设计”从实现细节提升为可测的 agent 系统变量。局限包括
+mock 工具、固定响应、仅 9 个本地模型和 T4
+环境，模型规模相关性仍是描述性证据；真实服务的错误、权限和网络延迟可能改变最优粒度。建议读第
+III–V 节及表 I–V；适合 MCP 生态、边缘部署和工具调用评测。</p>
+<h2 id="ai-论文">AI 论文</h2>
+<h3 id="金融语言模型在摩擦约束下的新闻交易系统双主题">1.
+金融语言模型在摩擦约束下的新闻交易系统（双主题）</h3>
 <ul>
 <li>作者：Kemal Kirtac</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.23703">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.23703">PDF</a></li>
-<li>简介：论文提出 MFAST，将带时间戳的公司新闻匹配到证券，再同时检查事件时间可观测性、概率校准、执行时点、交易成本、流动性、容量、推理诊断和统计推断。摘要报告 decoder-only 模型在分类、校准、收益预测和净组合表现上优于 encoder 与词典情感基线；它同时属于金融主题，完整方法、样本外设计和金融结果在本日金融简报中详述。</li>
-<li>证据状态：双主题论文；本篇只保留 AI 系统视角的索引，完整 PDF 证据不在此重复展开。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.23703">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.23703">PDF</a></li>
+<li>简介：论文提出
+MFAST，将带时间戳的公司新闻匹配到证券，再同时检查事件时间可观测性、概率校准、执行时点、交易成本、流动性、容量、推理诊断和统计推断。摘要报告
+decoder-only 模型在分类、校准、收益预测和净组合表现上优于 encoder
+与词典情感基线；它同时属于金融主题，完整方法、样本外设计和金融结果在本日金融简报中详述。</li>
+<li>证据状态：双主题论文；本篇只保留 AI 系统视角的索引，完整 PDF
+证据不在此重复展开。</li>
 </ul>
-<h3 id="2-trustworthy-agentic-ai自主-llm-系统的失效模式与生命周期框架"><a class="markdownIt-Anchor" href="#2-trustworthy-agentic-ai自主-llm-系统的失效模式与生命周期框架"></a> 2. Trustworthy Agentic AI：自主 LLM 系统的失效模式与生命周期框架</h3>
+<h3 id="trustworthy-agentic-ai自主-llm-系统的失效模式与生命周期框架">2.
+Trustworthy Agentic AI：自主 LLM 系统的失效模式与生命周期框架</h3>
 <ul>
-<li>作者：Fayeq Jeelani Syed、Rehan Ahmad、Ali Al Bataineh、Aakriti Adhikari</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.22712">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.22712">PDF</a></li>
-<li>简介：这是对 agent 可信性的结构化综述，覆盖安全鲁棒性、对齐与人工监督、透明审计、隐私治理和合规五个维度，归纳间接 prompt injection、后门、目标误泛化、记忆污染和跨会话泄漏等失效模式，并提出六阶段 Trustworthy Agent Development Lifecycle。综述筛选 66 篇研究，其中 22 篇有 artifact 的红队研究、11 个安全 benchmark；作者明确指出实证覆盖不均，TADL 尚未被经验验证。</li>
+<li>作者：Fayeq Jeelani Syed、Rehan Ahmad、Ali Al Bataineh、Aakriti
+Adhikari</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.22712">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.22712">PDF</a></li>
+<li>简介：这是对 agent
+可信性的结构化综述，覆盖安全鲁棒性、对齐与人工监督、透明审计、隐私治理和合规五个维度，归纳间接
+prompt
+injection、后门、目标误泛化、记忆污染和跨会话泄漏等失效模式，并提出六阶段
+Trustworthy Agent Development Lifecycle。综述筛选 66 篇研究，其中 22
+篇有 artifact 的红队研究、11 个安全
+benchmark；作者明确指出实证覆盖不均，TADL 尚未被经验验证。</li>
 <li>证据状态：仅依据摘要；未核阅全文，不能补充筛选标准、证据质量或框架落地成本。</li>
 </ul>
-<h3 id="3-mms-vpr密集步行街区的细粒度多模态视觉地点识别"><a class="markdownIt-Anchor" href="#3-mms-vpr密集步行街区的细粒度多模态视觉地点识别"></a> 3. MMS-VPR：密集步行街区的细粒度多模态视觉地点识别</h3>
+<h3 id="mms-vpr密集步行街区的细粒度多模态视觉地点识别">3.
+MMS-VPR：密集步行街区的细粒度多模态视觉地点识别</h3>
 <ul>
-<li>作者：Yiwei Ou、Xiaobin Ren、Ronggui Sun、Guansong Gao、Kaiqi Zhao、Manfredo Manfredini</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.12254">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2505.12254">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/Yiwei-Ou/MMS-VPR">数据集</a> · <a target="_blank" rel="noopener" href="https://github.com/yiasun/MMS-VPRlib">代码</a></li>
-<li>简介：MMS-VPR 面向车辆数据集较少覆盖的密集步行街景，收集成都约 70,800 平方米区域的 110,529 张图像和 2,527 段视频，含 208 个相距可仅 10–20 米的细粒度地点类、GPS/时间/语义文本和空间图。作者用统一平台比较 22 个浅层、CNN、Transformer、GNN 与多模态基线，报告视频时序相对仅图像准确率提高 15.8 个百分点、文本单模态 R@5 为 0.988、全模态准确率 0.981，较图像单模态提高 19.2 个百分点；这些是作者的 benchmark 结果，不能直接等同于跨城市泛化。</li>
+<li>作者：Yiwei Ou、Xiaobin Ren、Ronggui Sun、Guansong Gao、Kaiqi
+Zhao、Manfredo Manfredini</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.12254">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2505.12254">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/Yiwei-Ou/MMS-VPR">数据集</a> · <a target="_blank" rel="noopener" href="https://github.com/yiasun/MMS-VPRlib">代码</a></li>
+<li>简介：MMS-VPR 面向车辆数据集较少覆盖的密集步行街景，收集成都约
+70,800 平方米区域的 110,529 张图像和 2,527 段视频，含 208 个相距可仅
+10–20 米的细粒度地点类、GPS/时间/语义文本和空间图。作者用统一平台比较 22
+个浅层、CNN、Transformer、GNN
+与多模态基线，报告视频时序相对仅图像准确率提高 15.8 个百分点、文本单模态
+<a href="mailto:R@5" class="email">R@5</a> 为 0.988、全模态准确率
+0.981，较图像单模态提高 19.2 个百分点；这些是作者的 benchmark
+结果，不能直接等同于跨城市泛化。</li>
 <li>证据状态：仅依据摘要；未核阅全文，尚未核查地理泄漏、社交媒体采样偏差和各模态的算力公平性。</li>
 </ul>
-<h3 id="4-agentic-ai-security跨维度威胁分类与评测成熟度"><a class="markdownIt-Anchor" href="#4-agentic-ai-security跨维度威胁分类与评测成熟度"></a> 4. Agentic AI Security：跨维度威胁分类与评测成熟度</h3>
+<h3 id="agentic-ai-security跨维度威胁分类与评测成熟度">4. Agentic AI
+Security：跨维度威胁分类与评测成熟度</h3>
 <ul>
-<li>作者：Heewon Baek、Alsharif Abuadbba、Kristen Moore、Hyoungshick Kim、Surya Nepal</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.23894">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.23894">PDF</a></li>
-<li>简介：论文用 T={S,B,P,A} 表示受影响表面、交互/信任边界、违反的安全性质和被实证研究的架构，试图把入口、组件和后果放到同一分类中。结构化综述覆盖 66 篇 2022–2026 年研究，重点分析 22 个有 artifact 的红队研究和 11 个 benchmark；摘要显示证据集中在 prompt/reasoning、memory、tool 攻击和单 agent，持久化、人—agent、多 agent、系统性和长时程威胁较少，但作者强调这只描述所选语料，不能推出整个领域的覆盖缺口。</li>
-<li>证据状态：仅依据摘要；未核阅全文，不能核查筛选偏差、各 benchmark 的可比性或 13 个开放问题的证据分级。</li>
+<li>作者：Heewon Baek、Alsharif Abuadbba、Kristen Moore、Hyoungshick
+Kim、Surya Nepal</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.23894">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.23894">PDF</a></li>
+<li>简介：论文用 T={S,B,P,A}
+表示受影响表面、交互/信任边界、违反的安全性质和被实证研究的架构，试图把入口、组件和后果放到同一分类中。结构化综述覆盖
+66 篇 2022–2026 年研究，重点分析 22 个有 artifact 的红队研究和 11 个
+benchmark；摘要显示证据集中在 prompt/reasoning、memory、tool 攻击和单
+agent，持久化、人—agent、多
+agent、系统性和长时程威胁较少，但作者强调这只描述所选语料，不能推出整个领域的覆盖缺口。</li>
+<li>证据状态：仅依据摘要；未核阅全文，不能核查筛选偏差、各 benchmark
+的可比性或 13 个开放问题的证据分级。</li>
 </ul>
-<h3 id="5-cognitive-action-reasoning从以人为中心的多模态观察预测主动机器人动作"><a class="markdownIt-Anchor" href="#5-cognitive-action-reasoning从以人为中心的多模态观察预测主动机器人动作"></a> 5. Cognitive Action Reasoning：从以人为中心的多模态观察预测主动机器人动作</h3>
+<h3 id="cognitive-action-reasoning从以人为中心的多模态观察预测主动机器人动作">5.
+Cognitive Action
+Reasoning：从以人为中心的多模态观察预测主动机器人动作</h3>
 <ul>
-<li>作者：Zhihao Gu、Kechao Zhu、Yuanfeng Wu、Mohan Liu、Ankit Kumar Shaw、ChenDong Hong、Xuanyu Chen、Dengchen Mei、Xu Tianyi、Lin Wang</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.23486">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.23486">PDF</a></li>
-<li>简介：ProRobo 将任务定义为机器人在没有显式动作指令时，根据人的状态、环境和风险判断下一步高层动作；作者发布含视觉、音频、文本的 ProAction 数据集，约 10K 样本覆盖 12 个日常场景和 5 类环境，并用 appraisal 候选生成加 Affective Theory-of-Mind 人在环修订标注。对通用 MLLM、subject-disjoint 泛化、跨数据集迁移和人评的摘要结论是：通用模型主动高层推理仍弱，在 ProAction 上训练的 MMC2Act 有明显改善，但摘要没有给出统一数值。</li>
+<li>作者：Zhihao Gu、Kechao Zhu、Yuanfeng Wu、Mohan Liu、Ankit Kumar
+Shaw、ChenDong Hong、Xuanyu Chen、Dengchen Mei、Xu Tianyi、Lin Wang</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.23486">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.23486">PDF</a></li>
+<li>简介：ProRobo
+将任务定义为机器人在没有显式动作指令时，根据人的状态、环境和风险判断下一步高层动作；作者发布含视觉、音频、文本的
+ProAction 数据集，约 10K 样本覆盖 12 个日常场景和 5 类环境，并用
+appraisal 候选生成加 Affective Theory-of-Mind 人在环修订标注。对通用
+MLLM、subject-disjoint
+泛化、跨数据集迁移和人评的摘要结论是：通用模型主动高层推理仍弱，在
+ProAction 上训练的 MMC2Act 有明显改善，但摘要没有给出统一数值。</li>
 <li>证据状态：仅依据摘要；未核阅全文，不能补充动作标签一致性、跨文化泛化或真实机器人执行失败率。</li>
 </ul>
-<h3 id="6-agentic-xai面向日本水稻种植决策支持的解释迭代"><a class="markdownIt-Anchor" href="#6-agentic-xai面向日本水稻种植决策支持的解释迭代"></a> 6. Agentic XAI：面向日本水稻种植决策支持的解释迭代</h3>
+<h3 id="agentic-xai面向日本水稻种植决策支持的解释迭代">6. Agentic
+XAI：面向日本水稻种植决策支持的解释迭代</h3>
 <ul>
-<li>作者：Tomoaki Yamaguchi、Yutong Zhou、Masahiro Ryo、Keisuke Katsura</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.21066">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.21066">PDF</a></li>
-<li>简介：系统把 SHAP 结果交给多模态 LLM agent 迭代解释，并在日本 28 个田块的水稻产量数据上检验可读性和可信度；12 名作物科学家与 14 名 LLM judge 按七个维度给每轮打分。作者报告第 3–4 轮平均分较初始提高 30%–33%，继续迭代后反而下降，专家认为过度迭代会损害简洁性并引入无根据的经济推理；LLM judge 绝对分数高估 1.4–2.3 分，但对轮次排序的 Spearman 相关为 .58–.90。</li>
-<li>证据状态：仅依据摘要；未核阅全文；小样本单一农业案例、LLM judge 偏差和 SHAP 本身的相关性不能支撑因果解释。</li>
+<li>作者：Tomoaki Yamaguchi、Yutong Zhou、Masahiro Ryo、Keisuke
+Katsura</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.21066">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.21066">PDF</a></li>
+<li>简介：系统把 SHAP 结果交给多模态 LLM agent 迭代解释，并在日本 28
+个田块的水稻产量数据上检验可读性和可信度；12 名作物科学家与 14 名 LLM
+judge 按七个维度给每轮打分。作者报告第 3–4 轮平均分较初始提高
+30%–33%，继续迭代后反而下降，专家认为过度迭代会损害简洁性并引入无根据的经济推理；LLM
+judge 绝对分数高估 1.4–2.3 分，但对轮次排序的 Spearman 相关为
+.58–.90。</li>
+<li>证据状态：仅依据摘要；未核阅全文；小样本单一农业案例、LLM judge
+偏差和 SHAP 本身的相关性不能支撑因果解释。</li>
 </ul>
-<h3 id="7-toollery把大规模-skilltool-库压缩为可检索候选集"><a class="markdownIt-Anchor" href="#7-toollery把大规模-skilltool-库压缩为可检索候选集"></a> 7. Toollery：把大规模 skill/tool 库压缩为可检索候选集</h3>
+<h3 id="toollery把大规模-skilltool-库压缩为可检索候选集">7.
+Toollery：把大规模 skill/tool 库压缩为可检索候选集</h3>
 <ul>
 <li>作者：Xiangxi Tian、Ran Guan</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.22218">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.22218">PDF</a></li>
-<li>简介：Toollery 不训练新模型，而是把每个 skill/tool 规格扩展成意图查询并建立检索索引，再把数万候选压缩成小的 top-k 集合供最终 LLM 选择。作者在约 79K capability 的 SkillRouter、含 440 多原子工具的 BFCL-V4，以及 220 工具的 3,396 个智能座舱请求上报告较普通规格检索有更高召回；固定 top-10 下座舱端到端选择改善，BFCL 的 AST Accuracy 大致保持，但收益依赖工作负载覆盖和 provider caching。</li>
-<li>证据状态：仅依据摘要；未核阅全文，不能核查索引构建成本、缓存公平性、top-k 敏感性和工具真实调用成功率。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.22218">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.22218">PDF</a></li>
+<li>简介：Toollery 不训练新模型，而是把每个 skill/tool
+规格扩展成意图查询并建立检索索引，再把数万候选压缩成小的 top-k
+集合供最终 LLM 选择。作者在约 79K capability 的 SkillRouter、含 440
+多原子工具的 BFCL-V4，以及 220 工具的 3,396
+个智能座舱请求上报告较普通规格检索有更高召回；固定 top-10
+下座舱端到端选择改善，BFCL 的 AST Accuracy
+大致保持，但收益依赖工作负载覆盖和 provider caching。</li>
+<li>证据状态：仅依据摘要；未核阅全文，不能核查索引构建成本、缓存公平性、top-k
+敏感性和工具真实调用成功率。</li>
 </ul>
-<h3 id="8-tte-flash用-think-then-embed-token-加速多模态表示"><a class="markdownIt-Anchor" href="#8-tte-flash用-think-then-embed-token-加速多模态表示"></a> 8. TTE-Flash：用 think-then-embed token 加速多模态表示</h3>
+<h3 id="tte-flash用-think-then-embed-token-加速多模态表示">8.
+TTE-Flash：用 think-then-embed token 加速多模态表示</h3>
 <ul>
-<li>作者：Jianpeng Cheng、Xian Wu、Jiangfan Zhang、Wentao Bao、Chaitanya Ahuja、Shlok Kumar Mishra、Xuanming Cui、Hanchao Yu、Yang Gao、Fan Xia、Haixing Dai、Frankie Yuan、Zihao Wang、Xiaobing Chen、Qi Guo、Shaodan Zhai、Aashu Singh、Xiangjun Fan、Jun Xiao</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.16638">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.16638">PDF</a></li>
-<li>简介：工作用潜在 think tokens 代替推理型多模态 embedding 中显式生成的 CoT，再用 CoT 生成损失训练 think tokens、用对比损失训练 embedding tokens，目标是在固定推理成本下保留推理感知表示。作者发布 TTE-Flash-2B，摘要报告其在 MMEB-v2 超过显式 CoT 对照，并在 15 个视频数据集上观察到 think token 数量的 zero-shot scaling；摘要未给出完整延迟、显存和各数据集增益。</li>
-<li>证据状态：仅依据摘要；未核阅全文，不能判断“constant inference cost”是否包含训练、缓存和不同序列长度的实际开销。</li>
+<li>作者：Jianpeng Cheng、Xian Wu、Jiangfan Zhang、Wentao Bao、Chaitanya
+Ahuja、Shlok Kumar Mishra、Xuanming Cui、Hanchao Yu、Yang Gao、Fan
+Xia、Haixing Dai、Frankie Yuan、Zihao Wang、Xiaobing Chen、Qi
+Guo、Shaodan Zhai、Aashu Singh、Xiangjun Fan、Jun Xiao</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.16638">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.16638">PDF</a></li>
+<li>简介：工作用潜在 think tokens 代替推理型多模态 embedding
+中显式生成的 CoT，再用 CoT 生成损失训练 think tokens、用对比损失训练
+embedding tokens，目标是在固定推理成本下保留推理感知表示。作者发布
+TTE-Flash-2B，摘要报告其在 MMEB-v2 超过显式 CoT 对照，并在 15
+个视频数据集上观察到 think token 数量的 zero-shot
+scaling；摘要未给出完整延迟、显存和各数据集增益。</li>
+<li>证据状态：仅依据摘要；未核阅全文，不能判断“constant inference
+cost”是否包含训练、缓存和不同序列长度的实际开销。</li>
 </ul>
-<h3 id="9-agentic-reasoning-survey从单-agent-到递归自改进与集体推理"><a class="markdownIt-Anchor" href="#9-agentic-reasoning-survey从单-agent-到递归自改进与集体推理"></a> 9. Agentic Reasoning Survey：从单 agent 到递归自改进与集体推理</h3>
+<h3 id="agentic-reasoning-survey从单-agent-到递归自改进与集体推理">9.
+Agentic Reasoning Survey：从单 agent 到递归自改进与集体推理</h3>
 <ul>
-<li>作者：Tianxin Wei、Ting-Wei Li、Zhining Liu、Xuying Ning、Ze Yang、Jiaru Zou、Zhichen Zeng、Ruizhong Qiu、Xiao Lin、Dongqi Fu、Zihao Li、Mengting Ai、Duo Zhou、Wenxuan Bao、Yunzhe Li、Gaotang Li、Cheng Qian、Yu Wang、Xiangru Tang、Yin Xiao、Liri Fang、Hui Liu、Xianfeng Tang、Yuji Zhang、Chi Wang、Jiaxuan You、Heng Ji、Hanghang Tong、Jingrui He</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.12538">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.12538">PDF</a></li>
-<li>简介：综述按环境动态分为基础 agent 推理、自我演化推理和集体多 agent 推理，同时区分通过上下文编排扩展测试时交互与通过 RL/SFT 改变行为的后训练路径，并覆盖科学、机器人、医疗、自动科研和数学 benchmark。它的价值是提供术语和路线图，而不是新的对照实验；摘要提出个性化、长时交互、世界模型、多 agent 训练与治理等开放问题，没有给出综述质量的独立测量。</li>
+<li>作者：Tianxin Wei、Ting-Wei Li、Zhining Liu、Xuying Ning、Ze
+Yang、Jiaru Zou、Zhichen Zeng、Ruizhong Qiu、Xiao Lin、Dongqi Fu、Zihao
+Li、Mengting Ai、Duo Zhou、Wenxuan Bao、Yunzhe Li、Gaotang Li、Cheng
+Qian、Yu Wang、Xiangru Tang、Yin Xiao、Liri Fang、Hui Liu、Xianfeng
+Tang、Yuji Zhang、Chi Wang、Jiaxuan You、Heng Ji、Hanghang Tong、Jingrui
+He</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.12538">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.12538">PDF</a></li>
+<li>简介：综述按环境动态分为基础 agent 推理、自我演化推理和集体多 agent
+推理，同时区分通过上下文编排扩展测试时交互与通过 RL/SFT
+改变行为的后训练路径，并覆盖科学、机器人、医疗、自动科研和数学
+benchmark。它的价值是提供术语和路线图，而不是新的对照实验；摘要提出个性化、长时交互、世界模型、多
+agent 训练与治理等开放问题，没有给出综述质量的独立测量。</li>
 <li>证据状态：仅依据摘要；未核阅全文，不能补充文献覆盖率、分类一致性或遗漏研究。</li>
 </ul>
-<h3 id="10-离散-tokenization多模态-llm-的向量量化综述"><a class="markdownIt-Anchor" href="#10-离散-tokenization多模态-llm-的向量量化综述"></a> 10. 离散 tokenization：多模态 LLM 的向量量化综述</h3>
+<h3 id="离散-tokenization多模态-llm-的向量量化综述">10. 离散
+tokenization：多模态 LLM 的向量量化综述</h3>
 <ul>
-<li>作者：Jindong Li、Yali Fu、Jiahong Liu、Linxiao Cao、Wei Ji、Menglin Yang、Irwin King、Ming-Hsuan Yang</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.22920">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.22920">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/jindongli-Ai/LLM-Discrete-Tokenization-Survey">持续更新版本</a></li>
-<li>简介：综述系统整理面向 LLM 的离散多模态表示，覆盖 8 类 VQ 变体、无 LLM 的传统应用、单模态 LLM 和多模态 LLM 集成，并讨论 codebook collapse、梯度估计不稳定和模态特定编码约束。作者将动态/任务自适应量化、统一 tokenization 和生物启发 codebook 学习列为方向；全文摘要没有以统一数据集给出方法排名，因此不应把分类当成性能结论。</li>
+<li>作者：Jindong Li、Yali Fu、Jiahong Liu、Linxiao Cao、Wei Ji、Menglin
+Yang、Irwin King、Ming-Hsuan Yang</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.22920">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2507.22920">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/jindongli-Ai/LLM-Discrete-Tokenization-Survey">持续更新版本</a></li>
+<li>简介：综述系统整理面向 LLM 的离散多模态表示，覆盖 8 类 VQ 变体、无
+LLM 的传统应用、单模态 LLM 和多模态 LLM 集成，并讨论 codebook
+collapse、梯度估计不稳定和模态特定编码约束。作者将动态/任务自适应量化、统一
+tokenization 和生物启发 codebook
+学习列为方向；全文摘要没有以统一数据集给出方法排名，因此不应把分类当成性能结论。</li>
 <li>证据状态：仅依据摘要；未核阅全文，不能核查文献纳入边界或各方法的公平复现实验。</li>
 </ul>
-<h3 id="11-lingshu统一多模态医学理解与推理的通用基础模型"><a class="markdownIt-Anchor" href="#11-lingshu统一多模态医学理解与推理的通用基础模型"></a> 11. Lingshu：统一多模态医学理解与推理的通用基础模型</h3>
+<h3 id="lingshu统一多模态医学理解与推理的通用基础模型">11.
+Lingshu：统一多模态医学理解与推理的通用基础模型</h3>
 <ul>
-<li>作者：Weiwen Xu、Hou Pong Chan、Long Li、Mahani Aljunied、Ruifeng Yuan、Jianyu Wang、Chenghao Xiao、Guizhen Chen、Chaoqun Liu、Zhaodonghui Li、Yu Sun、Junao Shen、Chaojun Wang、Jie Tan、Deli Zhao、Tingyang Xu、Hao Zhang、Yu Rong</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.07044">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2506.07044">PDF</a></li>
-<li>简介：论文针对医疗多模态模型在知识覆盖、幻觉和复杂推理上的不足，提出同时整理医学影像、医学文本与通用数据的多阶段数据流程，训练 Lingshu，并用 MedEvalKit 统一多模态问答、文本问答和报告生成评测。摘要称 Lingshu 在大多数任务上超过既有开源多模态模型，也初步探索可验证奖励 RL；但没有在摘要中给出完整任务表、模型规模和训练算力。</li>
+<li>作者：Weiwen Xu、Hou Pong Chan、Long Li、Mahani Aljunied、Ruifeng
+Yuan、Jianyu Wang、Chenghao Xiao、Guizhen Chen、Chaoqun Liu、Zhaodonghui
+Li、Yu Sun、Junao Shen、Chaojun Wang、Jie Tan、Deli Zhao、Tingyang
+Xu、Hao Zhang、Yu Rong</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.07044">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2506.07044">PDF</a></li>
+<li>简介：论文针对医疗多模态模型在知识覆盖、幻觉和复杂推理上的不足，提出同时整理医学影像、医学文本与通用数据的多阶段数据流程，训练
+Lingshu，并用 MedEvalKit 统一多模态问答、文本问答和报告生成评测。摘要称
+Lingshu 在大多数任务上超过既有开源多模态模型，也初步探索可验证奖励
+RL；但没有在摘要中给出完整任务表、模型规模和训练算力。</li>
 <li>证据状态：仅依据摘要；未核阅全文，医疗场景的临床安全、数据授权、污染审计和外部医院泛化均未由此得到验证。</li>
 </ul>
-<h3 id="12-onpanda用-token-级纠正高效标注-on-policy-对齐数据"><a class="markdownIt-Anchor" href="#12-onpanda用-token-级纠正高效标注-on-policy-对齐数据"></a> 12. onPanda：用 token 级纠正高效标注 on-policy 对齐数据</h3>
+<h3 id="onpanda用-token-级纠正高效标注-on-policy-对齐数据">12.
+onPanda：用 token 级纠正高效标注 on-policy 对齐数据</h3>
 <ul>
-<li>作者：Lei Yang、Mengyin Liu、Jia Wang、Hangyu Guo、Liang Zhao、Zheng Ge、Kang An、Binxing Jiao、Qi Han、Daxin Jiang、Siqi Shen、Xiangyu Zhang</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.24983">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.24983">PDF</a></li>
-<li>简介：onPanda 让标注者定位第一个不合适 token，从候选中替换或自由编辑，截断后续文本并继续生成；这种 locate–correct–continue 过程同时留下正负样本和精确位置监督，并支持 agent trajectory 工具调用。小型受控研究中作者报告中位标注时间比人工事后编辑少 52%，并发布 Panda-CVL 数据集和 token correction benchmark；摘要没有说明标注者数量、任务难度和后续对齐收益。</li>
+<li>作者：Lei Yang、Mengyin Liu、Jia Wang、Hangyu Guo、Liang Zhao、Zheng
+Ge、Kang An、Binxing Jiao、Qi Han、Daxin Jiang、Siqi Shen、Xiangyu
+Zhang</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.24983">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.24983">PDF</a></li>
+<li>简介：onPanda 让标注者定位第一个不合适
+token，从候选中替换或自由编辑，截断后续文本并继续生成；这种
+locate–correct–continue 过程同时留下正负样本和精确位置监督，并支持 agent
+trajectory 工具调用。小型受控研究中作者报告中位标注时间比人工事后编辑少
+52%，并发布 Panda-CVL 数据集和 token correction
+benchmark；摘要没有说明标注者数量、任务难度和后续对齐收益。</li>
 <li>证据状态：仅依据摘要；未核阅全文，不能判断时间节省是否在不同模型、语言和安全任务上稳定。</li>
 </ul>
-<h3 id="13-taramandal-gpt面向天体动力学的检索与结构化推理"><a class="markdownIt-Anchor" href="#13-taramandal-gpt面向天体动力学的检索与结构化推理"></a> 13. Taramandal-GPT：面向天体动力学的检索与结构化推理</h3>
+<h3 id="taramandal-gpt面向天体动力学的检索与结构化推理">13.
+Taramandal-GPT：面向天体动力学的检索与结构化推理</h3>
 <ul>
 <li>作者：Akhil Sharma、Jatin Gupta、Ali Imam Abidi</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.24246">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.24246">PDF</a></li>
-<li>简介：以 Qwen3-8B 为 backbone，加入 RAG 和 fallback 机制，在 299 道由基础到高级的 Astrodynamics Problems Benchmark 上用数值 margin 与语义相似度双重评分，比较开放和闭源模型。作者报告在需要思考的任务上具有竞争力，但摘要没有列出各模型的精确分数、检索命中率、计算成本和与符号求解器的对照。</li>
-<li>证据状态：仅依据摘要；未核阅全文，不能把 benchmark 题目表现外推为真实轨道设计或飞行安全能力。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.24246">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.24246">PDF</a></li>
+<li>简介：以 Qwen3-8B 为 backbone，加入 RAG 和 fallback 机制，在 299
+道由基础到高级的 Astrodynamics Problems Benchmark 上用数值 margin
+与语义相似度双重评分，比较开放和闭源模型。作者报告在需要思考的任务上具有竞争力，但摘要没有列出各模型的精确分数、检索命中率、计算成本和与符号求解器的对照。</li>
+<li>证据状态：仅依据摘要；未核阅全文，不能把 benchmark
+题目表现外推为真实轨道设计或飞行安全能力。</li>
 </ul>
 
                 
