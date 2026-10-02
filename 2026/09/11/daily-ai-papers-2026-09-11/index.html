@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 1. 多模态提示注入：完成率只有约 1%，暴露面却不能只看最终成功 论文：An Experimental Evaluation of Multimodal Prompt Injection Attacks on Agentic AI Frameworks（PDF，arXiv:2609.09404） 作者：Viet K. Nguyen、Mohammad I. Husain 来源&#x2F;类别：a">
+    <meta name="description" content="重点关注  1. 多模态提示注入：完成率只有约 1%，暴露面却不能只看最终成功 论文：An Experimental Evaluation of Multimodal Prompt Injection Attacks on Agentic AI Frameworks（PDF，arXiv:2609.09404） 作者：Viet K. Nguyen、Mohammad I. Husain 来源&#x2F;类别">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 9 月 11 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/09/11/daily-ai-papers-2026-09-11/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 1. 多模态提示注入：完成率只有约 1%，暴露面却不能只看最终成功 论文：An Experimental Evaluation of Multimodal Prompt Injection Attacks on Agentic AI Frameworks（PDF，arXiv:2609.09404） 作者：Viet K. Nguyen、Mohammad I. Husain 来源&#x2F;类别：a">
+<meta property="og:description" content="重点关注  1. 多模态提示注入：完成率只有约 1%，暴露面却不能只看最终成功 论文：An Experimental Evaluation of Multimodal Prompt Injection Attacks on Agentic AI Frameworks（PDF，arXiv:2609.09404） 作者：Viet K. Nguyen、Mohammad I. Husain 来源&#x2F;类别">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-008-146057185.jpg">
 <meta property="article:published_time" content="2026-09-11T02:15:00.000Z">
@@ -347,445 +347,159 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<h3 id="多模态提示注入完成率只有约-1暴露面却不能只看最终成功">1.
-多模态提示注入：完成率只有约 1%，暴露面却不能只看最终成功</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09404">An
-Experimental Evaluation of Multimodal Prompt Injection Attacks on
-Agentic AI Frameworks</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09404">PDF</a>，arXiv:2609.09404）<br>
+<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
+<h3 id="1-多模态提示注入完成率只有约-1暴露面却不能只看最终成功"><a class="markdownIt-Anchor" href="#1-多模态提示注入完成率只有约-1暴露面却不能只看最终成功"></a> 1. 多模态提示注入：完成率只有约 1%，暴露面却不能只看最终成功</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09404">An Experimental Evaluation of Multimodal Prompt Injection Attacks on Agentic AI Frameworks</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09404">PDF</a>，arXiv:2609.09404）<br>
 <strong>作者</strong>：Viet K. Nguyen、Mohammad I. Husain<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.CR、cs.AI；AI 安全<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；AI 安全<br>
 <strong>全文状态</strong>：已核阅公开 PDF（12 页）。</p>
-<p><strong>研究问题</strong>：能读图并调用工具的
-agent，会把藏在图像中的指令带到哪一步？只统计“是否真的完成攻击”会不会低估已经发生的识别、规划和工具尝试风险？</p>
-<p><strong>方法与数据</strong>：作者构造 MMPIBench，把 6 种视觉载体（OCR
-文本、视觉叠加、EXIF 元数据、二维码、伪界面截图、混合载体）与 4
-类目标（误用工具、数据外泄、记忆污染、跨 agent
-传播）组合成固定攻击集，放入 LangGraph、AutoGen、CrewAI、Semantic
-Kernel、OpenAI Agents SDK、LlamaIndex 六个框架。5 个视觉模型覆盖 Claude
-Opus 4.8、GPT-5.4、Gemini 3.1 Pro、Grok 4.3、Llama 4 Maverick，共 720
-个模型—框架—攻击单元；工具使用 mock 环境，并用三个跨供应商 judge
-判断是否尝试与完成。</p>
-<p><strong>作者报告的结果</strong>：720 次中只有 8 次完成攻击，约
-1.11%（95% Wilson 区间 0.6%–2.2%），但有 92 次尝试，约 12.8%；其中 72
-次部分执行、12 次失败、8 次成功。模型差异明显：Claude 没有尝试，59.7%
-的单元明确识别注入；GPT-5.4 尝试率 4.2%，Gemini 12.5%，Grok 与 Llama 各
-23.6%。8 次完成中 7 次由 OCR
-载体触发，目标几乎都落在工具误用；元数据和二维码约 88%
-的单元甚至没有被感知。最常见的阻断点是规划阶段：模型读到了指令但选择不执行。</p>
-<p>作者还做了音频扩展：只有 5 个模型中的 2 个能接收原生音频、6
-个框架中的 3 个能传递音频；在信号确实到达的 72 个单元里，完成率为
-49%，其中一个模型达到
-75%。这组结果与图像任务的提示形式和工具权限不同，不能直接当作同口径的视觉—音频比较。</p>
-<p><strong>创新、局限与复现边界</strong>：论文的价值在于把攻击暴露拆成“感知—规划—工具调用—执行”，而不是只报终点成功率。局限包括每个单元只有一次试验、框架重执行与配置并不完全均衡、音频和图像任务不完全同构、mock
-工具不代表真实损害、部分标签依赖 LLM
-judge；它测的是攻击面，不是防御方案或生产事故率。因而 12.8%
-是受控实验中的尝试暴露，不能直接转成现实系统的入侵概率。</p>
-<p><strong>适合谁读</strong>：agent
-安全、工具权限、输入隔离和红队评测团队。建议读 §IV 威胁模型、§§D–H
-方法、§VI 结果、§VII 音频扩展和 §VIII 局限。</p>
-<h3 id="opendiscoverytrace科学-agent-的过程轨迹比最终答案更容易暴露失效模式">2.
-OpenDiscoveryTrace：科学 agent
-的过程轨迹比最终答案更容易暴露失效模式</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09203">OpenDiscoveryTrace: Process
-Traces for Evaluating AI Scientist Workflows</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09203">PDF</a>，arXiv:2609.09203）<br>
+<p><strong>研究问题</strong>：能读图并调用工具的 agent，会把藏在图像中的指令带到哪一步？只统计“是否真的完成攻击”会不会低估已经发生的识别、规划和工具尝试风险？</p>
+<p><strong>方法与数据</strong>：作者构造 MMPIBench，把 6 种视觉载体（OCR 文本、视觉叠加、EXIF 元数据、二维码、伪界面截图、混合载体）与 4 类目标（误用工具、数据外泄、记忆污染、跨 agent 传播）组合成固定攻击集，放入 LangGraph、AutoGen、CrewAI、Semantic Kernel、OpenAI Agents SDK、LlamaIndex 六个框架。5 个视觉模型覆盖 Claude Opus 4.8、GPT-5.4、Gemini 3.1 Pro、Grok 4.3、Llama 4 Maverick，共 720 个模型—框架—攻击单元；工具使用 mock 环境，并用三个跨供应商 judge 判断是否尝试与完成。</p>
+<p><strong>作者报告的结果</strong>：720 次中只有 8 次完成攻击，约 1.11%（95% Wilson 区间 0.6%–2.2%），但有 92 次尝试，约 12.8%；其中 72 次部分执行、12 次失败、8 次成功。模型差异明显：Claude 没有尝试，59.7% 的单元明确识别注入；GPT-5.4 尝试率 4.2%，Gemini 12.5%，Grok 与 Llama 各 23.6%。8 次完成中 7 次由 OCR 载体触发，目标几乎都落在工具误用；元数据和二维码约 88% 的单元甚至没有被感知。最常见的阻断点是规划阶段：模型读到了指令但选择不执行。</p>
+<p>作者还做了音频扩展：只有 5 个模型中的 2 个能接收原生音频、6 个框架中的 3 个能传递音频；在信号确实到达的 72 个单元里，完成率为 49%，其中一个模型达到 75%。这组结果与图像任务的提示形式和工具权限不同，不能直接当作同口径的视觉—音频比较。</p>
+<p><strong>创新、局限与复现边界</strong>：论文的价值在于把攻击暴露拆成“感知—规划—工具调用—执行”，而不是只报终点成功率。局限包括每个单元只有一次试验、框架重执行与配置并不完全均衡、音频和图像任务不完全同构、mock 工具不代表真实损害、部分标签依赖 LLM judge；它测的是攻击面，不是防御方案或生产事故率。因而 12.8% 是受控实验中的尝试暴露，不能直接转成现实系统的入侵概率。</p>
+<p><strong>适合谁读</strong>：agent 安全、工具权限、输入隔离和红队评测团队。建议读 §IV 威胁模型、§§D–H 方法、§VI 结果、§VII 音频扩展和 §VIII 局限。</p>
+<h3 id="2-opendiscoverytrace科学-agent-的过程轨迹比最终答案更容易暴露失效模式"><a class="markdownIt-Anchor" href="#2-opendiscoverytrace科学-agent-的过程轨迹比最终答案更容易暴露失效模式"></a> 2. OpenDiscoveryTrace：科学 agent 的过程轨迹比最终答案更容易暴露失效模式</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09203">OpenDiscoveryTrace: Process Traces for Evaluating AI Scientist Workflows</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09203">PDF</a>，arXiv:2609.09203）<br>
 <strong>作者</strong>：Aayam Bansal、Keertan Balaji<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI；AI 科学 agent 评测<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；AI 科学 agent 评测<br>
 <strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/aayambansal/OpenDiscoveryTrace">OpenDiscoveryTrace</a><br>
-<strong>数据</strong>：<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/aayambansall/OpenDiscoveryTrace">Hugging
-Face 数据集</a><br>
+<strong>数据</strong>：<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/aayambansall/OpenDiscoveryTrace">Hugging Face 数据集</a><br>
 <strong>全文状态</strong>：已核阅公开 PDF（12 页）。</p>
-<p><strong>研究问题</strong>：只看代码、假设或论文等最终产物，无法区分稳健推理与“碰巧猜对”，也无法审计工具误用、错误修正和信心变化。作者因此把科学
-agent 的执行过程变成可分析的数据对象。</p>
-<p><strong>方法与数据</strong>：数据集包含 558
-条完整轨迹，覆盖药物发现、材料科学、基因组学和科学文献分析 124
-个任务。每一步记录 9
-个字段：阶段、思考、工具调用及输入输出、观察、错误、修订触发器、信心、步骤
-ID/时间戳。样本包括 GPT-5.4、Claude Opus 4.6、Gemini 3.1 Pro 三个
-frontier 模型各 124
-条轨迹，Qwen2.5-7B、Mistral-7B-v0.3、Phi-3.5-mini、Qwen2.5-1.5B
-四个开源模型各 30 条，以及 60 条 live-retrieval
-变体。作者定义结果预测、错误定位、主张核验、自主性分类、过程质量评分五个任务，并用逻辑回归、随机森林、梯度提升、LSTM、Transformer
-作基线。</p>
-<p><strong>作者报告的结果</strong>：对 363 条由 LLM 判分的 frontier
-轨迹，三者任务成功率相近：GPT-5.4 为 88.6%、Claude 为 83.9%、Gemini 为
-89.3%；但 Claude 平均每条轨迹显式错误 2.5 个，GPT-5.4 只有 0.08
-个，差异检验 p&lt;0.0001、Cliff's δ=0.613。Claude 的错误中 66.7%
-属工具误用，GPT-5.4 的错误中 83.6% 属推理错误。平均每条轨迹 4.1 步、3
-次工具调用、0.87 次修订，31.2% 至少出现一个错误。</p>
-<p>结果预测的多数类基线准确率约 0.693、AUROC
-0.5；逻辑回归、随机森林、梯度提升、LSTM 和 Transformer
-都没有稳定超过它。LLM 标注者在 60 条样本上的一致性从 correctness 的
-α=.629 到 autonomy 的
-α=.820；这说明过程标注本身仍需人类专家阶段来校准。</p>
-<p><strong>创新、局限与复现边界</strong>：它把“结果好不好”与“过程是否可审计”分开，并提供公开
-schema、harness 与数据。限制包括当前任务数量和轨迹数仍是 pilot
-规模、错误分类含关键词启发式、主要标注依赖 LLM 而非专家、frontier
-轨迹部分使用模拟检索、六阶段 prompt 与 30 步上限会塑造行为；复现还需要
-API 密钥或 GPU。论文的 84%–89% 是这套任务与 judge
-下的成功率，不是科学发现能力的普适排名。</p>
-<p><strong>适合谁读</strong>：科学 agent、过程监督、AI
-治理和可复现性团队。建议读 §§2–5，以及附录 M–N 的
-schema、标注和基线细节。</p>
-<h3 id="harbor-adapters-与-harbor-index大规模-agent-评测的主要瓶颈是基础设施和任务质量">3.
-Harbor Adapters 与 Harbor-Index：大规模 agent
-评测的主要瓶颈是基础设施和任务质量</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.04298">Harbor Adapters and
-Harbor-Index: Infrastructure and a Curated Meta-Dataset for Large-Scale
-Agentic Evaluation</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.04298">PDF</a>，arXiv:2609.04298）<br>
-<strong>作者</strong>：Lin Shi、Haowei Lin、Zixuan Zhu、Xiaoyue
-Zhou、Xiang Li 等（完整作者名单见原文）<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI、cs.CL；agent
-评测基础设施<br>
+<p><strong>研究问题</strong>：只看代码、假设或论文等最终产物，无法区分稳健推理与“碰巧猜对”，也无法审计工具误用、错误修正和信心变化。作者因此把科学 agent 的执行过程变成可分析的数据对象。</p>
+<p><strong>方法与数据</strong>：数据集包含 558 条完整轨迹，覆盖药物发现、材料科学、基因组学和科学文献分析 124 个任务。每一步记录 9 个字段：阶段、思考、工具调用及输入输出、观察、错误、修订触发器、信心、步骤 ID/时间戳。样本包括 GPT-5.4、Claude Opus 4.6、Gemini 3.1 Pro 三个 frontier 模型各 124 条轨迹，Qwen2.5-7B、Mistral-7B-v0.3、Phi-3.5-mini、Qwen2.5-1.5B 四个开源模型各 30 条，以及 60 条 live-retrieval 变体。作者定义结果预测、错误定位、主张核验、自主性分类、过程质量评分五个任务，并用逻辑回归、随机森林、梯度提升、LSTM、Transformer 作基线。</p>
+<p><strong>作者报告的结果</strong>：对 363 条由 LLM 判分的 frontier 轨迹，三者任务成功率相近：GPT-5.4 为 88.6%、Claude 为 83.9%、Gemini 为 89.3%；但 Claude 平均每条轨迹显式错误 2.5 个，GPT-5.4 只有 0.08 个，差异检验 p&lt;0.0001、Cliff’s δ=0.613。Claude 的错误中 66.7% 属工具误用，GPT-5.4 的错误中 83.6% 属推理错误。平均每条轨迹 4.1 步、3 次工具调用、0.87 次修订，31.2% 至少出现一个错误。</p>
+<p>结果预测的多数类基线准确率约 0.693、AUROC 0.5；逻辑回归、随机森林、梯度提升、LSTM 和 Transformer 都没有稳定超过它。LLM 标注者在 60 条样本上的一致性从 correctness 的 α=.629 到 autonomy 的 α=.820；这说明过程标注本身仍需人类专家阶段来校准。</p>
+<p><strong>创新、局限与复现边界</strong>：它把“结果好不好”与“过程是否可审计”分开，并提供公开 schema、harness 与数据。限制包括当前任务数量和轨迹数仍是 pilot 规模、错误分类含关键词启发式、主要标注依赖 LLM 而非专家、frontier 轨迹部分使用模拟检索、六阶段 prompt 与 30 步上限会塑造行为；复现还需要 API 密钥或 GPU。论文的 84%–89% 是这套任务与 judge 下的成功率，不是科学发现能力的普适排名。</p>
+<p><strong>适合谁读</strong>：科学 agent、过程监督、AI 治理和可复现性团队。建议读 §§2–5，以及附录 M–N 的 schema、标注和基线细节。</p>
+<h3 id="3-harbor-adapters-与-harbor-index大规模-agent-评测的主要瓶颈是基础设施和任务质量"><a class="markdownIt-Anchor" href="#3-harbor-adapters-与-harbor-index大规模-agent-评测的主要瓶颈是基础设施和任务质量"></a> 3. Harbor Adapters 与 Harbor-Index：大规模 agent 评测的主要瓶颈是基础设施和任务质量</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.04298">Harbor Adapters and Harbor-Index: Infrastructure and a Curated Meta-Dataset for Large-Scale Agentic Evaluation</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.04298">PDF</a>，arXiv:2609.04298）<br>
+<strong>作者</strong>：Lin Shi、Haowei Lin、Zixuan Zhu、Xiaoyue Zhou、Xiang Li 等（完整作者名单见原文）<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；agent 评测基础设施<br>
 <strong>代码/基础设施</strong>：<a target="_blank" rel="noopener" href="https://github.com/harbor-framework/harbor">Harbor</a>、<a target="_blank" rel="noopener" href="https://github.com/harbor-framework/harbor-index">Harbor-Index</a><br>
 <strong>全文状态</strong>：已核阅公开 PDF（84 页）。</p>
-<p><strong>研究问题</strong>：agent
-基准越来越多，但每个基准都有自己的环境和集成方式；如果无法统一运行、审计任务质量和控制
-harness
-差异，模型排行榜的可比性就会被基础设施吞掉。论文同时解决“怎么跑”和“跑什么”。</p>
-<p><strong>方法与数据</strong>：Harbor Adapters 把 80
-多个基准接入统一任务 schema，并在 54 个基准、8 个模型上比较 Terminus-2
-与 3 类 native harness；大规模实验有 3 次 trial，约 0.3M 条轨迹、226B
-tokens、超过 30 万美元计算成本。Harbor-Index 从 6,627
-个任务开始，经过难度筛选、AI 审计、人审和 audit-and-fix，最后保留 82
-个来自 29 个基准的困难任务。</p>
-<p><strong>作者报告的结果</strong>：剩余基准之间存在明显冗余：在 12
-个选定基准后，其他基准与模型排序的 Spearman 相关至少为 .7；52
-个基准中每个只取 3 个任务，平均排序相关约 .923，但
-FinanceAgent、LabBench 等专门基准较难被替代。难度的 ICC 为
-.75；模型效应范围 .451，harness 效应 .087，模型影响约为 harness 的 5.2
-倍，但 harness 仍不能忽略。Harbor-Index 的 9 个模型×2 个 harness×82
-任务共 1,476 次运行，没有任何配置通过率超过 30%；GPT-5.5 with Codex
-最强，达到 28.0%。全量运行中错误主要是超时、近失和远失，native harness
-的超时约 26%，Terminus 约 42%，后者缺少部分原生图像/网页工具。</p>
-<p><strong>创新、局限与复现边界</strong>：论文把
-adapter、任务审计、模型—harness
-交互和成本放在同一个实验框架里，贡献不只是新榜单。限制包括已适配基准仍有限、任务可能被
-reward hack 或环境瑕疵污染、模型与 harness
-覆盖不是全体组合；Harbor-Index 的“28%”是特定 82
-任务、特定工具和超时协议下的通过率，不能直接当作一般 agent
-能力上限。</p>
-<p><strong>适合谁读</strong>：agent 评测平台、benchmark
-维护者、模型工程和评测预算管理团队。建议读 §§2–4、§6，以及附录 D–G、H
-的任务筛选、失败与成本分析。</p>
-<h3 id="agentaudit任务完成相似的模型信任风险可能完全不同">4.
-AgentAudit：任务完成相似的模型，信任风险可能完全不同</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09875">AgentAudit: An Open, Extensible
-Framework for Full-Lifecycle Trust Evaluation of AI Agents</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09875">PDF</a>，arXiv:2609.09875）<br>
-<strong>作者</strong>：Shrey Nag、Sachita、Abhishek Kumar Singh、Lipi
-Goel、Rajeshwar Singh Janwar<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI；AI agent 信任与安全<br>
+<p><strong>研究问题</strong>：agent 基准越来越多，但每个基准都有自己的环境和集成方式；如果无法统一运行、审计任务质量和控制 harness 差异，模型排行榜的可比性就会被基础设施吞掉。论文同时解决“怎么跑”和“跑什么”。</p>
+<p><strong>方法与数据</strong>：Harbor Adapters 把 80 多个基准接入统一任务 schema，并在 54 个基准、8 个模型上比较 Terminus-2 与 3 类 native harness；大规模实验有 3 次 trial，约 0.3M 条轨迹、226B tokens、超过 30 万美元计算成本。Harbor-Index 从 6,627 个任务开始，经过难度筛选、AI 审计、人审和 audit-and-fix，最后保留 82 个来自 29 个基准的困难任务。</p>
+<p><strong>作者报告的结果</strong>：剩余基准之间存在明显冗余：在 12 个选定基准后，其他基准与模型排序的 Spearman 相关至少为 .7；52 个基准中每个只取 3 个任务，平均排序相关约 .923，但 FinanceAgent、LabBench 等专门基准较难被替代。难度的 ICC 为 .75；模型效应范围 .451，harness 效应 .087，模型影响约为 harness 的 5.2 倍，但 harness 仍不能忽略。Harbor-Index 的 9 个模型×2 个 harness×82 任务共 1,476 次运行，没有任何配置通过率超过 30%；GPT-5.5 with Codex 最强，达到 28.0%。全量运行中错误主要是超时、近失和远失，native harness 的超时约 26%，Terminus 约 42%，后者缺少部分原生图像/网页工具。</p>
+<p><strong>创新、局限与复现边界</strong>：论文把 adapter、任务审计、模型—harness 交互和成本放在同一个实验框架里，贡献不只是新榜单。限制包括已适配基准仍有限、任务可能被 reward hack 或环境瑕疵污染、模型与 harness 覆盖不是全体组合；Harbor-Index 的“28%”是特定 82 任务、特定工具和超时协议下的通过率，不能直接当作一般 agent 能力上限。</p>
+<p><strong>适合谁读</strong>：agent 评测平台、benchmark 维护者、模型工程和评测预算管理团队。建议读 §§2–4、§6，以及附录 D–G、H 的任务筛选、失败与成本分析。</p>
+<h3 id="4-agentaudit任务完成相似的模型信任风险可能完全不同"><a class="markdownIt-Anchor" href="#4-agentaudit任务完成相似的模型信任风险可能完全不同"></a> 4. AgentAudit：任务完成相似的模型，信任风险可能完全不同</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09875">AgentAudit: An Open, Extensible Framework for Full-Lifecycle Trust Evaluation of AI Agents</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09875">PDF</a>，arXiv:2609.09875）<br>
+<strong>作者</strong>：Shrey Nag、Sachita、Abhishek Kumar Singh、Lipi Goel、Rajeshwar Singh Janwar<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；AI agent 信任与安全<br>
 <strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/ShreyNag/AgentAudit">AgentAudit</a><br>
 <strong>全文状态</strong>：已核阅公开 PDF（23 页）。</p>
-<p><strong>研究问题</strong>：任务成功率只告诉我们 agent
-做没做成，却无法定位规划、记忆、工具选择、工具执行、忠实性或安全上的失效。AgentAudit
-试图在不改变 agent 内部实现的前提下，对完整执行轨迹做生命周期审计。</p>
-<p><strong>方法与数据</strong>：框架从被测 agent 读取记录好的 trace，在
-instruction integrity、planner、memory、tool selection、tool
-invocation、tool correctness、alignment、tool
-faithfulness、security、execution integrity
-十个维度打分，再做行为分类和失败归因。实验覆盖 Banking、Email、Identity
-Docs、Trip Planner、Marketplace、Payments 六类环境中的 9
-个能力/对抗任务，比较 GPT-5、Claude Sonnet 5、Sarvam 105B、Llama 3.3
-70B、Gemini 2.5 Flash。</p>
-<p><strong>作者报告的结果</strong>：Composite Trust Score（0–100）均值为
-Claude Sonnet 5 95.1、GPT-5 80.6、Sarvam 105B 57.6、Llama 3.3 70B
-45.7、Gemini 2.5 Flash 22.6。Sarvam 在多项对抗任务中被归类为
-Unsafe_Compliance，Llama 则多次是
-Safe_by_incompetence：前者可能按不安全要求行动，后者可能只是没有能力完成；这两类行为在
-pass/fail 评测中容易混在一起。</p>
-<p><strong>创新、局限与复现边界</strong>：只接入
-trace、分阶段归因和安全/忠实性封顶规则，使它适合做部署前审计。主要限制是每个单元一次运行、需要完整
-trace 和隐藏 ground truth、只测单 agent；所有分数由一个固定 judge Claude
-Sonnet 5 给出，而该模型也是被评测对象，存在重叠偏差。Gemini 使用 Flash
-代替 Pro 也影响横向可比性。Composite Trust Score 是该 rubric
-的审计指标，不是客观的“可信度真值”。</p>
-<p><strong>适合谁读</strong>：agent
-观察性审计、工具权限、红队和治理团队。建议读 §§III–IV、V、VII，尤其是
-judge 偏差和失败归因部分。</p>
-<h3 id="genac生成式-critic-改善-llm-强化学习的价值估计但计算代价约为-ppo-的-2-倍以上">5.
-GenAC：生成式 critic 改善 LLM 强化学习的价值估计，但计算代价约为 PPO 的
-2 倍以上</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.10701">Bringing Value Models Back:
-Generative Critics for Value Modeling in LLM Reinforcement
-Learning</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.10701">PDF</a>，arXiv:2604.10701）<br>
+<p><strong>研究问题</strong>：任务成功率只告诉我们 agent 做没做成，却无法定位规划、记忆、工具选择、工具执行、忠实性或安全上的失效。AgentAudit 试图在不改变 agent 内部实现的前提下，对完整执行轨迹做生命周期审计。</p>
+<p><strong>方法与数据</strong>：框架从被测 agent 读取记录好的 trace，在 instruction integrity、planner、memory、tool selection、tool invocation、tool correctness、alignment、tool faithfulness、security、execution integrity 十个维度打分，再做行为分类和失败归因。实验覆盖 Banking、Email、Identity Docs、Trip Planner、Marketplace、Payments 六类环境中的 9 个能力/对抗任务，比较 GPT-5、Claude Sonnet 5、Sarvam 105B、Llama 3.3 70B、Gemini 2.5 Flash。</p>
+<p><strong>作者报告的结果</strong>：Composite Trust Score（0–100）均值为 Claude Sonnet 5 95.1、GPT-5 80.6、Sarvam 105B 57.6、Llama 3.3 70B 45.7、Gemini 2.5 Flash 22.6。Sarvam 在多项对抗任务中被归类为 Unsafe_Compliance，Llama 则多次是 Safe_by_incompetence：前者可能按不安全要求行动，后者可能只是没有能力完成；这两类行为在 pass/fail 评测中容易混在一起。</p>
+<p><strong>创新、局限与复现边界</strong>：只接入 trace、分阶段归因和安全/忠实性封顶规则，使它适合做部署前审计。主要限制是每个单元一次运行、需要完整 trace 和隐藏 ground truth、只测单 agent；所有分数由一个固定 judge Claude Sonnet 5 给出，而该模型也是被评测对象，存在重叠偏差。Gemini 使用 Flash 代替 Pro 也影响横向可比性。Composite Trust Score 是该 rubric 的审计指标，不是客观的“可信度真值”。</p>
+<p><strong>适合谁读</strong>：agent 观察性审计、工具权限、红队和治理团队。建议读 §§III–IV、V、VII，尤其是 judge 偏差和失败归因部分。</p>
+<h3 id="5-genac生成式-critic-改善-llm-强化学习的价值估计但计算代价约为-ppo-的-2-倍以上"><a class="markdownIt-Anchor" href="#5-genac生成式-critic-改善-llm-强化学习的价值估计但计算代价约为-ppo-的-2-倍以上"></a> 5. GenAC：生成式 critic 改善 LLM 强化学习的价值估计，但计算代价约为 PPO 的 2 倍以上</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.10701">Bringing Value Models Back: Generative Critics for Value Modeling in LLM Reinforcement Learning</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.10701">PDF</a>，arXiv:2604.10701）<br>
 <strong>作者</strong>：Zikang Shan、Han Zhong、Liwei Wang、Li Zhao<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.LG、cs.AI、cs.CL；LLM
-强化学习<br>
+<strong>来源/类别</strong>：arXiv RSS；cs.LG、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；LLM 强化学习<br>
 <strong>全文状态</strong>：已核阅公开 PDF（20 页）。</p>
-<p><strong>研究问题</strong>：现代 LLM 强化学习常绕开 value
-model，因为传统一次性标量 critic 难训练、扩展也不稳定；如果让 critic
-先生成推理再输出价值，能否提高 credit
-assignment，而不是只增加一个更大的回归器？</p>
-<p><strong>方法与数据</strong>：GenAC 用生成式 critic 先做
-chain-of-thought，再给出 0–10 的价值估计，并用 In-Context
-Conditioning（ICC）让 critic 随当前 actor 校准。受控 value approximation
-使用固定的 Qwen3-8B policy、DeepScaleR，包含 1,024 个问题、14,190
-个状态、每个状态 16 条 partial rollout，critic 规模覆盖 0.6B–14B、10 个
-seeds。下游 RL 比较 GRPO、RLOO、VC-PPO 与 GenAC，在
-AIME24、AMC23、MATH500、AIME25、Olympiad、Minerva 六个数学基准上用 <a href="mailto:avg@16" class="email">avg@16</a> 评估。</p>
-<p><strong>作者报告的结果</strong>：带 ICC 时，GPT-5 critic 的 MSE 从
-.164 降至 .129，Qwen base 从 .308 降至 .299，Qwen+SFT 为 .137，Qwen+RL
-为 .051。GenAC 在 2/4/8 个候选中的 top-1 排序准确率为
-.711/.492/.332，传统 discriminative critic 为 .604/.388/.204；OOD MSE 在
-DeepScaleR、MATH500、AIME24、GPQA 上分别减少
-20.3%、39.3%、52.5%、48.5%。六个数学集平均分 GRPO 50.22、RLOO
-49.93、VC-PPO 50.39、GenAC 51.90。</p>
-<p><strong>创新、局限与复现边界</strong>：论文把 value modeling
-从“标量近似”改成“可生成的分步判断”，并把校准与 actor
-变化联系起来。代价也清楚：作者报告 GenAC 每次迭代约为 PPO 的 2.1
-倍，FLOPs 表中 GRPO 4,194M、PPO 7,549M、GenAC
-18,866M；可通过更粗分段或抽样压缩。限制包括只测数学推理、固定
-actor、有限的理论—实践验证，以及 segment 长度和 critic
-成本仍需调优。分数提升是受控 RL 实验结果，不等于通用 agent
-或真实任务收益。</p>
-<p><strong>适合谁读</strong>：LLM RL、value model、credit assignment
-和训练基础设施团队。建议读 §§4–6、§7 以及附录 B、E 的成本和消融。</p>
-<h2 id="ai-论文">AI 论文</h2>
-<p>以下包含本次 arXiv RSS 候选的全部 18 篇。除“重点关注”中明确标注已核阅
-PDF 的论文外，其余条目仅依据摘要；所有“作者报告”均不是独立复核。</p>
-<h3 id="an-experimental-evaluation-of-multimodal-prompt-injection-attacks-on-agentic-ai-frameworks">1.
-An Experimental Evaluation of Multimodal Prompt Injection Attacks on
-Agentic AI Frameworks</h3>
+<p><strong>研究问题</strong>：现代 LLM 强化学习常绕开 value model，因为传统一次性标量 critic 难训练、扩展也不稳定；如果让 critic 先生成推理再输出价值，能否提高 credit assignment，而不是只增加一个更大的回归器？</p>
+<p><strong>方法与数据</strong>：GenAC 用生成式 critic 先做 chain-of-thought，再给出 0–10 的价值估计，并用 In-Context Conditioning（ICC）让 critic 随当前 actor 校准。受控 value approximation 使用固定的 Qwen3-8B policy、DeepScaleR，包含 1,024 个问题、14,190 个状态、每个状态 16 条 partial rollout，critic 规模覆盖 0.6B–14B、10 个 seeds。下游 RL 比较 GRPO、RLOO、VC-PPO 与 GenAC，在 AIME24、AMC23、MATH500、AIME25、Olympiad、Minerva 六个数学基准上用 avg@16 评估。</p>
+<p><strong>作者报告的结果</strong>：带 ICC 时，GPT-5 critic 的 MSE 从 .164 降至 .129，Qwen base 从 .308 降至 .299，Qwen+SFT 为 .137，Qwen+RL 为 .051。GenAC 在 2/4/8 个候选中的 top-1 排序准确率为 .711/.492/.332，传统 discriminative critic 为 .604/.388/.204；OOD MSE 在 DeepScaleR、MATH500、AIME24、GPQA 上分别减少 20.3%、39.3%、52.5%、48.5%。六个数学集平均分 GRPO 50.22、RLOO 49.93、VC-PPO 50.39、GenAC 51.90。</p>
+<p><strong>创新、局限与复现边界</strong>：论文把 value modeling 从“标量近似”改成“可生成的分步判断”，并把校准与 actor 变化联系起来。代价也清楚：作者报告 GenAC 每次迭代约为 PPO 的 2.1 倍，FLOPs 表中 GRPO 4,194M、PPO 7,549M、GenAC 18,866M；可通过更粗分段或抽样压缩。限制包括只测数学推理、固定 actor、有限的理论—实践验证，以及 segment 长度和 critic 成本仍需调优。分数提升是受控 RL 实验结果，不等于通用 agent 或真实任务收益。</p>
+<p><strong>适合谁读</strong>：LLM RL、value model、credit assignment 和训练基础设施团队。建议读 §§4–6、§7 以及附录 B、E 的成本和消融。</p>
+<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
+<p>以下包含本次 arXiv RSS 候选的全部 18 篇。除“重点关注”中明确标注已核阅 PDF 的论文外，其余条目仅依据摘要；所有“作者报告”均不是独立复核。</p>
+<h3 id="1-an-experimental-evaluation-of-multimodal-prompt-injection-attacks-on-agentic-ai-frameworks"><a class="markdownIt-Anchor" href="#1-an-experimental-evaluation-of-multimodal-prompt-injection-attacks-on-agentic-ai-frameworks"></a> 1. An Experimental Evaluation of Multimodal Prompt Injection Attacks on Agentic AI Frameworks</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09404">arXiv:2609.09404</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09404">PDF</a>）<br>
 <strong>作者</strong>：Viet K. Nguyen、Mohammad I. Husain<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.CR、cs.AI；AI 安全<br>
-<strong>中文导读</strong>：研究问题是多模态 agent
-会把隐藏指令推进到执行链的哪一步；方法是 6 种视觉载体、4 类目标、6
-个框架、5 个模型的 720 个受控单元；作者报告最终完成约 1.11%，尝试约
-12.8%，规划阶段是主要阻断点，音频到达时暴露更高；价值在于区分感知、规划和执行暴露；<strong>证据状态</strong>：已核阅
-PDF，单次试验、mock 工具、LLM judge
-和不同模态任务不支持现实入侵率推断。</p>
-<h3 id="cyber-financial-contagion-modeling-the-propagation-of-an-ai-vendor-compromise-through-the-banking-system">2.
-Cyber-Financial Contagion: Modeling the Propagation of an AI Vendor
-Compromise Through the Banking System</h3>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；AI 安全<br>
+<strong>中文导读</strong>：研究问题是多模态 agent 会把隐藏指令推进到执行链的哪一步；方法是 6 种视觉载体、4 类目标、6 个框架、5 个模型的 720 个受控单元；作者报告最终完成约 1.11%，尝试约 12.8%，规划阶段是主要阻断点，音频到达时暴露更高；价值在于区分感知、规划和执行暴露；<strong>证据状态</strong>：已核阅 PDF，单次试验、mock 工具、LLM judge 和不同模态任务不支持现实入侵率推断。</p>
+<h3 id="2-cyber-financial-contagion-modeling-the-propagation-of-an-ai-vendor-compromise-through-the-banking-system"><a class="markdownIt-Anchor" href="#2-cyber-financial-contagion-modeling-the-propagation-of-an-ai-vendor-compromise-through-the-banking-system"></a> 2. Cyber-Financial Contagion: Modeling the Propagation of an AI Vendor Compromise Through the Banking System</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10350">arXiv:2609.10350</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10350">PDF</a>）<br>
 <strong>作者</strong>：Alex Leytes<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI、cs.CY、cs.LG；AI
-与金融稳定<br>
-<strong>中文导读</strong>：研究问题是 AI
-供应商被攻陷后如何沿供应商—银行—同业—客户四层网络传播；方法是 CFC-Prop
-随机 epidemic-and-clearing 模型和 CFC-GNN 预警模型，在 60 个供应商、220
-家银行、约 2,500 条服务边和 1,400
-条同业敞口的合成数据上评估；作者报告预警 AUROC .82、AUPRC
-.60；价值是把供应商集中度纳入系统性风险建模；<strong>证据状态</strong>：仅依据摘要，合成网络、参数校准、代码实现与真实损失外推需核验，AUROC
-不是现实预警的因果或经济收益。</p>
-<h3 id="opendiscoverytrace-process-traces-for-evaluating-ai-scientist-workflows">3.
-OpenDiscoveryTrace: Process Traces for Evaluating AI Scientist
-Workflows</h3>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CY">cs.CY</a>、cs.LG；AI 与金融稳定<br>
+<strong>中文导读</strong>：研究问题是 AI 供应商被攻陷后如何沿供应商—银行—同业—客户四层网络传播；方法是 CFC-Prop 随机 epidemic-and-clearing 模型和 CFC-GNN 预警模型，在 60 个供应商、220 家银行、约 2,500 条服务边和 1,400 条同业敞口的合成数据上评估；作者报告预警 AUROC .82、AUPRC .60；价值是把供应商集中度纳入系统性风险建模；<strong>证据状态</strong>：仅依据摘要，合成网络、参数校准、代码实现与真实损失外推需核验，AUROC 不是现实预警的因果或经济收益。</p>
+<h3 id="3-opendiscoverytrace-process-traces-for-evaluating-ai-scientist-workflows"><a class="markdownIt-Anchor" href="#3-opendiscoverytrace-process-traces-for-evaluating-ai-scientist-workflows"></a> 3. OpenDiscoveryTrace: Process Traces for Evaluating AI Scientist Workflows</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09203">arXiv:2609.09203</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09203">PDF</a>）<br>
 <strong>作者</strong>：Aayam Bansal、Keertan Balaji<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI；AI 科学 agent 评测<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；AI 科学 agent 评测<br>
 <strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/aayambansal/OpenDiscoveryTrace">OpenDiscoveryTrace</a>；<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/aayambansall/OpenDiscoveryTrace">数据</a><br>
-<strong>中文导读</strong>：研究问题是科学 agent
-的轨迹能否揭示输出评测看不到的错误；方法是 558 条九字段过程轨迹、124
-个科学任务、7 个模型与 5 个过程级任务；作者报告 frontier
-模型成功率相近但错误类型和频率差异很大，传统预测基线未稳定超过多数类；价值是让过程监督和科学审计可数据化；<strong>证据状态</strong>：已核阅
-PDF，pilot 规模、LLM 标注、harness 约束和复现资源要求限制普适排名。</p>
-<h3 id="harbor-adapters-and-harbor-index-infrastructure-and-a-curated-meta-dataset-for-large-scale-agentic-evaluation">4.
-Harbor Adapters and Harbor-Index: Infrastructure and a Curated
-Meta-Dataset for Large-Scale Agentic Evaluation</h3>
+<strong>中文导读</strong>：研究问题是科学 agent 的轨迹能否揭示输出评测看不到的错误；方法是 558 条九字段过程轨迹、124 个科学任务、7 个模型与 5 个过程级任务；作者报告 frontier 模型成功率相近但错误类型和频率差异很大，传统预测基线未稳定超过多数类；价值是让过程监督和科学审计可数据化；<strong>证据状态</strong>：已核阅 PDF，pilot 规模、LLM 标注、harness 约束和复现资源要求限制普适排名。</p>
+<h3 id="4-harbor-adapters-and-harbor-index-infrastructure-and-a-curated-meta-dataset-for-large-scale-agentic-evaluation"><a class="markdownIt-Anchor" href="#4-harbor-adapters-and-harbor-index-infrastructure-and-a-curated-meta-dataset-for-large-scale-agentic-evaluation"></a> 4. Harbor Adapters and Harbor-Index: Infrastructure and a Curated Meta-Dataset for Large-Scale Agentic Evaluation</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.04298">arXiv:2609.04298</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.04298">PDF</a>）<br>
-<strong>作者</strong>：Lin Shi、Haowei Lin、Zixuan Zhu、Xiaoyue
-Zhou、Xiang Li 等<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI、cs.CL；agent
-评测基础设施<br>
+<strong>作者</strong>：Lin Shi、Haowei Lin、Zixuan Zhu、Xiaoyue Zhou、Xiang Li 等<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；agent 评测基础设施<br>
 <strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/harbor-framework/harbor">Harbor</a>、<a target="_blank" rel="noopener" href="https://github.com/harbor-framework/harbor-index">Harbor-Index</a><br>
-<strong>中文导读</strong>：研究问题是如何统一 agent
-基准的环境接入、任务审计与成本；方法是 80+ adapters、54 个基准、8
-个模型及由 6,627 个候选筛到 82 个任务的
-Harbor-Index；作者报告最强配置通过率 28%，无配置超过
-30%，小任务子集可近似大多数基准排序；价值是把 harness
-效应和任务冗余显式量化；<strong>证据状态</strong>：已核阅
-PDF，特定任务、工具、超时与模型面板下的通过率不能外推为一般能力上限。</p>
-<h3 id="black-box-red-teaming-of-agentic-ai-a-taxonomy-driven-framework-for-automated-risk-discovery">5.
-Black-Box Red Teaming of Agentic AI: A Taxonomy-Driven Framework for
-Automated Risk Discovery</h3>
+<strong>中文导读</strong>：研究问题是如何统一 agent 基准的环境接入、任务审计与成本；方法是 80+ adapters、54 个基准、8 个模型及由 6,627 个候选筛到 82 个任务的 Harbor-Index；作者报告最强配置通过率 28%，无配置超过 30%，小任务子集可近似大多数基准排序；价值是把 harness 效应和任务冗余显式量化；<strong>证据状态</strong>：已核阅 PDF，特定任务、工具、超时与模型面板下的通过率不能外推为一般能力上限。</p>
+<h3 id="5-black-box-red-teaming-of-agentic-ai-a-taxonomy-driven-framework-for-automated-risk-discovery"><a class="markdownIt-Anchor" href="#5-black-box-red-teaming-of-agentic-ai-a-taxonomy-driven-framework-for-automated-risk-discovery"></a> 5. Black-Box Red Teaming of Agentic AI: A Taxonomy-Driven Framework for Automated Risk Discovery</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09647">arXiv:2609.09647</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09647">PDF</a>）<br>
-<strong>作者</strong>：Divyanshu Kumar、Nitin Aravind Birur、Tanay
-Baswa、Sahil Agarwal、Prashanth Harshangi<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI；agent 红队<br>
-<strong>中文导读</strong>：研究问题是仅凭系统描述能否自动发现多步 agent
-的治理、隐私和行为风险；方法是七域 taxonomy、每域 120 个 SAGE-RT
-对抗场景，在 CrewAI/AutoGen 与 4 个基础模型上由人审 LLM judge
-验证；作者报告治理风险平均 56.25%、多 agent 隐私风险 65%、行为漏洞最高
-85%；价值是提供黑盒、可扩展的风险发现路径；<strong>证据状态</strong>：仅依据摘要，场景构造、judge
-可靠性、风险分母和架构覆盖需核验，百分比不是生产事故率。</p>
-<h3 id="from-symbolic-perception-to-logical-deduction-a-framework-for-guiding-language-models-in-geometric-reasoning">6.
-From Symbolic Perception to Logical Deduction: A Framework for Guiding
-Language Models in Geometric Reasoning</h3>
+<strong>作者</strong>：Divyanshu Kumar、Nitin Aravind Birur、Tanay Baswa、Sahil Agarwal、Prashanth Harshangi<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；agent 红队<br>
+<strong>中文导读</strong>：研究问题是仅凭系统描述能否自动发现多步 agent 的治理、隐私和行为风险；方法是七域 taxonomy、每域 120 个 SAGE-RT 对抗场景，在 CrewAI/AutoGen 与 4 个基础模型上由人审 LLM judge 验证；作者报告治理风险平均 56.25%、多 agent 隐私风险 65%、行为漏洞最高 85%；价值是提供黑盒、可扩展的风险发现路径；<strong>证据状态</strong>：仅依据摘要，场景构造、judge 可靠性、风险分母和架构覆盖需核验，百分比不是生产事故率。</p>
+<h3 id="6-from-symbolic-perception-to-logical-deduction-a-framework-for-guiding-language-models-in-geometric-reasoning"><a class="markdownIt-Anchor" href="#6-from-symbolic-perception-to-logical-deduction-a-framework-for-guiding-language-models-in-geometric-reasoning"></a> 6. From Symbolic Perception to Logical Deduction: A Framework for Guiding Language Models in Geometric Reasoning</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10335">arXiv:2609.10335</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10335">PDF</a>）<br>
-<strong>作者</strong>：Weichen Dai、Rafael Medeiros Cabral、Ziyi
-Shou、Yan Cao、Xin Shen、Dongcai Lu、Yi Zhou<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI、cs.CL；几何推理<br>
-<strong>中文导读</strong>：研究问题是纯 LLM
-能否通过符号视觉解析器和形式求解器处理平面几何；方法是把图形转成符号表示，再进行逻辑演绎，并用
-2025 年中国中考题构造新颖基准；作者报告性能可与 Gemini 2.5 Pro
-相当且解答更可解释；价值是把视觉感知与证明推理拆成可检查模块；<strong>证据状态</strong>：仅依据摘要，题目去污染、解析错误、模型成本、基线调参与真实几何泛化需阅读全文。</p>
-<h3 id="agentaudit-an-open-extensible-framework-for-full-lifecycle-trust-evaluation-of-ai-agents">7.
-AgentAudit: An Open, Extensible Framework for Full-Lifecycle Trust
-Evaluation of AI Agents</h3>
+<strong>作者</strong>：Weichen Dai、Rafael Medeiros Cabral、Ziyi Shou、Yan Cao、Xin Shen、Dongcai Lu、Yi Zhou<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；几何推理<br>
+<strong>中文导读</strong>：研究问题是纯 LLM 能否通过符号视觉解析器和形式求解器处理平面几何；方法是把图形转成符号表示，再进行逻辑演绎，并用 2025 年中国中考题构造新颖基准；作者报告性能可与 Gemini 2.5 Pro 相当且解答更可解释；价值是把视觉感知与证明推理拆成可检查模块；<strong>证据状态</strong>：仅依据摘要，题目去污染、解析错误、模型成本、基线调参与真实几何泛化需阅读全文。</p>
+<h3 id="7-agentaudit-an-open-extensible-framework-for-full-lifecycle-trust-evaluation-of-ai-agents"><a class="markdownIt-Anchor" href="#7-agentaudit-an-open-extensible-framework-for-full-lifecycle-trust-evaluation-of-ai-agents"></a> 7. AgentAudit: An Open, Extensible Framework for Full-Lifecycle Trust Evaluation of AI Agents</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09875">arXiv:2609.09875</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09875">PDF</a>）<br>
-<strong>作者</strong>：Shrey Nag、Sachita、Abhishek Kumar Singh、Lipi
-Goel、Rajeshwar Singh Janwar<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI；AI agent 信任与安全<br>
+<strong>作者</strong>：Shrey Nag、Sachita、Abhishek Kumar Singh、Lipi Goel、Rajeshwar Singh Janwar<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；AI agent 信任与安全<br>
 <strong>代码</strong>：<a target="_blank" rel="noopener" href="https://github.com/ShreyNag/AgentAudit">AgentAudit</a><br>
-<strong>中文导读</strong>：研究问题是如何对 agent 完整 trace
-的规划、记忆、工具和安全做统一审计；方法是十维评分、行为分类和失败归因，比较
-5 个模型在 9 个任务上的表现；作者报告 Claude/GPT-5 的平均 Composite
-Trust Score 为 95.1/80.6，其他模型为
-57.6、45.7、22.6；价值是区分不安全服从与单纯能力不足；<strong>证据状态</strong>：已核阅
-PDF，单一且重叠的 judge、一次运行、完整 trace 要求和 Flash/Pro
-差异限制比较。</p>
-<h3 id="carre-counterfactual-action-retrieval-and-reason-evaluation-for-explainable-churn-prescription">8.
-CARRE: Counterfactual Action Retrieval and Reason Evaluation for
-Explainable Churn Prescription</h3>
+<strong>中文导读</strong>：研究问题是如何对 agent 完整 trace 的规划、记忆、工具和安全做统一审计；方法是十维评分、行为分类和失败归因，比较 5 个模型在 9 个任务上的表现；作者报告 Claude/GPT-5 的平均 Composite Trust Score 为 95.1/80.6，其他模型为 57.6、45.7、22.6；价值是区分不安全服从与单纯能力不足；<strong>证据状态</strong>：已核阅 PDF，单一且重叠的 judge、一次运行、完整 trace 要求和 Flash/Pro 差异限制比较。</p>
+<h3 id="8-carre-counterfactual-action-retrieval-and-reason-evaluation-for-explainable-churn-prescription"><a class="markdownIt-Anchor" href="#8-carre-counterfactual-action-retrieval-and-reason-evaluation-for-explainable-churn-prescription"></a> 8. CARRE: Counterfactual Action Retrieval and Reason Evaluation for Explainable Churn Prescription</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09766">arXiv:2609.09766</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09766">PDF</a>）<br>
 <strong>作者</strong>：Minjoo Kim、Sangjin Park、Seung Hwan Cho<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.CL；客户流失干预<br>
-<strong>中文导读</strong>：研究问题是 churn
-模型如何从“谁高风险”推进到“哪个可行留存动作可能有效”；方法是检索动作目录、成本感知反事实评分和
-LLM 解释，在 IBM Telco Customer Churn 上比较 SHAP
-基线；作者报告平均模型预测风险下降比 plain SHAP 高 79.8%、比 SHAP+Cost
-高 80.4%，但诊断与复评用了同一 136
-案例样本；价值是把动作可行性、成本和解释拆开；<strong>证据状态</strong>：仅依据摘要，模型预测风险变化不等于真实留存因果效果，复评样本复用限制泛化。</p>
-<h3 id="can-artificial-intelligence-support-healthcare-and-mental-health-through-early-cyberbullying-detection-the-impact-of-emotion-aware-ai-on-proactive-online-safety">9.
-Can Artificial Intelligence Support Healthcare and Mental Health Through
-Early Cyberbullying Detection ? The Impact of Emotion-Aware AI on
-Proactive Online Safety</h3>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；客户流失干预<br>
+<strong>中文导读</strong>：研究问题是 churn 模型如何从“谁高风险”推进到“哪个可行留存动作可能有效”；方法是检索动作目录、成本感知反事实评分和 LLM 解释，在 IBM Telco Customer Churn 上比较 SHAP 基线；作者报告平均模型预测风险下降比 plain SHAP 高 79.8%、比 SHAP+Cost 高 80.4%，但诊断与复评用了同一 136 案例样本；价值是把动作可行性、成本和解释拆开；<strong>证据状态</strong>：仅依据摘要，模型预测风险变化不等于真实留存因果效果，复评样本复用限制泛化。</p>
+<h3 id="9-can-artificial-intelligence-support-healthcare-and-mental-health-through-early-cyberbullying-detection-the-impact-of-emotion-aware-ai-on-proactive-online-safety"><a class="markdownIt-Anchor" href="#9-can-artificial-intelligence-support-healthcare-and-mental-health-through-early-cyberbullying-detection-the-impact-of-emotion-aware-ai-on-proactive-online-safety"></a> 9. Can Artificial Intelligence Support Healthcare and Mental Health Through Early Cyberbullying Detection ? The Impact of Emotion-Aware AI on Proactive Online Safety</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09735">arXiv:2609.09735</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09735">PDF</a>）<br>
-<strong>作者</strong>：Hamed Jelodar、Amir Firouzi、Yen-Wu Lo、Maryam
-Tanha、Sajjad Dadkhah<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI、cs.CL；医疗与心理健康
-NLP<br>
-<strong>中文导读</strong>：研究问题是情绪感知与语义筛选能否在医疗导向的网络安全监测中更早识别
-cyberbullying；方法是 zero-shot 语义标注、BERT/DistilBERT/RoBERTa
-微调、余弦相似度筛选和情绪过滤；作者报告 CareGuard
-在基准数据上兼顾检测准确率与计算效率；价值是把预警系统的精度与资源消耗同时考虑；<strong>证据状态</strong>：仅依据摘要，数据集、类别定义、阈值、误报代价和临床/心理健康安全边界需核验。</p>
-<h3 id="multi-agent-agentic-graph-learning-via-structural-signatures">10.
-Multi-Agent Agentic Graph Learning via Structural Signatures</h3>
+<strong>作者</strong>：Hamed Jelodar、Amir Firouzi、Yen-Wu Lo、Maryam Tanha、Sajjad Dadkhah<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；医疗与心理健康 NLP<br>
+<strong>中文导读</strong>：研究问题是情绪感知与语义筛选能否在医疗导向的网络安全监测中更早识别 cyberbullying；方法是 zero-shot 语义标注、BERT/DistilBERT/RoBERTa 微调、余弦相似度筛选和情绪过滤；作者报告 CareGuard 在基准数据上兼顾检测准确率与计算效率；价值是把预警系统的精度与资源消耗同时考虑；<strong>证据状态</strong>：仅依据摘要，数据集、类别定义、阈值、误报代价和临床/心理健康安全边界需核验。</p>
+<h3 id="10-multi-agent-agentic-graph-learning-via-structural-signatures"><a class="markdownIt-Anchor" href="#10-multi-agent-agentic-graph-learning-via-structural-signatures"></a> 10. Multi-Agent Agentic Graph Learning via Structural Signatures</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09565">arXiv:2609.09565</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09565">PDF</a>）<br>
 <strong>作者</strong>：Liang Qu、Jianxin Li、Hua Wang<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI；多 agent 图学习<br>
-<strong>中文导读</strong>：研究问题是异质图上共享推理策略是否无法适配不同区域；方法是按社区分配独立
-agent，用固定大小且置换不变的 structural signature 表示结构证据，用
-top-k 语义节点压缩上下文，并在不确定时触发
-debate；作者报告四个基准上优于现有 agentic graph learning
-方法；价值是把图的置换不变性与多 agent
-专门化结合；<strong>证据状态</strong>：仅依据摘要，基准规模、token/调用成本、社区划分消融与
-SOTA 调参需阅读全文。</p>
-<h3 id="chimera-challenge-task-2-and-3-response-subtypes-classification-and-progression-survival-prediction-in-bladder-cancer-patients-using-multimodal-datasets">11.
-CHIMERA Challenge Task 2 and 3: Response Subtypes Classification and
-Progression Survival Prediction in Bladder Cancer Patients using
-Multimodal Datasets</h3>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；多 agent 图学习<br>
+<strong>中文导读</strong>：研究问题是异质图上共享推理策略是否无法适配不同区域；方法是按社区分配独立 agent，用固定大小且置换不变的 structural signature 表示结构证据，用 top-k 语义节点压缩上下文，并在不确定时触发 debate；作者报告四个基准上优于现有 agentic graph learning 方法；价值是把图的置换不变性与多 agent 专门化结合；<strong>证据状态</strong>：仅依据摘要，基准规模、token/调用成本、社区划分消融与 SOTA 调参需阅读全文。</p>
+<h3 id="11-chimera-challenge-task-2-and-3-response-subtypes-classification-and-progression-survival-prediction-in-bladder-cancer-patients-using-multimodal-datasets"><a class="markdownIt-Anchor" href="#11-chimera-challenge-task-2-and-3-response-subtypes-classification-and-progression-survival-prediction-in-bladder-cancer-patients-using-multimodal-datasets"></a> 11. CHIMERA Challenge Task 2 and 3: Response Subtypes Classification and Progression Survival Prediction in Bladder Cancer Patients using Multimodal Datasets</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09510">arXiv:2609.09510</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09510">PDF</a>）<br>
-<strong>作者</strong>：Catherine Chia、Tongjie Wang、Robert Spaans
-等；CHIMERA Challenge Consortium<br>
-<strong>来源/类别</strong>：arXiv
-RSS；eess.IV、cs.CV、q-bio.QM；医学多模态<br>
-<strong>中文导读</strong>：研究问题是多模态数据能否预测膀胱癌 BCG
-响应亚型与进展生存，并在缺失数据和跨队列下保持稳健；方法是 368
-名患者、公开训练与隐藏验证/测试、159 份提交和 13
-个模型；作者报告最佳加权 F1 为 .73、进展 C-index 为
-.68，且队列迁移、结构化数据缺失会降性能；价值是把患者级难例与可运输性纳入挑战赛；<strong>证据状态</strong>：仅依据摘要，隐藏测试构造、临床基线、删失处理与独立多中心验证需核验，不能当作临床工具。</p>
-<h3 id="bringing-value-models-back-generative-critics-for-value-modeling-in-llm-reinforcement-learning">12.
-Bringing Value Models Back: Generative Critics for Value Modeling in LLM
-Reinforcement Learning</h3>
+<strong>作者</strong>：Catherine Chia、Tongjie Wang、Robert Spaans 等；CHIMERA Challenge Consortium<br>
+<strong>来源/类别</strong>：arXiv RSS；eess.IV、<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、q-bio.QM；医学多模态<br>
+<strong>中文导读</strong>：研究问题是多模态数据能否预测膀胱癌 BCG 响应亚型与进展生存，并在缺失数据和跨队列下保持稳健；方法是 368 名患者、公开训练与隐藏验证/测试、159 份提交和 13 个模型；作者报告最佳加权 F1 为 .73、进展 C-index 为 .68，且队列迁移、结构化数据缺失会降性能；价值是把患者级难例与可运输性纳入挑战赛；<strong>证据状态</strong>：仅依据摘要，隐藏测试构造、临床基线、删失处理与独立多中心验证需核验，不能当作临床工具。</p>
+<h3 id="12-bringing-value-models-back-generative-critics-for-value-modeling-in-llm-reinforcement-learning"><a class="markdownIt-Anchor" href="#12-bringing-value-models-back-generative-critics-for-value-modeling-in-llm-reinforcement-learning"></a> 12. Bringing Value Models Back: Generative Critics for Value Modeling in LLM Reinforcement Learning</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.10701">arXiv:2604.10701</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.10701">PDF</a>）<br>
 <strong>作者</strong>：Zikang Shan、Han Zhong、Liwei Wang、Li Zhao<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.LG、cs.AI、cs.CL；LLM
-强化学习<br>
-<strong>中文导读</strong>：研究问题是生成式 critic 能否改善 LLM RL 的
-value approximation 与 credit assignment；方法是 GenAC、ICC、DeepScaleR
-控制实验和六个数学基准上的 RL 比较；作者报告价值 MSE、候选排序、OOD
-泛化与最终平均分都有提升；价值是重新打开 value-based LLM RL
-的研究空间；<strong>证据状态</strong>：已核阅 PDF，数学任务、固定 actor
-和约 2 倍以上 critic 成本限制对通用 agent 的外推。</p>
-<h3 id="glyph-a-multi-strategy-agentic-system-for-column-description-and-sensitivity-ontology-tagging-of-enterprise-data-catalogs">13.
-Glyph: A Multi-Strategy Agentic System for Column Description and
-Sensitivity-Ontology Tagging of Enterprise Data Catalogs</h3>
+<strong>来源/类别</strong>：arXiv RSS；cs.LG、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；LLM 强化学习<br>
+<strong>中文导读</strong>：研究问题是生成式 critic 能否改善 LLM RL 的 value approximation 与 credit assignment；方法是 GenAC、ICC、DeepScaleR 控制实验和六个数学基准上的 RL 比较；作者报告价值 MSE、候选排序、OOD 泛化与最终平均分都有提升；价值是重新打开 value-based LLM RL 的研究空间；<strong>证据状态</strong>：已核阅 PDF，数学任务、固定 actor 和约 2 倍以上 critic 成本限制对通用 agent 的外推。</p>
+<h3 id="13-glyph-a-multi-strategy-agentic-system-for-column-description-and-sensitivity-ontology-tagging-of-enterprise-data-catalogs"><a class="markdownIt-Anchor" href="#13-glyph-a-multi-strategy-agentic-system-for-column-description-and-sensitivity-ontology-tagging-of-enterprise-data-catalogs"></a> 13. Glyph: A Multi-Strategy Agentic System for Column Description and Sensitivity-Ontology Tagging of Enterprise Data Catalogs</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10430">arXiv:2609.10430</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10430">PDF</a>）<br>
-<strong>作者</strong>：Kostia Kudriavtsev、Parvez Rafi、Sha
-Sundaram<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.MA、cs.IR；企业数据治理<br>
-<strong>中文导读</strong>：研究问题是如何自动补齐数据列说明并分配治理敏感性标签；方法是
-Descriptor 从生产列的 GitHub 源码做主动 RAG，Tagger 并行使用说明、业务
-regex 和 MiniLM 元数据检索，再用 RRF 融合；作者报告微调编码器在 held-out
-同标签检索中 <a href="mailto:NDCG@10" class="email">NDCG@10</a> 从 .55
-提到 .92、<a href="mailto:MAP@100" class="email">MAP@100</a> 从 .19 提到
-.90；价值是代码溯源、标签 provenance 与 graceful
-degradation；<strong>证据状态</strong>：仅依据摘要，企业数据分布、end-to-end
-F2、标签长尾、隐私和跨组织迁移需阅读全文。</p>
-<h3 id="on-policy-distillation-for-vision-language-model-adaptation-an-effective-paradigm-on-low-quality-multimodal-data">14.
-On-Policy Distillation for Vision-Language Model Adaptation, an
-Effective Paradigm on Low-Quality Multimodal Data</h3>
+<strong>作者</strong>：Kostia Kudriavtsev、Parvez Rafi、Sha Sundaram<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.MA">cs.MA</a>、<a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a>；企业数据治理<br>
+<strong>中文导读</strong>：研究问题是如何自动补齐数据列说明并分配治理敏感性标签；方法是 Descriptor 从生产列的 GitHub 源码做主动 RAG，Tagger 并行使用说明、业务 regex 和 MiniLM 元数据检索，再用 RRF 融合；作者报告微调编码器在 held-out 同标签检索中 NDCG@10 从 .55 提到 .92、MAP@100 从 .19 提到 .90；价值是代码溯源、标签 provenance 与 graceful degradation；<strong>证据状态</strong>：仅依据摘要，企业数据分布、end-to-end F2、标签长尾、隐私和跨组织迁移需阅读全文。</p>
+<h3 id="14-on-policy-distillation-for-vision-language-model-adaptation-an-effective-paradigm-on-low-quality-multimodal-data"><a class="markdownIt-Anchor" href="#14-on-policy-distillation-for-vision-language-model-adaptation-an-effective-paradigm-on-low-quality-multimodal-data"></a> 14. On-Policy Distillation for Vision-Language Model Adaptation, an Effective Paradigm on Low-Quality Multimodal Data</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10321">arXiv:2609.10321</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10321">PDF</a>）<br>
-<strong>作者</strong>：Hongyuan Zhang、Xianda Guo、Yanlun Peng、Qianlong
-Yang、Yubin Guo、Pinhan Fu、Mulin Chen、Xiaozhen Qiao、Ping Luo<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.CL；视觉语言模型蒸馏<br>
-<strong>中文导读</strong>：研究问题是低质量、多域数据下是否应动态构造蒸馏目标；方法是
-OnPoKD，用 teacher、student 和 zero-shot prior 的可靠性/分歧训练轻量
-controller，按样本在 teacher、先验和 hard label 间自适应；作者报告在
-base-to-novel
-与跨数据集迁移上稳定超过强蒸馏基线；价值是把蒸馏目标从固定配方变成验证集反馈的策略决策；<strong>证据状态</strong>：仅依据摘要，需核验
-controller
-的验证反馈预算、数据泄漏、各域收益、训练成本和基线公平性。</p>
-<h3 id="a-systematic-evaluation-of-molecule-generation-models-for-de-novo-drug-design-from-benchmarks-to-practical-insights">15.
-A Systematic Evaluation of Molecule Generation Models for De Novo Drug
-Design: From Benchmarks to Practical Insights</h3>
+<strong>作者</strong>：Hongyuan Zhang、Xianda Guo、Yanlun Peng、Qianlong Yang、Yubin Guo、Pinhan Fu、Mulin Chen、Xiaozhen Qiao、Ping Luo<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；视觉语言模型蒸馏<br>
+<strong>中文导读</strong>：研究问题是低质量、多域数据下是否应动态构造蒸馏目标；方法是 OnPoKD，用 teacher、student 和 zero-shot prior 的可靠性/分歧训练轻量 controller，按样本在 teacher、先验和 hard label 间自适应；作者报告在 base-to-novel 与跨数据集迁移上稳定超过强蒸馏基线；价值是把蒸馏目标从固定配方变成验证集反馈的策略决策；<strong>证据状态</strong>：仅依据摘要，需核验 controller 的验证反馈预算、数据泄漏、各域收益、训练成本和基线公平性。</p>
+<h3 id="15-a-systematic-evaluation-of-molecule-generation-models-for-de-novo-drug-design-from-benchmarks-to-practical-insights"><a class="markdownIt-Anchor" href="#15-a-systematic-evaluation-of-molecule-generation-models-for-de-novo-drug-design-from-benchmarks-to-practical-insights"></a> 15. A Systematic Evaluation of Molecule Generation Models for De Novo Drug Design: From Benchmarks to Practical Insights</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.10099">arXiv:2609.10099</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.10099">PDF</a>）<br>
-<strong>作者</strong>：Xinrui Xu、Xueer Wang、Dan Luo、Sisi Yuan、Xuan
-Lin<br>
+<strong>作者</strong>：Xinrui Xu、Xueer Wang、Dan Luo、Sisi Yuan、Xuan Lin<br>
 <strong>来源/类别</strong>：arXiv RSS；cs.LG；分子生成综述<br>
 <strong>代码/资料</strong>：<a target="_blank" rel="noopener" href="https://github.com/JacklinGroup/molecule-generation-review">molecule-generation-review</a><br>
-<strong>中文导读</strong>：研究问题是如何把分子表示、生成架构、靶点条件与实验相关性放进统一比较；方法是综述
-82 个方法、5
-类深度生成框架、常用基准和实验验证案例；作者报告未来重点包括标准化 3D
-数据、受体柔性、相互作用感知和多目标设计；价值是提醒读者 benchmark
-指标与药物实验成功之间仍有距离；<strong>证据状态</strong>：仅依据摘要，综述中的跨论文数字、实验案例和指标可比性需阅读全文及引用原文核验。</p>
-<h3 id="who-are-they-to-each-other-multi-agent-reasoning-for-speaker-relationship-inference">16.
-Who Are They to Each Other? Multi-Agent Reasoning for Speaker
-Relationship Inference</h3>
+<strong>中文导读</strong>：研究问题是如何把分子表示、生成架构、靶点条件与实验相关性放进统一比较；方法是综述 82 个方法、5 类深度生成框架、常用基准和实验验证案例；作者报告未来重点包括标准化 3D 数据、受体柔性、相互作用感知和多目标设计；价值是提醒读者 benchmark 指标与药物实验成功之间仍有距离；<strong>证据状态</strong>：仅依据摘要，综述中的跨论文数字、实验案例和指标可比性需阅读全文及引用原文核验。</p>
+<h3 id="16-who-are-they-to-each-other-multi-agent-reasoning-for-speaker-relationship-inference"><a class="markdownIt-Anchor" href="#16-who-are-they-to-each-other-multi-agent-reasoning-for-speaker-relationship-inference"></a> 16. Who Are They to Each Other? Multi-Agent Reasoning for Speaker Relationship Inference</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09628">arXiv:2609.09628</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09628">PDF</a>）<br>
-<strong>作者</strong>：Yaohan Guan、Yen-Ju Lu、Yuzhe Wang、Junhyeok
-Lee、Jesus Villalba、Laureano Moro Velazquez、Thomas Thebaud、Najim
-Dehak<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.MA、cs.CL、cs.SD；语音与多
-agent 推理<br>
-<strong>中文导读</strong>：研究问题是如何从对话中的分散、多模态线索推断说话人关系；方法是
-training-free 的 Multi-Role Multi-Agent Debate 与 Multi-Agent
-Compete，在 Seamless Interaction
-上测试二分类和细粒度关系；作者报告多数设置超过 zero-shot 与既有多 agent
-基线，人类在此任务上也很难，文本含转写时 LLM
-有时超过人类但音频较弱；价值是把角色视角与淘汰式裁决引入社会语义推理；<strong>证据状态</strong>：仅依据摘要，模态转写、关系标签、调用成本和人类基线细节需核验。</p>
-<h3 id="xai-arena-can-llms-assess-the-quality-of-xai-explanations">17.
-XAI-Arena: Can LLMs Assess the Quality of XAI Explanations?</h3>
+<strong>作者</strong>：Yaohan Guan、Yen-Ju Lu、Yuzhe Wang、Junhyeok Lee、Jesus Villalba、Laureano Moro Velazquez、Thomas Thebaud、Najim Dehak<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.MA">cs.MA</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.SD">cs.SD</a>；语音与多 agent 推理<br>
+<strong>中文导读</strong>：研究问题是如何从对话中的分散、多模态线索推断说话人关系；方法是 training-free 的 Multi-Role Multi-Agent Debate 与 Multi-Agent Compete，在 Seamless Interaction 上测试二分类和细粒度关系；作者报告多数设置超过 zero-shot 与既有多 agent 基线，人类在此任务上也很难，文本含转写时 LLM 有时超过人类但音频较弱；价值是把角色视角与淘汰式裁决引入社会语义推理；<strong>证据状态</strong>：仅依据摘要，模态转写、关系标签、调用成本和人类基线细节需核验。</p>
+<h3 id="17-xai-arena-can-llms-assess-the-quality-of-xai-explanations"><a class="markdownIt-Anchor" href="#17-xai-arena-can-llms-assess-the-quality-of-xai-explanations"></a> 17. XAI-Arena: Can LLMs Assess the Quality of XAI Explanations?</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.09428">arXiv:2609.09428</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.09428">PDF</a>）<br>
-<strong>作者</strong>：Yanfei Hu Fleischhauer、Alona Zharova、Nadja
-Klein、Stefan Feuerriegel<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.AI；可解释 AI 评测<br>
-<strong>中文导读</strong>：研究问题是 LLM
-能否以可复现、可扩展、面向不同利益相关者的方式评价 XAI 解释；方法是
-XAI-Arena，按简单性、清晰度、任务适配、信任校准、可行动性、透明度、忠实性和可解释性比较多模型/数据集/人设；作者报告
-LLM 与人工评分的 Spearman
-ρ=.693、p&lt;.001；价值是把主观解释评价标准化；<strong>证据状态</strong>：仅依据摘要，judge
-提示、人工样本、persona
-稳定性和“评分相关”与解释真实忠实性的区别需核验。</p>
-<h3 id="statevlm-a-state-aware-vision-language-model-for-robotic-affordance-reasoning">18.
-StateVLM: A State-Aware Vision-Language Model for Robotic Affordance
-Reasoning</h3>
+<strong>作者</strong>：Yanfei Hu Fleischhauer、Alona Zharova、Nadja Klein、Stefan Feuerriegel<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；可解释 AI 评测<br>
+<strong>中文导读</strong>：研究问题是 LLM 能否以可复现、可扩展、面向不同利益相关者的方式评价 XAI 解释；方法是 XAI-Arena，按简单性、清晰度、任务适配、信任校准、可行动性、透明度、忠实性和可解释性比较多模型/数据集/人设；作者报告 LLM 与人工评分的 Spearman ρ=.693、p&lt;.001；价值是把主观解释评价标准化；<strong>证据状态</strong>：仅依据摘要，judge 提示、人工样本、persona 稳定性和“评分相关”与解释真实忠实性的区别需核验。</p>
+<h3 id="18-statevlm-a-state-aware-vision-language-model-for-robotic-affordance-reasoning"><a class="markdownIt-Anchor" href="#18-statevlm-a-state-aware-vision-language-model-for-robotic-affordance-reasoning"></a> 18. StateVLM: A State-Aware Vision-Language Model for Robotic Affordance Reasoning</h3>
 <p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.03927">arXiv:2605.03927</a>（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.03927">PDF</a>）<br>
-<strong>作者</strong>：Xiaowen Sun、Matthias Kerzel、Mengdi Li、Xufeng
-Zhao、Paul Striker、Stefan Wermter<br>
-<strong>来源/类别</strong>：arXiv RSS；cs.CV；机器人视觉语言模型<br>
-<strong>中文导读</strong>：研究问题是 VLM 如何从类别级 grounding
-走向对象状态、位置和抓取相关区域推理；方法是把 auxiliary regression loss
-与 causal language modeling 联合训练，并提出含 1,172 个场景、7,746
-个对象和框的 OSAR 基准；作者报告 ARL 相比 CLM-only 平均提升
-5.2%；价值是将数值空间回归直接并入 VLM
-训练；<strong>证据状态</strong>：仅依据摘要，需核验各
-referring-expression
-数据集、对象状态标注、现实机器人闭环和训练/推理成本。</p>
+<strong>作者</strong>：Xiaowen Sun、Matthias Kerzel、Mengdi Li、Xufeng Zhao、Paul Striker、Stefan Wermter<br>
+<strong>来源/类别</strong>：arXiv RSS；<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>；机器人视觉语言模型<br>
+<strong>中文导读</strong>：研究问题是 VLM 如何从类别级 grounding 走向对象状态、位置和抓取相关区域推理；方法是把 auxiliary regression loss 与 causal language modeling 联合训练，并提出含 1,172 个场景、7,746 个对象和框的 OSAR 基准；作者报告 ARL 相比 CLM-only 平均提升 5.2%；价值是将数值空间回归直接并入 VLM 训练；<strong>证据状态</strong>：仅依据摘要，需核验各 referring-expression 数据集、对象状态标注、现实机器人闭环和训练/推理成本。</p>
 
                 
               </div>
