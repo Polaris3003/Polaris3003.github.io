@@ -1,0 +1,968 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="GITHUB TRENDING · 2026.10.06   今天的 GitHub all-languages 日榜共有 13 个仓库条目；注意力集中在两端：Agent 开始处理长期记忆、可回放测试和多设备控制，另一端则是 AnyPS5、Stremio Web、openGym 与 ESP32-C3 AdBlock 把复杂能力压进可运行的桌面、媒体、自托管和嵌入式应用。筛选按 README 可复">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-10-06 GitHub 热榜简报：Agent 记忆、跨设备工作区与嵌入式工程">
+<meta property="og:url" content="https://www.polarishaw.top/2026/10/06/daily-github-trending-2026-10-06/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="GITHUB TRENDING · 2026.10.06   今天的 GitHub all-languages 日榜共有 13 个仓库条目；注意力集中在两端：Agent 开始处理长期记忆、可回放测试和多设备控制，另一端则是 AnyPS5、Stremio Web、openGym 与 ESP32-C3 AdBlock 把复杂能力压进可运行的桌面、媒体、自托管和嵌入式应用。筛选按 README 可复">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-09-13/pixiv-rank-003-149366184.jpg">
+<meta property="article:published_time" content="2026-10-06T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-06T02:12:24.771Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="自托管">
+<meta property="article:tag" content="测试">
+<meta property="article:tag" content="嵌入式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-09-13/pixiv-rank-003-149366184.jpg">
+  
+  
+  
+  <title>2026-10-06 GitHub 热榜简报：Agent 记忆、跨设备工作区与嵌入式工程 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
+<link rel="stylesheet" href="/css/dailyBriefing.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/covers/pixiv-weekly/2026-09-06/pixiv-rank-010-149090291.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2026-10-06 GitHub 热榜简报：Agent 记忆、跨设备工作区与嵌入式工程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-10-06 09:00" pubdate>
+          2026年10月6日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2026-10-06 GitHub 热榜简报：Agent 记忆、跨设备工作区与嵌入式工程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="briefing-masthead">
+<p class="briefing-masthead__eyebrow">
+GITHUB TRENDING · 2026.10.06
+</p>
+<p>
+今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub
+all-languages 日榜</a>共有 13 个仓库条目；注意力集中在两端：Agent
+开始处理长期记忆、可回放测试和多设备控制，另一端则是 AnyPS5、Stremio
+Web、openGym 与 ESP32-C3 AdBlock
+把复杂能力压进可运行的桌面、媒体、自托管和嵌入式应用。筛选按 README
+可复现机制、许可证、最近提交或 Release 以及外部依赖判断；日增 stars
+只作为趋势快照，不是质量证明。
+</p>
+<div class="briefing-masthead__topics">
+<span>可回放测试</span><span>Agent
+记忆</span><span>跨设备工作区</span><span>CAD
+工件</span><span>游戏兼容</span><span>自托管应用</span><span>嵌入式
+DNS</span>
+</div>
+</div>
+<span id="more"></span>
+<h2 id="今日要点">今日要点</h2>
+<p>今天最值得关注的不是又出现了多少 Agent
+外壳，而是能力开始被放进可验证的工程环节：<a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e#readme">e2e</a>把自然语言动作接到断言与回放，<a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem#readme">claude-mem</a>把工具观察压缩成跨会话记忆，<a target="_blank" rel="noopener" href="https://github.com/pingdotgg/t3code#readme">T3
+Code</a>则把本机多个 Agent
+暴露为手机、网页和桌面控制面。它们共同暴露一个长期问题：模型能否被重放、检索、授权和替换，而不是只在一次对话里“看起来会做”。</p>
+<p>另一条线是把模型或系统能力落到真实工件和受限设备。<a target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad#readme">text-to-cad</a>输出
+STEP、GLB、STL、3MF
+等结构化模型，<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5#readme">AnyPS5</a>研究可执行文件移植与着色器重编译，<a target="_blank" rel="noopener" href="https://github.com/M-Abozaid/esp32-c3-adblock#readme">esp32-c3-adblock</a>则用闪存中的定长哈希换取低
+RAM 的 DNS
+拦截。它们的共同限制也很诚实：硬件、模型供应商、平台兼容性、碰撞概率和人工验收都没有被提示词消除。</p>
+<p>今天的榜单还给了“数据归谁、应用怎么运行”的两个样本：<a target="_blank" rel="noopener" href="https://github.com/DuarteSantos8/openGym#readme">openGym</a>把训练历史放在用户自己的服务器，<a target="_blank" rel="noopener" href="https://github.com/Stremio/stremio-web#readme">Stremio
+Web</a>把 React 界面、Rust/WASM
+核心和插件生态拆开。它们适合用来学习自托管数据、跨设备同步和前端与原生运行时的边界；但
+AGPL/GPL 许可、外部服务与内容插件依赖，必须在部署前读清楚。</p>
+<h2 id="值得尝试">值得尝试</h2>
+<h3 id="tester-armye2e"><a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e">tester-army/e2e</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e#readme">e2e</a>是面向 Web
+与移动端的端到端测试框架：用自然语言描述目标，让 Agent 驱动应用，再用
+locator 和 assertion 检查结果；README 还说明已验证的 Agent
+步骤可以在应用没有变化时回放而不再次调用模型。它适合
+QA、测试基础设施和想研究“模型动作如何变成可重复测试”的开发者，限制是首次运行仍需要订阅、API
+key
+或本地模型。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜显示主要语言为
+TypeScript、当日新增 1,430 stars、总 stars 4,748</a>；仓库使用
+<a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e/blob/main/LICENSE">Apache-2.0</a>，最新
+<a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e/releases/tag/%40e2e-dev/web%400.12.0">Release
+0.12.0</a>，近期提交为
+<a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e/commit/fd3a0c766b4d40c74fabdbc578e3832d80553bf9">ci(mobile):
+run the mobile benchmark when the github reporter changes</a>。</p>
+<h3 id="thedotmackclaude-mem"><a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem">thedotmack/claude-mem</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem#readme">claude-mem</a>通过生命周期
+hooks 捕获工具观察、生成语义摘要，再用渐进式披露、技能搜索、SQLite/FTS5
+与向量检索把上下文带到后续会话；README 还提供隐私标记、引用 ID 和本地
+Worker/Web Viewer。它适合研究 Agent 记忆层与 token 成本控制，限制是依赖
+Node.js 20、Claude Code 插件能力、Bun、uv 和
+SQLite，在线观察器或其他模型供应商也要单独配置。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜显示主要语言为
+TypeScript、当日新增 534 stars、总 stars 96,621</a>；项目使用
+<a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem/blob/main/LICENSE">Apache-2.0</a>，最新
+<a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem/releases/tag/v13.31.0">Release
+v13.31.0</a>，近期提交为
+<a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem/commit/2d68c3550c19cd6f4efa380882d6eee437c01b75">fix(smart-read):
+retain C++ namespace ownership chains</a>。</p>
+<h3 id="pingdotggt3code"><a target="_blank" rel="noopener" href="https://github.com/pingdotgg/t3code">pingdotgg/t3code</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/pingdotgg/t3code#readme">T3
+Code</a>是一个 Agent harness 控制面，提供手机应用、Web 应用和 Electron
+桌面应用，用来控制本机上的 Claude Code、Codex、Cursor、Grok
+Build、OpenCode 与 Antigravity。它适合学习本地 Agent
+的远程控制、服务化和多供应商接入；限制是 README 明确项目仍很早期、会有
+bug，使用者还必须自行安装并认证至少一个 Provider，权限模式不能被 UI
+设计替代。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜显示主要语言为
+TypeScript、当日新增 487 stars、总 stars 25,600</a>；仓库采用
+<a target="_blank" rel="noopener" href="https://github.com/pingdotgg/t3code/blob/main/LICENSE">MIT</a>，近期提交为
+<a target="_blank" rel="noopener" href="https://github.com/pingdotgg/t3code/commit/64275ae39653379e63f49f87be021c190fd20e81">fix(web):
+inline HTML renders no longer trap the thread's scroll</a>。</p>
+<h3 id="earthtojaketext-to-cad"><a target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad">earthtojake/text-to-cad</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad#readme">text-to-cad</a>给
+Agent 一套本地 CAD 工作流，用来生成 STEP、GLB、STL、3MF，执行设计 for
+manufacturing 检查、工程制图，并连接 3D 打印、钣金和 CNC 服务。它适合
+CAD、机器人和制造工程师研究 Agent 如何操作结构化工件；限制是 Python
+3.11、Node.js 20、build123d/Open CASCADE
+等环境较重，工作流仍不能替代几何、公差和可制造性的人工复核。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜显示主要语言为
+Python、当日新增 456 stars、总 stars 17,392</a>；仓库使用
+<a target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad/blob/main/LICENSE">MIT</a>，最新
+<a target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad/releases/tag/v0.7.14">Release
+v0.7.14</a>，近期提交为
+<a target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad/commit/8ef3a97f594f9145d28692900dfe1c547852041c">Export
+a filleted, swept teacup as a closed mesh</a>。</p>
+<h3 id="boykopovaranyps5"><a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5">boykopovar/AnyPS5</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5#readme">AnyPS5</a>研究把
+PS5 可执行文件移植到 Linux 和 Windows，仓库包含 relinker、用于动态链接的
+system PRX 库，以及能生成 SPIR-V 的 shader
+recompiler，并明确声明不需要模拟器或独立运行时。它适合学习
+ABI、系统库兼容层、着色器编译和游戏保存研究，限制是兼容游戏仍有限，构建和验证需要具体硬件/工具链，用户还必须自行处理二进制来源与版权许可。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜显示主要语言为
+C++、当日新增 994 stars、总 stars 4,935</a>；项目使用
+<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/blob/main/LICENSE">GPL-2.0</a>，最新
+<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.1">Release
+v0.1.1</a>，近期提交为
+<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/commit/fe98276fb045b38f53dfd9f0226d41439de3671e">Merge
+pull request #786 from
+NahuelGenchi/fix/agc-buffer-int64-atomics-feature</a>。</p>
+<h3 id="duartesantos8opengym"><a target="_blank" rel="noopener" href="https://github.com/DuarteSantos8/openGym">DuarteSantos8/openGym</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/DuarteSantos8/openGym#readme">openGym</a>是自托管的健身与体重记录应用，支持训练计划、引导式训练、进度统计、Passkey、离线使用、跨设备同步和
+FitNotes/Strong/Hevy 导入，Docker Compose
+即可启动。它适合学习“数据放在自己服务器上”的完整产品闭环，限制是首次启动要下载约
+140 MB 的训练媒体，AGPL-3.0 会影响再分发方式，AI 教练与 MCP
+还属于可选能力。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜显示主要语言为
+JavaScript、当日新增 1,444 stars、总 stars 4,188</a>；仓库使用
+<a target="_blank" rel="noopener" href="https://github.com/DuarteSantos8/openGym/blob/main/LICENSE">AGPL-3.0</a>，最新
+<a target="_blank" rel="noopener" href="https://github.com/DuarteSantos8/openGym/releases/tag/v1.3.9">Release
+v1.3.9</a>，近期提交为
+<a target="_blank" rel="noopener" href="https://github.com/DuarteSantos8/openGym/commit/1350409a7b15ff8ce5690c18b530cfba62d80f46">Website:
+contents always in view on the docs and API pages</a>。</p>
+<h3 id="stremiostremio-web"><a target="_blank" rel="noopener" href="https://github.com/Stremio/stremio-web">Stremio/stremio-web</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/Stremio/stremio-web#readme">Stremio
+Web</a>是 Stremio 的官方 React Web
+界面，提供插件目录、跨设备同步、投屏、字幕、键盘优先播放器和 PWA；README
+说明真正的状态与业务逻辑由 Rust 编译的
+<a target="_blank" rel="noopener" href="https://github.com/Stremio/stremio-core">stremio-core</a> 在
+Web Worker 中运行，播放则交给
+<a target="_blank" rel="noopener" href="https://github.com/Stremio/stremio-video">stremio-video</a>。它适合研究
+React 与 Rust/WASM 核心的分层，限制是需要 Node.js 22、pnpm 11、Stremio
+账户/API 和插件生态，Web UI
+本身不是独立内容源。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜显示主要语言为
+JavaScript、当日新增 111 stars、总 stars 14,285</a>；仓库采用
+<a target="_blank" rel="noopener" href="https://github.com/Stremio/stremio-web/blob/development/LICENSE.md">GPL-2.0</a>，最新
+<a target="_blank" rel="noopener" href="https://github.com/Stremio/stremio-web/releases/tag/v5.0.0-beta.41">Release
+v5.0.0-beta.41</a>，近期提交为
+<a target="_blank" rel="noopener" href="https://github.com/Stremio/stremio-web/commit/b75ac1514253885529235e5271347f2134d49b60">bump:
+release v5.0.0-beta.41</a>。</p>
+<h3 id="m-abozaidesp32-c3-adblock"><a target="_blank" rel="noopener" href="https://github.com/M-Abozaid/esp32-c3-adblock">M-Abozaid/esp32-c3-adblock</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/M-Abozaid/esp32-c3-adblock#readme">esp32-c3-adblock</a>把
+Pi-hole 风格的 DNS 拦截器塞进无需 PSRAM 的 ESP32-C3：将域名变成排序后的
+40-bit 哈希存进闪存，再二分查找，README 给出的目标是约 50 KB RAM 和约 10
+ms 查询路径。它适合学习嵌入式内存预算、哈希碰撞、OTA 更新和 DNS
+sinkhole，限制是哈希碰撞可能造成误拦截，设备仍需要正确配置认证、Wi-Fi、上游列表和
+PlatformIO
+环境。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜显示主要语言为
+C++、当日新增 196 stars、总 stars 1,329</a>；项目使用
+<a target="_blank" rel="noopener" href="https://github.com/M-Abozaid/esp32-c3-adblock/blob/main/LICENSE">MIT</a>，最新
+<a target="_blank" rel="noopener" href="https://github.com/M-Abozaid/esp32-c3-adblock/releases/tag/blocklist">blocklist
+Release</a>，近期提交为
+<a target="_blank" rel="noopener" href="https://github.com/M-Abozaid/esp32-c3-adblock/commit/19473839c27d10f666406a3ae62df97b7b155273">CI:
+compile-check both boards on every push/PR; weekly blocklist
+release</a>。</p>
+<h2 id="快速浏览">快速浏览</h2>
+<div class="briefing-quick-list">
+<p><a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/tester-army/e2e"><span class="briefing-quick-item__source">Agent 测试 · TypeScript ·
++1,430/日</span><span class="briefing-quick-item__body"><strong>tester-army/e2e</strong><small>把自然语言动作接入可断言、可回放的
+Web/移动端 E2E 测试。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem"><span class="briefing-quick-item__source">Agent 记忆 · TypeScript ·
++534/日</span><span class="briefing-quick-item__body"><strong>thedotmack/claude-mem</strong><small>捕获工具观察并跨会话检索上下文，保留引用与隐私控制。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/pingdotgg/t3code"><span class="briefing-quick-item__source">Agent 控制面 · TypeScript ·
++487/日</span><span class="briefing-quick-item__body"><strong>pingdotgg/t3code</strong><small>把本机多个
+coding agent 变成可由手机、Web 和桌面控制的工作区。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad"><span class="briefing-quick-item__source">CAD 工件 · Python ·
++456/日</span><span class="briefing-quick-item__body"><strong>earthtojake/text-to-cad</strong><small>让
+Agent 生成、检查并交接 CAD 与机器人描述文件。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5"><span class="briefing-quick-item__source">游戏兼容 · C++ · +994/日</span><span class="briefing-quick-item__body"><strong>boykopovar/AnyPS5</strong><small>用
+relinker、系统库和着色器重编译研究 PS5
+可执行文件移植。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/DuarteSantos8/openGym"><span class="briefing-quick-item__source">自托管健康 · JavaScript ·
++1,444/日</span><span class="briefing-quick-item__body"><strong>DuarteSantos8/openGym</strong><small>把训练计划、历史和同步数据放回自己的服务器。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Stremio/stremio-web"><span class="briefing-quick-item__source">WASM 媒体 · JavaScript ·
++111/日</span><span class="briefing-quick-item__body"><strong>Stremio/stremio-web</strong><small>用
+React UI 对接 Rust/WASM 核心与插件驱动的媒体生态。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/M-Abozaid/esp32-c3-adblock"><span class="briefing-quick-item__source">嵌入式 DNS · C++ ·
++196/日</span><span class="briefing-quick-item__body"><strong>M-Abozaid/esp32-c3-adblock</strong><small>用闪存哈希表在低
+RAM ESP32-C3 上运行 DNS 广告拦截。</small></span><span class="briefing-quick-item__arrow">↗</span></a></p>
+</div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/GitHub-%E7%83%AD%E6%A6%9C/" class="category-chain-item">GitHub 热榜</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/GitHub/" class="print-no-link">#GitHub</a>
+      
+        <a href="/tags/%E5%BC%80%E6%BA%90/" class="print-no-link">#开源</a>
+      
+        <a href="/tags/Agent/" class="print-no-link">#Agent</a>
+      
+        <a href="/tags/%E8%87%AA%E6%89%98%E7%AE%A1/" class="print-no-link">#自托管</a>
+      
+        <a href="/tags/%E6%B5%8B%E8%AF%95/" class="print-no-link">#测试</a>
+      
+        <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="print-no-link">#嵌入式</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2026-10-06 GitHub 热榜简报：Agent 记忆、跨设备工作区与嵌入式工程</div>
+      <div>https://www.polarishaw.top/2026/10/06/daily-github-trending-2026-10-06/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年10月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/10/06/daily-briefing-2026-10-06/" title="每日信息简报｜2026 年 10 月 06 日">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">每日信息简报｜2026 年 10 月 06 日</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/10/05/daily-briefing-2026-10-05/" title="每日信息简报｜2026 年 10 月 05 日">
+                        <span class="hidden-mobile">每日信息简报｜2026 年 10 月 05 日</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
