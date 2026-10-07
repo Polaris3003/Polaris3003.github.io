@@ -18,30 +18,29 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第九课：索引并发控制  1 索引并发控制 到目前为止，我们假设我们讨论的数据结构是单线程的。然而，大多数 DBMS 需要允许多个线程安全地访问数据结构，以利用额外的 CPU 核心并隐藏磁盘 I&#x2F;O 停顿。 有些系统使用单线程模型。将单线程数据结构转换为多线程数据结构的一种简单方法是使用读写锁，但效率不高。 并发控制协议是 DBMS 用于确保共享对象上的并发操作得到“正确”结果的方法。 协议的正确">
+    <meta name="description" content="GITHUB TRENDING · 2026.10.07   今天的 GitHub all-languages 日榜显示 12 个仓库条目，其中 5 个带 Sponsor 展示；技术信号集中在 Agent 测试回放、CAD 工件、持久化上下文、逆向工程 MCP、GPU 内核和可验证的前端设计。本文按 README 中的可复现机制、许可证、最近提交或 Release 筛选；日增 stars 只">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CMU15445-lecture9">
-<meta property="og:url" content="https://www.polarishaw.top/2024/07/18/%E7%AC%AC%E4%B9%9D%E8%AF%BE%EF%BC%9A%E7%B4%A2%E5%BC%95%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/index.html">
+<meta property="og:title" content="2026-10-07 GitHub 热榜简报：逆向 MCP、GPU 内核与 Agent 工程更新">
+<meta property="og:url" content="https://www.polarishaw.top/2026/10/07/daily-github-trending-2026-10-07/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="第九课：索引并发控制  1 索引并发控制 到目前为止，我们假设我们讨论的数据结构是单线程的。然而，大多数 DBMS 需要允许多个线程安全地访问数据结构，以利用额外的 CPU 核心并隐藏磁盘 I&#x2F;O 停顿。 有些系统使用单线程模型。将单线程数据结构转换为多线程数据结构的一种简单方法是使用读写锁，但效率不高。 并发控制协议是 DBMS 用于确保共享对象上的并发操作得到“正确”结果的方法。 协议的正确">
+<meta property="og:description" content="GITHUB TRENDING · 2026.10.07   今天的 GitHub all-languages 日榜显示 12 个仓库条目，其中 5 个带 Sponsor 展示；技术信号集中在 Agent 测试回放、CAD 工件、持久化上下文、逆向工程 MCP、GPU 内核和可验证的前端设计。本文按 README 中的可复现机制、许可证、最近提交或 Release 筛选；日增 stars 只">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-004-146867131.jpg">
-<meta property="article:published_time" content="2024-07-18T12:47:51.000Z">
-<meta property="article:modified_time" content="2026-06-10T12:50:47.068Z">
+<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-001-146614310.jpg">
+<meta property="article:published_time" content="2026-10-07T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-07T02:10:56.303Z">
 <meta property="article:author" content="Polaris">
-<meta property="article:tag" content="并发控制">
-<meta property="article:tag" content="索引结构">
-<meta property="article:tag" content="锁 (Locks)">
-<meta property="article:tag" content="闩锁 (Latches)">
-<meta property="article:tag" content="自旋锁 (Spin Locks)">
-<meta property="article:tag" content="哈希表">
-<meta property="article:tag" content="B+树">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="逆向工程">
+<meta property="article:tag" content="测试">
+<meta property="article:tag" content="GPU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-004-146867131.jpg">
+<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-001-146614310.jpg">
   
   
   
-  <title>CMU15445-lecture9 - Polarisのblog</title>
+  <title>2026-10-07 GitHub 热榜简报：逆向 MCP、GPU 内核与 Agent 工程更新 - Polarisのblog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -267,7 +266,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CMU15445-lecture9"></span>
+            <span id="subtitle" data-typed-text="2026-10-07 GitHub 热榜简报：逆向 MCP、GPU 内核与 Agent 工程更新"></span>
           
         </div>
 
@@ -278,8 +277,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-18 20:47" pubdate>
-          2024年7月18日 晚上
+        <time datetime="2026-10-07 09:00" pubdate>
+          2026年10月7日 上午
         </time>
       </span>
     
@@ -290,7 +289,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          1.8k 字
         
       </span>
     
@@ -301,7 +300,7 @@
         
         
         
-          26 分钟
+          15 分钟
         
       </span>
     
@@ -346,102 +345,49 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">CMU15445-lecture9</h1>
+            <h1 id="seo-header">2026-10-07 GitHub 热榜简报：逆向 MCP、GPU 内核与 Agent 工程更新</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="第九课索引并发控制"><a class="markdownIt-Anchor" href="#第九课索引并发控制"></a> 第九课：索引并发控制</h1>
-<h2 id="1-索引并发控制"><a class="markdownIt-Anchor" href="#1-索引并发控制"></a> 1 索引并发控制</h2>
-<p>到目前为止，我们假设我们讨论的数据结构是单线程的。然而，大多数 DBMS 需要允许多个线程安全地访问数据结构，以利用额外的 CPU 核心并隐藏磁盘 I/O 停顿。</p>
-<p>有些系统使用单线程模型。将单线程数据结构转换为多线程数据结构的一种简单方法是使用读写锁，但效率不高。</p>
-<p>并发控制协议是 DBMS 用于确保共享对象上的并发操作得到“正确”结果的方法。</p>
-<p>协议的正确性标准可能会有所不同：</p>
-<ul>
-<li>**逻辑正确：**这意味着线程能够读取它应该读取的值，例如线程应该读回它之前写入的值。</li>
-<li>**物理正确：**这意味着对象的内部表示是健全的，例如数据结构中不存在会导致线程读取无效内存位置的指针</li>
-</ul>
-<p>出于本讲座的目的，我们只关心强制执行物理正确性。我们将在后面的课中重新审视逻辑正确性。</p>
-<h2 id="2-locks-vs-latches"><a class="markdownIt-Anchor" href="#2-locks-vs-latches"></a> 2 Locks vs. Latches</h2>
-<p>在讨论 DBMS 如何保护其内部元素时，锁和闩锁之间存在重要区别。</p>
-<h3 id="locks"><a class="markdownIt-Anchor" href="#locks"></a> Locks</h3>
-<p>锁时一种更高层次的逻辑原语，用于保护数据库中的内容（例如元组，表或者整个数据库），防止其他事务的干扰。一个事务在其整个执行期间都会持有锁。数据库系统可以向用户公开运行查询时持有的锁。应该有一些更高级别的机制来检测死锁和回滚更改。</p>
-<h3 id="latches"><a class="markdownIt-Anchor" href="#latches"></a> Latches</h3>
-<p>锁存器是低级保护原语，用于来自其他线程的 DBMS 内部数据结构（例如数据结构、内存区域）的关键部分。锁存器会在数据库系统中短暂保留一个简单的操作（即页锁存器）。锁存器有两种模式：</p>
-<ul>
-<li>**读：**允许多个线程同时读取同一个项目。即使另一个线程已经在读模式下获取了锁存器，线程也可以在读模式下获取该锁存器。</li>
-<li>**写：**只允许一个线程访问该项目。如果另一个线程在任何模式下持有锁存器，则线程无法获取写锁存器。持有写锁存器的线程还会阻止其他线程获取读锁存器。</li>
-</ul>
-<h2 id="3-latch实现"><a class="markdownIt-Anchor" href="#3-latch实现"></a> 3 Latch实现</h2>
-<p>Latch实现应该具有较小的内存占用，并且在没有争用时可以有一条快速路径来获取锁存器。</p>
-<p>用于实现锁存器的底层原语是通过现代 CPU 提供的原子指令。这样，线程可以检查内存位置的内容以查看它是否具有特定值。</p>
-<p>有多种方法可以在 DBMS 中实现锁存器。每种方法在工程复杂性和运行时性能方面都有不同的权衡。这些测试和设置步骤以原子方式执行（即，没有其他线程可以更新测试和设置步骤之间的值。</p>
-<h3 id="test-and-set-spin-latch-tas-自旋锁"><a class="markdownIt-Anchor" href="#test-and-set-spin-latch-tas-自旋锁"></a> Test-and-Set Spin Latch (TAS) （自旋锁）</h3>
-<p>自旋锁存器是操作系统互斥体的更有效替代方案，因为它由 DBMS 控制。自旋锁存器本质上是线程尝试更新的内存位置（例如，将布尔值设置为 true）。线程执行 CAS 来尝试更新内存位置。DBMS 可以控制如果无法获得锁存器会发生什么情况。它可以选择重试（例如，使用 while 循环）或允许操作系统取消调度它。因此，此方法为 DBMS 提供了比操作系统互斥体更多的控制权，在操作系统互斥体中，如果无法获取锁存器，则将控制权交给操作系统。</p>
-<ul>
-<li>举例：std::atomic<T></T></li>
-<li>优点:锁存/解锁操作非常高效（在 x86 上使用单指令锁定/解锁）。</li>
-<li>缺点:不可扩展，也不适合缓存，因为使用多个线程，CAS 指令将在不同的线程中执行多次。这些浪费的指令会在高竞争环境中堆积起来；尽管线程没有做有用的工作，但对操作系统来说它们看起来很忙。这会导致缓存一致性问题，因为线程正在轮询其他 CPU 上的缓存线。</li>
-</ul>
-<h3 id="阻塞操作系统mutex"><a class="markdownIt-Anchor" href="#阻塞操作系统mutex"></a> 阻塞操作系统Mutex</h3>
-<p>锁存器的一种可能实现是操作系统内置的互斥基础设施。 Linux 提供了 futex（快速用户空间互斥体），它由 (1) 用户空间中的自旋锁存器和 (2) 操作系统级互斥体组成。如果 DBMS 可以获取用户空间锁存器，则锁存器被设置。尽管它包含两个内部锁存器，但它对于 DBMS 来说却显示为单个锁存器。如果 DBMS 无法获取用户空间锁存器，那么它会进入内核并尝试获取更昂贵的互斥锁。DBMS 无法获取第二个互斥体，然后线程通知操作系统它在互斥体上被阻塞，然后它被取消调度。</p>
-<p>操作系统互斥在 DBMS 内部通常是一个坏主意，因为它由操作系统管理并且开销很大</p>
-<ul>
-<li>举例：std::mutex</li>
-<li>优点：使用简单并且在DBMS中不需要额外coding</li>
-<li>缺点：由于操作系统调度，成本昂贵且不可扩展（每次锁定/解锁调用大约 25 ns）。</li>
-</ul>
-<h3 id="读写latches"><a class="markdownIt-Anchor" href="#读写latches"></a> 读写Latches</h3>
-<p>互斥锁和自旋锁存器不区分读/写（即，它们不支持不同的模式）。DBMS 需要一种允许并发读取的方法，因此如果应用程序有大量读取，它将具有更好的性能，因为读取者可以共享资源而不是等待。</p>
-<p>读写器锁存器允许锁存器保持在读或写模式。它追踪有多少个线程持有锁存器并等待在每种模式下获取锁存器。读写器锁存器使用前两个锁存器实现之一作为原语，并具有额外的逻辑来处理读写器队列，这些队列是每种模式下对锁存器的请求的队列。不同的 DBMS 对于如何处理队列可以有不同的策略。</p>
-<p>需要注意的一件事是，不同的读写锁实现具有不同的等待策略。有读者优先锁、作者优先锁和公平读写锁。不同操作系统和 pthread 实现中的行为有所不同。</p>
-<ul>
-<li>举例：std::shared_mutex</li>
-<li>优点：允许并发读</li>
-<li>缺点：DBMS 必须管理读/写队列以避免饥饿。由于额外的元数据，存储开销比自旋锁存器更大。</li>
-</ul>
-<h2 id="4-哈希表latch"><a class="markdownIt-Anchor" href="#4-哈希表latch"></a> 4 哈希表Latch</h2>
-<p>由于线程访问数据结构的方式有限，因此很容易支持静态哈希表中的并发访问。例如，当从槽移动到下一个槽时（即自上而下），所有线程都沿相同方向移动。线程一次也只能访问一个页面/槽。因此，在这种情况下不可能出现死锁，因为没有两个线程可以竞争对方持有的锁存器。当我们需要调整表的大小时，我们只需对整个表进行全局锁存即可执行操作。</p>
-<p>动态哈希方案（例如，可扩展）中的锁存是一种更复杂的方案，因为有更多的共享状态需要更新，但一般方法是相同的。</p>
-<p>有两种方法支持哈希表中的锁存，它们的锁存粒度不同:</p>
-<ul>
-<li>**页级锁存器：**每个页面都有自己的读写器锁存器来保护其全部内容。线程在访问页面之前获取读或写锁存器。这会降低并行性，因为一次可能只有一个线程可以访问一页，但是对于单个线程来说，访问一页中的多个槽会很快，因为它只需要获取一个锁存器。</li>
-<li>**槽级锁存器：**每个插槽都有自己的闩锁。这增加了并行性，因为两个线程可以访问同一页面上的不同插槽。但它增加了访问表的存储和计算开销，因为线程必须为其访问的每个槽获取锁存器，并且每个槽必须为锁存器存储数据。DBMS 可以使用单模式锁存器（即自旋锁存器）来减少元数据和计算开销，但代价是一些并行性。</li>
-</ul>
-<p>还可以直接使用比较和交换 (CAS) 指令创建无锁存线性探测哈希表。通过尝试将特殊的“空”值与我们希望插入的元组进行比较和交换，可以实现在槽处的插入。如果失败，我们可以探测下一个槽，继续直到成功。</p>
-<h2 id="5-b树latch"><a class="markdownIt-Anchor" href="#5-b树latch"></a> 5 B+树Latch</h2>
-<p>B+Tree 锁存的挑战是防止以下两个问题：</p>
-<ul>
-<li>多个线程同时尝试修改节点的内容。</li>
-<li>一个线程遍历树，而另一个线程拆分/合并节点。</li>
-</ul>
-<p>“Latch crabbing/coupling” 是一种协议，它允许多个线程同时访问或修改B+树。基本思路如下：</p>
-<ol>
-<li>获得父节点的锁</li>
-<li>获得子节点的锁</li>
-<li>如果子节点被认为“安全”，则释放父节点的锁。 “安全”节点是指更新时不会分裂、合并或重新分配的节点。换句话说，一个节点是“安全的”如果
-<ul>
-<li>插入：它不是满的</li>
-<li>删除：它至少半满</li>
-</ul>
-</li>
-</ol>
-<p>请注意，读锁存器不需要担心“安全”条件。</p>
-<p><strong>基本锁抓取协议：</strong></p>
-<ul>
-<li>搜索：从根开始向下，重复获取子级的闩锁，然后解锁父级。</li>
-<li>插入/删除：从根开始向下，根据需要获取 X 个锁存器。一旦孩子被锁住，检查是否安全。如果孩子安全，则释放其所有祖先的锁</li>
-</ul>
-<p>从正确性的角度来看，锁存器释放的顺序并不重要。然而，从性能的角度来看，最好释放树中较高位置的锁存器，因为它们会阻止对大部分叶节点的访问。</p>
-<p>**改进的锁抓取协议：**基本锁抓取算法的问题在于，事务总是在每次插入/删除操作的根上获取独占锁.这限制了并行性。相反，我们可以假设必须调整大小（即拆分/合并节点）的情况很少见，因此事务可以获取直至叶节点的共享锁存器。每个事务都会假设到目标叶节点的路径是安全的，并使用 READ 锁存器和螃蟹来到达它并进行验证。如果叶节点不安全，那么我们将中止并执行之前的算法，获取 WRITE 锁存器。</p>
-<ul>
-<li>搜索：与以前相同的算法。</li>
-<li>插入/删除：设置读锁就像搜索一样，转到叶子，然后在叶子上设置写锁。如果叶子不安全，则释放所有先前的锁存器，并使用先前的插入/删除协议重新启动事务。</li>
-</ul>
-<p><strong>叶子结点扫描</strong></p>
-<p>这些协议中的线程以“自上而下”的方式获取锁存器。这意味着线程只能从低于其当前节点的节点获取锁存器。如果所需的锁不可用，则线程必须等待直到它变得可用。鉴于此，永远不会出现僵局。</p>
-<p>然而，叶节点扫描很容易出现死锁，因为现在我们有线程尝试同时在两个不同方向获取排它锁（例如，线程 1 尝试删除，线程 2 执行叶节点扫描）。索引锁存器不支持死锁检测或避免。</p>
-<p>因此，程序员处理这个问题的唯一方法是通过编码规则。叶节点同级锁存器获取协议必须支持“无等待”模式。也就是说，B+树代码必须处理失败的锁存获取。由于锁旨在（相对）短暂地保持，因此如果线程尝试获取叶节点上的锁但该锁不可用，则它应该快速中止其操作（释放其持有的任何闩锁）并重新启动操作。</p>
+                <div class="briefing-masthead">
+  <p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.10.07</p>
+  <p>今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub all-languages 日榜</a>显示 12 个仓库条目，其中 5 个带 Sponsor 展示；技术信号集中在 Agent 测试回放、CAD 工件、持久化上下文、逆向工程 MCP、GPU 内核和可验证的前端设计。本文按 README 中的可复现机制、许可证、最近提交或 Release 筛选；日增 stars 只是当日快照，不是质量证明。</p>
+  <div class="briefing-masthead__topics"><span>Agent 测试回放</span><span>逆向 MCP</span><span>GPU 内核</span><span>CAD 工件</span><span>持久化上下文</span><span>PS5 兼容</span><span>HTML/SVG 图表</span></div>
+</div>
+<span id="more"></span>
+<h2 id="今日要点"><a class="markdownIt-Anchor" href="#今日要点"></a> 今日要点</h2>
+<p>今天最有价值的两个新信号分别在上下游两端：<a target="_blank" rel="noopener" href="https://github.com/morluto/rea#readme">REA</a>把 MCP 工具接到应用行为、脚本和原生二进制的逆向调查，<a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/DeepGEMM#readme">DeepGEMM</a>则把 FP8、FP4、BF16 GEMM、融合 MoE 与运行时 JIT 放进统一的 CUDA 内核库。前者强调可追踪的证据链，后者强调受硬件约束的计算效率，值得读代码和测试，而不是只看热度。</p>
+<p>Agent 工具正在从“会聊天”转向“能留下工程痕迹”：<a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e#readme">e2e</a>把自然语言动作接到 locator、assertion 和回放，<a target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad#readme">text-to-cad</a>把生成结果落成 STEP、GLB、STL、3MF 等结构化工件，<a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem#readme">claude-mem</a>则把工具观察压缩后存进可检索的上下文层。共同的限制也很清楚：模型调用、环境依赖和人工验收并没有消失。</p>
+<p>剩下的项目把边界推向系统与表达层：<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5#readme">AnyPS5</a>研究可执行文件移植与着色器重编译，<a target="_blank" rel="noopener" href="https://github.com/pbakaus/impeccable#readme">Impeccable</a>和<a target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design#readme">Diagram Design</a>把前端审查与 SVG 图表规则变成 Agent 可调用的工具。Sponsor 标签不被当作质量证明；技能/人格集合或与昨日重复且没有独立技术更新的条目，本期不占用正文名额。</p>
+<h2 id="值得尝试"><a class="markdownIt-Anchor" href="#值得尝试"></a> 值得尝试</h2>
+<h3 id="a-hrefhttpsgithubcommorlutoreamorlutoreaa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcommorlutoreamorlutoreaa"></a> <a target="_blank" rel="noopener" href="https://github.com/morluto/rea">morluto/rea</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/morluto/rea#readme">REA</a>提供一个 MCP 接口，把应用行为、脚本、运行时和原生二进制的逆向调查组织成可复用的 investigation，并可接入 Ghidra 或 IDA。它适合做软件互操作、调试和安全研究的工程师；限制是需要 Node.js 22.19+ 及本地分析工具，目标程序也必须有合法的研究授权。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>为 TypeScript、当日新增 2,956 stars、总 stars 9,637；项目采用 <a target="_blank" rel="noopener" href="https://github.com/morluto/rea/blob/main/LICENSE">MIT</a>，最近 <a target="_blank" rel="noopener" href="https://github.com/morluto/rea/releases/tag/rea-agents-4.1.0">Release 4.1.0</a>，并在最新<a target="_blank" rel="noopener" href="https://github.com/morluto/rea/commit/472b72a53068a8e2ec78fe239d687023482daaa7">提交</a>中加入捕获脚本导出。</p>
+<h3 id="a-hrefhttpsgithubcomdeepseek-aideepgemmdeepseek-aideepgemma"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomdeepseek-aideepgemmdeepseek-aideepgemma"></a> <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/DeepGEMM">deepseek-ai/DeepGEMM</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/DeepGEMM#readme">DeepGEMM</a>是面向现代大模型计算的 CUDA 内核库，覆盖 FP8、FP4、BF16 GEMM、融合 MoE、MQA scoring 和 HyperConnection，并通过 DeepJIT 在运行时编译内核。它适合 NVIDIA GPU、编译器和推理基础设施开发者研究张量核优化；限制是需要 CUDA 环境，README 还注明 Mega MoE 需要 PyTorch 2.9 或更高版本。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>为 CUDA、当日新增 199 stars、总 stars 8,725；项目采用 <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/DeepGEMM/blob/main/LICENSE">MIT</a>，可核验的近期信号是 <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/DeepGEMM/commit/057ca5964aae0879ff2e0eb71ee05a3cb0ba3df7">2026-09-30 的公开 Release 提交</a>。</p>
+<h3 id="a-hrefhttpsgithubcomtester-armye2etester-armye2ea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomtester-armye2etester-armye2ea"></a> <a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e">tester-army/e2e</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e#readme">e2e</a>允许用自然语言描述目标，让 Agent 驱动 Web 或移动应用，再用 locator 和 assertion 检查结果；被断言覆盖的 Agent 步骤还可以在应用未变化时回放，避免每次都调用模型。它适合 QA、测试基础设施和想研究“模型动作如何变成可重复测试”的开发者；限制是项目仍在迈向 1.0，首次运行需要订阅、API key 或本地模型。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>为 TypeScript、当日新增 1,725 stars、总 stars 6,391；项目采用 <a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e/blob/main/LICENSE">Apache-2.0</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e/releases/tag/%40e2e-dev/kernel%400.2.0">Release @e2e-dev/kernel@0.2.0</a>，近期提交为<a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e/commit/b7ba0097abe950b6cd3da25c45e58087fc77b668">重新录制 web benchmark 的 Agent recording</a>。</p>
+<h3 id="a-hrefhttpsgithubcomearthtojaketext-to-cadearthtojaketext-to-cada"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomearthtojaketext-to-cadearthtojaketext-to-cada"></a> <a target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad">earthtojake/text-to-cad</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad#readme">text-to-cad</a>给 Agent 提供本地 CAD 工作流，可生成 STEP、GLB、STL、3MF，做设计 for manufacturing 检查和工程制图，并连接 3D 打印、钣金与 CNC 服务。它适合 CAD、机器人和制造工程师研究 Agent 如何操作结构化工件；限制是依赖 Python 3.11、Node.js 20、build123d/Open CASCADE 等较重环境，几何、公差和可制造性仍须人工复核。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>为 Python、当日新增 619 stars、总 stars 18,011；项目采用 <a target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad/blob/main/LICENSE">MIT</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad/releases/tag/v0.7.15">Release v0.7.15</a>，近期提交更新了<a target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad/commit/844d039e89b0f24816ca7ce1f8838d4590317427">Agent plugin 配置和安装分支</a>。</p>
+<h3 id="a-hrefhttpsgithubcomboykopovaranyps5boykopovaranyps5a"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomboykopovaranyps5boykopovaranyps5a"></a> <a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5">boykopovar/AnyPS5</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5#readme">AnyPS5</a>包含把 PS5 可执行文件转换为目标系统格式的 relinker、用于动态链接的 system PRX 库，以及能生成 SPIR-V 的 shader recompiler；项目明确不依赖模拟器或独立运行时。它适合学习 ABI、系统库兼容层、着色器编译和游戏保存研究；限制是兼容游戏仍有限，构建需要具体硬件与工具链，二进制来源和版权责任也由使用者承担。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>为 C++、当日新增 949 stars、总 stars 6,652；项目采用 <a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/blob/main/LICENSE">GPL-2.0</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.1">Release v0.1.1</a>，最新提交涉及<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/commit/66e0a1e9c56161cfda9b7f660718a0d7e5d06b7c">AGC semaphore memory register</a>。</p>
+<h3 id="a-hrefhttpsgithubcompbakausimpeccablepbakausimpeccablea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcompbakausimpeccablepbakausimpeccablea"></a> <a target="_blank" rel="noopener" href="https://github.com/pbakaus/impeccable">pbakaus/impeccable</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/pbakaus/impeccable#readme">Impeccable</a>把前端设计指导做成一个 Agent skill、24 个命令、浏览器迭代流程和 60 条确定性检测规则，其中部分检测不需要 LLM 或 API key。它适合希望减少模板化界面、把设计审查写进 coding-agent 工作流的前端团队；限制是它检查的是设计与实现线索，不替代产品验证、可用性测试或真实浏览器兼容性。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>为 JavaScript、当日新增 616 stars、总 stars 77,724；项目采用 <a target="_blank" rel="noopener" href="https://github.com/pbakaus/impeccable/blob/main/LICENSE">Apache-2.0</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/pbakaus/impeccable/releases/tag/skill-v4.5.0">Release Skill 4.5.0</a>，近期提交修正了<a target="_blank" rel="noopener" href="https://github.com/pbakaus/impeccable/commit/12b25ae25848202ce7a9092442198ada5c4fd984">framed demo 的缩放行为</a>。</p>
+<h3 id="a-hrefhttpsgithubcomthedotmackclaude-memthedotmackclaude-mema"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomthedotmackclaude-memthedotmackclaude-mema"></a> <a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem">thedotmack/claude-mem</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem#readme">claude-mem</a>通过生命周期 hooks 捕获工具观察、生成语义摘要，再结合 SQLite/FTS5、向量检索和渐进式披露把上下文带到后续会话，并提供引用 ID 与隐私标记。它适合研究 Agent 记忆层、检索边界和 token 成本控制；限制是依赖 Node.js 20、Claude Code 插件能力、Bun、uv 和 SQLite，敏感上下文仍需要使用者自行审计。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>为 TypeScript、当日新增 534 stars、总 stars 97,203；项目采用 <a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem/blob/main/LICENSE">Apache-2.0</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem/releases/tag/v13.34.2">Release v13.34.2</a>，对应近期<a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem/commit/71ddd11735d6dc38a6356fe376921fc216f2aa38">变更日志提交</a>。</p>
+<h3 id="a-hrefhttpsgithubcomcathrynlaverydiagram-designcathrynlaverydiagram-designa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomcathrynlaverydiagram-designcathrynlaverydiagram-designa"></a> <a target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design">cathrynlavery/diagram-design</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design#readme">Diagram Design</a>为 Claude Code、Codex、Copilot、Pi 等 Agent Skills 主机提供 42 类自包含 HTML + SVG 图表，并把语义系统模式与布局分开；它还可以重绘 <a target="_blank" rel="noopener" href="http://draw.io">draw.io</a>、Mermaid 和 Excalidraw 来源。它适合把架构、依赖、信任边界和流程图纳入可版本化的文档工作流；限制是不同主机的插件更新路径不一致，静态 SVG/HTML 仍需要人工确认语义是否正确。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>为 HTML、当日新增 228 stars、总 stars 44,071；项目采用 <a target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design/blob/main/LICENSE">MIT</a>，最新提交把插件 manifest 更新到 <a target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design/commit/d1376371965f513d99cc9ec388835d255c5c88d5">2.6.64</a>。</p>
+<h2 id="快速浏览"><a class="markdownIt-Anchor" href="#快速浏览"></a> 快速浏览</h2>
+<div class="briefing-quick-list">
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/morluto/rea"><span class="briefing-quick-item__source">逆向 MCP · TypeScript · +2,956/日</span><span class="briefing-quick-item__body"><strong>morluto/rea</strong><small>把应用、脚本和原生二进制的逆向调查组织成可复用的 MCP 工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/deepseek-ai/DeepGEMM"><span class="briefing-quick-item__source">GPU 内核 · CUDA · +199/日</span><span class="briefing-quick-item__body"><strong>deepseek-ai/DeepGEMM</strong><small>用运行时 JIT 组织 FP8/FP4/BF16 GEMM 与融合 MoE 内核。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/tester-army/e2e"><span class="briefing-quick-item__source">Agent 测试 · TypeScript · +1,725/日</span><span class="briefing-quick-item__body"><strong>tester-army/e2e</strong><small>把自然语言动作接入可断言、可回放的 Web/移动端 E2E 测试。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/earthtojake/text-to-cad"><span class="briefing-quick-item__source">CAD 工件 · Python · +619/日</span><span class="briefing-quick-item__body"><strong>earthtojake/text-to-cad</strong><small>让 Agent 生成、检查并交接 CAD 与机器人描述文件。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5"><span class="briefing-quick-item__source">游戏兼容 · C++ · +949/日</span><span class="briefing-quick-item__body"><strong>boykopovar/AnyPS5</strong><small>用 relinker、系统库和着色器重编译研究 PS5 可执行文件移植。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/pbakaus/impeccable"><span class="briefing-quick-item__source">前端设计 · JavaScript · +616/日</span><span class="briefing-quick-item__body"><strong>pbakaus/impeccable</strong><small>把设计命令与确定性检测规则接入 AI coding-agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem"><span class="briefing-quick-item__source">Agent 记忆 · TypeScript · +534/日</span><span class="briefing-quick-item__body"><strong>thedotmack/claude-mem</strong><small>捕获工具观察并跨会话检索上下文，保留引用与隐私控制。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design"><span class="briefing-quick-item__source">SVG 图表 · HTML · +228/日</span><span class="briefing-quick-item__body"><strong>cathrynlavery/diagram-design</strong><small>用可版本化的 HTML/SVG 语义图表替代无约束的 Mermaid 草图。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+</div>
 
                 
               </div>
@@ -460,7 +406,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/cmu15445/" class="category-chain-item">cmu15445</a>
+  <a href="/categories/GitHub-%E7%83%AD%E6%A6%9C/" class="category-chain-item">GitHub 热榜</a>
   
   
 
@@ -475,19 +421,17 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/" class="print-no-link">#并发控制</a>
+        <a href="/tags/GitHub/" class="print-no-link">#GitHub</a>
       
-        <a href="/tags/%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84/" class="print-no-link">#索引结构</a>
+        <a href="/tags/%E5%BC%80%E6%BA%90/" class="print-no-link">#开源</a>
       
-        <a href="/tags/%E9%94%81-Locks/" class="print-no-link">#锁 (Locks)</a>
+        <a href="/tags/Agent/" class="print-no-link">#Agent</a>
       
-        <a href="/tags/%E9%97%A9%E9%94%81-Latches/" class="print-no-link">#闩锁 (Latches)</a>
+        <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" class="print-no-link">#逆向工程</a>
       
-        <a href="/tags/%E8%87%AA%E6%97%8B%E9%94%81-Spin-Locks/" class="print-no-link">#自旋锁 (Spin Locks)</a>
+        <a href="/tags/%E6%B5%8B%E8%AF%95/" class="print-no-link">#测试</a>
       
-        <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" class="print-no-link">#哈希表</a>
-      
-        <a href="/tags/B-%E6%A0%91/" class="print-no-link">#B+树</a>
+        <a href="/tags/GPU/" class="print-no-link">#GPU</a>
       
     </div>
   
@@ -499,8 +443,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CMU15445-lecture9</div>
-      <div>https://www.polarishaw.top/2024/07/18/第九课：索引并发控制/</div>
+      <div>2026-10-07 GitHub 热榜简报：逆向 MCP、GPU 内核与 Agent 工程更新</div>
+      <div>https://www.polarishaw.top/2026/10/07/daily-github-trending-2026-10-07/</div>
     </div>
     <div class="license-meta">
       
@@ -512,7 +456,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月18日</div>
+          <div>2026年10月7日</div>
         </div>
       
       
@@ -544,9 +488,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/10/09/Paxos%20Made%20Simple/" title="Paxos Made Simple">
+                      <a href="/2026/10/07/daily-briefing-2026-10-07/" title="每日信息简报｜2026 年 10 月 07 日">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Paxos Made Simple</span>
+                        <span class="hidden-mobile">每日信息简报｜2026 年 10 月 07 日</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -554,8 +498,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/16/Kafka%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB%EF%BC%9F/" title="why kafka so fast?">
-                        <span class="hidden-mobile">why kafka so fast?</span>
+                      <a href="/2026/10/06/daily-ai-papers-2026-10-06/" title="每日 AI 论文简报｜2026 年 10 月 6 日">
+                        <span class="hidden-mobile">每日 AI 论文简报｜2026 年 10 月 6 日</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -612,12 +556,6 @@
 
 
   
-
-
-  
-  
-
-
 
 
 
@@ -864,49 +802,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 
