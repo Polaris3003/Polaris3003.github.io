@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注  DrIG：用双角色标识符改进生成式多模态检索 论文：Generative Universal Multimodal Retrieval with Dual-role Identifiers（arXiv:2608.12987） 全文状态：已核阅公开 PDF。 问题是生成式检索的自回归解码会受前缀错误牵制，且多模态检索通常落后于稠密向量检索。DrIG 给每个候选分配残差量化标识符：一面">
+    <meta name="description" content="重点关注 DrIG：用双角色标识符改进生成式多模态检索 论文：Generative Universal Multimodal Retrieval with Dual-role Identifiers（arXiv:2608.12987） 全文状态：已核阅公开 PDF。 问题是生成式检索的自回归解码会受前缀错误牵制，且多模态检索通常落后于稠密向量检索。DrIG 给每个候选分配残差量化标识符：一面按“">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日AI论文简报｜2026 年 8 月 15 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/08/15/daily-ai-papers-2026-08-15/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注  DrIG：用双角色标识符改进生成式多模态检索 论文：Generative Universal Multimodal Retrieval with Dual-role Identifiers（arXiv:2608.12987） 全文状态：已核阅公开 PDF。 问题是生成式检索的自回归解码会受前缀错误牵制，且多模态检索通常落后于稠密向量检索。DrIG 给每个候选分配残差量化标识符：一面">
+<meta property="og:description" content="重点关注 DrIG：用双角色标识符改进生成式多模态检索 论文：Generative Universal Multimodal Retrieval with Dual-role Identifiers（arXiv:2608.12987） 全文状态：已核阅公开 PDF。 问题是生成式检索的自回归解码会受前缀错误牵制，且多模态检索通常落后于稠密向量检索。DrIG 给每个候选分配残差量化标识符：一面按“">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-09/pixiv-rank-008-147970498.jpg">
 <meta property="article:published_time" content="2026-08-15T02:15:00.000Z">
@@ -347,114 +347,249 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
-<h3 id="drig用双角色标识符改进生成式多模态检索"><a class="markdownIt-Anchor" href="#drig用双角色标识符改进生成式多模态检索"></a> DrIG：用双角色标识符改进生成式多模态检索</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12987">Generative Universal Multimodal Retrieval with Dual-role Identifiers</a>（arXiv:2608.12987）<br>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="drig用双角色标识符改进生成式多模态检索">DrIG：用双角色标识符改进生成式多模态检索</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12987">Generative Universal Multimodal
+Retrieval with Dual-role Identifiers</a>（arXiv:2608.12987）<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>问题是生成式检索的自回归解码会受前缀错误牵制，且多模态检索通常落后于稠密向量检索。DrIG 给每个候选分配残差量化标识符：一面按“模态→细粒度语义”顺序生成，另一面把同一 token 集合作为与前缀无关的相关性先验来引导受约束 beam search；基线包含生成式多模态检索器与强稠密检索器。作者在 M-BEIR 和文到图任务上报告其生成式基线持续领先，混合重排在效率—效果间更有利，并做了底座 LMM、beam、大重排深度和融合策略的消融。创新在于同一编码同时服务序列解码与集合先验；但结论仍取决于所选基准、索引构造和重排算力，尚不能直接外推到超大规模线上检索。适合检索、RAG 与多模态系统工程读者，建议读摘要、方法中的标识符设计、实验主表和消融章节。</p>
-<h3 id="纵向-mri-基准多视角输入不等于真正理解病程"><a class="markdownIt-Anchor" href="#纵向-mri-基准多视角输入不等于真正理解病程"></a> 纵向 MRI 基准：多视角输入不等于真正理解病程</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13309">How Good are Foundation Models in Longitudinal MRI Disease Progression Reasoning?</a>（arXiv:2608.13309）<br>
+<p>问题是生成式检索的自回归解码会受前缀错误牵制，且多模态检索通常落后于稠密向量检索。DrIG
+给每个候选分配残差量化标识符：一面按“模态→细粒度语义”顺序生成，另一面把同一
+token 集合作为与前缀无关的相关性先验来引导受约束 beam
+search；基线包含生成式多模态检索器与强稠密检索器。作者在 M-BEIR
+和文到图任务上报告其生成式基线持续领先，混合重排在效率—效果间更有利，并做了底座
+LMM、beam、大重排深度和融合策略的消融。创新在于同一编码同时服务序列解码与集合先验；但结论仍取决于所选基准、索引构造和重排算力，尚不能直接外推到超大规模线上检索。适合检索、RAG
+与多模态系统工程读者，建议读摘要、方法中的标识符设计、实验主表和消融章节。</p>
+<h3 id="纵向-mri-基准多视角输入不等于真正理解病程">纵向 MRI
+基准：多视角输入不等于真正理解病程</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13309">How
+Good are Foundation Models in Longitudinal MRI Disease Progression
+Reasoning?</a>（arXiv:2608.13309）<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文把临床纵向 MRI 的时间与空间推理拆成可测任务，建立含 890 名患者、逾 3,200 个时间点、3,920 个专家核验问答的七队列基准；与 16 个视觉语言模型比较，并考察多视角与智能体工作流。作者报告最高最终准确率仅为 35.15%（GPT-5），略高于 Gemini-3-Pro 的 35.10%；多视角能改善空间定位，但紧凑模型的时间推理会退化，文中还指出定位很强（97%）与体积定量仍弱之间的落差。贡献是避免用单时点题目替代病程推理；局限是专家生成/验证的问答、影像队列与闭源模型版本都会影响外推，不能视为临床有效性或部署许可。适合医疗 VLM、基准设计和放射科 AI 读者，建议读 §2 数据、表 1、§4 与失败分析。</p>
-<h3 id="合规压力测试规则措辞-罚则与社会信号都会改变智能体行为"><a class="markdownIt-Anchor" href="#合规压力测试规则措辞-罚则与社会信号都会改变智能体行为"></a> 合规压力测试：规则措辞、罚则与社会信号都会改变智能体行为</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12323">Why Do AI Agents Break Rules? How Framing, Context, and Social Signals Shape Compliance</a>（arXiv:2608.12323）<br>
+<p>论文把临床纵向 MRI 的时间与空间推理拆成可测任务，建立含 890
+名患者、逾 3,200 个时间点、3,920 个专家核验问答的七队列基准；与 16
+个视觉语言模型比较，并考察多视角与智能体工作流。作者报告最高最终准确率仅为
+35.15%（GPT-5），略高于 Gemini-3-Pro 的
+35.10%；多视角能改善空间定位，但紧凑模型的时间推理会退化，文中还指出定位很强（97%）与体积定量仍弱之间的落差。贡献是避免用单时点题目替代病程推理；局限是专家生成/验证的问答、影像队列与闭源模型版本都会影响外推，不能视为临床有效性或部署许可。适合医疗
+VLM、基准设计和放射科 AI 读者，建议读 §2 数据、表 1、§4 与失败分析。</p>
+<h3 id="合规压力测试规则措辞罚则与社会信号都会改变智能体行为">合规压力测试：规则措辞、罚则与社会信号都会改变智能体行为</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12323">Why
+Do AI Agents Break Rules? How Framing, Context, and Social Signals Shape
+Compliance</a>（arXiv:2608.12323）<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>作者把法律经济学的威慑、正当性与表达性法律理论转化为可检验假设，在采购聊天机器人场景中操纵命令/信息式措辞、罚则、财务激励、管理者要求、同侪结果和员工压力；覆盖 12 个指令微调模型，并以无附加压力及无监管为对照。论文报告安全微调模型在多种条件下较能保持合规，而任务优化/智能体模型会把监管信号当作优化参数；各类压力可造成显著合规失败。其价值是从“是否失败”前进一步诊断“为何失败”；但仍是模拟采购任务、模型与提示版本的受控实验，不能据此推断真实企业的违法概率。适合 agent 治理、红队与合规工程读者，建议读 §3 实验轴、§4 结果、表 3–4 和局限。</p>
-<h3 id="安全资源配置模型分布外脆弱性比部署规模更关键"><a class="markdownIt-Anchor" href="#安全资源配置模型分布外脆弱性比部署规模更关键"></a> 安全资源配置模型：分布外脆弱性比部署规模更关键</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13345">Rules or Character? Scaling Laws for AI Safety Design</a>（arXiv:2608.13345）<br>
+<p>作者把法律经济学的威慑、正当性与表达性法律理论转化为可检验假设，在采购聊天机器人场景中操纵命令/信息式措辞、罚则、财务激励、管理者要求、同侪结果和员工压力；覆盖
+12
+个指令微调模型，并以无附加压力及无监管为对照。论文报告安全微调模型在多种条件下较能保持合规，而任务优化/智能体模型会把监管信号当作优化参数；各类压力可造成显著合规失败。其价值是从“是否失败”前进一步诊断“为何失败”；但仍是模拟采购任务、模型与提示版本的受控实验，不能据此推断真实企业的违法概率。适合
+agent 治理、红队与合规工程读者，建议读 §3 实验轴、§4 结果、表 3–4
+和局限。</p>
+<h3 id="安全资源配置模型分布外脆弱性比部署规模更关键">安全资源配置模型：分布外脆弱性比部署规模更关键</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13345">Rules or Character? Scaling Laws
+for AI Safety Design</a>（arXiv:2608.13345）<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文在“训练期性格塑造”（如 RLHF/Constitutional AI）与“推理期规则拦截”之间设资源份额 α，用乘性 Pareto 损害模型与 CVaR 蒙特卡洛比较三种情景。作者报告随部署规模增长，最优 α 向性格塑造移动的幅度可从 0.01 到 0.21；基线性格脆弱率在设定区间内可使 α 改变 0.50，影响大于尾部严重度、过滤质量和共模失败。贡献是清楚暴露假设下的敏感参数；这不是用真实事故数据估计出的缩放定律，参数化伤害、独立性与分布外退化假设决定结论。适合安全架构与风险建模读者，建议读模型假设、比较静态结果和 CVaR 敏感性分析。</p>
-<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
-<h3 id="generative-universal-multimodal-retrieval-with-dual-role-identifiers"><a class="markdownIt-Anchor" href="#generative-universal-multimodal-retrieval-with-dual-role-identifiers"></a> Generative Universal Multimodal Retrieval with Dual-role Identifiers</h3>
+<p>论文在“训练期性格塑造”（如 RLHF/Constitutional
+AI）与“推理期规则拦截”之间设资源份额 α，用乘性 Pareto 损害模型与 CVaR
+蒙特卡洛比较三种情景。作者报告随部署规模增长，最优 α
+向性格塑造移动的幅度可从 0.01 到 0.21；基线性格脆弱率在设定区间内可使 α
+改变
+0.50，影响大于尾部严重度、过滤质量和共模失败。贡献是清楚暴露假设下的敏感参数；这不是用真实事故数据估计出的缩放定律，参数化伤害、独立性与分布外退化假设决定结论。适合安全架构与风险建模读者，建议读模型假设、比较静态结果和
+CVaR 敏感性分析。</p>
+<h2 id="ai-论文">AI 论文</h2>
+<h3 id="generative-universal-multimodal-retrieval-with-dual-role-identifiers">Generative
+Universal Multimodal Retrieval with Dual-role Identifiers</h3>
 <p><strong>作者</strong>：Kaipeng Li、Haitao Yu、Xuanchen Zhou<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12987">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12987">PDF</a></p>
-<p>研究生成式多模态检索如何减少前缀解码错误；提出 DrIG 的残差量化双角色标识符和混合重排。论文报告其在 M-BEIR、文到图评测优于所比生成式基线，并分析效率—效果权衡；价值在于统一文本、图像与混合项检索，限制是结果仍依赖基准、候选库与重排成本。</p>
-<h3 id="doctorina-medbench-a-dialogue-based-benchmark-and-evaluation-framework-for-agent-based-medical-ai"><a class="markdownIt-Anchor" href="#doctorina-medbench-a-dialogue-based-benchmark-and-evaluation-framework-for-agent-based-medical-ai"></a> Doctorina MedBench: A Dialogue-Based Benchmark and Evaluation Framework for Agent-Based Medical AI</h3>
-<p><strong>作者</strong>：Anna Kozlova、Stanislau Salavei、Pavel Satalkin、Hanna Plotnitskaya、Sergey Parfenyuk、Andy Nkansah<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG、<a target="_blank" rel="noopener" href="http://cs.MA">cs.MA</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.25821">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.25821">PDF</a></p>
-<p>研究医疗智能体在多轮医患对话中采集病史、鉴别诊断和处置建议的评测；以 261 个尝试病例中保留的 254 个医生撰写合成病例，按诊断、治疗、安全关键情况和对话步骤分项评分。作者将其定位为考试式基准的补充；仅依据摘要，合成病例与指标不能证明临床有效性、独立临床验证或可部署性。</p>
-<h3 id="how-good-are-foundation-models-in-longitudinal-mri-disease-progression-reasoning"><a class="markdownIt-Anchor" href="#how-good-are-foundation-models-in-longitudinal-mri-disease-progression-reasoning"></a> How Good are Foundation Models in Longitudinal MRI Disease Progression Reasoning?</h3>
-<p><strong>作者</strong>：Wafa Al Ghallabi、Ritesh Thawkar、Sara Ghaboura 等<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13309">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13309">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/wafaAlghallabi/Time-Aware-MRI">代码/数据</a></p>
-<p>研究基础模型能否进行跨时间、跨视角 MRI 病程推理；构建专家核验的时间感知多视角基准并评测 16 个模型。作者报告模型在变化方向和体积定量上系统失败，多视角存在时空权衡；价值是将临床所需的时序定位显式化，限制是评测表现不能替代真实诊疗表现。</p>
-<h3 id="ligbench-a-unified-and-human-aligned-benchmark-for-llm-based-research-idea-generation"><a class="markdownIt-Anchor" href="#ligbench-a-unified-and-human-aligned-benchmark-for-llm-based-research-idea-generation"></a> LigBench: A Unified and Human-Aligned Benchmark for LLM-based Research Idea Generation</h3>
-<p><strong>作者</strong>：Chenrun Wang、Mingxuan Zhu、Tiancheng Huang 等<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.DB、<a target="_blank" rel="noopener" href="http://cs.MA">cs.MA</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13136">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13136">PDF</a></p>
-<p>研究 LLM 研究想法生成的评测为何缺乏统一标准；提出自动评测基准 LigBench 与用于成对判断的 PAIR-IQ 数据集。作者报告与专家判断的一致性和排序鲁棒性提高；仅依据摘要，评审者构成、领域覆盖、训练数据污染和对新颖性的外部验证仍需全文核查。</p>
-<h3 id="heterogeneous-vision-language-ensemble-with-disagreement-aware-reranking-for-text-based-person-anomaly-retrieval"><a class="markdownIt-Anchor" href="#heterogeneous-vision-language-ensemble-with-disagreement-aware-reranking-for-text-based-person-anomaly-retrieval"></a> Heterogeneous Vision-Language Ensemble with Disagreement-Aware Reranking for Text-Based Person Anomaly Retrieval</h3>
-<p><strong>作者</strong>：Huu-An Vu、Cam Tu Tran Thi、Thanh Toan Le Ngo 等<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12843">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12843">PDF</a></p>
-<p>研究自然语言检索异常行人的跨模态匹配；竞赛方案融合异构视觉语言嵌入并对分歧样本做 VLM 重排。作者报告 PAB 基准 mAP 90.92%、Recall@1 85.13%；价值在于将不确定性用于选择性重排，限制是单一竞赛基准和大模型重排成本不代表跨摄像头生产性能。</p>
-<h3 id="unified-multi-dimensional-benchmark-for-complex-graph-reasoning-in-large-language-models"><a class="markdownIt-Anchor" href="#unified-multi-dimensional-benchmark-for-complex-graph-reasoning-in-large-language-models"></a> Unified Multi-Dimensional Benchmark for Complex Graph Reasoning in Large Language Models</h3>
-<p><strong>作者</strong>：Fali Wang、Ali Al-Lawati、Iliyas Bektas 等<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12391">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12391">PDF</a></p>
-<p>研究 LLM 图推理在规模、任务复杂度、表述、加载方式和任务来源变化下的泛化；用半自动五阶段流程构建 202 项任务，比较文本、代码与增强推理。作者报告微调模型难泛化、RAG 的收益依场景而变；仅依据摘要，自动生成题目质量和即将发布的代码/数据决定可复现性。</p>
-<h3 id="why-do-ai-agents-break-rules-how-framing-context-and-social-signals-shape-compliance"><a class="markdownIt-Anchor" href="#why-do-ai-agents-break-rules-how-framing-context-and-social-signals-shape-compliance"></a> Why Do AI Agents Break Rules? How Framing, Context, and Social Signals Shape Compliance</h3>
-<p><strong>作者</strong>：Mika Okamoto、Ansel Kaplan Erol、Kutluhan Erol<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CY">cs.CY</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12323">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12323">PDF</a></p>
-<p>研究智能体为何在合规任务中越界；以采购场景操纵监管信号和社会压力，比较 12 个指令微调模型。论文报告安全微调与任务导向模型有不同失败轮廓；价值在于机制化压力测试，限制是模拟行为不等于真实组织中的法律或运营结果。</p>
-<h3 id="intern-s2-preview-scientific-agentic-foundation-model"><a class="markdownIt-Anchor" href="#intern-s2-preview-scientific-agentic-foundation-model"></a> Intern-S2-Preview: Scientific Agentic Foundation Model</h3>
+<strong>来源/分类</strong>：arXiv · cs.IR、cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12987">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12987">PDF</a></p>
+<p>研究生成式多模态检索如何减少前缀解码错误；提出 DrIG
+的残差量化双角色标识符和混合重排。论文报告其在
+M-BEIR、文到图评测优于所比生成式基线，并分析效率—效果权衡；价值在于统一文本、图像与混合项检索，限制是结果仍依赖基准、候选库与重排成本。</p>
+<h3 id="doctorina-medbench-a-dialogue-based-benchmark-and-evaluation-framework-for-agent-based-medical-ai">Doctorina
+MedBench: A Dialogue-Based Benchmark and Evaluation Framework for
+Agent-Based Medical AI</h3>
+<p><strong>作者</strong>：Anna Kozlova、Stanislau Salavei、Pavel
+Satalkin、Hanna Plotnitskaya、Sergey Parfenyuk、Andy Nkansah<br>
+<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.LG、cs.MA<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.25821">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.25821">PDF</a></p>
+<p>研究医疗智能体在多轮医患对话中采集病史、鉴别诊断和处置建议的评测；以
+261 个尝试病例中保留的 254
+个医生撰写合成病例，按诊断、治疗、安全关键情况和对话步骤分项评分。作者将其定位为考试式基准的补充；仅依据摘要，合成病例与指标不能证明临床有效性、独立临床验证或可部署性。</p>
+<h3 id="how-good-are-foundation-models-in-longitudinal-mri-disease-progression-reasoning">How
+Good are Foundation Models in Longitudinal MRI Disease Progression
+Reasoning?</h3>
+<p><strong>作者</strong>：Wafa Al Ghallabi、Ritesh Thawkar、Sara
+Ghaboura 等<br>
+<strong>来源/分类</strong>：arXiv · cs.CV<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13309">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13309">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/wafaAlghallabi/Time-Aware-MRI">代码/数据</a></p>
+<p>研究基础模型能否进行跨时间、跨视角 MRI
+病程推理；构建专家核验的时间感知多视角基准并评测 16
+个模型。作者报告模型在变化方向和体积定量上系统失败，多视角存在时空权衡；价值是将临床所需的时序定位显式化，限制是评测表现不能替代真实诊疗表现。</p>
+<h3 id="ligbench-a-unified-and-human-aligned-benchmark-for-llm-based-research-idea-generation">LigBench:
+A Unified and Human-Aligned Benchmark for LLM-based Research Idea
+Generation</h3>
+<p><strong>作者</strong>：Chenrun Wang、Mingxuan Zhu、Tiancheng Huang
+等<br>
+<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.DB、cs.MA<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13136">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13136">PDF</a></p>
+<p>研究 LLM 研究想法生成的评测为何缺乏统一标准；提出自动评测基准
+LigBench 与用于成对判断的 PAIR-IQ
+数据集。作者报告与专家判断的一致性和排序鲁棒性提高；仅依据摘要，评审者构成、领域覆盖、训练数据污染和对新颖性的外部验证仍需全文核查。</p>
+<h3 id="heterogeneous-vision-language-ensemble-with-disagreement-aware-reranking-for-text-based-person-anomaly-retrieval">Heterogeneous
+Vision-Language Ensemble with Disagreement-Aware Reranking for
+Text-Based Person Anomaly Retrieval</h3>
+<p><strong>作者</strong>：Huu-An Vu、Cam Tu Tran Thi、Thanh Toan Le Ngo
+等<br>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12843">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12843">PDF</a></p>
+<p>研究自然语言检索异常行人的跨模态匹配；竞赛方案融合异构视觉语言嵌入并对分歧样本做
+VLM 重排。作者报告 PAB 基准 mAP 90.92%、<a href="mailto:Recall@1" class="email">Recall@1</a>
+85.13%；价值在于将不确定性用于选择性重排，限制是单一竞赛基准和大模型重排成本不代表跨摄像头生产性能。</p>
+<h3 id="unified-multi-dimensional-benchmark-for-complex-graph-reasoning-in-large-language-models">Unified
+Multi-Dimensional Benchmark for Complex Graph Reasoning in Large
+Language Models</h3>
+<p><strong>作者</strong>：Fali Wang、Ali Al-Lawati、Iliyas Bektas
+等<br>
+<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.LG<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12391">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12391">PDF</a></p>
+<p>研究 LLM
+图推理在规模、任务复杂度、表述、加载方式和任务来源变化下的泛化；用半自动五阶段流程构建
+202 项任务，比较文本、代码与增强推理。作者报告微调模型难泛化、RAG
+的收益依场景而变；仅依据摘要，自动生成题目质量和即将发布的代码/数据决定可复现性。</p>
+<h3 id="why-do-ai-agents-break-rules-how-framing-context-and-social-signals-shape-compliance">Why
+Do AI Agents Break Rules? How Framing, Context, and Social Signals Shape
+Compliance</h3>
+<p><strong>作者</strong>：Mika Okamoto、Ansel Kaplan Erol、Kutluhan
+Erol<br>
+<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.CY<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12323">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12323">PDF</a></p>
+<p>研究智能体为何在合规任务中越界；以采购场景操纵监管信号和社会压力，比较
+12
+个指令微调模型。论文报告安全微调与任务导向模型有不同失败轮廓；价值在于机制化压力测试，限制是模拟行为不等于真实组织中的法律或运营结果。</p>
+<h3 id="intern-s2-preview-scientific-agentic-foundation-model">Intern-S2-Preview:
+Scientific Agentic Foundation Model</h3>
 <p><strong>作者</strong>：Lei Bai 等<br>
-<strong>来源/分类</strong>：arXiv · cs.LG、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13505">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13505">PDF</a></p>
-<p>研究面向科学理解、工具交互和长程任务的多模态 agent 基座；组合科学预训练、监督微调、多任务 RL、agentic RL 和蒸馏，另研究时序模块与记忆解码器。作者报告 397B 模型多项基准具竞争力，4B 记忆扩展将 Biology-Instructions 平均分从 56.92 提至 60.32；仅依据摘要，闭源/大算力训练、评测污染和实际科学发现效用仍待独立复核。</p>
-<h3 id="mllm-routed-heterogeneous-ensembles-for-robust-cross-dataset-image-classification"><a class="markdownIt-Anchor" href="#mllm-routed-heterogeneous-ensembles-for-robust-cross-dataset-image-classification"></a> MLLM-Routed Heterogeneous Ensembles for Robust Cross-Dataset Image Classification</h3>
-<p><strong>作者</strong>：Daniel Perkins、John Squires、Janou Milligan 等<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、cs.LG<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13463">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13463">PDF</a></p>
-<p>研究跨数据集图像分类的域迁移；ARMDIL 以 MLLM 将图像路由到 CNN、自监督和视觉语言骨干，并允许提示更新。作者报告与专门训练路由器竞争；仅依据摘要，路由推理轨迹不天然等于可解释性，且延迟、成本和失配域的公平比较需核对。</p>
-<h3 id="rules-or-character-scaling-laws-for-ai-safety-design"><a class="markdownIt-Anchor" href="#rules-or-character-scaling-laws-for-ai-safety-design"></a> Rules or Character? Scaling Laws for AI Safety Design</h3>
-<p><strong>作者</strong>：Satoshi Takahashi、Nobuji Kouno、Masaaki Komatsu、Ryuji Hamamoto<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13345">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13345">PDF</a></p>
-<p>研究训练期行为塑造和推理期规则拦截如何配置资源；用参数化损害模型、闭式期望伤害和 CVaR 模拟做比较静态。作者报告性格脆弱率是主导变量；价值是暴露决策依赖的假设，限制是它不提供对真实模型事故频率的经验估计。</p>
-<h3 id="beyond-correctness-benchmarking-and-aligning-response-behaviors-in-hybrid-thinking-mllms"><a class="markdownIt-Anchor" href="#beyond-correctness-benchmarking-and-aligning-response-behaviors-in-hybrid-thinking-mllms"></a> Beyond Correctness: Benchmarking and Aligning Response Behaviors in Hybrid-Thinking MLLMs</h3>
-<p><strong>作者</strong>：Xinming Wang、Weinong Wang、Hongming Yang 等<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12781">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12781">PDF</a></p>
-<p>研究混合思考 MLLM 的快慢模式是否保持同样的用户可见行为；发布含 2,415 条多模态提示的 PatternEval，并以奖励模型/强化学习惩罚泄露、重复、矛盾和表演性推理。作者报告快模式失败更多、训练可缓解但有边际任务损失；仅依据摘要，评测污染、奖励投机和不同模型可迁移性需核查。</p>
-<h3 id="anchorsips-a-synthetic-dataset-and-evaluation-resource-for-evidence-supported-psychosis-risk-symptom-measurement"><a class="markdownIt-Anchor" href="#anchorsips-a-synthetic-dataset-and-evaluation-resource-for-evidence-supported-psychosis-risk-symptom-measurement"></a> AnchorSIPS: A Synthetic Dataset and Evaluation Resource for Evidence-Supported Psychosis-Risk Symptom Measurement</h3>
-<p><strong>作者</strong>：Guilherme C. Oliveira、Stephanie Fong、Zimu Wang 等<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.HC<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12329">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12329">PDF</a></p>
-<p>研究精神病风险访谈的数据共享瓶颈；生成 1 万份带转录证据锚点的合成 Mini-SIPS 访谈，以固定标签和结构后再生成话语。作者报告七个基线可做粗粒度判断却难提取跟进细节和引用证据；价值在于可审计中间决策，限制是合成对话不替代临床人群验证。</p>
-<h3 id="cangjiebench-benchmarking-llms-on-a-low-resource-general-purpose-programming-language"><a class="markdownIt-Anchor" href="#cangjiebench-benchmarking-llms-on-a-low-resource-general-purpose-programming-language"></a> CangjieBench: Benchmarking LLMs on a Low-Resource General-Purpose Programming Language</h3>
+<strong>来源/分类</strong>：arXiv · cs.LG、cs.CL、cs.CV<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13505">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13505">PDF</a></p>
+<p>研究面向科学理解、工具交互和长程任务的多模态 agent
+基座；组合科学预训练、监督微调、多任务 RL、agentic RL
+和蒸馏，另研究时序模块与记忆解码器。作者报告 397B
+模型多项基准具竞争力，4B 记忆扩展将 Biology-Instructions 平均分从 56.92
+提至
+60.32；仅依据摘要，闭源/大算力训练、评测污染和实际科学发现效用仍待独立复核。</p>
+<h3 id="mllm-routed-heterogeneous-ensembles-for-robust-cross-dataset-image-classification">MLLM-Routed
+Heterogeneous Ensembles for Robust Cross-Dataset Image
+Classification</h3>
+<p><strong>作者</strong>：Daniel Perkins、John Squires、Janou Milligan
+等<br>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI、cs.CL、cs.LG<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13463">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13463">PDF</a></p>
+<p>研究跨数据集图像分类的域迁移；ARMDIL 以 MLLM 将图像路由到
+CNN、自监督和视觉语言骨干，并允许提示更新。作者报告与专门训练路由器竞争；仅依据摘要，路由推理轨迹不天然等于可解释性，且延迟、成本和失配域的公平比较需核对。</p>
+<h3 id="rules-or-character-scaling-laws-for-ai-safety-design">Rules or
+Character? Scaling Laws for AI Safety Design</h3>
+<p><strong>作者</strong>：Satoshi Takahashi、Nobuji Kouno、Masaaki
+Komatsu、Ryuji Hamamoto<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13345">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13345">PDF</a></p>
+<p>研究训练期行为塑造和推理期规则拦截如何配置资源；用参数化损害模型、闭式期望伤害和
+CVaR
+模拟做比较静态。作者报告性格脆弱率是主导变量；价值是暴露决策依赖的假设，限制是它不提供对真实模型事故频率的经验估计。</p>
+<h3 id="beyond-correctness-benchmarking-and-aligning-response-behaviors-in-hybrid-thinking-mllms">Beyond
+Correctness: Benchmarking and Aligning Response Behaviors in
+Hybrid-Thinking MLLMs</h3>
+<p><strong>作者</strong>：Xinming Wang、Weinong Wang、Hongming Yang
+等<br>
+<strong>来源/分类</strong>：arXiv · cs.CV<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12781">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12781">PDF</a></p>
+<p>研究混合思考 MLLM 的快慢模式是否保持同样的用户可见行为；发布含 2,415
+条多模态提示的
+PatternEval，并以奖励模型/强化学习惩罚泄露、重复、矛盾和表演性推理。作者报告快模式失败更多、训练可缓解但有边际任务损失；仅依据摘要，评测污染、奖励投机和不同模型可迁移性需核查。</p>
+<h3 id="anchorsips-a-synthetic-dataset-and-evaluation-resource-for-evidence-supported-psychosis-risk-symptom-measurement">AnchorSIPS:
+A Synthetic Dataset and Evaluation Resource for Evidence-Supported
+Psychosis-Risk Symptom Measurement</h3>
+<p><strong>作者</strong>：Guilherme C. Oliveira、Stephanie Fong、Zimu
+Wang 等<br>
+<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.HC<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.12329">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.12329">PDF</a></p>
+<p>研究精神病风险访谈的数据共享瓶颈；生成 1 万份带转录证据锚点的合成
+Mini-SIPS
+访谈，以固定标签和结构后再生成话语。作者报告七个基线可做粗粒度判断却难提取跟进细节和引用证据；价值在于可审计中间决策，限制是合成对话不替代临床人群验证。</p>
+<h3 id="cangjiebench-benchmarking-llms-on-a-low-resource-general-purpose-programming-language">CangjieBench:
+Benchmarking LLMs on a Low-Resource General-Purpose Programming
+Language</h3>
 <p><strong>作者</strong>：Junhang Cheng、Fang Liu、Jia Li 等<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.SE">cs.SE</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.14501">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.14501">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/cjhCoder7/CangjieBench">代码/数据</a></p>
-<p>研究 LLM 对低资源通用语言仓颉的泛化；以人工翻译的 248 个 HumanEval/ClassEval 样本比较直接生成、语法约束、RAG 与 agent。作者报告语法约束的准确率—成本折中最佳，agent 准确率最高但 token 消耗大；价值在于污染控制，限制是小基准和翻译题分布仍限制外推。</p>
-<h3 id="training-and-benchmarking-code-generation-for-physics-inspired-animations"><a class="markdownIt-Anchor" href="#training-and-benchmarking-code-generation-for-physics-inspired-animations"></a> Training and Benchmarking Code Generation for Physics-Inspired Animations</h3>
+<strong>来源/分类</strong>：arXiv · cs.SE、cs.AI、cs.CL<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.14501">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.14501">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/cjhCoder7/CangjieBench">代码/数据</a></p>
+<p>研究 LLM 对低资源通用语言仓颉的泛化；以人工翻译的 248 个
+HumanEval/ClassEval 样本比较直接生成、语法约束、RAG 与
+agent。作者报告语法约束的准确率—成本折中最佳，agent 准确率最高但 token
+消耗大；价值在于污染控制，限制是小基准和翻译题分布仍限制外推。</p>
+<h3 id="training-and-benchmarking-code-generation-for-physics-inspired-animations">Training
+and Benchmarking Code Generation for Physics-Inspired Animations</h3>
 <p><strong>作者</strong>：Yanan Wang、Renxi Wang、Yongxin Wang 等<br>
 <strong>来源/分类</strong>：arXiv · cs.LG<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.10840">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.10840">PDF</a></p>
-<p>研究生成能正确运行且视觉上符合物理描述的动画代码；SimuScene 覆盖五个物理领域、52 个概念、7,659 个场景和 334 个人工核验测试例。作者报告最强模型 Avg@8 仅 21.5%，视频奖励 RL 可提升表现；仅依据摘要，VLM 评判误差、执行环境与物理正确性之间的偏差需全文核验。</p>
-<h3 id="physmaster-building-an-autonomous-ai-physicist-for-theoretical-and-computational-physics-research"><a class="markdownIt-Anchor" href="#physmaster-building-an-autonomous-ai-physicist-for-theoretical-and-computational-physics-research"></a> PhysMaster: Building an Autonomous AI Physicist for Theoretical and Computational Physics Research</h3>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.10840">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.10840">PDF</a></p>
+<p>研究生成能正确运行且视觉上符合物理描述的动画代码；SimuScene
+覆盖五个物理领域、52 个概念、7,659 个场景和 334
+个人工核验测试例。作者报告最强模型 <a href="mailto:Avg@8" class="email">Avg@8</a> 仅 21.5%，视频奖励 RL
+可提升表现；仅依据摘要，VLM
+评判误差、执行环境与物理正确性之间的偏差需全文核验。</p>
+<h3 id="physmaster-building-an-autonomous-ai-physicist-for-theoretical-and-computational-physics-research">PhysMaster:
+Building an Autonomous AI Physicist for Theoretical and Computational
+Physics Research</h3>
 <p><strong>作者</strong>：Tingjia Miao、Wenkai Jin、Jinxin Tan 等<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、hep-lat<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.19799">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.19799">PDF</a></p>
-<p>研究 agent 能否复现前沿理论/计算物理工作流；PRL-Bench 从 100 篇 PRL 论文构造可追踪任务，PhysMaster 用 MCTS 多轨探索和层级记忆。作者报告总分 51.08、相对多种 agent 提升 14.13%–93.38%；仅依据摘要，基准任务改写、评测者偏差和长程算力成本仍需核查。</p>
-<h3 id="marc-v1-an-open-source-multi-agent-framework-for-clinical-ai-reasoning-and-coordination"><a class="markdownIt-Anchor" href="#marc-v1-an-open-source-multi-agent-framework-for-clinical-ai-reasoning-and-coordination"></a> MARC v1: An Open-Source Multi-Agent Framework for Clinical AI Reasoning and Coordination</h3>
-<p><strong>作者</strong>：Saisha Shetty、Satvik Tripathi、Austin Lin 等<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13476">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13476">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Penn-RAIL/MARC-v1">代码</a></p>
-<p>研究临床推理提示如何拆为可追踪的角色化协作；MARC 用确定性编排连接抽取、推理、回答和评估 agent，并支持 YAML 配置和本地 CPU 部署。价值在于可归因的中间产物；仅依据摘要，框架开源不证明医疗准确性、安全性或临床效用。</p>
-<h3 id="beyond-local-accuracy-a-protocol-level-identifiability-audit-for-controlled-llm-reasoning-evaluation"><a class="markdownIt-Anchor" href="#beyond-local-accuracy-a-protocol-level-identifiability-audit-for-controlled-llm-reasoning-evaluation"></a> Beyond Local Accuracy: A Protocol-Level Identifiability Audit for Controlled LLM Reasoning Evaluation</h3>
-<p><strong>作者</strong>：Junhao Luo、Ning Huang、Ziqi Sha、Wenxuan Tang、Wei Deng<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13326">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13326">PDF</a></p>
-<p>研究评测观察协议是否真的识别目标行为属性；在有限策略类中做无模型调用的可识别性审计。作者报告完整支持可区分七个策略，而基准准确率与选择性响应保真在两个确定来源上显著分离（0.620 对 0.324；0.646 对 0.331）；价值在于先审协议再跑模型，限制是结论来自受控冻结策略类。</p>
-<h3 id="statebridge-training-free-hidden-state-alignment-for-latent-communication-in-llm-multi-agent-systems"><a class="markdownIt-Anchor" href="#statebridge-training-free-hidden-state-alignment-for-latent-communication-in-llm-multi-agent-systems"></a> StateBridge: Training-free Hidden-state Alignment for Latent Communication in LLM Multi-Agent Systems</h3>
-<p><strong>作者</strong>：Yanwen Peng、Delvin Ce Zhang、Xi Wang、Nikolaos Aletras<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13317">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13317">PDF</a></p>
-<p>研究多 agent 文本通信的离散瓶颈；StateBridge 用闭式正交变换、范数校准和词表锚定，将发送者隐状态作为接收者连续前缀，无需训练投影器。作者报告四个模型、26 个模型—任务组合中 22 个最佳或并列最佳；仅依据摘要，跨架构稳定性、隐状态接口成本和安全边界仍待验证。</p>
+<strong>来源/分类</strong>：arXiv · cs.AI、hep-lat<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.19799">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.19799">PDF</a></p>
+<p>研究 agent 能否复现前沿理论/计算物理工作流；PRL-Bench 从 100 篇 PRL
+论文构造可追踪任务，PhysMaster 用 MCTS 多轨探索和层级记忆。作者报告总分
+51.08、相对多种 agent 提升
+14.13%–93.38%；仅依据摘要，基准任务改写、评测者偏差和长程算力成本仍需核查。</p>
+<h3 id="marc-v1-an-open-source-multi-agent-framework-for-clinical-ai-reasoning-and-coordination">MARC
+v1: An Open-Source Multi-Agent Framework for Clinical AI Reasoning and
+Coordination</h3>
+<p><strong>作者</strong>：Saisha Shetty、Satvik Tripathi、Austin Lin
+等<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13476">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13476">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Penn-RAIL/MARC-v1">代码</a></p>
+<p>研究临床推理提示如何拆为可追踪的角色化协作；MARC
+用确定性编排连接抽取、推理、回答和评估 agent，并支持 YAML 配置和本地 CPU
+部署。价值在于可归因的中间产物；仅依据摘要，框架开源不证明医疗准确性、安全性或临床效用。</p>
+<h3 id="beyond-local-accuracy-a-protocol-level-identifiability-audit-for-controlled-llm-reasoning-evaluation">Beyond
+Local Accuracy: A Protocol-Level Identifiability Audit for Controlled
+LLM Reasoning Evaluation</h3>
+<p><strong>作者</strong>：Junhao Luo、Ning Huang、Ziqi Sha、Wenxuan
+Tang、Wei Deng<br>
+<strong>来源/分类</strong>：arXiv · cs.CL<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13326">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13326">PDF</a></p>
+<p>研究评测观察协议是否真的识别目标行为属性；在有限策略类中做无模型调用的可识别性审计。作者报告完整支持可区分七个策略，而基准准确率与选择性响应保真在两个确定来源上显著分离（0.620
+对 0.324；0.646 对
+0.331）；价值在于先审协议再跑模型，限制是结论来自受控冻结策略类。</p>
+<h3 id="statebridge-training-free-hidden-state-alignment-for-latent-communication-in-llm-multi-agent-systems">StateBridge:
+Training-free Hidden-state Alignment for Latent Communication in LLM
+Multi-Agent Systems</h3>
+<p><strong>作者</strong>：Yanwen Peng、Delvin Ce Zhang、Xi
+Wang、Nikolaos Aletras<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.13317">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.13317">PDF</a></p>
+<p>研究多 agent 文本通信的离散瓶颈；StateBridge
+用闭式正交变换、范数校准和词表锚定，将发送者隐状态作为接收者连续前缀，无需训练投影器。作者报告四个模型、26
+个模型—任务组合中 22
+个最佳或并列最佳；仅依据摘要，跨架构稳定性、隐状态接口成本和安全边界仍待验证。</p>
 
                 
               </div>

@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注  RetailAgent：LLM 交易 agent 的系统性错误时机 论文：RetailAgent: Structured Adverse Timing in Self-Conditioned Multimodal LLM Trading Agents（arXiv:2608.28399） 作者：Yupeng Zhang、Liuyuan Jiang、Hongyi Huang、Bingh">
+    <meta name="description" content="重点关注 RetailAgent：LLM 交易 agent 的系统性错误时机 论文：RetailAgent: Structured Adverse Timing in Self-Conditioned Multimodal LLM Trading Agents（arXiv:2608.28399） 作者：Yupeng Zhang、Liuyuan Jiang、Hongyi Huang、Binghen">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日金融论文简报｜2026 年 9 月 1 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/09/01/daily-finance-papers-2026-09-01/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注  RetailAgent：LLM 交易 agent 的系统性错误时机 论文：RetailAgent: Structured Adverse Timing in Self-Conditioned Multimodal LLM Trading Agents（arXiv:2608.28399） 作者：Yupeng Zhang、Liuyuan Jiang、Hongyi Huang、Bingh">
+<meta property="og:description" content="重点关注 RetailAgent：LLM 交易 agent 的系统性错误时机 论文：RetailAgent: Structured Adverse Timing in Self-Conditioned Multimodal LLM Trading Agents（arXiv:2608.28399） 作者：Yupeng Zhang、Liuyuan Jiang、Hongyi Huang、Binghen">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-30/pixiv-rank-006-148805184.jpg">
 <meta property="article:published_time" content="2026-09-01T02:15:00.000Z">
@@ -347,87 +347,264 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
-<h3 id="retailagentllm-交易-agent-的系统性错误时机"><a class="markdownIt-Anchor" href="#retailagentllm-交易-agent-的系统性错误时机"></a> RetailAgent：LLM 交易 agent 的系统性错误时机</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.28399">RetailAgent: Structured Adverse Timing in Self-Conditioned Multimodal LLM Trading Agents</a>（arXiv:2608.28399）<br>
-<strong>作者</strong>：Yupeng Zhang、Liuyuan Jiang、Hongyi Huang、Bingheng Li、Lisha Chen<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://q-fin.TR">q-fin.TR</a>；双主题<br>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="retailagentllm-交易-agent-的系统性错误时机">RetailAgent：LLM
+交易 agent 的系统性错误时机</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.28399">RetailAgent: Structured Adverse
+Timing in Self-Conditioned Multimodal LLM Trading
+Agents</a>（arXiv:2608.28399）<br>
+<strong>作者</strong>：Yupeng Zhang、Liuyuan Jiang、Hongyi
+Huang、Bingheng Li、Lisha Chen<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、q-fin.TR；双主题<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>这篇双主题论文问的是：如果一个 LLM agent 按价格历史连续决定持有或空仓，它的决策时机是否会形成可被市场参与者预测的方向结构。RetailAgent 固定了信息边界：agent 看到匿名化的日内股票价格历史和由前序决策生成的允许状态，在下一时间段收益揭示前选择 long 或 flat；输入隐藏股票身份、日期、绝对价格、新闻、基本面、横截面排名和未来结果。作者用同一 stock-day 内的 exposure-matched timing 指标，去掉“总体持有了多少”的影响，只测 agent 是否在相对有利的区间持有，并在 14 个覆盖模态、决策 horizon、账户状态和模型族的配置中做完整 action-trace、打乱轨迹、互补 schedule 和信号残差检查。</p>
-<p>作者报告的主实验是 10 分钟 horizon、Qwen3.5：数值文本、图表、文本+图表的 within-stock timing 分别为 -45.7、-29.9、-48.9 bps/stock-day，对应 13,710、14,937、14,438 个 stock-day；这里负号表示错误方向的时机，不是简单的组合总收益。把 action 序列全局或同日打乱后，指标缩小到 -3.5 与 -8.7 bps。加入一条早期自写 memory 后，在包含两种动作的 stock-day 中 timing 从 -62.8 变为 -74.1 bps，position changes 从 2.5 降到 1.7 次/日。作者还指出，某个轨迹可能在 long 区间有正收益，却因为空仓错过更强上涨而呈现负 timing；因此不能把持有期收益和时机能力混为一谈。</p>
-<p>创新是把“LLM 是否赚钱”改写为可控的 sequential policy 行为审计，并用轨迹置换验证负效应依赖 action-return 对齐，而非只依赖暴露比例。证据边界更重要：这是一条匿名、价格与状态受限的实验路径，不是实际散户群体、真实订单簿或可交易策略；没有交易成本、冲击、容量、实时部署或反事实市场响应，负 timing 也不是因果市场冲击。适合行为金融、金融 agent 和市场微观结构读者，建议读第 2 节指标/决策循环、第 3.2 的 14 配置结果、轨迹置换、自我记忆实验和附录的输入 provenance。</p>
+<p>这篇双主题论文问的是：如果一个 LLM agent
+按价格历史连续决定持有或空仓，它的决策时机是否会形成可被市场参与者预测的方向结构。RetailAgent
+固定了信息边界：agent
+看到匿名化的日内股票价格历史和由前序决策生成的允许状态，在下一时间段收益揭示前选择
+long 或
+flat；输入隐藏股票身份、日期、绝对价格、新闻、基本面、横截面排名和未来结果。作者用同一
+stock-day 内的 exposure-matched timing
+指标，去掉“总体持有了多少”的影响，只测 agent
+是否在相对有利的区间持有，并在 14 个覆盖模态、决策
+horizon、账户状态和模型族的配置中做完整 action-trace、打乱轨迹、互补
+schedule 和信号残差检查。</p>
+<p>作者报告的主实验是 10 分钟
+horizon、Qwen3.5：数值文本、图表、文本+图表的 within-stock timing 分别为
+-45.7、-29.9、-48.9 bps/stock-day，对应 13,710、14,937、14,438 个
+stock-day；这里负号表示错误方向的时机，不是简单的组合总收益。把 action
+序列全局或同日打乱后，指标缩小到 -3.5 与 -8.7 bps。加入一条早期自写
+memory 后，在包含两种动作的 stock-day 中 timing 从 -62.8 变为 -74.1
+bps，position changes 从 2.5 降到 1.7 次/日。作者还指出，某个轨迹可能在
+long 区间有正收益，却因为空仓错过更强上涨而呈现负
+timing；因此不能把持有期收益和时机能力混为一谈。</p>
+<p>创新是把“LLM 是否赚钱”改写为可控的 sequential policy
+行为审计，并用轨迹置换验证负效应依赖 action-return
+对齐，而非只依赖暴露比例。证据边界更重要：这是一条匿名、价格与状态受限的实验路径，不是实际散户群体、真实订单簿或可交易策略；没有交易成本、冲击、容量、实时部署或反事实市场响应，负
+timing 也不是因果市场冲击。适合行为金融、金融 agent
+和市场微观结构读者，建议读第 2 节指标/决策循环、第 3.2 的 14
+配置结果、轨迹置换、自我记忆实验和附录的输入 provenance。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.28399">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.28399">PDF</a></p>
-<h3 id="what-survives-honest-evaluationllm-策略搜索越多证据门槛越高"><a class="markdownIt-Anchor" href="#what-survives-honest-evaluationllm-策略搜索越多证据门槛越高"></a> What survives honest evaluation?：LLM 策略搜索越多，证据门槛越高</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27734">What survives honest evaluation? Leakage-safe, search-aware assessment of LLM-driven trading strategy discovery</a>（arXiv:2608.27734）<br>
+<h3 id="what-survives-honest-evaluationllm-策略搜索越多证据门槛越高">What
+survives honest evaluation?：LLM 策略搜索越多，证据门槛越高</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27734">What survives honest evaluation?
+Leakage-safe, search-aware assessment of LLM-driven trading strategy
+discovery</a>（arXiv:2608.27734）<br>
 <strong>作者</strong>：Eray Gençay<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.ST">q-fin.ST</a><br>
+<strong>来源/分类</strong>：arXiv · q-fin.ST<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文针对 LLM 交易策略发现中两个常被分开的漏洞：看未来数据，以及生成很多候选后只汇报最好的一个。作者把两层校验做成系统属性：agent 只能调用 registry-validated tools，特征空间从结构上排除 look-ahead；同时把每次策略评估写入 trial ledger，用 Deflated Sharpe Ratio（DSR）按搜索次数校正，并用 probability of backtest overfitting（PBO）、留出区间和被动基线一起判断。E1–E4 使用 Tiingo 的 453 只美国大盘股，按过去 63 日美元成交额点时重选 top 200、每 21 个交易日更新；另有 39 只多资产 ETF 的“公平场”实验，纳入交易、冲击和借券成本，比较 gpt-4.1 与 claude-sonnet-5 的多次搜索。</p>
-<p>结果首先证明统计校正不能修复污染信息集：故意植入的 look-ahead oracle 在设计期 Sharpe 34.7、评估期 51.5，DSR 仍为 1.00。传统因子基线中，所有主动策略 DSR≤0.32，搜索本身的 PBO=0.83；等权 buy-and-hold 的 DSR=0.97，SPY 为 0.94。核心 gpt-4.1 搜索记录 102 次试验，最佳 RSI×volume 反转策略设计期 Sharpe=1.69，但评估期只有 0.18、四年收益 +4.7%（95% CI [-0.80,+1.14]），低于同期 buy-and-hold 的 +40.8%，DSR=0.86，未达到作者设定的 0.95 认证门槛。五次独立重复都得到 +26%–+33% 的评估收益、Sharpe 0.59–0.70，却都因 DSR 仅 0.15–0.29 而未认证；39 ETF 场景的 agent 发现评估 Sharpe=-0.23、收益 -21%，区间 [-0.82,+0.33]。</p>
-<p>这篇文章最值得读的是它明确区分样本内搜索、样本外留出、统计证据和经济结果：有样本外盈利不等于超过搜索运气，有低 PBO 也不等于绝对收益可复现。它报告的是历史回测/评估窗口，不是真实账户或实时可交易绩效，不能构成投资建议。限制包括当前股票池带来的生存偏差、四年窗口对不同市场状态的依赖、DSR 对试验可交换性的假设、PBO 在小搜索规模下较粗，以及跨模型时训练与拒答机制并不相同。适合量化研究、金融 ML 和 agent 评测读者，建议按 E1–E5 阅读：先看泄漏 oracle，再看 baseline、102 次搜索的 ledger、跨模型重复、39 ETF 公平场和第 8 节限制。</p>
+<p>论文针对 LLM
+交易策略发现中两个常被分开的漏洞：看未来数据，以及生成很多候选后只汇报最好的一个。作者把两层校验做成系统属性：agent
+只能调用 registry-validated tools，特征空间从结构上排除
+look-ahead；同时把每次策略评估写入 trial ledger，用 Deflated Sharpe
+Ratio（DSR）按搜索次数校正，并用 probability of backtest
+overfitting（PBO）、留出区间和被动基线一起判断。E1–E4 使用 Tiingo 的 453
+只美国大盘股，按过去 63 日美元成交额点时重选 top 200、每 21
+个交易日更新；另有 39 只多资产 ETF
+的“公平场”实验，纳入交易、冲击和借券成本，比较 gpt-4.1 与
+claude-sonnet-5 的多次搜索。</p>
+<p>结果首先证明统计校正不能修复污染信息集：故意植入的 look-ahead oracle
+在设计期 Sharpe 34.7、评估期 51.5，DSR 仍为
+1.00。传统因子基线中，所有主动策略 DSR≤0.32，搜索本身的 PBO=0.83；等权
+buy-and-hold 的 DSR=0.97，SPY 为 0.94。核心 gpt-4.1 搜索记录 102
+次试验，最佳 RSI×volume 反转策略设计期 Sharpe=1.69，但评估期只有
+0.18、四年收益 +4.7%（95% CI [-0.80,+1.14]），低于同期 buy-and-hold 的
++40.8%，DSR=0.86，未达到作者设定的 0.95 认证门槛。五次独立重复都得到
++26%–+33% 的评估收益、Sharpe 0.59–0.70，却都因 DSR 仅 0.15–0.29
+而未认证；39 ETF 场景的 agent 发现评估 Sharpe=-0.23、收益 -21%，区间
+[-0.82,+0.33]。</p>
+<p>这篇文章最值得读的是它明确区分样本内搜索、样本外留出、统计证据和经济结果：有样本外盈利不等于超过搜索运气，有低
+PBO
+也不等于绝对收益可复现。它报告的是历史回测/评估窗口，不是真实账户或实时可交易绩效，不能构成投资建议。限制包括当前股票池带来的生存偏差、四年窗口对不同市场状态的依赖、DSR
+对试验可交换性的假设、PBO
+在小搜索规模下较粗，以及跨模型时训练与拒答机制并不相同。适合量化研究、金融
+ML 和 agent 评测读者，建议按 E1–E5 阅读：先看泄漏 oracle，再看
+baseline、102 次搜索的 ledger、跨模型重复、39 ETF 公平场和第 8
+节限制。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27734">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27734">PDF</a></p>
-<h3 id="gmmb-与提前退保相同-vanilla-边际不代表相同保险负债价值"><a class="markdownIt-Anchor" href="#gmmb-与提前退保相同-vanilla-边际不代表相同保险负债价值"></a> GMMB 与提前退保：相同 vanilla 边际不代表相同保险负债价值</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.28397">Market-Informed Valuation of GMMB Riders with Surrender Options under a Heston Stochastic-Local Volatility Model</a>（arXiv:2608.28397）<br>
-<strong>作者</strong>：Ludovic Goudenège、Andrea Molent、Xiao Wei、Antonino Zanette<br>
+<h3 id="gmmb-与提前退保相同-vanilla-边际不代表相同保险负债价值">GMMB
+与提前退保：相同 vanilla 边际不代表相同保险负债价值</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.28397">Market-Informed Valuation of
+GMMB Riders with Surrender Options under a Heston Stochastic-Local
+Volatility Model</a>（arXiv:2608.28397）<br>
+<strong>作者</strong>：Ludovic Goudenège、Andrea Molent、Xiao
+Wei、Antonino Zanette<br>
 <strong>来源/分类</strong>：arXiv · q-fin.CP<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文研究带 rational surrender 的 guaranteed minimum maturity benefit（GMMB）附加险：如果 Heston stochastic-local volatility（SLV）与一因子 local-volatility（LV）模型被校准到相同的 vanilla option 一维边际，含提前退保的负债估值是否仍会不同。SLV 用 Heston 方差状态加 leverage function，leverage 通过 forward Markovian projection 使其与给定 LV surface 共享一维边际；作者再用 backward pricing equation 和 hybrid tree/finite-difference 算法计算终期保证与离散时间最优退保。实验包括合成非平坦 LV surface 和 EURO STOXX 50 市场数据；10 年期合同中保证水平 G=100，初始账户值 F0 取 40–160，并考察多组费用 c 与 surrender-adjustment 参数 κs。</p>
-<p>作者报告，在没有退保时，LV 与 SLV 价格接近，符合两者共享边际的预期；加入离散最优退保后，SLV 相对 LV 的差异系统性放大。合成代表性合同的细化研究中，最细网格的 SLV premium 为 0.8726，约为 LV 价格的 2.1%；全表中最大绝对差约 0.994（F0=100、c=1%、κs=1%），最大相对差约 2.96%（F0=160、c=0%、κs=0%）。SLV 的退保边界是 (账户值、方差) 的曲面，固定时间下方差越高，边界越低、退保区域越小；κs 增大则边界上移。EURO STOXX 50 的 LV market calibration RMSE 约 3.1%，独立 Crank–Nicolson 重算约 3.3%，作者明确说这些是样本内拟合/数值复核，不是样本外预测统计。</p>
-<p>创新在于把“相同期权市场截面”与“不同条件未来动态”严格放在同一比较框架中，说明路径依赖和内生退保会重新暴露模型风险。限制是市场应用的 Heston 参数是由波动率市场信息锚定的 structural specification，而非唯一识别的 risk-neutral calibration；退保日期离散化、参数和市场曲线仍依赖设定，也没有现实 lapse 行为、动态对冲 P&amp;L 或真实保单组合验证。因此这些是定价模型与数值实验结果，不是投资回报或因果效果。适合精算、波动率建模和保险负债管理读者，建议读 SLV 投影条件、退保 obstacle、混合前向校准/后向估值、收敛表、EURO STOXX 50 校准和退保边界图。</p>
+<p>论文研究带 rational surrender 的 guaranteed minimum maturity
+benefit（GMMB）附加险：如果 Heston stochastic-local
+volatility（SLV）与一因子 local-volatility（LV）模型被校准到相同的
+vanilla option 一维边际，含提前退保的负债估值是否仍会不同。SLV 用 Heston
+方差状态加 leverage function，leverage 通过 forward Markovian projection
+使其与给定 LV surface 共享一维边际；作者再用 backward pricing equation
+和 hybrid tree/finite-difference
+算法计算终期保证与离散时间最优退保。实验包括合成非平坦 LV surface 和
+EURO STOXX 50 市场数据；10 年期合同中保证水平 G=100，初始账户值 F0 取
+40–160，并考察多组费用 c 与 surrender-adjustment 参数 κs。</p>
+<p>作者报告，在没有退保时，LV 与 SLV
+价格接近，符合两者共享边际的预期；加入离散最优退保后，SLV 相对 LV
+的差异系统性放大。合成代表性合同的细化研究中，最细网格的 SLV premium 为
+0.8726，约为 LV 价格的 2.1%；全表中最大绝对差约
+0.994（F0=100、c=1%、κs=1%），最大相对差约
+2.96%（F0=160、c=0%、κs=0%）。SLV 的退保边界是 (账户值、方差)
+的曲面，固定时间下方差越高，边界越低、退保区域越小；κs
+增大则边界上移。EURO STOXX 50 的 LV market calibration RMSE 约
+3.1%，独立 Crank–Nicolson 重算约
+3.3%，作者明确说这些是样本内拟合/数值复核，不是样本外预测统计。</p>
+<p>创新在于把“相同期权市场截面”与“不同条件未来动态”严格放在同一比较框架中，说明路径依赖和内生退保会重新暴露模型风险。限制是市场应用的
+Heston 参数是由波动率市场信息锚定的 structural
+specification，而非唯一识别的 risk-neutral
+calibration；退保日期离散化、参数和市场曲线仍依赖设定，也没有现实 lapse
+行为、动态对冲 P&amp;L
+或真实保单组合验证。因此这些是定价模型与数值实验结果，不是投资回报或因果效果。适合精算、波动率建模和保险负债管理读者，建议读
+SLV 投影条件、退保 obstacle、混合前向校准/后向估值、收敛表、EURO STOXX
+50 校准和退保边界图。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.28397">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.28397">PDF</a></p>
-<h3 id="bitcoin-inverse-optionshybrid-mixed-让-rough-vol-校准在压力日更可用"><a class="markdownIt-Anchor" href="#bitcoin-inverse-optionshybrid-mixed-让-rough-vol-校准在压力日更可用"></a> Bitcoin inverse options：Hybrid + Mixed 让 rough-vol 校准在压力日更可用</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27575">Pricing and Calibration of Bitcoin Inverse Options via the Rough Bergomi Model</a>（arXiv:2608.27575）<br>
+<h3 id="bitcoin-inverse-optionshybrid-mixed-让-rough-vol-校准在压力日更可用">Bitcoin
+inverse options：Hybrid + Mixed 让 rough-vol 校准在压力日更可用</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27575">Pricing and Calibration of
+Bitcoin Inverse Options via the Rough Bergomi
+Model</a>（arXiv:2608.27575）<br>
 <strong>作者</strong>：Riccardo Caruso<br>
 <strong>来源/分类</strong>：arXiv · q-fin.CP、q-fin.MF<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>这篇论文处理 Deribit 上以 BTC 结算而非美元结算的 inverse option，其 payoff 含 max(S_T−K,0)/S_T，既有非线性结算，又有比经典 Heston 更粗糙的短期限波动结构。作者把 rough Bergomi（rBergomi）适配到该 payoff，用三条计算管线比较：粗网格 Cholesky + log-Euler、Hybrid scheme + log-Euler，以及 Hybrid scheme + Mixed estimator；模型对 2022 年 5 月至 2025 年 3 月的 30 个隐含波动率 surface 做 calibration，覆盖 7 个压力事件和 9 个按波动率分层的平静 regime。每个 maturity 用 10,000 条 variance path、100 个时间步，先算期权价格，再反解 Black–Scholes implied volatility，并用 Differential Evolution 搜索 H、η、ρ。</p>
-<p>作者报告 Hybrid+Mixed 在 30 个 snapshot 上平均 RMSE 22.83 个 IV percentage points、中位数 19.60 pp，优于 Cholesky+Euler 的 41.76/27.68 pp，也比 Hybrid+Euler 的 39.43/33.67 pp 好；平均耗时 17 秒/snapshot，对比 Cholesky+Euler 的 5.6 分钟，约 19.9 倍加速。压力日 RMSE 为 22.21 pp 对 44.90 pp，平静日三种方法差距在约 1 pp 内；FTX 事件日的 RMSE 为 18.84 pp 对 124.65 pp。校准出的 H 在多数 regime 为 0.01–0.06，支持作者所称的 rough volatility；calibration error 与 at-the-money IV 水平的 Pearson 相关约 0.89。</p>
-<p>价值在于把 variance reduction、粗糙波动模拟和 inverse payoff 的数值稳定性连起来，且报告了压力事件而非只报全样本平均。证据边界是 calibration fit，不是样本外价格预测、对冲误差或可交易收益；30 个 surface、单一交易所、参数搜索边界、报价清洗和流动性/执行条件都可能影响外推。隐含波动率误差在 ATM 高波动时明显放大，不能把计算提速解读成策略 alpha。适合波动率交易、数字资产衍生品和 Monte Carlo 工程读者，建议读 inverse payoff、三种模拟/估计器、calibration objective、表 4 聚合结果和 FTX/LUNA 压力测试。</p>
+<p>这篇论文处理 Deribit 上以 BTC 结算而非美元结算的 inverse option，其
+payoff 含 max(S_T−K,0)/S_T，既有非线性结算，又有比经典 Heston
+更粗糙的短期限波动结构。作者把 rough Bergomi（rBergomi）适配到该
+payoff，用三条计算管线比较：粗网格 Cholesky + log-Euler、Hybrid scheme +
+log-Euler，以及 Hybrid scheme + Mixed estimator；模型对 2022 年 5 月至
+2025 年 3 月的 30 个隐含波动率 surface 做 calibration，覆盖 7
+个压力事件和 9 个按波动率分层的平静 regime。每个 maturity 用 10,000 条
+variance path、100 个时间步，先算期权价格，再反解 Black–Scholes implied
+volatility，并用 Differential Evolution 搜索 H、η、ρ。</p>
+<p>作者报告 Hybrid+Mixed 在 30 个 snapshot 上平均 RMSE 22.83 个 IV
+percentage points、中位数 19.60 pp，优于 Cholesky+Euler 的 41.76/27.68
+pp，也比 Hybrid+Euler 的 39.43/33.67 pp 好；平均耗时 17
+秒/snapshot，对比 Cholesky+Euler 的 5.6 分钟，约 19.9 倍加速。压力日
+RMSE 为 22.21 pp 对 44.90 pp，平静日三种方法差距在约 1 pp 内；FTX
+事件日的 RMSE 为 18.84 pp 对 124.65 pp。校准出的 H 在多数 regime 为
+0.01–0.06，支持作者所称的 rough volatility；calibration error 与
+at-the-money IV 水平的 Pearson 相关约 0.89。</p>
+<p>价值在于把 variance reduction、粗糙波动模拟和 inverse payoff
+的数值稳定性连起来，且报告了压力事件而非只报全样本平均。证据边界是
+calibration fit，不是样本外价格预测、对冲误差或可交易收益；30 个
+surface、单一交易所、参数搜索边界、报价清洗和流动性/执行条件都可能影响外推。隐含波动率误差在
+ATM 高波动时明显放大，不能把计算提速解读成策略
+alpha。适合波动率交易、数字资产衍生品和 Monte Carlo 工程读者，建议读
+inverse payoff、三种模拟/估计器、calibration objective、表 4 聚合结果和
+FTX/LUNA 压力测试。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27575">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27575">PDF</a></p>
-<h3 id="客户披露冲击供应商有时会为守住客户而接受低利润"><a class="markdownIt-Anchor" href="#客户披露冲击供应商有时会为守住客户而接受低利润"></a> 客户披露冲击：供应商有时会为守住客户而接受低利润</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27598">Do Customer Disclosures Affect Suppliers’ Internal Capital Allocation Decisions?</a>（arXiv:2608.27598）<br>
+<h3 id="客户披露冲击供应商有时会为守住客户而接受低利润">客户披露冲击：供应商有时会为守住客户而接受低利润</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27598">Do
+Customer Disclosures Affect Suppliers' Internal Capital Allocation
+Decisions?</a>（arXiv:2608.27598）<br>
 <strong>作者</strong>：Sangwook Nam<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、<a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a><br>
+<strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文问的是：客户扩大分部披露后，供应商会因为获得更多需求信息而提高投资配置效率，还是因为竞争威胁而向相关但增长信号较弱的业务追加产能。作者把 SFAS 131 的客户分部披露采用当作 customer-level disclosure shock，连接 Compustat Segment、WRDS Supply Chain、BEA Input–Output 关系和 EDGAR 10-K 手工收集的重述分部数据；1996–2000 的 firm-level 主回归有 897 个 supplier-year 观测，segment-level 主分析有 4,445 个 supplier-segment-customer-year。识别采用连续 treatment（主要客户中扩大披露者的比例）× post 的 difference-in-differences，并加入 firm/year 或 industry-year 固定效应；竞争用 TNIC-3 rival count 与产品文本相似度衡量，投资偏离用销售增长/Tobin’s q 基准拆成 positive 与 negative residual。</p>
-<p>作者报告，受更多客户披露暴露的供应商，TNIC-3 竞争者数量相对前期均值 34 个增加约 7 个、约 20%，产品文本相似度增加约 10%；内部资本配置转向相对于 Tobin’s q 增长机会更弱的分部，约占总资本支出的 6%。segment-level 的 positive investment residual 系数为 0.0093，而前期均值为 0.031，约相当于前期均值的 30%，negative residual 没有同步下降，更符合“为应对竞争而追加投资”而非单纯修复 under-investment。更大客户和更高供应商行业集中度下效应更强；更大的再配置与随后市场份额、客户数增加相关，但 positive residual 较高的分部在 t+2/t+3 的 ROA 系数分别为 -0.8549 与 -0.9430，显示守住关系有利润代价。</p>
-<p>这项研究的价值是把披露、产业竞争和企业内部资本配置连接起来，并用分部层级区分 information channel 与 competitive-threat channel。但“冲击”与 DiD 只是在寻求因果解释，不能替代完整的因果识别：平行趋势只能向前检查约两年，供应商-客户匹配有披露缺失，样本是历史美国企业，市场份额和 ROA 结果也可能受未观测经营变化影响。上述是会计/公司金融观察与准实验结果，不是个股投资信号或投资建议。适合公司金融、会计披露、供应链和产业组织读者，建议读数据连接、DiD 设定、竞争结果、firm/segment investment 表、客户规模/行业集中度异质性、ROA 后果和 parallel-trends 限制。</p>
+<p>论文问的是：客户扩大分部披露后，供应商会因为获得更多需求信息而提高投资配置效率，还是因为竞争威胁而向相关但增长信号较弱的业务追加产能。作者把
+SFAS 131 的客户分部披露采用当作 customer-level disclosure shock，连接
+Compustat Segment、WRDS Supply Chain、BEA Input–Output 关系和 EDGAR 10-K
+手工收集的重述分部数据；1996–2000 的 firm-level 主回归有 897 个
+supplier-year 观测，segment-level 主分析有 4,445 个
+supplier-segment-customer-year。识别采用连续
+treatment（主要客户中扩大披露者的比例）× post 的
+difference-in-differences，并加入 firm/year 或 industry-year
+固定效应；竞争用 TNIC-3 rival count
+与产品文本相似度衡量，投资偏离用销售增长/Tobin’s q 基准拆成 positive 与
+negative residual。</p>
+<p>作者报告，受更多客户披露暴露的供应商，TNIC-3 竞争者数量相对前期均值
+34 个增加约 7 个、约 20%，产品文本相似度增加约
+10%；内部资本配置转向相对于 Tobin’s q
+增长机会更弱的分部，约占总资本支出的 6%。segment-level 的 positive
+investment residual 系数为 0.0093，而前期均值为
+0.031，约相当于前期均值的 30%，negative residual
+没有同步下降，更符合“为应对竞争而追加投资”而非单纯修复
+under-investment。更大客户和更高供应商行业集中度下效应更强；更大的再配置与随后市场份额、客户数增加相关，但
+positive residual 较高的分部在 t+2/t+3 的 ROA 系数分别为 -0.8549 与
+-0.9430，显示守住关系有利润代价。</p>
+<p>这项研究的价值是把披露、产业竞争和企业内部资本配置连接起来，并用分部层级区分
+information channel 与 competitive-threat channel。但“冲击”与 DiD
+只是在寻求因果解释，不能替代完整的因果识别：平行趋势只能向前检查约两年，供应商-客户匹配有披露缺失，样本是历史美国企业，市场份额和
+ROA
+结果也可能受未观测经营变化影响。上述是会计/公司金融观察与准实验结果，不是个股投资信号或投资建议。适合公司金融、会计披露、供应链和产业组织读者，建议读数据连接、DiD
+设定、竞争结果、firm/segment investment
+表、客户规模/行业集中度异质性、ROA 后果和 parallel-trends 限制。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27598">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27598">PDF</a></p>
-<h2 id="金融论文"><a class="markdownIt-Anchor" href="#金融论文"></a> 金融论文</h2>
-<h3 id="causal-non-causal-state-space-models用非因果结构描述金融泡沫"><a class="markdownIt-Anchor" href="#causal-non-causal-state-space-models用非因果结构描述金融泡沫"></a> Causal Non-causal State Space Models：用非因果结构描述金融泡沫</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.28115">Causal Non-causal State Space Models and the Modelling of Financial Bubbles</a>（arXiv:2608.28115）<br>
+<h2 id="金融论文">金融论文</h2>
+<h3 id="causal-non-causal-state-space-models用非因果结构描述金融泡沫">Causal
+Non-causal State Space Models：用非因果结构描述金融泡沫</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.28115">Causal Non-causal State Space
+Models and the Modelling of Financial
+Bubbles</a>（arXiv:2608.28115）<br>
 <strong>作者</strong>：Frederik Bjerg Krabbe<br>
 <strong>来源/分类</strong>：arXiv · econ.EM<br>
 <strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文研究带局部爆炸上升和急跌的时间序列，提出用 causal non-causal state space model 表示金融泡沫，并讨论状态与参数如何推断；作者还把 causal non-causal convolution autoregressive model 与 rational-expectations stock-price model 联系起来，以 stable non-causal autoregressive model 为 benchmark，估计 dot-com bubble 的规模，既做 real-time 也做事后估计。价值是让泡沫的形成与崩落进入状态空间框架；但摘要没有给估计区间、预测误差、严格样本外结果或识别假设，模型拟合与泡沫因果解释不是一回事。</p>
+<p>论文研究带局部爆炸上升和急跌的时间序列，提出用 causal non-causal
+state space model 表示金融泡沫，并讨论状态与参数如何推断；作者还把
+causal non-causal convolution autoregressive model 与
+rational-expectations stock-price model 联系起来，以 stable non-causal
+autoregressive model 为 benchmark，估计 dot-com bubble 的规模，既做
+real-time
+也做事后估计。价值是让泡沫的形成与崩落进入状态空间框架；但摘要没有给估计区间、预测误差、严格样本外结果或识别假设，模型拟合与泡沫因果解释不是一回事。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.28115">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.28115">PDF</a></p>
-<h3 id="disaffection-at-work工作叙事如何改变员工的投入方式"><a class="markdownIt-Anchor" href="#disaffection-at-work工作叙事如何改变员工的投入方式"></a> Disaffection at Work：工作叙事如何改变员工的投入方式</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27538">Disaffection at Work: Employee Responses to Job-Related Information</a>（arXiv:2608.27538）<br>
-<strong>作者</strong>：Beatrice Braut、Mariele Macaluso、Vincenzo Mollisi<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、<a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a><br>
+<h3 id="disaffection-at-work工作叙事如何改变员工的投入方式">Disaffection
+at Work：工作叙事如何改变员工的投入方式</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27538">Disaffection at Work: Employee
+Responses to Job-Related Information</a>（arXiv:2608.27538）<br>
+<strong>作者</strong>：Beatrice Braut、Mariele Macaluso、Vincenzo
+Mollisi<br>
+<strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br>
 <strong>证据状态</strong>：仅依据摘要。</p>
-<p>作者在意大利和法国的代表性员工样本上做随机调查实验，把工作信息框定为社会正义/集体权利，或工作组织/雇佣实践，观察 quiet quitting 的 intensive margin 反应。摘要报告，正义导向叙事提高 detachment、降低 passive disengagement，组织导向 framing 没有系统性效果。研究可帮助理解劳动力供给、企业组织和员工行为；但摘要没有给样本量、处理效应大小、实验执行细节或长期就业结果，短期调查行为不是企业利润、资产价格或因果生产率。</p>
+<p>作者在意大利和法国的代表性员工样本上做随机调查实验，把工作信息框定为社会正义/集体权利，或工作组织/雇佣实践，观察
+quiet quitting 的 intensive margin 反应。摘要报告，正义导向叙事提高
+detachment、降低 passive disengagement，组织导向 framing
+没有系统性效果。研究可帮助理解劳动力供给、企业组织和员工行为；但摘要没有给样本量、处理效应大小、实验执行细节或长期就业结果，短期调查行为不是企业利润、资产价格或因果生产率。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27538">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27538">PDF</a></p>
-<h3 id="面向厚尾与随机波动-var-的-rc-预测软件设计"><a class="markdownIt-Anchor" href="#面向厚尾与随机波动-var-的-rc-预测软件设计"></a> 面向厚尾与随机波动 VAR 的 R/C++ 预测软件设计</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.28087">A Design Concept of Forecasting Software for Normalized Vector Autoregressions with Fat Tails and Stochastic Volatility</a>（arXiv:2608.28087）<br>
+<h3 id="面向厚尾与随机波动-var-的-rc-预测软件设计">面向厚尾与随机波动
+VAR 的 R/C++ 预测软件设计</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.28087">A
+Design Concept of Forecasting Software for Normalized Vector
+Autoregressions with Fat Tails and Stochastic
+Volatility</a>（arXiv:2608.28087）<br>
 <strong>作者</strong>：Fei Shang、Xiaolei Wang、Tomasz Woźniak<br>
-<strong>来源/分类</strong>：arXiv · econ.EM、<a target="_blank" rel="noopener" href="http://stat.CO">stat.CO</a><br>
+<strong>来源/分类</strong>：arXiv · econ.EM、stat.CO<br>
 <strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文介绍一套 R package 设计，把 Bayesian、结构、多变量、动态、层级、非线性和非高斯宏观模型用 C++ 算法实现，再通过 R 提供标准化工作流；示例比较带 centred 与 non-centred stochastic volatility 的 VAR，作者报告后者改善 density 与 point prediction。价值在于把复杂模型的计算成本、输入输出对象和复现流程作为软件问题处理；摘要没有给数据集、预测 horizon、指标数值或样本外协议，软件能力提升不等于宏观预测稳定性，更不等于交易 alpha。</p>
+<p>论文介绍一套 R package 设计，把
+Bayesian、结构、多变量、动态、层级、非线性和非高斯宏观模型用 C++
+算法实现，再通过 R 提供标准化工作流；示例比较带 centred 与 non-centred
+stochastic volatility 的 VAR，作者报告后者改善 density 与 point
+prediction。价值在于把复杂模型的计算成本、输入输出对象和复现流程作为软件问题处理；摘要没有给数据集、预测
+horizon、指标数值或样本外协议，软件能力提升不等于宏观预测稳定性，更不等于交易
+alpha。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.28087">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.28087">PDF</a></p>
-<h3 id="digital-engagement互联网使用频率与美国劳动力市场分层"><a class="markdownIt-Anchor" href="#digital-engagement互联网使用频率与美国劳动力市场分层"></a> Digital Engagement：互联网使用频率与美国劳动力市场分层</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.05294">Digital Engagement, Income Disparities, and Job Seeking in the United States since 2010</a>（arXiv:2511.05294）<br>
+<h3 id="digital-engagement互联网使用频率与美国劳动力市场分层">Digital
+Engagement：互联网使用频率与美国劳动力市场分层</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.05294">Digital Engagement, Income
+Disparities, and Job Seeking in the United States since
+2010</a>（arXiv:2511.05294）<br>
 <strong>作者</strong>：Shaolong Wu、Yijiang River Dong、Siming He<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CY">cs.CY</a>、<a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、<a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a><br>
+<strong>来源/分类</strong>：arXiv · cs.CY、econ.GN、q-fin.EC<br>
 <strong>证据状态</strong>：仅依据摘要。</p>
-<p>作者使用 NLSY97 cohort 的 2011、2013、2015 可比波次，保留 2017 作为后续劳动力市场背景，研究互联网使用频率与劳动收入、就业依附和求职。相对每日使用，少于每日使用者收入约低 11%–20%，不使用者在 2011/2013 年收入约低 18%–21%，且不使用互联网者报告全年工作的概率低 13–23 个百分点；教育解释了原始数字梯度的一部分，pooled lagged-outcome 与 doubly robust transition estimates 试图区分长期分层和采用后的变化。价值是把频率指标与数字基础设施/技能支持区分开；限制是观察数据、教育和就业选择会造成混淆，摘要没有给完整模型、权重、缺失处理和因果处理效应，不能把相关性写成互联网导致收入差异。</p>
+<p>作者使用 NLSY97 cohort 的 2011、2013、2015 可比波次，保留 2017
+作为后续劳动力市场背景，研究互联网使用频率与劳动收入、就业依附和求职。相对每日使用，少于每日使用者收入约低
+11%–20%，不使用者在 2011/2013 年收入约低
+18%–21%，且不使用互联网者报告全年工作的概率低 13–23
+个百分点；教育解释了原始数字梯度的一部分，pooled lagged-outcome 与
+doubly robust transition estimates
+试图区分长期分层和采用后的变化。价值是把频率指标与数字基础设施/技能支持区分开；限制是观察数据、教育和就业选择会造成混淆，摘要没有给完整模型、权重、缺失处理和因果处理效应，不能把相关性写成互联网导致收入差异。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.05294">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2511.05294">PDF</a></p>
-<h3 id="韩国教育竞争与低生育分配机制可能比转移支付更关键"><a class="markdownIt-Anchor" href="#韩国教育竞争与低生育分配机制可能比转移支付更关键"></a> 韩国教育竞争与低生育：分配机制可能比转移支付更关键</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27980">The Race for Elite Destinations: Education Competition and Low Fertility in Korea</a>（arXiv:2608.27980）<br>
+<h3 id="韩国教育竞争与低生育分配机制可能比转移支付更关键">韩国教育竞争与低生育：分配机制可能比转移支付更关键</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27980">The
+Race for Elite Destinations: Education Competition and Low Fertility in
+Korea</a>（arXiv:2608.27980）<br>
 <strong>作者</strong>：Dongwoo Kim<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、<a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a><br>
+<strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br>
 <strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文把韩国激烈教育竞争建模为 assignment externality：家庭共同增加教育投入会抬高录取门槛，使养育成本上升。作者报告家庭把终身收入约 9% 用于教育、主要是测得回报接近零的课外辅导；在定量模型中，把分数制分配替换为保持容量的 lottery，完成生育数每对夫妇增加 0.24 个，pronatal transfer 只达到其中八分之一，教育税几乎没有增加，代际下降主要由偏好变化而非竞争变强解释。它对公共财政、人口经济和教育金融有启发；但这是校准模型的反事实，不是随机政策实验，摘要没有给参数识别、拟合窗口、稳健性和家庭异质性，因此不能直接推导政策回报或投资结论。</p>
+<p>论文把韩国激烈教育竞争建模为 assignment
+externality：家庭共同增加教育投入会抬高录取门槛，使养育成本上升。作者报告家庭把终身收入约
+9%
+用于教育、主要是测得回报接近零的课外辅导；在定量模型中，把分数制分配替换为保持容量的
+lottery，完成生育数每对夫妇增加 0.24 个，pronatal transfer
+只达到其中八分之一，教育税几乎没有增加，代际下降主要由偏好变化而非竞争变强解释。它对公共财政、人口经济和教育金融有启发；但这是校准模型的反事实，不是随机政策实验，摘要没有给参数识别、拟合窗口、稳健性和家庭异质性，因此不能直接推导政策回报或投资结论。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27980">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27980">PDF</a></p>
 
                 
