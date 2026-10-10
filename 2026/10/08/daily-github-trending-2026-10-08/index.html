@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="GITHUB TRENDING · 2026.10.08   今天的 GitHub all-languages 日榜抓到 13 个仓库条目；按 README 可复现机制、许可证、最近 Release 或提交和工程边界筛选出 8 个。主线有三条：Agent 能否留下可审计的记忆、动作和安全证据，复杂能力能否落到本地桌面或二进制，以及工具是否把真实限制和许可证说清楚。日增 stars 只是当日快">
+    <meta name="description" content="GITHUB TRENDING · 2026.10.08   今天的 GitHub all-languages 日榜抓到 13 个仓库条目；按 README 可复现机制、许可证、最近 Release 或提交和工程边界筛选出 8 个。主线有三条：Agent 能否留下可审计的记忆、动作和安全证据，复杂能力能否落到本地桌面或二进制，以及工具是否把真实限制和许可证说清楚。日增 stars 只是当日快照">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2026-10-08 GitHub 热榜简报：Agent 工程、逆向分析与可验证的计算机使用">
 <meta property="og:url" content="https://www.polarishaw.top/2026/10/08/daily-github-trending-2026-10-08/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="GITHUB TRENDING · 2026.10.08   今天的 GitHub all-languages 日榜抓到 13 个仓库条目；按 README 可复现机制、许可证、最近 Release 或提交和工程边界筛选出 8 个。主线有三条：Agent 能否留下可审计的记忆、动作和安全证据，复杂能力能否落到本地桌面或二进制，以及工具是否把真实限制和许可证说清楚。日增 stars 只是当日快">
+<meta property="og:description" content="GITHUB TRENDING · 2026.10.08   今天的 GitHub all-languages 日榜抓到 13 个仓库条目；按 README 可复现机制、许可证、最近 Release 或提交和工程边界筛选出 8 个。主线有三条：Agent 能否留下可审计的记忆、动作和安全证据，复杂能力能否落到本地桌面或二进制，以及工具是否把真实限制和许可证说清楚。日增 stars 只是当日快照">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-10-04/pixiv-rank-001-150228904.jpg">
 <meta property="article:published_time" content="2026-10-08T01:00:00.000Z">
@@ -32,8 +32,8 @@
 <meta property="article:tag" content="GitHub">
 <meta property="article:tag" content="开源">
 <meta property="article:tag" content="Agent">
-<meta property="article:tag" content="逆向工程">
 <meta property="article:tag" content="测试">
+<meta property="article:tag" content="逆向工程">
 <meta property="article:tag" content="调试器">
 <meta property="article:tag" content="计算机使用">
 <meta name="twitter:card" content="summary_large_image">
@@ -352,32 +352,164 @@
               <div class="markdown-body">
                 
                 <div class="briefing-masthead">
-  <p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.10.08</p>
-  <p>今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub all-languages 日榜</a>抓到 13 个仓库条目；按 README 可复现机制、许可证、最近 Release 或提交和工程边界筛选出 8 个。主线有三条：Agent 能否留下可审计的记忆、动作和安全证据，复杂能力能否落到本地桌面或二进制，以及工具是否把真实限制和许可证说清楚。日增 stars 只是当日快照，不是质量证明。</p>
-  <div class="briefing-masthead__topics"><span>Agent 证据链</span><span>持久化上下文</span><span>逆向工程</span><span>GPU/桌面工具</span><span>计算机使用</span><span>安全审计</span><span>可回放测试</span></div>
+<p class="briefing-masthead__eyebrow">
+GITHUB TRENDING · 2026.10.08
+</p>
+<p>
+今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub
+all-languages 日榜</a>抓到 13 个仓库条目；按 README
+可复现机制、许可证、最近 Release 或提交和工程边界筛选出 8
+个。主线有三条：Agent
+能否留下可审计的记忆、动作和安全证据，复杂能力能否落到本地桌面或二进制，以及工具是否把真实限制和许可证说清楚。日增
+stars 只是当日快照，不是质量证明。
+</p>
+<div class="briefing-masthead__topics">
+<span>Agent
+证据链</span><span>持久化上下文</span><span>逆向工程</span><span>GPU/桌面工具</span><span>计算机使用</span><span>安全审计</span><span>可回放测试</span>
 </div>
-
+</div>
 <span id="more"></span>
-<h2 id="今日要点"><a href="#今日要点" class="headerlink" title="今日要点"></a>今日要点</h2><p>Agent 工程开始从“生成一段看起来合理的回答”转向“留下可复核的过程”：<a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem#readme">claude-mem</a>保存工具观察并按需检索，<a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e#readme">e2e</a>把模型动作接到断言和回放，<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill#readme">Cloudflare Security Audit</a>则把安全审计拆成覆盖台账、候选验证和独立复核。它们共同暴露一个比提示词更硬的问题：过程是否可重放、证据是否可追溯、失败能否被明确标记。</p>
-<p>另一条信号来自本地系统边界。<a target="_blank" rel="noopener" href="https://github.com/morluto/rea#readme">REA</a>把逆向调查接到 MCP，<a target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger#readme">RAD Debugger</a>把调试器、RDI 调试信息和链接器放进同一工程，<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5#readme">AnyPS5</a>研究可执行文件移植与着色器重编译，<a target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux#readme">cmux</a>则把多 Agent 工作区做成可编程的本地终端。它们的学习价值都不在“能否一键成功”，而在于把 ABI、运行时、权限、平台和许可证的边界暴露出来。</p>
-<p>计算机使用仍在往两个方向分化：<a target="_blank" rel="noopener" href="https://github.com/trycua/cua#readme">Cua</a>把桌面驱动、虚拟机、模型和评测放进同一套仓库，适合研究跨平台执行与评估；与此同时，测试和安全项目在补上可验证性。真正值得跟踪的不是星数最高的项目，而是哪些仓库正在把 Agent 行为变成结构化工件、测试记录或可审计证据。</p>
-<h2 id="值得尝试"><a href="#值得尝试" class="headerlink" title="值得尝试"></a>值得尝试</h2><h3 id="morluto-rea"><a href="#morluto-rea" class="headerlink" title="morluto/rea"></a><a target="_blank" rel="noopener" href="https://github.com/morluto/rea">morluto/rea</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/morluto/rea#readme">REA</a>提供一个 MCP 和 CLI 工作流，用来调查应用行为、JavaScript/Electron、.NET 组件、网站以及原生二进制，并把结论连同证据、限制和未知项返回。它适合做互操作、调试和安全研究的工程师，也适合研究 Agent 如何形成可追溯的逆向证据链；限制是深度原生分析仍需 Hopper、Ghidra 或 IDA，安装要求 Node.js 22.19+，目标程序还必须有合法研究授权。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为 TypeScript、当日新增 4,655 stars、总 stars 15,540；仓库使用 <a target="_blank" rel="noopener" href="https://github.com/morluto/rea/blob/main/LICENSE">MIT</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/morluto/rea/releases/tag/rea-agents-5.0.0">Release rea-agents-5.0.0</a>，最近提交为<a target="_blank" rel="noopener" href="https://github.com/morluto/rea/commit/2bf3663f654386c9fd8c1437c49659df97bd4697">检查历史 Web 网络捕获</a>。</p>
-<h3 id="boykopovar-AnyPS5"><a href="#boykopovar-AnyPS5" class="headerlink" title="boykopovar/AnyPS5"></a><a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5">boykopovar/AnyPS5</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5#readme">AnyPS5</a>研究把 PS5 可执行文件移植到 Linux 和 Windows：relinker 负责转换目标格式，system PRX 库负责动态链接，着色器重编译器可以生成 SPIR-V，而且项目不依赖模拟器或独立运行时。它适合学习 ABI、系统库兼容层、着色器编译和游戏保存研究；限制是兼容游戏仍有限，构建依赖具体平台工具链，二进制的来源与版权责任由使用者承担。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为 C++、当日新增 2,716 stars、总 stars 10,745；项目采用 <a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/blob/main/LICENSE">GPL-2.0-only</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.1">Release v0.1.1</a>，最近提交为<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/commit/df16c4c256be3c44e03eb9149a6ce5f8e8a038b2">合并 image-gather-1d-array 改动</a>。</p>
-<h3 id="EpicGames-raddebugger"><a href="#EpicGames-raddebugger" class="headerlink" title="EpicGames/raddebugger"></a><a target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger">EpicGames/raddebugger</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger#readme">RAD Debugger</a>是原生、用户态、多进程图形调试器，同时维护自定义 RAD Debug Info（RDI）格式和 RAD Linker；README 明确当前主要支持本机 Windows x64 与 PDB。它适合编译器、调试器和大型 C/C++ 工程开发者研究调试信息、进程控制和链接性能；限制是项目仍处于 Alpha，Linux/DWARF 支持还在路线图中，README 本身也把具体使用说明放在构建产物和 Release 里。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为 C、当日新增 90 stars、总 stars 7,875；仓库根 <a target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger/blob/master/LICENSE">LICENSE</a>为 MIT，最新 <a target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger/releases/tag/v0.9.29-alpha">Release v0.9.29-alpha</a>，最近提交修正了<a target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger/commit/b6d8c3fd9eaf7b55960d80738365742a8fba9e29">DWARF 指令操作数上限判断</a>。</p>
-<h3 id="thedotmack-claude-mem"><a href="#thedotmack-claude-mem" class="headerlink" title="thedotmack/claude-mem"></a><a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem">thedotmack/claude-mem</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem#readme">claude-mem</a>通过生命周期 hooks 捕获工具观察、生成语义摘要，再用 SQLite/FTS5、Chroma 混合检索和渐进式披露把上下文带到后续会话，并提供引用 ID。它适合研究 Agent 记忆层、检索边界和 token 成本；限制是依赖 Node.js 20、支持插件的 Claude Code、Bun、uv 与 SQLite，虽然 README 提供隐私标记，自动捕获的敏感上下文仍需要使用者自行审计。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为 TypeScript、当日新增 578 stars、总 stars 97,752；项目使用 <a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem/blob/main/LICENSE">Apache-2.0</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem/releases/tag/v13.34.2">Release v13.34.2</a>，最近提交更新了<a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem/commit/71ddd11735d6dc38a6356fe376921fc216f2aa38">v13.34.2 变更日志</a>。</p>
-<h3 id="manaflow-ai-cmux"><a href="#manaflow-ai-cmux" class="headerlink" title="manaflow-ai/cmux"></a><a target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux">manaflow-ai/cmux</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux#readme">cmux</a>是基于 Ghostty 的 macOS 原生终端，提供垂直/水平工作区、通知、内置浏览器、SSH，以及可通过 CLI 和 socket API 编排的 Agent 面板。它适合需要同时运行多个 coding-agent、又希望保留本地终端可编程性的开发者；限制是它面向 macOS，根目录主要代码为 GPL-3.0-or-later，而 <a target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux/blob/main/LICENSE">LICENSE</a>明确列出的 web/relay 服务目录改用 BUSL-1.1，生产自托管需要商业许可。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为 Swift、当日新增 44 stars、总 stars 27,865；最新 <a target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux/releases/tag/v0.65.0">Release v0.65.0</a>，许可证边界以仓库的 <a target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux/blob/main/LICENSE">LICENSE</a>为准。</p>
-<h3 id="trycua-cua"><a href="#trycua-cua" class="headerlink" title="trycua/cua"></a><a target="_blank" rel="noopener" href="https://github.com/trycua/cua">trycua/cua</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/trycua/cua#readme">Cua</a>把 Cua Driver 的桌面/浏览器操作、Lume 本地虚拟机、CUA-S1 决策模型和 Cua Bench 评测放在同一仓库；Driver 覆盖 macOS、Windows 和 Linux，并提供 CLI、MCP 及多语言 SDK。它适合做 computer-use 基础设施、跨平台执行和 Agent 评测；限制是 Cua Spaces 目前要求 macOS 26 或更高版本，Spaces 使用 FSL-1.1-MIT，仓库其他主体代码以 MIT 为主，模型权重和各数据集还要按各自卡片核对。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为 Rust、当日新增 228 stars、总 stars 28,771；最新 <a target="_blank" rel="noopener" href="https://github.com/trycua/cua/releases/tag/cua-sdk-v0.4.1">Release cua-sdk v0.4.1</a>，最近提交修正了<a target="_blank" rel="noopener" href="https://github.com/trycua/cua/commit/3532ba53f9473f56be17d4c022b5cb69e4ef557e">Chromium 地址栏的后台提交行为</a>。</p>
-<h3 id="cloudflare-security-audit-skill"><a href="#cloudflare-security-audit-skill" class="headerlink" title="cloudflare/security-audit-skill"></a><a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill#readme">security-audit</a>把 Agent 安全审计拆成六个阶段：侦察、覆盖台账驱动的 hunting、候选验证、结构化 findings、独立记录复核和中立报告，并用 JSON schema 校验结果。它适合安全评审团队和希望把审计过程变成可追溯工件的 Agent 基础设施开发者；限制是需要支持并行子 Agent 的 coding agent、Node.js 和操作系统级沙箱，缺少这些边界时项目会把结论保留为 needs_validation，而不是假装已经执行目标代码。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为 JavaScript、当日新增 576 stars、总 stars 26,082；项目采用 <a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill/blob/main/LICENSE">MIT</a>，当前公开的最近提交（2026-09-14）为<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill/commit/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8">澄清审计指导与完整模式</a>。</p>
-<h3 id="tester-army-e2e"><a href="#tester-army-e2e" class="headerlink" title="tester-army/e2e"></a><a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e">tester-army/e2e</a></h3><p><a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e#readme">e2e</a>允许用自然语言描述目标，让 Agent 驱动 Web 或移动应用，再用 locator 和 assertion 检查结果；被后续断言覆盖的 Agent 步骤会记录动作，在应用没有变化时可以回放而不再次调用模型。它适合 QA、测试基础设施和想研究“模型动作如何变成可重复测试”的开发者；限制是首次运行仍需订阅、API key 或本地模型，非 Agent 步骤虽然不需要模型，但框架和提供商接入仍在快速演进。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为 TypeScript、当日新增 1,390 stars、总 stars 7,513；项目采用 <a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e/blob/main/LICENSE">Apache-2.0</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e/releases/tag/%40e2e-dev/kernel%400.2.0">Release @e2e-dev/kernel@0.2.0</a>，最近提交为<a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e/commit/f1a1ac241042c089ae773213c4e4f0da34f2f3d8">让每次 decide 调用都携带 providerOptions</a>。</p>
-<h2 id="快速浏览"><a href="#快速浏览" class="headerlink" title="快速浏览"></a>快速浏览</h2><div class="briefing-quick-list">
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/morluto/rea"><span class="briefing-quick-item__source">逆向 MCP · TypeScript · +4,655/日</span><span class="briefing-quick-item__body"><strong>morluto/rea</strong><small>把应用、脚本和原生二进制的逆向调查组织成带证据的 MCP 工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5"><span class="briefing-quick-item__source">可执行文件移植 · C++ · +2,716/日</span><span class="briefing-quick-item__body"><strong>boykopovar/AnyPS5</strong><small>用 relinker、系统库和着色器重编译研究 PS5 可执行文件移植。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger"><span class="briefing-quick-item__source">调试器 · C · +90/日</span><span class="briefing-quick-item__body"><strong>EpicGames/raddebugger</strong><small>把原生多进程调试、RDI 调试信息和链接器放进同一工程。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem"><span class="briefing-quick-item__source">Agent 记忆 · TypeScript · +578/日</span><span class="briefing-quick-item__body"><strong>thedotmack/claude-mem</strong><small>捕获工具观察并跨会话检索上下文，保留引用与隐私控制。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux"><span class="briefing-quick-item__source">Agent 终端 · Swift · +44/日</span><span class="briefing-quick-item__body"><strong>manaflow-ai/cmux</strong><small>用 Ghostty-based macOS 终端组织多 Agent 工作区、通知和浏览器。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/trycua/cua"><span class="briefing-quick-item__source">Computer use · Rust · +228/日</span><span class="briefing-quick-item__body"><strong>trycua/cua</strong><small>把桌面驱动、虚拟机、决策模型和 Agent 评测组合起来。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill"><span class="briefing-quick-item__source">安全审计 · JavaScript · +576/日</span><span class="briefing-quick-item__body"><strong>cloudflare/security-audit-skill</strong><small>用覆盖台账、独立验证和结构化 findings 组织 Agent 安全审计。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/tester-army/e2e"><span class="briefing-quick-item__source">Agent 测试 · TypeScript · +1,390/日</span><span class="briefing-quick-item__body"><strong>tester-army/e2e</strong><small>把自然语言动作接入可断言、可回放的 Web/移动端 E2E 测试。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+<h2 id="今日要点">今日要点</h2>
+<p>Agent
+工程开始从“生成一段看起来合理的回答”转向“留下可复核的过程”：<a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem#readme">claude-mem</a>保存工具观察并按需检索，<a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e#readme">e2e</a>把模型动作接到断言和回放，<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill#readme">Cloudflare
+Security
+Audit</a>则把安全审计拆成覆盖台账、候选验证和独立复核。它们共同暴露一个比提示词更硬的问题：过程是否可重放、证据是否可追溯、失败能否被明确标记。</p>
+<p>另一条信号来自本地系统边界。<a target="_blank" rel="noopener" href="https://github.com/morluto/rea#readme">REA</a>把逆向调查接到
+MCP，<a target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger#readme">RAD
+Debugger</a>把调试器、RDI
+调试信息和链接器放进同一工程，<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5#readme">AnyPS5</a>研究可执行文件移植与着色器重编译，<a target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux#readme">cmux</a>则把多
+Agent
+工作区做成可编程的本地终端。它们的学习价值都不在“能否一键成功”，而在于把
+ABI、运行时、权限、平台和许可证的边界暴露出来。</p>
+<p>计算机使用仍在往两个方向分化：<a target="_blank" rel="noopener" href="https://github.com/trycua/cua#readme">Cua</a>把桌面驱动、虚拟机、模型和评测放进同一套仓库，适合研究跨平台执行与评估；与此同时，测试和安全项目在补上可验证性。真正值得跟踪的不是星数最高的项目，而是哪些仓库正在把
+Agent 行为变成结构化工件、测试记录或可审计证据。</p>
+<h2 id="值得尝试">值得尝试</h2>
+<h3 id="morlutorea"><a target="_blank" rel="noopener" href="https://github.com/morluto/rea">morluto/rea</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/morluto/rea#readme">REA</a>提供一个 MCP
+和 CLI 工作流，用来调查应用行为、JavaScript/Electron、.NET
+组件、网站以及原生二进制，并把结论连同证据、限制和未知项返回。它适合做互操作、调试和安全研究的工程师，也适合研究
+Agent 如何形成可追溯的逆向证据链；限制是深度原生分析仍需 Hopper、Ghidra
+或 IDA，安装要求 Node.js
+22.19+，目标程序还必须有合法研究授权。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为
+TypeScript、当日新增 4,655 stars、总 stars 15,540；仓库使用
+<a target="_blank" rel="noopener" href="https://github.com/morluto/rea/blob/main/LICENSE">MIT</a>，最新
+<a target="_blank" rel="noopener" href="https://github.com/morluto/rea/releases/tag/rea-agents-5.0.0">Release
+rea-agents-5.0.0</a>，最近提交为<a target="_blank" rel="noopener" href="https://github.com/morluto/rea/commit/2bf3663f654386c9fd8c1437c49659df97bd4697">检查历史
+Web 网络捕获</a>。</p>
+<h3 id="boykopovaranyps5"><a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5">boykopovar/AnyPS5</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5#readme">AnyPS5</a>研究把
+PS5 可执行文件移植到 Linux 和 Windows：relinker 负责转换目标格式，system
+PRX 库负责动态链接，着色器重编译器可以生成
+SPIR-V，而且项目不依赖模拟器或独立运行时。它适合学习
+ABI、系统库兼容层、着色器编译和游戏保存研究；限制是兼容游戏仍有限，构建依赖具体平台工具链，二进制的来源与版权责任由使用者承担。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为
+C++、当日新增 2,716 stars、总 stars 10,745；项目采用
+<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/blob/main/LICENSE">GPL-2.0-only</a>，最新
+<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.1">Release
+v0.1.1</a>，最近提交为<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/commit/df16c4c256be3c44e03eb9149a6ce5f8e8a038b2">合并
+image-gather-1d-array 改动</a>。</p>
+<h3 id="epicgamesraddebugger"><a target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger">EpicGames/raddebugger</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger#readme">RAD
+Debugger</a>是原生、用户态、多进程图形调试器，同时维护自定义 RAD Debug
+Info（RDI）格式和 RAD Linker；README 明确当前主要支持本机 Windows x64 与
+PDB。它适合编译器、调试器和大型 C/C++
+工程开发者研究调试信息、进程控制和链接性能；限制是项目仍处于
+Alpha，Linux/DWARF 支持还在路线图中，README
+本身也把具体使用说明放在构建产物和 Release
+里。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为
+C、当日新增 90 stars、总 stars 7,875；仓库根
+<a target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger/blob/master/LICENSE">LICENSE</a>为
+MIT，最新
+<a target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger/releases/tag/v0.9.29-alpha">Release
+v0.9.29-alpha</a>，最近提交修正了<a target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger/commit/b6d8c3fd9eaf7b55960d80738365742a8fba9e29">DWARF
+指令操作数上限判断</a>。</p>
+<h3 id="thedotmackclaude-mem"><a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem">thedotmack/claude-mem</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem#readme">claude-mem</a>通过生命周期
+hooks 捕获工具观察、生成语义摘要，再用 SQLite/FTS5、Chroma
+混合检索和渐进式披露把上下文带到后续会话，并提供引用 ID。它适合研究
+Agent 记忆层、检索边界和 token 成本；限制是依赖 Node.js 20、支持插件的
+Claude Code、Bun、uv 与 SQLite，虽然 README
+提供隐私标记，自动捕获的敏感上下文仍需要使用者自行审计。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为
+TypeScript、当日新增 578 stars、总 stars 97,752；项目使用
+<a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem/blob/main/LICENSE">Apache-2.0</a>，最新
+<a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem/releases/tag/v13.34.2">Release
+v13.34.2</a>，最近提交更新了<a target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem/commit/71ddd11735d6dc38a6356fe376921fc216f2aa38">v13.34.2
+变更日志</a>。</p>
+<h3 id="manaflow-aicmux"><a target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux">manaflow-ai/cmux</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux#readme">cmux</a>是基于
+Ghostty 的 macOS
+原生终端，提供垂直/水平工作区、通知、内置浏览器、SSH，以及可通过 CLI 和
+socket API 编排的 Agent 面板。它适合需要同时运行多个
+coding-agent、又希望保留本地终端可编程性的开发者；限制是它面向
+macOS，根目录主要代码为 GPL-3.0-or-later，而
+<a target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux/blob/main/LICENSE">LICENSE</a>明确列出的
+web/relay 服务目录改用
+BUSL-1.1，生产自托管需要商业许可。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为
+Swift、当日新增 44 stars、总 stars 27,865；最新
+<a target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux/releases/tag/v0.65.0">Release
+v0.65.0</a>，许可证边界以仓库的
+<a target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux/blob/main/LICENSE">LICENSE</a>为准。</p>
+<h3 id="trycuacua"><a target="_blank" rel="noopener" href="https://github.com/trycua/cua">trycua/cua</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/trycua/cua#readme">Cua</a>把 Cua Driver
+的桌面/浏览器操作、Lume 本地虚拟机、CUA-S1 决策模型和 Cua Bench
+评测放在同一仓库；Driver 覆盖 macOS、Windows 和 Linux，并提供 CLI、MCP
+及多语言 SDK。它适合做 computer-use 基础设施、跨平台执行和 Agent
+评测；限制是 Cua Spaces 目前要求 macOS 26 或更高版本，Spaces 使用
+FSL-1.1-MIT，仓库其他主体代码以 MIT
+为主，模型权重和各数据集还要按各自卡片核对。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为
+Rust、当日新增 228 stars、总 stars 28,771；最新
+<a target="_blank" rel="noopener" href="https://github.com/trycua/cua/releases/tag/cua-sdk-v0.4.1">Release
+cua-sdk
+v0.4.1</a>，最近提交修正了<a target="_blank" rel="noopener" href="https://github.com/trycua/cua/commit/3532ba53f9473f56be17d4c022b5cb69e4ef557e">Chromium
+地址栏的后台提交行为</a>。</p>
+<h3 id="cloudflaresecurity-audit-skill"><a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill#readme">security-audit</a>把
+Agent 安全审计拆成六个阶段：侦察、覆盖台账驱动的
+hunting、候选验证、结构化 findings、独立记录复核和中立报告，并用 JSON
+schema 校验结果。它适合安全评审团队和希望把审计过程变成可追溯工件的
+Agent 基础设施开发者；限制是需要支持并行子 Agent 的 coding
+agent、Node.js 和操作系统级沙箱，缺少这些边界时项目会把结论保留为
+needs_validation，而不是假装已经执行目标代码。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为
+JavaScript、当日新增 576 stars、总 stars 26,082；项目采用
+<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill/blob/main/LICENSE">MIT</a>，当前公开的最近提交（2026-09-14）为<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill/commit/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8">澄清审计指导与完整模式</a>。</p>
+<h3 id="tester-armye2e"><a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e">tester-army/e2e</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e#readme">e2e</a>允许用自然语言描述目标，让
+Agent 驱动 Web 或移动应用，再用 locator 和 assertion
+检查结果；被后续断言覆盖的 Agent
+步骤会记录动作，在应用没有变化时可以回放而不再次调用模型。它适合
+QA、测试基础设施和想研究“模型动作如何变成可重复测试”的开发者；限制是首次运行仍需订阅、API
+key 或本地模型，非 Agent
+步骤虽然不需要模型，但框架和提供商接入仍在快速演进。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言为
+TypeScript、当日新增 1,390 stars、总 stars 7,513；项目采用
+<a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e/blob/main/LICENSE">Apache-2.0</a>，最新
+<a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e/releases/tag/%40e2e-dev/kernel%400.2.0">Release
+<span class="citation" data-cites="e2e-dev/kernel">@e2e-dev/kernel</span><span class="citation" data-cites="0.2.0">@0.2.0</span></a>，最近提交为<a target="_blank" rel="noopener" href="https://github.com/tester-army/e2e/commit/f1a1ac241042c089ae773213c4e4f0da34f2f3d8">让每次
+decide 调用都携带 providerOptions</a>。</p>
+<h2 id="快速浏览">快速浏览</h2>
+<div class="briefing-quick-list">
+<p><a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/morluto/rea"><span class="briefing-quick-item__source">逆向 MCP · TypeScript ·
++4,655/日</span><span class="briefing-quick-item__body"><strong>morluto/rea</strong><small>把应用、脚本和原生二进制的逆向调查组织成带证据的
+MCP 工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5"><span class="briefing-quick-item__source">可执行文件移植 · C++ ·
++2,716/日</span><span class="briefing-quick-item__body"><strong>boykopovar/AnyPS5</strong><small>用
+relinker、系统库和着色器重编译研究 PS5
+可执行文件移植。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/EpicGames/raddebugger"><span class="briefing-quick-item__source">调试器 · C · +90/日</span><span class="briefing-quick-item__body"><strong>EpicGames/raddebugger</strong><small>把原生多进程调试、RDI
+调试信息和链接器放进同一工程。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/thedotmack/claude-mem"><span class="briefing-quick-item__source">Agent 记忆 · TypeScript ·
++578/日</span><span class="briefing-quick-item__body"><strong>thedotmack/claude-mem</strong><small>捕获工具观察并跨会话检索上下文，保留引用与隐私控制。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/manaflow-ai/cmux"><span class="briefing-quick-item__source">Agent 终端 · Swift ·
++44/日</span><span class="briefing-quick-item__body"><strong>manaflow-ai/cmux</strong><small>用
+Ghostty-based macOS 终端组织多 Agent
+工作区、通知和浏览器。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/trycua/cua"><span class="briefing-quick-item__source">Computer use · Rust ·
++228/日</span><span class="briefing-quick-item__body"><strong>trycua/cua</strong><small>把桌面驱动、虚拟机、决策模型和
+Agent 评测组合起来。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill"><span class="briefing-quick-item__source">安全审计 · JavaScript ·
++576/日</span><span class="briefing-quick-item__body"><strong>cloudflare/security-audit-skill</strong><small>用覆盖台账、独立验证和结构化
+findings 组织 Agent 安全审计。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/tester-army/e2e"><span class="briefing-quick-item__source">Agent 测试 · TypeScript ·
++1,390/日</span><span class="briefing-quick-item__body"><strong>tester-army/e2e</strong><small>把自然语言动作接入可断言、可回放的
+Web/移动端 E2E 测试。</small></span><span class="briefing-quick-item__arrow">↗</span></a></p>
 </div>
 
                 
@@ -418,9 +550,9 @@
       
         <a href="/tags/Agent/" class="print-no-link">#Agent</a>
       
-        <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" class="print-no-link">#逆向工程</a>
-      
         <a href="/tags/%E6%B5%8B%E8%AF%95/" class="print-no-link">#测试</a>
+      
+        <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" class="print-no-link">#逆向工程</a>
       
         <a href="/tags/%E8%B0%83%E8%AF%95%E5%99%A8/" class="print-no-link">#调试器</a>
       

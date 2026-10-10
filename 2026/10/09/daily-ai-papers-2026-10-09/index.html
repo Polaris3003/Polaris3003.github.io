@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均是论文作者报告的结果，不代表独立复核。 CANDO: Cooperative Agentic Network for Layout Design Optimization 作者：Athanasios Masouris、Zheng Jing、Benjamin Sam Chandler、Hadi Jamali-Rad 来源&#x2F;">
+    <meta name="description" content="重点关注 以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均是论文作者报告的结果，不代表独立复核。 CANDO: Cooperative Agentic Network for Layout Design Optimization  作者：Athanasios Masouris、Zheng Jing、Benjamin Sam Chandler、Hadi Jamali-Rad 来">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 10 月 9 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/10/09/daily-ai-papers-2026-10-09/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均是论文作者报告的结果，不代表独立复核。 CANDO: Cooperative Agentic Network for Layout Design Optimization 作者：Athanasios Masouris、Zheng Jing、Benjamin Sam Chandler、Hadi Jamali-Rad 来源&#x2F;">
+<meta property="og:description" content="重点关注 以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均是论文作者报告的结果，不代表独立复核。 CANDO: Cooperative Agentic Network for Layout Design Optimization  作者：Athanasios Masouris、Zheng Jing、Benjamin Sam Chandler、Hadi Jamali-Rad 来">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-015-146589163.jpg">
 <meta property="article:published_time" content="2026-10-09T02:15:00.000Z">
@@ -347,197 +347,423 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><p>以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均是论文作者报告的结果，不代表独立复核。</p>
-<h3 id="CANDO-Cooperative-Agentic-Network-for-Layout-Design-Optimization"><a href="#CANDO-Cooperative-Agentic-Network-for-Layout-Design-Optimization" class="headerlink" title="CANDO: Cooperative Agentic Network for Layout Design Optimization"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10044">CANDO: Cooperative Agentic Network for Layout Design Optimization</a></h3><ul>
-<li>作者：Athanasios Masouris、Zheng Jing、Benjamin Sam Chandler、Hadi Jamali-Rad</li>
+<h2 id="重点关注">重点关注</h2>
+<p>以下 6 篇从今日 18 篇 AI
+候选中选出。除特别说明外，数字均是论文作者报告的结果，不代表独立复核。</p>
+<h3 id="cando-cooperative-agentic-network-for-layout-design-optimization"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10044">CANDO: Cooperative Agentic
+Network for Layout Design Optimization</a></h3>
+<ul>
+<li>作者：Athanasios Masouris、Zheng Jing、Benjamin Sam Chandler、Hadi
+Jamali-Rad</li>
 <li>来源/分类：arXiv，cs.MA；AI</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.10044">PDF</a></li>
-<li>核心问题：真实设施布局同时受不规则边界、功能区包含、非重叠、通行路径和朝向等硬/软约束影响，常见矩形拼图基准不能代表这类问题。论文构造了 ALPS-Bench：从 CAD 资料专业标注的 1,000 个真实运营场地布局，含 14 个语义类别，900 个开发样本和 100 个测试样本。</li>
-<li>方法与基线：CANDO 是免训练的多智能体 in-context 工作流，由结构相似案例初始化、Verifier 的确定性几何/运动工具、Historian、Planner 和 Generator 组成；用并行分支和 blockwise best-of-N 搜索。作者比较单智能体、训练模型、普通 LLM 生成器、GPT-5.2 与 Qwen3.6-35B-A3B 等设置，并在 PubLayNet、RICO、PKU-PosterLayout 上做分布外测试。实验在 H100 80GB 上完成。</li>
-<li>关键结果：在 ALPS 测试集，CANDO 的 GPT-5.2 CoDe 版本聚合分数约 0.60，Qwen 版本约 0.62、空间一致性约 0.83、约束合规率 74%；消融去掉 CoDe 后聚合分数降至约 0.35，去掉工具核验后降至约 0.27。论文报告两种 CANDO 版本在 ALPS 的聚合、空间一致性和可读性上相对基线经 Holm 校正后均有显著差异（最大校正后 p 约 0.0059）。公开数据集上也取得较高 mIoU，但在 PKU 上的 FID 并非始终最好。</li>
-<li>创新与证据限制：贡献主要在把几何工具、约束核验和多智能体搜索组合成可审计流程，而不是提出新的生成模型。作者报告的成功依赖特定设计手册、开发语料和大量 LLM 调用；数据集与规则仍有领域特异性，分布指标与人工可用性也可能冲突，最终仍需工程师复核。基线调用预算、提示和模型版本的公平性需要读者结合附录检查。</li>
-<li>适合谁读：做布局生成、具身规划、工具调用评测和约束优化的人。建议优先读第 3–6 节、表 1–4 及限制讨论。</li>
+<li>核心问题：真实设施布局同时受不规则边界、功能区包含、非重叠、通行路径和朝向等硬/软约束影响，常见矩形拼图基准不能代表这类问题。论文构造了
+ALPS-Bench：从 CAD 资料专业标注的 1,000 个真实运营场地布局，含 14
+个语义类别，900 个开发样本和 100 个测试样本。</li>
+<li>方法与基线：CANDO 是免训练的多智能体 in-context
+工作流，由结构相似案例初始化、Verifier
+的确定性几何/运动工具、Historian、Planner 和 Generator
+组成；用并行分支和 blockwise best-of-N
+搜索。作者比较单智能体、训练模型、普通 LLM 生成器、GPT-5.2 与
+Qwen3.6-35B-A3B 等设置，并在 PubLayNet、RICO、PKU-PosterLayout
+上做分布外测试。实验在 H100 80GB 上完成。</li>
+<li>关键结果：在 ALPS 测试集，CANDO 的 GPT-5.2 CoDe 版本聚合分数约
+0.60，Qwen 版本约 0.62、空间一致性约 0.83、约束合规率 74%；消融去掉 CoDe
+后聚合分数降至约 0.35，去掉工具核验后降至约 0.27。论文报告两种 CANDO
+版本在 ALPS 的聚合、空间一致性和可读性上相对基线经 Holm
+校正后均有显著差异（最大校正后 p 约 0.0059）。公开数据集上也取得较高
+mIoU，但在 PKU 上的 FID 并非始终最好。</li>
+<li>创新与证据限制：贡献主要在把几何工具、约束核验和多智能体搜索组合成可审计流程，而不是提出新的生成模型。作者报告的成功依赖特定设计手册、开发语料和大量
+LLM
+调用；数据集与规则仍有领域特异性，分布指标与人工可用性也可能冲突，最终仍需工程师复核。基线调用预算、提示和模型版本的公平性需要读者结合附录检查。</li>
+<li>适合谁读：做布局生成、具身规划、工具调用评测和约束优化的人。建议优先读第
+3–6 节、表 1–4 及限制讨论。</li>
 <li>证据状态：已核阅摘要与 PDF；结果是作者自报，未作独立复现实验。</li>
 </ul>
-<h3 id="OOM-RL-Out-of-Money-Reinforcement-Learning-Market-Driven-Alignment-for-LLM-Based-Multi-Agent-Systems"><a href="#OOM-RL-Out-of-Money-Reinforcement-Learning-Market-Driven-Alignment-for-LLM-Based-Multi-Agent-Systems" class="headerlink" title="OOM-RL: Out-of-Money Reinforcement Learning Market-Driven Alignment for LLM-Based Multi-Agent Systems"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.11477">OOM-RL: Out-of-Money Reinforcement Learning Market-Driven Alignment for LLM-Based Multi-Agent Systems</a></h3><ul>
+<h3 id="oom-rl-out-of-money-reinforcement-learning-market-driven-alignment-for-llm-based-multi-agent-systems"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.11477">OOM-RL: Out-of-Money
+Reinforcement Learning Market-Driven Alignment for LLM-Based Multi-Agent
+Systems</a></h3>
+<ul>
 <li>作者：Kun Liu、Liqun Chen</li>
-<li>来源/分类：arXiv，cs.AI、cs.SE、q-fin.TR；AI / 金融交叉，本篇作 AI 侧详述，金融篇仅作索引</li>
+<li>来源/分类：arXiv，cs.AI、cs.SE、q-fin.TR；AI / 金融交叉，本篇作 AI
+侧详述，金融篇仅作索引</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.11477">PDF</a></li>
-<li>核心问题：LLM 交易系统的“学习”如何被真实损失、执行摩擦和软件回归约束，而不是只在离线回测中优化指标。论文把资金耗尽阈值和交易结果作为外部负反馈，研究一个持续演化的长仓股票系统 QuantPits。</li>
-<li>方法与基线：这是 2024 年 7 月至 2026 年 2 月约 20 个月的在线工程记录，不是标准可重复的梯度 RL。系统使用人工触发的 Epistemic Autopsy、面向 AST 的定向补丁、只读测试和 RO-Lock；目标是约 8,300 行代码达到至少 95% 的覆盖，并把本金 20% 损失作为吸收阈值。作者将不同阶段与 CSI300、被动组合和阶段内基准比较，同时报告交易成本冲击。</li>
-<li>关键结果：成熟阶段 94 个交易日作者报告年化收益 34.48%、Sharpe 2.06、信息比率 2.66、最大回撤 -5.50%、beta 0.83、年化 alpha 30.07%；但 OLS alpha 的 t=1.692、p=0.094，在 5% 水平下不能拒绝零 alpha。成熟阶段结果大多发生在正式提交 STDAW 规则之前；全区间被动组合约 39.82%，量化系统约 30.09%，阶段内比较约为 13.17% 对 7.40%。</li>
-<li>创新与证据限制：价值在于记录“损失—诊断—代码变更—回归测试”的闭环，并承认持续修改会破坏稳定的因果比较。它不是证明 STDAW 产生 alpha 的实验：没有冻结模型/代码的对照组，原始经纪商与盘中日志未公开，样本阶段短，部分结果是观察性关联；模拟高换手 alpha 与真实成本结果也不能混为一谈。</li>
-<li>适合谁读：做 agent 工程、软件安全、在线学习和量化系统审计的人。建议优先读第 3–4.6 节、表 1–2 与限制部分；不要将其视为投资建议。</li>
-<li>证据状态：已核阅摘要与 PDF；作者自报的真实交易观察不能替代可复现实验或因果识别。</li>
+<li>核心问题：LLM
+交易系统的“学习”如何被真实损失、执行摩擦和软件回归约束，而不是只在离线回测中优化指标。论文把资金耗尽阈值和交易结果作为外部负反馈，研究一个持续演化的长仓股票系统
+QuantPits。</li>
+<li>方法与基线：这是 2024 年 7 月至 2026 年 2 月约 20
+个月的在线工程记录，不是标准可重复的梯度 RL。系统使用人工触发的
+Epistemic Autopsy、面向 AST 的定向补丁、只读测试和 RO-Lock；目标是约
+8,300 行代码达到至少 95% 的覆盖，并把本金 20%
+损失作为吸收阈值。作者将不同阶段与
+CSI300、被动组合和阶段内基准比较，同时报告交易成本冲击。</li>
+<li>关键结果：成熟阶段 94 个交易日作者报告年化收益 34.48%、Sharpe
+2.06、信息比率 2.66、最大回撤 -5.50%、beta 0.83、年化 alpha 30.07%；但
+OLS alpha 的 t=1.692、p=0.094，在 5% 水平下不能拒绝零
+alpha。成熟阶段结果大多发生在正式提交 STDAW 规则之前；全区间被动组合约
+39.82%，量化系统约 30.09%，阶段内比较约为 13.17% 对 7.40%。</li>
+<li>创新与证据限制：价值在于记录“损失—诊断—代码变更—回归测试”的闭环，并承认持续修改会破坏稳定的因果比较。它不是证明
+STDAW 产生 alpha
+的实验：没有冻结模型/代码的对照组，原始经纪商与盘中日志未公开，样本阶段短，部分结果是观察性关联；模拟高换手
+alpha 与真实成本结果也不能混为一谈。</li>
+<li>适合谁读：做 agent
+工程、软件安全、在线学习和量化系统审计的人。建议优先读第 3–4.6 节、表
+1–2 与限制部分；不要将其视为投资建议。</li>
+<li>证据状态：已核阅摘要与
+PDF；作者自报的真实交易观察不能替代可复现实验或因果识别。</li>
 </ul>
-<h3 id="RT-Safe-Benchmarking-Agent-Safety-in-Real-Time-Embodied-Environment"><a href="#RT-Safe-Benchmarking-Agent-Safety-in-Real-Time-Embodied-Environment" class="headerlink" title="RT-Safe: Benchmarking Agent Safety in Real-Time Embodied Environment"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09294">RT-Safe: Benchmarking Agent Safety in Real-Time Embodied Environment</a></h3><ul>
-<li>作者：Tianruo Rose Xu、Jiawei Ren、Yichi Yang、Zhaoxu Zheng、Lianhui Qin</li>
+<h3 id="rt-safe-benchmarking-agent-safety-in-real-time-embodied-environment"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09294">RT-Safe: Benchmarking Agent
+Safety in Real-Time Embodied Environment</a></h3>
+<ul>
+<li>作者：Tianruo Rose Xu、Jiawei Ren、Yichi Yang、Zhaoxu Zheng、Lianhui
+Qin</li>
 <li>来源/分类：arXiv，cs.AI、cs.LG；AI</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09294">PDF</a></li>
-<li>核心问题：离线具身安全评测通常允许模型“静止思考”，但真实系统在模型推理和动作执行期间世界仍在变化。RT-Safe 在 Unreal Engine/SimWorld 中构造 36 条路线、5 张城市地图和 3 档动态体密度，让每次决策都有实时延迟。</li>
-<li>方法与基线：评估 8 个视觉语言模型，每个模型在每个难度下 36 条路线、共 108 个 episode；比较静态与实时条件、不同推理预算及主动/被动碰撞。另用离线 RL（IQL+CQL、LoRA）在 105 个 episode、4,632 条训练转移和自生成轨迹上训练，并与提示、行为克隆和 RL 专家基线比较。模拟器事件直接给出碰撞与任务成功信号，没有外部 LLM judge。</li>
-<li>关键结果：平均任务成功率从静态 91.3% 到实时 94.1%，但安全成功率从 19.8% 降到 0.7%，碰撞从每回合 3.31 次升至 40.68 次，约 12.3 倍；延迟与决策次数联合解释约 93.4% 的碰撞变化。默认到更高推理预算时成功率约 94.1%→94.8%，碰撞却约 40.7→62.0。离线 RL 专家在固定延迟测试中约 2.0 次/100 米碰撞，提示基线约 17.8、行为克隆约 6.7。</li>
-<li>创新与证据限制：论文把“能力成功”和“实时安全”拆开，并将系统延迟纳入环境动力学。限制包括仿真城市而非实体机器人、供应商 VLM、提示/延迟约定以及离线 RL 专家使用特权状态；静态和实时条件的提示差异也会影响公平比较，不能直接推出真实道路安全。</li>
-<li>适合谁读：做 VLM agent、机器人安全、实时系统和 offline RL 的读者。建议优先读第 2–3.5 节、表 1、11、15–16 及限制部分。</li>
+<li>核心问题：离线具身安全评测通常允许模型“静止思考”，但真实系统在模型推理和动作执行期间世界仍在变化。RT-Safe
+在 Unreal Engine/SimWorld 中构造 36 条路线、5 张城市地图和 3
+档动态体密度，让每次决策都有实时延迟。</li>
+<li>方法与基线：评估 8 个视觉语言模型，每个模型在每个难度下 36
+条路线、共 108 个
+episode；比较静态与实时条件、不同推理预算及主动/被动碰撞。另用离线
+RL（IQL+CQL、LoRA）在 105 个 episode、4,632
+条训练转移和自生成轨迹上训练，并与提示、行为克隆和 RL
+专家基线比较。模拟器事件直接给出碰撞与任务成功信号，没有外部 LLM
+judge。</li>
+<li>关键结果：平均任务成功率从静态 91.3% 到实时 94.1%，但安全成功率从
+19.8% 降到 0.7%，碰撞从每回合 3.31 次升至 40.68 次，约 12.3
+倍；延迟与决策次数联合解释约 93.4%
+的碰撞变化。默认到更高推理预算时成功率约 94.1%→94.8%，碰撞却约
+40.7→62.0。离线 RL 专家在固定延迟测试中约 2.0 次/100 米碰撞，提示基线约
+17.8、行为克隆约 6.7。</li>
+<li>创新与证据限制：论文把“能力成功”和“实时安全”拆开，并将系统延迟纳入环境动力学。限制包括仿真城市而非实体机器人、供应商
+VLM、提示/延迟约定以及离线 RL
+专家使用特权状态；静态和实时条件的提示差异也会影响公平比较，不能直接推出真实道路安全。</li>
+<li>适合谁读：做 VLM agent、机器人安全、实时系统和 offline RL
+的读者。建议优先读第 2–3.5 节、表 1、11、15–16 及限制部分。</li>
 <li>证据状态：已核阅摘要与 PDF；数值为仿真基准中的作者报告结果。</li>
 </ul>
-<h3 id="Not-Every-Call-Needs-a-Frontier-Model-Per-Call-Site-Evaluation-of-Small-Language-Models-in-a-Deployed-Agentic-Home-Automation-System"><a href="#Not-Every-Call-Needs-a-Frontier-Model-Per-Call-Site-Evaluation-of-Small-Language-Models-in-a-Deployed-Agentic-Home-Automation-System" class="headerlink" title="Not Every Call Needs a Frontier Model: Per-Call-Site Evaluation of Small Language Models in a Deployed Agentic Home-Automation System"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09021">Not Every Call Needs a Frontier Model: Per-Call-Site Evaluation of Small Language Models in a Deployed Agentic Home-Automation System</a></h3><ul>
-<li>作者：Panagiotis Kasnesis、Christos Chatzigeorgiou、Lazaros Toumanidis、Amalia Contiero Syropoulou</li>
+<h3 id="not-every-call-needs-a-frontier-model-per-call-site-evaluation-of-small-language-models-in-a-deployed-agentic-home-automation-system"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09021">Not Every Call Needs a Frontier
+Model: Per-Call-Site Evaluation of Small Language Models in a Deployed
+Agentic Home-Automation System</a></h3>
+<ul>
+<li>作者：Panagiotis Kasnesis、Christos Chatzigeorgiou、Lazaros
+Toumanidis、Amalia Contiero Syropoulou</li>
 <li>来源/分类：arXiv，cs.AI；AI</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09021">PDF</a>；代码：<a target="_blank" rel="noopener" href="https://github.com/waldiez/slm-callsite-eval">GitHub</a></li>
-<li>核心问题：agent 中不同调用点的能力、安全和成本需求不同，单一“全局模型排行榜”不能回答是否应在每个调用点使用前沿模型。论文在部署的 Wactorz 智能家居系统中按意图识别、HA 动作、执行器、规划器和代码生成五个调用点测评 9 个模型。</li>
-<li>方法与基线：在两套真实 Home Assistant 安装、280 个案例和 2,520 次评分调用中比较 Qwen3.5 0.8B/2B/4B、Gemma4 E2B/4B/12B/26B，以及 Claude Haiku 4.5/Sonnet 5；本地模型在 DGX Spark 128GB 上以 4-bit 运行，温度为 0。作者另做 46 个 live 案例，并记录每调用点的成本、延迟和误动作。执行器调用平均约 28,122 个输入 token，占托管费用约 81%。</li>
-<li>关键结果：最佳本地 Gemma4 26B 的总体准确率约 90.7%，Sonnet 5 约 95.4%；最佳本地模型在 5 个调用点中的 4 个与托管模型差异不显著。按调用点路由的本地组合达到约 91.8% 且推理成本为 0；全部 Sonnet 基准约 95.4%、成本 12.13 美元，生成调用改用 Sonnet 约节省 82%。但小模型安全校准差异很大：某 Gemma E2B 对非所属设备请求有 87.2% 的误动作倾向，另一个模型全部拒绝；70 个错误请求中 53 个引用了注册表已有设备，说明约束解码不足以解决权限语义。</li>
-<li>创新与证据限制：论文将模型选择单位从“agent”下沉到“调用点”，并展示质量—成本—安全的条件化权衡。限制包括仅两套安装、单一评分者、温度 0、小子群、框架 bug、后验修改标签、没有学习型路由器，以及本地成本依赖特定硬件；因此不能直接推广到其他家庭、模型和任务分布。</li>
-<li>适合谁读：做 agent 架构、模型路由、边缘部署与 AI 安全的人。建议优先读第 3–5 节、表 1–4 和限制部分。</li>
-<li>证据状态：已核阅摘要与 PDF；实地结果为小规模部署报告，非大规模线上 A/B 实验。</li>
+<li>核心问题：agent
+中不同调用点的能力、安全和成本需求不同，单一“全局模型排行榜”不能回答是否应在每个调用点使用前沿模型。论文在部署的
+Wactorz 智能家居系统中按意图识别、HA
+动作、执行器、规划器和代码生成五个调用点测评 9 个模型。</li>
+<li>方法与基线：在两套真实 Home Assistant 安装、280 个案例和 2,520
+次评分调用中比较 Qwen3.5 0.8B/2B/4B、Gemma4 E2B/4B/12B/26B，以及 Claude
+Haiku 4.5/Sonnet 5；本地模型在 DGX Spark 128GB 上以 4-bit 运行，温度为
+0。作者另做 46 个 live
+案例，并记录每调用点的成本、延迟和误动作。执行器调用平均约 28,122 个输入
+token，占托管费用约 81%。</li>
+<li>关键结果：最佳本地 Gemma4 26B 的总体准确率约 90.7%，Sonnet 5 约
+95.4%；最佳本地模型在 5 个调用点中的 4
+个与托管模型差异不显著。按调用点路由的本地组合达到约 91.8% 且推理成本为
+0；全部 Sonnet 基准约 95.4%、成本 12.13 美元，生成调用改用 Sonnet 约节省
+82%。但小模型安全校准差异很大：某 Gemma E2B 对非所属设备请求有 87.2%
+的误动作倾向，另一个模型全部拒绝；70 个错误请求中 53
+个引用了注册表已有设备，说明约束解码不足以解决权限语义。</li>
+<li>创新与证据限制：论文将模型选择单位从“agent”下沉到“调用点”，并展示质量—成本—安全的条件化权衡。限制包括仅两套安装、单一评分者、温度
+0、小子群、框架
+bug、后验修改标签、没有学习型路由器，以及本地成本依赖特定硬件；因此不能直接推广到其他家庭、模型和任务分布。</li>
+<li>适合谁读：做 agent 架构、模型路由、边缘部署与 AI
+安全的人。建议优先读第 3–5 节、表 1–4 和限制部分。</li>
+<li>证据状态：已核阅摘要与 PDF；实地结果为小规模部署报告，非大规模线上
+A/B 实验。</li>
 </ul>
-<h3 id="Reliability-of-LLM-Judges-for-Evaluating-Entity-Alignment"><a href="#Reliability-of-LLM-Judges-for-Evaluating-Entity-Alignment" class="headerlink" title="Reliability of LLM Judges for Evaluating Entity Alignment"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09554">Reliability of LLM Judges for Evaluating Entity Alignment</a></h3><ul>
+<h3 id="reliability-of-llm-judges-for-evaluating-entity-alignment"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09554">Reliability of LLM Judges for
+Evaluating Entity Alignment</a></h3>
+<ul>
 <li>作者：Vaibhava Lakshmi Ravideshik、Mayank Kejriwal</li>
 <li>来源/分类：arXiv，cs.AI；AI</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09554">PDF</a>；代码：<a target="_blank" rel="noopener" href="https://github.com/vaibhavalakshmiravideshik/llm-as-a-judge-entity-alignment">GitHub</a></li>
-<li>核心问题：LLM-as-a-judge 在实体对齐中是否真正判断语义匹配，还是仅跟随题目里可见的 MATCH/NON-MATCH 标签。论文在 DBpedia–Wikidata、DBpedia–YAGO 和 MeSH–SNOMED 三个数据集上对 3 个闭源 judge、4 个实体对齐系统及其消融进行反事实测试。</li>
-<li>方法与基线：比较 evidence-locked CoT、最小标签可见和无标签预测三种提示；通过标签翻转、身份匿名化、平衡类别和 102 对人工标注检验锚定偏差。实验共约 153,000 次调用、2.388 亿 token，成本约 577.17 美元；人工一致性报告为 κ=0.902。</li>
-<li>关键结果：可见标签时 J-ROC-AUC 可降至 0.12–0.53，无标签且实体名称有辨识度时可达 0.93–1.00；标签翻转率为 53%–99%，Claude Opus 4.7 在部分设置达到 99%。更强的 judge 反而可能更敏感于标签；身份匿名化后 BIO 的判别仍约 61%–69%，人类总体准确率约 91.3%。标签可见时 MATCH 相关性降到约 0.228–0.412，而 NON-MATCH 仍约 0.779–0.867。</li>
-<li>创新与证据限制：把“与人类相似”拆成标签遵从、反事实稳定性和证据约束三类属性，并提醒 aggregate accuracy 可能掩盖系统性偏差。限制包括仅 3 个闭源模型、单一供应商、类平衡协议、英语数据和作者标注；无标签提示也改变了任务定义，不能把结果外推成所有 LLM judge 都不可靠。</li>
-<li>适合谁读：做知识图谱、数据集评测、LLM judge 和科学测量的人。建议优先读第 3–5 节、表 1–2 及限制部分。</li>
-<li>证据状态：已核阅摘要与 PDF；代码链接来自论文提供的信息，数值为作者报告。</li>
+<li>核心问题：LLM-as-a-judge
+在实体对齐中是否真正判断语义匹配，还是仅跟随题目里可见的 MATCH/NON-MATCH
+标签。论文在 DBpedia–Wikidata、DBpedia–YAGO 和 MeSH–SNOMED
+三个数据集上对 3 个闭源 judge、4
+个实体对齐系统及其消融进行反事实测试。</li>
+<li>方法与基线：比较 evidence-locked
+CoT、最小标签可见和无标签预测三种提示；通过标签翻转、身份匿名化、平衡类别和
+102 对人工标注检验锚定偏差。实验共约 153,000 次调用、2.388 亿
+token，成本约 577.17 美元；人工一致性报告为 κ=0.902。</li>
+<li>关键结果：可见标签时 J-ROC-AUC 可降至
+0.12–0.53，无标签且实体名称有辨识度时可达 0.93–1.00；标签翻转率为
+53%–99%，Claude Opus 4.7 在部分设置达到 99%。更强的 judge
+反而可能更敏感于标签；身份匿名化后 BIO 的判别仍约
+61%–69%，人类总体准确率约 91.3%。标签可见时 MATCH 相关性降到约
+0.228–0.412，而 NON-MATCH 仍约 0.779–0.867。</li>
+<li>创新与证据限制：把“与人类相似”拆成标签遵从、反事实稳定性和证据约束三类属性，并提醒
+aggregate accuracy 可能掩盖系统性偏差。限制包括仅 3
+个闭源模型、单一供应商、类平衡协议、英语数据和作者标注；无标签提示也改变了任务定义，不能把结果外推成所有
+LLM judge 都不可靠。</li>
+<li>适合谁读：做知识图谱、数据集评测、LLM judge
+和科学测量的人。建议优先读第 3–5 节、表 1–2 及限制部分。</li>
+<li>证据状态：已核阅摘要与
+PDF；代码链接来自论文提供的信息，数值为作者报告。</li>
 </ul>
-<h3 id="Agentic-Discovery-of-Neural-Architectures-AIRA-Compose-and-AIRA-Design"><a href="#Agentic-Discovery-of-Neural-Architectures-AIRA-Compose-and-AIRA-Design" class="headerlink" title="Agentic Discovery of Neural Architectures: AIRA-Compose and AIRA-Design"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.15871">Agentic Discovery of Neural Architectures: AIRA-Compose and AIRA-Design</a></h3><ul>
-<li>作者：Alberto Pepe、Chien-Yu Lin、Despoina Magka、Bilge Acun、Thomas Simon Foster、Yannan Nellie Wu、Anton Protopopov、Carole-Jean Wu、Yoram Bachrach</li>
+<h3 id="agentic-discovery-of-neural-architectures-aira-compose-and-aira-design"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.15871">Agentic Discovery of Neural
+Architectures: AIRA-Compose and AIRA-Design</a></h3>
+<ul>
+<li>作者：Alberto Pepe、Chien-Yu Lin、Despoina Magka、Bilge Acun、Thomas
+Simon Foster、Yannan Nellie Wu、Anton Protopopov、Carole-Jean Wu、Yoram
+Bachrach</li>
 <li>来源/分类：arXiv，cs.AI；AI</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.15871">PDF</a></li>
-<li>核心问题：让 agent 搜索神经网络架构、复用组件并提出训练改进，究竟能否超越人工设计；论文包含 AIRA-Compose、AIRA-Design 和 autoresearch 三个设置。</li>
-<li>方法与基线：AIRA-Compose 用 11 个 agent 在固定时限内组合约 100–200 个小架构，随后在 1B/3B 规模、等 token 预算上扩展；AIRA-Design 用 20 个 agent、1,680 次运行和 6 个长上下文任务配置比较 one-shot 与多轮 greedy；autoresearch 在小规模训练沙盒中比较无文献、带文献和贪心策略。实验跨 H200/H100 预算，但部分基线为近似复现。</li>
-<li>关键结果：1B AIRAformer-D Stretched 的验证损失 2.734、平均零样本准确率 59.7%，论文报告优于 Llama3.2 的 2.815/57.5%；AIRAhybrid-D 的损失 2.719、准确率 60.5%，与 Nemotron2 近似基线相近，并非所有指标都胜出。AIRA-Design 最好峰值距离人工 SOTA 约 2.3%–2.6%，但非配置任务归一化得分很低（如 ListOps 约 0.257、文本约 0.199、检索约 0.197），one-shot 没有有效提交。autoresearch 中只有约 34.1% 的 11,530 次训练步得到有效 fitness，最佳 BPB 约 0.968。</li>
-<li>创新与证据限制：论文贡献是把架构组合和实验反馈纳入 agent 搜索，并量化搜索预算与配置空间的影响。限制很实质：代理多数是在重组 Performer/Longformer/Conformer 等已有部件，尚不能称为独立科学创新；小 proxy 未必能外推到大规模训练，整文件重写妨碍因果归因，PyTorch/JAX 和显存限制会造成搜索偏差，跨论文基线还存在近似复现问题。</li>
-<li>适合谁读：做 AutoML、架构搜索、AI for Science 和实验自动化的人。建议优先读第 2–3、5–6.2 节、表 2–5 和限制部分。</li>
-<li>证据状态：已核阅摘要与 PDF；性能数字是作者自报，并应结合每个预算、种子和近似基线解读。</li>
+<li>核心问题：让 agent
+搜索神经网络架构、复用组件并提出训练改进，究竟能否超越人工设计；论文包含
+AIRA-Compose、AIRA-Design 和 autoresearch 三个设置。</li>
+<li>方法与基线：AIRA-Compose 用 11 个 agent 在固定时限内组合约 100–200
+个小架构，随后在 1B/3B 规模、等 token 预算上扩展；AIRA-Design 用 20 个
+agent、1,680 次运行和 6 个长上下文任务配置比较 one-shot 与多轮
+greedy；autoresearch
+在小规模训练沙盒中比较无文献、带文献和贪心策略。实验跨 H200/H100
+预算，但部分基线为近似复现。</li>
+<li>关键结果：1B AIRAformer-D Stretched 的验证损失
+2.734、平均零样本准确率 59.7%，论文报告优于 Llama3.2 的
+2.815/57.5%；AIRAhybrid-D 的损失 2.719、准确率 60.5%，与 Nemotron2
+近似基线相近，并非所有指标都胜出。AIRA-Design 最好峰值距离人工 SOTA 约
+2.3%–2.6%，但非配置任务归一化得分很低（如 ListOps 约 0.257、文本约
+0.199、检索约 0.197），one-shot 没有有效提交。autoresearch 中只有约
+34.1% 的 11,530 次训练步得到有效 fitness，最佳 BPB 约 0.968。</li>
+<li>创新与证据限制：论文贡献是把架构组合和实验反馈纳入 agent
+搜索，并量化搜索预算与配置空间的影响。限制很实质：代理多数是在重组
+Performer/Longformer/Conformer 等已有部件，尚不能称为独立科学创新；小
+proxy 未必能外推到大规模训练，整文件重写妨碍因果归因，PyTorch/JAX
+和显存限制会造成搜索偏差，跨论文基线还存在近似复现问题。</li>
+<li>适合谁读：做 AutoML、架构搜索、AI for Science
+和实验自动化的人。建议优先读第 2–3、5–6.2 节、表 2–5 和限制部分。</li>
+<li>证据状态：已核阅摘要与
+PDF；性能数字是作者自报，并应结合每个预算、种子和近似基线解读。</li>
 </ul>
-<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><h3 id="SOTA-Stock-Options-Trading-Agents-Guided-by-Option-Implied-Return-Distributions"><a href="#SOTA-Stock-Options-Trading-Agents-Guided-by-Option-Implied-Return-Distributions" class="headerlink" title="SOTA: Stock Options Trading Agents Guided by Option-Implied Return Distributions"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10407">SOTA: Stock Options Trading Agents Guided by Option-Implied Return Distributions</a></h3><ul>
+<h2 id="ai-论文">AI 论文</h2>
+<h3 id="sota-stock-options-trading-agents-guided-by-option-implied-return-distributions"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10407">SOTA: Stock Options Trading
+Agents Guided by Option-Implied Return Distributions</a></h3>
+<ul>
 <li>作者：Yizhen Xie、Mengyang Liu</li>
-<li>来源/分类：arXiv，cs.AI、cs.LG、q-fin.PM、q-fin.TR；AI / 金融交叉，金融篇详述</li>
+<li>来源/分类：arXiv，cs.AI、cs.LG、q-fin.PM、q-fin.TR；AI /
+金融交叉，金融篇详述</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.10407">PDF</a></li>
-<li>简介：提出面向期权策略选择的 agent，将期权隐含回报分布转成结构化策略选择、合约/规模/对冲解析器，并以 Qwen3.8-27B 做监督微调和 GRPO。作者在 SPY 及 9 个美国个股、约六个月样本外回测中报告 SOTA 年化总回报 18.32%、Sharpe 1.60、最大回撤 8.96%，但这是历史回测，不是实盘结果。重点细节见金融简报。</li>
+<li>简介：提出面向期权策略选择的
+agent，将期权隐含回报分布转成结构化策略选择、合约/规模/对冲解析器，并以
+Qwen3.8-27B 做监督微调和 GRPO。作者在 SPY 及 9
+个美国个股、约六个月样本外回测中报告 SOTA 年化总回报 18.32%、Sharpe
+1.60、最大回撤
+8.96%，但这是历史回测，不是实盘结果。重点细节见金融简报。</li>
 <li>证据状态：仅依据摘要与候选记录；本文不重复金融篇的详细分析。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10407">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.10407">PDF</a></li>
 </ul>
-<h3 id="Scaling-Legal-AI-Benchmarking-Mamba-and-Transformers-for-Statutory-Classification-and-Case-Law-Retrieval"><a href="#Scaling-Legal-AI-Benchmarking-Mamba-and-Transformers-for-Statutory-Classification-and-Case-Law-Retrieval" class="headerlink" title="Scaling Legal AI: Benchmarking Mamba and Transformers for Statutory Classification and Case Law Retrieval"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2509.00141">Scaling Legal AI: Benchmarking Mamba and Transformers for Statutory Classification and Case Law Retrieval</a></h3><ul>
+<h3 id="scaling-legal-ai-benchmarking-mamba-and-transformers-for-statutory-classification-and-case-law-retrieval"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2509.00141">Scaling Legal AI: Benchmarking
+Mamba and Transformers for Statutory Classification and Case Law
+Retrieval</a></h3>
+<ul>
 <li>作者：Anuraj Maurya</li>
 <li>来源/分类：arXiv，cs.CY、cs.AI、cs.LG；AI</li>
-<li>简介：比较 Mamba/SSD-Mamba 与 BERT、DeBERTa、Longformer 在 4 个法律分类任务和 2 个案例检索任务中的效率与效果。摘要称 SSD-Mamba 在 ECtHR/ILDC 等任务中接近或超过多数 Transformer，并达到约 3 倍 DeBERTa、4 倍 Longformer 的 token 吞吐；DeBERTa 在 SCOTUS/EUR-Lex 上仍更强。摘要未给出方差或显著性检验，也不足以判断长上下文截断、调参预算和污染控制。</li>
+<li>简介：比较 Mamba/SSD-Mamba 与 BERT、DeBERTa、Longformer 在 4
+个法律分类任务和 2 个案例检索任务中的效率与效果。摘要称 SSD-Mamba 在
+ECtHR/ILDC 等任务中接近或超过多数 Transformer，并达到约 3 倍 DeBERTa、4
+倍 Longformer 的 token 吞吐；DeBERTa 在 SCOTUS/EUR-Lex
+上仍更强。摘要未给出方差或显著性检验，也不足以判断长上下文截断、调参预算和污染控制。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2509.00141">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2509.00141">PDF</a></li>
 </ul>
-<h3 id="CANDO-Cooperative-Agentic-Network-for-Layout-Design-Optimization-1"><a href="#CANDO-Cooperative-Agentic-Network-for-Layout-Design-Optimization-1" class="headerlink" title="CANDO: Cooperative Agentic Network for Layout Design Optimization"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10044">CANDO: Cooperative Agentic Network for Layout Design Optimization</a></h3><ul>
-<li>作者：Athanasios Masouris、Zheng Jing、Benjamin Sam Chandler、Hadi Jamali-Rad</li>
+<h3 id="cando-cooperative-agentic-network-for-layout-design-optimization-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10044">CANDO: Cooperative Agentic
+Network for Layout Design Optimization</a></h3>
+<ul>
+<li>作者：Athanasios Masouris、Zheng Jing、Benjamin Sam Chandler、Hadi
+Jamali-Rad</li>
 <li>来源/分类：arXiv，cs.MA；AI</li>
-<li>简介：真实设施布局的多约束问题。作者在专业标注的 ALPS-Bench 及 PubLayNet、RICO、PKU-PosterLayout 上报告多智能体、工具核验和案例初始化优于多个训练和 LLM 基线；但领域规则、提示和调用成本造成的外推限制见上文重点关注。</li>
+<li>简介：真实设施布局的多约束问题。作者在专业标注的 ALPS-Bench 及
+PubLayNet、RICO、PKU-PosterLayout
+上报告多智能体、工具核验和案例初始化优于多个训练和 LLM
+基线；但领域规则、提示和调用成本造成的外推限制见上文重点关注。</li>
 <li>证据状态：已核阅摘要与 PDF；重点详述见上文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10044">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.10044">PDF</a></li>
 </ul>
-<h3 id="OOM-RL-Out-of-Money-Reinforcement-Learning-Market-Driven-Alignment-for-LLM-Based-Multi-Agent-Systems-1"><a href="#OOM-RL-Out-of-Money-Reinforcement-Learning-Market-Driven-Alignment-for-LLM-Based-Multi-Agent-Systems-1" class="headerlink" title="OOM-RL: Out-of-Money Reinforcement Learning Market-Driven Alignment for LLM-Based Multi-Agent Systems"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.11477">OOM-RL: Out-of-Money Reinforcement Learning Market-Driven Alignment for LLM-Based Multi-Agent Systems</a></h3><ul>
+<h3 id="oom-rl-out-of-money-reinforcement-learning-market-driven-alignment-for-llm-based-multi-agent-systems-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.11477">OOM-RL: Out-of-Money
+Reinforcement Learning Market-Driven Alignment for LLM-Based Multi-Agent
+Systems</a></h3>
+<ul>
 <li>作者：Kun Liu、Liqun Chen</li>
 <li>来源/分类：arXiv，cs.AI、cs.SE、q-fin.TR；AI / 金融交叉</li>
-<li>简介：以真实损失和代码回归驱动持续演化的 agent 工程闭环；作者报告成熟阶段 Sharpe 2.06，但 alpha 的 p=0.094，且无冻结对照，不能据此作因果或投资判断。</li>
+<li>简介：以真实损失和代码回归驱动持续演化的 agent
+工程闭环；作者报告成熟阶段 Sharpe 2.06，但 alpha 的
+p=0.094，且无冻结对照，不能据此作因果或投资判断。</li>
 <li>证据状态：已核阅摘要与 PDF；重点详述见上文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.11477">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.11477">PDF</a></li>
 </ul>
-<h3 id="Efficient-Patch-Based-Anomaly-Detection-Fused-with-Diffusion-Driven-Generative-Modeling-for-Semiconductor-Wafer-Bin-Map-Open-Set-Anomaly-Detection"><a href="#Efficient-Patch-Based-Anomaly-Detection-Fused-with-Diffusion-Driven-Generative-Modeling-for-Semiconductor-Wafer-Bin-Map-Open-Set-Anomaly-Detection" class="headerlink" title="Efficient Patch-Based Anomaly Detection Fused with Diffusion Driven Generative Modeling for Semiconductor Wafer Bin Map Open Set Anomaly Detection"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09993">Efficient Patch-Based Anomaly Detection Fused with Diffusion Driven Generative Modeling for Semiconductor Wafer Bin Map Open Set Anomaly Detection</a></h3><ul>
+<h3 id="efficient-patch-based-anomaly-detection-fused-with-diffusion-driven-generative-modeling-for-semiconductor-wafer-bin-map-open-set-anomaly-detection"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09993">Efficient Patch-Based Anomaly
+Detection Fused with Diffusion Driven Generative Modeling for
+Semiconductor Wafer Bin Map Open Set Anomaly Detection</a></h3>
+<ul>
 <li>作者：Limon Bin Hossain、Md Sadib Rahman Ananta</li>
 <li>来源/分类：arXiv，cs.LG、cs.AI；AI</li>
-<li>简介：把 EfficientAD 与 DDPM 融合，用于半导体晶圆 bin map 的开放集异常检测。摘要称在 700 个正常 WM-38K 样本训练、18,658 个留出样本测试时，AUROC 达 0.9985，误分类 618 个，少于 DDPM 的 852 和 EfficientAD 的 1,412；作者报告差异 p&lt;0.001。类别不平衡会让 F1/AP 饱和，MCC/NPV 更有信息，但异常定位能力不能由分类 AUROC 直接推出。</li>
+<li>简介：把 EfficientAD 与 DDPM 融合，用于半导体晶圆 bin map
+的开放集异常检测。摘要称在 700 个正常 WM-38K 样本训练、18,658
+个留出样本测试时，AUROC 达 0.9985，误分类 618 个，少于 DDPM 的 852 和
+EfficientAD 的 1,412；作者报告差异 p&lt;0.001。类别不平衡会让 F1/AP
+饱和，MCC/NPV 更有信息，但异常定位能力不能由分类 AUROC 直接推出。</li>
 <li>证据状态：仅依据摘要与候选记录。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09993">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09993">PDF</a></li>
 </ul>
-<h3 id="DUDA-Bench-Benchmarking-LLM-Agents-on-Multimodal-Data-Driven-Urban-Diagnosis"><a href="#DUDA-Bench-Benchmarking-LLM-Agents-on-Multimodal-Data-Driven-Urban-Diagnosis" class="headerlink" title="DUDA-Bench: Benchmarking LLM Agents on Multimodal Data-Driven Urban Diagnosis"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09374">DUDA-Bench: Benchmarking LLM Agents on Multimodal Data-Driven Urban Diagnosis</a></h3><ul>
+<h3 id="duda-bench-benchmarking-llm-agents-on-multimodal-data-driven-urban-diagnosis"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09374">DUDA-Bench: Benchmarking LLM
+Agents on Multimodal Data-Driven Urban Diagnosis</a></h3>
+<ul>
 <li>作者：Yizhi Song、Hang Ni、Weijia Zhang、Hao Liu</li>
 <li>来源/分类：arXiv，cs.AI；AI</li>
-<li>简介：提出包含 86 个原子任务和 22 个工作流任务的城市诊断基准，覆盖 12 个城市、5 类城市问题，并评估 7 个 backbone 与 5 个 agent 系统。摘要强调端到端性能仍有明显缺口，前端证据提取错误会在工作流中传播；需核查真实数据时效、工具权限和多模态基线公平性。</li>
+<li>简介：提出包含 86 个原子任务和 22 个工作流任务的城市诊断基准，覆盖
+12 个城市、5 类城市问题，并评估 7 个 backbone 与 5 个 agent
+系统。摘要强调端到端性能仍有明显缺口，前端证据提取错误会在工作流中传播；需核查真实数据时效、工具权限和多模态基线公平性。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09374">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09374">PDF</a></li>
 </ul>
-<h3 id="The-AI-Evaluation-Ecosystem"><a href="#The-AI-Evaluation-Ecosystem" class="headerlink" title="The AI Evaluation Ecosystem"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09296">The AI Evaluation Ecosystem</a></h3><ul>
+<h3 id="the-ai-evaluation-ecosystem"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09296">The AI Evaluation
+Ecosystem</a></h3>
+<ul>
 <li>作者：Yash Dave、Sang T. Truong、Serena Wang、Sanmi Koyejo</li>
 <li>来源/分类：arXiv，cs.AI、cs.CY；AI</li>
-<li>简介：用包含 benchmark、用户和模型提供方策略互动的仿真，研究六维能力、私有 holdout 和公开榜单如何改变评测生态。摘要称私有 holdout 在多数设置缩小 benchmark 与用户满意度的差距，但少数设置反而扩大差距。结果属于参数化、假设驱动的机制探索，不是对现实市场的识别；应重点看验证与仿真敏感性。</li>
+<li>简介：用包含
+benchmark、用户和模型提供方策略互动的仿真，研究六维能力、私有 holdout
+和公开榜单如何改变评测生态。摘要称私有 holdout 在多数设置缩小 benchmark
+与用户满意度的差距，但少数设置反而扩大差距。结果属于参数化、假设驱动的机制探索，不是对现实市场的识别；应重点看验证与仿真敏感性。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09296">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09296">PDF</a></li>
 </ul>
-<h3 id="RT-Safe-Benchmarking-Agent-Safety-in-Real-Time-Embodied-Environment-1"><a href="#RT-Safe-Benchmarking-Agent-Safety-in-Real-Time-Embodied-Environment-1" class="headerlink" title="RT-Safe: Benchmarking Agent Safety in Real-Time Embodied Environment"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09294">RT-Safe: Benchmarking Agent Safety in Real-Time Embodied Environment</a></h3><ul>
-<li>作者：Tianruo Rose Xu、Jiawei Ren、Yichi Yang、Zhaoxu Zheng、Lianhui Qin</li>
+<h3 id="rt-safe-benchmarking-agent-safety-in-real-time-embodied-environment-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09294">RT-Safe: Benchmarking Agent
+Safety in Real-Time Embodied Environment</a></h3>
+<ul>
+<li>作者：Tianruo Rose Xu、Jiawei Ren、Yichi Yang、Zhaoxu Zheng、Lianhui
+Qin</li>
 <li>来源/分类：arXiv，cs.AI、cs.LG；AI</li>
-<li>简介：实时环境下任务成功和安全成功出现巨大分离，且决策延迟显著增加碰撞；离线 RL 在固定延迟设置下优于提示和行为克隆，但仍是仿真结果。</li>
+<li>简介：实时环境下任务成功和安全成功出现巨大分离，且决策延迟显著增加碰撞；离线
+RL 在固定延迟设置下优于提示和行为克隆，但仍是仿真结果。</li>
 <li>证据状态：已核阅摘要与 PDF；重点详述见上文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09294">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09294">PDF</a></li>
 </ul>
-<h3 id="Not-Every-Call-Needs-a-Frontier-Model-Per-Call-Site-Evaluation-of-Small-Language-Models-in-a-Deployed-Agentic-Home-Automation-System-1"><a href="#Not-Every-Call-Needs-a-Frontier-Model-Per-Call-Site-Evaluation-of-Small-Language-Models-in-a-Deployed-Agentic-Home-Automation-System-1" class="headerlink" title="Not Every Call Needs a Frontier Model: Per-Call-Site Evaluation of Small Language Models in a Deployed Agentic Home-Automation System"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09021">Not Every Call Needs a Frontier Model: Per-Call-Site Evaluation of Small Language Models in a Deployed Agentic Home-Automation System</a></h3><ul>
-<li>作者：Panagiotis Kasnesis、Christos Chatzigeorgiou、Lazaros Toumanidis、Amalia Contiero Syropoulou</li>
+<h3 id="not-every-call-needs-a-frontier-model-per-call-site-evaluation-of-small-language-models-in-a-deployed-agentic-home-automation-system-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09021">Not Every Call Needs a Frontier
+Model: Per-Call-Site Evaluation of Small Language Models in a Deployed
+Agentic Home-Automation System</a></h3>
+<ul>
+<li>作者：Panagiotis Kasnesis、Christos Chatzigeorgiou、Lazaros
+Toumanidis、Amalia Contiero Syropoulou</li>
 <li>来源/分类：arXiv，cs.AI；AI</li>
-<li>简介：按调用点路由模型，在两个真实家庭自动化安装上比较 9 个模型；作者报告本地最佳模型在四个调用点不劣于托管模型，并显著节约成本，但安全误动作校准和小样本外推仍是主要限制。</li>
+<li>简介：按调用点路由模型，在两个真实家庭自动化安装上比较 9
+个模型；作者报告本地最佳模型在四个调用点不劣于托管模型，并显著节约成本，但安全误动作校准和小样本外推仍是主要限制。</li>
 <li>证据状态：已核阅摘要与 PDF；重点详述见上文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09021">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09021">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/waldiez/slm-callsite-eval">代码</a></li>
 </ul>
-<h3 id="AdaGuard-Enhancing-Safety-and-Policy-Compliance-with-Reasoning-Enabled-LLM-As-A-Judge-Guardrails"><a href="#AdaGuard-Enhancing-Safety-and-Policy-Compliance-with-Reasoning-Enabled-LLM-As-A-Judge-Guardrails" class="headerlink" title="AdaGuard: Enhancing Safety and Policy Compliance with Reasoning-Enabled LLM-As-A-Judge Guardrails"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08923">AdaGuard: Enhancing Safety and Policy Compliance with Reasoning-Enabled LLM-As-A-Judge Guardrails</a></h3><ul>
-<li>作者：Melissa Kazemi Rad、Sihui Dai、Isha Slavin、Kushal Chawla、Mann Patel、Jian Ni、William M. Campbell、Stephen Rawls、Sambit Sahu</li>
+<h3 id="adaguard-enhancing-safety-and-policy-compliance-with-reasoning-enabled-llm-as-a-judge-guardrails"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08923">AdaGuard: Enhancing Safety and
+Policy Compliance with Reasoning-Enabled LLM-As-A-Judge
+Guardrails</a></h3>
+<ul>
+<li>作者：Melissa Kazemi Rad、Sihui Dai、Isha Slavin、Kushal
+Chawla、Mann Patel、Jian Ni、William M. Campbell、Stephen Rawls、Sambit
+Sahu</li>
 <li>来源/分类：arXiv，cs.AI；AI</li>
-<li>简介：提出结合监督微调、GRPO、运行时策略和自适应推理预算的 LLM-as-a-judge guardrail，用于安全与政策合规。摘要未给出足够的数字来判断相对固定 judge、人工审查和攻击分布外的收益；需要重点核查拒答率、误报/漏报、公平比较与推理成本。</li>
+<li>简介：提出结合监督微调、GRPO、运行时策略和自适应推理预算的
+LLM-as-a-judge
+guardrail，用于安全与政策合规。摘要未给出足够的数字来判断相对固定
+judge、人工审查和攻击分布外的收益；需要重点核查拒答率、误报/漏报、公平比较与推理成本。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08923">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.08923">PDF</a></li>
 </ul>
-<h3 id="Hidden-in-Plain-Sight-Benchmarking-Agent-Safety-Against-Decomposition-Attacks-with-DECOMPBENCH"><a href="#Hidden-in-Plain-Sight-Benchmarking-Agent-Safety-Against-Decomposition-Attacks-with-DECOMPBENCH" class="headerlink" title="Hidden in Plain Sight: Benchmarking Agent Safety Against Decomposition Attacks with DECOMPBENCH"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.13994">Hidden in Plain Sight: Benchmarking Agent Safety Against Decomposition Attacks with DECOMPBENCH</a></h3><ul>
+<h3 id="hidden-in-plain-sight-benchmarking-agent-safety-against-decomposition-attacks-with-decompbench"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.13994">Hidden in Plain Sight:
+Benchmarking Agent Safety Against Decomposition Attacks with
+DECOMPBENCH</a></h3>
+<ul>
 <li>作者：Vikhyath Kothamasu、Virginia Smith、Chhavi Yadav</li>
 <li>来源/分类：arXiv，cs.CR、cs.AI、cs.LG；AI</li>
-<li>简介：提出按设计把恶意整体任务拆成多个看似无害子任务的安全基准。摘要称模型对整体有害任务拒答率较高，但对分解变体更容易执行恶意目标；评估重点应包括任务链长度、工具权限、攻击者适应性和公开数据污染。数据集：<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/vikhyath/DECOMPBENCH">Hugging Face</a>。</li>
+<li>简介：提出按设计把恶意整体任务拆成多个看似无害子任务的安全基准。摘要称模型对整体有害任务拒答率较高，但对分解变体更容易执行恶意目标；评估重点应包括任务链长度、工具权限、攻击者适应性和公开数据污染。数据集：<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/vikhyath/DECOMPBENCH">Hugging
+Face</a>。</li>
 <li>证据状态：仅依据摘要与候选记录。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.13994">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.13994">PDF</a></li>
 </ul>
-<h3 id="Agentic-Discovery-of-Neural-Architectures-AIRA-Compose-and-AIRA-Design-1"><a href="#Agentic-Discovery-of-Neural-Architectures-AIRA-Compose-and-AIRA-Design-1" class="headerlink" title="Agentic Discovery of Neural Architectures: AIRA-Compose and AIRA-Design"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.15871">Agentic Discovery of Neural Architectures: AIRA-Compose and AIRA-Design</a></h3><ul>
-<li>作者：Alberto Pepe、Chien-Yu Lin、Despoina Magka、Bilge Acun、Thomas Simon Foster、Yannan Nellie Wu、Anton Protopopov、Carole-Jean Wu、Yoram Bachrach</li>
+<h3 id="agentic-discovery-of-neural-architectures-aira-compose-and-aira-design-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.15871">Agentic Discovery of Neural
+Architectures: AIRA-Compose and AIRA-Design</a></h3>
+<ul>
+<li>作者：Alberto Pepe、Chien-Yu Lin、Despoina Magka、Bilge Acun、Thomas
+Simon Foster、Yannan Nellie Wu、Anton Protopopov、Carole-Jean Wu、Yoram
+Bachrach</li>
 <li>来源/分类：arXiv，cs.AI；AI</li>
-<li>简介：多 agent 搜索和组合架构，在受限预算中得到少量优于基线的模型，但 one-shot 架构设计无有效提交，许多发现是已有组件重组，且搜索结果受 proxy、显存和框架限制影响。</li>
+<li>简介：多 agent
+搜索和组合架构，在受限预算中得到少量优于基线的模型，但 one-shot
+架构设计无有效提交，许多发现是已有组件重组，且搜索结果受
+proxy、显存和框架限制影响。</li>
 <li>证据状态：已核阅摘要与 PDF；重点详述见上文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.15871">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.15871">PDF</a></li>
 </ul>
-<h3 id="Rethinking-Meeting-Effectiveness-A-Benchmark-and-Framework-for-Temporal-Fine-grained-Automatic-Meeting-Effectiveness-Evaluation"><a href="#Rethinking-Meeting-Effectiveness-A-Benchmark-and-Framework-for-Temporal-Fine-grained-Automatic-Meeting-Effectiveness-Evaluation" class="headerlink" title="Rethinking Meeting Effectiveness: A Benchmark and Framework for Temporal Fine-grained Automatic Meeting Effectiveness Evaluation"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.17260">Rethinking Meeting Effectiveness: A Benchmark and Framework for Temporal Fine-grained Automatic Meeting Effectiveness Evaluation</a></h3><ul>
+<h3 id="rethinking-meeting-effectiveness-a-benchmark-and-framework-for-temporal-fine-grained-automatic-meeting-effectiveness-evaluation"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.17260">Rethinking Meeting
+Effectiveness: A Benchmark and Framework for Temporal Fine-grained
+Automatic Meeting Effectiveness Evaluation</a></h3>
+<ul>
 <li>作者：Yihang Li、Chenhui Chu</li>
 <li>来源/分类：arXiv，cs.CL；AI</li>
-<li>简介：提出 AMI-ME 会议有效性基准，包含 2,459 条人工标注片段、130 场会议，并让 LLM judge 评估具有时间细粒度的目标达成。代码与数据：<a target="_blank" rel="noopener" href="https://github.com/li-yihang/AMI-ME">GitHub</a>。摘要没有提供足以比较模型的主要结果数字；应检查时间泄漏、标注者一致性、会议目标定义和 judge 校准。</li>
+<li>简介：提出 AMI-ME 会议有效性基准，包含 2,459 条人工标注片段、130
+场会议，并让 LLM judge 评估具有时间细粒度的目标达成。代码与数据：<a target="_blank" rel="noopener" href="https://github.com/li-yihang/AMI-ME">GitHub</a>。摘要没有提供足以比较模型的主要结果数字；应检查时间泄漏、标注者一致性、会议目标定义和
+judge 校准。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.17260">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.17260">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/li-yihang/AMI-ME">代码/数据</a></li>
 </ul>
-<h3 id="Generative-AI-for-Autonomous-Driving-Frontiers-and-Opportunities"><a href="#Generative-AI-for-Autonomous-Driving-Frontiers-and-Opportunities" class="headerlink" title="Generative AI for Autonomous Driving: Frontiers and Opportunities"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.08854">Generative AI for Autonomous Driving: Frontiers and Opportunities</a></h3><ul>
+<h3 id="generative-ai-for-autonomous-driving-frontiers-and-opportunities"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.08854">Generative AI for Autonomous
+Driving: Frontiers and Opportunities</a></h3>
+<ul>
 <li>作者：论文作者列表较长，详见摘要页</li>
 <li>来源/分类：arXiv，cs.CV、cs.AI、cs.RO；AI</li>
-<li>简介：综述生成式 AI 在自动驾驶感知、预测、规划、控制和数据闭环中的应用，归纳安全、评测、成本和监管问题。综述不是新实验，不能将其中列举的模型结果当作统一协议下的直接比较；代码与资源索引见：<a target="_blank" rel="noopener" href="https://github.com/Thinklab-SJTU/GAID">GitHub</a>。</li>
+<li>简介：综述生成式 AI
+在自动驾驶感知、预测、规划、控制和数据闭环中的应用，归纳安全、评测、成本和监管问题。综述不是新实验，不能将其中列举的模型结果当作统一协议下的直接比较；代码与资源索引见：<a target="_blank" rel="noopener" href="https://github.com/Thinklab-SJTU/GAID">GitHub</a>。</li>
 <li>证据状态：仅依据摘要与候选记录。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.08854">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2505.08854">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Thinklab-SJTU/GAID">资源</a></li>
 </ul>
-<h3 id="Reliability-of-LLM-Judges-for-Evaluating-Entity-Alignment-1"><a href="#Reliability-of-LLM-Judges-for-Evaluating-Entity-Alignment-1" class="headerlink" title="Reliability of LLM Judges for Evaluating Entity Alignment"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09554">Reliability of LLM Judges for Evaluating Entity Alignment</a></h3><ul>
+<h3 id="reliability-of-llm-judges-for-evaluating-entity-alignment-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09554">Reliability of LLM Judges for
+Evaluating Entity Alignment</a></h3>
+<ul>
 <li>作者：Vaibhava Lakshmi Ravideshik、Mayank Kejriwal</li>
 <li>来源/分类：arXiv，cs.AI；AI</li>
-<li>简介：标签可见会让 judge 的反事实稳定性显著恶化；论文用标签翻转、匿名化和人工比较证明单一 aggregate accuracy 不足以验证 judge。详细数字、成本和可复现性限制见上文。</li>
+<li>简介：标签可见会让 judge
+的反事实稳定性显著恶化；论文用标签翻转、匿名化和人工比较证明单一
+aggregate accuracy 不足以验证
+judge。详细数字、成本和可复现性限制见上文。</li>
 <li>证据状态：已核阅摘要与 PDF；重点详述见上文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09554">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09554">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/vaibhavalakshmiravideshik/llm-as-a-judge-entity-alignment">代码</a></li>
 </ul>
-<h3 id="It-Is-Not-Seeing-the-Hazard-A-Frozen-Vision-Language-Safety-Score-Measures-Its-Caption-Bank"><a href="#It-Is-Not-Seeing-the-Hazard-A-Frozen-Vision-Language-Safety-Score-Measures-Its-Caption-Bank" class="headerlink" title="It Is Not Seeing the Hazard: A Frozen Vision-Language Safety Score Measures Its Caption Bank"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09517">It Is Not Seeing the Hazard: A Frozen Vision-Language Safety Score Measures Its Caption Bank</a></h3><ul>
+<h3 id="it-is-not-seeing-the-hazard-a-frozen-vision-language-safety-score-measures-its-caption-bank"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09517">It Is Not Seeing the Hazard: A
+Frozen Vision-Language Safety Score Measures Its Caption Bank</a></h3>
+<ul>
 <li>作者：Samuel Tetteh、Cody Fleming</li>
 <li>来源/分类：arXiv，cs.CV、cs.LG；AI</li>
-<li>简介：在 3 个策略、180 个 episode 和 130 个接触起始点上测试冻结 VLM 安全分数。摘要称分数约提前 20 步下降，但该变化主要跟随 caption、场景几何和相机因素；恒定置信度控制的灾难率点估计反而更低，因此分数提升不能直接解释为真正的危险感知。需要核查任务、阈值和置信区间。</li>
+<li>简介：在 3 个策略、180 个 episode 和 130 个接触起始点上测试冻结 VLM
+安全分数。摘要称分数约提前 20 步下降，但该变化主要跟随
+caption、场景几何和相机因素；恒定置信度控制的灾难率点估计反而更低，因此分数提升不能直接解释为真正的危险感知。需要核查任务、阈值和置信区间。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09517">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09517">PDF</a></li>
 </ul>
-<h3 id="LLM-Enabled-UAV-Dispatch-A-System-Level-Survey-and-Taxonomy"><a href="#LLM-Enabled-UAV-Dispatch-A-System-Level-Survey-and-Taxonomy" class="headerlink" title="LLM-Enabled UAV Dispatch: A System-Level Survey and Taxonomy"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09466">LLM-Enabled UAV Dispatch: A System-Level Survey and Taxonomy</a></h3><ul>
-<li>作者：Xiao Han、Aoyang Quan、Xiangyu Zhao、Xiangjie Kong、Guojiang Shen</li>
+<h3 id="llm-enabled-uav-dispatch-a-system-level-survey-and-taxonomy"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09466">LLM-Enabled UAV Dispatch: A
+System-Level Survey and Taxonomy</a></h3>
+<ul>
+<li>作者：Xiao Han、Aoyang Quan、Xiangyu Zhao、Xiangjie Kong、Guojiang
+Shen</li>
 <li>来源/分类：arXiv，cs.AI、cs.SY、eess.SY；AI</li>
-<li>简介：从任务分解、空域/资源约束、通信、规划和执行闭环等层面综述 LLM-enabled UAV dispatch，并整理系统级 taxonomy。该工作是综述，不能代替在真实飞行约束下的安全验证；读者应关注延迟、可验证规划、通信失联和模型幻觉。</li>
+<li>简介：从任务分解、空域/资源约束、通信、规划和执行闭环等层面综述
+LLM-enabled UAV dispatch，并整理系统级
+taxonomy。该工作是综述，不能代替在真实飞行约束下的安全验证；读者应关注延迟、可验证规划、通信失联和模型幻觉。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09466">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09466">PDF</a></li>
 </ul>
-<h3 id="Arctic-Questions-Missing-Answers-A-Dataset-and-Benchmark-for-LLM-Abstention-in-Arctic-Science"><a href="#Arctic-Questions-Missing-Answers-A-Dataset-and-Benchmark-for-LLM-Abstention-in-Arctic-Science" class="headerlink" title="Arctic Questions, Missing Answers: A Dataset and Benchmark for LLM Abstention in Arctic Science"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09446">Arctic Questions, Missing Answers: A Dataset and Benchmark for LLM Abstention in Arctic Science</a></h3><ul>
-<li>作者：Benjamin Wilcox、Dawei Gao、Pradeeban Kathiravelu、Douglas Causey、Kewei Sha、Yunhe Feng</li>
+<h3 id="arctic-questions-missing-answers-a-dataset-and-benchmark-for-llm-abstention-in-arctic-science"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09446">Arctic Questions, Missing
+Answers: A Dataset and Benchmark for LLM Abstention in Arctic
+Science</a></h3>
+<ul>
+<li>作者：Benjamin Wilcox、Dawei Gao、Pradeeban Kathiravelu、Douglas
+Causey、Kewei Sha、Yunhe Feng</li>
 <li>来源/分类：arXiv，cs.CL、cs.AI；AI</li>
-<li>简介：提出 ArcticQA，包含 194 个有答案/无答案配对问题，评估 8 个模型、每模型 3 次试验，共 9,312 个响应。摘要称有答案样本的拒答率为 0–63%，将正确答案替换为空答案后平均拒答率只增加约 5.05 个百分点，说明 abstention 的频率与响应性必须联合评估；仍需检查领域覆盖、答案核验和提示污染。</li>
+<li>简介：提出 ArcticQA，包含 194 个有答案/无答案配对问题，评估 8
+个模型、每模型 3 次试验，共 9,312 个响应。摘要称有答案样本的拒答率为
+0–63%，将正确答案替换为空答案后平均拒答率只增加约 5.05 个百分点，说明
+abstention
+的频率与响应性必须联合评估；仍需检查领域覆盖、答案核验和提示污染。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09446">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09446">PDF</a></li>
 </ul>
@@ -633,9 +859,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/10/10/daily-briefing-2026-10-10/" title="每日信息简报｜2026 年 10 月 10 日">
+                      <a href="/2026/10/10/daily-github-trending-2026-10-10/" title="2026-10-10 GitHub 热榜简报：Agent 工作流、代码质量与空间计算">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">每日信息简报｜2026 年 10 月 10 日</span>
+                        <span class="hidden-mobile">2026-10-10 GitHub 热榜简报：Agent 工作流、代码质量与空间计算</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
