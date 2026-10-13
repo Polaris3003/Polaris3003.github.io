@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注以下 6 篇从今日 18 篇金融候选中选出。金融论文中的回测收益、风险指标和相关性不等于因果效应或可交易收益；除特别说明外，数字均为论文作者报告。 SOTA: Stock Options Trading Agents Guided by Option-Implied Return Distributions 作者：Yizhen Xie、Mengyang Liu 来源&#x2F;分类：arXiv，c">
+    <meta name="description" content="重点关注 以下 6 篇从今日 18 篇金融候选中选出。金融论文中的回测收益、风险指标和相关性不等于因果效应或可交易收益；除特别说明外，数字均为论文作者报告。 SOTA: Stock Options Trading Agents Guided by Option-Implied Return Distributions  作者：Yizhen Xie、Mengyang Liu 来源&#x2F;分类：arXiv">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日金融论文简报｜2026 年 10 月 9 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/10/09/daily-finance-papers-2026-10-09/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注以下 6 篇从今日 18 篇金融候选中选出。金融论文中的回测收益、风险指标和相关性不等于因果效应或可交易收益；除特别说明外，数字均为论文作者报告。 SOTA: Stock Options Trading Agents Guided by Option-Implied Return Distributions 作者：Yizhen Xie、Mengyang Liu 来源&#x2F;分类：arXiv，c">
+<meta property="og:description" content="重点关注 以下 6 篇从今日 18 篇金融候选中选出。金融论文中的回测收益、风险指标和相关性不等于因果效应或可交易收益；除特别说明外，数字均为论文作者报告。 SOTA: Stock Options Trading Agents Guided by Option-Implied Return Distributions  作者：Yizhen Xie、Mengyang Liu 来源&#x2F;分类：arXiv">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-16/pixiv-rank-004-148227456.jpg">
 <meta property="article:published_time" content="2026-10-09T02:15:00.000Z">
@@ -347,196 +347,385 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><p>以下 6 篇从今日 18 篇金融候选中选出。金融论文中的回测收益、风险指标和相关性不等于因果效应或可交易收益；除特别说明外，数字均为论文作者报告。</p>
-<h3 id="SOTA-Stock-Options-Trading-Agents-Guided-by-Option-Implied-Return-Distributions"><a href="#SOTA-Stock-Options-Trading-Agents-Guided-by-Option-Implied-Return-Distributions" class="headerlink" title="SOTA: Stock Options Trading Agents Guided by Option-Implied Return Distributions"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10407">SOTA: Stock Options Trading Agents Guided by Option-Implied Return Distributions</a></h3><ul>
+<h2 id="重点关注">重点关注</h2>
+<p>以下 6 篇从今日 18
+篇金融候选中选出。金融论文中的回测收益、风险指标和相关性不等于因果效应或可交易收益；除特别说明外，数字均为论文作者报告。</p>
+<h3 id="sota-stock-options-trading-agents-guided-by-option-implied-return-distributions"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10407">SOTA: Stock Options Trading
+Agents Guided by Option-Implied Return Distributions</a></h3>
+<ul>
 <li>作者：Yizhen Xie、Mengyang Liu</li>
-<li>来源/分类：arXiv，cs.AI、cs.LG、q-fin.PM、q-fin.TR；AI / 金融交叉，本篇作金融侧详述，AI 篇仅作索引</li>
+<li>来源/分类：arXiv，cs.AI、cs.LG、q-fin.PM、q-fin.TR；AI /
+金融交叉，本篇作金融侧详述，AI 篇仅作索引</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.10407">PDF</a></li>
-<li>核心问题：期权策略选择同时面对方向、期限、执行价、波动率、合约规模和对冲等离散/连续决策；论文问结构化 agent 能否把期权隐含回报分布转成可执行策略，而不是只预测单一收益。</li>
-<li>方法与基线：SOTA 先用期权隐含分布做结构化策略选择，再由确定性合约、规模和对冲解析器执行；Qwen3.8-27B 先在 144 条教师轨迹上监督微调，再用 GRPO 做组合奖励优化。数据来自 OPRA/OptionMetrics、CRSP/SpiderRock、Massive 新闻和 SEC EDGAR；训练分段为 2024-09-03 至 2025-02-28，测试为 2025-03-03 至 2025-08-29，覆盖 SPY 及 AAPL、AMZN、GOOGL、META、MSFT、MU、NVDA、PLTR、TSLA。回测加入期权费用、转让费、股票佣金、借券费、60% 止损和 20% 破产底线。比较对象包括等权规则、GARCH、阈值、GBDT 和逻辑回归；另有不可交易的 hindsight oracle。</li>
-<li>关键结果：作者报告测试期 SOTA 总回报 18.32%、年化 Sharpe 1.60、Calmar 4.59、Sortino 4.77、波动率 21.52%、最大回撤 8.96%、胜率 29.17%、盈利亏损比 4.68。所有可执行基线为负回报（约 -5.22% 至 -55.45%），hindsight oracle 达 608.31%/Sharpe 6.28，但不能作为可交易基线。去掉新闻后 RL 的回报反而为 18.32%、Sharpe 1.60；保留新闻进入 RL 为 -2.72%、Sharpe -0.16、最大回撤 31.69%，说明教师阶段有用的新闻不一定适合 RL 阶段。</li>
-<li>统计与经济边界：这是同一历史区间上的样本外回测，不是实盘或前瞻交易；结果是预测/策略收益与市场状态的相关性，不能证明 agent 造成超额收益。六个月窗口、参数/数据处理、期权中点成交、费用和流动性假设都会影响经济显著性；没有独立复现，也没有容量、冲击成本和实时成交延迟证据。不可交易 oracle 与可执行策略必须严格分开。</li>
-<li>适合谁读：做期权策略、金融 agent、回测审计和 RL 的读者。建议优先读第 3–5.2 节、表 1–3 及附录 C、E；本文不构成投资建议。</li>
-<li>证据状态：已核阅摘要与 PDF；所有业绩均为作者回测报告，未作独立验证。</li>
+<li>核心问题：期权策略选择同时面对方向、期限、执行价、波动率、合约规模和对冲等离散/连续决策；论文问结构化
+agent 能否把期权隐含回报分布转成可执行策略，而不是只预测单一收益。</li>
+<li>方法与基线：SOTA
+先用期权隐含分布做结构化策略选择，再由确定性合约、规模和对冲解析器执行；Qwen3.8-27B
+先在 144 条教师轨迹上监督微调，再用 GRPO 做组合奖励优化。数据来自
+OPRA/OptionMetrics、CRSP/SpiderRock、Massive 新闻和 SEC
+EDGAR；训练分段为 2024-09-03 至 2025-02-28，测试为 2025-03-03 至
+2025-08-29，覆盖 SPY 及
+AAPL、AMZN、GOOGL、META、MSFT、MU、NVDA、PLTR、TSLA。回测加入期权费用、转让费、股票佣金、借券费、60%
+止损和 20% 破产底线。比较对象包括等权规则、GARCH、阈值、GBDT
+和逻辑回归；另有不可交易的 hindsight oracle。</li>
+<li>关键结果：作者报告测试期 SOTA 总回报 18.32%、年化 Sharpe
+1.60、Calmar 4.59、Sortino 4.77、波动率 21.52%、最大回撤 8.96%、胜率
+29.17%、盈利亏损比 4.68。所有可执行基线为负回报（约 -5.22% 至
+-55.45%），hindsight oracle 达 608.31%/Sharpe
+6.28，但不能作为可交易基线。去掉新闻后 RL 的回报反而为 18.32%、Sharpe
+1.60；保留新闻进入 RL 为 -2.72%、Sharpe -0.16、最大回撤
+31.69%，说明教师阶段有用的新闻不一定适合 RL 阶段。</li>
+<li>统计与经济边界：这是同一历史区间上的样本外回测，不是实盘或前瞻交易；结果是预测/策略收益与市场状态的相关性，不能证明
+agent
+造成超额收益。六个月窗口、参数/数据处理、期权中点成交、费用和流动性假设都会影响经济显著性；没有独立复现，也没有容量、冲击成本和实时成交延迟证据。不可交易
+oracle 与可执行策略必须严格分开。</li>
+<li>适合谁读：做期权策略、金融 agent、回测审计和 RL 的读者。建议优先读第
+3–5.2 节、表 1–3 及附录 C、E；本文不构成投资建议。</li>
+<li>证据状态：已核阅摘要与
+PDF；所有业绩均为作者回测报告，未作独立验证。</li>
 </ul>
-<h3 id="Agentic-AI-Systems-and-Financial-Stability-From-Model-Risk-to-Systemic-Risk"><a href="#Agentic-AI-Systems-and-Financial-Stability-From-Model-Risk-to-Systemic-Risk" class="headerlink" title="Agentic AI Systems and Financial Stability, From Model Risk to Systemic Risk"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08806">Agentic AI Systems and Financial Stability, From Model Risk to Systemic Risk</a></h3><ul>
+<h3 id="agentic-ai-systems-and-financial-stability-from-model-risk-to-systemic-risk"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08806">Agentic AI Systems and Financial
+Stability, From Model Risk to Systemic Risk</a></h3>
+<ul>
 <li>作者：Sriram Nagaraj、Seung Jung Lee</li>
 <li>来源/分类：arXiv，q-fin.RM；金融</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.08806">PDF</a></li>
-<li>核心问题：当许多金融 agent 共享基础模型、数据和工具时，传统的单模型 model risk 是否会通过共同暴露变成 systemic risk。论文不是市场实证，而是一个带六个数学设置的风险框架。</li>
-<li>方法与基线：模型风险部分用预期损失和集合值的 containment risk 描述不可逆动作；系统风险部分研究共享基础模型造成的不可分散损失下限和网络渗流阈值；时间维度用带标记 Hawkes 跳扩散，控制部分用部分观测随机控制，另讨论攻击者和能力竞赛。文中给出说明性数值例子，但参数是示意性的，未用部署遥测或市场数据估计。</li>
-<li>关键结果：作者在理论条件下说明，若决策已提交且审查不能拦截不可逆动作，事后运行时 guardrail 不可能保证相干的尾部约束；共享基础模型形成不随 agent 数量消失的共同暴露下限；网络扩散在达到渗流阈值后会产生非线性系统性影响。它还提出单纯把风险监控放到运行时不足以替代事前隔离、减少共同暴露和约束权限。</li>
-<li>统计与经济边界：没有观测样本、样本内/样本外估计、显著性检验、可交易回测或实证因果识别；结果是定理/模型条件下的推论，不能读成“现实金融系统已达到某阈值”。参数校准、网络结构和 agent 行为分布仍是开放问题。</li>
-<li>适合谁读：做金融监管、模型风险、网络 contagion 和 agent 系统安全的人。建议优先读第 1.6–1.8、2.4/2.6/2.9、4.6/4.10、5.5–5.9 节。</li>
+<li>核心问题：当许多金融 agent 共享基础模型、数据和工具时，传统的单模型
+model risk 是否会通过共同暴露变成 systemic
+risk。论文不是市场实证，而是一个带六个数学设置的风险框架。</li>
+<li>方法与基线：模型风险部分用预期损失和集合值的 containment risk
+描述不可逆动作；系统风险部分研究共享基础模型造成的不可分散损失下限和网络渗流阈值；时间维度用带标记
+Hawkes
+跳扩散，控制部分用部分观测随机控制，另讨论攻击者和能力竞赛。文中给出说明性数值例子，但参数是示意性的，未用部署遥测或市场数据估计。</li>
+<li>关键结果：作者在理论条件下说明，若决策已提交且审查不能拦截不可逆动作，事后运行时
+guardrail 不可能保证相干的尾部约束；共享基础模型形成不随 agent
+数量消失的共同暴露下限；网络扩散在达到渗流阈值后会产生非线性系统性影响。它还提出单纯把风险监控放到运行时不足以替代事前隔离、减少共同暴露和约束权限。</li>
+<li>统计与经济边界：没有观测样本、样本内/样本外估计、显著性检验、可交易回测或实证因果识别；结果是定理/模型条件下的推论，不能读成“现实金融系统已达到某阈值”。参数校准、网络结构和
+agent 行为分布仍是开放问题。</li>
+<li>适合谁读：做金融监管、模型风险、网络 contagion 和 agent
+系统安全的人。建议优先读第 1.6–1.8、2.4/2.6/2.9、4.6/4.10、5.5–5.9
+节。</li>
 <li>证据状态：已核阅摘要与 PDF；理论与示意性计算，不是实证证明。</li>
 </ul>
-<h3 id="DSTNet-Dynamic-Spectral-Trajectory-Network-for-Causal-Multi-Horizon-Financial-Forecasting"><a href="#DSTNet-Dynamic-Spectral-Trajectory-Network-for-Causal-Multi-Horizon-Financial-Forecasting" class="headerlink" title="DSTNet: Dynamic Spectral Trajectory Network for Causal Multi-Horizon Financial Forecasting"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09654">DSTNet: Dynamic Spectral Trajectory Network for Causal Multi-Horizon Financial Forecasting</a></h3><ul>
+<h3 id="dstnet-dynamic-spectral-trajectory-network-for-causal-multi-horizon-financial-forecasting"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09654">DSTNet: Dynamic Spectral
+Trajectory Network for Causal Multi-Horizon Financial
+Forecasting</a></h3>
+<ul>
 <li>作者：Aashish Bohra、Lokendra Vishwakarm</li>
 <li>来源/分类：arXiv，cs.LG、q-fin.CP、q-fin.ST；金融</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09654">PDF</a></li>
-<li>核心问题：多期限金融预测能否利用因果 Morlet 小波频谱轨迹，在避免未来信息泄漏的情况下改善指数和黄金的预测与资产配置。标题中的“causal”是模型滤波设计，不等于发现了经济因果关系。</li>
-<li>方法与基线：数据为 2010–2024 年 Yahoo Finance 的 7 个股票指数（KOSPI、日经、S&amp;P500、DJI、DAX、NASDAQ、NYSE）和黄金；测试区间为 2023-06-01 至 2024-05-31，使用 5 个 expanding folds、3 个随机种子和一张 RTX 5060 Ti 16GB。模型将因果小波、7 个指标、谱时序 Transformer、CNN-BiLSTM 和 1/3/5/10 日 horizon gate 结合，并与 9 个学习模型和 persistence 比较。</li>
-<li>关键结果：persistence 是 32 个 MAE/MAPE 单元中最强的固定竞争者；作者报告 DSTNet 在所有 MAE/MAPE 单元都低于 persistence，面板平均 MAE/MAPE 约改善 2.27%，RMSE 改善约 2.95%，但一日相对改善约 0.7%–0.9%，十日约 3.43%–4.49%。三种子重跑时，DSTNet 在 32 个单元中约 25 个领先最强固定基线。方向准确率并不普遍超过随机：DJI 最高约 59.09%，KOSPI 约 49.36%、NYSE 约 48.76%。</li>
-<li>统计与经济边界：与 persistence 的一日 Diebold–Mariano 检验统计量约 0.16–0.24，未显示有力差异；下游股票配置没有 Sharpe 提升，7 个市场中 6 个因负号偏置而大部分时间保持 65% 权重。黄金的一个留出期 Sharpe 从买入并持有 1.74 到模型 1.99，但存在理想收盘成交、10bps 成本和单一 holdout，不能视为真实可交易优势。预测相关性、方向准确率和收益因果不是同一结论。</li>
-<li>适合谁读：做时序预测、信号回测和多期限风险建模的人。建议优先读第 V-A–V-I 节、表 IV–X 与限制部分；不要将结果当作投资建议。</li>
-<li>证据状态：已核阅摘要与 PDF；作者报告了负结果和诊断，但数据源、窗口和成本假设限制外推。</li>
+<li>核心问题：多期限金融预测能否利用因果 Morlet
+小波频谱轨迹，在避免未来信息泄漏的情况下改善指数和黄金的预测与资产配置。标题中的“causal”是模型滤波设计，不等于发现了经济因果关系。</li>
+<li>方法与基线：数据为 2010–2024 年 Yahoo Finance 的 7
+个股票指数（KOSPI、日经、S&amp;P500、DJI、DAX、NASDAQ、NYSE）和黄金；测试区间为
+2023-06-01 至 2024-05-31，使用 5 个 expanding folds、3 个随机种子和一张
+RTX 5060 Ti 16GB。模型将因果小波、7 个指标、谱时序
+Transformer、CNN-BiLSTM 和 1/3/5/10 日 horizon gate 结合，并与 9
+个学习模型和 persistence 比较。</li>
+<li>关键结果：persistence 是 32 个 MAE/MAPE
+单元中最强的固定竞争者；作者报告 DSTNet 在所有 MAE/MAPE 单元都低于
+persistence，面板平均 MAE/MAPE 约改善 2.27%，RMSE 改善约
+2.95%，但一日相对改善约 0.7%–0.9%，十日约
+3.43%–4.49%。三种子重跑时，DSTNet 在 32 个单元中约 25
+个领先最强固定基线。方向准确率并不普遍超过随机：DJI 最高约 59.09%，KOSPI
+约 49.36%、NYSE 约 48.76%。</li>
+<li>统计与经济边界：与 persistence 的一日 Diebold–Mariano 检验统计量约
+0.16–0.24，未显示有力差异；下游股票配置没有 Sharpe 提升，7 个市场中 6
+个因负号偏置而大部分时间保持 65% 权重。黄金的一个留出期 Sharpe
+从买入并持有 1.74 到模型 1.99，但存在理想收盘成交、10bps 成本和单一
+holdout，不能视为真实可交易优势。预测相关性、方向准确率和收益因果不是同一结论。</li>
+<li>适合谁读：做时序预测、信号回测和多期限风险建模的人。建议优先读第
+V-A–V-I 节、表 IV–X 与限制部分；不要将结果当作投资建议。</li>
+<li>证据状态：已核阅摘要与
+PDF；作者报告了负结果和诊断，但数据源、窗口和成本假设限制外推。</li>
 </ul>
-<h3 id="Approximate-Design-Based-Intervals-for-Downsampled-Cross-Sectional-Market-Aggregates"><a href="#Approximate-Design-Based-Intervals-for-Downsampled-Cross-Sectional-Market-Aggregates" class="headerlink" title="Approximate Design-Based Intervals for Downsampled Cross-Sectional Market Aggregates"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08801">Approximate Design-Based Intervals for Downsampled Cross-Sectional Market Aggregates</a></h3><ul>
+<h3 id="approximate-design-based-intervals-for-downsampled-cross-sectional-market-aggregates"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08801">Approximate Design-Based
+Intervals for Downsampled Cross-Sectional Market Aggregates</a></h3>
+<ul>
 <li>作者：Minmin Zeng</li>
 <li>来源/分类：arXiv，q-fin.RM、cs.CE；金融</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.08801">PDF</a></li>
-<li>核心问题：带宽受限的金融数据管道从横截面下采样时，如何在指定加权目标上给出可审计的近似区间。论文关注的是抽样设计质量，不是用抽样制造交易 alpha。</li>
-<li>方法与基线：用 2026-03-30 至 2026-07-24 的美国 80 个交易日和香港 82 个交易日数据，目标为 OI 加权隐含波动率；比较 OI Top-k、uniform、stratified、Poisson PPS Hájek 和 fixed PPS，在 5/10/20/30/50% 留存率下每天 200 个随机种子，并用 moving block 方法处理相关性。</li>
-<li>关键结果：美国 10% 留存率下，Top-k MAE 约 8.15，Poisson PPS 约 5.305，作者报告约降低 35%，配对 t=6.68、效应量 d=0.75、block CI [1.822, 3.957]、p&lt;0.0002；10% 时区间覆盖率约 91.9%，各留存率约 89%–94%，低于名义覆盖率。香港低留存率反转：10% 时 Top-k 约 1.33、Poisson 约 2.45，p&lt;0.0004；到 50% 时 PPS 才超过。</li>
-<li>统计与经济边界：这里的显著性是抽样误差比较，不是资产收益显著性；美国和香港差异也不能做因果归因。OI-PPS 只适用于 OI 加权目标；对等权 VRP、中位数和 IV 离散度，其他设计的覆盖率可能只有约 61.2%–90.5%，不能把一个目标上的优势外推到所有风险统计量。区间是近似且可审计的，不是保证。</li>
-<li>适合谁读：做金融数据工程、抽样设计、隐含波动率聚合和风险估计的人。建议优先读第 2.4、3、4、5.1–5.3 节及表 2–7。</li>
-<li>证据状态：已核阅摘要与 PDF；结果来自短期美/港市场样本和模拟抽样，不是交易回测。</li>
+<li>核心问题：带宽受限的金融数据管道从横截面下采样时，如何在指定加权目标上给出可审计的近似区间。论文关注的是抽样设计质量，不是用抽样制造交易
+alpha。</li>
+<li>方法与基线：用 2026-03-30 至 2026-07-24 的美国 80 个交易日和香港 82
+个交易日数据，目标为 OI 加权隐含波动率；比较 OI
+Top-k、uniform、stratified、Poisson PPS Hájek 和 fixed PPS，在
+5/10/20/30/50% 留存率下每天 200 个随机种子，并用 moving block
+方法处理相关性。</li>
+<li>关键结果：美国 10% 留存率下，Top-k MAE 约 8.15，Poisson PPS 约
+5.305，作者报告约降低 35%，配对 t=6.68、效应量 d=0.75、block CI [1.822,
+3.957]、p&lt;0.0002；10% 时区间覆盖率约 91.9%，各留存率约
+89%–94%，低于名义覆盖率。香港低留存率反转：10% 时 Top-k 约 1.33、Poisson
+约 2.45，p&lt;0.0004；到 50% 时 PPS 才超过。</li>
+<li>统计与经济边界：这里的显著性是抽样误差比较，不是资产收益显著性；美国和香港差异也不能做因果归因。OI-PPS
+只适用于 OI 加权目标；对等权 VRP、中位数和 IV
+离散度，其他设计的覆盖率可能只有约
+61.2%–90.5%，不能把一个目标上的优势外推到所有风险统计量。区间是近似且可审计的，不是保证。</li>
+<li>适合谁读：做金融数据工程、抽样设计、隐含波动率聚合和风险估计的人。建议优先读第
+2.4、3、4、5.1–5.3 节及表 2–7。</li>
+<li>证据状态：已核阅摘要与
+PDF；结果来自短期美/港市场样本和模拟抽样，不是交易回测。</li>
 </ul>
-<h3 id="Residual-Learning-in-Empirical-Asset-Pricing"><a href="#Residual-Learning-in-Empirical-Asset-Pricing" class="headerlink" title="Residual Learning in Empirical Asset Pricing"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09613">Residual Learning in Empirical Asset Pricing</a></h3><ul>
+<h3 id="residual-learning-in-empirical-asset-pricing"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09613">Residual Learning in Empirical
+Asset Pricing</a></h3>
+<ul>
 <li>作者：Dexin Peng、Xiaoyu Wang</li>
 <li>来源/分类：arXiv，q-fin.ST、cs.LG；金融</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09613">PDF</a></li>
 <li>核心问题：在经验资产定价中，残差连接是否能让深层网络保留浅层排序并进一步提取横截面信息，而非把深度简单等同于更强的因子。</li>
-<li>方法与基线：使用 CRSP/Compustat，1963 年 1 月至 2023 年 12 月约 5,000 只股票/月、3.57 百万 stock-months，使用 153 个特征和 8 个宏观变量，并按扩展窗口逐年重训，预测起点 1987–2023 年、10 个随机种子。构建价值加权十分位多空组合，比较浅/中/深的 feedforward、ResNet 和 tailored ResNet+，并报告 FF5 alpha、换手率和 10/50bps 成本敏感性。</li>
-<li>关键结果：作者报告 tailored ResNet+ 深层多空组合 Sharpe 2.07，浅层约 1.92，深 feedforward 约 0.89；表中深 ResNet+ 平均月收益约 3.48%、标准差 5.82%、FF5 alpha 约 3.35%、月换手率约 259.49%，深 NN+ 约为 1.33%、Sharpe 0.89、alpha 1.26%、换手率 261.97%。扣除每美元交易 10/50bps 后，深 ResNet+ Sharpe 约 1.92/1.30，NN+ 约 0.66/-0.26；2020 年部分疫情月份为负。</li>
-<li>统计与经济边界：这是历史扩展窗口的样本外组合排序，不是实时交易记录。FF5 alpha 的统计显著性不能自动证明残差学习产生因果 alpha；高于 200% 的月换手率、容量、冲击成本、执行延迟、模型选择和数据挖掘仍会影响经济显著性。10/50bps 只是敏感性假设，没有完整交易账本或前瞻部署。</li>
-<li>适合谁读：做机器学习资产定价、因子研究和组合回测审计的人。建议优先读第 3.1–3.3 节、表 2、第 4.2 节/表 7、4.3 节与结论。</li>
-<li>证据状态：已核阅摘要与 PDF；作者报告了统计和成本敏感性，但无独立复现或真实可交易验证。</li>
+<li>方法与基线：使用 CRSP/Compustat，1963 年 1 月至 2023 年 12 月约
+5,000 只股票/月、3.57 百万 stock-months，使用 153 个特征和 8
+个宏观变量，并按扩展窗口逐年重训，预测起点 1987–2023 年、10
+个随机种子。构建价值加权十分位多空组合，比较浅/中/深的
+feedforward、ResNet 和 tailored ResNet+，并报告 FF5 alpha、换手率和
+10/50bps 成本敏感性。</li>
+<li>关键结果：作者报告 tailored ResNet+ 深层多空组合 Sharpe 2.07，浅层约
+1.92，深 feedforward 约 0.89；表中深 ResNet+ 平均月收益约 3.48%、标准差
+5.82%、FF5 alpha 约 3.35%、月换手率约 259.49%，深 NN+ 约为 1.33%、Sharpe
+0.89、alpha 1.26%、换手率 261.97%。扣除每美元交易 10/50bps 后，深
+ResNet+ Sharpe 约 1.92/1.30，NN+ 约 0.66/-0.26；2020
+年部分疫情月份为负。</li>
+<li>统计与经济边界：这是历史扩展窗口的样本外组合排序，不是实时交易记录。FF5
+alpha 的统计显著性不能自动证明残差学习产生因果 alpha；高于 200%
+的月换手率、容量、冲击成本、执行延迟、模型选择和数据挖掘仍会影响经济显著性。10/50bps
+只是敏感性假设，没有完整交易账本或前瞻部署。</li>
+<li>适合谁读：做机器学习资产定价、因子研究和组合回测审计的人。建议优先读第
+3.1–3.3 节、表 2、第 4.2 节/表 7、4.3 节与结论。</li>
+<li>证据状态：已核阅摘要与
+PDF；作者报告了统计和成本敏感性，但无独立复现或真实可交易验证。</li>
 </ul>
-<h3 id="Learned-Monotone-Recurrent-Features-in-Governed-Credit-Scoring"><a href="#Learned-Monotone-Recurrent-Features-in-Governed-Credit-Scoring" class="headerlink" title="Learned Monotone Recurrent Features in Governed Credit Scoring"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08869">Learned Monotone Recurrent Features in Governed Credit Scoring</a></h3><ul>
+<h3 id="learned-monotone-recurrent-features-in-governed-credit-scoring"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08869">Learned Monotone Recurrent
+Features in Governed Credit Scoring</a></h3>
+<ul>
 <li>作者：Yew Lee Tan</li>
 <li>来源/分类：arXiv，q-fin.RM、cs.LG、stat.AP；金融</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.08869">PDF</a></li>
 <li>核心问题：在严格单调、可审计的信用评分框架下，历史行为与宏观条件是否能提升危机期排序，而不牺牲治理约束。</li>
-<li>方法与基线：模型使用非负权重和单调激活，并加入 EWMA/HWM/LWM、宏观条件化的衰减、严重度和阈值；在 AMEX、Home Credit、Fannie Mae/Freddie Mac 等 5 个生产规模数据集上比较摘要特征、自由面板、静态银行模型和宏观条件化模型。Fannie 以 2005 年前训练、2007–2009 年危机测试，Freddie 作为相同危机阶段的独立样本复现。</li>
-<li>关键结果：AMEX 在摘要特征下相对摘要基线的 M 指标提升约 0.0043–0.0051，但自由 188 列面板没有稳定提升。Fannie 危机期宏观条件化模型 AUC 提升约 0.015–0.021；排除早期提前还款后约 0.019–0.026。Freddie 的主要加法条件化模型在 5 个种子上提升约 0.006–0.013，合并估计约 0.0102、CI [0.0072, 0.0133]。批准量的“每万笔少违约数”是描述性换算，区间常跨过零，且没有 LGD、资金成本或校准 PD。</li>
-<li>统计与经济边界：这是模型条件与历史危机样本的关联性预测，不是宏观变量导致违约下降的因果证据；Fannie/Freddie 的危机期复现不是跨制度、跨危机外部验证。没有线上审批结果、随机实验或真实损失回收；单调约束提高可治理性，不等于模型已具备经济最优性。本文不构成信贷或投资建议。</li>
-<li>适合谁读：做信用风险、模型治理、时序特征和危机外推的人。建议优先读第 3.3–3.4 节、第 4.6 节、表 5–12 及讨论/限制。</li>
-<li>证据状态：已核阅摘要与 PDF；作者称内部预注册但未外部注册，结论仍受危机窗口和标签定义影响。</li>
+<li>方法与基线：模型使用非负权重和单调激活，并加入
+EWMA/HWM/LWM、宏观条件化的衰减、严重度和阈值；在 AMEX、Home
+Credit、Fannie Mae/Freddie Mac 等 5
+个生产规模数据集上比较摘要特征、自由面板、静态银行模型和宏观条件化模型。Fannie
+以 2005 年前训练、2007–2009 年危机测试，Freddie
+作为相同危机阶段的独立样本复现。</li>
+<li>关键结果：AMEX 在摘要特征下相对摘要基线的 M 指标提升约
+0.0043–0.0051，但自由 188 列面板没有稳定提升。Fannie
+危机期宏观条件化模型 AUC 提升约 0.015–0.021；排除早期提前还款后约
+0.019–0.026。Freddie 的主要加法条件化模型在 5 个种子上提升约
+0.006–0.013，合并估计约 0.0102、CI [0.0072,
+0.0133]。批准量的“每万笔少违约数”是描述性换算，区间常跨过零，且没有
+LGD、资金成本或校准 PD。</li>
+<li>统计与经济边界：这是模型条件与历史危机样本的关联性预测，不是宏观变量导致违约下降的因果证据；Fannie/Freddie
+的危机期复现不是跨制度、跨危机外部验证。没有线上审批结果、随机实验或真实损失回收；单调约束提高可治理性，不等于模型已具备经济最优性。本文不构成信贷或投资建议。</li>
+<li>适合谁读：做信用风险、模型治理、时序特征和危机外推的人。建议优先读第
+3.3–3.4 节、第 4.6 节、表 5–12 及讨论/限制。</li>
+<li>证据状态：已核阅摘要与
+PDF；作者称内部预注册但未外部注册，结论仍受危机窗口和标签定义影响。</li>
 </ul>
-<h2 id="金融论文"><a href="#金融论文" class="headerlink" title="金融论文"></a>金融论文</h2><h3 id="SOTA-Stock-Options-Trading-Agents-Guided-by-Option-Implied-Return-Distributions-1"><a href="#SOTA-Stock-Options-Trading-Agents-Guided-by-Option-Implied-Return-Distributions-1" class="headerlink" title="SOTA: Stock Options Trading Agents Guided by Option-Implied Return Distributions"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10407">SOTA: Stock Options Trading Agents Guided by Option-Implied Return Distributions</a></h3><ul>
+<h2 id="金融论文">金融论文</h2>
+<h3 id="sota-stock-options-trading-agents-guided-by-option-implied-return-distributions-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10407">SOTA: Stock Options Trading
+Agents Guided by Option-Implied Return Distributions</a></h3>
+<ul>
 <li>作者：Yizhen Xie、Mengyang Liu</li>
-<li>来源/分类：arXiv，cs.AI、cs.LG、q-fin.PM、q-fin.TR；AI / 金融交叉</li>
-<li>简介：用期权隐含分布引导结构化策略选择和 RL，作者在 SPY 及 9 个个股的 2025-03-03 至 2025-08-29 样本外历史回测中报告 18.32% 总回报、Sharpe 1.60、最大回撤 8.96%。不可交易 oracle 达 608.31% 不应与可执行结果比较；没有实盘或因果证据。</li>
+<li>来源/分类：arXiv，cs.AI、cs.LG、q-fin.PM、q-fin.TR；AI /
+金融交叉</li>
+<li>简介：用期权隐含分布引导结构化策略选择和 RL，作者在 SPY 及 9
+个个股的 2025-03-03 至 2025-08-29 样本外历史回测中报告 18.32%
+总回报、Sharpe 1.60、最大回撤 8.96%。不可交易 oracle 达 608.31%
+不应与可执行结果比较；没有实盘或因果证据。</li>
 <li>证据状态：已核阅摘要与 PDF；重点详述见上文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10407">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.10407">PDF</a></li>
 </ul>
-<h3 id="OOM-RL-Out-of-Money-Reinforcement-Learning-Market-Driven-Alignment-for-LLM-Based-Multi-Agent-Systems"><a href="#OOM-RL-Out-of-Money-Reinforcement-Learning-Market-Driven-Alignment-for-LLM-Based-Multi-Agent-Systems" class="headerlink" title="OOM-RL: Out-of-Money Reinforcement Learning Market-Driven Alignment for LLM-Based Multi-Agent Systems"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.11477">OOM-RL: Out-of-Money Reinforcement Learning Market-Driven Alignment for LLM-Based Multi-Agent Systems</a></h3><ul>
+<h3 id="oom-rl-out-of-money-reinforcement-learning-market-driven-alignment-for-llm-based-multi-agent-systems"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.11477">OOM-RL: Out-of-Money
+Reinforcement Learning Market-Driven Alignment for LLM-Based Multi-Agent
+Systems</a></h3>
+<ul>
 <li>作者：Kun Liu、Liqun Chen</li>
-<li>来源/分类：arXiv，cs.AI、cs.SE、q-fin.TR；AI / 金融交叉，AI 篇详述</li>
-<li>简介：记录一个持续 20 个月演化的交易 agent 工程系统，作者报告成熟阶段 94 个交易日 Sharpe 2.06、年化 alpha 30.07%，但 alpha t=1.692、p=0.094，且无冻结系统对照，不能归因于 STDAW 或任何单一更新。</li>
+<li>来源/分类：arXiv，cs.AI、cs.SE、q-fin.TR；AI / 金融交叉，AI
+篇详述</li>
+<li>简介：记录一个持续 20 个月演化的交易 agent
+工程系统，作者报告成熟阶段 94 个交易日 Sharpe 2.06、年化 alpha
+30.07%，但 alpha t=1.692、p=0.094，且无冻结系统对照，不能归因于 STDAW
+或任何单一更新。</li>
 <li>证据状态：已核阅摘要与 PDF；本文作索引，详细分析见 AI 简报。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.11477">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.11477">PDF</a></li>
 </ul>
-<h3 id="Agentic-AI-Systems-and-Financial-Stability-From-Model-Risk-to-Systemic-Risk-1"><a href="#Agentic-AI-Systems-and-Financial-Stability-From-Model-Risk-to-Systemic-Risk-1" class="headerlink" title="Agentic AI Systems and Financial Stability, From Model Risk to Systemic Risk"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08806">Agentic AI Systems and Financial Stability, From Model Risk to Systemic Risk</a></h3><ul>
+<h3 id="agentic-ai-systems-and-financial-stability-from-model-risk-to-systemic-risk-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08806">Agentic AI Systems and Financial
+Stability, From Model Risk to Systemic Risk</a></h3>
+<ul>
 <li>作者：Sriram Nagaraj、Seung Jung Lee</li>
 <li>来源/分类：arXiv，q-fin.RM；金融</li>
-<li>简介：理论化共同基础模型暴露、网络渗流、Hawkes 跳扩散和运行时控制，讨论 agent 系统如何从单点 model risk 传导为 systemic risk。文中没有市场样本、实证显著性或交易回测，参数是说明性的；重点详述见上文。</li>
+<li>简介：理论化共同基础模型暴露、网络渗流、Hawkes
+跳扩散和运行时控制，讨论 agent 系统如何从单点 model risk 传导为 systemic
+risk。文中没有市场样本、实证显著性或交易回测，参数是说明性的；重点详述见上文。</li>
 <li>证据状态：已核阅摘要与 PDF；重点详述见上文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08806">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.08806">PDF</a></li>
 </ul>
-<h3 id="DSTNet-Dynamic-Spectral-Trajectory-Network-for-Causal-Multi-Horizon-Financial-Forecasting-1"><a href="#DSTNet-Dynamic-Spectral-Trajectory-Network-for-Causal-Multi-Horizon-Financial-Forecasting-1" class="headerlink" title="DSTNet: Dynamic Spectral Trajectory Network for Causal Multi-Horizon Financial Forecasting"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09654">DSTNet: Dynamic Spectral Trajectory Network for Causal Multi-Horizon Financial Forecasting</a></h3><ul>
+<h3 id="dstnet-dynamic-spectral-trajectory-network-for-causal-multi-horizon-financial-forecasting-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09654">DSTNet: Dynamic Spectral
+Trajectory Network for Causal Multi-Horizon Financial
+Forecasting</a></h3>
+<ul>
 <li>作者：Aashish Bohra、Lokendra Vishwakarm</li>
 <li>来源/分类：arXiv，cs.LG、q-fin.CP、q-fin.ST；金融</li>
-<li>简介：在 7 个股票指数和黄金的扩展窗口预测中，作者报告 DSTNet 的误差优于 persistence，但方向准确率和股票配置 Sharpe 没有普遍提升；“causal”描述滤波器不等于经济因果，重点详述见上文。</li>
+<li>简介：在 7 个股票指数和黄金的扩展窗口预测中，作者报告 DSTNet
+的误差优于 persistence，但方向准确率和股票配置 Sharpe
+没有普遍提升；“causal”描述滤波器不等于经济因果，重点详述见上文。</li>
 <li>证据状态：已核阅摘要与 PDF；重点详述见上文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09654">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09654">PDF</a></li>
 </ul>
-<h3 id="STOCK-JEPA-Prior-Anchored-Latent-Revision-Representation-Learning-in-Equity-Markets"><a href="#STOCK-JEPA-Prior-Anchored-Latent-Revision-Representation-Learning-in-Equity-Markets" class="headerlink" title="STOCK-JEPA: Prior-Anchored Latent Revision Representation Learning in Equity Markets"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.07006">STOCK-JEPA: Prior-Anchored Latent Revision Representation Learning in Equity Markets</a></h3><ul>
+<h3 id="stock-jepa-prior-anchored-latent-revision-representation-learning-in-equity-markets"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.07006">STOCK-JEPA: Prior-Anchored
+Latent Revision Representation Learning in Equity Markets</a></h3>
+<ul>
 <li>作者：Yizhi Luo、Jiahe Yi、Jianhui Zhang、Shuo Sun</li>
 <li>来源/分类：arXiv，cs.LG、q-fin.ST；金融</li>
-<li>简介：提出以先验锚定潜在修订表示的股票学习方法，在中国和美国市场与 13 个基线比较，并从理论上给出期望平方误差改进与修订量的关系。摘要称取得更好预测结果，但未给出足够的样本外窗口、交易成本、显著性和容量细节；不能把表示学习优势直接理解为可交易 alpha。</li>
+<li>简介：提出以先验锚定潜在修订表示的股票学习方法，在中国和美国市场与
+13
+个基线比较，并从理论上给出期望平方误差改进与修订量的关系。摘要称取得更好预测结果，但未给出足够的样本外窗口、交易成本、显著性和容量细节；不能把表示学习优势直接理解为可交易
+alpha。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.07006">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.07006">PDF</a></li>
 </ul>
-<h3 id="Validity-Without-Ground-Truth-What-Stated-Preference-Economics-Offers-the-Evaluation-of-Language-Models"><a href="#Validity-Without-Ground-Truth-What-Stated-Preference-Economics-Offers-the-Evaluation-of-Language-Models" class="headerlink" title="Validity Without Ground Truth: What Stated-Preference Economics Offers the Evaluation of Language Models"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10506">Validity Without Ground Truth: What Stated-Preference Economics Offers the Evaluation of Language Models</a></h3><ul>
+<h3 id="validity-without-ground-truth-what-stated-preference-economics-offers-the-evaluation-of-language-models"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10506">Validity Without Ground Truth:
+What Stated-Preference Economics Offers the Evaluation of Language
+Models</a></h3>
+<ul>
 <li>作者：Daniel Robert Kling Alexander、Catherine Louise Kling</li>
 <li>来源/分类：arXiv，cs.AI、cs.CL、econ.GN、q-fin.EC；金融/经济</li>
-<li>简介：用陈述偏好经济学的效度测试评估 6 个 LLM，包括需求随价格下降、WTP 对范围/收入反应等。摘要称两种较早模型不能通过基本测试，两个较新模型通过全部效度测试但收敛效度仍分歧；效度/一致性不等于“答案正确”。这不是市场交易回测，也没有因果识别。</li>
+<li>简介：用陈述偏好经济学的效度测试评估 6 个
+LLM，包括需求随价格下降、WTP
+对范围/收入反应等。摘要称两种较早模型不能通过基本测试，两个较新模型通过全部效度测试但收敛效度仍分歧；效度/一致性不等于“答案正确”。这不是市场交易回测，也没有因果识别。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10506">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.10506">PDF</a></li>
 </ul>
-<h3 id="Optimal-Investment-to-Reach-a-Financial-Goal-A-Stochastic-Control-Framework"><a href="#Optimal-Investment-to-Reach-a-Financial-Goal-A-Stochastic-Control-Framework" class="headerlink" title="Optimal Investment to Reach a Financial Goal: A Stochastic Control Framework"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10046">Optimal Investment to Reach a Financial Goal: A Stochastic Control Framework</a></h3><ul>
+<h3 id="optimal-investment-to-reach-a-financial-goal-a-stochastic-control-framework"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10046">Optimal Investment to Reach a
+Financial Goal: A Stochastic Control Framework</a></h3>
+<ul>
 <li>作者：Gechun Liang、Moris S. Strub、Yuwei Wang、Zhaojun Yang</li>
 <li>来源/分类：arXiv，q-fin.MF；金融</li>
-<li>简介：建立达到财务目标的随机控制框架，用 HJB/粘性解和 Howard 数值方法研究最优策略。摘要强调最优政策可能随漂移下降，并不一定在无限波动时收敛到无风险资产；这是理论/数值框架，非样本外回测、非实盘建议。</li>
+<li>简介：建立达到财务目标的随机控制框架，用 HJB/粘性解和 Howard
+数值方法研究最优策略。摘要强调最优政策可能随漂移下降，并不一定在无限波动时收敛到无风险资产；这是理论/数值框架，非样本外回测、非实盘建议。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10046">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.10046">PDF</a></li>
 </ul>
-<h3 id="A-Regulator’s-Career-Option-Revolving-Doors-Regulatory-Signals-and-Firm-Tail-Risk"><a href="#A-Regulator’s-Career-Option-Revolving-Doors-Regulatory-Signals-and-Firm-Tail-Risk" class="headerlink" title="A Regulator’s Career Option: Revolving Doors, Regulatory Signals, and Firm Tail Risk"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08804">A Regulator’s Career Option: Revolving Doors, Regulatory Signals, and Firm Tail Risk</a></h3><ul>
+<h3 id="a-regulators-career-option-revolving-doors-regulatory-signals-and-firm-tail-risk"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08804">A Regulator's Career Option:
+Revolving Doors, Regulatory Signals, and Firm Tail Risk</a></h3>
+<ul>
 <li>作者：G. Charles-Cadogan</li>
 <li>来源/分类：arXiv，econ.GN、econ.TH、q-fin.EC、q-fin.MF；金融/经济</li>
-<li>简介：理论模型结合薪资记录证据，研究监管人员职业流动如何形成监管信号、改变 leverage/vega 与企业尾部风险。摘要是机制和校准证据，不足以证明旋转门导致尾部风险变化；需区分相关性、校准拟合、样本外预测和政策反事实。</li>
+<li>简介：理论模型结合薪资记录证据，研究监管人员职业流动如何形成监管信号、改变
+leverage/vega
+与企业尾部风险。摘要是机制和校准证据，不足以证明旋转门导致尾部风险变化；需区分相关性、校准拟合、样本外预测和政策反事实。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08804">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.08804">PDF</a></li>
 </ul>
-<h3 id="Approximate-Design-Based-Intervals-for-Downsampled-Cross-Sectional-Market-Aggregates-1"><a href="#Approximate-Design-Based-Intervals-for-Downsampled-Cross-Sectional-Market-Aggregates-1" class="headerlink" title="Approximate Design-Based Intervals for Downsampled Cross-Sectional Market Aggregates"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08801">Approximate Design-Based Intervals for Downsampled Cross-Sectional Market Aggregates</a></h3><ul>
+<h3 id="approximate-design-based-intervals-for-downsampled-cross-sectional-market-aggregates-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08801">Approximate Design-Based
+Intervals for Downsampled Cross-Sectional Market Aggregates</a></h3>
+<ul>
 <li>作者：Minmin Zeng</li>
 <li>来源/分类：arXiv，q-fin.RM、cs.CE；金融</li>
-<li>简介：比较 OI-PPS、Top-k、均匀和分层抽样在隐含波动率聚合中的误差与近似区间；美国 10% 留存率下 Poisson PPS 的 MAE 约 5.305、Top-k 约 8.15，但香港低留存率方向相反。结果是抽样设计比较，不是收益或投资信号，重点详述见上文。</li>
+<li>简介：比较
+OI-PPS、Top-k、均匀和分层抽样在隐含波动率聚合中的误差与近似区间；美国
+10% 留存率下 Poisson PPS 的 MAE 约 5.305、Top-k 约
+8.15，但香港低留存率方向相反。结果是抽样设计比较，不是收益或投资信号，重点详述见上文。</li>
 <li>证据状态：已核阅摘要与 PDF；重点详述见上文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08801">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.08801">PDF</a></li>
 </ul>
-<h3 id="Recursive-Copula-Aggregation-for-Market-and-Credit-Portfolios"><a href="#Recursive-Copula-Aggregation-for-Market-and-Credit-Portfolios" class="headerlink" title="Recursive Copula Aggregation for Market and Credit Portfolios"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08798">Recursive Copula Aggregation for Market and Credit Portfolios</a></h3><ul>
+<h3 id="recursive-copula-aggregation-for-market-and-credit-portfolios"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08798">Recursive Copula Aggregation for
+Market and Credit Portfolios</a></h3>
+<ul>
 <li>作者：Luisa Tibiletti、Simone Farinelli、Eric Dal Moro</li>
 <li>来源/分类：arXiv，q-fin.RM；金融</li>
-<li>简介：提出在层级树中递归聚合局部 Kendall tau 的 market/credit copula，并用市场与信用代理变量说明压力期依赖上升。摘要未能证明依赖变化的因果来源，也没有可交易组合的样本外收益；风险聚合准确性与投资收益应分开。</li>
+<li>简介：提出在层级树中递归聚合局部 Kendall tau 的 market/credit
+copula，并用市场与信用代理变量说明压力期依赖上升。摘要未能证明依赖变化的因果来源，也没有可交易组合的样本外收益；风险聚合准确性与投资收益应分开。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08798">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.08798">PDF</a></li>
 </ul>
-<h3 id="Conditional-value-at-risk-under-reward-penalty-mechanism-with-applications-to-robust-portfolio-management"><a href="#Conditional-value-at-risk-under-reward-penalty-mechanism-with-applications-to-robust-portfolio-management" class="headerlink" title="Conditional value-at-risk under reward-penalty mechanism with applications to robust portfolio management"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09246">Conditional value-at-risk under reward-penalty mechanism with applications to robust portfolio management</a></h3><ul>
+<h3 id="conditional-value-at-risk-under-reward-penalty-mechanism-with-applications-to-robust-portfolio-management"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09246">Conditional value-at-risk under
+reward-penalty mechanism with applications to robust portfolio
+management</a></h3>
+<ul>
 <li>作者：Jun Cai、Tiantian Mao、Zhiqiao Song</li>
 <li>来源/分类：arXiv，q-fin.PM、q-fin.RM；金融</li>
-<li>简介：在 reward-penalty 机制下研究条件 VaR，并将其用于分布不确定下的稳健组合管理。论文重点是风险度量与优化条件；若数值组合优于基线，也需要区分样本内拟合、样本外风险和真实交易成本。当前候选记录未提供足够数字，不能推断投资优势。</li>
+<li>简介：在 reward-penalty 机制下研究条件
+VaR，并将其用于分布不确定下的稳健组合管理。论文重点是风险度量与优化条件；若数值组合优于基线，也需要区分样本内拟合、样本外风险和真实交易成本。当前候选记录未提供足够数字，不能推断投资优势。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09246">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09246">PDF</a></li>
 </ul>
-<h3 id="Explicit-Finite-Sum-Tail-Risk-Measures-for-Hierarchical-Market—Credit-Copula-Aggregation"><a href="#Explicit-Finite-Sum-Tail-Risk-Measures-for-Hierarchical-Market—Credit-Copula-Aggregation" class="headerlink" title="Explicit Finite-Sum Tail Risk Measures for Hierarchical Market—Credit Copula Aggregation"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08799">Explicit Finite-Sum Tail Risk Measures for Hierarchical Market—Credit Copula Aggregation</a></h3><ul>
+<h3 id="explicit-finite-sum-tail-risk-measures-for-hierarchical-market--credit-copula-aggregation"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08799">Explicit Finite-Sum Tail Risk
+Measures for Hierarchical Market--Credit Copula Aggregation</a></h3>
+<ul>
 <li>作者：Jun Cai、Tiantian Mao、Zhiqiao Song</li>
 <li>来源/分类：arXiv，q-fin.RM；金融</li>
-<li>简介：为层级 market–credit copula 聚合推导显式有限和尾部风险公式，并比较 Gaussian 与 mirrored Clayton 依赖结构。贡献主要是解析计算和风险度量；没有实盘收益、样本外交易或因果效应，依赖结构假设的错设风险需单独评估。</li>
+<li>简介：为层级 market–credit copula
+聚合推导显式有限和尾部风险公式，并比较 Gaussian 与 mirrored Clayton
+依赖结构。贡献主要是解析计算和风险度量；没有实盘收益、样本外交易或因果效应，依赖结构假设的错设风险需单独评估。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08799">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.08799">PDF</a></li>
 </ul>
-<h3 id="Robust-distortion-riskmetrics-under-Wasserstein-ambiguity"><a href="#Robust-distortion-riskmetrics-under-Wasserstein-ambiguity" class="headerlink" title="Robust distortion riskmetrics under Wasserstein ambiguity"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09622">Robust distortion riskmetrics under Wasserstein ambiguity</a></h3><ul>
+<h3 id="robust-distortion-riskmetrics-under-wasserstein-ambiguity"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09622">Robust distortion riskmetrics
+under Wasserstein ambiguity</a></h3>
+<ul>
 <li>作者：Yang Liu、Qiuqi Wang、Yihan Wang</li>
 <li>来源/分类：arXiv，q-fin.MF；金融</li>
-<li>简介：在 Wasserstein 分布歧义集合下研究稳健 distortion riskmetrics，给出精确或近似表述并做组合数值实验。其“稳健”是对指定分布集合的数学鲁棒性，不是对现实市场因果冲击或可交易收益的保证；需要核查半径选择、样本内外和数值基线。</li>
+<li>简介：在 Wasserstein 分布歧义集合下研究稳健 distortion
+riskmetrics，给出精确或近似表述并做组合数值实验。其“稳健”是对指定分布集合的数学鲁棒性，不是对现实市场因果冲击或可交易收益的保证；需要核查半径选择、样本内外和数值基线。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09622">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09622">PDF</a></li>
 </ul>
-<h3 id="Residual-Learning-in-Empirical-Asset-Pricing-1"><a href="#Residual-Learning-in-Empirical-Asset-Pricing-1" class="headerlink" title="Residual Learning in Empirical Asset Pricing"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09613">Residual Learning in Empirical Asset Pricing</a></h3><ul>
+<h3 id="residual-learning-in-empirical-asset-pricing-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09613">Residual Learning in Empirical
+Asset Pricing</a></h3>
+<ul>
 <li>作者：Dexin Peng、Xiaoyu Wang</li>
 <li>来源/分类：arXiv，q-fin.ST、cs.LG；金融</li>
-<li>简介：用扩展窗口历史样本外预测和价值加权十分位多空组合比较残差网络与普通网络；作者报告深层 ResNet+ Sharpe 2.07、FF5 alpha 约 3.35%，50bps 成本下 Sharpe 约 1.30，但月换手率约 259%，不是实盘结果。</li>
+<li>简介：用扩展窗口历史样本外预测和价值加权十分位多空组合比较残差网络与普通网络；作者报告深层
+ResNet+ Sharpe 2.07、FF5 alpha 约 3.35%，50bps 成本下 Sharpe 约
+1.30，但月换手率约 259%，不是实盘结果。</li>
 <li>证据状态：已核阅摘要与 PDF；重点详述见上文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.09613">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.09613">PDF</a></li>
 </ul>
-<h3 id="FinVector-Market-4B-A-Controlled-Study-of-LoRA-Adaptation-for-Structured-Financial-Tasks"><a href="#FinVector-Market-4B-A-Controlled-Study-of-LoRA-Adaptation-for-Structured-Financial-Tasks" class="headerlink" title="FinVector-Market-4B: A Controlled Study of LoRA Adaptation for Structured Financial Tasks"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08882">FinVector-Market-4B: A Controlled Study of LoRA Adaptation for Structured Financial Tasks</a></h3><ul>
+<h3 id="finvector-market-4b-a-controlled-study-of-lora-adaptation-for-structured-financial-tasks"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08882">FinVector-Market-4B: A
+Controlled Study of LoRA Adaptation for Structured Financial
+Tasks</a></h3>
+<ul>
 <li>作者：Alina Khaybullina</li>
 <li>来源/分类：arXiv，cs.LG、cs.AI、cs.CL、q-fin.GN；金融/AI</li>
-<li>简介：在 Qwen3.5-4B 上用 rank-16 LoRA、约 22,000 个训练样本和 600 个评测样本，研究结构化金融任务适配。摘要报告 JSON 有效率从 0 提到 91.3%，FinQA 约 14.7→40、计算器 48→82.7、场景分类 20.1→89.5、含义识别 52.4→87.2；但 policy scoring 的宏 F1 变化受标签集改动影响，同目标对照约 77.4→83.1。没有交易回测或因果收益。</li>
+<li>简介：在 Qwen3.5-4B 上用 rank-16 LoRA、约 22,000 个训练样本和 600
+个评测样本，研究结构化金融任务适配。摘要报告 JSON 有效率从 0 提到
+91.3%，FinQA 约 14.7→40、计算器 48→82.7、场景分类 20.1→89.5、含义识别
+52.4→87.2；但 policy scoring 的宏 F1 变化受标签集改动影响，同目标对照约
+77.4→83.1。没有交易回测或因果收益。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08882">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.08882">PDF</a></li>
 </ul>
-<h3 id="Learned-Monotone-Recurrent-Features-in-Governed-Credit-Scoring-1"><a href="#Learned-Monotone-Recurrent-Features-in-Governed-Credit-Scoring-1" class="headerlink" title="Learned Monotone Recurrent Features in Governed Credit Scoring"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08869">Learned Monotone Recurrent Features in Governed Credit Scoring</a></h3><ul>
+<h3 id="learned-monotone-recurrent-features-in-governed-credit-scoring-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08869">Learned Monotone Recurrent
+Features in Governed Credit Scoring</a></h3>
+<ul>
 <li>作者：Yew Lee Tan</li>
 <li>来源/分类：arXiv，q-fin.RM、cs.LG、stat.AP；金融</li>
-<li>简介：严格单调循环特征配合宏观条件化，在 Fannie/Freddie 危机窗口报告 AUC 提升，但经济换算是描述性的，且没有跨危机、线上审批和 LGD/资金成本证据；重点详述见上文。</li>
+<li>简介：严格单调循环特征配合宏观条件化，在 Fannie/Freddie 危机窗口报告
+AUC 提升，但经济换算是描述性的，且没有跨危机、线上审批和
+LGD/资金成本证据；重点详述见上文。</li>
 <li>证据状态：已核阅摘要与 PDF；重点详述见上文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08869">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.08869">PDF</a></li>
 </ul>
-<h3 id="OOM-RL-II-Reality-Is-an-Oracle-Not-a-Debugger"><a href="#OOM-RL-II-Reality-Is-an-Oracle-Not-a-Debugger" class="headerlink" title="OOM-RL II: Reality Is an Oracle, Not a Debugger"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10256">OOM-RL II: Reality Is an Oracle, Not a Debugger</a></h3><ul>
+<h3 id="oom-rl-ii-reality-is-an-oracle-not-a-debugger"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10256">OOM-RL II: Reality Is an Oracle,
+Not a Debugger</a></h3>
+<ul>
 <li>作者：Kun Liu、Liqun Chen</li>
 <li>来源/分类：arXiv，cs.AI、cs.SE、q-fin.PM；AI / 金融交叉</li>
-<li>简介：讨论在持续演化 agent 工程中如何用来源约束诊断替代把现实当作调试器。摘要称一年账户表现超过广泛指数，但年度 alpha 不显著；代码/配置演化没有绑定到共同冻结实例，不能做清晰因果归因。该结果也没有独立实盘复现。</li>
+<li>简介：讨论在持续演化 agent
+工程中如何用来源约束诊断替代把现实当作调试器。摘要称一年账户表现超过广泛指数，但年度
+alpha
+不显著；代码/配置演化没有绑定到共同冻结实例，不能做清晰因果归因。该结果也没有独立实盘复现。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.10256">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.10256">PDF</a></li>
 </ul>
-<h3 id="Two-Regime-Risk-Measures-under-Convex-Loss"><a href="#Two-Regime-Risk-Measures-under-Convex-Loss" class="headerlink" title="Two-Regime Risk Measures under Convex Loss"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08821">Two-Regime Risk Measures under Convex Loss</a></h3><ul>
+<h3 id="two-regime-risk-measures-under-convex-loss"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08821">Two-Regime Risk Measures under
+Convex Loss</a></h3>
+<ul>
 <li>作者：Mihaela-Adriana Nistor、Ionel Popescu</li>
 <li>来源/分类：arXiv，q-fin.RM、math.PR；金融</li>
-<li>简介：在凸损失下研究双状态/双制度风险度量及其 epi-convergence，讨论货币性风险度量公理可能失效。贡献是理论性质，没有市场数据、样本外估计、交易回测或因果识别。</li>
+<li>简介：在凸损失下研究双状态/双制度风险度量及其
+epi-convergence，讨论货币性风险度量公理可能失效。贡献是理论性质，没有市场数据、样本外估计、交易回测或因果识别。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08821">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.08821">PDF</a></li>
 </ul>
