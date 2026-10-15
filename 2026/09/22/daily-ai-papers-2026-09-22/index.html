@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注  1. MME-Safety：细粒度多模态大模型安全评测基准  作者：Yueming Lyu、Yilian Shi、Haoxiang Tan、Linzhuang Zou、Qihao Wang、Guihua Yu、Jie Qin、Xin Gao、Chenyang Si、Jing Dong、Caifeng Shan 来源：arXiv 摘要页 · PDF · 代码 证据状态：已核阅公开 P">
+    <meta name="description" content="重点关注 1. MME-Safety：细粒度多模态大模型安全评测基准  作者：Yueming Lyu、Yilian Shi、Haoxiang Tan、Linzhuang Zou、Qihao Wang、Guihua Yu、Jie Qin、Xin Gao、Chenyang Si、Jing Dong、Caifeng Shan 来源：arXiv 摘要页 · PDF · 代码 证据状态：已核阅公开 PDF">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 9 月 22 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/09/22/daily-ai-papers-2026-09-22/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注  1. MME-Safety：细粒度多模态大模型安全评测基准  作者：Yueming Lyu、Yilian Shi、Haoxiang Tan、Linzhuang Zou、Qihao Wang、Guihua Yu、Jie Qin、Xin Gao、Chenyang Si、Jing Dong、Caifeng Shan 来源：arXiv 摘要页 · PDF · 代码 证据状态：已核阅公开 P">
+<meta property="og:description" content="重点关注 1. MME-Safety：细粒度多模态大模型安全评测基准  作者：Yueming Lyu、Yilian Shi、Haoxiang Tan、Linzhuang Zou、Qihao Wang、Guihua Yu、Jie Qin、Xin Gao、Chenyang Si、Jing Dong、Caifeng Shan 来源：arXiv 摘要页 · PDF · 代码 证据状态：已核阅公开 PDF">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-09-06/pixiv-rank-002-149086653.jpg">
 <meta property="article:published_time" content="2026-09-22T02:15:00.000Z">
@@ -347,147 +347,351 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
-<h3 id="1-mme-safety细粒度多模态大模型安全评测基准"><a class="markdownIt-Anchor" href="#1-mme-safety细粒度多模态大模型安全评测基准"></a> 1. MME-Safety：细粒度多模态大模型安全评测基准</h3>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="mme-safety细粒度多模态大模型安全评测基准">1.
+MME-Safety：细粒度多模态大模型安全评测基准</h3>
 <ul>
-<li>作者：Yueming Lyu、Yilian Shi、Haoxiang Tan、Linzhuang Zou、Qihao Wang、Guihua Yu、Jie Qin、Xin Gao、Chenyang Si、Jing Dong、Caifeng Shan</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.20850">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.20850">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/NICE-PRLab/MME-SafetyBench">代码</a></li>
-<li>证据状态：已核阅公开 PDF；数字和结论均是论文报告，尚非独立复核结果。</li>
+<li>作者：Yueming Lyu、Yilian Shi、Haoxiang Tan、Linzhuang Zou、Qihao
+Wang、Guihua Yu、Jie Qin、Xin Gao、Chenyang Si、Jing Dong、Caifeng
+Shan</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.20850">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.20850">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/NICE-PRLab/MME-SafetyBench">代码</a></li>
+<li>证据状态：已核阅公开
+PDF；数字和结论均是论文报告，尚非独立复核结果。</li>
 </ul>
-<p><strong>核心问题。</strong> 多模态模型可以把风险藏在图片、文字或二者的组合里，单模态安全集和单一拒答率不容易揭示这种跨模态漏洞。论文要回答的是：风险场景、伤害严重度以及图像和文字的隐蔽性，如何共同影响模型的安全行为。</p>
-<p><strong>方法与基线。</strong> MME-Safety 用四维标注描述风险场景、伤害严重度、图像隐蔽性和文字隐蔽性，构建了 3,801 个人工核验的图文对，覆盖 9 类风险；随后用分层指标评价响应可靠性、实际风险暴露和防御行为结构，并对 17 个多模态模型做 zero-shot 比较。论文报告的比较包含 Claude 4 Sonnet、o4-mini、Qwen3-VL 等闭源和开放模型，但没有把这些结果当作统一能力排名。评测还使用 GPT-4o 作为部分判断器，因此判断器偏差与提示设置是重要的测量条件。</p>
-<p><strong>论文报告的主要结果。</strong> 数据集的平均伤害分数为 5.08，低、中、高伤害样本约占 22.9%、46.2%、30.8%；论文报告的整体安全分数中，Claude4-Sonnet-T 为 86.24，Qwen3-VL-235B 无 CoT 为 85.11，o4-mini 为 84.78。高图像隐蔽性、文字隐蔽性同时较高时，相关性识别率从 93% 降到 50.8%；拒答率与有害率、平均伤害分数分别呈 -0.97 和 -0.73 的相关。论文还观察到，CoT 并不保证更安全，某些设置下反而提高了有害输出率或伤害严重度。</p>
-<p><strong>创新、局限与适用边界。</strong> 价值在于把“是否拒答”拆成风险暴露和防御结构，适合安全评测与红队设计。局限包括只做 zero-shot、类别仍需扩展、GPT-4o 评判可能有偏差，以及没有给出独立的数据污染审计；因此不能把分数直接解释成生产环境事故概率。建议阅读第 3 节的标注与指标、第 4.2–4.3 节的模型结果和附录 A.1、A.5。对做多模态安全、模型评测和安全对齐的人优先级较高。</p>
-<h3 id="2-crystal不只看最终答案的透明多模态推理评测"><a class="markdownIt-Anchor" href="#2-crystal不只看最终答案的透明多模态推理评测"></a> 2. CRYSTAL：不只看最终答案的透明多模态推理评测</h3>
+<p><strong>核心问题。</strong>
+多模态模型可以把风险藏在图片、文字或二者的组合里，单模态安全集和单一拒答率不容易揭示这种跨模态漏洞。论文要回答的是：风险场景、伤害严重度以及图像和文字的隐蔽性，如何共同影响模型的安全行为。</p>
+<p><strong>方法与基线。</strong> MME-Safety
+用四维标注描述风险场景、伤害严重度、图像隐蔽性和文字隐蔽性，构建了 3,801
+个人工核验的图文对，覆盖 9
+类风险；随后用分层指标评价响应可靠性、实际风险暴露和防御行为结构，并对
+17 个多模态模型做 zero-shot 比较。论文报告的比较包含 Claude 4
+Sonnet、o4-mini、Qwen3-VL
+等闭源和开放模型，但没有把这些结果当作统一能力排名。评测还使用 GPT-4o
+作为部分判断器，因此判断器偏差与提示设置是重要的测量条件。</p>
+<p><strong>论文报告的主要结果。</strong> 数据集的平均伤害分数为
+5.08，低、中、高伤害样本约占
+22.9%、46.2%、30.8%；论文报告的整体安全分数中，Claude4-Sonnet-T 为
+86.24，Qwen3-VL-235B 无 CoT 为 85.11，o4-mini 为
+84.78。高图像隐蔽性、文字隐蔽性同时较高时，相关性识别率从 93% 降到
+50.8%；拒答率与有害率、平均伤害分数分别呈 -0.97 和 -0.73
+的相关。论文还观察到，CoT
+并不保证更安全，某些设置下反而提高了有害输出率或伤害严重度。</p>
+<p><strong>创新、局限与适用边界。</strong>
+价值在于把“是否拒答”拆成风险暴露和防御结构，适合安全评测与红队设计。局限包括只做
+zero-shot、类别仍需扩展、GPT-4o
+评判可能有偏差，以及没有给出独立的数据污染审计；因此不能把分数直接解释成生产环境事故概率。建议阅读第
+3 节的标注与指标、第 4.2–4.3 节的模型结果和附录
+A.1、A.5。对做多模态安全、模型评测和安全对齐的人优先级较高。</p>
+<h3 id="crystal不只看最终答案的透明多模态推理评测">2.
+CRYSTAL：不只看最终答案的透明多模态推理评测</h3>
 <ul>
 <li>作者：Wayner Barrios、SouYoung Jin</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.13099">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.13099">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/waybarrios/CRYSTAL">数据集</a> · <a target="_blank" rel="noopener" href="https://github.com/SEE-AI-Lab/crystal">代码</a></li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.13099">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.13099">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/waybarrios/CRYSTAL">数据集</a> ·
+<a target="_blank" rel="noopener" href="https://github.com/SEE-AI-Lab/crystal">代码</a></li>
 <li>证据状态：已核阅公开 PDF；基准结果和训练增益均为论文报告。</li>
 </ul>
-<p><strong>核心问题。</strong> 只比较最终答案会掩盖模型是否找到了正确证据、是否遗漏了关键步骤，以及推理步骤顺序是否混乱。CRYSTAL 将多模态推理轨迹作为可核验对象，试图测量“答对”与“理由足够、顺序正确”之间的差距。</p>
-<p><strong>方法与基线。</strong> 数据集有 6,372 个实例，参考轨迹来自四个 MLLM 的独立生成、语义聚类和人工质量门；来源包括 MathVision、ScienceQA-IMG、RealWorldQA、MMVP 和 PlotQA。Match F1 用语义相似匹配计算步骤精确率与召回率，Ordered Match F1 再用最长递增子序列惩罚乱序。论文比较 20 个模型，包括 Qwen、InternVL、Gemma、Llama、LLaVA 等开放模型以及 GPT-5、GPT-5-mini、GPT-5.2 Instant、Gemini 2.5 Flash 等商用模型；商用模型没有参与基准构造，但原始数据集的预训练污染仍未被单独排除。</p>
-<p><strong>论文报告的主要结果。</strong> GPT-5 的答案准确率为 57.99%、Match F1 为 0.612；GPT-5-mini 的准确率为 55.59%、Match F1 为 0.773，且 Ordered Match F1 为 0.670；Gemini 2.5 Flash 的准确率为 53.95%、Match F1 为 0.673。19/20 个模型的步骤精确率高于召回率，说明模型更像是在挑选足以支撑答案的片段，而不是完整恢复参考轨迹；没有竞争模型能让超过 60% 的匹配步骤保持正确顺序。用 CPR-Curriculum 训练 Qwen2.5-VL-3B 后，论文报告 Match F1 从 0.480 升到 0.633、准确率从 39.85% 升到 47.52%；InternVL3.5-4B 的 Match F1 从 0.432 升到 0.833。训练实验使用 4 张 A100，但论文没有给出完整 GPU 小时和成本。</p>
-<p><strong>创新、局限与适用边界。</strong> 该工作把推理质量拆成步骤覆盖和顺序，且给出可训练的过程奖励；但参考轨迹可能遗漏同样有效的解法，固定语义编码器和阈值具有领域依赖，Ordered Match F1 也不等于真实因果依赖。增益只在两个较小模型上验证，不能直接外推到更大模型或真实任务。建议阅读第 3 节、第 4.1–4.5 节和第 5 节；做过程监督、可解释评测、视觉推理训练的人适合优先读。</p>
-<h3 id="3-enterpriseval企业生成式-ai-的效能-可靠性与价值评估"><a class="markdownIt-Anchor" href="#3-enterpriseval企业生成式-ai-的效能-可靠性与价值评估"></a> 3. EnterpriseVal：企业生成式 AI 的效能、可靠性与价值评估</h3>
+<p><strong>核心问题。</strong>
+只比较最终答案会掩盖模型是否找到了正确证据、是否遗漏了关键步骤，以及推理步骤顺序是否混乱。CRYSTAL
+将多模态推理轨迹作为可核验对象，试图测量“答对”与“理由足够、顺序正确”之间的差距。</p>
+<p><strong>方法与基线。</strong> 数据集有 6,372 个实例，参考轨迹来自四个
+MLLM 的独立生成、语义聚类和人工质量门；来源包括
+MathVision、ScienceQA-IMG、RealWorldQA、MMVP 和 PlotQA。Match F1
+用语义相似匹配计算步骤精确率与召回率，Ordered Match F1
+再用最长递增子序列惩罚乱序。论文比较 20 个模型，包括
+Qwen、InternVL、Gemma、Llama、LLaVA 等开放模型以及
+GPT-5、GPT-5-mini、GPT-5.2 Instant、Gemini 2.5 Flash
+等商用模型；商用模型没有参与基准构造，但原始数据集的预训练污染仍未被单独排除。</p>
+<p><strong>论文报告的主要结果。</strong> GPT-5 的答案准确率为
+57.99%、Match F1 为 0.612；GPT-5-mini 的准确率为 55.59%、Match F1 为
+0.773，且 Ordered Match F1 为 0.670；Gemini 2.5 Flash 的准确率为
+53.95%、Match F1 为 0.673。19/20
+个模型的步骤精确率高于召回率，说明模型更像是在挑选足以支撑答案的片段，而不是完整恢复参考轨迹；没有竞争模型能让超过
+60% 的匹配步骤保持正确顺序。用 CPR-Curriculum 训练 Qwen2.5-VL-3B
+后，论文报告 Match F1 从 0.480 升到 0.633、准确率从 39.85% 升到
+47.52%；InternVL3.5-4B 的 Match F1 从 0.432 升到 0.833。训练实验使用 4
+张 A100，但论文没有给出完整 GPU 小时和成本。</p>
+<p><strong>创新、局限与适用边界。</strong>
+该工作把推理质量拆成步骤覆盖和顺序，且给出可训练的过程奖励；但参考轨迹可能遗漏同样有效的解法，固定语义编码器和阈值具有领域依赖，Ordered
+Match F1
+也不等于真实因果依赖。增益只在两个较小模型上验证，不能直接外推到更大模型或真实任务。建议阅读第
+3 节、第 4.1–4.5 节和第 5
+节；做过程监督、可解释评测、视觉推理训练的人适合优先读。</p>
+<h3 id="enterpriseval企业生成式-ai-的效能可靠性与价值评估">3.
+EnterpriseVal：企业生成式 AI 的效能、可靠性与价值评估</h3>
 <ul>
 <li>作者：Abbas Raza Ali、Muhammad Ajmal Siddiqui、Moona Zahid</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21841">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21841">PDF</a></li>
-<li>证据状态：已核阅公开 PDF；银行试点是作者记录的 pilot evidence，不是独立验证。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21841">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21841">PDF</a></li>
+<li>证据状态：已核阅公开 PDF；银行试点是作者记录的 pilot
+evidence，不是独立验证。</li>
 </ul>
-<p><strong>核心问题。</strong> 公共 benchmark 能回答“模型会什么”，却不能直接回答某个冻结的企业工作流是否值得上线。EnterpriseVal 试图把模型、提示、检索、工具、护栏和人工监督一起定义为待评估的社会技术配置，并把质量、可靠性、安全和成本放在同一套决策门槛里。</p>
-<p><strong>方法与基线。</strong> 框架包含 fidelity、utility、efficiency、reliability、assurance、oversight 六组指标，使用校准后的 LLM-as-judge 加专家评分和 prediction-powered inference，再依据置信区间给出 REJECT、CONDITIONAL、SCALE 三档。银行试点覆盖信用备忘录撰写、流程文档转换和控制评估三个工作流，并比较 Gemini 2.5 与 Llama 4 等配置。论文在背景中讨论了污染等评测问题，但试点没有提供独立的数据污染审计；公开 PDF 也没有给出可复现实验代码或完整的原始数据。</p>
-<p><strong>论文报告的主要结果。</strong> 信用备忘录试点中，Gemini 的引用精确率为 88%、关键实体覆盖为 99%、综合准确率为 93.5%、幻觉率为 1.6%；Llama 的对应引用精确率为 76%、关键实体覆盖为 96%、准确率为 86%、幻觉率为 3.2%。论文设置的内外层门槛分别要求幻觉率低于 10%/5%，引用精确率高于 75%/80%；流程转换的人工精修时间从估计的每份 27.4 小时降到 2.9 小时，另一个版本为 10.6 小时。作者将这些标为试点记录，但没有记录完整样本量、置信区间、评分者一致性、盲评情况或真实上线后的效率。</p>
-<p><strong>创新、局限与适用边界。</strong> 这篇论文的贡献更接近部署测量协议，而非新的模型能力。单一银行、少量任务、估计的基线工时、未充分披露的 harness parity、没有重复运行可靠性和已实现业务价值，都限制了外推。建议读第 3–6 节的评估框架与门控算法、第 7.2–7.3 节的试点和第 8–9 节的威胁与局限。企业 AI 负责人、评测工程师和需要把 demo 变成上线决策的人适合阅读。</p>
-<h3 id="4-codemidas从源代码规模化构造智能编码强化学习环境"><a class="markdownIt-Anchor" href="#4-codemidas从源代码规模化构造智能编码强化学习环境"></a> 4. CodeMidas：从源代码规模化构造智能编码强化学习环境</h3>
+<p><strong>核心问题。</strong> 公共 benchmark
+能回答“模型会什么”，却不能直接回答某个冻结的企业工作流是否值得上线。EnterpriseVal
+试图把模型、提示、检索、工具、护栏和人工监督一起定义为待评估的社会技术配置，并把质量、可靠性、安全和成本放在同一套决策门槛里。</p>
+<p><strong>方法与基线。</strong> 框架包含
+fidelity、utility、efficiency、reliability、assurance、oversight
+六组指标，使用校准后的 LLM-as-judge 加专家评分和 prediction-powered
+inference，再依据置信区间给出 REJECT、CONDITIONAL、SCALE
+三档。银行试点覆盖信用备忘录撰写、流程文档转换和控制评估三个工作流，并比较
+Gemini 2.5 与 Llama 4
+等配置。论文在背景中讨论了污染等评测问题，但试点没有提供独立的数据污染审计；公开
+PDF 也没有给出可复现实验代码或完整的原始数据。</p>
+<p><strong>论文报告的主要结果。</strong> 信用备忘录试点中，Gemini
+的引用精确率为 88%、关键实体覆盖为 99%、综合准确率为 93.5%、幻觉率为
+1.6%；Llama 的对应引用精确率为 76%、关键实体覆盖为 96%、准确率为
+86%、幻觉率为 3.2%。论文设置的内外层门槛分别要求幻觉率低于
+10%/5%，引用精确率高于 75%/80%；流程转换的人工精修时间从估计的每份 27.4
+小时降到 2.9 小时，另一个版本为 10.6
+小时。作者将这些标为试点记录，但没有记录完整样本量、置信区间、评分者一致性、盲评情况或真实上线后的效率。</p>
+<p><strong>创新、局限与适用边界。</strong>
+这篇论文的贡献更接近部署测量协议，而非新的模型能力。单一银行、少量任务、估计的基线工时、未充分披露的
+harness
+parity、没有重复运行可靠性和已实现业务价值，都限制了外推。建议读第 3–6
+节的评估框架与门控算法、第 7.2–7.3 节的试点和第 8–9 节的威胁与局限。企业
+AI 负责人、评测工程师和需要把 demo 变成上线决策的人适合阅读。</p>
+<h3 id="codemidas从源代码规模化构造智能编码强化学习环境">4.
+CodeMidas：从源代码规模化构造智能编码强化学习环境</h3>
 <ul>
-<li>作者：Bowen Ye、Lei Li、Shicheng Li、Zihao Yue、Linghao Zhang、Hanglong Lv、Yuanxin Liu、Wenhan Ma、Hao Tian、Rang Li、Jinhao Dong、Yikai Zhao、Xiangwei Deng、Hailin Zhang、Liang Zhao、Qi Liu、Lingpeng Kong、Tong Yang、Fuli Luo</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.22068">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.22068">PDF</a></li>
-<li>证据状态：已核阅公开 PDF；训练和外部 benchmark 增益为作者报告，尚无独立复现。</li>
+<li>作者：Bowen Ye、Lei Li、Shicheng Li、Zihao Yue、Linghao
+Zhang、Hanglong Lv、Yuanxin Liu、Wenhan Ma、Hao Tian、Rang Li、Jinhao
+Dong、Yikai Zhao、Xiangwei Deng、Hailin Zhang、Liang Zhao、Qi
+Liu、Lingpeng Kong、Tong Yang、Fuli Luo</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.22068">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.22068">PDF</a></li>
+<li>证据状态：已核阅公开 PDF；训练和外部 benchmark
+增益为作者报告，尚无独立复现。</li>
 </ul>
-<p><strong>核心问题。</strong> 编码 agent 的 RL 需要大量任务和可靠 verifier，而 issue/commit 等开发工件覆盖面有限。CodeMidas 只把已有代码作为任务特定输入，让 agent 探索实现、写出行为规范、生成执行验证的测试，并过滤泄漏和不稳定任务。</p>
-<p><strong>方法与基线。</strong> 产出的训练集包含 5,545 个任务，来自 3,185 个开源代码库，覆盖 23 种语言和 15 个技术领域。任务通过“两个初始失败、四个参考解通过”的执行一致性检查、泄漏检查、解答审计和多次 rollout 过滤。作者用 GRPO 训练 MiMo-V2.5，并在 CodeMidas Val 和多个外部 benchmark 上比较训练前后；公开 PDF 给出 rollout、batch 和验证设置，但没有完整 GPU 小时或金钱成本。数据来自公开代码，论文虽做了泄漏检查，仍不能据此断言训练集与所有外部评测完全无污染。</p>
-<p><strong>论文报告的主要结果。</strong> 训练后相对基线，SWE-bench Pro 从 50.3% 到 54.4%，DeepSWE 从 10.0% 到 21.7%，ProgramBench 的 Almost Solved 从 4.5% 到 21.5%，RepoZero C2Rust 从 40.5% 到 51.8%，Terminal-Bench v2.1 从 63.7% 到 72.2%；CodeMidas Val 从约 35.0% 到 44.7%。高质量任务从 1k、3k 增加到 5,545 时，DeepSWE 从 17.57% 增到 21.70%，CodeMidas Val 从 41.30% 增到 44.73%。轨迹分析还显示探索、起草和自验证行为增加，但这些行为变化仍是同一作者实验内的相关证据。</p>
-<p><strong>创新、局限与适用边界。</strong> 把“代码本身”变成可执行环境，扩大了任务来源，也把 verifier 质量变成流水线的一部分。风险在于源代码分布偏差、测试构造器和训练模型之间的潜在泄漏、只验证 MiMo-V2.5，以及外部 benchmark 的比较是否完全同预算、同解码策略。建议阅读第 3 节、第 4.1–4.2 节、第 5.1–5.2 节和附录 A；适合编码 agent、RL 环境和软件工程评测研究者。</p>
-<h3 id="5-placereasoner-beta推理驱动的芯片宏单元布局与评测"><a class="markdownIt-Anchor" href="#5-placereasoner-beta推理驱动的芯片宏单元布局与评测"></a> 5. PlaceReasoner-Beta：推理驱动的芯片宏单元布局与评测</h3>
+<p><strong>核心问题。</strong> 编码 agent 的 RL 需要大量任务和可靠
+verifier，而 issue/commit 等开发工件覆盖面有限。CodeMidas
+只把已有代码作为任务特定输入，让 agent
+探索实现、写出行为规范、生成执行验证的测试，并过滤泄漏和不稳定任务。</p>
+<p><strong>方法与基线。</strong> 产出的训练集包含 5,545 个任务，来自
+3,185 个开源代码库，覆盖 23 种语言和 15
+个技术领域。任务通过“两个初始失败、四个参考解通过”的执行一致性检查、泄漏检查、解答审计和多次
+rollout 过滤。作者用 GRPO 训练 MiMo-V2.5，并在 CodeMidas Val 和多个外部
+benchmark 上比较训练前后；公开 PDF 给出 rollout、batch
+和验证设置，但没有完整 GPU
+小时或金钱成本。数据来自公开代码，论文虽做了泄漏检查，仍不能据此断言训练集与所有外部评测完全无污染。</p>
+<p><strong>论文报告的主要结果。</strong> 训练后相对基线，SWE-bench Pro
+从 50.3% 到 54.4%，DeepSWE 从 10.0% 到 21.7%，ProgramBench 的 Almost
+Solved 从 4.5% 到 21.5%，RepoZero C2Rust 从 40.5% 到
+51.8%，Terminal-Bench v2.1 从 63.7% 到 72.2%；CodeMidas Val 从约 35.0%
+到 44.7%。高质量任务从 1k、3k 增加到 5,545 时，DeepSWE 从 17.57% 增到
+21.70%，CodeMidas Val 从 41.30% 增到
+44.73%。轨迹分析还显示探索、起草和自验证行为增加，但这些行为变化仍是同一作者实验内的相关证据。</p>
+<p><strong>创新、局限与适用边界。</strong>
+把“代码本身”变成可执行环境，扩大了任务来源，也把 verifier
+质量变成流水线的一部分。风险在于源代码分布偏差、测试构造器和训练模型之间的潜在泄漏、只验证
+MiMo-V2.5，以及外部 benchmark
+的比较是否完全同预算、同解码策略。建议阅读第 3 节、第 4.1–4.2 节、第
+5.1–5.2 节和附录 A；适合编码 agent、RL 环境和软件工程评测研究者。</p>
+<h3 id="placereasoner-beta推理驱动的芯片宏单元布局与评测">5.
+PlaceReasoner-Beta：推理驱动的芯片宏单元布局与评测</h3>
 <ul>
-<li>作者：Qiufeng Li、Chengxuan Wang、Rongqian Chen、Quan Cheng、Yihui Ren、Chia-Tung Ho、David Z. Pan、Tian Lan、Weidong Cao</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21263">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21263">PDF</a></li>
-<li>证据状态：已核阅公开 PDF；结果是 16 个开放设计任务上的作者报告，不等于量产芯片验证。</li>
+<li>作者：Qiufeng Li、Chengxuan Wang、Rongqian Chen、Quan Cheng、Yihui
+Ren、Chia-Tung Ho、David Z. Pan、Tian Lan、Weidong Cao</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21263">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21263">PDF</a></li>
+<li>证据状态：已核阅公开 PDF；结果是 16
+个开放设计任务上的作者报告，不等于量产芯片验证。</li>
 </ul>
-<p><strong>核心问题。</strong> 宏布局通常用 HPWL 等代理目标优化，但代理目标与最终布线时序、DRC 和功耗并不总是一致。PlaceReasoner-Beta 让视觉语言模型规划候选布局，再用几何检查、物理检查和 post-route 优化形成闭环。</p>
-<p><strong>方法与基线。</strong> 基准包含 8 个 RTL 设计、两个纵横比，共 16 个任务和 401 个宏单元，使用开源 Yosys、OpenROAD、FakeRAM 与 Nangate45 流程。默认使用 Claude-Opus-4.8，并用 Qwen3-VL-8B/30B 做补充；每个设计生成 5 个候选。基线包括 DREAMPlace4.0、RTL-MP、ChiPFormer 和模拟退火，每个设计运行 5 次并报告最佳结果。评测同时看 WNS、TNS、DRC、线长、功耗、面积和运行时间/ token；因此“最佳 5 次”选择本身会影响公平性。</p>
-<p><strong>论文报告的主要结果。</strong> 在 1:1 任务上，系统在所有 8 个设计中取得 DRC-clean 方法里的最佳时序，TNS 相对四个基线在不超过 1,000 个 DRC 约束下减少 61.2%；2:1 任务的对应数字为 53.0%，并在 8 个任务中的 6 个取得最佳 TNS。1:1 的 8 个任务全部干净，2:1 有 5 个干净、3 个只有 1–2 个违规。80 个候选中有 68 个完成布线、42 个 DRC-clean；候选 TNS 的变异系数为 80.36%。平均每个设计约 733 秒、约 290k tokens，明显高于 RTL-MP 的约 96 秒。</p>
-<p><strong>创新、局限与适用边界。</strong> 亮点是把模型规划、物理检查和后布线反馈连成闭环，而不是只优化一个代理函数。局限包括 beta 系统仍会越界或重叠、候选高度相关、只用 16 个开放设计、5 次运行取最佳、没有任务专用训练，也不代表先进工艺或量产芯片。报告的 token 成本也不能直接换算为 API 费用。建议读第 2–5.7 节，尤其是第 3、4、5.1、5.5、5.6 节；适合 EDA、LLM agent 和物理验证交叉方向。</p>
-<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
-<h3 id="1-a-unified-evaluation-framework-for-trustworthy-large-language-models-agentic-ai-and-multimodal-systems"><a class="markdownIt-Anchor" href="#1-a-unified-evaluation-framework-for-trustworthy-large-language-models-agentic-ai-and-multimodal-systems"></a> 1. A Unified Evaluation Framework for Trustworthy Large Language Models, Agentic AI, and Multimodal Systems</h3>
+<p><strong>核心问题。</strong> 宏布局通常用 HPWL
+等代理目标优化，但代理目标与最终布线时序、DRC
+和功耗并不总是一致。PlaceReasoner-Beta
+让视觉语言模型规划候选布局，再用几何检查、物理检查和 post-route
+优化形成闭环。</p>
+<p><strong>方法与基线。</strong> 基准包含 8 个 RTL 设计、两个纵横比，共
+16 个任务和 401 个宏单元，使用开源 Yosys、OpenROAD、FakeRAM 与 Nangate45
+流程。默认使用 Claude-Opus-4.8，并用 Qwen3-VL-8B/30B
+做补充；每个设计生成 5 个候选。基线包括
+DREAMPlace4.0、RTL-MP、ChiPFormer 和模拟退火，每个设计运行 5
+次并报告最佳结果。评测同时看 WNS、TNS、DRC、线长、功耗、面积和运行时间/
+token；因此“最佳 5 次”选择本身会影响公平性。</p>
+<p><strong>论文报告的主要结果。</strong> 在 1:1 任务上，系统在所有 8
+个设计中取得 DRC-clean 方法里的最佳时序，TNS 相对四个基线在不超过 1,000
+个 DRC 约束下减少 61.2%；2:1 任务的对应数字为 53.0%，并在 8 个任务中的 6
+个取得最佳 TNS。1:1 的 8 个任务全部干净，2:1 有 5 个干净、3 个只有 1–2
+个违规。80 个候选中有 68 个完成布线、42 个 DRC-clean；候选 TNS
+的变异系数为 80.36%。平均每个设计约 733 秒、约 290k tokens，明显高于
+RTL-MP 的约 96 秒。</p>
+<p><strong>创新、局限与适用边界。</strong>
+亮点是把模型规划、物理检查和后布线反馈连成闭环，而不是只优化一个代理函数。局限包括
+beta 系统仍会越界或重叠、候选高度相关、只用 16 个开放设计、5
+次运行取最佳、没有任务专用训练，也不代表先进工艺或量产芯片。报告的 token
+成本也不能直接换算为 API 费用。建议读第 2–5.7 节，尤其是第
+3、4、5.1、5.5、5.6 节；适合 EDA、LLM agent 和物理验证交叉方向。</p>
+<h2 id="ai-论文">AI 论文</h2>
+<h3 id="a-unified-evaluation-framework-for-trustworthy-large-language-models-agentic-ai-and-multimodal-systems">1.
+A Unified Evaluation Framework for Trustworthy Large Language Models,
+Agentic AI, and Multimodal Systems</h3>
 <ul>
 <li>作者：Shaina Raza、Ahmed Y. Radwan、Imran Liaquat、Kathryn Hume</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.19524">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.19524">PDF</a></li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.19524">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.19524">PDF</a></li>
 <li>简介：提出覆盖能力、鲁棒性、安全、公平、透明、治理、监督和效率八个维度的统一评估框架，将输出、轨迹和跨模态指标映射到带不确定性的证据档案，并加入安全关键覆盖规则。摘要明确说跨部署场景的实证验证仍是下一步。</li>
 <li>证据状态：仅依据摘要；未核阅全文，不能补充其验证样本、基线或复现成本。</li>
 </ul>
-<h3 id="2-quranicmmlu面向古兰经语言知识的认知感知评测"><a class="markdownIt-Anchor" href="#2-quranicmmlu面向古兰经语言知识的认知感知评测"></a> 2. QuranicMMLU：面向《古兰经》语言知识的认知感知评测</h3>
+<h3 id="quranicmmlu面向古兰经语言知识的认知感知评测">2.
+QuranicMMLU：面向《古兰经》语言知识的认知感知评测</h3>
 <ul>
-<li>作者：Rawan El Ghali、Umm Kulsoom、Anas Madkoor、Dima Faris Alsaudi、Roaa Abdelmagid、Roaa Ibrahim、Raghad Mousa、Hamza Aljaji、Abdullah Khanafer、Abdallah Alkanani、Salah Feras Alali、Rawan Khaled Mohamed、Ehsaneddin Asgari</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.22038">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.22038">PDF</a></li>
-<li>简介：构造覆盖音系、形态、句法、语义和语用五大支柱的 980 个人工复核问题，并用开放问答和选择题评测 12 个系统。作者报告平均选择题准确率 84%、开放题质量 60%，两种排名 Kendall’s tau 为 0.73，说明选择题可能掩盖生成质量问题。</li>
+<li>作者：Rawan El Ghali、Umm Kulsoom、Anas Madkoor、Dima Faris
+Alsaudi、Roaa Abdelmagid、Roaa Ibrahim、Raghad Mousa、Hamza
+Aljaji、Abdullah Khanafer、Abdallah Alkanani、Salah Feras Alali、Rawan
+Khaled Mohamed、Ehsaneddin Asgari</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.22038">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.22038">PDF</a></li>
+<li>简介：构造覆盖音系、形态、句法、语义和语用五大支柱的 980
+个人工复核问题，并用开放问答和选择题评测 12
+个系统。作者报告平均选择题准确率 84%、开放题质量 60%，两种排名 Kendall’s
+tau 为 0.73，说明选择题可能掩盖生成质量问题。</li>
 <li>证据状态：仅依据摘要；未核阅全文，数字、评分协议和模型比较均未独立核查。</li>
 </ul>
-<h3 id="3-specopt面向结合特异性的接触差分-agent-分子优化"><a class="markdownIt-Anchor" href="#3-specopt面向结合特异性的接触差分-agent-分子优化"></a> 3. SpecOpt：面向结合特异性的接触差分 agent 分子优化</h3>
+<h3 id="specopt面向结合特异性的接触差分-agent-分子优化">3.
+SpecOpt：面向结合特异性的接触差分 agent 分子优化</h3>
 <ul>
 <li>作者：Thao Nguyen、Heng Ji</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21165">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21165">PDF</a></li>
-<li>简介：把“在保持原药物结构和药物样性质的同时，提高目标蛋白相对脱靶蛋白的结合偏好”定义为优化任务，用 docking 和残基感知的原子-蛋白接触差异指导修改。作者在 915 个化合物上报告 84.8% 的结合间隙改善，均值从 -0.72 变为 +0.47 kcal/mol，平均 Tanimoto 相似度为 0.72；去掉残基身份后，29 个消融样本均未改善。</li>
-<li>证据状态：仅依据摘要；这些是 docking/筛选指标，不是体内疗效或安全性验证。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21165">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21165">PDF</a></li>
+<li>简介：把“在保持原药物结构和药物样性质的同时，提高目标蛋白相对脱靶蛋白的结合偏好”定义为优化任务，用
+docking 和残基感知的原子-蛋白接触差异指导修改。作者在 915 个化合物上报告
+84.8% 的结合间隙改善，均值从 -0.72 变为 +0.47 kcal/mol，平均 Tanimoto
+相似度为 0.72；去掉残基身份后，29 个消融样本均未改善。</li>
+<li>证据状态：仅依据摘要；这些是
+docking/筛选指标，不是体内疗效或安全性验证。</li>
 </ul>
-<h3 id="4-面向天城文-ocr-后处理的上下文学习与检索策略"><a class="markdownIt-Anchor" href="#4-面向天城文-ocr-后处理的上下文学习与检索策略"></a> 4. 面向天城文 OCR 后处理的上下文学习与检索策略</h3>
+<h3 id="面向天城文-ocr-后处理的上下文学习与检索策略">4. 面向天城文 OCR
+后处理的上下文学习与检索策略</h3>
 <ul>
 <li>作者：Abhishek Bhandari、Gaurav Harit</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21595">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21595">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/AbhishekBhandari/Devanagari-OCR-ICL-Benchmark">数据集</a></li>
-<li>简介：在覆盖 5 个新闻领域的 20,000 句印地语和马拉地语数据上比较随机、密集语义和字符 n-gram BM25 检索。作者报告 CharBM25 相对随机示例在印地语降低 2.8–4.0 个百分点 WER、在马拉地语降低 2.9–3.8 个百分点；Gemma-3-27B 的 WER 降幅分别为 55.0% 和 33.3%。摘要称 12B 以上模型更稳定，但小模型可能恶化更多句子。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21595">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21595">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/AbhishekBhandari/Devanagari-OCR-ICL-Benchmark">数据集</a></li>
+<li>简介：在覆盖 5 个新闻领域的 20,000
+句印地语和马拉地语数据上比较随机、密集语义和字符 n-gram BM25
+检索。作者报告 CharBM25 相对随机示例在印地语降低 2.8–4.0 个百分点
+WER、在马拉地语降低 2.9–3.8 个百分点；Gemma-3-27B 的 WER 降幅分别为
+55.0% 和 33.3%。摘要称 12B
+以上模型更稳定，但小模型可能恶化更多句子。</li>
 <li>证据状态：仅依据摘要；未核阅全文，尚未核查训练/测试隔离、提示预算和不同模型的公平解码设置。</li>
 </ul>
-<h3 id="5-agentvidbench多跳视频问答的-mllm-agent-评测"><a class="markdownIt-Anchor" href="#5-agentvidbench多跳视频问答的-mllm-agent-评测"></a> 5. AgentVidBench：多跳视频问答的 MLLM agent 评测</h3>
+<h3 id="agentvidbench多跳视频问答的-mllm-agent-评测">5.
+AgentVidBench：多跳视频问答的 MLLM agent 评测</h3>
 <ul>
-<li>作者：Seoyeon An、Hyeonseo Jang、Minsu Kim、Chanho Lee、Younghan Park、Kangwook Lee</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21386">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21386">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/krafton-ai/agentvidbench">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/agentvidbench/agentvidbench">数据集</a></li>
-<li>简介：面向空间、时间和因果推理构造多跳视频问答，并提供逐步证据轨迹。摘要报告对 12 个闭源和开放 MLLM 的实验显示，单轮能力有限，接入 agent 工作流通常能同时改善准确率和轨迹分数，并提供了一个 agentic baseline。</li>
-<li>证据状态：仅依据摘要；未核阅全文，不能判断工作流新增的 token、工具调用和延迟成本。</li>
+<li>作者：Seoyeon An、Hyeonseo Jang、Minsu Kim、Chanho Lee、Younghan
+Park、Kangwook Lee</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21386">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21386">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/krafton-ai/agentvidbench">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/agentvidbench/agentvidbench">数据集</a></li>
+<li>简介：面向空间、时间和因果推理构造多跳视频问答，并提供逐步证据轨迹。摘要报告对
+12 个闭源和开放 MLLM 的实验显示，单轮能力有限，接入 agent
+工作流通常能同时改善准确率和轨迹分数，并提供了一个 agentic
+baseline。</li>
+<li>证据状态：仅依据摘要；未核阅全文，不能判断工作流新增的
+token、工具调用和延迟成本。</li>
 </ul>
-<h3 id="6-jepa-guided-diffusion用于生成式交通预测的预测视觉语言条件"><a class="markdownIt-Anchor" href="#6-jepa-guided-diffusion用于生成式交通预测的预测视觉语言条件"></a> 6. JEPA Guided Diffusion：用于生成式交通预测的预测视觉语言条件</h3>
+<h3 id="jepa-guided-diffusion用于生成式交通预测的预测视觉语言条件">6.
+JEPA Guided Diffusion：用于生成式交通预测的预测视觉语言条件</h3>
 <ul>
-<li>作者：Trinh Tra Giang Nguyen、Thanh Nguyen Vo、Nguyen Hoai Thuong Bui、Ha Duc Bui</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21379">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21379">PDF</a></li>
-<li>简介：冻结 V-JEPA 编码器和 Cosmos 扩散模块，只训练轻量 latent alignment 模块，将交通视频中的预测表示接入生成模型。作者在 AI City Challenge 2026 Track 5 报告得分 75.1297、排名第三；摘要未给出与统一训练预算基线的完整表格。</li>
+<li>作者：Trinh Tra Giang Nguyen、Thanh Nguyen Vo、Nguyen Hoai Thuong
+Bui、Ha Duc Bui</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21379">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21379">PDF</a></li>
+<li>简介：冻结 V-JEPA 编码器和 Cosmos 扩散模块，只训练轻量 latent
+alignment 模块，将交通视频中的预测表示接入生成模型。作者在 AI City
+Challenge 2026 Track 5 报告得分
+75.1297、排名第三；摘要未给出与统一训练预算基线的完整表格。</li>
 <li>证据状态：仅依据摘要；未核阅全文，不能据竞赛名次推断生产交通预测效果。</li>
 </ul>
-<h3 id="7-arenaflow面向开放式-agent-rl-的层级信用传播"><a class="markdownIt-Anchor" href="#7-arenaflow面向开放式-agent-rl-的层级信用传播"></a> 7. ArenaFlow：面向开放式 agent RL 的层级信用传播</h3>
+<h3 id="arenaflow面向开放式-agent-rl-的层级信用传播">7.
+ArenaFlow：面向开放式 agent RL 的层级信用传播</h3>
 <ul>
-<li>作者：Qiang Zhang、Ruixue Ding、Fanrui Zhang、Xi Chen、Boli Chen、Shihang Wang、Yinfeng Huang、Yi Zheng、Pengjun Xie、Kaipeng Zhang、Jiawei Liu、Zheng-Jun Zha</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21378">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21378">PDF</a></li>
-<li>简介：以 tournament 式相对排名产生轨迹奖励，再把优势传播到关键步骤，并维护带效用的技能记忆，试图解决开放式任务中标量奖励难以区分和中间行为无法复用的问题。摘要称在开放式 agent 任务上有效，但未给出具体任务规模和提升幅度。</li>
+<li>作者：Qiang Zhang、Ruixue Ding、Fanrui Zhang、Xi Chen、Boli
+Chen、Shihang Wang、Yinfeng Huang、Yi Zheng、Pengjun Xie、Kaipeng
+Zhang、Jiawei Liu、Zheng-Jun Zha</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21378">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21378">PDF</a></li>
+<li>简介：以 tournament
+式相对排名产生轨迹奖励，再把优势传播到关键步骤，并维护带效用的技能记忆，试图解决开放式任务中标量奖励难以区分和中间行为无法复用的问题。摘要称在开放式
+agent 任务上有效，但未给出具体任务规模和提升幅度。</li>
 <li>证据状态：仅依据摘要；未核阅全文，不能核查比较基线、奖励模型成本或消融结果。</li>
 </ul>
-<h3 id="8-geometry-aware-reinforcement-learning-for-2d-irregular-nesting"><a class="markdownIt-Anchor" href="#8-geometry-aware-reinforcement-learning-for-2d-irregular-nesting"></a> 8. Geometry-Aware Reinforcement Learning for 2D Irregular Nesting</h3>
+<h3 id="geometry-aware-reinforcement-learning-for-2d-irregular-nesting">8.
+Geometry-Aware Reinforcement Learning for 2D Irregular Nesting</h3>
 <ul>
 <li>作者：Auguste Lehuger、Guillaume Henon-Just</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.10611">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.10611">PDF</a></li>
-<li>简介：提出能编码连续多边形几何并做跨多边形注意力的 Polygons Transformer，配合 CORL 训练 2D 不规则排样策略，并发布训练数据和评测基准。摘要报告在 4 多边形小实例上略超 Sparrow，但在 8 多边形实例上仍有明显规模差距。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.10611">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.10611">PDF</a></li>
+<li>简介：提出能编码连续多边形几何并做跨多边形注意力的 Polygons
+Transformer，配合 CORL 训练 2D
+不规则排样策略，并发布训练数据和评测基准。摘要报告在 4
+多边形小实例上略超 Sparrow，但在 8 多边形实例上仍有明显规模差距。</li>
 <li>证据状态：仅依据摘要；未核阅全文，未补充几何数据分布、搜索预算和大规模失败条件。</li>
 </ul>
-<h3 id="9-personalai-20用规划机制增强个性化-llm-agent-的知识图谱检索"><a class="markdownIt-Anchor" href="#9-personalai-20用规划机制增强个性化-llm-agent-的知识图谱检索"></a> 9. PersonalAI 2.0：用规划机制增强个性化 LLM agent 的知识图谱检索</h3>
+<h3 id="personalai-2.0用规划机制增强个性化-llm-agent-的知识图谱检索">9.
+PersonalAI 2.0：用规划机制增强个性化 LLM agent 的知识图谱检索</h3>
 <ul>
-<li>作者：Mikhail Menschikov、Matvey Iskornev、Alexander Kharitonov、Alina Bogdanova、Mikhail Belkin、Ekaterina Lisitsyna、Artyom Sosedka、Victoria Dochkina、Ruslan Kostoev、Ilia Perepechkin、Evgeny Burnaev</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.13481">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.13481">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Dzigen/PersonalAI">代码</a></li>
-<li>简介：提出多阶段、可迭代的知识图谱查询流程，由实体、图顶点和线索查询驱动搜索计划。作者报告在 2WikiMultihopQA 与 MuSiQue 上 LLM-as-a-Judge 平均提升 9%，启用搜索计划增强机制相对关闭提升 18%，并在 MINE-1 上报告 89% 信息保留率。</li>
-<li>证据状态：仅依据摘要；结果依赖 LLM-as-a-Judge，未核查检索成本、基线实现和数据污染。</li>
+<li>作者：Mikhail Menschikov、Matvey Iskornev、Alexander
+Kharitonov、Alina Bogdanova、Mikhail Belkin、Ekaterina Lisitsyna、Artyom
+Sosedka、Victoria Dochkina、Ruslan Kostoev、Ilia Perepechkin、Evgeny
+Burnaev</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.13481">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.13481">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Dzigen/PersonalAI">代码</a></li>
+<li>简介：提出多阶段、可迭代的知识图谱查询流程，由实体、图顶点和线索查询驱动搜索计划。作者报告在
+2WikiMultihopQA 与 MuSiQue 上 LLM-as-a-Judge 平均提升
+9%，启用搜索计划增强机制相对关闭提升 18%，并在 MINE-1 上报告 89%
+信息保留率。</li>
+<li>证据状态：仅依据摘要；结果依赖
+LLM-as-a-Judge，未核查检索成本、基线实现和数据污染。</li>
 </ul>
-<h3 id="10-mirage多视角创造性语言模型推理"><a class="markdownIt-Anchor" href="#10-mirage多视角创造性语言模型推理"></a> 10. MIRAGE：多视角创造性语言模型推理</h3>
+<h3 id="mirage多视角创造性语言模型推理">10.
+MIRAGE：多视角创造性语言模型推理</h3>
 <ul>
 <li>作者：Arash Lagzian、Srinivas Anumasa、Dianbo Liu</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21554">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21554">PDF</a></li>
-<li>简介：由 Selector 选择代数、概率等概念视角，再由 Reasoner 顺序求解，置信度不足时聚合多视角。摘要称在 GSM8K、MATH500、MMLU-Pro 和 Game-of-24 上持续优于 CoT 与多样提示集成，并以较小推理开销换取提升。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21554">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21554">PDF</a></li>
+<li>简介：由 Selector 选择代数、概率等概念视角，再由 Reasoner
+顺序求解，置信度不足时聚合多视角。摘要称在 GSM8K、MATH500、MMLU-Pro 和
+Game-of-24 上持续优于 CoT
+与多样提示集成，并以较小推理开销换取提升。</li>
 <li>证据状态：仅依据摘要；未核阅全文，缺少具体增益、调用次数和模型规模，不能据此判断成本优势。</li>
 </ul>
-<h3 id="11-openmas-gcom图增强多-agent-系统的诊断基准"><a class="markdownIt-Anchor" href="#11-openmas-gcom图增强多-agent-系统的诊断基准"></a> 11. OpenMAS-GCom：图增强多 agent 系统的诊断基准</h3>
+<h3 id="openmas-gcom图增强多-agent-系统的诊断基准">11.
+OpenMAS-GCom：图增强多 agent 系统的诊断基准</h3>
 <ul>
-<li>作者：Kairui Yang、Xunkai Li、Kaixiang Zhang、Minghao An、Zekai Chen、Yuxuan Ba、Rong-Hua Li</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21527">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21527">PDF</a></li>
-<li>简介：通过固定任务、模型、提示和预算，只改变通信边、专家/批评者、错误中间消息或 worker，诊断图增强多 agent 系统的组件贡献。基准包含 17 个配置、29 个数据集、6 个领域和 400 个复杂任务；摘要报告移除专家通常比移除批评者造成更大损失，但没有给出统一数字。</li>
-<li>证据状态：仅依据摘要；未核阅全文，不能判断各配置是否完全等 token 或工具预算。</li>
+<li>作者：Kairui Yang、Xunkai Li、Kaixiang Zhang、Minghao An、Zekai
+Chen、Yuxuan Ba、Rong-Hua Li</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21527">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21527">PDF</a></li>
+<li>简介：通过固定任务、模型、提示和预算，只改变通信边、专家/批评者、错误中间消息或
+worker，诊断图增强多 agent 系统的组件贡献。基准包含 17 个配置、29
+个数据集、6 个领域和 400
+个复杂任务；摘要报告移除专家通常比移除批评者造成更大损失，但没有给出统一数字。</li>
+<li>证据状态：仅依据摘要；未核阅全文，不能判断各配置是否完全等 token
+或工具预算。</li>
 </ul>
-<h3 id="12-sira通过查询锚定对齐进行推理感知的手术器械分割"><a class="markdownIt-Anchor" href="#12-sira通过查询锚定对齐进行推理感知的手术器械分割"></a> 12. SIRA：通过查询锚定对齐进行推理感知的手术器械分割</h3>
+<h3 id="sira通过查询锚定对齐进行推理感知的手术器械分割">12.
+SIRA：通过查询锚定对齐进行推理感知的手术器械分割</h3>
 <ul>
 <li>作者：Zhibo Zhang、Qijie Wang、Zengqiang Yan</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21402">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21402">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/linxir226/SIRA">代码</a></li>
-<li>简介：把手术器械分割改写为带手术上下文的查询条件推理，构造含 41,000 个图文对的 SurgRS，并用 query-anchored dual alignment 对齐查询语义、视觉特征和分割提示。作者报告优于既有推理感知基线，但摘要没有给出指标数值。</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21402">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21402">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/linxir226/SIRA">代码</a></li>
+<li>简介：把手术器械分割改写为带手术上下文的查询条件推理，构造含 41,000
+个图文对的 SurgRS，并用 query-anchored dual alignment
+对齐查询语义、视觉特征和分割提示。作者报告优于既有推理感知基线，但摘要没有给出指标数值。</li>
 <li>证据状态：仅依据摘要；未核阅全文，不能核查数据划分、临床外部验证或公平基线。</li>
 </ul>
-<h3 id="13-odu多模态交互中的上下文用户需求理解"><a class="markdownIt-Anchor" href="#13-odu多模态交互中的上下文用户需求理解"></a> 13. ODU：多模态交互中的上下文用户需求理解</h3>
+<h3 id="odu多模态交互中的上下文用户需求理解">13.
+ODU：多模态交互中的上下文用户需求理解</h3>
 <ul>
-<li>作者：Qi Chen、Yunfei Chu、Haolin He、Yifan Yang、Zihan Liu、Yuxuan Wang、Ziyang Ma、Ruiyang Xu、Meng Gao、Yinsong Yan、Ling Wang、Hui Wang、Wen Huang、Yiheng Chen、Guanrou Yang、Qiuqiang Kong、Jin Xu、Xie Chen</li>
-<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21392">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21392">PDF</a></li>
-<li>简介：将“用户是否真的提出需求、需求是什么”从响应质量中单独抽出，覆盖单轮/多轮、视觉、声学和对话上下文，并评测 14 个原生 MLLM。作者报告最强的 Gemini 3.1 Pro 只能恢复 44.7% 的关键信息，14 个模型中有 11 个在非需求场景的误触发率超过 50%。</li>
+<li>作者：Qi Chen、Yunfei Chu、Haolin He、Yifan Yang、Zihan Liu、Yuxuan
+Wang、Ziyang Ma、Ruiyang Xu、Meng Gao、Yinsong Yan、Ling Wang、Hui
+Wang、Wen Huang、Yiheng Chen、Guanrou Yang、Qiuqiang Kong、Jin Xu、Xie
+Chen</li>
+<li>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.21392">arXiv 摘要页</a> ·
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.21392">PDF</a></li>
+<li>简介：将“用户是否真的提出需求、需求是什么”从响应质量中单独抽出，覆盖单轮/多轮、视觉、声学和对话上下文，并评测
+14 个原生 MLLM。作者报告最强的 Gemini 3.1 Pro 只能恢复 44.7%
+的关键信息，14 个模型中有 11 个在非需求场景的误触发率超过 50%。</li>
 <li>证据状态：仅依据摘要；未核阅全文，误触发定义、音频噪声和测试集构造仍需查全文。</li>
 </ul>
 
