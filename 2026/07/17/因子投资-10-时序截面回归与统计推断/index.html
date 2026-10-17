@@ -285,7 +285,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          2.6k 字
         
       </span>
     
@@ -296,7 +296,7 @@
         
         
         
-          23 分钟
+          22 分钟
         
       </span>
     
@@ -360,9 +360,10 @@
         <div><span>阅读</span><strong>约 9 分钟</strong></div>
         <div><span>材料</span><strong>10 节 · 1 段代码</strong></div>
       </div>
-    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
-<p>同一个“回归”可以回答完全不同的问题：时间序列回归问某资产如何随因子共同变化；横截面回归问同一时点哪些暴露或特征对应更高未来收益。混淆两者会把 Beta 当风险价格、把股票月份当独立样本，并得到过度自信的 t 值。</p>
-</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题">本节解决什么问题</h2>
+<p>同一个“回归”可以回答完全不同的问题：时间序列回归问某资产如何随因子共同变化；横截面回归问同一时点哪些暴露或特征对应更高未来收益。混淆两者会把
+Beta 当风险价格、把股票月份当独立样本，并得到过度自信的 t 值。</p>
+</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标">前置知识与学习目标</h2>
 <p>需要第 03、04、06、09 讲。学完后你应该能：</p>
 <ul>
 <li>区分时序回归的 Alpha/Beta 与截面回归的 λ；</li>
@@ -371,77 +372,118 @@
 <li>陈述 GRS 联合检验的零假设和几何直觉；</li>
 <li>理解正交化顺序、多重检验和 GMM 矩条件的边界。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算">直觉与手算</h2>
 <p>假设有 100 只股票、120 个月和 3 个因子。</p>
 <ul>
-<li>对每只股票做时序回归：y 是 120×1，X 是 120×4（含常数），得到该股票一个 Alpha 和 3 个 Beta。重复 100 次。</li>
-<li>在每个月做横截面回归：y 是 100×1，X 是 100×4，得到当月一个截距和 3 个 λ。重复 120 次，再研究 λ 的时间均值。</li>
+<li>对每只股票做时序回归：y 是 120×1，X 是
+120×4（含常数），得到该股票一个 Alpha 和 3 个 Beta。重复 100 次。</li>
+<li>在每个月做横截面回归：y 是 100×1，X 是 100×4，得到当月一个截距和 3
+个 λ。重复 120 次，再研究 λ 的时间均值。</li>
 </ul>
-<p>Beta 的含义是收益对因子的敏感度；λ 的含义是横截面中一个单位暴露对应的当期收益差。即使符号都叫回归系数，维度、经济对象和标准误来源不同。</p>
-<p>若 120 个 λ 的均值每月 0.4%、时间标准差 2%，在独立近似下均值标准误为 2%/√120≈0.183%，t≈2.19。若 λ 有正自相关，Newey–West 标准误会更大，t 值更小。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
-<h3 id="时序回归"><a class="markdownIt-Anchor" href="#时序回归"></a> 时序回归</h3>
+<p>Beta 的含义是收益对因子的敏感度；λ
+的含义是横截面中一个单位暴露对应的当期收益差。即使符号都叫回归系数，维度、经济对象和标准误来源不同。</p>
+<p>若 120 个 λ 的均值每月 0.4%、时间标准差 2%，在独立近似下均值标准误为
+2%/√120≈0.183%，t≈2.19。若 λ 有正自相关，Newey–West 标准误会更大，t
+值更小。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式">定义与公式</h2>
+<h3 id="时序回归">时序回归</h3>
 <p>对资产或组合 i：</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi>R</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow><mi>e</mi></msubsup><mo>=</mo><msub><mi>α</mi><mi>i</mi></msub><mo>+</mo><msubsup><mi>β</mi><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><msub><mi>f</mi><mi>t</mi></msub><mo>+</mo><msub><mi>ε</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">R_{i,t}^e=\alpha_i+\beta_i^{\prime}f_t+\varepsilon_{i,t}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0975000000000001em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.714392em;"><span style="top:-2.4530000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.048892em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8018919999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">ε</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<p>T 期数据估计 Alpha 和 K 个暴露。它用于风险归因、模型拟合和定价误差检验。因子与资产收益同一期，通常不是预测回归。</p>
-<h3 id="截面回归"><a class="markdownIt-Anchor" href="#截面回归"></a> 截面回归</h3>
+<p><span class="math display">\[
+R_{i,t}^e=\alpha_i+\beta_i^{\prime}f_t+\varepsilon_{i,t}
+\]</span></p>
+<p>T 期数据估计 Alpha 和 K
+个暴露。它用于风险归因、模型拟合和定价误差检验。因子与资产收益同一期，通常不是预测回归。</p>
+<h3 id="截面回归">截面回归</h3>
 <p>在每个 t：</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>R</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>λ</mi><mrow><mn>0</mn><mo separator="true">,</mo><mi>t</mi></mrow></msub><mo>+</mo><msubsup><mi>x</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><msub><mi>λ</mi><mi>t</mi></msub><mo>+</mo><msub><mi>u</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">R_{i,t+1}=\lambda_{0,t}+x_{i,t}^{\prime}\lambda_t+u_{i,t+1}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.185em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.801892em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<p>N 只股票估计 K 个特征价格。x 必须在 t 可得，收益发生于 t+1。λ(t) 是当期横截面斜率，不是某只股票的暴露。</p>
-<h3 id="famamacbeth-两步法"><a class="markdownIt-Anchor" href="#famamacbeth-两步法"></a> Fama–MacBeth 两步法</h3>
-<p>经典资产定价实现常先用历史时序估计每只资产 Beta，再逐期做横截面回归：</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>R</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi>λ</mi><mrow><mn>0</mn><mo separator="true">,</mo><mi>t</mi></mrow></msub><mo>+</mo><msubsup><mover accent="true"><mi>β</mi><mo>^</mo></mover><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><msub><mi>λ</mi><mi>t</mi></msub><mo>+</mo><msub><mi>u</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">R_{i,t}=\lambda_{0,t}+\hat\beta_i^{\prime}\lambda_t+u_{i,t}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.2048799999999997em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9578799999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8018919999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p><span class="math display">\[
+R_{i,t+1}=\lambda_{0,t}+x_{i,t}^{\prime}\lambda_t+u_{i,t+1}
+\]</span></p>
+<p>N 只股票估计 K 个特征价格。x 必须在 t 可得，收益发生于 t+1。λ(t)
+是当期横截面斜率，不是某只股票的暴露。</p>
+<h3 id="famamacbeth-两步法">Fama–MacBeth 两步法</h3>
+<p>经典资产定价实现常先用历史时序估计每只资产
+Beta，再逐期做横截面回归：</p>
+<p><span class="math display">\[
+R_{i,t}=\lambda_{0,t}+\hat\beta_i^{\prime}\lambda_t+u_{i,t}
+\]</span></p>
 <p>最后：</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>λ</mi><mo>ˉ</mo></mover><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mi mathvariant="normal">/</mi><mi>T</mi><mo stretchy="false">)</mo><munder><mo>∑</mo><mi>t</mi></munder><msub><mover accent="true"><mi>λ</mi><mo>^</mo></mover><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\bar\lambda=(1/T)\sum_t\hat\lambda_t
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8312199999999998em;vertical-align:0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8312199999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">λ</span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.3000100000000003em;vertical-align:-1.250005em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8999949999999999em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.250005em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9578799999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">λ</span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">^</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<p>推断来自 λ(t) 时间序列，而不是把 N×T 个股票月份视为独立。现代特征预测也常把每期特征直接放进横截面回归，仍沿用“逐期估计、时间平均”的思想。</p>
-<h3 id="shanken-型测量误差直觉"><a class="markdownIt-Anchor" href="#shanken-型测量误差直觉"></a> Shanken 型测量误差直觉</h3>
-<p>第一步 Beta 是有限样本估计值而非真值。把含噪解释变量放进第二步会产生误差变量问题：风险价格可能偏误，普通第二步标准误也忽略第一步不确定性。Shanken 修正针对特定线性因子模型调整协方差；在滚动暴露、特征回归或机器学习暴露中不能机械套公式，应使用匹配的联合估计、自助法或模拟。</p>
-<h3 id="white-neweywest-与聚类"><a class="markdownIt-Anchor" href="#white-neweywest-与聚类"></a> White、Newey–West 与聚类</h3>
+<p><span class="math display">\[
+\bar\lambda=(1/T)\sum_t\hat\lambda_t
+\]</span></p>
+<p>推断来自 λ(t) 时间序列，而不是把 N×T
+个股票月份视为独立。现代特征预测也常把每期特征直接放进横截面回归，仍沿用“逐期估计、时间平均”的思想。</p>
+<h3 id="shanken-型测量误差直觉">Shanken 型测量误差直觉</h3>
+<p>第一步 Beta
+是有限样本估计值而非真值。把含噪解释变量放进第二步会产生误差变量问题：风险价格可能偏误，普通第二步标准误也忽略第一步不确定性。Shanken
+修正针对特定线性因子模型调整协方差；在滚动暴露、特征回归或机器学习暴露中不能机械套公式，应使用匹配的联合估计、自助法或模拟。</p>
+<h3 id="whiteneweywest-与聚类">White、Newey–West 与聚类</h3>
 <ul>
-<li><strong>White 标准误：</strong> 对异方差稳健，但假设不同观测误差不相关。</li>
-<li><strong>Newey–West/HAC：</strong> 对时间序列中的异方差和有限滞后自相关稳健，需选择滞后 L。</li>
-<li><strong>聚类标准误：</strong> 允许同一簇内任意相关，例如按公司、时间或双向聚类，但需要足够簇数。</li>
+<li><strong>White 标准误：</strong>
+对异方差稳健，但假设不同观测误差不相关。</li>
+<li><strong>Newey–West/HAC：</strong>
+对时间序列中的异方差和有限滞后自相关稳健，需选择滞后 L。</li>
+<li><strong>聚类标准误：</strong>
+允许同一簇内任意相关，例如按公司、时间或双向聚类，但需要足够簇数。</li>
 </ul>
-<p>方法由误差结构决定，不由“哪个给更小 p 值”决定。重叠持有、月度 λ 和组合收益通常需要时间 HAC；股票面板还可能需要公司与月份双向相关处理。</p>
-<h3 id="grs-联合检验"><a class="markdownIt-Anchor" href="#grs-联合检验"></a> GRS 联合检验</h3>
+<p>方法由误差结构决定，不由“哪个给更小 p 值”决定。重叠持有、月度 λ
+和组合收益通常需要时间
+HAC；股票面板还可能需要公司与月份双向相关处理。</p>
+<h3 id="grs-联合检验">GRS 联合检验</h3>
 <p>对 N 个测试资产的时序回归，零假设是：</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>H</mi><mn>0</mn></msub><mo>:</mo><msub><mi>α</mi><mn>1</mn></msub><mo>=</mo><msub><mi>α</mi><mn>2</mn></msub><mo>=</mo><mo>⋯</mo><mo>=</mo><msub><mi>α</mi><mi>N</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">H_0:\alpha_1=\alpha_2=\cdots=\alpha_N=0
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.08125em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></span></p>
-<p>几何上，若因子组合张成的均值—方差前沿包含有效组合，测试资产平均收益不应在因子暴露之外留下系统方向。GRS 用残差协方差度量 Alpha 向量“离零有多远”，并根据因子自身 Sharpe 调整。</p>
-<p>逐个 Alpha t 检验无法控制联合问题；GRS 拒绝说明至少存在未解释方向，但不告诉哪只资产、哪种机制或哪个替代模型正确。N 接近 T 时协方差逆不稳定，检验会失真。</p>
-<h3 id="正交化与顺序依赖"><a class="markdownIt-Anchor" href="#正交化与顺序依赖"></a> 正交化与顺序依赖</h3>
-<p>把新因子 z 对旧因子 X 回归并取残差，可以构造与 X 样本正交的 z⊥。但先正交化价值对规模，与先正交化规模对价值，保留的经济成分不同。正交只保证样本线性内积为零，不保证独立、因果或样本外稳定。</p>
-<h3 id="多重检验"><a class="markdownIt-Anchor" href="#多重检验"></a> 多重检验</h3>
-<p>在同一数据上尝试 M 个因子、多个股票池和参数，单个 |t|&gt;1.96 不再控制整体假阳性。应记录完整试验族，使用更严格门槛、假发现率、样本外和发表后证据。数值阈值依赖因子相关结构与研究历史，不能把某个统一 t 值当成真理机器。</p>
-<h3 id="gmm-的最小直觉"><a class="markdownIt-Anchor" href="#gmm-的最小直觉"></a> GMM 的最小直觉</h3>
+<p><span class="math display">\[
+H_0:\alpha_1=\alpha_2=\cdots=\alpha_N=0
+\]</span></p>
+<p>几何上，若因子组合张成的均值—方差前沿包含有效组合，测试资产平均收益不应在因子暴露之外留下系统方向。GRS
+用残差协方差度量 Alpha 向量“离零有多远”，并根据因子自身 Sharpe
+调整。</p>
+<p>逐个 Alpha t 检验无法控制联合问题；GRS
+拒绝说明至少存在未解释方向，但不告诉哪只资产、哪种机制或哪个替代模型正确。N
+接近 T 时协方差逆不稳定，检验会失真。</p>
+<h3 id="正交化与顺序依赖">正交化与顺序依赖</h3>
+<p>把新因子 z 对旧因子 X 回归并取残差，可以构造与 X 样本正交的
+z⊥。但先正交化价值对规模，与先正交化规模对价值，保留的经济成分不同。正交只保证样本线性内积为零，不保证独立、因果或样本外稳定。</p>
+<h3 id="多重检验">多重检验</h3>
+<p>在同一数据上尝试 M 个因子、多个股票池和参数，单个 |t|&gt;1.96
+不再控制整体假阳性。应记录完整试验族，使用更严格门槛、假发现率、样本外和发表后证据。数值阈值依赖因子相关结构与研究历史，不能把某个统一
+t 值当成真理机器。</p>
+<h3 id="gmm-的最小直觉">GMM 的最小直觉</h3>
 <p>许多资产定价模型可写成“理论要求某些样本平均量为零”：</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo stretchy="false">[</mo><msub><mi>g</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">E[g_t(\theta)]=0
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></span></p>
-<p>GMM 选择参数 θ，使样本矩条件尽量接近零，并用矩条件长期协方差做推断。OLS 正交条件、消费定价误差和因子模型都可放进这个框架。本知识库只用它连接方法，不展开权重矩阵和效率推导。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
-<p>下面直接用当期特征做 5 次横截面回归，再对斜率时间序列估计 HAC 均值。</p>
+<p><span class="math display">\[
+E[g_t(\theta)]=0
+\]</span></p>
+<p>GMM 选择参数
+θ，使样本矩条件尽量接近零，并用矩条件长期协方差做推断。OLS
+正交条件、消费定价误差和因子模型都可放进这个框架。本知识库只用它连接方法，不展开权重矩阵和效率推导。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验">Python 最小实验</h2>
+<p>下面直接用当期特征做 5 次横截面回归，再对斜率时间序列估计 HAC
+均值。</p>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
         <strong>PYTHON</strong>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> statsmodels.api <span class="hljs-keyword">as</span> sm<br><br>signal = np.array([-<span class="hljs-number">1.0</span>, -<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">1.0</span>])<br>lambda_true = np.array([<span class="hljs-number">0.010</span>, <span class="hljs-number">0.020</span>, -<span class="hljs-number">0.010</span>, <span class="hljs-number">0.030</span>, <span class="hljs-number">0.015</span>])<br>noise = np.array([<span class="hljs-number">0.001</span>, -<span class="hljs-number">0.001</span>, -<span class="hljs-number">0.001</span>, <span class="hljs-number">0.001</span>])<br><br>lambda_hat = []<br><span class="hljs-keyword">for</span> premium <span class="hljs-keyword">in</span> lambda_true:<br>    future_return = <span class="hljs-number">0.002</span> + premium * signal + noise<br>    X_cross = sm.add_constant(signal)<br>    result = sm.OLS(future_return, X_cross).fit()<br>    lambda_hat.append(result.params[<span class="hljs-number">1</span>])<br><br>lambda_hat = np.asarray(lambda_hat)<br>mean_model = sm.OLS(lambda_hat, np.ones((<span class="hljs-built_in">len</span>(lambda_hat), <span class="hljs-number">1</span>))).fit(<br>    cov_type=<span class="hljs-string">&quot;HAC&quot;</span>,<br>    cov_kwds=&#123;<span class="hljs-string">&quot;maxlags&quot;</span>: <span class="hljs-number">1</span>&#125;,<br>)<br><br><span class="hljs-keyword">assert</span> np.allclose(lambda_hat, lambda_true)<br><span class="hljs-keyword">assert</span> np.isclose(mean_model.params[<span class="hljs-number">0</span>], lambda_true.mean())<br><span class="hljs-built_in">print</span>(lambda_hat, mean_model.params[<span class="hljs-number">0</span>], mean_model.bse[<span class="hljs-number">0</span>])<br></code></pre></td></tr></table></figure>
-<p>噪声被设计为与常数和 signal 正交，所以每期斜率精确恢复真值。真实横截面不会如此整齐，且 5 期远不足以做可靠推断。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
-<ol>
-<li><strong>横截面相关。</strong> 同行业、同主题和涨跌停状态造成共同残差，股票数大不等于独立样本多。</li>
-<li><strong>短时间序列。</strong> 中国市场制度变化快，增加更早月份可能降低可比性；应并列全样本与制度子样本。</li>
-<li><strong>暴露估计。</strong> 小盘停牌和非同步交易会偏低日频 Beta；滚动窗口、频率和缩减规则要固定。</li>
-<li><strong>特征尺度。</strong> 每期排名或 z-score 后 λ 表示“一单位当期标准化信号”的收益差，不能与原始比率系数直接比较。</li>
-<li><strong>行业中性。</strong> 行业哑变量改变问题为行业内定价；行业分类必须是历史版本。</li>
-<li><strong>组合测试资产。</strong> GRS 结果依赖选择的规模—价值、行业或其他组合。只选模型容易解释的资产会降低检验强度。</li>
-<li><strong>可交易性。</strong> 横截面 λ 显著可能来自无法做空、涨跌停或微盘股；推断仍需成本与约束验证。</li>
+<p>噪声被设计为与常数和 signal
+正交，所以每期斜率精确恢复真值。真实横截面不会如此整齐，且 5
+期远不足以做可靠推断。</p>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项">A 股实现注意事项</h2>
+<ol type="1">
+<li><strong>横截面相关。</strong>
+同行业、同主题和涨跌停状态造成共同残差，股票数大不等于独立样本多。</li>
+<li><strong>短时间序列。</strong>
+中国市场制度变化快，增加更早月份可能降低可比性；应并列全样本与制度子样本。</li>
+<li><strong>暴露估计。</strong> 小盘停牌和非同步交易会偏低日频
+Beta；滚动窗口、频率和缩减规则要固定。</li>
+<li><strong>特征尺度。</strong> 每期排名或 z-score 后 λ
+表示“一单位当期标准化信号”的收益差，不能与原始比率系数直接比较。</li>
+<li><strong>行业中性。</strong>
+行业哑变量改变问题为行业内定价；行业分类必须是历史版本。</li>
+<li><strong>组合测试资产。</strong> GRS
+结果依赖选择的规模—价值、行业或其他组合。只选模型容易解释的资产会降低检验强度。</li>
+<li><strong>可交易性。</strong> 横截面 λ
+显著可能来自无法做空、涨跌停或微盘股；推断仍需成本与约束验证。</li>
 </ol>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界">常见错误与边界</h2>
 <ul>
 <li>把时序 Beta 与截面 λ 使用同一个“因子系数”名称。</li>
 <li>合并所有股票月份做普通 OLS 并使用独立标准误。</li>
@@ -453,27 +495,38 @@
 <li>尝试几十种口径，只对最终结果报告单次 p 值。</li>
 </ul>
 <p>任何稳健标准误都不能修复未来函数、错误模型或弱识别。推断的顺序应是：先明确经济对象和数据生成过程，再选择估计量，最后选择能覆盖误差相关结构的协方差。</p>
-</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
-<p>原书第 2 章（PDF 文件页 27–96）是本讲主线，附录 A（381–388）补充统计工具。</p>
+</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文">原书与论文</h2>
+<p>原书第 2 章（PDF 文件页 27–96）是本讲主线，附录
+A（381–388）补充统计工具。</p>
 <ul>
 <li>Fama 与 MacBeth（1973）：两步回归原始来源，<a target="_blank" rel="noopener" href="https://doi.org/10.1086/260061">DOI 10.1086/260061</a>。</li>
 <li>Newey 与 West（1987）：HAC 协方差，<a target="_blank" rel="noopener" href="https://doi.org/10.2307/1913610">DOI 10.2307/1913610</a>。</li>
 <li>Gibbons、Ross 与 Shanken（1989）：联合 Alpha 检验，<a target="_blank" rel="noopener" href="https://doi.org/10.2307/1913625">DOI 10.2307/1913625</a>。</li>
-<li>Harvey、Liu 与 Zhu（2016）：多重检验与因子发现门槛，<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhv059">DOI 10.1093/rfs/hhv059</a>。</li>
+<li>Harvey、Liu 与 Zhu（2016）：多重检验与因子发现门槛，<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhv059">DOI
+10.1093/rfs/hhv059</a>。</li>
 </ul>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
-<ol>
-<li>对 60 个测试组合、240 个月、5 个因子，写出时序回归中 y、X、Alpha、Beta 和残差矩阵维度。</li>
-<li>在 3000 只股票、120 个月的特征回归中，为什么均值 λ 的有效时间样本主要仍是 120？</li>
-<li>月度形成、持有 12 个月的重叠组合，给出 HAC 滞后基线与至少两个敏感性值。</li>
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习">练习</h2>
+<ol type="1">
+<li>对 60 个测试组合、240 个月、5 个因子，写出时序回归中
+y、X、Alpha、Beta 和残差矩阵维度。</li>
+<li>在 3000 只股票、120 个月的特征回归中，为什么均值 λ
+的有效时间样本主要仍是 120？</li>
+<li>月度形成、持有 12 个月的重叠组合，给出 HAC
+滞后基线与至少两个敏感性值。</li>
 <li>构造两个高度相关因子，分别改变正交化顺序，比较残差因子的均值和含义。</li>
-<li>GRS 拒绝五因子模型后，列出数据错误、测试资产、模型遗漏和估计不稳四类后续检查。</li>
+<li>GRS
+拒绝五因子模型后，列出数据错误、测试资产、模型遗漏和估计不稳四类后续检查。</li>
 <li>写一个矩条件 E[z(t)ε(t)]=0，说明 z、ε 和参数分别是什么。</li>
 </ol>
-<p>校验：第 1 题每个组合 y 为 240×1，X 为 240×6；60 个 Alpha 构成 60×1，Beta 为 60×5，残差为 240×60（按时间×资产排列）。</p>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
-<p>时序回归估计资产对因子的暴露和 Alpha；截面回归估计特征或暴露的当期风险价格。Fama–MacBeth 把逐期横截面系数变成时间序列推断，第一步暴露误差与序列相关必须被承认。GRS 检验联合 Alpha，HAC 处理时间相关，多重检验约束发现过程。</p>
-<p>接下来用实验 03、04 把组合排序和 Fama–MacBeth 变成可执行函数，并用日期断言防止信号与未来收益错位。</p>
+<p>校验：第 1 题每个组合 y 为 240×1，X 为 240×6；60 个 Alpha 构成
+60×1，Beta 为 60×5，残差为 240×60（按时间×资产排列）。</p>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步">小结与下一步</h2>
+<p>时序回归估计资产对因子的暴露和
+Alpha；截面回归估计特征或暴露的当期风险价格。Fama–MacBeth
+把逐期横截面系数变成时间序列推断，第一步暴露误差与序列相关必须被承认。GRS
+检验联合 Alpha，HAC 处理时间相关，多重检验约束发现过程。</p>
+<p>接下来用实验 03、04 把组合排序和 Fama–MacBeth
+变成可执行函数，并用日期断言防止信号与未来收益错位。</p>
 </section></div>
                 
               </div>

@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注  FactorMiner：用技能和经验记忆控制因子库的相关性膨胀 论文：FactorMiner: A Self-Evolving Agent with Skills and Experience Memory for Financial Alpha Discovery（arXiv:2602.14670） 全文状态：已核阅公开 PDF。 研究问题是公式化 alpha 的搜索空间会组合爆">
+    <meta name="description" content="重点关注 FactorMiner：用技能和经验记忆控制因子库的相关性膨胀 论文：FactorMiner: A Self-Evolving Agent with Skills and Experience Memory for Financial Alpha Discovery（arXiv:2602.14670） 全文状态：已核阅公开 PDF。 研究问题是公式化 alpha 的搜索空间会组合爆炸，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日金融论文简报｜2026 年 8 月 21 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/08/21/daily-finance-papers-2026-08-21/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注  FactorMiner：用技能和经验记忆控制因子库的相关性膨胀 论文：FactorMiner: A Self-Evolving Agent with Skills and Experience Memory for Financial Alpha Discovery（arXiv:2602.14670） 全文状态：已核阅公开 PDF。 研究问题是公式化 alpha 的搜索空间会组合爆">
+<meta property="og:description" content="重点关注 FactorMiner：用技能和经验记忆控制因子库的相关性膨胀 论文：FactorMiner: A Self-Evolving Agent with Skills and Experience Memory for Financial Alpha Discovery（arXiv:2602.14670） 全文状态：已核阅公开 PDF。 研究问题是公式化 alpha 的搜索空间会组合爆炸，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-008-146057185.jpg">
 <meta property="article:published_time" content="2026-08-21T02:15:00.000Z">
@@ -347,116 +347,244 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
-<h3 id="factorminer用技能和经验记忆控制因子库的相关性膨胀"><a class="markdownIt-Anchor" href="#factorminer用技能和经验记忆控制因子库的相关性膨胀"></a> FactorMiner：用技能和经验记忆控制因子库的相关性膨胀</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.14670">FactorMiner: A Self-Evolving Agent with Skills and Experience Memory for Financial Alpha Discovery</a>（arXiv:2602.14670）<br>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="factorminer用技能和经验记忆控制因子库的相关性膨胀">FactorMiner：用技能和经验记忆控制因子库的相关性膨胀</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.14670">FactorMiner: A Self-Evolving
+Agent with Skills and Experience Memory for Financial Alpha
+Discovery</a>（arXiv:2602.14670）<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>研究问题是公式化 alpha 的搜索空间会组合爆炸，且已有因子库变大后容易反复挖到高相关信号。FactorMiner 把 60+ 金融算子、IC 门槛和相关性准入封为可调用技能；经验记忆保留成功模板与高相关禁区，并按 retrieve—generate—evaluate—distill 循环探索。比较对象包括随机森林、Alpha101（经典与适配版）、GPLearn、AlphaForge 与 AlphaAgent；所有可比较方法共享算子、字段和评测/准入协议，LLM 提案统一使用 Gemini 3.0 Flash。</p>
-<p>作者在较严格的协议下先在 CSI500 2024 选 Top-40、冻结后测 2025 多市场：CSI500 的因子库绝对 IC/ICIR 为 8.25%/0.77，平均绝对相关为 0.31；等权组合 IC/ICIR 为 14.95%/1.29，优于表内多项基线。论文还发布 110 个 A 股显式公式因子。创新是优化“库的边际多样性”而非孤立因子的单次得分，并将探索失败压缩为后续可重用约束。限制不能轻描淡写：IC 是预测相关而非净收益；Top-40、符号与权重均由 2024 定型，交易成本、容量、冲击、停牌及实际成交未构成结果；跨市场为迁移测试，非独立真实资金的样本外可交易验证。适合量化研究基础设施、因子挖掘与 agent 工作流读者；建议读 §3、§4.1–4.3、表 1 与开源因子附录。本文不构成投资建议。</p>
+<p>研究问题是公式化 alpha
+的搜索空间会组合爆炸，且已有因子库变大后容易反复挖到高相关信号。FactorMiner
+把 60+ 金融算子、IC
+门槛和相关性准入封为可调用技能；经验记忆保留成功模板与高相关禁区，并按
+retrieve—generate—evaluate—distill
+循环探索。比较对象包括随机森林、Alpha101（经典与适配版）、GPLearn、AlphaForge
+与 AlphaAgent；所有可比较方法共享算子、字段和评测/准入协议，LLM
+提案统一使用 Gemini 3.0 Flash。</p>
+<p>作者在较严格的协议下先在 CSI500 2024 选 Top-40、冻结后测 2025
+多市场：CSI500 的因子库绝对 IC/ICIR 为 8.25%/0.77，平均绝对相关为
+0.31；等权组合 IC/ICIR 为 14.95%/1.29，优于表内多项基线。论文还发布 110
+个 A
+股显式公式因子。创新是优化“库的边际多样性”而非孤立因子的单次得分，并将探索失败压缩为后续可重用约束。限制不能轻描淡写：IC
+是预测相关而非净收益；Top-40、符号与权重均由 2024
+定型，交易成本、容量、冲击、停牌及实际成交未构成结果；跨市场为迁移测试，非独立真实资金的样本外可交易验证。适合量化研究基础设施、因子挖掘与
+agent 工作流读者；建议读 §3、§4.1–4.3、表 1
+与开源因子附录。本文不构成投资建议。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.14670">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3770855.3818978">DOI</a></p>
-<h3 id="dynamic-tracking-error核心不是-tpa-名称而是风险预算是否动态使用"><a class="markdownIt-Anchor" href="#dynamic-tracking-error核心不是-tpa-名称而是风险预算是否动态使用"></a> Dynamic Tracking Error：核心不是 TPA 名称，而是风险预算是否动态使用</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.03213">Dynamic Tracking Error and the Total Portfolio Approach</a>（arXiv:2603.03213）<br>
+<h3 id="dynamic-tracking-error核心不是-tpa-名称而是风险预算是否动态使用">Dynamic
+Tracking Error：核心不是 TPA 名称，而是风险预算是否动态使用</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.03213">Dynamic Tracking Error and the
+Total Portfolio Approach</a>（arXiv:2603.03213）<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文将战略资产配置（SAA）与 Total Portfolio Approach（TPA）的差异归为董事会给 CIO 的跟踪误差预算：前者按资产桶静态分配，后者为总组合设动态风险预算。作者用 SPX 相对 AGG 的单国、单主动维度历史模拟，在风险回报较高时增加主动风险、接近回撤限额时降低风险；并讨论股债相关与行业相关的状态变化。对照为静态风险预算，而非择股策略。</p>
-<p>作者报告同一回撤下，动态使用预算的策略历史复合收益约每年快 2 个百分点，且不依赖证券选择；样本中行业 ETF 的 63 日平均相关在平静期约 0.17–0.26，在 2008、欧债危机与 2020 年 3 月升至 0.83、0.92、0.92；股债 126 日相关在 2022 年到 +0.52。这里是历史回测/模拟证据，非因果实验，也非可交易实盘成绩。作者也明示证据来自一个国家、SPX–AGG 一个主动维度和少数尾部事件，跨资产、跨国与严格样本外仍是未来工作；作者均受雇于并可能受益于提供同类策略的机构。适合机构投资治理、风险预算和组合管理读者；建议读摘要、§3、§6.1–6.3、§6.8 与披露。本文不构成投资建议。</p>
+<p>论文将战略资产配置（SAA）与 Total Portfolio
+Approach（TPA）的差异归为董事会给 CIO
+的跟踪误差预算：前者按资产桶静态分配，后者为总组合设动态风险预算。作者用
+SPX 相对 AGG
+的单国、单主动维度历史模拟，在风险回报较高时增加主动风险、接近回撤限额时降低风险；并讨论股债相关与行业相关的状态变化。对照为静态风险预算，而非择股策略。</p>
+<p>作者报告同一回撤下，动态使用预算的策略历史复合收益约每年快 2
+个百分点，且不依赖证券选择；样本中行业 ETF 的 63 日平均相关在平静期约
+0.17–0.26，在 2008、欧债危机与 2020 年 3 月升至 0.83、0.92、0.92；股债
+126 日相关在 2022 年到
++0.52。这里是历史回测/模拟证据，非因果实验，也非可交易实盘成绩。作者也明示证据来自一个国家、SPX–AGG
+一个主动维度和少数尾部事件，跨资产、跨国与严格样本外仍是未来工作；作者均受雇于并可能受益于提供同类策略的机构。适合机构投资治理、风险预算和组合管理读者；建议读摘要、§3、§6.1–6.3、§6.8
+与披露。本文不构成投资建议。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.03213">PDF</a></p>
-<h3 id="多层做市-rl扩大动作空间也扩大了仿真到实盘的鸿沟"><a class="markdownIt-Anchor" href="#多层做市-rl扩大动作空间也扩大了仿真到实盘的鸿沟"></a> 多层做市 RL：扩大动作空间，也扩大了仿真到实盘的鸿沟</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18195">Multi-Level Market Making with Reinforcement Learning</a>（arXiv:2608.18195）<br>
+<h3 id="多层做市-rl扩大动作空间也扩大了仿真到实盘的鸿沟">多层做市
+RL：扩大动作空间，也扩大了仿真到实盘的鸿沟</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18195">Multi-Level Market Making with
+Reinforcement Learning</a>（arXiv:2608.18195）<br>
 <strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文把做市 agent 的动作从单一买卖报价扩展为跨多个价位、可变数量的限价和市价单，并约束库存。策略以多元 logistic-normal 分配订单量，用 deep-set 聚合可变长度订单簿特征，以 potential-based reward shaping 加速训练；基线为只挂最优价的 TOP1、次优价 TOP2 和带库存偏斜的 INV。实验在噪声、战术（即时量不平衡）和策略（指数加权量不平衡）交易者组成的三种多 agent 仿真市场中进行，训练/测试使用不同随机种子，表 2 每项有 10,000 个测试样本。</p>
-<p>作者报告在噪声市场，LN 的标准化现金流为 6.03（2 lots）和 4.66（20 lots），均高于 INV 的 4.83 与 4.26；在噪声+战术市场为 9.11 与 5.68，高于表内基线；加入策略交易者后为 8.55 与 4.99，仍高于 TOP1/TOP2/INV。创新是用连续、可组合的多层下单参数化而非预设离散动作，并评估对逆向选择的响应。限制决定可解释边界：这些是生成式订单流仿真的样本外 episode，不是历史回测、也不是实盘；没有交易所延迟、排队规则失配、市场冲击、费用、选择偏差与对手适应的真实可交易验证。收益均为模型定义的现金流指标，不能视为投资建议。适合市场微观结构和 RL 执行研究者；建议读 §3–6、表 1–2、附录的分布对比。</p>
+<p>论文把做市 agent
+的动作从单一买卖报价扩展为跨多个价位、可变数量的限价和市价单，并约束库存。策略以多元
+logistic-normal 分配订单量，用 deep-set 聚合可变长度订单簿特征，以
+potential-based reward shaping 加速训练；基线为只挂最优价的 TOP1、次优价
+TOP2 和带库存偏斜的
+INV。实验在噪声、战术（即时量不平衡）和策略（指数加权量不平衡）交易者组成的三种多
+agent 仿真市场中进行，训练/测试使用不同随机种子，表 2 每项有 10,000
+个测试样本。</p>
+<p>作者报告在噪声市场，LN 的标准化现金流为 6.03（2 lots）和 4.66（20
+lots），均高于 INV 的 4.83 与 4.26；在噪声+战术市场为 9.11 与
+5.68，高于表内基线；加入策略交易者后为 8.55 与 4.99，仍高于
+TOP1/TOP2/INV。创新是用连续、可组合的多层下单参数化而非预设离散动作，并评估对逆向选择的响应。限制决定可解释边界：这些是生成式订单流仿真的样本外
+episode，不是历史回测、也不是实盘；没有交易所延迟、排队规则失配、市场冲击、费用、选择偏差与对手适应的真实可交易验证。收益均为模型定义的现金流指标，不能视为投资建议。适合市场微观结构和
+RL 执行研究者；建议读 §3–6、表 1–2、附录的分布对比。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18195">PDF</a></p>
-<h2 id="金融论文"><a class="markdownIt-Anchor" href="#金融论文"></a> 金融论文</h2>
-<h3 id="finskillbench-evaluating-ai-agents-and-domain-skills-for-investment-management"><a class="markdownIt-Anchor" href="#finskillbench-evaluating-ai-agents-and-domain-skills-for-investment-management"></a> FinSkillBench: Evaluating AI Agents and Domain Skills for Investment Management</h3>
-<p><strong>作者</strong>：Jermyn Zhen Yong Bek、Zhuang Qiang Bok、Zhongtian Sun<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://q-fin.PM">q-fin.PM</a> · 【跨主题】<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18099">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18099">PDF</a></p>
-<p>仅依据摘要：评测 agent 在组合构建、风险管理和基本面任务中调用可执行金融技能的能力。作者报告策划技能使均分由 0.366 提至 0.528，而自生成技能效益有限。价值在于强调点时数据与验证器；这是 benchmark 成功率，不区分策略相关性与因果、也不是回测或真实投资结果，不能构成投资建议。</p>
-<h3 id="factorminer-a-self-evolving-agent-with-skills-and-experience-memory-for-financial-alpha-discovery"><a class="markdownIt-Anchor" href="#factorminer-a-self-evolving-agent-with-skills-and-experience-memory-for-financial-alpha-discovery"></a> FactorMiner: A Self-Evolving Agent with Skills and Experience Memory for Financial Alpha Discovery</h3>
+<h2 id="金融论文">金融论文</h2>
+<h3 id="finskillbench-evaluating-ai-agents-and-domain-skills-for-investment-management">FinSkillBench:
+Evaluating AI Agents and Domain Skills for Investment Management</h3>
+<p><strong>作者</strong>：Jermyn Zhen Yong Bek、Zhuang Qiang
+Bok、Zhongtian Sun<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、q-fin.PM · 【跨主题】<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18099">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18099">PDF</a></p>
+<p>仅依据摘要：评测 agent
+在组合构建、风险管理和基本面任务中调用可执行金融技能的能力。作者报告策划技能使均分由
+0.366 提至
+0.528，而自生成技能效益有限。价值在于强调点时数据与验证器；这是
+benchmark
+成功率，不区分策略相关性与因果、也不是回测或真实投资结果，不能构成投资建议。</p>
+<h3 id="factorminer-a-self-evolving-agent-with-skills-and-experience-memory-for-financial-alpha-discovery">FactorMiner:
+A Self-Evolving Agent with Skills and Experience Memory for Financial
+Alpha Discovery</h3>
 <p><strong>作者</strong>：Yanlong Wang 等 6 位作者<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.TR">q-fin.TR</a>、<a target="_blank" rel="noopener" href="http://cs.MA">cs.MA</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.14670">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.14670">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3770855.3818978">DOI</a></p>
-<p>以技能、经验记忆和因子库准入循环挖掘可解释公式因子。作者报告冻结选因子后在 2025 多市场保持有竞争力的 IC/ICIR 与较低冗余。价值是把记忆用于降低重复搜索；IC 不等同经济显著性，交易成本、容量与实盘执行尚未验证，不能构成投资建议。</p>
-<h3 id="is-bitcoin-a-hedge-against-central-banking-evidence-from-ai-driven-monetary-policy-expectations"><a class="markdownIt-Anchor" href="#is-bitcoin-a-hedge-against-central-banking-evidence-from-ai-driven-monetary-policy-expectations"></a> Is Bitcoin A Hedge Against Central Banking? Evidence from AI-Driven Monetary Policy Expectations</h3>
+<strong>来源/分类</strong>：arXiv · q-fin.TR、cs.MA<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.14670">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.14670">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3770855.3818978">DOI</a></p>
+<p>以技能、经验记忆和因子库准入循环挖掘可解释公式因子。作者报告冻结选因子后在
+2025 多市场保持有竞争力的 IC/ICIR
+与较低冗余。价值是把记忆用于降低重复搜索；IC
+不等同经济显著性，交易成本、容量与实盘执行尚未验证，不能构成投资建议。</p>
+<h3 id="is-bitcoin-a-hedge-against-central-banking-evidence-from-ai-driven-monetary-policy-expectations">Is
+Bitcoin A Hedge Against Central Banking? Evidence from AI-Driven
+Monetary Policy Expectations</h3>
 <p><strong>作者</strong>：Maxime L. D. Nicolas 等 5 位作者<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、<a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.08825">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.08825">PDF</a></p>
-<p>仅依据摘要：研究以 AI 驱动的货币政策预期检验比特币是否可对冲央行风险。价值是将宏观预期的测量引入资产定价问题；预期识别、事件窗口、共同冲击和样本制度变化决定相关性能否解释为因果，未证明稳定样本外收益或真实可交易对冲效果，不构成投资建议。</p>
-<h3 id="accounting-for-intra-household-joint-travel-in-agent-based-transport-simulations"><a class="markdownIt-Anchor" href="#accounting-for-intra-household-joint-travel-in-agent-based-transport-simulations"></a> Accounting for intra-household joint travel in agent-based transport simulations</h3>
-<p><strong>作者</strong>：Javaudin Lucas、Araldo Andrea、Coulombel Nicolas<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、<a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18657">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18657">PDF</a></p>
-<p>仅依据摘要：将家庭成员联合出行纳入基于 agent 的交通仿真。价值在于改进经济活动与出行行为的建模；仿真参数、家庭结构数据和外部校准决定结果，不能从模型输出直接推断政策因果或金融影响。</p>
-<h3 id="centaurbench-benchmarking-llm-capabilities-on-augmenting-vs-automating-real-world-work-tasks"><a class="markdownIt-Anchor" href="#centaurbench-benchmarking-llm-capabilities-on-augmenting-vs-automating-real-world-work-tasks"></a> CentaurBench: Benchmarking LLM Capabilities on Augmenting vs. Automating Real-World Work Tasks</h3>
-<p><strong>作者</strong>：Pattaraphon Kenny Wongchamcharoen 等 4 位作者<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CY">cs.CY</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.MA">cs.MA</a>、<a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、<a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a> · 【跨主题】<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18554">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18554">PDF</a></p>
-<p>仅依据摘要：比较 LLM 在增强人类与自动化真实工作任务上的能力。价值在于避免把任务完成率直接等同岗位替代；任务抽样、劳动过程、人工监督成本和真实生产率/分配效应均需进一步验证，不能据此作就业或投资判断。</p>
-<h3 id="dynamic-tracking-error-and-the-total-portfolio-approach"><a class="markdownIt-Anchor" href="#dynamic-tracking-error-and-the-total-portfolio-approach"></a> Dynamic Tracking Error and the Total Portfolio Approach</h3>
-<p><strong>作者</strong>：Ashwin Alankar、Allan Maymin、Philip Maymin、Myron Scholes、Sujiang Zhang<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.PM">q-fin.PM</a>、q-fin.RM<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.03213">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.03213">PDF</a></p>
-<p>研究动态而非静态跟踪误差预算如何影响机构组合。作者报告历史模拟中同回撤下年化复合收益约高 2 个百分点。价值在于连接治理与风险状态；研究为单国单维度回测，相关性非因果、未做充分跨样本外与实盘验证，且有利益披露，不构成投资建议。</p>
-<h3 id="when-to-sell-an-asset-a-distribution-builder-approach"><a class="markdownIt-Anchor" href="#when-to-sell-an-asset-a-distribution-builder-approach"></a> When to Sell an Asset? - A Distribution Builder Approach</h3>
+<strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.08825">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.08825">PDF</a></p>
+<p>仅依据摘要：研究以 AI
+驱动的货币政策预期检验比特币是否可对冲央行风险。价值是将宏观预期的测量引入资产定价问题；预期识别、事件窗口、共同冲击和样本制度变化决定相关性能否解释为因果，未证明稳定样本外收益或真实可交易对冲效果，不构成投资建议。</p>
+<h3 id="accounting-for-intra-household-joint-travel-in-agent-based-transport-simulations">Accounting
+for intra-household joint travel in agent-based transport
+simulations</h3>
+<p><strong>作者</strong>：Javaudin Lucas、Araldo Andrea、Coulombel
+Nicolas<br>
+<strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18657">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18657">PDF</a></p>
+<p>仅依据摘要：将家庭成员联合出行纳入基于 agent
+的交通仿真。价值在于改进经济活动与出行行为的建模；仿真参数、家庭结构数据和外部校准决定结果，不能从模型输出直接推断政策因果或金融影响。</p>
+<h3 id="centaurbench-benchmarking-llm-capabilities-on-augmenting-vs.-automating-real-world-work-tasks">CentaurBench:
+Benchmarking LLM Capabilities on Augmenting vs. Automating Real-World
+Work Tasks</h3>
+<p><strong>作者</strong>：Pattaraphon Kenny Wongchamcharoen 等 4
+位作者<br>
+<strong>来源/分类</strong>：arXiv ·
+cs.CY、cs.AI、cs.MA、econ.GN、q-fin.EC · 【跨主题】<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18554">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18554">PDF</a></p>
+<p>仅依据摘要：比较 LLM
+在增强人类与自动化真实工作任务上的能力。价值在于避免把任务完成率直接等同岗位替代；任务抽样、劳动过程、人工监督成本和真实生产率/分配效应均需进一步验证，不能据此作就业或投资判断。</p>
+<h3 id="dynamic-tracking-error-and-the-total-portfolio-approach">Dynamic
+Tracking Error and the Total Portfolio Approach</h3>
+<p><strong>作者</strong>：Ashwin Alankar、Allan Maymin、Philip
+Maymin、Myron Scholes、Sujiang Zhang<br>
+<strong>来源/分类</strong>：arXiv · q-fin.PM、q-fin.RM<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.03213">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.03213">PDF</a></p>
+<p>研究动态而非静态跟踪误差预算如何影响机构组合。作者报告历史模拟中同回撤下年化复合收益约高
+2
+个百分点。价值在于连接治理与风险状态；研究为单国单维度回测，相关性非因果、未做充分跨样本外与实盘验证，且有利益披露，不构成投资建议。</p>
+<h3 id="when-to-sell-an-asset---a-distribution-builder-approach">When to
+Sell an Asset? - A Distribution Builder Approach</h3>
 <p><strong>作者</strong>：Peter Carr、Stephan Sturm<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.PR">q-fin.PR</a>、<a target="_blank" rel="noopener" href="http://math.PR">math.PR</a>、q-fin.MF<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18783">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18783">PDF</a></p>
-<p>仅依据摘要：以投资者目标收益分布而非效用/风险厌恶系数，连接最优卖出与 Skorokhod embedding；在几何布朗运动下展示风险收益权衡。价值是提供偏好表达的新形式；结论依赖过程与目标分布假设，没有市场摩擦、估计误差或实盘交易验证。</p>
-<h3 id="neural-functionally-generated-portfolios"><a class="markdownIt-Anchor" href="#neural-functionally-generated-portfolios"></a> Neural Functionally Generated Portfolios</h3>
+<strong>来源/分类</strong>：arXiv · q-fin.PR、math.PR、q-fin.MF<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18783">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18783">PDF</a></p>
+<p>仅依据摘要：以投资者目标收益分布而非效用/风险厌恶系数，连接最优卖出与
+Skorokhod
+embedding；在几何布朗运动下展示风险收益权衡。价值是提供偏好表达的新形式；结论依赖过程与目标分布假设，没有市场摩擦、估计误差或实盘交易验证。</p>
+<h3 id="neural-functionally-generated-portfolios">Neural Functionally
+Generated Portfolios</h3>
 <p><strong>作者</strong>：Michael Monoyios、Olivia Pricilia<br>
-<strong>来源/分类</strong>：arXiv · q-fin.MF、<a target="_blank" rel="noopener" href="http://q-fin.PM">q-fin.PM</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.19715">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2506.19715">PDF</a></p>
-<p>仅依据摘要：以神经网络学习函数生成组合的生成函数，并与经典 FGP 比较，保持自融资和路径分解性质。价值是减轻漂移/协方差估计依赖；最大化相对收益的训练可能过拟合，合成/历史样本外、费用、换手与经济显著性须与可交易基线同测，不构成投资建议。</p>
-<h3 id="value-transforming-financial-carbon-and-biodiversity-footprint-accounting"><a class="markdownIt-Anchor" href="#value-transforming-financial-carbon-and-biodiversity-footprint-accounting"></a> Value-transforming financial, carbon and biodiversity footprint accounting</h3>
+<strong>来源/分类</strong>：arXiv · q-fin.MF、q-fin.PM<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.19715">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2506.19715">PDF</a></p>
+<p>仅依据摘要：以神经网络学习函数生成组合的生成函数，并与经典 FGP
+比较，保持自融资和路径分解性质。价值是减轻漂移/协方差估计依赖；最大化相对收益的训练可能过拟合，合成/历史样本外、费用、换手与经济显著性须与可交易基线同测，不构成投资建议。</p>
+<h3 id="value-transforming-financial-carbon-and-biodiversity-footprint-accounting">Value-transforming
+financial, carbon and biodiversity footprint accounting</h3>
 <p><strong>作者</strong>：S. El Geneidy 等 7 位作者<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、<a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2309.14186">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2309.14186">PDF</a></p>
-<p>仅依据摘要：提出整合金融、碳与生物多样性足迹的核算框架及国家级数据，并以芬兰大学为 living lab。作者称赋予抵消成本会显著改变组织财务价值。价值在于把生态外部性显性化；足迹系数、价格设定和单案例不提供因果估计，也不等同企业估值或投资建议。</p>
-<h3 id="multi-level-market-making-with-reinforcement-learning"><a class="markdownIt-Anchor" href="#multi-level-market-making-with-reinforcement-learning"></a> Multi-Level Market Making with Reinforcement Learning</h3>
+<strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2309.14186">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2309.14186">PDF</a></p>
+<p>仅依据摘要：提出整合金融、碳与生物多样性足迹的核算框架及国家级数据，并以芬兰大学为
+living
+lab。作者称赋予抵消成本会显著改变组织财务价值。价值在于把生态外部性显性化；足迹系数、价格设定和单案例不提供因果估计，也不等同企业估值或投资建议。</p>
+<h3 id="multi-level-market-making-with-reinforcement-learning">Multi-Level
+Market Making with Reinforcement Learning</h3>
 <p><strong>作者</strong>：Patrick Cheridito、Moritz Weiss<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.TR">q-fin.TR</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18195">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18195">PDF</a></p>
-<p>以 logistic-normal 订单分配、deep-set 订单簿编码和奖励塑形训练多价位做市 RL。作者在三类模拟市场报告优于简单报价/库存基线的现金流。价值在于更真实的动作空间；仍为模拟样本外测试，非历史回测或实盘，未覆盖真实冲击、费用、延迟和市场反馈，不构成投资建议。</p>
-<h3 id="tradable-itô-signatures-a-model-free-interpretable-framework-for-dynamic-hedging"><a class="markdownIt-Anchor" href="#tradable-itô-signatures-a-model-free-interpretable-framework-for-dynamic-hedging"></a> Tradable Itô Signatures: A Model-Free, Interpretable Framework for Dynamic Hedging</h3>
+<strong>来源/分类</strong>：arXiv · q-fin.TR<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18195">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18195">PDF</a></p>
+<p>以 logistic-normal 订单分配、deep-set
+订单簿编码和奖励塑形训练多价位做市
+RL。作者在三类模拟市场报告优于简单报价/库存基线的现金流。价值在于更真实的动作空间；仍为模拟样本外测试，非历史回测或实盘，未覆盖真实冲击、费用、延迟和市场反馈，不构成投资建议。</p>
+<h3 id="tradable-itô-signatures-a-model-free-interpretable-framework-for-dynamic-hedging">Tradable
+Itô Signatures: A Model-Free, Interpretable Framework for Dynamic
+Hedging</h3>
 <p><strong>作者</strong>：Xin Guo、Binnan Wang、Ruixun Zhang<br>
-<strong>来源/分类</strong>：arXiv · q-fin.CP、q-fin.MF、<a target="_blank" rel="noopener" href="http://stat.ML">stat.ML</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18120">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18120">PDF</a></p>
-<p>仅依据摘要：将价格路径的 Itô signature 分量表示为基础资产与现金的自融资策略，用线性组合逼近期权收益并给出样本内/样本外误差界。作者称模拟中比神经网络基线更省算力，S&amp;P 500 期权上较稳健。价值是透明且模型无关；对冲误差、再平衡费用、流动性和真实执行约束需要独立复核，不构成投资建议。</p>
-<h3 id="position-ai-leaderboards-are-underserving-the-global-south-a-case-study-from-india"><a class="markdownIt-Anchor" href="#position-ai-leaderboards-are-underserving-the-global-south-a-case-study-from-india"></a> Position: AI Leaderboards Are Underserving the Global South: A Case Study from India</h3>
+<strong>来源/分类</strong>：arXiv · q-fin.CP、q-fin.MF、stat.ML<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18120">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18120">PDF</a></p>
+<p>仅依据摘要：将价格路径的 Itô signature
+分量表示为基础资产与现金的自融资策略，用线性组合逼近期权收益并给出样本内/样本外误差界。作者称模拟中比神经网络基线更省算力，S&amp;P
+500
+期权上较稳健。价值是透明且模型无关；对冲误差、再平衡费用、流动性和真实执行约束需要独立复核，不构成投资建议。</p>
+<h3 id="position-ai-leaderboards-are-underserving-the-global-south-a-case-study-from-india">Position:
+AI Leaderboards Are Underserving the Global South: A Case Study from
+India</h3>
 <p><strong>作者</strong>：Sourav Banerjee、Saikat Saha<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、<a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a> · 【跨主题】<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18117">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18117">PDF</a></p>
-<p>仅依据摘要：立场论文以印度为例，主张全球 AI 排行榜缺少独立治理、利益冲突与指标演化机制；58 位从业者咨询偏好正式治理。价值是把技术覆盖缺口归因到制度；问卷不代表全部地区，且是规范性主张，非对经济或金融结果的因果识别。</p>
-<h3 id="optimal-loss-allocation-in-a-mean-field-model-of-systemic-risk"><a class="markdownIt-Anchor" href="#optimal-loss-allocation-in-a-mean-field-model-of-systemic-risk"></a> Optimal Loss Allocation in a Mean-Field Model of Systemic Risk</h3>
+<strong>来源/分类</strong>：arXiv · cs.AI、econ.GN、q-fin.EC ·
+【跨主题】<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18117">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18117">PDF</a></p>
+<p>仅依据摘要：立场论文以印度为例，主张全球 AI
+排行榜缺少独立治理、利益冲突与指标演化机制；58
+位从业者咨询偏好正式治理。价值是把技术覆盖缺口归因到制度；问卷不代表全部地区，且是规范性主张，非对经济或金融结果的因果识别。</p>
+<h3 id="optimal-loss-allocation-in-a-mean-field-model-of-systemic-risk">Optimal
+Loss Allocation in a Mean-Field Model of Systemic Risk</h3>
 <p><strong>作者</strong>：Yucheng Guo、Qinxin Yan<br>
-<strong>来源/分类</strong>：arXiv · math.OC、<a target="_blank" rel="noopener" href="http://math.PR">math.PR</a>、q-fin.MF<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18113">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18113">PDF</a></p>
+<strong>来源/分类</strong>：arXiv · math.OC、math.PR、q-fin.MF<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18113">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18113">PDF</a></p>
 <p>仅依据摘要：在无外部注资的银行违约均场模型中，研究如何分摊损失以最大化终端系统健康；作者推导“对最健康机构征税至阈值”的最优规则及连续极限。价值在于给系统性风险分担清晰理论；布朗运动、福利函数、可观察性与执行权假设很强，非经验因果结论或政策/投资建议。</p>
-<h3 id="on-variable-annuities-with-surrender-charges"><a class="markdownIt-Anchor" href="#on-variable-annuities-with-surrender-charges"></a> On variable annuities with surrender charges</h3>
-<p><strong>作者</strong>：Tiziano De Angelis、Alessandro Milazzo、Gabriele Stabile<br>
+<h3 id="on-variable-annuities-with-surrender-charges">On variable
+annuities with surrender charges</h3>
+<p><strong>作者</strong>：Tiziano De Angelis、Alessandro
+Milazzo、Gabriele Stabile<br>
 <strong>来源/分类</strong>：arXiv · q-fin.MF<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2405.02115">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2405.02115">PDF</a></p>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2405.02115">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2405.02115">PDF</a></p>
 <p>仅依据摘要：将带退保费的变额年金定价建模为非光滑、非单调边界的最优停止问题，并给出数值实验和边界正则性。价值是扩展经典单调边界方法；结论取决于最坏情形的理性退保假设、合同条款和模型校准，不等同实际保单价格或建议。</p>
-<h3 id="the-markets-conditioning-representation-equilibrium-crowding-and-convention-multiplicity"><a class="markdownIt-Anchor" href="#the-markets-conditioning-representation-equilibrium-crowding-and-convention-multiplicity"></a> The Market’s Conditioning Representation: Equilibrium, Crowding, and Convention Multiplicity</h3>
+<h3 id="the-markets-conditioning-representation-equilibrium-crowding-and-convention-multiplicity">The
+Market's Conditioning Representation: Equilibrium, Crowding, and
+Convention Multiplicity</h3>
 <p><strong>作者</strong>：Alejandro Rodriguez Dominguez<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.PM">q-fin.PM</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18299">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18299">PDF</a></p>
+<strong>来源/分类</strong>：arXiv · q-fin.PM<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18299">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18299">PDF</a></p>
 <p>仅依据摘要：把资产定价的条件表示内生化，研究表征拥挤、价格反馈与多重自我确认惯例的均衡条件，并给出有限条件下的存在/局部唯一性。作者称实证只记录与表征拥挤一致的样本外特征，阈值尚未估计。价值在于区分持仓与信息表征拥挤；理论假设强、实证不是直接检验，不能转化为交易信号。</p>
-<h3 id="dont-drop-the-singletons-efficient-inference-for-pairwise-experiments-with-independent-attrition"><a class="markdownIt-Anchor" href="#dont-drop-the-singletons-efficient-inference-for-pairwise-experiments-with-independent-attrition"></a> Don’t Drop the Singletons: Efficient Inference for Pairwise Experiments with Independent Attrition</h3>
+<h3 id="dont-drop-the-singletons-efficient-inference-for-pairwise-experiments-with-independent-attrition">Don't
+Drop the Singletons: Efficient Inference for Pairwise Experiments with
+Independent Attrition</h3>
 <p><strong>作者</strong>：Simon Heß、Patrick W. Schmidt<br>
-<strong>来源/分类</strong>：arXiv · econ.EM、stat.AP、<a target="_blank" rel="noopener" href="http://stat.ME">stat.ME</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18973">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18973">PDF</a></p>
-<p>仅依据摘要：针对独立流失的配对随机实验，提出保留不完整配对的置换检验和最优加权估计，并称功效优于配对 t 检验与两样本 t 检验。价值是减少不必要的数据丢弃；关键前提是流失独立于处理与潜在结果，违反时不提供因果识别保证。</p>
-<h3 id="sleeping-kelly"><a class="markdownIt-Anchor" href="#sleeping-kelly"></a> Sleeping Kelly</h3>
+<strong>来源/分类</strong>：arXiv · econ.EM、stat.AP、stat.ME<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18973">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18973">PDF</a></p>
+<p>仅依据摘要：针对独立流失的配对随机实验，提出保留不完整配对的置换检验和最优加权估计，并称功效优于配对
+t 检验与两样本 t
+检验。价值是减少不必要的数据丢弃；关键前提是流失独立于处理与潜在结果，违反时不提供因果识别保证。</p>
+<h3 id="sleeping-kelly">Sleeping Kelly</h3>
 <p><strong>作者</strong>：Ben Abramowitz<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.GN">q-fin.GN</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2510.15911">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2510.15911">PDF</a></p>
-<p>仅依据摘要：在不完美记忆的 Sleeping Beauty 问题中以长期财富最大化而非期望值讨论投注，推导 ex ante 与 de se 的最优策略一致。价值是澄清 Kelly 型决策的哲学边界；这是理论赌博模型，不是资产市场的回测、因果或可交易结论。</p>
-<h3 id="europes-climate-ambition-under-scrutiny-evidence-from-deep-learning-emission-projections"><a class="markdownIt-Anchor" href="#europes-climate-ambition-under-scrutiny-evidence-from-deep-learning-emission-projections"></a> Europe’s Climate Ambition Under Scrutiny: Evidence from Deep Learning Emission Projections</h3>
+<strong>来源/分类</strong>：arXiv · q-fin.GN、cs.AI<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2510.15911">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2510.15911">PDF</a></p>
+<p>仅依据摘要：在不完美记忆的 Sleeping Beauty
+问题中以长期财富最大化而非期望值讨论投注，推导 ex ante 与 de se
+的最优策略一致。价值是澄清 Kelly
+型决策的哲学边界；这是理论赌博模型，不是资产市场的回测、因果或可交易结论。</p>
+<h3 id="europes-climate-ambition-under-scrutiny-evidence-from-deep-learning-emission-projections">Europe's
+Climate Ambition Under Scrutiny: Evidence from Deep Learning Emission
+Projections</h3>
 <p><strong>作者</strong>：Jacopo Ghirri 等 4 位作者<br>
-<strong>来源/分类</strong>：arXiv · cs.LG、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a>、<a target="_blank" rel="noopener" href="http://q-fin.EC">q-fin.EC</a> · 【跨主题】<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18690">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18690">PDF</a></p>
-<p>仅依据摘要：用截至 2023 年的 EU27 高分辨率社会经济与部门数据做深度学习趋势外推。作者称按当前趋势 2030 年将比目标多 620 Mt CO₂（35% 缺口），电力较接近目标而交通滞后。价值是量化政策缺口；这是在政策效果不变前提下的预测，不识别政策因果，模型外推、排放数据与结构突变限制结论。</p>
+<strong>来源/分类</strong>：arXiv · cs.LG、cs.AI、econ.GN、q-fin.EC ·
+【跨主题】<br>
+<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.18690">arXiv
+摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.18690">PDF</a></p>
+<p>仅依据摘要：用截至 2023 年的 EU27
+高分辨率社会经济与部门数据做深度学习趋势外推。作者称按当前趋势 2030
+年将比目标多 620 Mt CO₂（35%
+缺口），电力较接近目标而交通滞后。价值是量化政策缺口；这是在政策效果不变前提下的预测，不识别政策因果，模型外推、排放数据与结构突变限制结论。</p>
 
                 
               </div>
