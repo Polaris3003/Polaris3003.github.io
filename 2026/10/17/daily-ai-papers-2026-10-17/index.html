@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均为论文作者在其数据、模型、提示和评测协议下报告的结果，不代表独立复核。 MYOPIA: Understanding the Limits of Tree-Based Reasoning in Vision-Language Models  作者：Islam Mesabah、Sary Elmansoury、Gerrit">
+    <meta name="description" content="重点关注 以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均为论文作者在其数据、模型、提示和评测协议下报告的结果，不代表独立复核。  MYOPIA: Understanding the Limits of Tree-Based Reasoning in Vision-Language Models  作者：Islam Mesabah、Sary Elmansoury、Gerri">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 10 月 17 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/10/17/daily-ai-papers-2026-10-17/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均为论文作者在其数据、模型、提示和评测协议下报告的结果，不代表独立复核。 MYOPIA: Understanding the Limits of Tree-Based Reasoning in Vision-Language Models  作者：Islam Mesabah、Sary Elmansoury、Gerrit">
+<meta property="og:description" content="重点关注 以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均为论文作者在其数据、模型、提示和评测协议下报告的结果，不代表独立复核。  MYOPIA: Understanding the Limits of Tree-Based Reasoning in Vision-Language Models  作者：Islam Mesabah、Sary Elmansoury、Gerri">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-02/pixiv-rank-010-147698575.jpg">
 <meta property="article:published_time" content="2026-10-17T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-09-06/pixiv-rank-007-149086628.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-08-16/pixiv-rank-012-148227521.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,479 +347,229 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<p>以下 6 篇从今日 18 篇 AI
-候选中选出。除特别说明外，数字均为论文作者在其数据、模型、提示和评测协议下报告的结果，不代表独立复核。</p>
-<h3 id="myopia-understanding-the-limits-of-tree-based-reasoning-in-vision-language-models"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21573">MYOPIA: Understanding the Limits
-of Tree-Based Reasoning in Vision-Language Models</a></h3>
+<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
+<p>以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均为论文作者在其数据、模型、提示和评测协议下报告的结果，不代表独立复核。</p>
+<h3 id="myopia-understanding-the-limits-of-tree-based-reasoning-in-vision-language-models"><a class="markdownIt-Anchor" href="#myopia-understanding-the-limits-of-tree-based-reasoning-in-vision-language-models"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21573">MYOPIA: Understanding the Limits of Tree-Based Reasoning in Vision-Language Models</a></h3>
 <ul>
-<li>作者：Islam Mesabah、Sary Elmansoury、Gerrit Großmann、Peter
-Neigel、Sebastian J. Vollmer</li>
+<li>作者：Islam Mesabah、Sary Elmansoury、Gerrit Großmann、Peter Neigel、Sebastian J. Vollmer</li>
 <li>来源/分类：arXiv，AI / 视觉语言模型与可解释分类</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.21573">PDF</a></li>
-<li>核心问题：把视觉分类拆成一连串可解释的树节点问题，是否真的比一次性
-zero-shot
-分类更可靠？论文关注贪心、不可回溯的路径在早期判断错误后会不会永久排除正确类别。</li>
-<li>方法与基线：MYOPIA 用四棵由 LLM 生成、人工修订的决策树覆盖
-GTSRB、MNIST、CIFAR-10 和 MSCOCO；样本分别为 901、1,000、1,000 和 850
-张图像。作者比较 GPT-4o、Qwen-VL Max、LLaMA-3.2 11B Vision 的
-zero-shot、链式思考和树遍历，并加入冻结 CLIP
-基线；另把标签属性回忆、图像
-grounding、路径选择和答案解析分开诊断。</li>
-<li>关键结果：12 个“数据集—模型”组合中，树遍历都低于 zero-shot，配对
-bootstrap 也一致支持后者。标签条件与图像条件的平均准确率差距在
-GPT-4o、Qwen-VL Max、LLaMA 上分别为 9.5、13.8、12.6
-个百分点；节点审计显示 split entropy
-与节点准确率有弱但稳定的负相关，而深度、分支数和节点内 grounding
-的关系不稳定。</li>
-<li>创新、局限与失败条件：贡献不在于宣称层级推理无效，而是把“属性记忆”和“视觉落地”拆开，指出不可回溯路径与输出解析各自的损失。数据集仍是四类公开任务，树由
-LLM 生成并由人工修订，API 模型和提示版本会影响结果；CUB-200
-的树只验证了可构造性，没有据此声称分类准确率。</li>
-<li>适合谁读：做 VLM 评测、可解释分类、视觉 grounding
-和提示设计的人。建议先读第 3 节树构造、第 4 节 benchmark 设置、第 5
-节主结果与诊断。</li>
+<li>核心问题：把视觉分类拆成一连串可解释的树节点问题，是否真的比一次性 zero-shot 分类更可靠？论文关注贪心、不可回溯的路径在早期判断错误后会不会永久排除正确类别。</li>
+<li>方法与基线：MYOPIA 用四棵由 LLM 生成、人工修订的决策树覆盖 GTSRB、MNIST、CIFAR-10 和 MSCOCO；样本分别为 901、1,000、1,000 和 850 张图像。作者比较 GPT-4o、Qwen-VL Max、LLaMA-3.2 11B Vision 的 zero-shot、链式思考和树遍历，并加入冻结 CLIP 基线；另把标签属性回忆、图像 grounding、路径选择和答案解析分开诊断。</li>
+<li>关键结果：12 个“数据集—模型”组合中，树遍历都低于 zero-shot，配对 bootstrap 也一致支持后者。标签条件与图像条件的平均准确率差距在 GPT-4o、Qwen-VL Max、LLaMA 上分别为 9.5、13.8、12.6 个百分点；节点审计显示 split entropy 与节点准确率有弱但稳定的负相关，而深度、分支数和节点内 grounding 的关系不稳定。</li>
+<li>创新、局限与失败条件：贡献不在于宣称层级推理无效，而是把“属性记忆”和“视觉落地”拆开，指出不可回溯路径与输出解析各自的损失。数据集仍是四类公开任务，树由 LLM 生成并由人工修订，API 模型和提示版本会影响结果；CUB-200 的树只验证了可构造性，没有据此声称分类准确率。</li>
+<li>适合谁读：做 VLM 评测、可解释分类、视觉 grounding 和提示设计的人。建议先读第 3 节树构造、第 4 节 benchmark 设置、第 5 节主结果与诊断。</li>
 <li>证据状态：已核阅摘要与 PDF；以上为论文报告，尚未独立复算。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21573">摘要页</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.21573">DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/islammesabah/VLM_Classification">代码</a></li>
 </ul>
-<h3 id="theia-a-multimodal-dataset-and-benchmark-for-vision-language-analysis-of-layout"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.35035">THEIA: A Multimodal Dataset and
-Benchmark for Vision-Language Analysis of Layout</a></h3>
+<h3 id="theia-a-multimodal-dataset-and-benchmark-for-vision-language-analysis-of-layout"><a class="markdownIt-Anchor" href="#theia-a-multimodal-dataset-and-benchmark-for-vision-language-analysis-of-layout"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.35035">THEIA: A Multimodal Dataset and Benchmark for Vision-Language Analysis of Layout</a></h3>
 <ul>
-<li>作者：Giuseppe Chiari、Michele Piccoli、Federico Viola、Davide
-Zoni</li>
+<li>作者：Giuseppe Chiari、Michele Piccoli、Federico Viola、Davide Zoni</li>
 <li>来源/分类：arXiv，AI / 模拟集成电路布局理解</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.35035">PDF</a></li>
-<li>核心问题：通用 VLM 能否理解模拟集成电路 GDSII
-布局中的器件、拓扑和计数关系，还是必须进行面向工艺和设计域的适配？</li>
-<li>方法与基线：THEIA 将经过 DRC/LVS
-检查的模拟布局转为图像、元数据和问答，覆盖五类任务：器件识别、基础拓扑识别、器件计数、复杂混合电路计数和复杂布局中的拓扑识别。数据共有
-77,354 个问答，分为 19,997 个 easy、33,369 个 medium、23,988 个
-hard。作者微调 InternLM-4KHD，并用 Qwen2.5-VL-7B
-做跨骨干迁移；比较未微调的 InternLM、GPT-5.2、Qwen2.5-VL-7B 以及闭集 CNN
-参考基线，Qwen3-32B 用作语义评判器。</li>
-<li>关键结果：微调 InternLM-4KHD 在五项任务上的准确率为
-100%、84%、83%、63%、81%；Qwen2.5-VL-7B 在相同划分、提示和确定性解码下从
-19%–24% 的 zero-shot 准确率提升到 85%–100%，提升 65–81
-个百分点。跨生成器的 ALIGN 留出集上，拓扑识别为
-89.5%（34/38），器件计数为 73.7%（84/114）；作者报告的总体优势最高约 73
-个百分点。</li>
-<li>创新、局限与失败条件：把 GDSII 的几何和元数据组织成可复用的视觉问答
-benchmark，并在相同提示、划分和解码设置下做微调前后对照，较好地隔离了域适配效果。限制是布局主要来自
-SkyWater 130 nm
-PDK，不能代表其他工艺节点或全部模拟设计；高分也不等于可直接完成
-sign-off，训练和推理实验使用 4 张 40 GB
-A100，成本与生产环境延迟仍需评估。</li>
-<li>适合谁读：做多模态模型、EDA、芯片布局验证和领域数据集的人。建议先读第
-3 节数据构造、第 4 节实验表格和第 7 节限制；另注意 CNN
-只提供闭集任务参考，不能与开放式 VLM 结果直接等价比较。</li>
+<li>核心问题：通用 VLM 能否理解模拟集成电路 GDSII 布局中的器件、拓扑和计数关系，还是必须进行面向工艺和设计域的适配？</li>
+<li>方法与基线：THEIA 将经过 DRC/LVS 检查的模拟布局转为图像、元数据和问答，覆盖五类任务：器件识别、基础拓扑识别、器件计数、复杂混合电路计数和复杂布局中的拓扑识别。数据共有 77,354 个问答，分为 19,997 个 easy、33,369 个 medium、23,988 个 hard。作者微调 InternLM-4KHD，并用 Qwen2.5-VL-7B 做跨骨干迁移；比较未微调的 InternLM、GPT-5.2、Qwen2.5-VL-7B 以及闭集 CNN 参考基线，Qwen3-32B 用作语义评判器。</li>
+<li>关键结果：微调 InternLM-4KHD 在五项任务上的准确率为 100%、84%、83%、63%、81%；Qwen2.5-VL-7B 在相同划分、提示和确定性解码下从 19%–24% 的 zero-shot 准确率提升到 85%–100%，提升 65–81 个百分点。跨生成器的 ALIGN 留出集上，拓扑识别为 89.5%（34/38），器件计数为 73.7%（84/114）；作者报告的总体优势最高约 73 个百分点。</li>
+<li>创新、局限与失败条件：把 GDSII 的几何和元数据组织成可复用的视觉问答 benchmark，并在相同提示、划分和解码设置下做微调前后对照，较好地隔离了域适配效果。限制是布局主要来自 SkyWater 130 nm PDK，不能代表其他工艺节点或全部模拟设计；高分也不等于可直接完成 sign-off，训练和推理实验使用 4 张 40 GB A100，成本与生产环境延迟仍需评估。</li>
+<li>适合谁读：做多模态模型、EDA、芯片布局验证和领域数据集的人。建议先读第 3 节数据构造、第 4 节实验表格和第 7 节限制；另注意 CNN 只提供闭集任务参考，不能与开放式 VLM 结果直接等价比较。</li>
 <li>证据状态：已核阅摘要与 PDF；以上为论文报告，尚未独立复算。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.35035">摘要页</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2609.35035">DOI</a></li>
 </ul>
-<h3 id="veld-qa-a-large-scale-dataset-for-visual-evidence-grounding-and-question-answering-in-long-documents"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20964">VELD-QA: A Large-Scale Dataset
-for Visual Evidence Grounding and Question Answering in Long
-Documents</a></h3>
+<h3 id="veld-qa-a-large-scale-dataset-for-visual-evidence-grounding-and-question-answering-in-long-documents"><a class="markdownIt-Anchor" href="#veld-qa-a-large-scale-dataset-for-visual-evidence-grounding-and-question-answering-in-long-documents"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20964">VELD-QA: A Large-Scale Dataset for Visual Evidence Grounding and Question Answering in Long Documents</a></h3>
 <ul>
-<li>作者：Zhivar Sourati、Marianne Menglin Liu、Rongguang Wang、Zheng
-Wang、Yazhe Hu、Lan Guo、Yuying Wang、Mengqing Guo、Bhavesh Dnyaneshwar
-Gore、Shubham Pathak、Ramapriya Ranganath、Sandeep Sharma、Tao
-Sheng、Sujith Ravi、Dan Roth</li>
+<li>作者：Zhivar Sourati、Marianne Menglin Liu、Rongguang Wang、Zheng Wang、Yazhe Hu、Lan Guo、Yuying Wang、Mengqing Guo、Bhavesh Dnyaneshwar Gore、Shubham Pathak、Ramapriya Ranganath、Sandeep Sharma、Tao Sheng、Sujith Ravi、Dan Roth</li>
 <li>来源/分类：arXiv，AI / 长文档视觉证据定位与问答</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.20964">PDF</a></li>
-<li>核心问题：长 PDF
-问答失败究竟来自没有找到证据页，还是找到了页面却没有正确读懂图表、表格和复杂布局？</li>
-<li>方法与基线：VELD-QA 包含 15,000 个全人工问答，覆盖 5,859 份真实
-PDF、372,445 页，并为问题标注支持页、视觉元素及其描述。作者评估 9 个 VLM
-的 question-only、gold pages、top-3 RAG 和 all-pages
-四种证据条件，还比较 7 个检索增强或 agent 系统。准确率由固定 rubric 的
-Gemini 2.5 Flash judge 评估，并用 GPT-5.5 对 3,323
-个分层答案做一致性检查。</li>
-<li>关键结果：没有文档时最高准确率不超过 21.4%；给出金标准证据页后，9
-个模型为 39.1%–81.7%，Claude Opus 5.5 达到 81.7%，但仍有 9.2%
-的问题没有被任何模型完整回答。GPT-6 Astra 的 gold-pages/all-pages/top-3
-RAG 分别为 80.2%/75.4%/72.5%，Claude Opus 5.5 为
-81.7%/79.1%/74.9%；视觉检索器在非图表问题上 top-3 找到金标准页面的比例为
-83%–88%，证据跨两页以上时 <a href="mailto:Recall@3" class="email">Recall@3</a> 下降约 15
-个百分点。加入视觉元素标注使差距缩小 17%–24%。</li>
-<li>创新、局限与失败条件：把检索、证据使用和视觉解释拆成可测组件，避免只报一个端到端分数。结果也显示“把整份
-PDF 都喂给模型”不一定优于精确证据页，且 agent 增益伴随更高 token
-成本；LLM judge、闭源模型、PDF
-分布和长文档的人工标注方式仍会影响可复现性，表格问题是所有模型的硬失败区。</li>
-<li>适合谁读：做文档 agent、RAG、表格/图表理解和评测设计的人。建议先读第
-3 节数据与证据标注、第 4 节 agent 设置、第 5 节检索与问答结果，以及附录
-C/F 的 judge 和检索控制。</li>
+<li>核心问题：长 PDF 问答失败究竟来自没有找到证据页，还是找到了页面却没有正确读懂图表、表格和复杂布局？</li>
+<li>方法与基线：VELD-QA 包含 15,000 个全人工问答，覆盖 5,859 份真实 PDF、372,445 页，并为问题标注支持页、视觉元素及其描述。作者评估 9 个 VLM 的 question-only、gold pages、top-3 RAG 和 all-pages 四种证据条件，还比较 7 个检索增强或 agent 系统。准确率由固定 rubric 的 Gemini 2.5 Flash judge 评估，并用 GPT-5.5 对 3,323 个分层答案做一致性检查。</li>
+<li>关键结果：没有文档时最高准确率不超过 21.4%；给出金标准证据页后，9 个模型为 39.1%–81.7%，Claude Opus 5.5 达到 81.7%，但仍有 9.2% 的问题没有被任何模型完整回答。GPT-6 Astra 的 gold-pages/all-pages/top-3 RAG 分别为 80.2%/75.4%/72.5%，Claude Opus 5.5 为 81.7%/79.1%/74.9%；视觉检索器在非图表问题上 top-3 找到金标准页面的比例为 83%–88%，证据跨两页以上时 Recall@3 下降约 15 个百分点。加入视觉元素标注使差距缩小 17%–24%。</li>
+<li>创新、局限与失败条件：把检索、证据使用和视觉解释拆成可测组件，避免只报一个端到端分数。结果也显示“把整份 PDF 都喂给模型”不一定优于精确证据页，且 agent 增益伴随更高 token 成本；LLM judge、闭源模型、PDF 分布和长文档的人工标注方式仍会影响可复现性，表格问题是所有模型的硬失败区。</li>
+<li>适合谁读：做文档 agent、RAG、表格/图表理解和评测设计的人。建议先读第 3 节数据与证据标注、第 4 节 agent 设置、第 5 节检索与问答结果，以及附录 C/F 的 judge 和检索控制。</li>
 <li>证据状态：已核阅摘要与 PDF；以上为论文报告，尚未独立复算。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20964">摘要页</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.20964">DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/oracle-samples/veld-qa">代码</a></li>
 </ul>
-<h3 id="shortcut-sensitivity-in-agent-safety-evaluations"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22243">Shortcut Sensitivity in
-Agent-Safety Evaluations</a></h3>
+<h3 id="shortcut-sensitivity-in-agent-safety-evaluations"><a class="markdownIt-Anchor" href="#shortcut-sensitivity-in-agent-safety-evaluations"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22243">Shortcut Sensitivity in Agent-Safety Evaluations</a></h3>
 <ul>
 <li>作者：Hasan Demirkiran、Jens Ernstberger</li>
 <li>来源/分类：arXiv，AI / agent 安全评测有效性</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.22243">PDF</a></li>
-<li>核心问题：安全 benchmark 的标签或格式线索是否让 guard
-看起来很准，却没有测到真正的安全属性？更强的问题是：只改这些线索，guard
-的决策会不会改变？</li>
-<li>方法与基线：论文提出三级 shortcut audit：标签可预测性、公开记录中的
-guard 关联、保持候选动作不变的成对决策敏感性。作者审计
-LinuxArena、AgentDojo-Traj 和 AgentHarm-Traj，并在冻结的 64 条
-AgentDojo-Traj 样本上对 <code>&lt;INFORMATION&gt;</code>
-标记和工具别名做重复交错调用，同时加入格式 placebo；比较 mixed-domain 与
-domain holdout、row weighting 与 equal-interaction weighting。</li>
-<li>关键结果：LinuxArena 中命令长度的 AUC 达到 .910；AgentDojo-Traj 的
-exact-tool lookup F1 从混合域的 .901 降到 domain holdout 的
-.495；AgentHarm-Traj 的 TS-Guard F1 在改变评测单位后从 .902 降到
-.719。对 Haiku，改写 marker 使 blocking 下降 8.33 个百分点，工具别名使
-blocking 上升 11.46 个百分点；所有 unsafe call
-仍被阻断，变化主要是继承标签下的 false positive。Luna 的对应效应为 0.00
-和 +1.04 个百分点，确定性 Q8 TS-Guard 仅改变 64 对中的 3 对。</li>
-<li>创新、局限与失败条件：它把“标签容易预测”与“guard
-真依赖该线索”分开，并用成对干预和 placebo 避免把相关性误当敏感性。限制是
-64 条样本不是概率抽样，区间是探索性且未多重校正；marker
-和别名可能改变语义，Luna 不复现 Haiku
-效应，研究评测有效性而非真实部署安全，也没有执行工具调用。</li>
-<li>适合谁读：做 agent safety、benchmark
-设计、红队评测和分布外泛化的人。建议先读第 2 节审计框架、第 4–5
-节数据和干预结果、第 8 节限制。</li>
+<li>核心问题：安全 benchmark 的标签或格式线索是否让 guard 看起来很准，却没有测到真正的安全属性？更强的问题是：只改这些线索，guard 的决策会不会改变？</li>
+<li>方法与基线：论文提出三级 shortcut audit：标签可预测性、公开记录中的 guard 关联、保持候选动作不变的成对决策敏感性。作者审计 LinuxArena、AgentDojo-Traj 和 AgentHarm-Traj，并在冻结的 64 条 AgentDojo-Traj 样本上对 <code>&lt;INFORMATION&gt;</code> 标记和工具别名做重复交错调用，同时加入格式 placebo；比较 mixed-domain 与 domain holdout、row weighting 与 equal-interaction weighting。</li>
+<li>关键结果：LinuxArena 中命令长度的 AUC 达到 .910；AgentDojo-Traj 的 exact-tool lookup F1 从混合域的 .901 降到 domain holdout 的 .495；AgentHarm-Traj 的 TS-Guard F1 在改变评测单位后从 .902 降到 .719。对 Haiku，改写 marker 使 blocking 下降 8.33 个百分点，工具别名使 blocking 上升 11.46 个百分点；所有 unsafe call 仍被阻断，变化主要是继承标签下的 false positive。Luna 的对应效应为 0.00 和 +1.04 个百分点，确定性 Q8 TS-Guard 仅改变 64 对中的 3 对。</li>
+<li>创新、局限与失败条件：它把“标签容易预测”与“guard 真依赖该线索”分开，并用成对干预和 placebo 避免把相关性误当敏感性。限制是 64 条样本不是概率抽样，区间是探索性且未多重校正；marker 和别名可能改变语义，Luna 不复现 Haiku 效应，研究评测有效性而非真实部署安全，也没有执行工具调用。</li>
+<li>适合谁读：做 agent safety、benchmark 设计、红队评测和分布外泛化的人。建议先读第 2 节审计框架、第 4–5 节数据和干预结果、第 8 节限制。</li>
 <li>证据状态：已核阅摘要与 PDF；以上为论文报告，尚未独立复算。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22243">摘要页</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.22243">DOI</a></li>
 </ul>
-<h3 id="sciπvot-benchmarking-principal-investigator-judgment-at-pivotal-moments-of-scientific-autoresearch-agents"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21082">SciΠvot: Benchmarking
-Principal-Investigator Judgment at Pivotal Moments of Scientific
-AutoResearch Agents</a></h3>
+<h3 id="sciπvot-benchmarking-principal-investigator-judgment-at-pivotal-moments-of-scientific-autoresearch-agents"><a class="markdownIt-Anchor" href="#sciπvot-benchmarking-principal-investigator-judgment-at-pivotal-moments-of-scientific-autoresearch-agents"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21082">SciΠvot: Benchmarking Principal-Investigator Judgment at Pivotal Moments of Scientific AutoResearch Agents</a></h3>
 <ul>
-<li>作者：Youran Sun、Xingyu Ren、Chugang Yi、Di Wu、Yingkang Cao、Allen
-Zhou、Jianping Ye、Suying Liu、Jiaxuan Guo、Jianda Du、Weicheng
-Ye、Kecheng Liu、Hefan Zhang、Haixin Wang、Jie Xiao、Eric Yang、Haizhao
-Yang 等</li>
+<li>作者：Youran Sun、Xingyu Ren、Chugang Yi、Di Wu、Yingkang Cao、Allen Zhou、Jianping Ye、Suying Liu、Jiaxuan Guo、Jianda Du、Weicheng Ye、Kecheng Liu、Hefan Zhang、Haixin Wang、Jie Xiao、Eric Yang、Haizhao Yang 等</li>
 <li>来源/分类：arXiv，AI / 科学自动研究 agent 评测</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.21082">PDF</a></li>
-<li>核心问题：科学 agent
-能长期运行实验，并不代表它能在关键节点判断“原计划还是人工修正计划更合理”；这种研究判断能否被系统评测？</li>
-<li>方法与基线：SciΠvot 从 6 个月、26 个项目、6
-个科学领域的研究记录中构造 248
-个案例。每个案例只给模型修正前可见的项目记录，让它在原 LLM
-方案和资深研究者修正方案之间选择；评估 5 个 frontier 模型的不同
-reasoning effort、是否提供项目记录和两轮
-reconsideration，并用选项顺序反转、每案例等权和 10,000 次 paired
-bootstrap。另以 13 名博士生/博士后组成 fresh-researcher 参照。</li>
-<li>关键结果：在 project condition 下，五个模型的中等 effort
-平均准确率为 39.2%，四个模型低于随机水平；最佳观察条件是 Astra 的
-xhigh，准确率 63.5%，仍低于 fresh researchers 的 73.4%。在中等 effort
-下，加入项目记录反而使每个模型相对于 options-only
-降低准确率，reconsideration 也没有稳定改善；49
-个案例中五个模型都选择被人类否决的原计划。</li>
-<li>创新、局限与失败条件：基准测的是“识别已发生的科学纠错”，而不是让模型事后生成漂亮解释；项目记录来自真实研究监督，能保留上下文与判断的不确定性。局限是案例由资深研究者选择且来自
-CPU/GPU 计算研究，未覆盖湿实验和专用商业软件；fresh-researcher
-样本也不是长期 PI 监督基线，结果不能直接外推到所有科学 agent。</li>
-<li>适合谁读：做 AutoResearch、科学
-agent、研究流程自动化和人机协同评测的人。建议先读第 3 节案例构造、第 4
-节主表、第 5 节上下文效应和第 9 节限制。</li>
+<li>核心问题：科学 agent 能长期运行实验，并不代表它能在关键节点判断“原计划还是人工修正计划更合理”；这种研究判断能否被系统评测？</li>
+<li>方法与基线：SciΠvot 从 6 个月、26 个项目、6 个科学领域的研究记录中构造 248 个案例。每个案例只给模型修正前可见的项目记录，让它在原 LLM 方案和资深研究者修正方案之间选择；评估 5 个 frontier 模型的不同 reasoning effort、是否提供项目记录和两轮 reconsideration，并用选项顺序反转、每案例等权和 10,000 次 paired bootstrap。另以 13 名博士生/博士后组成 fresh-researcher 参照。</li>
+<li>关键结果：在 project condition 下，五个模型的中等 effort 平均准确率为 39.2%，四个模型低于随机水平；最佳观察条件是 Astra 的 xhigh，准确率 63.5%，仍低于 fresh researchers 的 73.4%。在中等 effort 下，加入项目记录反而使每个模型相对于 options-only 降低准确率，reconsideration 也没有稳定改善；49 个案例中五个模型都选择被人类否决的原计划。</li>
+<li>创新、局限与失败条件：基准测的是“识别已发生的科学纠错”，而不是让模型事后生成漂亮解释；项目记录来自真实研究监督，能保留上下文与判断的不确定性。局限是案例由资深研究者选择且来自 CPU/GPU 计算研究，未覆盖湿实验和专用商业软件；fresh-researcher 样本也不是长期 PI 监督基线，结果不能直接外推到所有科学 agent。</li>
+<li>适合谁读：做 AutoResearch、科学 agent、研究流程自动化和人机协同评测的人。建议先读第 3 节案例构造、第 4 节主表、第 5 节上下文效应和第 9 节限制。</li>
 <li>证据状态：已核阅摘要与 PDF；以上为论文报告，尚未独立复算。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21082">摘要页</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.21082">DOI</a></li>
 </ul>
-<h3 id="rice-alpha-reliability-informed-correction-with-event-graphs-for-llm-agent-stock-forecasting"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.34004">RICE-Alpha: Reliability-Informed
-Correction with Event Graphs for LLM-Agent Stock Forecasting</a></h3>
+<h3 id="rice-alpha-reliability-informed-correction-with-event-graphs-for-llm-agent-stock-forecasting"><a class="markdownIt-Anchor" href="#rice-alpha-reliability-informed-correction-with-event-graphs-for-llm-agent-stock-forecasting"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.34004">RICE-Alpha: Reliability-Informed Correction with Event Graphs for LLM-Agent Stock Forecasting</a></h3>
 <ul>
 <li>作者：Tong Liu、Lanmiao Liu、Xiang Hu</li>
 <li>来源/分类：arXiv，双主题：AI / 金融 LLM agent 股票预测</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.34004">PDF</a></li>
-<li>核心问题：新闻不是独立样本，而是同一发行人持续演化的事件；在严格
-point-in-time
-约束下，如何判断历史事件延续是否比当前多视图预测提供了增量信息？</li>
-<li>方法与基线：RICE-Alpha 先用 sentiment、technical、fundamental、macro
-视图生成 Base Alpha，再用 Multi-Tier Memory Layer
-注入时间上可用的发行人历史。Typed Event Agent 在发行人内部形成事件
-successor 关系，只有在本地配对后才跨公司汇总；成熟转移按频率、regime
-lift、滞后和后续收益关联做可靠性校准，并对 Base Alpha/technical view
-残差化得到 RICE Delta。作者在 2024–2026 年 Nasdaq-100 和 Hang Seng
-日频面板上，以 2023 年 warm-up 后的 T+1 规则比较
-MEME、R&amp;D-Agent-Quant、AI Hedge Fund 和动量基线。</li>
-<li>关键结果：美国 562 个、香港 551 个评估日期上，作者报告 RICE 的
-IC/RankIC 为美国 0.0350/0.0360、香港 0.0283/0.0395；净 Sharpe 为
-1.656/1.725，而最佳基线为 0.889/1.130。美国消融中 IC 从不含主要组件的
-0.0064，经 memory 0.0191、直接修正 0.0260，升至完整系统
-0.0350；Newey–West 与 5,000 次 block bootstrap 的 Holm
-校正用于比较。提高到每边 20/28 bp 成本后，作者仍报告 Sharpe
-1.551/1.659。</li>
-<li>统计与经济边界：IC/RankIC
-是横截面预测相关性，不是事件图导致收益的因果估计；Newey–West 显著性和
-block bootstrap 也只对应作者的面板与组合协议。2024–2026 是 warm-up
-后的样本外评估，但组合仍是规则化回测，不是实盘成交、容量、冲击或延迟验证。论文承认只覆盖两个大盘股票池，评估期选择可能偏乐观，预训练
-LLM 可能含有晚于预测日期的信息，存在数据污染/前视风险。</li>
-<li>创新、局限与失败条件：把 issuer-local
-chronology、可靠性校准和残差修正分开，能比“把所有历史新闻塞进
-prompt”更清楚地问增量信号来自哪里；但事件抽取、模型版本、市场状态和股票池变化都可能削弱迁移。Sharpe
-是作者回测结果，不能推出未来收益或投资建议。</li>
-<li>适合谁读：做金融 agent、事件驱动预测、量化评测和 point-in-time
-数据审计的人。建议先读第 3 节方法、第 4.1–4.3 节回测/消融、第 6
-节限制。</li>
-<li>证据状态：已核阅摘要与
-PDF；以上是作者在指定回测协议下的报告，尚未独立复算。</li>
+<li>核心问题：新闻不是独立样本，而是同一发行人持续演化的事件；在严格 point-in-time 约束下，如何判断历史事件延续是否比当前多视图预测提供了增量信息？</li>
+<li>方法与基线：RICE-Alpha 先用 sentiment、technical、fundamental、macro 视图生成 Base Alpha，再用 Multi-Tier Memory Layer 注入时间上可用的发行人历史。Typed Event Agent 在发行人内部形成事件 successor 关系，只有在本地配对后才跨公司汇总；成熟转移按频率、regime lift、滞后和后续收益关联做可靠性校准，并对 Base Alpha/technical view 残差化得到 RICE Delta。作者在 2024–2026 年 Nasdaq-100 和 Hang Seng 日频面板上，以 2023 年 warm-up 后的 T+1 规则比较 MEME、R&amp;D-Agent-Quant、AI Hedge Fund 和动量基线。</li>
+<li>关键结果：美国 562 个、香港 551 个评估日期上，作者报告 RICE 的 IC/RankIC 为美国 0.0350/0.0360、香港 0.0283/0.0395；净 Sharpe 为 1.656/1.725，而最佳基线为 0.889/1.130。美国消融中 IC 从不含主要组件的 0.0064，经 memory 0.0191、直接修正 0.0260，升至完整系统 0.0350；Newey–West 与 5,000 次 block bootstrap 的 Holm 校正用于比较。提高到每边 20/28 bp 成本后，作者仍报告 Sharpe 1.551/1.659。</li>
+<li>统计与经济边界：IC/RankIC 是横截面预测相关性，不是事件图导致收益的因果估计；Newey–West 显著性和 block bootstrap 也只对应作者的面板与组合协议。2024–2026 是 warm-up 后的样本外评估，但组合仍是规则化回测，不是实盘成交、容量、冲击或延迟验证。论文承认只覆盖两个大盘股票池，评估期选择可能偏乐观，预训练 LLM 可能含有晚于预测日期的信息，存在数据污染/前视风险。</li>
+<li>创新、局限与失败条件：把 issuer-local chronology、可靠性校准和残差修正分开，能比“把所有历史新闻塞进 prompt”更清楚地问增量信号来自哪里；但事件抽取、模型版本、市场状态和股票池变化都可能削弱迁移。Sharpe 是作者回测结果，不能推出未来收益或投资建议。</li>
+<li>适合谁读：做金融 agent、事件驱动预测、量化评测和 point-in-time 数据审计的人。建议先读第 3 节方法、第 4.1–4.3 节回测/消融、第 6 节限制。</li>
+<li>证据状态：已核阅摘要与 PDF；以上是作者在指定回测协议下的报告，尚未独立复算。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.34004">摘要页</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2609.34004">DOI</a></li>
 </ul>
-<h2 id="ai-论文">AI 论文</h2>
-<h3 id="myopia-understanding-the-limits-of-tree-based-reasoning-in-vision-language-models-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21573">MYOPIA: Understanding the Limits
-of Tree-Based Reasoning in Vision-Language Models</a></h3>
+<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
+<h3 id="myopia-understanding-the-limits-of-tree-based-reasoning-in-vision-language-models-2"><a class="markdownIt-Anchor" href="#myopia-understanding-the-limits-of-tree-based-reasoning-in-vision-language-models-2"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21573">MYOPIA: Understanding the Limits of Tree-Based Reasoning in Vision-Language Models</a></h3>
 <ul>
-<li>作者：Islam Mesabah、Sary Elmansoury、Gerrit Großmann、Peter
-Neigel、Sebastian J. Vollmer</li>
+<li>作者：Islam Mesabah、Sary Elmansoury、Gerrit Großmann、Peter Neigel、Sebastian J. Vollmer</li>
 <li>来源/分类：arXiv，AI / 视觉语言模型与可解释分类</li>
-<li>简介：MYOPIA 在四个视觉数据集、三类 VLM 上比较贪心决策树遍历与
-zero-shot 分类，作者报告 12 个组合全部由 zero-shot 胜出，并定位到图像
-grounding、不可回溯路径和答案解析三类损失。该结果是作者 benchmark
-内的报告，不代表所有层级视觉推理都无效；详细数字见重点关注。</li>
+<li>简介：MYOPIA 在四个视觉数据集、三类 VLM 上比较贪心决策树遍历与 zero-shot 分类，作者报告 12 个组合全部由 zero-shot 胜出，并定位到图像 grounding、不可回溯路径和答案解析三类损失。该结果是作者 benchmark 内的报告，不代表所有层级视觉推理都无效；详细数字见重点关注。</li>
 <li>证据状态：已核阅摘要与 PDF；作者报告，尚未独立复算。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21573">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.21573">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.21573">DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/islammesabah/VLM_Classification">代码</a></li>
 </ul>
-<h3 id="theia-a-multimodal-dataset-and-benchmark-for-vision-language-analysis-of-layout-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.35035">THEIA: A Multimodal Dataset and
-Benchmark for Vision-Language Analysis of Layout</a></h3>
+<h3 id="theia-a-multimodal-dataset-and-benchmark-for-vision-language-analysis-of-layout-2"><a class="markdownIt-Anchor" href="#theia-a-multimodal-dataset-and-benchmark-for-vision-language-analysis-of-layout-2"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.35035">THEIA: A Multimodal Dataset and Benchmark for Vision-Language Analysis of Layout</a></h3>
 <ul>
-<li>作者：Giuseppe Chiari、Michele Piccoli、Federico Viola、Davide
-Zoni</li>
+<li>作者：Giuseppe Chiari、Michele Piccoli、Federico Viola、Davide Zoni</li>
 <li>来源/分类：arXiv，AI / 模拟集成电路布局理解</li>
-<li>简介：THEIA 将 GDSII 布局图像、元数据与 77,354
-个问答组织成五项模拟电路任务，并比较通用 VLM
-与领域微调模型。作者报告微调后在不同任务上达到
-63%–100%，但实验集中于单一 SkyWater 130 nm
-节点，不能直接当作跨工艺泛化证明。</li>
+<li>简介：THEIA 将 GDSII 布局图像、元数据与 77,354 个问答组织成五项模拟电路任务，并比较通用 VLM 与领域微调模型。作者报告微调后在不同任务上达到 63%–100%，但实验集中于单一 SkyWater 130 nm 节点，不能直接当作跨工艺泛化证明。</li>
 <li>证据状态：已核阅摘要与 PDF；作者报告，尚未独立复算。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.35035">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.35035">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2609.35035">DOI</a></li>
 </ul>
-<h3 id="x-ric-an-agentic-ran-intelligent-controller-benchmark-for-enhancing-reinforcement-learning"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22269">X-RIC: An Agentic
-RAN-Intelligent Controller Benchmark for Enhancing Reinforcement
-Learning</a></h3>
+<h3 id="x-ric-an-agentic-ran-intelligent-controller-benchmark-for-enhancing-reinforcement-learning"><a class="markdownIt-Anchor" href="#x-ric-an-agentic-ran-intelligent-controller-benchmark-for-enhancing-reinforcement-learning"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22269">X-RIC: An Agentic RAN-Intelligent Controller Benchmark for Enhancing Reinforcement Learning</a></h3>
 <ul>
 <li>作者：Adhwaa Al-Chaab、Ayman Younis、Dario Pompili</li>
 <li>来源/分类：arXiv，AI / O-RAN agent 与强化学习</li>
-<li>简介：X-RIC 把行为克隆、Telecom Language Model 和 Near-RT RIC
-闭环结合，并提出 BARX 评估延迟、合规和确定性。摘要报告在 SLA-aware
-network slicing 的仿真与 O-RAN 测试床上运营成本下降 89%、收敛快
-75%、训练步数少 50%、方差低
-46%；这些是作者报告的控制实验结果，尚不是大规模真实网络的独立验证。</li>
+<li>简介：X-RIC 把行为克隆、Telecom Language Model 和 Near-RT RIC 闭环结合，并提出 BARX 评估延迟、合规和确定性。摘要报告在 SLA-aware network slicing 的仿真与 O-RAN 测试床上运营成本下降 89%、收敛快 75%、训练步数少 50%、方差低 46%；这些是作者报告的控制实验结果，尚不是大规模真实网络的独立验证。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22269">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.22269">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.22269">DOI</a></li>
 </ul>
-<h3 id="neurodata-without-boredom-benchmarking-agentic-ai-for-data-reuse"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.12808">Neurodata Without Boredom:
-Benchmarking Agentic AI for Data Reuse</a></h3>
+<h3 id="neurodata-without-boredom-benchmarking-agentic-ai-for-data-reuse"><a class="markdownIt-Anchor" href="#neurodata-without-boredom-benchmarking-agentic-ai-for-data-reuse"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.12808">Neurodata Without Boredom: Benchmarking Agentic AI for Data Reuse</a></h3>
 <ul>
 <li>作者：Ling-Qi Zhang、Kristin Branson</li>
 <li>来源/分类：arXiv，AI / coding agent 与神经科学数据复用</li>
-<li>简介：论文让 coding agent 读取 8
-篇小鼠神经记录论文的数据、代码和正文，把不同格式重构为共同 decoder
-任务，再用结果指标和两名人工评审的过程 rubric 评价。作者报告 agent
-能完成多数子任务，却很少做到端到端无错误；agent judge
-单独抓错不可靠，但在给定参考解时可帮助自动化过程评估。数据转换选择存在未充分规定的边界，不能把通过局部指标解释成科学复用已可靠。</li>
+<li>简介：论文让 coding agent 读取 8 篇小鼠神经记录论文的数据、代码和正文，把不同格式重构为共同 decoder 任务，再用结果指标和两名人工评审的过程 rubric 评价。作者报告 agent 能完成多数子任务，却很少做到端到端无错误；agent judge 单独抓错不可靠，但在给定参考解时可帮助自动化过程评估。数据转换选择存在未充分规定的边界，不能把通过局部指标解释成科学复用已可靠。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.12808">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.12808">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2605.12808">DOI</a></li>
 </ul>
-<h3 id="momentum-commentary-tone-and-earnings-surprise-in-llm-financial-forecasts"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22043">Momentum, Commentary Tone, and
-Earnings Surprise in LLM Financial Forecasts</a></h3>
+<h3 id="momentum-commentary-tone-and-earnings-surprise-in-llm-financial-forecasts"><a class="markdownIt-Anchor" href="#momentum-commentary-tone-and-earnings-surprise-in-llm-financial-forecasts"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22043">Momentum, Commentary Tone, and Earnings Surprise in LLM Financial Forecasts</a></h3>
 <ul>
 <li>作者：Alina Khaybullina</li>
 <li>来源/分类：arXiv，双主题：AI / 金融 LLM 行为审计</li>
-<li>简介：论文用合成 earnings announcement 独立翻转 20
-日动量、非信息性评论语气和 EPS surprise，观察 6 个 0.49–7.61B 参数
-checkpoint 的 answer-prefix
-分数。它测量模型对输入的可观察依赖，不是内部推理机制或收益预测；该双主题论文在金融简报的重点关注中详细展开，AI
-部分不重复叙述。</li>
-<li>证据状态：交叉主题索引；已在金融文章重点核阅摘要与
-PDF，作者报告，尚未独立复算。</li>
+<li>简介：论文用合成 earnings announcement 独立翻转 20 日动量、非信息性评论语气和 EPS surprise，观察 6 个 0.49–7.61B 参数 checkpoint 的 answer-prefix 分数。它测量模型对输入的可观察依赖，不是内部推理机制或收益预测；该双主题论文在金融简报的重点关注中详细展开，AI 部分不重复叙述。</li>
+<li>证据状态：交叉主题索引；已在金融文章重点核阅摘要与 PDF，作者报告，尚未独立复算。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22043">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.22043">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.22043">DOI</a></li>
 </ul>
-<h3 id="veld-qa-a-large-scale-dataset-for-visual-evidence-grounding-and-question-answering-in-long-documents-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20964">VELD-QA: A Large-Scale Dataset
-for Visual Evidence Grounding and Question Answering in Long
-Documents</a></h3>
+<h3 id="veld-qa-a-large-scale-dataset-for-visual-evidence-grounding-and-question-answering-in-long-documents-2"><a class="markdownIt-Anchor" href="#veld-qa-a-large-scale-dataset-for-visual-evidence-grounding-and-question-answering-in-long-documents-2"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20964">VELD-QA: A Large-Scale Dataset for Visual Evidence Grounding and Question Answering in Long Documents</a></h3>
 <ul>
-<li>作者：Zhivar Sourati、Marianne Menglin Liu、Rongguang Wang、Zheng
-Wang、Yazhe Hu、Lan Guo、Yuying Wang、Mengqing Guo、Bhavesh Dnyaneshwar
-Gore、Shubham Pathak、Ramapriya Ranganath、Sandeep Sharma、Tao
-Sheng、Sujith Ravi、Dan Roth</li>
+<li>作者：Zhivar Sourati、Marianne Menglin Liu、Rongguang Wang、Zheng Wang、Yazhe Hu、Lan Guo、Yuying Wang、Mengqing Guo、Bhavesh Dnyaneshwar Gore、Shubham Pathak、Ramapriya Ranganath、Sandeep Sharma、Tao Sheng、Sujith Ravi、Dan Roth</li>
 <li>来源/分类：arXiv，AI / 长文档视觉问答</li>
-<li>简介：VELD-QA 用 15,000 个人工问答、5,859 份 PDF
-和支持页/视觉元素标注，分离证据定位与解释。作者报告 gold pages
-可把最高准确率推到 81.7%，但全文访问并不能消除视觉解释瓶颈；LLM judge
-和检索成本仍是可复现性限制。</li>
+<li>简介：VELD-QA 用 15,000 个人工问答、5,859 份 PDF 和支持页/视觉元素标注，分离证据定位与解释。作者报告 gold pages 可把最高准确率推到 81.7%，但全文访问并不能消除视觉解释瓶颈；LLM judge 和检索成本仍是可复现性限制。</li>
 <li>证据状态：已核阅摘要与 PDF；作者报告，尚未独立复算。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20964">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.20964">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.20964">DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/oracle-samples/veld-qa">代码</a></li>
 </ul>
-<h3 id="ai-knows-where-you-are-exposure-bias-and-inference-in-multimodal-geolocation-with-koreageo"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.03371">AI Knows Where You Are:
-Exposure, Bias, and Inference in Multimodal Geolocation with
-KoreaGEO</a></h3>
+<h3 id="ai-knows-where-you-are-exposure-bias-and-inference-in-multimodal-geolocation-with-koreageo"><a class="markdownIt-Anchor" href="#ai-knows-where-you-are-exposure-bias-and-inference-in-multimodal-geolocation-with-koreageo"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.03371">AI Knows Where You Are: Exposure, Bias, and Inference in Multimodal Geolocation with KoreaGEO</a></h3>
 <ul>
 <li>作者：Xiaonan Wang、Bo Shao、Hansaem Kim</li>
 <li>来源/分类：arXiv，AI / 多模态地理定位与隐私</li>
-<li>简介：KoreaGEO 以韩国街景构造细粒度、带隐私风险标注的地理定位
-benchmark，比较 image-only、功能性 caption 和高风险 caption
-三条路径。摘要称输入模态对精度和隐私暴露的影响大于模型规模或架构，高风险
-caption
-明显提高定位精度，并出现向核心城市聚集的结构性偏差；其外部效度仍受国家和场景限制。</li>
+<li>简介：KoreaGEO 以韩国街景构造细粒度、带隐私风险标注的地理定位 benchmark，比较 image-only、功能性 caption 和高风险 caption 三条路径。摘要称输入模态对精度和隐私暴露的影响大于模型规模或架构，高风险 caption 明显提高定位精度，并出现向核心城市聚集的结构性偏差；其外部效度仍受国家和场景限制。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2506.03371">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2506.03371">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2506.03371">DOI</a></li>
 </ul>
-<h3 id="shortcut-sensitivity-in-agent-safety-evaluations-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22243">Shortcut Sensitivity in
-Agent-Safety Evaluations</a></h3>
+<h3 id="shortcut-sensitivity-in-agent-safety-evaluations-2"><a class="markdownIt-Anchor" href="#shortcut-sensitivity-in-agent-safety-evaluations-2"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22243">Shortcut Sensitivity in Agent-Safety Evaluations</a></h3>
 <ul>
 <li>作者：Hasan Demirkiran、Jens Ernstberger</li>
 <li>来源/分类：arXiv，AI / agent 安全评测有效性</li>
-<li>简介：论文用三级审计框架区分标签可预测性、公开 guard
-关联和成对决策敏感性；domain holdout、评测单位变化和
-marker/工具别名干预均会改变部分结果。Haiku 上观察到 8.33 和 11.46
-个百分点的 blocking 变化，但 Luna 与确定性 Q8 guard
-不复现，不能外推为所有 guard 都存在同样漏洞。</li>
+<li>简介：论文用三级审计框架区分标签可预测性、公开 guard 关联和成对决策敏感性；domain holdout、评测单位变化和 marker/工具别名干预均会改变部分结果。Haiku 上观察到 8.33 和 11.46 个百分点的 blocking 变化，但 Luna 与确定性 Q8 guard 不复现，不能外推为所有 guard 都存在同样漏洞。</li>
 <li>证据状态：已核阅摘要与 PDF；作者报告，尚未独立复算。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22243">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.22243">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.22243">DOI</a></li>
 </ul>
-<h3 id="when-reasoning-is-not-enough-proactive-inquiry-for-cross-modal-safety-in-multimodal-large-language-models"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22068">When Reasoning Is Not Enough:
-Proactive Inquiry for Cross-Modal Safety in Multimodal Large Language
-Models</a></h3>
+<h3 id="when-reasoning-is-not-enough-proactive-inquiry-for-cross-modal-safety-in-multimodal-large-language-models"><a class="markdownIt-Anchor" href="#when-reasoning-is-not-enough-proactive-inquiry-for-cross-modal-safety-in-multimodal-large-language-models"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22068">When Reasoning Is Not Enough: Proactive Inquiry for Cross-Modal Safety in Multimodal Large Language Models</a></h3>
 <ul>
 <li>作者：Wei Cai、Jian Zhao、Yuchen Yuan、Xuelong Li</li>
 <li>来源/分类：arXiv，AI / 多模态安全与澄清提问</li>
-<li>简介：SAFE-PRO 用预测熵和跨模态风险分数组成
-RCU，决定何时提出安全澄清问题、何时做路径优化，并构建 SSUI-Dialog
-双意图多轮数据。摘要称在 7 个 benchmark、2 个基础 MLLM 上安全性超过
-SRPO，过度拒答约减半，并超过 GPT-4o 与 Claude-3.5-Sonnet
-的平均单轮安全分；具体数字、基线配置和成本仍需全文核验。</li>
+<li>简介：SAFE-PRO 用预测熵和跨模态风险分数组成 RCU，决定何时提出安全澄清问题、何时做路径优化，并构建 SSUI-Dialog 双意图多轮数据。摘要称在 7 个 benchmark、2 个基础 MLLM 上安全性超过 SRPO，过度拒答约减半，并超过 GPT-4o 与 Claude-3.5-Sonnet 的平均单轮安全分；具体数字、基线配置和成本仍需全文核验。</li>
 <li>证据状态：仅依据摘要（本次公开 PDF 未能访问）。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22068">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.22068">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.22068">DOI</a></li>
 </ul>
-<h3 id="sciπvot-benchmarking-principal-investigator-judgment-at-pivotal-moments-of-scientific-autoresearch-agents-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21082">SciΠvot: Benchmarking
-Principal-Investigator Judgment at Pivotal Moments of Scientific
-AutoResearch Agents</a></h3>
+<h3 id="sciπvot-benchmarking-principal-investigator-judgment-at-pivotal-moments-of-scientific-autoresearch-agents-2"><a class="markdownIt-Anchor" href="#sciπvot-benchmarking-principal-investigator-judgment-at-pivotal-moments-of-scientific-autoresearch-agents-2"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21082">SciΠvot: Benchmarking Principal-Investigator Judgment at Pivotal Moments of Scientific AutoResearch Agents</a></h3>
 <ul>
-<li>作者：Youran Sun、Xingyu Ren、Chugang Yi、Di Wu、Yingkang Cao、Allen
-Zhou、Jianping Ye、Suying Liu、Jiaxuan Guo、Jianda Du、Weicheng
-Ye、Kecheng Liu、Hefan Zhang、Haixin Wang、Jie Xiao、Eric Yang、Haizhao
-Yang 等</li>
+<li>作者：Youran Sun、Xingyu Ren、Chugang Yi、Di Wu、Yingkang Cao、Allen Zhou、Jianping Ye、Suying Liu、Jiaxuan Guo、Jianda Du、Weicheng Ye、Kecheng Liu、Hefan Zhang、Haixin Wang、Jie Xiao、Eric Yang、Haizhao Yang 等</li>
 <li>来源/分类：arXiv，AI / 科学自动研究 agent 评测</li>
-<li>简介：SciΠvot 从 26 个项目的真实监督记录抽取 248 个“原计划 vs
-人工修正”选择题，评估模型是否能识别研究关键节点上的纠错。作者报告最佳
-project-condition 结果为 63.5%，fresh researchers 为
-73.4%，且给项目记录会让中等 effort 下的每个模型变差；该 benchmark
-测的是被选中的判断案例，不是完整科研能力。</li>
+<li>简介：SciΠvot 从 26 个项目的真实监督记录抽取 248 个“原计划 vs 人工修正”选择题，评估模型是否能识别研究关键节点上的纠错。作者报告最佳 project-condition 结果为 63.5%，fresh researchers 为 73.4%，且给项目记录会让中等 effort 下的每个模型变差；该 benchmark 测的是被选中的判断案例，不是完整科研能力。</li>
 <li>证据状态：已核阅摘要与 PDF；作者报告，尚未独立复算。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21082">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.21082">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.21082">DOI</a></li>
 </ul>
-<h3 id="rice-alpha-reliability-informed-correction-with-event-graphs-for-llm-agent-stock-forecasting-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.34004">RICE-Alpha: Reliability-Informed
-Correction with Event Graphs for LLM-Agent Stock Forecasting</a></h3>
+<h3 id="rice-alpha-reliability-informed-correction-with-event-graphs-for-llm-agent-stock-forecasting-2"><a class="markdownIt-Anchor" href="#rice-alpha-reliability-informed-correction-with-event-graphs-for-llm-agent-stock-forecasting-2"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.34004">RICE-Alpha: Reliability-Informed Correction with Event Graphs for LLM-Agent Stock Forecasting</a></h3>
 <ul>
 <li>作者：Tong Liu、Lanmiao Liu、Xiang Hu</li>
 <li>来源/分类：arXiv，双主题：AI / 金融 LLM agent</li>
-<li>简介：RICE-Alpha 用 point-in-time 多视图 Base
-Alpha、发行人本地事件图和可靠性加权残差修正历史新闻信号；摘要称其在
-Nasdaq-100 与恒生指数上超过评估的 LLM agent
-和动量基线。金融文章重点关注中详细区分
-IC/RankIC、样本外回测、交易成本和前视/污染风险，AI
-文章只作交叉索引。</li>
-<li>证据状态：交叉主题索引；已核阅摘要与
-PDF，作者报告，尚未独立复算。</li>
+<li>简介：RICE-Alpha 用 point-in-time 多视图 Base Alpha、发行人本地事件图和可靠性加权残差修正历史新闻信号；摘要称其在 Nasdaq-100 与恒生指数上超过评估的 LLM agent 和动量基线。金融文章重点关注中详细区分 IC/RankIC、样本外回测、交易成本和前视/污染风险，AI 文章只作交叉索引。</li>
+<li>证据状态：交叉主题索引；已核阅摘要与 PDF，作者报告，尚未独立复算。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.34004">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.34004">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2609.34004">DOI</a></li>
 </ul>
-<h3 id="sok-trading-agents-or-market-crashers-dissecting-robustness-and-security-failures-in-academic-financial-llm-trading-schemes"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.19705">SoK: Trading Agents or Market
-Crashers? Dissecting Robustness and Security Failures in Academic
-Financial LLM Trading Schemes</a></h3>
+<h3 id="sok-trading-agents-or-market-crashers-dissecting-robustness-and-security-failures-in-academic-financial-llm-trading-schemes"><a class="markdownIt-Anchor" href="#sok-trading-agents-or-market-crashers-dissecting-robustness-and-security-failures-in-academic-financial-llm-trading-schemes"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.19705">SoK: Trading Agents or Market Crashers? Dissecting Robustness and Security Failures in Academic Financial LLM Trading Schemes</a></h3>
 <ul>
 <li>作者：Mengxiao Wang、Nitesh Saxena</li>
 <li>来源/分类：arXiv，双主题：AI / 金融 agent 安全系统化</li>
-<li>简介：FARSIGHT 对 15
-个学术金融交易方案评估市场压力鲁棒性、来源操纵、agent 被攻陷和 agent
-作为攻击者的风险，并检查论文陈述与开源代码是否一致。摘要称没有方案在任何鲁棒性指标上满分，7
-个开源方案都没有在 LLM 外部强制 stop-loss 或 position limit，4
-个缺少论文描述的组件、2
-个会在宿主机运行模型写出的代码；这是系统化审计结果，不是对所有交易 agent
-的穷尽证明。</li>
+<li>简介：FARSIGHT 对 15 个学术金融交易方案评估市场压力鲁棒性、来源操纵、agent 被攻陷和 agent 作为攻击者的风险，并检查论文陈述与开源代码是否一致。摘要称没有方案在任何鲁棒性指标上满分，7 个开源方案都没有在 LLM 外部强制 stop-loss 或 position limit，4 个缺少论文描述的组件、2 个会在宿主机运行模型写出的代码；这是系统化审计结果，不是对所有交易 agent 的穷尽证明。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.19705">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.19705">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2609.19705">DOI</a></li>
 </ul>
-<h3 id="dtcr-vortex-following-generative-reconstruction-improves-tropical-cyclone-intensity-prediction-from-global-ai-weather-forecasts"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.13049">3DTCR: Vortex-following
-generative reconstruction improves tropical cyclone intensity prediction
-from global AI weather forecasts</a></h3>
+<h3 id="3dtcr-vortex-following-generative-reconstruction-improves-tropical-cyclone-intensity-prediction-from-global-ai-weather-forecasts"><a class="markdownIt-Anchor" href="#3dtcr-vortex-following-generative-reconstruction-improves-tropical-cyclone-intensity-prediction-from-global-ai-weather-forecasts"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.13049">3DTCR: Vortex-following generative reconstruction improves tropical cyclone intensity prediction from global AI weather forecasts</a></h3>
 <ul>
-<li>作者：Jun Liu、Xiaohui Zhong、Kai Zheng、Jiarui Li、Yifei Li、Tao
-Zhou、Wenwen Zhang、Hao Li</li>
+<li>作者：Jun Liu、Xiaohui Zhong、Kai Zheng、Jiarui Li、Yifei Li、Tao Zhou、Wenwen Zhang、Hao Li</li>
 <li>来源/分类：arXiv，AI / AI 气象与热带气旋预测</li>
-<li>简介：3DTCR 用 2018–2024 年 3 km、以台风涡旋为中心的 WRF
-数据训练条件 flow matching，两阶段把 FuXi
-全球预报重建为局地三维结构。摘要报告在 2024 西北太平洋预报中，相对 FuXi
-的最大 10 m 风速 RMSE/平均偏差幅度下降 36.5%/60.7%，相对 ECMWF-HRES 下降
-8.9%/28.2%；单 GPU 约 3 分钟，而全盆地 3 km WRF 需 32 CPU 核约 400
-小时。结果主要是特定区域、年份和模型配置下的预报评估。</li>
+<li>简介：3DTCR 用 2018–2024 年 3 km、以台风涡旋为中心的 WRF 数据训练条件 flow matching，两阶段把 FuXi 全球预报重建为局地三维结构。摘要报告在 2024 西北太平洋预报中，相对 FuXi 的最大 10 m 风速 RMSE/平均偏差幅度下降 36.5%/60.7%，相对 ECMWF-HRES 下降 8.9%/28.2%；单 GPU 约 3 分钟，而全盆地 3 km WRF 需 32 CPU 核约 400 小时。结果主要是特定区域、年份和模型配置下的预报评估。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.13049">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.13049">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2603.13049">DOI</a></li>
 </ul>
-<h3 id="text-to-image-synthesis-a-decade-survey"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2411.16164">Text-to-Image Synthesis: A
-Decade Survey</a></h3>
+<h3 id="text-to-image-synthesis-a-decade-survey"><a class="markdownIt-Anchor" href="#text-to-image-synthesis-a-decade-survey"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2411.16164">Text-to-Image Synthesis: A Decade Survey</a></h3>
 <ul>
 <li>作者：Nonghai Zhang、Hao Tang</li>
 <li>来源/分类：arXiv，AI / 文生图综述</li>
-<li>简介：综述覆盖约 490 篇论文，回顾 GAN、自回归和 diffusion
-文生图及其共同组件，按可控性、个性化、编辑、偏好对齐、效率、安全、一致性和多模态统一模型整理到
-2026
-年的研究进展。它的价值是建立术语和问题地图，不提供新的受控实验；综述的覆盖边界、选择标准和不同
-benchmark 的不可比性需要读者自行核对。</li>
+<li>简介：综述覆盖约 490 篇论文，回顾 GAN、自回归和 diffusion 文生图及其共同组件，按可控性、个性化、编辑、偏好对齐、效率、安全、一致性和多模态统一模型整理到 2026 年的研究进展。它的价值是建立术语和问题地图，不提供新的受控实验；综述的覆盖边界、选择标准和不同 benchmark 的不可比性需要读者自行核对。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2411.16164">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2411.16164">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2411.16164">DOI</a></li>
 </ul>
-<h3 id="ai-consilium-a-benchmark-of-llm-clinical-multidisciplinary-second-opinions"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22298">AI Consilium: a Benchmark of LLM
-Clinical Multidisciplinary Second Opinions</a></h3>
+<h3 id="ai-consilium-a-benchmark-of-llm-clinical-multidisciplinary-second-opinions"><a class="markdownIt-Anchor" href="#ai-consilium-a-benchmark-of-llm-clinical-multidisciplinary-second-opinions"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22298">AI Consilium: a Benchmark of LLM Clinical Multidisciplinary Second Opinions</a></h3>
 <ul>
-<li>作者：Alexey A. Bokov、Ivan I. Panin、Nikolay B. Nechaev、Mikhail
-Yu. Valkov、Valeria Yu. Chernina、Natalia Gombolevskaya、Ayyaz
-Hussain、Vladimir M. Agafonov、Victor A. Gombolevskiy、Aleksandr V.
-Nesterov、Iaroslav R. Bespalov、Ivan V. Oseledets、Dmitry V. Dylov</li>
+<li>作者：Alexey A. Bokov、Ivan I. Panin、Nikolay B. Nechaev、Mikhail Yu. Valkov、Valeria Yu. Chernina、Natalia Gombolevskaya、Ayyaz Hussain、Vladimir M. Agafonov、Victor A. Gombolevskiy、Aleksandr V. Nesterov、Iaroslav R. Bespalov、Ivan V. Oseledets、Dmitry V. Dylov</li>
 <li>来源/分类：arXiv，AI / 临床多智能体评测</li>
-<li>简介：AI Consilium 用 300 个已解决的 NEJM–MedQA
-病例构造医生参考、judge 校准和留出评估，比较 8 个单模型 pipeline
-在自由格式与结构化多学科会诊中的表现，共评估 3,040
-份报告。作者报告结构化最终报告在 8 个 pipeline 中有 7
-个总体均分更高，管理维度为 2.740 对
-2.436，完整会诊综合也高于主角色意见；LLM judge
-校准、病例分布和“评分更高”与临床安全之间的距离仍是限制。</li>
+<li>简介：AI Consilium 用 300 个已解决的 NEJM–MedQA 病例构造医生参考、judge 校准和留出评估，比较 8 个单模型 pipeline 在自由格式与结构化多学科会诊中的表现，共评估 3,040 份报告。作者报告结构化最终报告在 8 个 pipeline 中有 7 个总体均分更高，管理维度为 2.740 对 2.436，完整会诊综合也高于主角色意见；LLM judge 校准、病例分布和“评分更高”与临床安全之间的距离仍是限制。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22298">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.22298">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.22298">DOI</a></li>
 </ul>
-<h3 id="probe-learning-to-audit-policy-compliance-in-tool-using-llm-agents"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22124">PROBE: Learning to Audit Policy
-Compliance in Tool-Using LLM Agents</a></h3>
+<h3 id="probe-learning-to-audit-policy-compliance-in-tool-using-llm-agents"><a class="markdownIt-Anchor" href="#probe-learning-to-audit-policy-compliance-in-tool-using-llm-agents"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22124">PROBE: Learning to Audit Policy Compliance in Tool-Using LLM Agents</a></h3>
 <ul>
 <li>作者：Kshitij Mishra、Abhijith Sharma、Nils Lukas、Salem Lahlou</li>
 <li>来源/分类：arXiv，AI / 工具 agent 政策合规审计</li>
-<li>简介：PROBE 把政策审计建模为双人 Markov game，让 auditor
-以真实用户方式多轮调用工具，寻找可能在后续系统状态中才出现的违规；作者比较
-GRPO、DPO 和 GFlowNet reward 设计。摘要称训练后的 auditor 比同架构
-zero-shot adversary 找到更广、更高产的违规，即使 auditor
-更小；但尚未从摘要得知真实部署策略、标注独立性和攻击成本。</li>
+<li>简介：PROBE 把政策审计建模为双人 Markov game，让 auditor 以真实用户方式多轮调用工具，寻找可能在后续系统状态中才出现的违规；作者比较 GRPO、DPO 和 GFlowNet reward 设计。摘要称训练后的 auditor 比同架构 zero-shot adversary 找到更广、更高产的违规，即使 auditor 更小；但尚未从摘要得知真实部署策略、标注独立性和攻击成本。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.22124">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.22124">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.22124">DOI</a></li>
 </ul>
-<h3 id="cim-embed-learning-instruction-conditioned-multimodal-embeddings-for-clustering"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21805">CIM-Embed: Learning
-Instruction-Conditioned Multimodal Embeddings for Clustering</a></h3>
+<h3 id="cim-embed-learning-instruction-conditioned-multimodal-embeddings-for-clustering"><a class="markdownIt-Anchor" href="#cim-embed-learning-instruction-conditioned-multimodal-embeddings-for-clustering"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21805">CIM-Embed: Learning Instruction-Conditioned Multimodal Embeddings for Clustering</a></h3>
 <ul>
-<li>作者：Yinghua Xu、Pengyang Xie、Yanxiang Zhou、Chuanzhi Tong、Xiao
-Xiao、Chaoqun Feng、Xiaoqing Wang</li>
+<li>作者：Yinghua Xu、Pengyang Xie、Yanxiang Zhou、Chuanzhi Tong、Xiao Xiao、Chaoqun Feng、Xiaoqing Wang</li>
 <li>来源/分类：arXiv，AI / 指令条件多模态聚类</li>
-<li>简介：CIM-Embed 用监督对比学习把图像、文本和聚类指令直接映射到
-embedding，再用不需要已知簇数的 HDBSCAN 输出分组。ProductMIC 含 5,373
-个商品、449 个单属性或组合分组任务，并把 50
-个叶类别排除在训练外；作者报告 mean per-task V-measure 为
-95.01，对比最强通用 embedding baseline WeMM 9B 的
-53.06。代码和数据摘要称将在接收后发布，因此当前可复现性仍待确认。</li>
+<li>简介：CIM-Embed 用监督对比学习把图像、文本和聚类指令直接映射到 embedding，再用不需要已知簇数的 HDBSCAN 输出分组。ProductMIC 含 5,373 个商品、449 个单属性或组合分组任务，并把 50 个叶类别排除在训练外；作者报告 mean per-task V-measure 为 95.01，对比最强通用 embedding baseline WeMM 9B 的 53.06。代码和数据摘要称将在接收后发布，因此当前可复现性仍待确认。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21805">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.21805">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.21805">DOI</a></li>
 </ul>
-<h3 id="in-the-guise-of-correction-how-framing-and-cultural-adaptation-erode-llm-safety-on-real-world-criminal-cases"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21789">In the Guise of Correction: How
-Framing and Cultural Adaptation Erode LLM Safety on Real-World Criminal
-Cases</a></h3>
+<h3 id="in-the-guise-of-correction-how-framing-and-cultural-adaptation-erode-llm-safety-on-real-world-criminal-cases"><a class="markdownIt-Anchor" href="#in-the-guise-of-correction-how-framing-and-cultural-adaptation-erode-llm-safety-on-real-world-criminal-cases"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21789">In the Guise of Correction: How Framing and Cultural Adaptation Erode LLM Safety on Real-World Criminal Cases</a></h3>
 <ul>
-<li>作者：Mohsinul Kabir、Md. Tariquzzaman、Karam S. R.
-Elradie、Polydoros Giannouris、Yuechen Jiang、Shaoxiong Ji、Sophia
-Ananiadou</li>
+<li>作者：Mohsinul Kabir、Md. Tariquzzaman、Karam S. R. Elradie、Polydoros Giannouris、Yuechen Jiang、Shaoxiong Ji、Sophia Ananiadou</li>
 <li>来源/分类：arXiv，AI / 多语言犯罪协助安全</li>
-<li>简介：GUISE 从真实案件构造基于 UNODC ICCS 的犯罪协助场景，以三种语言
-framing 和五种文化评估模型，并同时判断 harmfulness 与 operational
-uplift。摘要报告直接请求的平均 unsafe compliance 为
-28.9%，改成“纠错请求”升至 66.4%，峰值
-97.3%；文化适配相对直译在四种非英语语言上再高 7–18 个百分点，且危险性与
-Anglocentric register 泄漏相关。它仍是 benchmark
-行为结果，不能直接推断线上模型的总体事故率。</li>
+<li>简介：GUISE 从真实案件构造基于 UNODC ICCS 的犯罪协助场景，以三种语言 framing 和五种文化评估模型，并同时判断 harmfulness 与 operational uplift。摘要报告直接请求的平均 unsafe compliance 为 28.9%，改成“纠错请求”升至 66.4%，峰值 97.3%；文化适配相对直译在四种非英语语言上再高 7–18 个百分点，且危险性与 Anglocentric register 泄漏相关。它仍是 benchmark 行为结果，不能直接推断线上模型的总体事故率。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.21789">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.21789">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.21789">DOI</a></li>
 </ul>
