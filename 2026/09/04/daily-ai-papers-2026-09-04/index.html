@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 1. FineVLA：让机器人语言真正约束“怎么做” 论文：FineVLA: Fine-Grained Instruction Alignment for Steerable Vision-Language-Action Policies（arXiv:2605.27284） 作者：Xintong Hu、Xuhong Huang、Jinyu Zhang、Yutong Yao、Yuchon">
+    <meta name="description" content="重点关注1. FineVLA：让机器人语言真正约束“怎么做”论文：FineVLA: Fine-Grained Instruction Alignment for Steerable Vision-Language-Action Policies（arXiv:2605.27284）作者：Xintong Hu、Xuhong Huang、Jinyu Zhang、Yutong Yao、Yuchong S">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 9 月 4 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/09/04/daily-ai-papers-2026-09-04/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 1. FineVLA：让机器人语言真正约束“怎么做” 论文：FineVLA: Fine-Grained Instruction Alignment for Steerable Vision-Language-Action Policies（arXiv:2605.27284） 作者：Xintong Hu、Xuhong Huang、Jinyu Zhang、Yutong Yao、Yuchon">
+<meta property="og:description" content="重点关注1. FineVLA：让机器人语言真正约束“怎么做”论文：FineVLA: Fine-Grained Instruction Alignment for Steerable Vision-Language-Action Policies（arXiv:2605.27284）作者：Xintong Hu、Xuhong Huang、Jinyu Zhang、Yutong Yao、Yuchong S">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-09/pixiv-rank-012-147955252.jpg">
 <meta property="article:published_time" content="2026-09-04T02:15:00.000Z">
@@ -347,412 +347,54 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<h3 id="finevla让机器人语言真正约束怎么做">1.
-FineVLA：让机器人语言真正约束“怎么做”</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.27284">FineVLA: Fine-Grained
-Instruction Alignment for Steerable Vision-Language-Action
-Policies</a>（arXiv:2605.27284）<br>
-<strong>作者</strong>：Xintong Hu、Xuhong Huang、Jinyu Zhang、Yutong
-Yao、Yuchong Sun、Qiuyue Wang、Mingsheng Li、Sicheng Xie、Yitao
-Liu、Junhao Chen、Yixuan Chen、Yingming Zheng、Shuai Bai、Tao Yu<br>
-<strong>来源/分类</strong>：arXiv · cs.RO、cs.AI<br>
-<strong>全文状态</strong>：已核阅公开 PDF（39 页）</p>
-<p><strong>核心问题</strong>：大多数机器人轨迹只有“抓杯子”这类目标级描述，没有说明使用哪只手、从哪个方向接近、在哪里接触或如何恢复失败。论文问的是：把这些执行细节写进监督，能否让
-VLA 策略在不牺牲任务完成率的前提下变得可操控。</p>
-<p><strong>方法与基线</strong>：FineVLA-Tool 统一 10
-个开源机器人数据集的 972,247 条轨迹、约 85K 个任务，通过聚类采样后形成
-47,159 条人工核验的细粒度轨迹，覆盖十类执行属性。作者另外构建含 500
-个视频、11,631 个原子事实和 1,030 个 VQA 问题的 RoboFine-Bench，并训练
-RoboFine-VLM 做可扩展标注。策略实验在 RDT-OFT、RDT-GR00T 和 AlohaMix-OFT
-上固定视觉、动作与轨迹，只改变 Raw-only、FG-only 以及 FG:Raw
-混合比例；模拟评测每任务 20 个 episode，真实评测在 Cobot Magic
-双臂平台上用近似相同场景的成对指令隔离颜色、姿态、接近方向、旋转方向和主动臂。</p>
-<p><strong>作者报告的结果</strong>：RoboFine-VLM 在留出的 RoboFine-Bench
-上达到 68.2% VQA 准确率，困难 caption 轨道得分
-82.2%，高于所比较的通用模型。RoboTwin 中，AlohaMix-OFT 的 FG:Raw=1:1
-达到 Easy/Hard 86.8%/82.5%，相对 Raw-only 的 71.8%/71.4% 提升 15.0/11.1
-个百分点；FG-only 也在三种设置中优于
-Raw-only。真实双臂评测的平均任务分从 Raw-only 的 49.9/100 升到混合监督的
-62.7/100，姿态、颜色和接近方向分别提升 23、18 和 18 分。作者观察到
-FG:Raw 约 1:2 到 1:1 呈稳定倒 U
-曲线，说明细粒度语言更像目标级指令的补充，而不是替代品。</p>
-<p><strong>创新、局限与失败条件</strong>：贡献在于把动作对齐的数据工具、留出的视频理解基准、专用视觉语言标注器和策略训练配方放在一个可复现闭环中。真实验证仍局限于桌面双臂和少量定向任务，未解决未见过的主动臂—目标组合：OOD
-探针的最高得分只有 10/100。人工核验没有被完全消除，caption
-的反幻觉指标也主要覆盖动作步骤。训练规模包括 100k steps、64 张 A100
-的预训练配置，部署成本不能由“任务成功率提升”忽略；论文报告的数字是作者实验，不是独立复核结论。</p>
-<p><strong>适合谁读</strong>：机器人
-VLA、具身数据工程和可控策略研究者。建议优先读 §1、§2
-的数据与基准、§4.2–§4.4 的 VLM/模拟/真实实验，以及 §5.4–§5.5
-的因素级控制和失败分析。项目页：<a target="_blank" rel="noopener" href="https://finevla.xlang.ai/">finevla.xlang.ai</a>。</p>
-<h3 id="top-r工具编排会把无害碎片拼成隐私泄露">2.
-TOP-R：工具编排会把“无害碎片”拼成隐私泄露</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.16310">Agent Tools Orchestration Leaks
-More: Dataset, Benchmark, and Mitigation</a>（arXiv:2512.16310）<br>
-<strong>作者</strong>：Yuxuan Qiao、Dongqin Liu、Hongchang Yang、Wei
-Zhou、Songlin Hu<br>
-<strong>来源/分类</strong>：arXiv · cs.CR、cs.AI、cs.CL<br>
-<strong>全文状态</strong>：已核阅公开 PDF（20 页）</p>
-<p><strong>核心问题</strong>：一个银行记录、一个日历条目或一个联系人返回值单独看都不揭示敏感结论，但智能体可能把它们合并后主动说出用户没有要求的健康、财务、法律或求职信息。论文将这种单智能体、多工具、无攻击者参与的组合推断风险形式化为
-TOP-R，并问现有提示防护是否足够。</p>
-<p><strong>方法与基线</strong>：作者用四类 grounding library 通过 LRSE
-反向构造 1,000 个合成实例，固定 6
-个候选工具、两阶段工具选择/回答流程，并用 C1 结论敏感、C2
-单源不可推断、C3 多源可推断三道门筛选。指标分开报告任务完成率 CR、泄露率
-LR 和二者的调和平均 H-score；基线包含 6 个 LLM agent，提示实验比较
-Task-Necessary Minimality、Context-Bounded Disclosure 和
-Law-and-Policy，参数更新方法 TOP-Align 采用 SFT+DPO。</p>
-<p><strong>作者报告的结果</strong>：六个 agent 的平均 CR 为 98.0%，但 LR
-达到 88.6%，H-score 只有 20.4；不同模型的 CR 都超过
-96%，因此这里不是普通任务失败，而是“成功完成任务同时泄露”。CTD 从 2 增到
-5 时，LR 从 78.7% 升至 93.4%。开启原生 reasoning
-后，最终回答泄露率平均仍为 81.4%，暴露推理轨迹泄露率为
-82.4%。仅提示的最低 LR 仍为 69.8%；在独立 500
-实例的后训练评测中，TOP-Align SFT+DPO 的 CR/LR/H-score 为
-97.4%/64.8%/51.7%，相对基线 H-score 提升 16.2 分，但没有消除泄露。</p>
-<p><strong>创新、局限与失败条件</strong>：论文把隐私边界从“单条工具返回是否含秘密”推进到“多条合法返回是否可组合推断”，并把任务效用与非披露放到同一指标中。TOP-Bench
-是受控合成基准，不是线上流量样本，不能估计真实系统的泄露发生率；隐藏内部状态、工具调用日志、记忆和下游传播也未测量。判断依赖模型辅助的
-judge-and-audit 流程，TOP-Align 只在一个基础模型和独立 split
-上评估，提示与后训练都可能受基准构造分布影响。</p>
-<p><strong>适合谁读</strong>：工具调用
-agent、隐私工程、安全评测和企业数据治理读者。建议优先读 §3 的形式化、§4
-的 LRSE/TOP-Bench、§5.3–§5.6 的基线与 reasoning 诊断、§6 的缓解实验和
-Limitations。代码与数据：<a target="_blank" rel="noopener" href="https://github.com/1Ponder/TOP-R">TOP-R GitHub</a>。</p>
-<h3 id="incremental-pooled-llm-evaluation把-rag-评测变成可复用资产">3.
-Incremental Pooled LLM Evaluation：把 RAG 评测变成可复用资产</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02745">Incremental Pooled LLM
-Evaluation for Cost-Effective Retrieval Model
-Selection</a>（arXiv:2609.02745）<br>
-<strong>作者</strong>：Max Nelson、Hanoz Bhathena、Aviral Joshi、Saket
-Sharma<br>
-<strong>来源/分类</strong>：arXiv · cs.IR、cs.CL<br>
-<strong>全文状态</strong>：已核阅公开 PDF（10 页）</p>
-<p><strong>核心问题</strong>：生产 RAG 不断加入新的 embedding、BM25 或
-hybrid 检索配置，如果每次都重新让人或 LLM 标注全部 query-document
-对，评测成本会随系统数量线性重复。论文问能否只标注候选系统检索结果的并集，并在新系统加入时只补标它带来的新文档。</p>
-<p><strong>方法与基线</strong>：对每个 query，作者把 11 个 dense、sparse
-和 hybrid 系统的 top-100 文档合并，用固定版本 GPT-4.1 以 0/1/2
-三档相关性评分，再复用 qrels 计算 <a href="mailto:P@k" class="email">P@k</a>、Recall、nDCG 和 MAP。方法在
-FiQA、TREC-COVID、Natural Questions 和 FinRAGBench-V
-四个公开基准上与人工 gold qrels 比较，并在金融新闻 QA 中评测 62
-个检索配置；基线是每个系统独立标注以及传统只把池外文档当作不相关的
-pooling。</p>
-<p><strong>作者报告的结果</strong>：四个公开基准的 pooled LLM 排名与
-gold 排名的 <a href="mailto:nDCG@10" class="email">nDCG@10</a> Spearman
-相关系数为 0.69–0.95，作者称考虑 qrels bootstrap 不确定性后有 97%
-的成对系统排序得到保留；更细看 nDCG 的 220 对系统比较，只有 7
-对差异被视为超出金标准自身抽样噪声。生产案例的 62 个配置在四周内形成
-766,350 个唯一判断；独立评测需要 3,765,643 个判断，重复利用率
-79.6%，成本约下降 4.9 倍，作者按其价格估算总成本约 800
-美元。最终选择的是 hybrid-emb3-large-256，同时考虑 MAP、延迟和 embedding
-成本。</p>
-<p><strong>创新、局限与失败条件</strong>：核心价值是把相关性判断保存为可增量扩展的评测资产，减少新模型加入时的重复劳动，并显式处理传统
-pooling 对新检索行为的偏置。该方法不能可靠区分 nDCG 差小于约 0.001
-的近乎并列系统；主要判断来自单一 GPT-4.1，跨 judge
-的验证只覆盖一套数据。LLM qrels
-对绝对分数存在校准偏差，生产案例也没有把检索排名直接等同于最终回答质量；结论依赖固定
-judge 版本、query 分布与可复现的文档快照。</p>
-<p><strong>适合谁读</strong>：RAG
-评测、搜索基础设施和模型选型团队。建议优先读 §3 的 pooling
-定义与成本分析、§4.3 的 judge 稳定性、§5 的排名/成本结果、§7
-的生产案例和 §10 的限制。</p>
-<h3 id="docusearch企业-rag-的增益来自检索后验证">4. DocuSearch：企业 RAG
-的增益来自“检索后验证”</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01617">Hybrid Retrieval-Augmented
-Generation with Knowledge Graph Expansion, RRF Fusion, and Per-Chunk
-Grounded Evaluation for Enterprise Document
-Search</a>（arXiv:2609.01617）<br>
-<strong>作者</strong>：Harish Saragadam、Sudhanshu Sharma、Meghana
-Pujari<br>
-<strong>来源/分类</strong>：arXiv · cs.IR、cs.AI、cs.LG<br>
-<strong>全文状态</strong>：已核阅公开 PDF（7 页）</p>
+<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="1-FineVLA：让机器人语言真正约束“怎么做”"><a href="#1-FineVLA：让机器人语言真正约束“怎么做”" class="headerlink" title="1. FineVLA：让机器人语言真正约束“怎么做”"></a>1. FineVLA：让机器人语言真正约束“怎么做”</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.27284">FineVLA: Fine-Grained Instruction Alignment for Steerable Vision-Language-Action Policies</a>（arXiv:2605.27284）<br><strong>作者</strong>：Xintong Hu、Xuhong Huang、Jinyu Zhang、Yutong Yao、Yuchong Sun、Qiuyue Wang、Mingsheng Li、Sicheng Xie、Yitao Liu、Junhao Chen、Yixuan Chen、Yingming Zheng、Shuai Bai、Tao Yu<br><strong>来源/分类</strong>：arXiv · cs.RO、cs.AI<br><strong>全文状态</strong>：已核阅公开 PDF（39 页）</p>
+<p><strong>核心问题</strong>：大多数机器人轨迹只有“抓杯子”这类目标级描述，没有说明使用哪只手、从哪个方向接近、在哪里接触或如何恢复失败。论文问的是：把这些执行细节写进监督，能否让 VLA 策略在不牺牲任务完成率的前提下变得可操控。</p>
+<p><strong>方法与基线</strong>：FineVLA-Tool 统一 10 个开源机器人数据集的 972,247 条轨迹、约 85K 个任务，通过聚类采样后形成 47,159 条人工核验的细粒度轨迹，覆盖十类执行属性。作者另外构建含 500 个视频、11,631 个原子事实和 1,030 个 VQA 问题的 RoboFine-Bench，并训练 RoboFine-VLM 做可扩展标注。策略实验在 RDT-OFT、RDT-GR00T 和 AlohaMix-OFT 上固定视觉、动作与轨迹，只改变 Raw-only、FG-only 以及 FG:Raw 混合比例；模拟评测每任务 20 个 episode，真实评测在 Cobot Magic 双臂平台上用近似相同场景的成对指令隔离颜色、姿态、接近方向、旋转方向和主动臂。</p>
+<p><strong>作者报告的结果</strong>：RoboFine-VLM 在留出的 RoboFine-Bench 上达到 68.2% VQA 准确率，困难 caption 轨道得分 82.2%，高于所比较的通用模型。RoboTwin 中，AlohaMix-OFT 的 FG:Raw=1:1 达到 Easy/Hard 86.8%/82.5%，相对 Raw-only 的 71.8%/71.4% 提升 15.0/11.1 个百分点；FG-only 也在三种设置中优于 Raw-only。真实双臂评测的平均任务分从 Raw-only 的 49.9/100 升到混合监督的 62.7/100，姿态、颜色和接近方向分别提升 23、18 和 18 分。作者观察到 FG:Raw 约 1:2 到 1:1 呈稳定倒 U 曲线，说明细粒度语言更像目标级指令的补充，而不是替代品。</p>
+<p><strong>创新、局限与失败条件</strong>：贡献在于把动作对齐的数据工具、留出的视频理解基准、专用视觉语言标注器和策略训练配方放在一个可复现闭环中。真实验证仍局限于桌面双臂和少量定向任务，未解决未见过的主动臂—目标组合：OOD 探针的最高得分只有 10/100。人工核验没有被完全消除，caption 的反幻觉指标也主要覆盖动作步骤。训练规模包括 100k steps、64 张 A100 的预训练配置，部署成本不能由“任务成功率提升”忽略；论文报告的数字是作者实验，不是独立复核结论。</p>
+<p><strong>适合谁读</strong>：机器人 VLA、具身数据工程和可控策略研究者。建议优先读 §1、§2 的数据与基准、§4.2–§4.4 的 VLM/模拟/真实实验，以及 §5.4–§5.5 的因素级控制和失败分析。项目页：<a target="_blank" rel="noopener" href="https://finevla.xlang.ai/">finevla.xlang.ai</a>。</p>
+<h3 id="2-TOP-R：工具编排会把“无害碎片”拼成隐私泄露"><a href="#2-TOP-R：工具编排会把“无害碎片”拼成隐私泄露" class="headerlink" title="2. TOP-R：工具编排会把“无害碎片”拼成隐私泄露"></a>2. TOP-R：工具编排会把“无害碎片”拼成隐私泄露</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.16310">Agent Tools Orchestration Leaks More: Dataset, Benchmark, and Mitigation</a>（arXiv:2512.16310）<br><strong>作者</strong>：Yuxuan Qiao、Dongqin Liu、Hongchang Yang、Wei Zhou、Songlin Hu<br><strong>来源/分类</strong>：arXiv · cs.CR、cs.AI、cs.CL<br><strong>全文状态</strong>：已核阅公开 PDF（20 页）</p>
+<p><strong>核心问题</strong>：一个银行记录、一个日历条目或一个联系人返回值单独看都不揭示敏感结论，但智能体可能把它们合并后主动说出用户没有要求的健康、财务、法律或求职信息。论文将这种单智能体、多工具、无攻击者参与的组合推断风险形式化为 TOP-R，并问现有提示防护是否足够。</p>
+<p><strong>方法与基线</strong>：作者用四类 grounding library 通过 LRSE 反向构造 1,000 个合成实例，固定 6 个候选工具、两阶段工具选择/回答流程，并用 C1 结论敏感、C2 单源不可推断、C3 多源可推断三道门筛选。指标分开报告任务完成率 CR、泄露率 LR 和二者的调和平均 H-score；基线包含 6 个 LLM agent，提示实验比较 Task-Necessary Minimality、Context-Bounded Disclosure 和 Law-and-Policy，参数更新方法 TOP-Align 采用 SFT+DPO。</p>
+<p><strong>作者报告的结果</strong>：六个 agent 的平均 CR 为 98.0%，但 LR 达到 88.6%，H-score 只有 20.4；不同模型的 CR 都超过 96%，因此这里不是普通任务失败，而是“成功完成任务同时泄露”。CTD 从 2 增到 5 时，LR 从 78.7% 升至 93.4%。开启原生 reasoning 后，最终回答泄露率平均仍为 81.4%，暴露推理轨迹泄露率为 82.4%。仅提示的最低 LR 仍为 69.8%；在独立 500 实例的后训练评测中，TOP-Align SFT+DPO 的 CR/LR/H-score 为 97.4%/64.8%/51.7%，相对基线 H-score 提升 16.2 分，但没有消除泄露。</p>
+<p><strong>创新、局限与失败条件</strong>：论文把隐私边界从“单条工具返回是否含秘密”推进到“多条合法返回是否可组合推断”，并把任务效用与非披露放到同一指标中。TOP-Bench 是受控合成基准，不是线上流量样本，不能估计真实系统的泄露发生率；隐藏内部状态、工具调用日志、记忆和下游传播也未测量。判断依赖模型辅助的 judge-and-audit 流程，TOP-Align 只在一个基础模型和独立 split 上评估，提示与后训练都可能受基准构造分布影响。</p>
+<p><strong>适合谁读</strong>：工具调用 agent、隐私工程、安全评测和企业数据治理读者。建议优先读 §3 的形式化、§4 的 LRSE/TOP-Bench、§5.3–§5.6 的基线与 reasoning 诊断、§6 的缓解实验和 Limitations。代码与数据：<a target="_blank" rel="noopener" href="https://github.com/1Ponder/TOP-R">TOP-R GitHub</a>。</p>
+<h3 id="3-Incremental-Pooled-LLM-Evaluation：把-RAG-评测变成可复用资产"><a href="#3-Incremental-Pooled-LLM-Evaluation：把-RAG-评测变成可复用资产" class="headerlink" title="3. Incremental Pooled LLM Evaluation：把 RAG 评测变成可复用资产"></a>3. Incremental Pooled LLM Evaluation：把 RAG 评测变成可复用资产</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02745">Incremental Pooled LLM Evaluation for Cost-Effective Retrieval Model Selection</a>（arXiv:2609.02745）<br><strong>作者</strong>：Max Nelson、Hanoz Bhathena、Aviral Joshi、Saket Sharma<br><strong>来源/分类</strong>：arXiv · cs.IR、cs.CL<br><strong>全文状态</strong>：已核阅公开 PDF（10 页）</p>
+<p><strong>核心问题</strong>：生产 RAG 不断加入新的 embedding、BM25 或 hybrid 检索配置，如果每次都重新让人或 LLM 标注全部 query-document 对，评测成本会随系统数量线性重复。论文问能否只标注候选系统检索结果的并集，并在新系统加入时只补标它带来的新文档。</p>
+<p><strong>方法与基线</strong>：对每个 query，作者把 11 个 dense、sparse 和 hybrid 系统的 top-100 文档合并，用固定版本 GPT-4.1 以 0/1/2 三档相关性评分，再复用 qrels 计算 P@k、Recall、nDCG 和 MAP。方法在 FiQA、TREC-COVID、Natural Questions 和 FinRAGBench-V 四个公开基准上与人工 gold qrels 比较，并在金融新闻 QA 中评测 62 个检索配置；基线是每个系统独立标注以及传统只把池外文档当作不相关的 pooling。</p>
+<p><strong>作者报告的结果</strong>：四个公开基准的 pooled LLM 排名与 gold 排名的 nDCG@10 Spearman 相关系数为 0.69–0.95，作者称考虑 qrels bootstrap 不确定性后有 97% 的成对系统排序得到保留；更细看 nDCG 的 220 对系统比较，只有 7 对差异被视为超出金标准自身抽样噪声。生产案例的 62 个配置在四周内形成 766,350 个唯一判断；独立评测需要 3,765,643 个判断，重复利用率 79.6%，成本约下降 4.9 倍，作者按其价格估算总成本约 800 美元。最终选择的是 hybrid-emb3-large-256，同时考虑 MAP、延迟和 embedding 成本。</p>
+<p><strong>创新、局限与失败条件</strong>：核心价值是把相关性判断保存为可增量扩展的评测资产，减少新模型加入时的重复劳动，并显式处理传统 pooling 对新检索行为的偏置。该方法不能可靠区分 nDCG 差小于约 0.001 的近乎并列系统；主要判断来自单一 GPT-4.1，跨 judge 的验证只覆盖一套数据。LLM qrels 对绝对分数存在校准偏差，生产案例也没有把检索排名直接等同于最终回答质量；结论依赖固定 judge 版本、query 分布与可复现的文档快照。</p>
+<p><strong>适合谁读</strong>：RAG 评测、搜索基础设施和模型选型团队。建议优先读 §3 的 pooling 定义与成本分析、§4.3 的 judge 稳定性、§5 的排名/成本结果、§7 的生产案例和 §10 的限制。</p>
+<h3 id="4-DocuSearch：企业-RAG-的增益来自“检索后验证”"><a href="#4-DocuSearch：企业-RAG-的增益来自“检索后验证”" class="headerlink" title="4. DocuSearch：企业 RAG 的增益来自“检索后验证”"></a>4. DocuSearch：企业 RAG 的增益来自“检索后验证”</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01617">Hybrid Retrieval-Augmented Generation with Knowledge Graph Expansion, RRF Fusion, and Per-Chunk Grounded Evaluation for Enterprise Document Search</a>（arXiv:2609.01617）<br><strong>作者</strong>：Harish Saragadam、Sudhanshu Sharma、Meghana Pujari<br><strong>来源/分类</strong>：arXiv · cs.IR、cs.AI、cs.LG<br><strong>全文状态</strong>：已核阅公开 PDF（7 页）</p>
 <p><strong>核心问题</strong>：电信运维文档同时包含术语、缩写、跨段落流程和多厂商边界，单一向量检索容易漏掉词法或结构相关证据；即使召回正确，单段上下文也可能不足以支持生成答案。论文把“召回更多”和“不要无依据回答”作为两个分开的工程目标。</p>
-<p><strong>方法与基线</strong>：DocuSearch 并行运行 BGE-Large
-向量检索、SQLite FTS5 的 BM25 和知识图谱邻居扩展，以 RRF 融合（权重
-0.50/0.35/0.15，平滑常数 60），再做 cross-encoder 重排与 MMR
-选择。每个候选 chunk 依次经过上下文需求、充分性、回答生成和 groundedness
-检查，不通过则取邻居或走多 chunk fallback。评测是生产电信语料上的 120
-条人工标注查询，基线为 dense-only 和 dense+BM25；另用 200
-条查询测端到端延迟。</p>
-<p><strong>作者报告的结果</strong>：完整系统 <a href="mailto:P@10" class="email">P@10</a>=0.69、<a href="mailto:R@10" class="email">R@10</a>=0.79，较 dense-only 的 0.54/0.63 提升 15/16
-个百分点。grounding rate 为 89.6%，比 single-pass RAG 的 71.2% 高 18.4
-个百分点，幻觉率从 21.4% 降至 6.8%；去掉 groundedness
-check、充分性评分、邻居扩展、重排或知识图谱都会使 grounding
-下降。平均端到端延迟 12.6 秒，其中每 chunk 的评估阶段占 8.4
-秒，检索本身低于 1 秒。</p>
-<p><strong>创新、局限与失败条件</strong>：最值得关注的是把“证据是否足够”和“回答是否被证据支撑”作为生成前的门，而不是只堆更多上下文。样本来自单一企业电信语料，RRF
-权重和 chunk 大小是领域内手工设定，跨领域迁移未验证；8.4
-秒的串行评估是明显瓶颈，且论文没有给出稳定的公开复现仓库。文中后续关于
-RL 自适应检索的性能数字是投影情景，不属于已完成的实证结果。</p>
-<p><strong>适合谁读</strong>：企业搜索、RAG
-可靠性和本地部署工程读者。建议读摘要、§III 的两阶段管线、§V–§VIII
-的配置与结果、§IX-A 的限制；不要跳过消融表。</p>
-<h3 id="safeevolve让安全规则和策略模型共同进化">5.
-SafeEvolve：让安全规则和策略模型共同进化</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02786">SafeEvolve: Harness-Policy
-Co-Evolution from Agent Experience for Safety
-Alignment</a>（arXiv:2609.02786）<br>
-<strong>作者</strong>：Qinghua Mao、Wanying Qu、Dadi Guo、Leitao
-Yuan、Qingyu Liu、Yu Li、Guanxu Chen、Yanwei Fu、Xi Lin、Xia Hu、Dongrui
-Liu<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CR<br>
-<strong>全文状态</strong>：已核阅公开 PDF（25 页）</p>
-<p><strong>核心问题</strong>：智能体安全不只由模型参数决定，也取决于
-prompt、skills、权限和执行控制组成的 harness。只改 harness
-可能超过弱模型的执行能力，只改 policy
-又难以适应新风险；论文问能否让两者从已完成的 on-policy
-轨迹中持续协同更新。</p>
-<p><strong>方法与基线</strong>：SafeEvolve 先把轨迹级风险证据归因到单个
-harness 组件，做有版本、可回滚的 bounded edit，并用配对 rollout
-的门控规则接受更新；再用 harness-use SFT 和 harness-augmented RL
-把安全行为内化。作者在 AgentDojo、AgentDyn 的间接提示注入和 AgentHarm
-的恶意请求上比较 Base、SFT、DPO、GRPO、MetaSecAlign、AgentAlign
-等基线，使用 Qwen3.5-4B 与 Qwen3-4B-Instruct-2507。训练为 200 个 rollout
-steps，每次更新 256 条轨迹；策略训练用 4 张 H200，评测用 1 张 H200。</p>
-<p><strong>作者报告的结果</strong>：在 Qwen3.5-4B 上，AgentDojo 的 ASR
-从 2.37% 降到 0.79%，正常任务效用从 59.79% 升到 61.86%，AgentHarm
-harmful score 从 56.45 降到 12.27%，拒答率从 28.98% 升到
-83.83%。在较弱的 Qwen3-4B 上，AgentDojo 正常效用从 44.33 升到
-60.82%，ASR 从 13.38% 降到 2.42%。留出的 Agent Security Bench
-三类攻击中，SafeEvolve 的 ASR 也低于 Base 与 GRPO；但在线 harness
-更新会改善部分攻击指标、同时让另一些数据集回归，固定的全局门控比无约束在线更新更稳。</p>
-<p><strong>创新、局限与失败条件</strong>：贡献是把安全经验外化为可审计、可回滚的运行时工件，再通过
-SFT-RL
-逐步内化，而不是把所有安全行为压成单一最终回答标签。实验环境主要是 LLM
-生成的有限状态 Python 模拟器，风险分布和 4B 骨干不能代表真实
-SaaS、多工具权限或开放世界；持续自我改写仍可能出现评估器漂移、奖励投机和跨指标回归。论文报告了
-H200 训练配置，但没有给出完整墙钟时间与总成本，复现实验需固定
-proposer、verifier 和任务生成版本。</p>
-<p><strong>适合谁读</strong>：智能体安全、运行时 harness、RL
-对齐和红队评测读者。建议优先读 §3 的问题定义与演化算法、§4.1–§4.3
-的基线/消融、附录 A.5–A.6 的训练与算力、附录 D 的留出泛化，以及 §5
-的限制。代码：<a target="_blank" rel="noopener" href="https://github.com/MaoPopovich/SafeEvolve">SafeEvolve
-GitHub</a>。</p>
-<h2 id="ai-论文">AI 论文</h2>
-<h3 id="finevla细粒度指令对齐的可操控-vla">1. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.27284">FineVLA：细粒度指令对齐的可操控
-VLA</a></h3>
-<p><strong>作者</strong>：Xintong Hu、Xuhong Huang、Jinyu Zhang、Yutong
-Yao、Yuchong Sun、Qiuyue Wang、Mingsheng Li、Sicheng Xie、Yitao
-Liu、Junhao Chen、Yixuan Chen、Yingming Zheng、Shuai Bai、Tao Yu<br>
-<strong>来源/分类</strong>：arXiv · cs.RO、cs.AI<br>
-<strong>证据状态</strong>：已核阅公开 PDF；重点结果见上文。<br>
-<strong>概览</strong>：研究 VLA
-是否能从“完成什么”进一步遵循“如何完成”，用 10
-个开源机器人数据集、人工核验的 FineVLA-Data、RoboFine-Bench 和受控
-FG/Raw
-混合训练回答。作者报告混合监督在模拟与真实双臂中提高任务和执行因素控制，但人工核验、有限实体平台和未见过的组合绑定仍是证据边界。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.27284">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.27284">PDF</a> · <a target="_blank" rel="noopener" href="https://finevla.xlang.ai/">项目页</a></p>
-<h3 id="top-r工具编排组合推断隐私风险">2. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.16310">TOP-R：工具编排组合推断隐私风险</a></h3>
-<p><strong>作者</strong>：Yuxuan Qiao、Dongqin Liu、Hongchang Yang、Wei
-Zhou、Songlin Hu<br>
-<strong>来源/分类</strong>：arXiv · cs.CR、cs.AI、cs.CL<br>
-<strong>证据状态</strong>：已核阅公开 PDF；重点结果见上文。<br>
-<strong>概览</strong>：研究多个单独不泄露的工具返回是否会在 agent
-组合推断后泄露敏感结论，提出 TOP-R、TOP-Bench 和
-TOP-Align。作者报告高完成率与高泄露率并存，提示单独防护不足；基准是合成、受控的单智能体场景，不是线上泄露率估计。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.16310">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.16310">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/1Ponder/TOP-R">代码/数据</a></p>
-<h3 id="eliciting-esg-preferences-for-reinforcement-learning-based-portfolio-optimization">3.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02677">Eliciting ESG Preferences for
-Reinforcement Learning-Based Portfolio Optimization</a></h3>
-<p><strong>作者</strong>：Giovanni Dispoto、Marcello Restelli、Carmine
-Ventre<br>
-<strong>来源/分类</strong>：arXiv ·
-q-fin.PM、cs.CE、cs.LG；<strong>双主题</strong>：AI、金融<br>
-<strong>证据状态</strong>：已核阅公开 PDF；本篇只作 AI
-视角概览，金融篇作重点详述。<br>
-<strong>概览</strong>：论文将三个 ESG 机构评分和 Sharpe ratio 放入
-MORL，并用 Gaussian Process 偏好询问让 LLM persona
-模拟不同地区的投资经理选择组合。作者报告欧洲 persona 更重 ESG、Texas
-persona 更重风险调整收益；但 ESG 评分是合成的、交易无摩擦，LLM persona
-的提示敏感性也使这更像偏好模拟而非稳定的人类偏好模型。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02677">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02677">PDF</a></p>
-<h3 id="ns-copilot面向神经科学分析的-llm-多智能体系统">4. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01971">NS-Copilot：面向神经科学分析的
-LLM 多智能体系统</a></h3>
-<p><strong>作者</strong>：Wuche Liu、Yiran Qiao、Linlin Hou、Rui
-Yang、Shusen Pu、Song Wang、Jing Ma<br>
-<strong>来源/分类</strong>：arXiv · cs.CL<br>
-<strong>证据状态</strong>：仅依据摘要。<br>
-<strong>概览</strong>：研究如何让 agent 选择和协调 EEG、细胞外 spike
-等神经科学预训练模型；NS-Copilot
-由规划、控制、代码生成和结果综合角色组成，在阿尔茨海默病、帕金森病和工作记忆
-spike decoding 任务上评测。摘要称每项任务 8
-次试验中主指标持续优于强基线，价值在于把领域模型选择纳入工作流；但未提供基线名称、数据规模、统计不确定性、人工修正比例或算力成本，不能据此推断可独立完成科研分析。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01971">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.01971">PDF</a></p>
-<h3 id="socialbuddy面向社交场景的搜索智能体">5. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01641">SocialBuddy：面向社交场景的搜索智能体</a></h3>
-<p><strong>作者</strong>：Mingxuan Li、Yirong Mao、FaZhan Zhang、Haibiao
-Yao、Runze Hu、Wenhui Que<br>
-<strong>来源/分类</strong>：arXiv · cs.SI、cs.LG<br>
-<strong>证据状态</strong>：仅依据摘要。<br>
-<strong>概览</strong>：研究 agentic search
-在朋友动态、异构社交流和多维约束查询中的失效，构造含 200K
-用户档案、1,000 万条帖子、50K 推理轨迹的 SocialEnv，并用 SocialPO
-同时做路径级和 token 级纠偏。作者报告 SocialBuddy-35B 超过明显更大的
-frontier
-LLM；但环境和轨迹由自动流水线合成，代码/数据尚待接收后发布，真实隐私、时间漂移、开放世界噪声和成本尚未验证。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01641">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.01641">PDF</a></p>
-<h3 id="incremental-pooled-llm-evaluation增量复用的检索模型评测">6. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02745">Incremental Pooled LLM
-Evaluation：增量复用的检索模型评测</a></h3>
-<p><strong>作者</strong>：Max Nelson、Hanoz Bhathena、Aviral
-Joshi、Saket Sharma<br>
-<strong>来源/分类</strong>：arXiv · cs.IR、cs.CL<br>
-<strong>证据状态</strong>：已核阅公开 PDF；重点结果见上文。<br>
-<strong>概览</strong>：研究把候选检索系统的文档并集交给固定 LLM judge
-标注，并在新系统加入时只标注新增文档；作者在四个公开基准和 62 个金融新闻
-QA 配置中报告较高排名相关与 65%–80% 的判断复用。需要同时检查 qrels
-稀疏、单一
-judge、近似并列系统和最终生成质量，不能把检索排名直接当作回答质量。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02745">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02745">PDF</a></p>
-<h3 id="phoenixnest-video有证据支撑的多模态面试评估-agent">7. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02231">PhoenixNest-Video：有证据支撑的多模态面试评估
-agent</a></h3>
-<p><strong>作者</strong>：Fan Yuxuan、Huang Miaojun、Zhang Haimei、Wu
-Jingshen、Liu Hao<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>证据状态</strong>：仅依据摘要。<br>
-<strong>概览</strong>：研究视频面试评分如何按 rubric
-给出可追溯行为证据，而不是只输出不透明分数。PhoenixNest-Video
-构建语义视频图，对视觉、音频、文本做 rubric
-条件检索与交叉验证，并用双奖励 rubric RL 训练 scorer；作者报告
-VInterview-2025 grade-level accuracy 为
-91.50%，超过更大的专有模型。证据仍来自单一基准和专家面板一致性，招聘公平性、跨文化迁移、候选人隐私和真实决策后果未由摘要证明。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02231">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02231">PDF</a></p>
-<h3 id="docusearch知识图谱扩展与逐-chunk-grounding-的企业检索">8. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01617">DocuSearch：知识图谱扩展与逐
-chunk grounding 的企业检索</a></h3>
-<p><strong>作者</strong>：Harish Saragadam、Sudhanshu Sharma、Meghana
-Pujari<br>
-<strong>来源/分类</strong>：arXiv · cs.IR、cs.AI、cs.LG<br>
-<strong>证据状态</strong>：已核阅公开 PDF；重点结果见上文。<br>
-<strong>概览</strong>：研究多信号检索、重排、MMR 和逐 chunk
-充分性/groundedness 检查能否降低企业 RAG 幻觉；内部电信语料上相对
-dense-only 提高 <a href="mailto:P@10" class="email">P@10</a>、<a href="mailto:R@10" class="email">R@10</a> 和 grounding，但串行检查平均占
-8.4 秒，RRF 权重和结果尚未跨领域验证。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01617">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.01617">PDF</a></p>
-<h3 id="didrive面向安全离线强化学习自动驾驶的风险感知扩散框架">9. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01609">DiDrive：面向安全离线强化学习自动驾驶的风险感知扩散框架</a></h3>
-<p><strong>作者</strong>：Qisong Guo、Jingtang Chen、Zhilin Chen、Pei
-Xu、Mingjian Fu、Wenxi Liu、Yuanlong Yu<br>
-<strong>来源/分类</strong>：arXiv · cs.LG、cs.RO<br>
-<strong>证据状态</strong>：仅依据摘要。<br>
-<strong>概览</strong>：研究离线扩散策略在分布偏移、重尾风险和 OOD
-动作上的脆弱性，提出风险门控的 RHDif 与 3DICE 策略优化。在 CARLA 复杂 60
-车辆场景中，作者报告成功率 85%、平均奖励 4295.68，并称优于 IQL、CQL 和
-Diffusion-QL。摘要没有给出完整任务数、置信区间、碰撞定义、算力和真实道路验证；仿真奖励不能直接等同于驾驶安全或部署可靠性。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01609">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.01609">PDF</a></p>
-<h3 id="isolation-as-a-first-class-principle-for-llm-agent-system-safety">10.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.12406">Isolation as a First-Class
-Principle for LLM-Agent System Safety</a></h3>
-<p><strong>作者</strong>：Huihao Jing、Wenbin Hu、Shaojin Chen、Haochen
-Shi、Sirui Zhang、Hanyu Yang、Changxuan Fan、Zhongwei Xie、Hongyu
-Luo、Wun Yu Chan、Wei Fan、Haoran Li、Yangqiu Song<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>证据状态</strong>：仅依据摘要。<br>
-<strong>概览</strong>：这篇综述把 agent
-安全从输入—输出对齐扩展到系统行为，按
-user-agent、agent-tool、agent-execution、agent-agent、system-environment
-五条边界整理 prompt
-injection、工具滥用和记忆投毒的传播路径。它的价值是提供隔离优先的架构语言；摘要没有给出统一实验或防御效果，分类的完整性、风险严重度和工程成本仍需阅读全文评估。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.12406">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.12406">PDF</a></p>
-<h3 id="ruverbench智能体场景中的-llm-as-a-judge-rubric-验证">11. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.29920">RuVerBench：智能体场景中的
-LLM-as-a-Judge rubric 验证</a></h3>
-<p><strong>作者</strong>：Yangda Peng、Yunjia Qi、Haotian Xia、Guanzhong
-He、Xintong Shi、Richeng Xuan、Songyuanyi Lu、Yixian Liu、Zhichao
-Hu、Yuhong Liu、Hao Peng<br>
-<strong>来源/分类</strong>：arXiv · cs.CL<br>
-<strong>证据状态</strong>：仅依据摘要。<br>
-<strong>概览</strong>：研究长篇 deep research 与 agentic coding
-输出能否被 LLM 可靠地按 rubric 验证，发布含 2,458 个实例、人工标签和
-rubric 的 RuVerBench。作者报告前沿模型总体较强但仍有实质噪声，弱模型对
-prompt
-变化更敏感，批处理在准确率和效率间折中，多数投票有效但收益递减。人工标签、rubric
-主观性、judge 模型版本和下游奖励偏差仍是复现重点。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.29920">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.29920">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/THU-KEG/RuVerBench">代码/数据</a></p>
-<h3 id="saber-math数学信息检索的自动评测基准">12. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.29894">SABER-Math：数学信息检索的自动评测基准</a></h3>
-<p><strong>作者</strong>：Nikolay Georgiev、Maria Drencheva、Kseniia
-Ibragimova、Ivo Petrov、Dimitar I. Dimitrov、Martin Vechev<br>
-<strong>来源/分类</strong>：arXiv · cs.IR、cs.AI、cs.CL、cs.LG<br>
-<strong>证据状态</strong>：仅依据摘要。<br>
-<strong>概览</strong>：研究通用 IR benchmark
-是否能反映数学检索中的细粒度相关性，从 283K 道高中数学题及解答中用 LLM
-抽取摘要/主题，再用 ontology、词法相似度和 Swiss 式 LLM
-偏好赛生成相关性评分。作者报告现代 embedding
-整体优于经典和数学专用基线，但 Algebra、Calculus
-等符号密集领域仍困难，MTEB 不能稳定预测数学检索表现。自动构造标签可能把
-LLM 偏好带入基准，且没有专家标注的独立地面真值。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.29894">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.29894">PDF</a></p>
-<h3 id="mt2ie用多模态语言模型评估文生图模型">13. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.00759">MT2IE：用多模态语言模型评估文生图模型</a></h3>
-<p><strong>作者</strong>：Jiahui Chen、Candace Ross、Reyhane
-Askari-Hemmat、Koustuv Sinha、Melissa Hall、Amy Zhang、Michal
-Drozdzal、Adriana Romero-Soriano<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI、cs.CL<br>
-<strong>证据状态</strong>：仅依据摘要。<br>
-<strong>概览</strong>：研究静态文生图 benchmark 逐渐失效后，能否让一个
-MLLM 迭代生成评测 prompt 并给图像打分。作者报告仅用 20 个自动生成 prompt
-就近似恢复三个结构不同 benchmark 的模型排名，所需 prompt 比原基准少
-28–105 倍，且与人工判断的相关性和跨 seed 一致性优于
-CLIPScore、VIEScore、VQAScore。单一评测模型、prompt
-生成与评分耦合可能产生共同偏差，动态基准是否真的减少污染需进一步验证。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.00759">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2505.00759">PDF</a></p>
-<h3 id="a-survey-of-transformer-based-language-models-with-focus-on-efficiency">14.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.16893">A Survey of Transformer-based
-Language Models with Focus on Efficiency</a></h3>
-<p><strong>作者</strong>：Wazib Ansar、Saptarsi Goswami、Amlan
-Chakrabarti<br>
-<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br>
-<strong>证据状态</strong>：仅依据摘要。<br>
-<strong>概览</strong>：综述从数据治理、模型设计、压缩、动态推理、预训练、微调、提示和
-RAG 等维度整理 Transformer/LLM 效率研究，覆盖 312 篇文章，并对 30
-多个模型和 13 个 benchmark
-做统计与深入比较。它适合作为效率议题地图；摘要未提供比较的统一硬件、能耗测量口径、成本归一化与模型版本，因此不应直接当作效率排行榜。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.16893">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2406.16893">PDF</a></p>
-<h3 id="llms-for-telecom-root-cause-analysis证据接地的结构化推理框架">15. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02805">LLMs for Telecom Root Cause
-Analysis：证据接地的结构化推理框架</a></h3>
-<p><strong>作者</strong>：Hao Zhou（Jianzhong）、Mandar
-Kulkarni（Jianzhong）、Hao Chen（Jianzhong）、Yan
-Xin（Jianzhong）、Charlie（Jianzhong）、Zhang<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>证据状态</strong>：仅依据摘要。<br>
-<strong>概览</strong>：研究 5G/6G
-跨层依赖下的根因分析如何减少幻觉和不稳定推理，提出把异构 telemetry
-规范化、强制决策路径并输出证据接地解释的框架，在 TeleLogs 与 TelecomTS
-两个 5G
-数据集上比较基线。作者报告诊断准确率和决策一致性均改善，但摘要未给出具体增益、样本划分、泄漏控制、人工审计或推理成本；“跨数据集”仍不能代替真实网络在线验证。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02805">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02805">PDF</a></p>
-<h3 id="safeevolve从-agent-经验驱动-harness-policy-协同演化">16. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02786">SafeEvolve：从 agent 经验驱动
-harness-policy 协同演化</a></h3>
-<p><strong>作者</strong>：Qinghua Mao、Wanying Qu、Dadi Guo、Leitao
-Yuan、Qingyu Liu、Yu Li、Guanxu Chen、Yanwei Fu、Xi Lin、Xia Hu、Dongrui
-Liu<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CR<br>
-<strong>证据状态</strong>：已核阅公开 PDF；重点结果见上文。<br>
-<strong>概览</strong>：论文将安全轨迹经验转成可回滚的 prompt/skill
-更新，再用 SFT-RL 让策略学会使用这些运行时工件；在
-AgentDojo、AgentDyn、AgentHarm
-上相对多种基线改善安全—效用折中。优势来自两个更新环路的配合，但有限状态模拟器、静态攻击分布、外部
-proposer 和在线更新回归限制了“持续自我改进”的解释。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02786">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02786">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/MaoPopovich/SafeEvolve">代码</a></p>
-<h3 id="loom在-embedding-空间中聚合诊断共识">17. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02649">Loom：在 embedding
-空间中聚合诊断共识</a></h3>
-<p><strong>作者</strong>：Ron Begleiter、Katya Egert Berg、Gilad
-Saban、Gil Shabat<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、cs.LG<br>
-<strong>证据状态</strong>：仅依据摘要。<br>
-<strong>概览</strong>：研究工业根因分析中多个启发式文本假设互相冲突时，能否用连续
-embedding 空间的质心重加权取代深链 agent。Loom 在 OpenRCA 上与先进自治
-agent 在 Bank、Market-2 相当，在 Market-1、Telecom
-落后，但每个事件只用一次轻量 LLM 调用，约快 26 倍，使用 8B synthesizer
-时约快 33 倍。摘要还明确报告冗余检测的负结果；数据集、启发式覆盖、SME
-真实满意度和跨域稳健性仍需全文。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02649">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02649">PDF</a></p>
-<h3 id="multighostbench分布偏移下的多语言长文本作者归因">18. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02379">MultiGhostBench：分布偏移下的多语言长文本作者归因</a></h3>
-<p><strong>作者</strong>：Matteo Greco、Anudeex Shetty、Andrea
-Tagarelli、Jey Han Lau<br>
-<strong>来源/分类</strong>：arXiv ·
-cs.CL、cs.AI、cs.CY、cs.DL、cs.IR<br>
-<strong>证据状态</strong>：仅依据摘要。<br>
-<strong>概览</strong>：研究 LLM
-生成文本作者归因是否能跨语言、作者、领域和模型分布变化，构建 928 本书、5
-个近期 LLM、6 种语言和 3 种文字系统的长文本基准，平均每本约 59K
-词。作者报告没有单一方法在所有设定中稳定最好，分布偏移通常使性能下降；Transformer
-检测器的跨语言迁移有潜力，但语言对之间差异明显，统计/指纹方法更依赖语言。生成书籍来源、作者标签与检测器污染控制仍是复现关键。<br>
-<strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02379">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02379">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/GrecoMT/MultiGhostBench">代码/数据</a></p>
+<p><strong>方法与基线</strong>：DocuSearch 并行运行 BGE-Large 向量检索、SQLite FTS5 的 BM25 和知识图谱邻居扩展，以 RRF 融合（权重 0.50/0.35/0.15，平滑常数 60），再做 cross-encoder 重排与 MMR 选择。每个候选 chunk 依次经过上下文需求、充分性、回答生成和 groundedness 检查，不通过则取邻居或走多 chunk fallback。评测是生产电信语料上的 120 条人工标注查询，基线为 dense-only 和 dense+BM25；另用 200 条查询测端到端延迟。</p>
+<p><strong>作者报告的结果</strong>：完整系统 P@10=0.69、R@10=0.79，较 dense-only 的 0.54/0.63 提升 15/16 个百分点。grounding rate 为 89.6%，比 single-pass RAG 的 71.2% 高 18.4 个百分点，幻觉率从 21.4% 降至 6.8%；去掉 groundedness check、充分性评分、邻居扩展、重排或知识图谱都会使 grounding 下降。平均端到端延迟 12.6 秒，其中每 chunk 的评估阶段占 8.4 秒，检索本身低于 1 秒。</p>
+<p><strong>创新、局限与失败条件</strong>：最值得关注的是把“证据是否足够”和“回答是否被证据支撑”作为生成前的门，而不是只堆更多上下文。样本来自单一企业电信语料，RRF 权重和 chunk 大小是领域内手工设定，跨领域迁移未验证；8.4 秒的串行评估是明显瓶颈，且论文没有给出稳定的公开复现仓库。文中后续关于 RL 自适应检索的性能数字是投影情景，不属于已完成的实证结果。</p>
+<p><strong>适合谁读</strong>：企业搜索、RAG 可靠性和本地部署工程读者。建议读摘要、§III 的两阶段管线、§V–§VIII 的配置与结果、§IX-A 的限制；不要跳过消融表。</p>
+<h3 id="5-SafeEvolve：让安全规则和策略模型共同进化"><a href="#5-SafeEvolve：让安全规则和策略模型共同进化" class="headerlink" title="5. SafeEvolve：让安全规则和策略模型共同进化"></a>5. SafeEvolve：让安全规则和策略模型共同进化</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02786">SafeEvolve: Harness-Policy Co-Evolution from Agent Experience for Safety Alignment</a>（arXiv:2609.02786）<br><strong>作者</strong>：Qinghua Mao、Wanying Qu、Dadi Guo、Leitao Yuan、Qingyu Liu、Yu Li、Guanxu Chen、Yanwei Fu、Xi Lin、Xia Hu、Dongrui Liu<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CR<br><strong>全文状态</strong>：已核阅公开 PDF（25 页）</p>
+<p><strong>核心问题</strong>：智能体安全不只由模型参数决定，也取决于 prompt、skills、权限和执行控制组成的 harness。只改 harness 可能超过弱模型的执行能力，只改 policy 又难以适应新风险；论文问能否让两者从已完成的 on-policy 轨迹中持续协同更新。</p>
+<p><strong>方法与基线</strong>：SafeEvolve 先把轨迹级风险证据归因到单个 harness 组件，做有版本、可回滚的 bounded edit，并用配对 rollout 的门控规则接受更新；再用 harness-use SFT 和 harness-augmented RL 把安全行为内化。作者在 AgentDojo、AgentDyn 的间接提示注入和 AgentHarm 的恶意请求上比较 Base、SFT、DPO、GRPO、MetaSecAlign、AgentAlign 等基线，使用 Qwen3.5-4B 与 Qwen3-4B-Instruct-2507。训练为 200 个 rollout steps，每次更新 256 条轨迹；策略训练用 4 张 H200，评测用 1 张 H200。</p>
+<p><strong>作者报告的结果</strong>：在 Qwen3.5-4B 上，AgentDojo 的 ASR 从 2.37% 降到 0.79%，正常任务效用从 59.79% 升到 61.86%，AgentHarm harmful score 从 56.45 降到 12.27%，拒答率从 28.98% 升到 83.83%。在较弱的 Qwen3-4B 上，AgentDojo 正常效用从 44.33 升到 60.82%，ASR 从 13.38% 降到 2.42%。留出的 Agent Security Bench 三类攻击中，SafeEvolve 的 ASR 也低于 Base 与 GRPO；但在线 harness 更新会改善部分攻击指标、同时让另一些数据集回归，固定的全局门控比无约束在线更新更稳。</p>
+<p><strong>创新、局限与失败条件</strong>：贡献是把安全经验外化为可审计、可回滚的运行时工件，再通过 SFT-RL 逐步内化，而不是把所有安全行为压成单一最终回答标签。实验环境主要是 LLM 生成的有限状态 Python 模拟器，风险分布和 4B 骨干不能代表真实 SaaS、多工具权限或开放世界；持续自我改写仍可能出现评估器漂移、奖励投机和跨指标回归。论文报告了 H200 训练配置，但没有给出完整墙钟时间与总成本，复现实验需固定 proposer、verifier 和任务生成版本。</p>
+<p><strong>适合谁读</strong>：智能体安全、运行时 harness、RL 对齐和红队评测读者。建议优先读 §3 的问题定义与演化算法、§4.1–§4.3 的基线/消融、附录 A.5–A.6 的训练与算力、附录 D 的留出泛化，以及 §5 的限制。代码：<a target="_blank" rel="noopener" href="https://github.com/MaoPopovich/SafeEvolve">SafeEvolve GitHub</a>。</p>
+<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><h3 id="1-FineVLA：细粒度指令对齐的可操控-VLA"><a href="#1-FineVLA：细粒度指令对齐的可操控-VLA" class="headerlink" title="1. FineVLA：细粒度指令对齐的可操控 VLA"></a>1. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.27284">FineVLA：细粒度指令对齐的可操控 VLA</a></h3><p><strong>作者</strong>：Xintong Hu、Xuhong Huang、Jinyu Zhang、Yutong Yao、Yuchong Sun、Qiuyue Wang、Mingsheng Li、Sicheng Xie、Yitao Liu、Junhao Chen、Yixuan Chen、Yingming Zheng、Shuai Bai、Tao Yu<br><strong>来源/分类</strong>：arXiv · cs.RO、cs.AI<br><strong>证据状态</strong>：已核阅公开 PDF；重点结果见上文。<br><strong>概览</strong>：研究 VLA 是否能从“完成什么”进一步遵循“如何完成”，用 10 个开源机器人数据集、人工核验的 FineVLA-Data、RoboFine-Bench 和受控 FG/Raw 混合训练回答。作者报告混合监督在模拟与真实双臂中提高任务和执行因素控制，但人工核验、有限实体平台和未见过的组合绑定仍是证据边界。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.27284">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.27284">PDF</a> · <a target="_blank" rel="noopener" href="https://finevla.xlang.ai/">项目页</a></p>
+<h3 id="2-TOP-R：工具编排组合推断隐私风险"><a href="#2-TOP-R：工具编排组合推断隐私风险" class="headerlink" title="2. TOP-R：工具编排组合推断隐私风险"></a>2. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.16310">TOP-R：工具编排组合推断隐私风险</a></h3><p><strong>作者</strong>：Yuxuan Qiao、Dongqin Liu、Hongchang Yang、Wei Zhou、Songlin Hu<br><strong>来源/分类</strong>：arXiv · cs.CR、cs.AI、cs.CL<br><strong>证据状态</strong>：已核阅公开 PDF；重点结果见上文。<br><strong>概览</strong>：研究多个单独不泄露的工具返回是否会在 agent 组合推断后泄露敏感结论，提出 TOP-R、TOP-Bench 和 TOP-Align。作者报告高完成率与高泄露率并存，提示单独防护不足；基准是合成、受控的单智能体场景，不是线上泄露率估计。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.16310">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.16310">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/1Ponder/TOP-R">代码/数据</a></p>
+<h3 id="3-Eliciting-ESG-Preferences-for-Reinforcement-Learning-Based-Portfolio-Optimization"><a href="#3-Eliciting-ESG-Preferences-for-Reinforcement-Learning-Based-Portfolio-Optimization" class="headerlink" title="3. Eliciting ESG Preferences for Reinforcement Learning-Based Portfolio Optimization"></a>3. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02677">Eliciting ESG Preferences for Reinforcement Learning-Based Portfolio Optimization</a></h3><p><strong>作者</strong>：Giovanni Dispoto、Marcello Restelli、Carmine Ventre<br><strong>来源/分类</strong>：arXiv · q-fin.PM、cs.CE、cs.LG；<strong>双主题</strong>：AI、金融<br><strong>证据状态</strong>：已核阅公开 PDF；本篇只作 AI 视角概览，金融篇作重点详述。<br><strong>概览</strong>：论文将三个 ESG 机构评分和 Sharpe ratio 放入 MORL，并用 Gaussian Process 偏好询问让 LLM persona 模拟不同地区的投资经理选择组合。作者报告欧洲 persona 更重 ESG、Texas persona 更重风险调整收益；但 ESG 评分是合成的、交易无摩擦，LLM persona 的提示敏感性也使这更像偏好模拟而非稳定的人类偏好模型。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02677">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02677">PDF</a></p>
+<h3 id="4-NS-Copilot：面向神经科学分析的-LLM-多智能体系统"><a href="#4-NS-Copilot：面向神经科学分析的-LLM-多智能体系统" class="headerlink" title="4. NS-Copilot：面向神经科学分析的 LLM 多智能体系统"></a>4. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01971">NS-Copilot：面向神经科学分析的 LLM 多智能体系统</a></h3><p><strong>作者</strong>：Wuche Liu、Yiran Qiao、Linlin Hou、Rui Yang、Shusen Pu、Song Wang、Jing Ma<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>证据状态</strong>：仅依据摘要。<br><strong>概览</strong>：研究如何让 agent 选择和协调 EEG、细胞外 spike 等神经科学预训练模型；NS-Copilot 由规划、控制、代码生成和结果综合角色组成，在阿尔茨海默病、帕金森病和工作记忆 spike decoding 任务上评测。摘要称每项任务 8 次试验中主指标持续优于强基线，价值在于把领域模型选择纳入工作流；但未提供基线名称、数据规模、统计不确定性、人工修正比例或算力成本，不能据此推断可独立完成科研分析。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01971">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.01971">PDF</a></p>
+<h3 id="5-SocialBuddy：面向社交场景的搜索智能体"><a href="#5-SocialBuddy：面向社交场景的搜索智能体" class="headerlink" title="5. SocialBuddy：面向社交场景的搜索智能体"></a>5. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01641">SocialBuddy：面向社交场景的搜索智能体</a></h3><p><strong>作者</strong>：Mingxuan Li、Yirong Mao、FaZhan Zhang、Haibiao Yao、Runze Hu、Wenhui Que<br><strong>来源/分类</strong>：arXiv · cs.SI、cs.LG<br><strong>证据状态</strong>：仅依据摘要。<br><strong>概览</strong>：研究 agentic search 在朋友动态、异构社交流和多维约束查询中的失效，构造含 200K 用户档案、1,000 万条帖子、50K 推理轨迹的 SocialEnv，并用 SocialPO 同时做路径级和 token 级纠偏。作者报告 SocialBuddy-35B 超过明显更大的 frontier LLM；但环境和轨迹由自动流水线合成，代码/数据尚待接收后发布，真实隐私、时间漂移、开放世界噪声和成本尚未验证。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01641">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.01641">PDF</a></p>
+<h3 id="6-Incremental-Pooled-LLM-Evaluation：增量复用的检索模型评测"><a href="#6-Incremental-Pooled-LLM-Evaluation：增量复用的检索模型评测" class="headerlink" title="6. Incremental Pooled LLM Evaluation：增量复用的检索模型评测"></a>6. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02745">Incremental Pooled LLM Evaluation：增量复用的检索模型评测</a></h3><p><strong>作者</strong>：Max Nelson、Hanoz Bhathena、Aviral Joshi、Saket Sharma<br><strong>来源/分类</strong>：arXiv · cs.IR、cs.CL<br><strong>证据状态</strong>：已核阅公开 PDF；重点结果见上文。<br><strong>概览</strong>：研究把候选检索系统的文档并集交给固定 LLM judge 标注，并在新系统加入时只标注新增文档；作者在四个公开基准和 62 个金融新闻 QA 配置中报告较高排名相关与 65%–80% 的判断复用。需要同时检查 qrels 稀疏、单一 judge、近似并列系统和最终生成质量，不能把检索排名直接当作回答质量。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02745">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02745">PDF</a></p>
+<h3 id="7-PhoenixNest-Video：有证据支撑的多模态面试评估-agent"><a href="#7-PhoenixNest-Video：有证据支撑的多模态面试评估-agent" class="headerlink" title="7. PhoenixNest-Video：有证据支撑的多模态面试评估 agent"></a>7. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02231">PhoenixNest-Video：有证据支撑的多模态面试评估 agent</a></h3><p><strong>作者</strong>：Fan Yuxuan、Huang Miaojun、Zhang Haimei、Wu Jingshen、Liu Hao<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>证据状态</strong>：仅依据摘要。<br><strong>概览</strong>：研究视频面试评分如何按 rubric 给出可追溯行为证据，而不是只输出不透明分数。PhoenixNest-Video 构建语义视频图，对视觉、音频、文本做 rubric 条件检索与交叉验证，并用双奖励 rubric RL 训练 scorer；作者报告 VInterview-2025 grade-level accuracy 为 91.50%，超过更大的专有模型。证据仍来自单一基准和专家面板一致性，招聘公平性、跨文化迁移、候选人隐私和真实决策后果未由摘要证明。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02231">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02231">PDF</a></p>
+<h3 id="8-DocuSearch：知识图谱扩展与逐-chunk-grounding-的企业检索"><a href="#8-DocuSearch：知识图谱扩展与逐-chunk-grounding-的企业检索" class="headerlink" title="8. DocuSearch：知识图谱扩展与逐 chunk grounding 的企业检索"></a>8. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01617">DocuSearch：知识图谱扩展与逐 chunk grounding 的企业检索</a></h3><p><strong>作者</strong>：Harish Saragadam、Sudhanshu Sharma、Meghana Pujari<br><strong>来源/分类</strong>：arXiv · cs.IR、cs.AI、cs.LG<br><strong>证据状态</strong>：已核阅公开 PDF；重点结果见上文。<br><strong>概览</strong>：研究多信号检索、重排、MMR 和逐 chunk 充分性/groundedness 检查能否降低企业 RAG 幻觉；内部电信语料上相对 dense-only 提高 P@10、R@10 和 grounding，但串行检查平均占 8.4 秒，RRF 权重和结果尚未跨领域验证。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01617">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.01617">PDF</a></p>
+<h3 id="9-DiDrive：面向安全离线强化学习自动驾驶的风险感知扩散框架"><a href="#9-DiDrive：面向安全离线强化学习自动驾驶的风险感知扩散框架" class="headerlink" title="9. DiDrive：面向安全离线强化学习自动驾驶的风险感知扩散框架"></a>9. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01609">DiDrive：面向安全离线强化学习自动驾驶的风险感知扩散框架</a></h3><p><strong>作者</strong>：Qisong Guo、Jingtang Chen、Zhilin Chen、Pei Xu、Mingjian Fu、Wenxi Liu、Yuanlong Yu<br><strong>来源/分类</strong>：arXiv · cs.LG、cs.RO<br><strong>证据状态</strong>：仅依据摘要。<br><strong>概览</strong>：研究离线扩散策略在分布偏移、重尾风险和 OOD 动作上的脆弱性，提出风险门控的 RHDif 与 3DICE 策略优化。在 CARLA 复杂 60 车辆场景中，作者报告成功率 85%、平均奖励 4295.68，并称优于 IQL、CQL 和 Diffusion-QL。摘要没有给出完整任务数、置信区间、碰撞定义、算力和真实道路验证；仿真奖励不能直接等同于驾驶安全或部署可靠性。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.01609">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.01609">PDF</a></p>
+<h3 id="10-Isolation-as-a-First-Class-Principle-for-LLM-Agent-System-Safety"><a href="#10-Isolation-as-a-First-Class-Principle-for-LLM-Agent-System-Safety" class="headerlink" title="10. Isolation as a First-Class Principle for LLM-Agent System Safety"></a>10. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.12406">Isolation as a First-Class Principle for LLM-Agent System Safety</a></h3><p><strong>作者</strong>：Huihao Jing、Wenbin Hu、Shaojin Chen、Haochen Shi、Sirui Zhang、Hanyu Yang、Changxuan Fan、Zhongwei Xie、Hongyu Luo、Wun Yu Chan、Wei Fan、Haoran Li、Yangqiu Song<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>证据状态</strong>：仅依据摘要。<br><strong>概览</strong>：这篇综述把 agent 安全从输入—输出对齐扩展到系统行为，按 user-agent、agent-tool、agent-execution、agent-agent、system-environment 五条边界整理 prompt injection、工具滥用和记忆投毒的传播路径。它的价值是提供隔离优先的架构语言；摘要没有给出统一实验或防御效果，分类的完整性、风险严重度和工程成本仍需阅读全文评估。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.12406">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.12406">PDF</a></p>
+<h3 id="11-RuVerBench：智能体场景中的-LLM-as-a-Judge-rubric-验证"><a href="#11-RuVerBench：智能体场景中的-LLM-as-a-Judge-rubric-验证" class="headerlink" title="11. RuVerBench：智能体场景中的 LLM-as-a-Judge rubric 验证"></a>11. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.29920">RuVerBench：智能体场景中的 LLM-as-a-Judge rubric 验证</a></h3><p><strong>作者</strong>：Yangda Peng、Yunjia Qi、Haotian Xia、Guanzhong He、Xintong Shi、Richeng Xuan、Songyuanyi Lu、Yixian Liu、Zhichao Hu、Yuhong Liu、Hao Peng<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>证据状态</strong>：仅依据摘要。<br><strong>概览</strong>：研究长篇 deep research 与 agentic coding 输出能否被 LLM 可靠地按 rubric 验证，发布含 2,458 个实例、人工标签和 rubric 的 RuVerBench。作者报告前沿模型总体较强但仍有实质噪声，弱模型对 prompt 变化更敏感，批处理在准确率和效率间折中，多数投票有效但收益递减。人工标签、rubric 主观性、judge 模型版本和下游奖励偏差仍是复现重点。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.29920">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.29920">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/THU-KEG/RuVerBench">代码/数据</a></p>
+<h3 id="12-SABER-Math：数学信息检索的自动评测基准"><a href="#12-SABER-Math：数学信息检索的自动评测基准" class="headerlink" title="12. SABER-Math：数学信息检索的自动评测基准"></a>12. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.29894">SABER-Math：数学信息检索的自动评测基准</a></h3><p><strong>作者</strong>：Nikolay Georgiev、Maria Drencheva、Kseniia Ibragimova、Ivo Petrov、Dimitar I. Dimitrov、Martin Vechev<br><strong>来源/分类</strong>：arXiv · cs.IR、cs.AI、cs.CL、cs.LG<br><strong>证据状态</strong>：仅依据摘要。<br><strong>概览</strong>：研究通用 IR benchmark 是否能反映数学检索中的细粒度相关性，从 283K 道高中数学题及解答中用 LLM 抽取摘要/主题，再用 ontology、词法相似度和 Swiss 式 LLM 偏好赛生成相关性评分。作者报告现代 embedding 整体优于经典和数学专用基线，但 Algebra、Calculus 等符号密集领域仍困难，MTEB 不能稳定预测数学检索表现。自动构造标签可能把 LLM 偏好带入基准，且没有专家标注的独立地面真值。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.29894">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.29894">PDF</a></p>
+<h3 id="13-MT2IE：用多模态语言模型评估文生图模型"><a href="#13-MT2IE：用多模态语言模型评估文生图模型" class="headerlink" title="13. MT2IE：用多模态语言模型评估文生图模型"></a>13. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.00759">MT2IE：用多模态语言模型评估文生图模型</a></h3><p><strong>作者</strong>：Jiahui Chen、Candace Ross、Reyhane Askari-Hemmat、Koustuv Sinha、Melissa Hall、Amy Zhang、Michal Drozdzal、Adriana Romero-Soriano<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI、cs.CL<br><strong>证据状态</strong>：仅依据摘要。<br><strong>概览</strong>：研究静态文生图 benchmark 逐渐失效后，能否让一个 MLLM 迭代生成评测 prompt 并给图像打分。作者报告仅用 20 个自动生成 prompt 就近似恢复三个结构不同 benchmark 的模型排名，所需 prompt 比原基准少 28–105 倍，且与人工判断的相关性和跨 seed 一致性优于 CLIPScore、VIEScore、VQAScore。单一评测模型、prompt 生成与评分耦合可能产生共同偏差，动态基准是否真的减少污染需进一步验证。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.00759">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2505.00759">PDF</a></p>
+<h3 id="14-A-Survey-of-Transformer-based-Language-Models-with-Focus-on-Efficiency"><a href="#14-A-Survey-of-Transformer-based-Language-Models-with-Focus-on-Efficiency" class="headerlink" title="14. A Survey of Transformer-based Language Models with Focus on Efficiency"></a>14. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.16893">A Survey of Transformer-based Language Models with Focus on Efficiency</a></h3><p><strong>作者</strong>：Wazib Ansar、Saptarsi Goswami、Amlan Chakrabarti<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI<br><strong>证据状态</strong>：仅依据摘要。<br><strong>概览</strong>：综述从数据治理、模型设计、压缩、动态推理、预训练、微调、提示和 RAG 等维度整理 Transformer/LLM 效率研究，覆盖 312 篇文章，并对 30 多个模型和 13 个 benchmark 做统计与深入比较。它适合作为效率议题地图；摘要未提供比较的统一硬件、能耗测量口径、成本归一化与模型版本，因此不应直接当作效率排行榜。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.16893">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2406.16893">PDF</a></p>
+<h3 id="15-LLMs-for-Telecom-Root-Cause-Analysis：证据接地的结构化推理框架"><a href="#15-LLMs-for-Telecom-Root-Cause-Analysis：证据接地的结构化推理框架" class="headerlink" title="15. LLMs for Telecom Root Cause Analysis：证据接地的结构化推理框架"></a>15. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02805">LLMs for Telecom Root Cause Analysis：证据接地的结构化推理框架</a></h3><p><strong>作者</strong>：Hao Zhou（Jianzhong）、Mandar Kulkarni（Jianzhong）、Hao Chen（Jianzhong）、Yan Xin（Jianzhong）、Charlie（Jianzhong）、Zhang<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>证据状态</strong>：仅依据摘要。<br><strong>概览</strong>：研究 5G/6G 跨层依赖下的根因分析如何减少幻觉和不稳定推理，提出把异构 telemetry 规范化、强制决策路径并输出证据接地解释的框架，在 TeleLogs 与 TelecomTS 两个 5G 数据集上比较基线。作者报告诊断准确率和决策一致性均改善，但摘要未给出具体增益、样本划分、泄漏控制、人工审计或推理成本；“跨数据集”仍不能代替真实网络在线验证。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02805">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02805">PDF</a></p>
+<h3 id="16-SafeEvolve：从-agent-经验驱动-harness-policy-协同演化"><a href="#16-SafeEvolve：从-agent-经验驱动-harness-policy-协同演化" class="headerlink" title="16. SafeEvolve：从 agent 经验驱动 harness-policy 协同演化"></a>16. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02786">SafeEvolve：从 agent 经验驱动 harness-policy 协同演化</a></h3><p><strong>作者</strong>：Qinghua Mao、Wanying Qu、Dadi Guo、Leitao Yuan、Qingyu Liu、Yu Li、Guanxu Chen、Yanwei Fu、Xi Lin、Xia Hu、Dongrui Liu<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CR<br><strong>证据状态</strong>：已核阅公开 PDF；重点结果见上文。<br><strong>概览</strong>：论文将安全轨迹经验转成可回滚的 prompt/skill 更新，再用 SFT-RL 让策略学会使用这些运行时工件；在 AgentDojo、AgentDyn、AgentHarm 上相对多种基线改善安全—效用折中。优势来自两个更新环路的配合，但有限状态模拟器、静态攻击分布、外部 proposer 和在线更新回归限制了“持续自我改进”的解释。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02786">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02786">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/MaoPopovich/SafeEvolve">代码</a></p>
+<h3 id="17-Loom：在-embedding-空间中聚合诊断共识"><a href="#17-Loom：在-embedding-空间中聚合诊断共识" class="headerlink" title="17. Loom：在 embedding 空间中聚合诊断共识"></a>17. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02649">Loom：在 embedding 空间中聚合诊断共识</a></h3><p><strong>作者</strong>：Ron Begleiter、Katya Egert Berg、Gilad Saban、Gil Shabat<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、cs.LG<br><strong>证据状态</strong>：仅依据摘要。<br><strong>概览</strong>：研究工业根因分析中多个启发式文本假设互相冲突时，能否用连续 embedding 空间的质心重加权取代深链 agent。Loom 在 OpenRCA 上与先进自治 agent 在 Bank、Market-2 相当，在 Market-1、Telecom 落后，但每个事件只用一次轻量 LLM 调用，约快 26 倍，使用 8B synthesizer 时约快 33 倍。摘要还明确报告冗余检测的负结果；数据集、启发式覆盖、SME 真实满意度和跨域稳健性仍需全文。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02649">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02649">PDF</a></p>
+<h3 id="18-MultiGhostBench：分布偏移下的多语言长文本作者归因"><a href="#18-MultiGhostBench：分布偏移下的多语言长文本作者归因" class="headerlink" title="18. MultiGhostBench：分布偏移下的多语言长文本作者归因"></a>18. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02379">MultiGhostBench：分布偏移下的多语言长文本作者归因</a></h3><p><strong>作者</strong>：Matteo Greco、Anudeex Shetty、Andrea Tagarelli、Jey Han Lau<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.CY、cs.DL、cs.IR<br><strong>证据状态</strong>：仅依据摘要。<br><strong>概览</strong>：研究 LLM 生成文本作者归因是否能跨语言、作者、领域和模型分布变化，构建 928 本书、5 个近期 LLM、6 种语言和 3 种文字系统的长文本基准，平均每本约 59K 词。作者报告没有单一方法在所有设定中稳定最好，分布偏移通常使性能下降；Transformer 检测器的跨语言迁移有潜力，但语言对之间差异明显，统计/指纹方法更依赖语言。生成书籍来源、作者标签与检测器污染控制仍是复现关键。<br><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.02379">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.02379">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/GrecoMT/MultiGhostBench">代码/数据</a></p>
 
                 
               </div>
