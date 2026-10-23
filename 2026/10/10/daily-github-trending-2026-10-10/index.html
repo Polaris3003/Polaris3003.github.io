@@ -32,10 +32,10 @@
 <meta property="article:tag" content="GitHub">
 <meta property="article:tag" content="开源">
 <meta property="article:tag" content="Agent">
+<meta property="article:tag" content="系统工具">
 <meta property="article:tag" content="代码质量">
 <meta property="article:tag" content="多模态">
 <meta property="article:tag" content="3D 视觉">
-<meta property="article:tag" content="系统工具">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-16/pixiv-rank-008-148184985.jpg">
   
@@ -352,189 +352,45 @@
               <div class="markdown-body">
                 
                 <div class="briefing-masthead">
-<p class="briefing-masthead__eyebrow">
-GITHUB TRENDING · 2026.10.10
-</p>
-<p>
-今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub
-all-languages 日榜</a>列出 11 个仓库条目；按工程机制是否可复现、README
-是否足够清晰、许可证与近期维护状态筛出 9 个。主线有三条：Agent
-正从提示词走向可安装的工程流程，AI
-工具开始承担代码质量与模型路由基础设施，视觉创作、3D
-重建和平台逆向则继续把模型能力推向真实运行环境。日增 stars
-只是公开快照，不是质量证明。
-</p>
-<div class="briefing-masthead__topics">
-<span>Agent
-工作流</span><span>代码审查</span><span>模型网关</span><span>逆向工程</span><span>本地创作</span><span>3D
-重建</span>
-</div>
+  <p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.10.10</p>
+  <p>今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub all-languages 日榜</a>列出 11 个仓库条目；按工程机制是否可复现、README 是否足够清晰、许可证与近期维护状态筛出 9 个。主线有三条：Agent 正从提示词走向可安装的工程流程，AI 工具开始承担代码质量与模型路由基础设施，视觉创作、3D 重建和平台逆向则继续把模型能力推向真实运行环境。日增 stars 只是公开快照，不是质量证明。</p>
+  <div class="briefing-masthead__topics"><span>Agent 工作流</span><span>代码审查</span><span>模型网关</span><span>逆向工程</span><span>本地创作</span><span>3D 重建</span></div>
 </div>
 <span id="more"></span>
-<h2 id="今日要点">今日要点</h2>
-<p><a target="_blank" rel="noopener" href="https://github.com/morluto/rea#readme">REA</a>、<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5#readme">AnyPS5</a>
-与
-<a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map#readme">LingBot-Map</a>分别把
-Agent 逆向、可执行文件移植和流式 3D
-重建落到二进制、ABI、几何上下文与显存等具体边界上；值得学习的是它们如何把“模型会做什么”变成可检查的工具链，而不是一句泛化的能力宣称。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review#readme">Open
-Code
-Review</a>、<a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm#readme">LiteLLM</a>
-和两个工程技能包则把 Agent
-接入交付流程：前者用确定性文件选择与规则匹配约束审查，后者统一模型供应商接口，<a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills#readme">mattpocock/skills</a>与<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills#readme">addyosmani/agent-skills</a>分别强调可组合技能和生命周期门禁。它们共同说明，AI
-工程的瓶颈正在从“能不能调用模型”转向上下文、权限、成本和反馈回路。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins#readme">knowledge-work-plugins</a>把岗位知识与连接器包装成可审阅目录，<a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft#readme">ArtCraft</a>则把图像、视频、3D
-场景和模型选择放进桌面
-IDE；两者都适合拆解“领域工作流如何产品化”，但都不应被仅凭热度当作成熟度证明。</p>
-<h2 id="值得尝试">值得尝试</h2>
-<h3 id="morlutorea"><a target="_blank" rel="noopener" href="https://github.com/morluto/rea">morluto/rea</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/morluto/rea#readme">REA</a>把 MCP 与 CLI
-接到原生二进制、JavaScript/Electron、.NET、网站等目标，分析在本地运行，并为结论返回证据与限制。它适合安全研究、互操作和想学习可追溯逆向工作流的工程师；已知限制是需要
-Node.js 22.x，原生分析通常还需要 Hopper、Ghidra 或 IDA，而 JavaScript
-静态分析不需要这些引擎。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为
-TypeScript、当日新增 14,927
-stars；<a target="_blank" rel="noopener" href="https://github.com/morluto/rea">仓库页</a>显示总 stars
-47,735，许可证为<a target="_blank" rel="noopener" href="https://github.com/morluto/rea/blob/main/LICENSE">MIT</a>，最新
-<a target="_blank" rel="noopener" href="https://github.com/morluto/rea/releases/tag/rea-agents-6.3.0">Release
-rea-agents-6.3.0</a>，最近提交为<a target="_blank" rel="noopener" href="https://github.com/morluto/rea/commit/7aa4d768eb15317a63a476431ed75bafec086033">同步
-6.3 checkpoint</a>。</p>
-<h3 id="boykopovaranyps5"><a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5">boykopovar/AnyPS5</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5#readme">AnyPS5</a>用
-relinker 把 PS5 可执行文件转换为 Linux/Windows
-的目标格式，并提供可动态链接的 system PRX
-实现，不依赖模拟器或独立运行时。它适合研究
-ABI、动态链接、着色器重编译和平台兼容边界；已知限制是兼容性仍以<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/blob/main/docs/user/COMPATIBILITY.md">已验证游戏列表</a>为准，README
-也明确要求用户自行确保所用二进制符合适用法律和许可。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为
-C++、当日新增 5,868
-stars；<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5">仓库页</a>显示总
-stars
-22,570，许可证为<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/blob/main/LICENSE">GPL-2.0-only</a>，最新
-<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.1">Release
-v0.1.1</a>，最近提交合入了<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/commit/c963432db05f8b35c62e212b3a36494501522fe2">提高打开文件上限的修复</a>。</p>
-<h3 id="alibabaopen-code-review"><a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review">alibaba/open-code-review</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review#readme">Open
-Code Review</a>是 AI 代码审查 CLI：读取 Git diff，把变更文件交给可配置的
-LLM Agent，并生成精确到行的结构化评论，也支持没有有效 diff
-时的整文件扫描。它适合想把代码审查做成
-CI/本地可复用管线的团队；已知限制是需要 Git 2.41+
-和已配置的模型端点，README 的基准测试还明确承认其召回率低于通用
-Agent，不能当作全覆盖安全审计。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为
-Go、当日新增 326
-stars；<a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review">仓库页</a>显示总
-stars
-45,287，许可证为<a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review/blob/main/LICENSE">Apache-2.0</a>，最新
-<a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review/releases/tag/v1.12.13">Release
-v1.12.13</a>，最近提交补充了<a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review/commit/35fc3e259da583b96cf0fb470d535da9dd5ad7b3">allowlist
-扩展消失的测试</a>。</p>
-<h3 id="berriailitellm"><a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm">BerriAI/litellm</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm#readme">LiteLLM</a>提供统一的
-OpenAI 风格接口，覆盖 100+ LLM 供应商，既能作为 Python
-SDK，也能部署成带虚拟密钥、成本统计、guardrails、负载均衡和管理面板的自托管网关。它适合需要在供应商、模型和
-Agent
-协议之间切换的工程团队；已知限制是不同上游的能力、认证和错误语义仍需单独核对，enterprise
-目录也有独立商业许可边界。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为
-Python、当日新增 95
-stars；<a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm">仓库页</a>显示总
-stars
-60,692，<a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm/blob/main/LICENSE">LICENSE</a>说明非
-enterprise 内容为 MIT，最新
-<a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm/releases/tag/v1.104.2">Release
-v1.104.2</a>，最近提交处理了<a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm/commit/d6db8e8744e36e970989aad2bb66b1b518355175">Gemini
-预置 TTS 声音映射</a>。</p>
-<h3 id="mattpocockskills"><a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills">mattpocock/skills</a></h3>
-<p>这个仓库把小型、可编辑、可组合的 Agent 技能整理成跨宿主安装包，README
-覆盖 Claude Code、Codex、Copilot、Gemini CLI 和 skills.sh
-的安装路径，并用 setup
-流程固化问题跟踪、标签和文档位置等工程约束。它适合把对齐、测试、调试和反馈回路写成可审阅文件；已知限制是它不是运行时或服务框架，安装多个同类技能包会重复，最终效果仍取决于宿主能力和项目纪律。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为
-Shell、当日新增 1,687
-stars；<a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills">仓库页</a>显示总
-stars
-282,801，许可证为<a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills/blob/main/LICENSE">MIT</a>，最新
-<a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills/releases/tag/v1.3.1">Release
-v1.3.1</a>，最近提交修正了<a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills/commit/49dd158d1076134a641b33efb035946536778336">多个技能模板</a>。</p>
-<h3 id="addyosmaniagent-skills"><a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills">addyosmani/agent-skills</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills#readme">agent-skills</a>提供
-25 个工程技能和 9 个 slash
-commands，把定义、计划、构建、测试、审查到发布映射成带质量门禁的生命周期。它适合希望把“先规格、再实现、再验证”固化到多个
-coding-agent 宿主的团队；已知限制是单独安装某个技能时可能拿不到仓库级
-references，README
-已记录这一可移植性缺口，且完整效果依赖宿主是否支持原生插件。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为
-JavaScript、当日新增 436
-stars；<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills">仓库页</a>显示总
-stars
-104,021，许可证为<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills/blob/main/LICENSE">MIT</a>，最新
-<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills/releases/tag/0.6.12">Release
-0.6.12</a>，最近提交调整了<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills/commit/1401c8b8030e023baeebb31781a6653fe8e93026">宿主指南的书面门槛</a>。</p>
-<h3 id="anthropicsknowledge-work-plugins"><a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins">anthropics/knowledge-work-plugins</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins#readme">knowledge-work-plugins</a>开源了
-11 个面向生产力、销售、支持、产品、数据和研究等岗位的插件，每个插件把
-skills、连接器、slash commands 与子 Agent
-组合进文件型目录。它适合团队研究如何把岗位知识和 MCP
-连接器封装成可审阅工作流；已知限制是它主要面向 Claude Cowork、兼容
-Claude
-Code，连接器仍受第三方权限、数据范围和宿主能力约束，仓库<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/releases">目前未列出公开
-Release</a>。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为
-Python、当日新增 709
-stars；<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins">仓库页</a>显示总
-stars
-28,295，许可证为<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/blob/main/LICENSE">Apache-2.0</a>，最近提交更新了<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/commit/95bdacc803aa5cfdb10f35e5b9fb2d4b11100133">Qodo
-插件版本</a>。</p>
-<h3 id="storytoldartcraft"><a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft">storytold/artcraft</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft#readme">ArtCraft</a>把交互式
-AI 图像与视频创作做成桌面 IDE：可以在 2D 中合成、在 3D
-中布景，并选择不同模型完成图像、视频、声音和网格工作流。它适合研究创作工具如何提供构图、角色、镜头和模型选择的可重复控制；已知限制是稳定版本主要面向
-Windows/macOS，Linux
-需要从源码构建，且<a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft/blob/main/LICENSE.md">WIP
-Fair Source 许可</a>允许个人使用但限制商业销售和竞争产品开发，不能按 OSI
-开源许可证理解。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为
-Rust、当日新增 3,752
-stars；<a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft">仓库页</a>显示总
-stars 11,644，许可证字段为 Other，最新
-<a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft/releases/tag/artcraft-v0.41.0">Release
-artcraft-v0.41.0</a>，最近提交处理了<a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft/commit/910bfe4e8494976b936772214142bb52593819f">0.42.0
-桌面端更新</a>。</p>
-<h3 id="robbyantlingbot-map"><a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map">Robbyant/lingbot-map</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map#readme">LingBot-Map</a>用
-Geometric Context Transformer、paged KV cache 和 trajectory memory
-做流式 3D 重建，README 报告在 518×378 分辨率下约 20 FPS、可处理超过
-10,000 帧的长序列，并提供交互式 demo 与评测脚本。它适合 3D
-视觉、SLAM、机器人和长视频几何建模学习；已知限制是安装路线偏
-CUDA/PyTorch，README 推荐 CUDA 12.8 与 PyTorch 2.8，FlashInfer
-不可用时才回退到
-SDPA，显存和速度需要按硬件重新验证。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为
-Python、当日新增 110
-stars；<a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map">仓库页</a>显示总
-stars
-17,727，许可证为<a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map/blob/main/LICENSE.txt">Apache-2.0</a>，<a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map/releases">未发现公开
-Release</a>，最近提交修正了<a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map/commit/8fdf984a7f9caf391622ea5843a8410900d27ef">天空遮罩阈值</a>。</p>
-<h2 id="快速浏览">快速浏览</h2>
+<h2 id="今日要点"><a class="markdownIt-Anchor" href="#今日要点"></a> 今日要点</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/morluto/rea#readme">REA</a>、<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5#readme">AnyPS5</a> 与 <a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map#readme">LingBot-Map</a>分别把 Agent 逆向、可执行文件移植和流式 3D 重建落到二进制、ABI、几何上下文与显存等具体边界上；值得学习的是它们如何把“模型会做什么”变成可检查的工具链，而不是一句泛化的能力宣称。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review#readme">Open Code Review</a>、<a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm#readme">LiteLLM</a> 和两个工程技能包则把 Agent 接入交付流程：前者用确定性文件选择与规则匹配约束审查，后者统一模型供应商接口，<a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills#readme">mattpocock/skills</a>与<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills#readme">addyosmani/agent-skills</a>分别强调可组合技能和生命周期门禁。它们共同说明，AI 工程的瓶颈正在从“能不能调用模型”转向上下文、权限、成本和反馈回路。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins#readme">knowledge-work-plugins</a>把岗位知识与连接器包装成可审阅目录，<a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft#readme">ArtCraft</a>则把图像、视频、3D 场景和模型选择放进桌面 IDE；两者都适合拆解“领域工作流如何产品化”，但都不应被仅凭热度当作成熟度证明。</p>
+<h2 id="值得尝试"><a class="markdownIt-Anchor" href="#值得尝试"></a> 值得尝试</h2>
+<h3 id="a-hrefhttpsgithubcommorlutoreamorlutoreaa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcommorlutoreamorlutoreaa"></a> <a target="_blank" rel="noopener" href="https://github.com/morluto/rea">morluto/rea</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/morluto/rea#readme">REA</a>把 MCP 与 CLI 接到原生二进制、JavaScript/Electron、.NET、网站等目标，分析在本地运行，并为结论返回证据与限制。它适合安全研究、互操作和想学习可追溯逆向工作流的工程师；已知限制是需要 Node.js 22.x，原生分析通常还需要 Hopper、Ghidra 或 IDA，而 JavaScript 静态分析不需要这些引擎。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为 TypeScript、当日新增 14,927 stars；<a target="_blank" rel="noopener" href="https://github.com/morluto/rea">仓库页</a>显示总 stars 47,735，许可证为<a target="_blank" rel="noopener" href="https://github.com/morluto/rea/blob/main/LICENSE">MIT</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/morluto/rea/releases/tag/rea-agents-6.3.0">Release rea-agents-6.3.0</a>，最近提交为<a target="_blank" rel="noopener" href="https://github.com/morluto/rea/commit/7aa4d768eb15317a63a476431ed75bafec086033">同步 6.3 checkpoint</a>。</p>
+<h3 id="a-hrefhttpsgithubcomboykopovaranyps5boykopovaranyps5a"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomboykopovaranyps5boykopovaranyps5a"></a> <a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5">boykopovar/AnyPS5</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5#readme">AnyPS5</a>用 relinker 把 PS5 可执行文件转换为 Linux/Windows 的目标格式，并提供可动态链接的 system PRX 实现，不依赖模拟器或独立运行时。它适合研究 ABI、动态链接、着色器重编译和平台兼容边界；已知限制是兼容性仍以<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/blob/main/docs/user/COMPATIBILITY.md">已验证游戏列表</a>为准，README 也明确要求用户自行确保所用二进制符合适用法律和许可。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为 C++、当日新增 5,868 stars；<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5">仓库页</a>显示总 stars 22,570，许可证为<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/blob/main/LICENSE">GPL-2.0-only</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.1">Release v0.1.1</a>，最近提交合入了<a target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5/commit/c963432db05f8b35c62e212b3a36494501522fe2">提高打开文件上限的修复</a>。</p>
+<h3 id="a-hrefhttpsgithubcomalibabaopen-code-reviewalibabaopen-code-reviewa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomalibabaopen-code-reviewalibabaopen-code-reviewa"></a> <a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review">alibaba/open-code-review</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review#readme">Open Code Review</a>是 AI 代码审查 CLI：读取 Git diff，把变更文件交给可配置的 LLM Agent，并生成精确到行的结构化评论，也支持没有有效 diff 时的整文件扫描。它适合想把代码审查做成 CI/本地可复用管线的团队；已知限制是需要 Git 2.41+ 和已配置的模型端点，README 的基准测试还明确承认其召回率低于通用 Agent，不能当作全覆盖安全审计。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为 Go、当日新增 326 stars；<a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review">仓库页</a>显示总 stars 45,287，许可证为<a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review/blob/main/LICENSE">Apache-2.0</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review/releases/tag/v1.12.13">Release v1.12.13</a>，最近提交补充了<a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review/commit/35fc3e259da583b96cf0fb470d535da9dd5ad7b3">allowlist 扩展消失的测试</a>。</p>
+<h3 id="a-hrefhttpsgithubcomberriailitellmberriailitellma"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomberriailitellmberriailitellma"></a> <a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm">BerriAI/litellm</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm#readme">LiteLLM</a>提供统一的 OpenAI 风格接口，覆盖 100+ LLM 供应商，既能作为 Python SDK，也能部署成带虚拟密钥、成本统计、guardrails、负载均衡和管理面板的自托管网关。它适合需要在供应商、模型和 Agent 协议之间切换的工程团队；已知限制是不同上游的能力、认证和错误语义仍需单独核对，enterprise 目录也有独立商业许可边界。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为 Python、当日新增 95 stars；<a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm">仓库页</a>显示总 stars 60,692，<a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm/blob/main/LICENSE">LICENSE</a>说明非 enterprise 内容为 MIT，最新 <a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm/releases/tag/v1.104.2">Release v1.104.2</a>，最近提交处理了<a target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm/commit/d6db8e8744e36e970989aad2bb66b1b518355175">Gemini 预置 TTS 声音映射</a>。</p>
+<h3 id="a-hrefhttpsgithubcommattpocockskillsmattpocockskillsa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcommattpocockskillsmattpocockskillsa"></a> <a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills">mattpocock/skills</a></h3>
+<p>这个仓库把小型、可编辑、可组合的 Agent 技能整理成跨宿主安装包，README 覆盖 Claude Code、Codex、Copilot、Gemini CLI 和 <a target="_blank" rel="noopener" href="http://skills.sh">skills.sh</a> 的安装路径，并用 setup 流程固化问题跟踪、标签和文档位置等工程约束。它适合把对齐、测试、调试和反馈回路写成可审阅文件；已知限制是它不是运行时或服务框架，安装多个同类技能包会重复，最终效果仍取决于宿主能力和项目纪律。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为 Shell、当日新增 1,687 stars；<a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills">仓库页</a>显示总 stars 282,801，许可证为<a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills/blob/main/LICENSE">MIT</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills/releases/tag/v1.3.1">Release v1.3.1</a>，最近提交修正了<a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills/commit/49dd158d1076134a641b33efb035946536778336">多个技能模板</a>。</p>
+<h3 id="a-hrefhttpsgithubcomaddyosmaniagent-skillsaddyosmaniagent-skillsa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomaddyosmaniagent-skillsaddyosmaniagent-skillsa"></a> <a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills">addyosmani/agent-skills</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills#readme">agent-skills</a>提供 25 个工程技能和 9 个 slash commands，把定义、计划、构建、测试、审查到发布映射成带质量门禁的生命周期。它适合希望把“先规格、再实现、再验证”固化到多个 coding-agent 宿主的团队；已知限制是单独安装某个技能时可能拿不到仓库级 references，README 已记录这一可移植性缺口，且完整效果依赖宿主是否支持原生插件。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为 JavaScript、当日新增 436 stars；<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills">仓库页</a>显示总 stars 104,021，许可证为<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills/blob/main/LICENSE">MIT</a>，最新 <a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills/releases/tag/0.6.12">Release 0.6.12</a>，最近提交调整了<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills/commit/1401c8b8030e023baeebb31781a6653fe8e93026">宿主指南的书面门槛</a>。</p>
+<h3 id="a-hrefhttpsgithubcomanthropicsknowledge-work-pluginsanthropicsknowledge-work-pluginsa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomanthropicsknowledge-work-pluginsanthropicsknowledge-work-pluginsa"></a> <a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins">anthropics/knowledge-work-plugins</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins#readme">knowledge-work-plugins</a>开源了 11 个面向生产力、销售、支持、产品、数据和研究等岗位的插件，每个插件把 skills、连接器、slash commands 与子 Agent 组合进文件型目录。它适合团队研究如何把岗位知识和 MCP 连接器封装成可审阅工作流；已知限制是它主要面向 Claude Cowork、兼容 Claude Code，连接器仍受第三方权限、数据范围和宿主能力约束，仓库<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/releases">目前未列出公开 Release</a>。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为 Python、当日新增 709 stars；<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins">仓库页</a>显示总 stars 28,295，许可证为<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/blob/main/LICENSE">Apache-2.0</a>，最近提交更新了<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/commit/95bdacc803aa5cfdb10f35e5b9fb2d4b11100133">Qodo 插件版本</a>。</p>
+<h3 id="a-hrefhttpsgithubcomstorytoldartcraftstorytoldartcrafta"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomstorytoldartcraftstorytoldartcrafta"></a> <a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft">storytold/artcraft</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft#readme">ArtCraft</a>把交互式 AI 图像与视频创作做成桌面 IDE：可以在 2D 中合成、在 3D 中布景，并选择不同模型完成图像、视频、声音和网格工作流。它适合研究创作工具如何提供构图、角色、镜头和模型选择的可重复控制；已知限制是稳定版本主要面向 Windows/macOS，Linux 需要从源码构建，且<a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft/blob/main/LICENSE.md">WIP Fair Source 许可</a>允许个人使用但限制商业销售和竞争产品开发，不能按 OSI 开源许可证理解。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为 Rust、当日新增 3,752 stars；<a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft">仓库页</a>显示总 stars 11,644，许可证字段为 Other，最新 <a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft/releases/tag/artcraft-v0.41.0">Release artcraft-v0.41.0</a>，最近提交处理了<a target="_blank" rel="noopener" href="https://github.com/storytold/artcraft/commit/910bfe4e8494976b936772214142bb52593819f">0.42.0 桌面端更新</a>。</p>
+<h3 id="a-hrefhttpsgithubcomrobbyantlingbot-maprobbyantlingbot-mapa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomrobbyantlingbot-maprobbyantlingbot-mapa"></a> <a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map">Robbyant/lingbot-map</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map#readme">LingBot-Map</a>用 Geometric Context Transformer、paged KV cache 和 trajectory memory 做流式 3D 重建，README 报告在 518×378 分辨率下约 20 FPS、可处理超过 10,000 帧的长序列，并提供交互式 demo 与评测脚本。它适合 3D 视觉、SLAM、机器人和长视频几何建模学习；已知限制是安装路线偏 CUDA/PyTorch，README 推荐 CUDA 12.8 与 PyTorch 2.8，FlashInfer 不可用时才回退到 SDPA，显存和速度需要按硬件重新验证。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜</a>记录主要语言为 Python、当日新增 110 stars；<a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map">仓库页</a>显示总 stars 17,727，许可证为<a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map/blob/main/LICENSE.txt">Apache-2.0</a>，<a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map/releases">未发现公开 Release</a>，最近提交修正了<a target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map/commit/8fdf984a7f9caf391622ea5843a8410900d27ef">天空遮罩阈值</a>。</p>
+<h2 id="快速浏览"><a class="markdownIt-Anchor" href="#快速浏览"></a> 快速浏览</h2>
 <div class="briefing-quick-list">
-<p><a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/morluto/rea"><span class="briefing-quick-item__source">逆向 MCP · TypeScript ·
-+14,927/日</span><span class="briefing-quick-item__body"><strong>morluto/rea</strong><small>把二进制、应用和运行时调查组织成带证据的本地逆向工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5"><span class="briefing-quick-item__source">可执行文件移植 · C++ ·
-+5,868/日</span><span class="briefing-quick-item__body"><strong>boykopovar/AnyPS5</strong><small>用
-relinker、系统库和着色器重编译研究 PS5
-可执行文件移植。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review"><span class="briefing-quick-item__source">代码审查 · Go · +326/日</span><span class="briefing-quick-item__body"><strong>alibaba/open-code-review</strong><small>用确定性文件选择与
-Agent 工具调用生成精确到行的代码审查。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm"><span class="briefing-quick-item__source">模型网关 · Python ·
-+95/日</span><span class="briefing-quick-item__body"><strong>BerriAI/litellm</strong><small>用统一接口接入多家
-LLM，并集中处理成本、权限和负载均衡。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/mattpocock/skills"><span class="briefing-quick-item__source">工程技能 · Shell ·
-+1,687/日</span><span class="briefing-quick-item__body"><strong>mattpocock/skills</strong><small>把可组合的工程习惯和反馈回路分发到多个
-coding-agent 宿主。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills"><span class="briefing-quick-item__source">生命周期门禁 · JavaScript ·
-+436/日</span><span class="briefing-quick-item__body"><strong>addyosmani/agent-skills</strong><small>把规格、实现、测试、审查和发布串成可安装的
-Agent 流程。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins"><span class="briefing-quick-item__source">岗位插件 · Python ·
-+709/日</span><span class="briefing-quick-item__body"><strong>anthropics/knowledge-work-plugins</strong><small>用
-skills、连接器和命令把岗位流程包装成可定制插件。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/storytold/artcraft"><span class="briefing-quick-item__source">本地创作 · Rust ·
-+3,752/日</span><span class="briefing-quick-item__body"><strong>storytold/artcraft</strong><small>在
-2D/3D 场景中组合图像、视频和模型工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map"><span class="briefing-quick-item__source">流式 3D 重建 · Python ·
-+110/日</span><span class="briefing-quick-item__body"><strong>Robbyant/lingbot-map</strong><small>用几何上下文与
-KV cache 研究长序列流式重建。</small></span><span class="briefing-quick-item__arrow">↗</span></a></p>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/morluto/rea"><span class="briefing-quick-item__source">逆向 MCP · TypeScript · +14,927/日</span><span class="briefing-quick-item__body"><strong>morluto/rea</strong><small>把二进制、应用和运行时调查组织成带证据的本地逆向工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/boykopovar/AnyPS5"><span class="briefing-quick-item__source">可执行文件移植 · C++ · +5,868/日</span><span class="briefing-quick-item__body"><strong>boykopovar/AnyPS5</strong><small>用 relinker、系统库和着色器重编译研究 PS5 可执行文件移植。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review"><span class="briefing-quick-item__source">代码审查 · Go · +326/日</span><span class="briefing-quick-item__body"><strong>alibaba/open-code-review</strong><small>用确定性文件选择与 Agent 工具调用生成精确到行的代码审查。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/BerriAI/litellm"><span class="briefing-quick-item__source">模型网关 · Python · +95/日</span><span class="briefing-quick-item__body"><strong>BerriAI/litellm</strong><small>用统一接口接入多家 LLM，并集中处理成本、权限和负载均衡。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/mattpocock/skills"><span class="briefing-quick-item__source">工程技能 · Shell · +1,687/日</span><span class="briefing-quick-item__body"><strong>mattpocock/skills</strong><small>把可组合的工程习惯和反馈回路分发到多个 coding-agent 宿主。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills"><span class="briefing-quick-item__source">生命周期门禁 · JavaScript · +436/日</span><span class="briefing-quick-item__body"><strong>addyosmani/agent-skills</strong><small>把规格、实现、测试、审查和发布串成可安装的 Agent 流程。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins"><span class="briefing-quick-item__source">岗位插件 · Python · +709/日</span><span class="briefing-quick-item__body"><strong>anthropics/knowledge-work-plugins</strong><small>用 skills、连接器和命令把岗位流程包装成可定制插件。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/storytold/artcraft"><span class="briefing-quick-item__source">本地创作 · Rust · +3,752/日</span><span class="briefing-quick-item__body"><strong>storytold/artcraft</strong><small>在 2D/3D 场景中组合图像、视频和模型工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Robbyant/lingbot-map"><span class="briefing-quick-item__source">流式 3D 重建 · Python · +110/日</span><span class="briefing-quick-item__body"><strong>Robbyant/lingbot-map</strong><small>用几何上下文与 KV cache 研究长序列流式重建。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
 </div>
 
                 
@@ -575,13 +431,13 @@ KV cache 研究长序列流式重建。</small></span><span class="briefing-quic
       
         <a href="/tags/Agent/" class="print-no-link">#Agent</a>
       
+        <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%B7%A5%E5%85%B7/" class="print-no-link">#系统工具</a>
+      
         <a href="/tags/%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F/" class="print-no-link">#代码质量</a>
       
         <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" class="print-no-link">#多模态</a>
       
         <a href="/tags/3D-%E8%A7%86%E8%A7%89/" class="print-no-link">#3D 视觉</a>
-      
-        <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%B7%A5%E5%85%B7/" class="print-no-link">#系统工具</a>
       
     </div>
   
