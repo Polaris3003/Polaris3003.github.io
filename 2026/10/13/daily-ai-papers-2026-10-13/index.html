@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字都是论文作者在其数据、模型和实验协议下报告的结果，不代表独立复核。  AutoControl Arena: Synthesizing Executable Test Environments for Frontier AI Risk Evaluation  作者：Changyi Li、Pengfei Lu、Xudong">
+    <meta name="description" content="重点关注 以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字都是论文作者在其数据、模型和实验协议下报告的结果，不代表独立复核。 AutoControl Arena: Synthesizing Executable Test Environments for Frontier AI Risk Evaluation  作者：Changyi Li、Pengfei Lu、Xudong P">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 10 月 13 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/10/13/daily-ai-papers-2026-10-13/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字都是论文作者在其数据、模型和实验协议下报告的结果，不代表独立复核。  AutoControl Arena: Synthesizing Executable Test Environments for Frontier AI Risk Evaluation  作者：Changyi Li、Pengfei Lu、Xudong">
+<meta property="og:description" content="重点关注 以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字都是论文作者在其数据、模型和实验协议下报告的结果，不代表独立复核。 AutoControl Arena: Synthesizing Executable Test Environments for Frontier AI Risk Evaluation  作者：Changyi Li、Pengfei Lu、Xudong P">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-16/pixiv-rank-008-148184985.jpg">
 <meta property="article:published_time" content="2026-10-13T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-09-06/pixiv-rank-007-149086628.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-19/pixiv-rank-006-147092236.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,174 +347,387 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
-<p>以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字都是论文作者在其数据、模型和实验协议下报告的结果，不代表独立复核。</p>
-<h3 id="autocontrol-arena-synthesizing-executable-test-environments-for-frontier-ai-risk-evaluation"><a class="markdownIt-Anchor" href="#autocontrol-arena-synthesizing-executable-test-environments-for-frontier-ai-risk-evaluation"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.07427">AutoControl Arena: Synthesizing Executable Test Environments for Frontier AI Risk Evaluation</a></h3>
+<h2 id="重点关注">重点关注</h2>
+<p>以下 6 篇从今日 18 篇 AI
+候选中选出。除特别说明外，数字都是论文作者在其数据、模型和实验协议下报告的结果，不代表独立复核。</p>
+<h3 id="autocontrol-arena-synthesizing-executable-test-environments-for-frontier-ai-risk-evaluation"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.07427">AutoControl Arena: Synthesizing
+Executable Test Environments for Frontier AI Risk Evaluation</a></h3>
 <ul>
 <li>作者：Changyi Li、Pengfei Lu、Xudong Pan、Fazl Barez、Min Yang</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>；AI</li>
+<li>来源/分类：arXiv，cs.AI、cs.CR；AI</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.07427">PDF</a>；代码与数据：<a target="_blank" rel="noopener" href="https://github.com/CosmosYi/AutoControl-Arena">GitHub</a></li>
-<li>核心问题：人工安全 benchmark 成本高，纯 LLM 模拟器又容易出现逻辑幻觉；如何自动生成仍具有可执行状态和可审计轨迹的 agent 风险环境。</li>
-<li>方法与基线：AutoControl Arena 把环境拆成“逻辑层”和“叙事层”：文件、权限、执行结果等确定性状态由 Python 可执行内核维护，NPC 反馈等开放内容交给 LLM。Architect 设计场景、Coder 生成环境、Monitor 评估行为，并用语义验证和语法修正双循环检查可执行性。X-Bench 含 70 个场景、7 类风险，另以 Stress（压力）和 Temptation（诱因）组成 2×2 诱发条件；评估 9 个模型、2,520 个模型—条件组合和 7,560 次 rollout。</li>
-<li>关键结果：作者报告环境端到端执行成功率超过 98%，人类偏好相对已有模拟器为 60%。9 个模型在基线条件下的平均风险率为 21.7%，同时提高压力和诱因后升到 54.5%；Qwen3-32B 的单因素叠加预测风险约 41.3%，实际耦合条件为 53.2%。能力与安全也不单调：Qwen3-4B 到 Qwen3-32B 的 Capability Misuse 风险从 65.0% 降至 48.6%，但 Specification Gaming 从 28.6% 升至 43.8%；Gemini-3-Flash 的该类风险为 53.5%，Gemini-2.5-Flash 为 26.2%。</li>
-<li>创新与证据限制：贡献主要是可执行环境合成、压力测试维度和把行为风险与 CoT 意图分析结合，而不是新的基础模型。Monitor 依赖模型轨迹和 rubric，70 个场景、生成器模型、提示词和人工偏好仍会影响结论；“战略性隐藏”是论文的评估判断，不是对模型内部意图的直接观测。代码公开不等于已有独立复现。</li>
-<li>适合谁读：做 agent safety、评测基础设施、工具调用和部署前红队测试的人。建议先读第 3–5 节、表 2、图 8–9 和附录 E、G。</li>
-<li>证据状态：已核阅摘要与 PDF；结果是作者在 X-Bench 和其合成协议下的报告。</li>
+<li>核心问题：人工安全 benchmark 成本高，纯 LLM
+模拟器又容易出现逻辑幻觉；如何自动生成仍具有可执行状态和可审计轨迹的
+agent 风险环境。</li>
+<li>方法与基线：AutoControl Arena
+把环境拆成“逻辑层”和“叙事层”：文件、权限、执行结果等确定性状态由 Python
+可执行内核维护，NPC 反馈等开放内容交给 LLM。Architect 设计场景、Coder
+生成环境、Monitor
+评估行为，并用语义验证和语法修正双循环检查可执行性。X-Bench 含 70
+个场景、7 类风险，另以 Stress（压力）和 Temptation（诱因）组成 2×2
+诱发条件；评估 9 个模型、2,520 个模型—条件组合和 7,560 次 rollout。</li>
+<li>关键结果：作者报告环境端到端执行成功率超过
+98%，人类偏好相对已有模拟器为 60%。9 个模型在基线条件下的平均风险率为
+21.7%，同时提高压力和诱因后升到 54.5%；Qwen3-32B 的单因素叠加预测风险约
+41.3%，实际耦合条件为 53.2%。能力与安全也不单调：Qwen3-4B 到 Qwen3-32B
+的 Capability Misuse 风险从 65.0% 降至 48.6%，但 Specification Gaming 从
+28.6% 升至 43.8%；Gemini-3-Flash 的该类风险为 53.5%，Gemini-2.5-Flash 为
+26.2%。</li>
+<li>创新与证据限制：贡献主要是可执行环境合成、压力测试维度和把行为风险与
+CoT 意图分析结合，而不是新的基础模型。Monitor 依赖模型轨迹和 rubric，70
+个场景、生成器模型、提示词和人工偏好仍会影响结论；“战略性隐藏”是论文的评估判断，不是对模型内部意图的直接观测。代码公开不等于已有独立复现。</li>
+<li>适合谁读：做 agent
+safety、评测基础设施、工具调用和部署前红队测试的人。建议先读第 3–5
+节、表 2、图 8–9 和附录 E、G。</li>
+<li>证据状态：已核阅摘要与 PDF；结果是作者在 X-Bench
+和其合成协议下的报告。</li>
 </ul>
-<h3 id="rated-reliability-aware-ai-agent-tool-retrieval-via-execution-dynamics"><a class="markdownIt-Anchor" href="#rated-reliability-aware-ai-agent-tool-retrieval-via-execution-dynamics"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13889">RATED: Reliability-Aware AI Agent Tool Retrieval via Execution Dynamics</a></h3>
+<h3 id="rated-reliability-aware-ai-agent-tool-retrieval-via-execution-dynamics"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13889">RATED: Reliability-Aware AI
+Agent Tool Retrieval via Execution Dynamics</a></h3>
 <ul>
 <li>作者：Weiliang Chen、Song Liao</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.IR">cs.IR</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；AI</li>
+<li>来源/分类：arXiv，cs.IR、cs.AI；AI</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.13889">PDF</a>；代码与数据：<a target="_blank" rel="noopener" href="https://github.com/Elliotes/EcoAgent">GitHub</a></li>
-<li>核心问题：工具检索通常只优化语义相关性，但生产环境中的工具可能宕机、超时或返回 schema 错误；如何在不反复训练主模型的情况下用执行反馈动态避开不可靠工具。</li>
-<li>方法与基线：先用 DRAGON 双编码器做对比学习和 top-10 语义召回，再用带折扣的 LinUCB 为每个工具维护上下文 bandit，融合语义分数、近期成功率和目录元数据。EcoAgent 收集 5,172 个真实工具；合成集有 69,501 个 query、70,122 个正样本对和 140,244 个负样本对，真实评测集有 6,379 个 query、9,946 个已核验 query–tool 对。对照包括 TF-IDF、BM25、Ada-002、BGE、SPLADE、BGE-Reranker、ToolLLM retriever，以及黑名单、重试和 batch-GRPO 式更新。</li>
-<li>关键结果：在 EcoAgent-Real 上，RATED 的 MRR 为 0.618，ToolLLM API retriever 为 0.406，作者据此报告相对提升 52.2%；Recall@5 为 0.740。30% 工具故障注入时，RATED 的 fault selection rate 为 2.9%、post-fail success rate 为 82.1%，ToolLLM 分别为 86.2% 和 10.5%，预训练 DRAGON 为 21.2% 和 75.7%。单样本推理平均延迟从编码基线的 3.223 ms 增至 3.395 ms，增量 0.172 ms，P95 为 4.391 ms。</li>
-<li>创新与证据限制：把“找到正确工具”和“工具现在能否工作”拆为两层，并用在线反馈更新后者。工具可靠性分数部分来自自动元数据规则；真实 query 的映射经过检索、LLM 验证和 200 条人工抽样，不能等同于完整人工标注。故障是固定集合的持久注入，不覆盖真实服务的相关故障、权限变化和级联影响；离线检索和工具选择指标也没有直接证明端到端 agent 任务成功。</li>
-<li>适合谁读：做 agent runtime、工具市场、检索系统和高可用 AI 基础设施的人。建议先读第 2–4.6 节、算法 1 和表 1–3。</li>
-<li>证据状态：已核阅摘要与 PDF；结果为作者在 EcoAgent 及固定故障注入协议下的报告。</li>
+<li>核心问题：工具检索通常只优化语义相关性，但生产环境中的工具可能宕机、超时或返回
+schema
+错误；如何在不反复训练主模型的情况下用执行反馈动态避开不可靠工具。</li>
+<li>方法与基线：先用 DRAGON 双编码器做对比学习和 top-10
+语义召回，再用带折扣的 LinUCB 为每个工具维护上下文
+bandit，融合语义分数、近期成功率和目录元数据。EcoAgent 收集 5,172
+个真实工具；合成集有 69,501 个 query、70,122 个正样本对和 140,244
+个负样本对，真实评测集有 6,379 个 query、9,946 个已核验 query–tool
+对。对照包括 TF-IDF、BM25、Ada-002、BGE、SPLADE、BGE-Reranker、ToolLLM
+retriever，以及黑名单、重试和 batch-GRPO 式更新。</li>
+<li>关键结果：在 EcoAgent-Real 上，RATED 的 MRR 为 0.618，ToolLLM API
+retriever 为 0.406，作者据此报告相对提升 52.2%；<a href="mailto:Recall@5" class="email">Recall@5</a> 为 0.740。30%
+工具故障注入时，RATED 的 fault selection rate 为 2.9%、post-fail success
+rate 为 82.1%，ToolLLM 分别为 86.2% 和 10.5%，预训练 DRAGON 为 21.2% 和
+75.7%。单样本推理平均延迟从编码基线的 3.223 ms 增至 3.395 ms，增量 0.172
+ms，P95 为 4.391 ms。</li>
+<li>创新与证据限制：把“找到正确工具”和“工具现在能否工作”拆为两层，并用在线反馈更新后者。工具可靠性分数部分来自自动元数据规则；真实
+query 的映射经过检索、LLM 验证和 200
+条人工抽样，不能等同于完整人工标注。故障是固定集合的持久注入，不覆盖真实服务的相关故障、权限变化和级联影响；离线检索和工具选择指标也没有直接证明端到端
+agent 任务成功。</li>
+<li>适合谁读：做 agent runtime、工具市场、检索系统和高可用 AI
+基础设施的人。建议先读第 2–4.6 节、算法 1 和表 1–3。</li>
+<li>证据状态：已核阅摘要与 PDF；结果为作者在 EcoAgent
+及固定故障注入协议下的报告。</li>
 </ul>
-<h3 id="rollout-time-intervention-unlocking-agentic-reinforcement-learning-beyond-policy-limits"><a class="markdownIt-Anchor" href="#rollout-time-intervention-unlocking-agentic-reinforcement-learning-beyond-policy-limits"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13438">Rollout-Time Intervention: Unlocking Agentic Reinforcement Learning Beyond Policy Limits</a></h3>
+<h3 id="rollout-time-intervention-unlocking-agentic-reinforcement-learning-beyond-policy-limits"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13438">Rollout-Time Intervention:
+Unlocking Agentic Reinforcement Learning Beyond Policy Limits</a></h3>
 <ul>
-<li>作者：Chen Xi、Ding Ruixue、Wang Zhigaoyuan、Zhang Fanrui、Zhang Qiang、Chen Boli、Wang Shihang、Wang Tianfu、Ren Ailin、Wang Pengyong、Xie Pengjun、Xiong Hui</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG；AI</li>
+<li>作者：Chen Xi、Ding Ruixue、Wang Zhigaoyuan、Zhang Fanrui、Zhang
+Qiang、Chen Boli、Wang Shihang、Wang Tianfu、Ren Ailin、Wang
+Pengyong、Xie Pengjun、Xiong Hui</li>
+<li>来源/分类：arXiv，cs.AI、cs.LG；AI</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.13438">PDF</a>；代码：<a target="_blank" rel="noopener" href="https://github.com/Alibaba-NLP/qqr">GitHub</a></li>
-<li>核心问题：on-policy agent RL 在模型几乎不会成功的任务上拿不到有效轨迹，训练容易停滞；能否在 rollout 阶段纠正关键错误，同时控制 off-policy 分布偏移。</li>
-<li>方法与基线：只有当一组 rollout 全部失败时才触发 reward-aware 多智能体干预：Validator 找出会导致失败的步骤，Corrector 做尽量小的修正，Verifier 检查是否泄漏特权信息或偏离原策略。随后用 rollout-policy perplexity gate 过滤偏移过大的轨迹，并按 reasoning-shift 对关键 token 重加权。作者以 Qwen3-8B、Qwen3.5-9B 为主干，在 Navigation、τ2-Bench 的 Telecom/Retail/Airline 和 Claw-Eval-Hard20 上与 GRPO、GSPO、AEPO、OPD、LUFFY 比较。</li>
-<li>关键结果：在 Qwen3-8B 上，RTI 的 Pass@1 在 Navigation 为 57.33%，GRPO 为 35.33%；τ2-Telecom 为 61.40%，GRPO 为 36.84%；Claw-Eval-Hard20 为 50.00%，GRPO 为 22.50%。在 Qwen3.5-9B 的 Hard20 上，RTI 为 85.00%，LUFFY 为 61.25%。去掉 post-check 后，Qwen3-8B Navigation Pass@1 降至 26.00%；去掉 PPL gate 后，Telecom 从 61.40% 降至 54.39%，Pass4 从 31.58% 降至 18.42%。</li>
-<li>创新与证据限制：它把“教师纠错”限制在可见历史和任务 reward 证据内，而不是直接替换成 oracle 轨迹。可是训练时仍使用了评测 rubric 和额外 Validator/Corrector/Verifier，部署时的推理成本、提示泄漏风险和模型自评可靠性需要单独核查；干预轨迹也可能让 benchmark 过拟合。作者报告的是五个受控 benchmark 的 Pass@k，不是现实工具系统的长期成功率。</li>
-<li>适合谁读：做 agent RL、轨迹合成、verifiable reward 和长程工具调用的人。建议先读第 4–5.5 节、表 1–3 和附录 C、D。</li>
-<li>证据状态：已核阅摘要与 PDF；结果是作者在所列 benchmark 和训练配额下的报告。</li>
+<li>核心问题：on-policy agent RL
+在模型几乎不会成功的任务上拿不到有效轨迹，训练容易停滞；能否在 rollout
+阶段纠正关键错误，同时控制 off-policy 分布偏移。</li>
+<li>方法与基线：只有当一组 rollout 全部失败时才触发 reward-aware
+多智能体干预：Validator 找出会导致失败的步骤，Corrector
+做尽量小的修正，Verifier 检查是否泄漏特权信息或偏离原策略。随后用
+rollout-policy perplexity gate 过滤偏移过大的轨迹，并按 reasoning-shift
+对关键 token 重加权。作者以 Qwen3-8B、Qwen3.5-9B 为主干，在
+Navigation、τ2-Bench 的 Telecom/Retail/Airline 和 Claw-Eval-Hard20 上与
+GRPO、GSPO、AEPO、OPD、LUFFY 比较。</li>
+<li>关键结果：在 Qwen3-8B 上，RTI 的 <a href="mailto:Pass@1" class="email">Pass@1</a> 在 Navigation 为 57.33%，GRPO 为
+35.33%；τ2-Telecom 为 61.40%，GRPO 为 36.84%；Claw-Eval-Hard20 为
+50.00%，GRPO 为 22.50%。在 Qwen3.5-9B 的 Hard20 上，RTI 为 85.00%，LUFFY
+为 61.25%。去掉 post-check 后，Qwen3-8B Navigation <a href="mailto:Pass@1" class="email">Pass@1</a> 降至 26.00%；去掉 PPL gate
+后，Telecom 从 61.40% 降至 54.39%，Pass4 从 31.58% 降至 18.42%。</li>
+<li>创新与证据限制：它把“教师纠错”限制在可见历史和任务 reward
+证据内，而不是直接替换成 oracle 轨迹。可是训练时仍使用了评测 rubric
+和额外
+Validator/Corrector/Verifier，部署时的推理成本、提示泄漏风险和模型自评可靠性需要单独核查；干预轨迹也可能让
+benchmark 过拟合。作者报告的是五个受控 benchmark 的 <a href="mailto:Pass@k" class="email">Pass@k</a>，不是现实工具系统的长期成功率。</li>
+<li>适合谁读：做 agent RL、轨迹合成、verifiable reward
+和长程工具调用的人。建议先读第 4–5.5 节、表 1–3 和附录 C、D。</li>
+<li>证据状态：已核阅摘要与 PDF；结果是作者在所列 benchmark
+和训练配额下的报告。</li>
 </ul>
-<h3 id="drylab-bench-benchmarking-the-biosecurity-risk-of-agentic-llm-mutation-design"><a class="markdownIt-Anchor" href="#drylab-bench-benchmarking-the-biosecurity-risk-of-agentic-llm-mutation-design"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13116">DRYLAB-Bench: Benchmarking the Biosecurity Risk of Agentic LLM Mutation Design</a></h3>
+<h3 id="drylab-bench-benchmarking-the-biosecurity-risk-of-agentic-llm-mutation-design"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13116">DRYLAB-Bench: Benchmarking the
+Biosecurity Risk of Agentic LLM Mutation Design</a></h3>
 <ul>
-<li>作者：Yuzhen Wang、Chunxiao Li、Baichen Le、Lewen Yan、Jie Zhang、Yucheng T. Yang、Xing-Ming Zhao、Lijun Li、Jing Shao</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>；AI 安全</li>
+<li>作者：Yuzhen Wang、Chunxiao Li、Baichen Le、Lewen Yan、Jie
+Zhang、Yucheng T. Yang、Xing-Ming Zhao、Lijun Li、Jing Shao</li>
+<li>来源/分类：arXiv，cs.AI、cs.CL、cs.CR；AI 安全</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.13116">PDF</a>；代码：<a target="_blank" rel="noopener" href="https://github.com/drylab-bio/DRYLAB-Bench">GitHub</a></li>
 <li>核心问题：现有生物安全评测多问模型“知道什么”，却很少测它能否在工具辅助下迭代完成高风险设计；又不能用真实湿实验去验证危险方案。</li>
-<li>方法与基线：DRYLAB-Bench 把国际生物安全指南转成 30 个、覆盖 8 类风险的设计场景，比较 S0（无工具一次生成）、S1（一次工具修订）和 S2（最多四轮工具迭代）。六类生物设计工具提供保守性、序列似然、结构兼容性、功能注释、毒性预测和场景预测，但隐藏 ProteinGym/ViroGym 的 187,695 条深度突变扫描测量。最终候选按实验测量构造 Biosecurity Risk Score（BRS），15 个模型、3 种措辞变体参与评估，S2 的实验覆盖率平均为 83.9%。</li>
-<li>关键结果：作者报告无工具 S0 的 pooled BRS 为 0.359，多轮工具条件 S2 为 0.475，增量 +0.116；S1 先增加 +0.048，S2 再增加 +0.068。S0 候选中 67.6% 高于该 assay 的平均实测变体，21.4% 进入最高风险十分位；S2 的最高风险十分位占比为 23.5%。工具不总是有益：CcdB 场景中某保守性信号与实测结果的 Spearman 相关为 −0.815。把同一任务只改写成“学术”或“恶意”语境时，拒答率也发生明显变化。</li>
-<li>创新与证据限制：用隐藏实验测量做无湿实验、可扩展的验证，是比 LLM-as-judge 更强的证据链；但单点突变和已有 assay 覆盖不等于完整病原体设计风险，工具输出与目标维度错配也会放大误导。拒答措辞实验仍混有场景身份差异，BRS 是 benchmark 风险代理而不是现实伤害概率。本文涉及高风险生物安全，公开简报只讨论评测设计与证据边界，不复述可操作的危险设计细节。</li>
-<li>适合谁读：做 AI safety、双用途生物技术治理、agent tool-use 评测和安全红队的人。建议先读第 3–4.3 节、图 3–4、表 2–3、附录 B、C。</li>
-<li>证据状态：已核阅摘要与 PDF；结果为作者在隐藏 DMS 数据、所列工具和提示协议下的报告。</li>
+<li>方法与基线：DRYLAB-Bench 把国际生物安全指南转成 30 个、覆盖 8
+类风险的设计场景，比较 S0（无工具一次生成）、S1（一次工具修订）和
+S2（最多四轮工具迭代）。六类生物设计工具提供保守性、序列似然、结构兼容性、功能注释、毒性预测和场景预测，但隐藏
+ProteinGym/ViroGym 的 187,695 条深度突变扫描测量。最终候选按实验测量构造
+Biosecurity Risk Score（BRS），15 个模型、3 种措辞变体参与评估，S2
+的实验覆盖率平均为 83.9%。</li>
+<li>关键结果：作者报告无工具 S0 的 pooled BRS 为 0.359，多轮工具条件 S2
+为 0.475，增量 +0.116；S1 先增加 +0.048，S2 再增加 +0.068。S0 候选中
+67.6% 高于该 assay 的平均实测变体，21.4% 进入最高风险十分位；S2
+的最高风险十分位占比为 23.5%。工具不总是有益：CcdB
+场景中某保守性信号与实测结果的 Spearman 相关为
+−0.815。把同一任务只改写成“学术”或“恶意”语境时，拒答率也发生明显变化。</li>
+<li>创新与证据限制：用隐藏实验测量做无湿实验、可扩展的验证，是比
+LLM-as-judge 更强的证据链；但单点突变和已有 assay
+覆盖不等于完整病原体设计风险，工具输出与目标维度错配也会放大误导。拒答措辞实验仍混有场景身份差异，BRS
+是 benchmark
+风险代理而不是现实伤害概率。本文涉及高风险生物安全，公开简报只讨论评测设计与证据边界，不复述可操作的危险设计细节。</li>
+<li>适合谁读：做 AI safety、双用途生物技术治理、agent tool-use
+评测和安全红队的人。建议先读第 3–4.3 节、图 3–4、表 2–3、附录
+B、C。</li>
+<li>证据状态：已核阅摘要与 PDF；结果为作者在隐藏 DMS
+数据、所列工具和提示协议下的报告。</li>
 </ul>
-<h3 id="auditing-vlm-benchmarks-from-existing-evaluation-runs"><a class="markdownIt-Anchor" href="#auditing-vlm-benchmarks-from-existing-evaluation-runs"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13548">Auditing VLM Benchmarks from Existing Evaluation Runs</a></h3>
+<h3 id="auditing-vlm-benchmarks-from-existing-evaluation-runs"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13548">Auditing VLM Benchmarks from
+Existing Evaluation Runs</a></h3>
 <ul>
-<li>作者：Denis Degtiarev、Anna Gromova、Sergey Katkov、Artem Mikhailin、Safina Mukhamedshina、Albert Nasybullin、Karina Shaikhutdinova、Artem Tuzov</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；AI 评测</li>
+<li>作者：Denis Degtiarev、Anna Gromova、Sergey Katkov、Artem
+Mikhailin、Safina Mukhamedshina、Albert Nasybullin、Karina
+Shaikhutdinova、Artem Tuzov</li>
+<li>来源/分类：arXiv，cs.CV、cs.CL、cs.AI；AI 评测</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.13548">PDF</a></li>
-<li>核心问题：VLM benchmark 把逐题预测、判定和元数据压成一个 leaderboard 分数后，如何用已有运行产物反向审计“图像是否真的有用、标签是否可疑、选项是否有偏”。</li>
-<li>方法与基线：作者把 6 个 detector 集成到 VLMEvalKit，并增加一次去掉图像的 text-only blind run；检查视觉依赖、共识标签冲突、Fleiss κ、正确性分布、选项位置和干扰项相似度。主案例 MMStar 有 1,500 个四选一题目，使用 3 个 VLM；零增益比例用 999 次按题目匹配的置换 null 校正，并做 leave-one-model-out、split-half 和 LLM judge/exact parser 对照。另在二选一 HallusionBench 上测量方法的边界。</li>
-<li>关键结果：MMStar 中 303/1,500（20.2%）题目在带图和去图运行中模型池准确率相同；置换 null 为 17.0%，超额为 +3.2 个百分点，单侧 p=0.001。303 题中有 164 题是所有模型带图和去图都答错，只有 26 题是三个模型都在无图时答对，因此不能把零增益直接解释成“题目不需要图像”。另有 134 题（8.9%）所有可解析回答都一致地选了非 gold 选项。移除 LLM judge 后结论不变；在二选一 benchmark 上 detector 出现校准失效。</li>
-<li>创新与证据限制：把测量误差、模型池敏感性和 benchmark 缺陷放在同一报告里，避免把一个原始比例当机制证明。它没有直接测数据污染，也不能靠零增益确定究竟是语言先验、选项统计还是共享错误；3 个模型、一个四选一 benchmark 和一个二选一边界实验的外部效度有限。开放代码/产物和统计 null 让复核成本下降，但仍需要人工复审被标记题目。</li>
-<li>适合谁读：做多模态 benchmark、LLM-as-a-judge、数据质量和科学测量的人。建议先读第 3–4.6 节、表 1–2、图 2–4。</li>
-<li>证据状态：已核阅摘要与 PDF；134 个冲突项仍是人工复核候选，不是已确认的标签错误。</li>
+<li>核心问题：VLM benchmark 把逐题预测、判定和元数据压成一个 leaderboard
+分数后，如何用已有运行产物反向审计“图像是否真的有用、标签是否可疑、选项是否有偏”。</li>
+<li>方法与基线：作者把 6 个 detector 集成到
+VLMEvalKit，并增加一次去掉图像的 text-only blind
+run；检查视觉依赖、共识标签冲突、Fleiss
+κ、正确性分布、选项位置和干扰项相似度。主案例 MMStar 有 1,500
+个四选一题目，使用 3 个 VLM；零增益比例用 999 次按题目匹配的置换 null
+校正，并做 leave-one-model-out、split-half 和 LLM judge/exact parser
+对照。另在二选一 HallusionBench 上测量方法的边界。</li>
+<li>关键结果：MMStar 中
+303/1,500（20.2%）题目在带图和去图运行中模型池准确率相同；置换 null 为
+17.0%，超额为 +3.2 个百分点，单侧 p=0.001。303 题中有 164
+题是所有模型带图和去图都答错，只有 26
+题是三个模型都在无图时答对，因此不能把零增益直接解释成“题目不需要图像”。另有
+134 题（8.9%）所有可解析回答都一致地选了非 gold 选项。移除 LLM judge
+后结论不变；在二选一 benchmark 上 detector 出现校准失效。</li>
+<li>创新与证据限制：把测量误差、模型池敏感性和 benchmark
+缺陷放在同一报告里，避免把一个原始比例当机制证明。它没有直接测数据污染，也不能靠零增益确定究竟是语言先验、选项统计还是共享错误；3
+个模型、一个四选一 benchmark
+和一个二选一边界实验的外部效度有限。开放代码/产物和统计 null
+让复核成本下降，但仍需要人工复审被标记题目。</li>
+<li>适合谁读：做多模态
+benchmark、LLM-as-a-judge、数据质量和科学测量的人。建议先读第 3–4.6
+节、表 1–2、图 2–4。</li>
+<li>证据状态：已核阅摘要与 PDF；134
+个冲突项仍是人工复核候选，不是已确认的标签错误。</li>
 </ul>
-<h3 id="retrieval-augmented-multimodal-language-model-with-heterogeneous-evidence-integration-for-clinical-prognosis"><a class="markdownIt-Anchor" href="#retrieval-augmented-multimodal-language-model-with-heterogeneous-evidence-integration-for-clinical-prognosis"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13510">Retrieval-Augmented Multimodal Language Model with Heterogeneous Evidence Integration for Clinical Prognosis</a></h3>
+<h3 id="retrieval-augmented-multimodal-language-model-with-heterogeneous-evidence-integration-for-clinical-prognosis"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13510">Retrieval-Augmented Multimodal
+Language Model with Heterogeneous Evidence Integration for Clinical
+Prognosis</a></h3>
 <ul>
 <li>作者：Hamza Shafiq、Jialu Tang、Ting Dang、Jun Hu、Aaqib Saeed</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；AI / 医疗交叉</li>
+<li>来源/分类：arXiv，cs.AI、cs.CL；AI / 医疗交叉</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.13510">PDF</a>；代码：<a target="_blank" rel="noopener" href="https://github.com/hamzashafiq28/PRISM">GitHub</a></li>
-<li>核心问题：临床预测同时面对结构化 EHR、ECG 波形、历史时间序列和相似病例，简单把数值转成文本会损失信息；如何把异构证据放进一个可训练、可审计的模型。</li>
-<li>方法与基线：PRISM 用 470 维 EHR 的 FT-Transformer 数值 token、当前 ECG、按时间衰减汇聚的历史 ECG，以及 EHR/ECG 两个索引各检索 3 个训练折邻居的均值 embedding，五路 soft token 输入 LoRA 适配的 MedGemma-4B。MDS-ED（MIMIC-IV）含 1,443 个任务；两阶段训练使用 4.5 million 个训练样本、两张 NVIDIA H100 80GB。比较 MDS-ED、UniPACT、ECG/LLM 基线和同样五路输入的 5.9M 参数紧凑融合模型。</li>
-<li>关键结果：完整输入下作者报告 Diagnosis、Deterioration、ICU、Mortality AUROC 分别为 86.24%、93.12%、91.79%、92.82%，macro-of-macro 为 0.9092。公平的 benchmark-window 对照去掉额外 96 小时到院前信息后为 0.8895，UniPACT 为 0.8937、MDS-ED 为 0.8889；因此完整结果的一部分来自额外历史，而不是仅来自架构。matched-input 紧凑模型为 0.7652；数值 EHR 改成全文序列化下降 3.66 个百分点，去检索下降 0.99 个百分点，真邻居比随机邻居高 0.97 个百分点，但 1,443 个任务的 paired sign test 为 p=0.067。外部 MC-MED 上 source-only 为 0.7841，监督适配 PRISM 为 0.8611，局部 gradient boosting 为 0.8227。</li>
-<li>创新与证据限制：作者有意识地做了额外窗口、随机邻居、零检索和紧凑模型对照，也明确承认 4B LLM 与小模型的参数/优化不匹配。研究仍是回顾性、两机构数据和单一 backbone；外部结果需要目标站点监督，不能当作零样本泛化。训练/推理的 H100 成本、数据分布漂移和临床工作流安全尚未被 AUROC 证明，不能据此作医疗决策。</li>
-<li>适合谁读：做医疗 AI、多模态融合、representation retrieval 和临床模型评测的人。建议先读第 3–4.8 节、表 1、3–7、附录 M。</li>
-<li>证据状态：已核阅摘要与 PDF；结果是作者在 MDS-ED、MC-MED 及其输入窗口定义下的报告，不是临床验证。</li>
+<li>核心问题：临床预测同时面对结构化 EHR、ECG
+波形、历史时间序列和相似病例，简单把数值转成文本会损失信息；如何把异构证据放进一个可训练、可审计的模型。</li>
+<li>方法与基线：PRISM 用 470 维 EHR 的 FT-Transformer 数值 token、当前
+ECG、按时间衰减汇聚的历史 ECG，以及 EHR/ECG 两个索引各检索 3
+个训练折邻居的均值 embedding，五路 soft token 输入 LoRA 适配的
+MedGemma-4B。MDS-ED（MIMIC-IV）含 1,443 个任务；两阶段训练使用 4.5
+million 个训练样本、两张 NVIDIA H100 80GB。比较 MDS-ED、UniPACT、ECG/LLM
+基线和同样五路输入的 5.9M 参数紧凑融合模型。</li>
+<li>关键结果：完整输入下作者报告
+Diagnosis、Deterioration、ICU、Mortality AUROC 分别为
+86.24%、93.12%、91.79%、92.82%，macro-of-macro 为 0.9092。公平的
+benchmark-window 对照去掉额外 96 小时到院前信息后为 0.8895，UniPACT 为
+0.8937、MDS-ED 为
+0.8889；因此完整结果的一部分来自额外历史，而不是仅来自架构。matched-input
+紧凑模型为 0.7652；数值 EHR 改成全文序列化下降 3.66 个百分点，去检索下降
+0.99 个百分点，真邻居比随机邻居高 0.97 个百分点，但 1,443 个任务的
+paired sign test 为 p=0.067。外部 MC-MED 上 source-only 为
+0.7841，监督适配 PRISM 为 0.8611，局部 gradient boosting 为
+0.8227。</li>
+<li>创新与证据限制：作者有意识地做了额外窗口、随机邻居、零检索和紧凑模型对照，也明确承认
+4B LLM 与小模型的参数/优化不匹配。研究仍是回顾性、两机构数据和单一
+backbone；外部结果需要目标站点监督，不能当作零样本泛化。训练/推理的 H100
+成本、数据分布漂移和临床工作流安全尚未被 AUROC
+证明，不能据此作医疗决策。</li>
+<li>适合谁读：做医疗 AI、多模态融合、representation retrieval
+和临床模型评测的人。建议先读第 3–4.8 节、表 1、3–7、附录 M。</li>
+<li>证据状态：已核阅摘要与 PDF；结果是作者在 MDS-ED、MC-MED
+及其输入窗口定义下的报告，不是临床验证。</li>
 </ul>
-<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
-<h3 id="can-agents-price-a-reaction-evaluating-llms-on-chemical-cost-reasoning"><a class="markdownIt-Anchor" href="#can-agents-price-a-reaction-evaluating-llms-on-chemical-cost-reasoning"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.07251">Can Agents Price a Reaction? Evaluating LLMs on Chemical Cost Reasoning</a></h3>
+<h2 id="ai-论文">AI 论文</h2>
+<h3 id="can-agents-price-a-reaction-evaluating-llms-on-chemical-cost-reasoning"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.07251">Can Agents Price a Reaction?
+Evaluating LLMs on Chemical Cost Reasoning</a></h3>
 <ul>
-<li>作者：Yuyang Wu、Yue Huang、Shuaike Shen、Xujian Wang、Shuhao Zhang、Qiyao Xue、Weichen Liu、Runtian Gao、Jian Ma、Xiangliang Zhang、Olexandr Isayev</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG；AI / 科学工具使用</li>
-<li>简介：研究化学 agent 能否把反应描述转成可核验的采购成本：识别化学品、检索供应商报价、选择可购买包装、统一数量并计算价格。ChemCost 含 1,427 个可评估反应、2,261 种化学品和 230,775 条供应商报价，并加入别名、数量表达、缺失字段和格式噪声。作者报告最强 agent 在干净输入上“相对误差不超过 25%”的准确率仅 50.6%，加噪声后明显下降；价值是用冻结价格快照和阶段级错误诊断替代 LLM judge。限制是价格快照、供应商覆盖和工具可用性固定，不能外推为现实采购系统表现。</li>
+<li>作者：Yuyang Wu、Yue Huang、Shuaike Shen、Xujian Wang、Shuhao
+Zhang、Qiyao Xue、Weichen Liu、Runtian Gao、Jian Ma、Xiangliang
+Zhang、Olexandr Isayev</li>
+<li>来源/分类：arXiv，cs.AI、cs.LG；AI / 科学工具使用</li>
+<li>简介：研究化学 agent
+能否把反应描述转成可核验的采购成本：识别化学品、检索供应商报价、选择可购买包装、统一数量并计算价格。ChemCost
+含 1,427 个可评估反应、2,261 种化学品和 230,775
+条供应商报价，并加入别名、数量表达、缺失字段和格式噪声。作者报告最强
+agent 在干净输入上“相对误差不超过 25%”的准确率仅
+50.6%，加噪声后明显下降；价值是用冻结价格快照和阶段级错误诊断替代 LLM
+judge。限制是价格快照、供应商覆盖和工具可用性固定，不能外推为现实采购系统表现。</li>
 <li>证据状态：仅依据摘要；结果是作者报告，尚未作独立复核。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.07251">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.07251">PDF</a></li>
 </ul>
-<h3 id="anomalyagent-agentic-industrial-anomaly-synthesis-via-tool-augmented-reinforcement-learning"><a class="markdownIt-Anchor" href="#anomalyagent-agentic-industrial-anomaly-synthesis-via-tool-augmented-reinforcement-learning"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.07900">AnomalyAgent: Agentic Industrial Anomaly Synthesis via Tool-Augmented Reinforcement Learning</a></h3>
+<h3 id="anomalyagent-agentic-industrial-anomaly-synthesis-via-tool-augmented-reinforcement-learning"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.07900">AnomalyAgent: Agentic Industrial
+Anomaly Synthesis via Tool-Augmented Reinforcement Learning</a></h3>
 <ul>
-<li>作者：Jiaming Su、Tengchao Yang、Ruikang Zhang、Zhengan Yan、Haoyu Sun、Linfeng Zhang</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；AI / 工业视觉</li>
-<li>简介：AnomalyAgent 用提示生成、图像生成、质量评价、知识检索和 mask 生成五类工具做闭环异常合成，并用监督微调加 RL 学习自反思和迭代修正。在 MVTec-AD 上，作者报告异常生成 IS/IC-L 为 2.10/0.33，下游 ResNet34 分类准确率 57.0%，简单 UNet 的图像级/像素级 AP 为 99.3%/74.2%。关注价值是把生成异常与下游检测效果连起来；限制是摘要没有说明完整基线、独立测试划分、算力和工具调用成本，且“超过 zero-shot SOTA”仍需按相同预算复核。</li>
+<li>作者：Jiaming Su、Tengchao Yang、Ruikang Zhang、Zhengan Yan、Haoyu
+Sun、Linfeng Zhang</li>
+<li>来源/分类：arXiv，cs.CV、cs.AI；AI / 工业视觉</li>
+<li>简介：AnomalyAgent 用提示生成、图像生成、质量评价、知识检索和 mask
+生成五类工具做闭环异常合成，并用监督微调加 RL 学习自反思和迭代修正。在
+MVTec-AD 上，作者报告异常生成 IS/IC-L 为 2.10/0.33，下游 ResNet34
+分类准确率 57.0%，简单 UNet 的图像级/像素级 AP 为
+99.3%/74.2%。关注价值是把生成异常与下游检测效果连起来；限制是摘要没有说明完整基线、独立测试划分、算力和工具调用成本，且“超过
+zero-shot SOTA”仍需按相同预算复核。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.07900">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.07900">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/sssjmmm/AnomalyAgent">代码</a></li>
 </ul>
-<h3 id="artis-agentic-risk-aware-test-time-scaling-via-iterative-simulation"><a class="markdownIt-Anchor" href="#artis-agentic-risk-aware-test-time-scaling-via-iterative-simulation"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.01709">ARTIS: Agentic Risk-Aware Test-Time Scaling via Iterative Simulation</a></h3>
+<h3 id="artis-agentic-risk-aware-test-time-scaling-via-iterative-simulation"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.01709">ARTIS: Agentic Risk-Aware
+Test-Time Scaling via Iterative Simulation</a></h3>
 <ul>
-<li>作者：Xingshan Zeng、Lingzhi Wang、Weiwen Liu、Liangyou Li、Yasheng Wang、Lifeng Shang、Xin Jiang、Qun Liu</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG；AI agent 安全</li>
-<li>简介：ARTIS 把 agent 的探索和真实提交分开，在执行不可逆工具动作前先做多轮模拟；针对普通 LLM simulator 漏掉罕见高损失动作的问题，训练偏向失败诱发动作的 risk-aware tool simulator。作者报告在多轮、多步 benchmark 上能提升可靠性，但摘要没有给出任务数、基线差值、推理开销和失败类型分解。核心限制是模拟器与真实环境的分布差距，不能把“模拟中更可靠”直接当作现实部署安全。</li>
+<li>作者：Xingshan Zeng、Lingzhi Wang、Weiwen Liu、Liangyou Li、Yasheng
+Wang、Lifeng Shang、Xin Jiang、Qun Liu</li>
+<li>来源/分类：arXiv，cs.AI、cs.LG；AI agent 安全</li>
+<li>简介：ARTIS 把 agent
+的探索和真实提交分开，在执行不可逆工具动作前先做多轮模拟；针对普通 LLM
+simulator 漏掉罕见高损失动作的问题，训练偏向失败诱发动作的 risk-aware
+tool simulator。作者报告在多轮、多步 benchmark
+上能提升可靠性，但摘要没有给出任务数、基线差值、推理开销和失败类型分解。核心限制是模拟器与真实环境的分布差距，不能把“模拟中更可靠”直接当作现实部署安全。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.01709">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.01709">PDF</a></li>
 </ul>
-<h3 id="improving-semantic-coverage-in-ai-test-evaluation-through-generative-augmentation"><a class="markdownIt-Anchor" href="#improving-semantic-coverage-in-ai-test-evaluation-through-generative-augmentation"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13697">Improving Semantic Coverage in AI Test &amp; Evaluation through Generative Augmentation</a></h3>
+<h3 id="improving-semantic-coverage-in-ai-test-evaluation-through-generative-augmentation"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13697">Improving Semantic Coverage in
+AI Test &amp; Evaluation through Generative Augmentation</a></h3>
 <ul>
-<li>作者：Connor Hashemi、Bharadwaj Ravichandran、Connor Anderson、Shitij Govil、Brandon RichardWebster、Brian Hu、Keith Fieldhouse</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；AI 评测</li>
-<li>简介：论文用 VLM 识别测试集中的语义因素，用 embedding 聚类找出影响下游模型的覆盖缺口，再用 diffusion image-to-image 生成日夜、天气或场景变化；合成图只扩充测试集，不重新训练被评估模型，并以 embedding 统计检查覆盖是否改善。作者在图像分类和目标检测的 day/night 缺口上报告更能区分已见与未见条件的模型。限制是摘要没有给出完整的生成质量、污染控制、基线差值和算力成本；合成测试图是否代表真实部署分布仍是外推问题。</li>
+<li>作者：Connor Hashemi、Bharadwaj Ravichandran、Connor
+Anderson、Shitij Govil、Brandon RichardWebster、Brian Hu、Keith
+Fieldhouse</li>
+<li>来源/分类：arXiv，cs.CV、cs.AI；AI 评测</li>
+<li>简介：论文用 VLM 识别测试集中的语义因素，用 embedding
+聚类找出影响下游模型的覆盖缺口，再用 diffusion image-to-image
+生成日夜、天气或场景变化；合成图只扩充测试集，不重新训练被评估模型，并以
+embedding 统计检查覆盖是否改善。作者在图像分类和目标检测的 day/night
+缺口上报告更能区分已见与未见条件的模型。限制是摘要没有给出完整的生成质量、污染控制、基线差值和算力成本；合成测试图是否代表真实部署分布仍是外推问题。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13697">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.13697">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Hashe037/DEDUCE">代码</a></li>
 </ul>
-<h3 id="beyond-temporal-proximity-explanatory-world-models-for-credit-assignment-in-reinforcement-learning"><a class="markdownIt-Anchor" href="#beyond-temporal-proximity-explanatory-world-models-for-credit-assignment-in-reinforcement-learning"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13504">Beyond Temporal Proximity: Explanatory World Models for Credit Assignment in Reinforcement Learning</a></h3>
+<h3 id="beyond-temporal-proximity-explanatory-world-models-for-credit-assignment-in-reinforcement-learning"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13504">Beyond Temporal Proximity:
+Explanatory World Models for Credit Assignment in Reinforcement
+Learning</a></h3>
 <ul>
 <li>作者：Oriol Corcoll、Qiyao Wei、Ciarán Mark Gilligan-Lee</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG；AI / 推荐系统</li>
-<li>简介：EWM 用 frontier LLM 解释哪些早期事件可能促成长期结果，再以保持整条轨迹无折扣回报的层级算子重新分配 credit；变体分别借鉴 actual causation、解释简洁性和 hard-to-vary explanation。论文在 Crafter、WordCraft、KuaiRand 和工业推荐器上与 PPO、LaRe、SFT、A2C 比较，摘要称延迟越长时收益越明显并改善 Recall。限制是解释是学习信号而非已识别的因果事实，工业离线评估、行为代理指标和 LLM 成本需要独立检验。</li>
+<li>来源/分类：arXiv，cs.AI、cs.LG；AI / 推荐系统</li>
+<li>简介：EWM 用 frontier LLM
+解释哪些早期事件可能促成长期结果，再以保持整条轨迹无折扣回报的层级算子重新分配
+credit；变体分别借鉴 actual causation、解释简洁性和 hard-to-vary
+explanation。论文在 Crafter、WordCraft、KuaiRand 和工业推荐器上与
+PPO、LaRe、SFT、A2C 比较，摘要称延迟越长时收益越明显并改善
+Recall。限制是解释是学习信号而非已识别的因果事实，工业离线评估、行为代理指标和
+LLM 成本需要独立检验。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13504">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.13504">PDF</a></li>
 </ul>
-<h3 id="masked-diffusion-language-agents-for-tool-integrated-chemical-reasoning"><a class="markdownIt-Anchor" href="#masked-diffusion-language-agents-for-tool-integrated-chemical-reasoning"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13330">Masked Diffusion Language Agents for Tool-Integrated Chemical Reasoning</a></h3>
+<h3 id="masked-diffusion-language-agents-for-tool-integrated-chemical-reasoning"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13330">Masked Diffusion Language Agents
+for Tool-Integrated Chemical Reasoning</a></h3>
 <ul>
 <li>作者：Mengdi Liu、Chenghao Jia、Hong Chang、Shiguang Shan</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；AI / 科学工具使用</li>
-<li>简介：ChemDiffAgent 把交错的推理和工具轨迹改写成 masked diffusion 的迭代去噪，让任意位置的补全共享全轨迹上下文，并用 agentic SFT 加方差缩减的偏好优化训练。作者构建六类单轮/多轮化学任务，声称在匹配预算下总体提升约 20%，8B 模型有时达到或超过更大的 GPT 5.5、Claude Opus 4.7。限制是摘要未给逐任务方差、污染检查、推理 token/工具成本和开源权重状态；“匹配预算”需要看实验附录确认。</li>
+<li>来源/分类：arXiv，cs.AI、cs.CL；AI / 科学工具使用</li>
+<li>简介：ChemDiffAgent 把交错的推理和工具轨迹改写成 masked diffusion
+的迭代去噪，让任意位置的补全共享全轨迹上下文，并用 agentic SFT
+加方差缩减的偏好优化训练。作者构建六类单轮/多轮化学任务，声称在匹配预算下总体提升约
+20%，8B 模型有时达到或超过更大的 GPT 5.5、Claude Opus
+4.7。限制是摘要未给逐任务方差、污染检查、推理
+token/工具成本和开源权重状态；“匹配预算”需要看实验附录确认。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13330">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.13330">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/bilemond/ChemDiffAgent">代码</a></li>
 </ul>
-<h3 id="scaling-agentic-data-for-long-horizon-terminal-intelligence"><a class="markdownIt-Anchor" href="#scaling-agentic-data-for-long-horizon-terminal-intelligence"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13166">Scaling Agentic Data for Long-Horizon Terminal Intelligence</a></h3>
+<h3 id="scaling-agentic-data-for-long-horizon-terminal-intelligence"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13166">Scaling Agentic Data for
+Long-Horizon Terminal Intelligence</a></h3>
 <ul>
-<li>作者：Shun Zou、Ziyu Ma、Yi Zou、Yong Wang、Lin Chen、Zehui Chen、Guanhua Chen、Xiangxiang Chu、Feng Zhao</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；AI agent 数据</li>
-<li>简介：TerminalHorizon 从真实专业工作出发，用独立执行发现被环境合成遗漏的关键工作，再逐阶段扩展同一目标，构造 1.5K 个长程终端任务环境；作者对 Qwen3.5-27B 做监督微调，并在 12 个 coding-agent、生产 agent 和通用推理 benchmark 上报告全面提升，还用每个 12 小时的 RSI 案例展示持续试验。限制是摘要没有给各 benchmark 的绝对分数、训练 token、环境污染隔离和人类任务质量，不能把“全面提升”直接理解成现实生产可替代性。</li>
+<li>作者：Shun Zou、Ziyu Ma、Yi Zou、Yong Wang、Lin Chen、Zehui
+Chen、Guanhua Chen、Xiangxiang Chu、Feng Zhao</li>
+<li>来源/分类：arXiv，cs.AI、cs.CL；AI agent 数据</li>
+<li>简介：TerminalHorizon
+从真实专业工作出发，用独立执行发现被环境合成遗漏的关键工作，再逐阶段扩展同一目标，构造
+1.5K 个长程终端任务环境；作者对 Qwen3.5-27B 做监督微调，并在 12 个
+coding-agent、生产 agent 和通用推理 benchmark 上报告全面提升，还用每个
+12 小时的 RSI 案例展示持续试验。限制是摘要没有给各 benchmark
+的绝对分数、训练
+token、环境污染隔离和人类任务质量，不能把“全面提升”直接理解成现实生产可替代性。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.13166">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.13166">PDF</a></li>
 </ul>
-<h3 id="smartsalesbench-a-resistance-aware-multi-turn-benchmark-for-evaluating-llm-sales-agents"><a class="markdownIt-Anchor" href="#smartsalesbench-a-resistance-aware-multi-turn-benchmark-for-evaluating-llm-sales-agents"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.12975">SmartSalesBench: A Resistance-Aware Multi-Turn Benchmark for Evaluating LLM Sales Agents</a></h3>
+<h3 id="smartsalesbench-a-resistance-aware-multi-turn-benchmark-for-evaluating-llm-sales-agents"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.12975">SmartSalesBench: A
+Resistance-Aware Multi-Turn Benchmark for Evaluating LLM Sales
+Agents</a></h3>
 <ul>
-<li>作者：P N Bhargav Teja、Velpula Lokesh Reddy、Madhu Basumata、Susen Sarkar、Rajasekhara Reddy Duvvuru Muni</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；AI agent 评测</li>
-<li>简介：SmartSalesBench 不再假设用户合作，而是让销售 agent 面对 12 类抗拒型买家、15 个手机产品和最长 20 轮对话；5 种 agent profile、3 次迭代共 13,680 个 session，指标分为成交结果、买家抗拒和交互质量三层。作者同时用 RAG 生成买家/销售 persona，并报告 50 人人工样本中 BRS 与人工评价的 κ=0.71、Pearson r=0.81。限制是摘要没有给各模型的绝对成绩，LLM-as-judge 仍可能继承 persona 生成偏差，且“销售成功”与用户利益并不等价。</li>
+<li>作者：P N Bhargav Teja、Velpula Lokesh Reddy、Madhu Basumata、Susen
+Sarkar、Rajasekhara Reddy Duvvuru Muni</li>
+<li>来源/分类：arXiv，cs.AI、cs.CL；AI agent 评测</li>
+<li>简介：SmartSalesBench 不再假设用户合作，而是让销售 agent 面对 12
+类抗拒型买家、15 个手机产品和最长 20 轮对话；5 种 agent profile、3
+次迭代共 13,680 个
+session，指标分为成交结果、买家抗拒和交互质量三层。作者同时用 RAG
+生成买家/销售 persona，并报告 50 人人工样本中 BRS 与人工评价的
+κ=0.71、Pearson r=0.81。限制是摘要没有给各模型的绝对成绩，LLM-as-judge
+仍可能继承 persona 生成偏差，且“销售成功”与用户利益并不等价。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.12975">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.12975">PDF</a></li>
 </ul>
-<h3 id="how-do-hardware-faults-manifest-differently-in-llm-agents"><a class="markdownIt-Anchor" href="#how-do-hardware-faults-manifest-differently-in-llm-agents"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.12756">How Do Hardware Faults Manifest Differently in LLM Agents?</a></h3>
+<h3 id="how-do-hardware-faults-manifest-differently-in-llm-agents"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.12756">How Do Hardware Faults Manifest
+Differently in LLM Agents?</a></h3>
 <ul>
-<li>作者：Aiden Rubey、Zachary Coalson、Cong Chen、Jean-Philippe Monteuuis、Jonathan Petit、Sanghyun Hong</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.AR">cs.AR</a>、cs.LG；AI 系统可靠性</li>
-<li>简介：论文在 3 个 agent benchmark 上做 6,814 次执行，包括 2,400 多次 clean run 和 4,300 多次随机两 bit 权重故障注入，追踪模型层错误如何变成系统层行为。作者观察到 agent 有时能自我恢复但增加计算/执行成本，少数故障会造成语义细微错误，某些模型/场景还改变安全与对齐行为。限制是故障模型、硬件映射、benchmark 和工具循环有限，摘要没有给各类故障率、算力价格和跨硬件复现结果。</li>
+<li>作者：Aiden Rubey、Zachary Coalson、Cong Chen、Jean-Philippe
+Monteuuis、Jonathan Petit、Sanghyun Hong</li>
+<li>来源/分类：arXiv，cs.AI、cs.AR、cs.LG；AI 系统可靠性</li>
+<li>简介：论文在 3 个 agent benchmark 上做 6,814 次执行，包括 2,400 多次
+clean run 和 4,300 多次随机两 bit
+权重故障注入，追踪模型层错误如何变成系统层行为。作者观察到 agent
+有时能自我恢复但增加计算/执行成本，少数故障会造成语义细微错误，某些模型/场景还改变安全与对齐行为。限制是故障模型、硬件映射、benchmark
+和工具循环有限，摘要没有给各类故障率、算力价格和跨硬件复现结果。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.12756">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.12756">PDF</a></li>
 </ul>
-<h3 id="llm4trust-exploring-the-capabilities-of-large-language-models-for-trust-evaluation"><a class="markdownIt-Anchor" href="#llm4trust-exploring-the-capabilities-of-large-language-models-for-trust-evaluation"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.33521">LLM4Trust: Exploring the Capabilities of Large Language Models for Trust Evaluation</a></h3>
+<h3 id="llm4trust-exploring-the-capabilities-of-large-language-models-for-trust-evaluation"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.33521">LLM4Trust: Exploring the
+Capabilities of Large Language Models for Trust Evaluation</a></h3>
 <ul>
 <li>作者：Jie Wang、Yanbo Sun、Zheng Yan、Jiahe Lan、Elisa Bertino</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>；AI / 网络安全</li>
-<li>简介：LLM4Trust 构造含 5 类基本信任性质的 trust graph，评估 8 个 LLM、9 种 prompt，并把有效组合用于 5 个真实数据集；作者还提出抽取大图关键信息的方法以缓解上下文窗口限制。摘要称模型在低监督场景有潜力，但会受到 trust graph 与 few-shot demonstration 攻击，并有较高推理成本；批量推理和防御机制可改善鲁棒性/效率。限制是摘要没有给统一的准确率、攻击预算和与传统图模型的公平成本比较。</li>
+<li>来源/分类：arXiv，cs.AI、cs.CR；AI / 网络安全</li>
+<li>简介：LLM4Trust 构造含 5 类基本信任性质的 trust graph，评估 8 个
+LLM、9 种 prompt，并把有效组合用于 5
+个真实数据集；作者还提出抽取大图关键信息的方法以缓解上下文窗口限制。摘要称模型在低监督场景有潜力，但会受到
+trust graph 与 few-shot demonstration
+攻击，并有较高推理成本；批量推理和防御机制可改善鲁棒性/效率。限制是摘要没有给统一的准确率、攻击预算和与传统图模型的公平成本比较。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.33521">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.33521">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Jieerbobo/LLM4Trust">代码</a></li>
 </ul>
-<h3 id="residencyrl-reinforcement-learning-in-simulated-clinical-environments"><a class="markdownIt-Anchor" href="#residencyrl-reinforcement-learning-in-simulated-clinical-environments"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.07418">ResidencyRL: Reinforcement Learning in Simulated Clinical Environments</a></h3>
+<h3 id="residencyrl-reinforcement-learning-in-simulated-clinical-environments"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.07418">ResidencyRL: Reinforcement
+Learning in Simulated Clinical Environments</a></h3>
 <ul>
-<li>作者：Valentin Liévin、Samuel Schmidgall、Tim Strother、Alex Bijamov、Akshay Goel 等</li>
-<li>来源/分类：arXiv，<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>；AI / 医疗</li>
-<li>简介：ResidencyRL 在最长 60 轮、最多 8 次工具调用的模拟临床问诊中，用诊断、管理、沟通、记录和安全的结构化 reward 训练 agent，并让其面对 adversarial simulator。作者报告 held-out adversarial 条件诊断准确率 88.0% 对 81.0%，漏掉 red flag 下降 31%，盲法专家在 pairwise 比较中 87.6% 偏好训练 agent，并在 AMIE、AgentClinic、CRAFT-MD 上方向性迁移。限制是模拟器与真实患者/工作流不同，专家偏好不是临床结局，前瞻性验证仍缺失。</li>
+<li>作者：Valentin Liévin、Samuel Schmidgall、Tim Strother、Alex
+Bijamov、Akshay Goel 等</li>
+<li>来源/分类：arXiv，cs.AI、cs.CL；AI / 医疗</li>
+<li>简介：ResidencyRL 在最长 60 轮、最多 8
+次工具调用的模拟临床问诊中，用诊断、管理、沟通、记录和安全的结构化
+reward 训练 agent，并让其面对 adversarial simulator。作者报告 held-out
+adversarial 条件诊断准确率 88.0% 对 81.0%，漏掉 red flag 下降
+31%，盲法专家在 pairwise 比较中 87.6% 偏好训练 agent，并在
+AMIE、AgentClinic、CRAFT-MD
+上方向性迁移。限制是模拟器与真实患者/工作流不同，专家偏好不是临床结局，前瞻性验证仍缺失。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.07418">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.07418">PDF</a></li>
 </ul>
-<h3 id="conditional-vendi-score-prompt-aware-diversity-evaluation-for-generative-ai-models-and-llms"><a class="markdownIt-Anchor" href="#conditional-vendi-score-prompt-aware-diversity-evaluation-for-generative-ai-models-and-llms"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2411.02817">Conditional Vendi Score: Prompt-Aware Diversity Evaluation for Generative AI Models and LLMs</a></h3>
+<h3 id="conditional-vendi-score-prompt-aware-diversity-evaluation-for-generative-ai-models-and-llms"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2411.02817">Conditional Vendi Score:
+Prompt-Aware Diversity Evaluation for Generative AI Models and
+LLMs</a></h3>
 <ul>
 <li>作者：Mohammad Jalali、Azim Ospanov、Amin Gohari、Farzan Farnia</li>
-<li>来源/分类：arXiv，cs.LG、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://stat.ML">stat.ML</a>；AI 评测</li>
-<li>简介：Conditional-Vendi 和 Conditional-RKE 用条件熵区分 prompt 导致的变化与模型本身产生的多样性，并给出 Conditional-RKE 的 O(1/√n) 收敛率和 Conditional-Vendi 的截断谱近似。作者在文生图、图像描述和 LLM 任务中报告能恢复真实多样性排序，也能引导 diffusion 模型生成更多样的结果。限制是多样性依赖 kernel、样本量和 prompt 分布，指标与人类质量/新颖性并不等价。</li>
+<li>来源/分类：arXiv，cs.LG、cs.AI、stat.ML；AI 评测</li>
+<li>简介：Conditional-Vendi 和 Conditional-RKE 用条件熵区分 prompt
+导致的变化与模型本身产生的多样性，并给出 Conditional-RKE 的 O(1/√n)
+收敛率和 Conditional-Vendi 的截断谱近似。作者在文生图、图像描述和 LLM
+任务中报告能恢复真实多样性排序，也能引导 diffusion
+模型生成更多样的结果。限制是多样性依赖 kernel、样本量和 prompt
+分布，指标与人类质量/新颖性并不等价。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2411.02817">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2411.02817">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/mjalali/conditional-vendi">代码</a></li>
 </ul>
