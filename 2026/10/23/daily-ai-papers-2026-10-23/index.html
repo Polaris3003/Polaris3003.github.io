@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 DiffResearch: Accelerating Deep Research with Diffusion Language Models  作者：Alan-Barsag Gazzaev、Alexey Gavrilov、Mikhail Mozikov、Sergey Muravyov。 来源&#x2F;分类：arXiv cs.AI；论文称已接收 EMNLP 2026 Industry Trac">
+    <meta name="description" content="重点关注  DiffResearch: Accelerating Deep Research with Diffusion Language Models  作者：Alan-Barsag Gazzaev、Alexey Gavrilov、Mikhail Mozikov、Sergey Muravyov。 来源&#x2F;分类：arXiv cs.AI；论文称已接收 EMNLP 2026 Industry Tr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 10 月 23 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/10/23/daily-ai-papers-2026-10-23/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 DiffResearch: Accelerating Deep Research with Diffusion Language Models  作者：Alan-Barsag Gazzaev、Alexey Gavrilov、Mikhail Mozikov、Sergey Muravyov。 来源&#x2F;分类：arXiv cs.AI；论文称已接收 EMNLP 2026 Industry Trac">
+<meta property="og:description" content="重点关注  DiffResearch: Accelerating Deep Research with Diffusion Language Models  作者：Alan-Barsag Gazzaev、Alexey Gavrilov、Mikhail Mozikov、Sergey Muravyov。 来源&#x2F;分类：arXiv cs.AI；论文称已接收 EMNLP 2026 Industry Tr">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-10-04/pixiv-rank-009-150258897.jpg">
 <meta property="article:published_time" content="2026-10-23T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-012-146018463.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-09-21/pixiv-rank-010-149676831.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,384 +347,185 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<h3 id="diffresearch-accelerating-deep-research-with-diffusion-language-models"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.28909">DiffResearch: Accelerating Deep
-Research with Diffusion Language Models</a></h3>
+<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
+<h3 id="diffresearch-accelerating-deep-research-with-diffusion-language-models"><a class="markdownIt-Anchor" href="#diffresearch-accelerating-deep-research-with-diffusion-language-models"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.28909">DiffResearch: Accelerating Deep Research with Diffusion Language Models</a></h3>
 <ul>
-<li>作者：Alan-Barsag Gazzaev、Alexey Gavrilov、Mikhail Mozikov、Sergey
-Muravyov。</li>
-<li>来源/分类：arXiv cs.AI；论文称已接收 EMNLP 2026 Industry
-Track。</li>
-<li>核心问题：深度研究 agent 的规划、检索、综合和写作都在关键路径上逐
-token 生成，如何在不牺牲报告质量的前提下减少端到端等待？</li>
-<li>方法与基线：作者固定多 agent
-脚手架、检索代码、提示词和评测，只替换骨干模型；用 diffusion 模型
-DiffusionGemma-26B-A4B-it 与可比的自回归 Gemma-4-26B-A4B-it，对 100 个
-Deep Research Bench 博士级任务（中英文各 50、覆盖 22
-个领域）进行比较。dFast 进一步在中间去噪状态读取子查询，用 Gemini 2.5
-Pro 做 RACE 评分，并做人工引用审计。</li>
-<li>关键结果（论文报告）：扩散配置 dFull/dFast 的平均端到端延迟为
-11.89/11.97 秒，自回归基线为 71.45 秒；p90 为 16.13/16.33 对 111.87
-秒，规划阶段约从 39.32 秒降到 3.68/3.64 秒，写作阶段约从 59.78 秒降到
-5.11/5.29 秒。dFast 的子查询分解中位数延迟为 243.4ms，对比完整解码的
-484.9ms；最终输出质量 RACE 为 dFull 0.3895、dFast 0.3969、AR
-0.3904，作者给出的配对区间包含零。10 份报告的人工审计仅有 14/50
-条主张完全得到支持，26/50 条未被建立；76 条引用中 41 条完全蕴含、14
-条不蕴含。</li>
-<li>创新、局限与失败条件：贡献是把并行去噪的速度优势放进完整研究系统，而不是只报单轮生成速度；但实验只有一组模型替换、H200
-环境和 Semantic Scholar 检索，且 dFast
-主要适合查询分解，系统级提升并不稳定。报告质量仍受检索和引用质量限制，榜单快照也不能当成扩散骨干的因果证据。</li>
-<li>适合谁读：深度研究 agent、LLM
-serving、检索与引用可靠性研究者。建议优先读系统设计、实验设置与延迟表，再读引用审计和局限性。</li>
-<li>证据状态：已核读摘要页与
-PDF；数字与质量结论均为作者报告，未作独立复现实验。</li>
+<li>作者：Alan-Barsag Gazzaev、Alexey Gavrilov、Mikhail Mozikov、Sergey Muravyov。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；论文称已接收 EMNLP 2026 Industry Track。</li>
+<li>核心问题：深度研究 agent 的规划、检索、综合和写作都在关键路径上逐 token 生成，如何在不牺牲报告质量的前提下减少端到端等待？</li>
+<li>方法与基线：作者固定多 agent 脚手架、检索代码、提示词和评测，只替换骨干模型；用 diffusion 模型 DiffusionGemma-26B-A4B-it 与可比的自回归 Gemma-4-26B-A4B-it，对 100 个 Deep Research Bench 博士级任务（中英文各 50、覆盖 22 个领域）进行比较。dFast 进一步在中间去噪状态读取子查询，用 Gemini 2.5 Pro 做 RACE 评分，并做人工引用审计。</li>
+<li>关键结果（论文报告）：扩散配置 dFull/dFast 的平均端到端延迟为 11.89/11.97 秒，自回归基线为 71.45 秒；p90 为 16.13/16.33 对 111.87 秒，规划阶段约从 39.32 秒降到 3.68/3.64 秒，写作阶段约从 59.78 秒降到 5.11/5.29 秒。dFast 的子查询分解中位数延迟为 243.4ms，对比完整解码的 484.9ms；最终输出质量 RACE 为 dFull 0.3895、dFast 0.3969、AR 0.3904，作者给出的配对区间包含零。10 份报告的人工审计仅有 14/50 条主张完全得到支持，26/50 条未被建立；76 条引用中 41 条完全蕴含、14 条不蕴含。</li>
+<li>创新、局限与失败条件：贡献是把并行去噪的速度优势放进完整研究系统，而不是只报单轮生成速度；但实验只有一组模型替换、H200 环境和 Semantic Scholar 检索，且 dFast 主要适合查询分解，系统级提升并不稳定。报告质量仍受检索和引用质量限制，榜单快照也不能当成扩散骨干的因果证据。</li>
+<li>适合谁读：深度研究 agent、LLM serving、检索与引用可靠性研究者。建议优先读系统设计、实验设置与延迟表，再读引用审计和局限性。</li>
+<li>证据状态：已核读摘要页与 PDF；数字与质量结论均为作者报告，未作独立复现实验。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.28909">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.28909">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/alanrbtx/DiffResearch">代码</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.28909">arXiv DOI</a></li>
 </ul>
-<h3 id="tabagent-distilling-llm-agent-components-into-cheap-classifiers"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.16429">TabAgent: Distilling LLM Agent
-Components into Cheap Classifiers</a></h3>
+<h3 id="tabagent-distilling-llm-agent-components-into-cheap-classifiers"><a class="markdownIt-Anchor" href="#tabagent-distilling-llm-agent-components-into-cheap-classifiers"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.16429">TabAgent: Distilling LLM Agent Components into Cheap Classifiers</a></h3>
 <ul>
-<li>作者：Ido Levy、Segev Shlomov、Avi Yaeli、Nir Mashkif、Asaf
-Adi、Yinon Goldshtein、Eilam Shapira、Leshem Choshen。</li>
-<li>来源/分类：arXiv cs.AI。</li>
-<li>核心问题：工具、技能和应用选择等 agent
-内部的封闭集决策，是否可以从成功轨迹中蒸馏为低成本分类器，而不是每次调用大语言模型？</li>
-<li>方法与基线：TabSchema 把状态、schema
-和依赖关系转成结构化特征，TabSynth 做 schema 对齐的改写，TabHead 用
-CatBoost 等表格模型做决策；实验覆盖 3 类决策、7 个 benchmark/8
-个任务，并与 GPT-5.4 短名单器及小型生成模型比较。</li>
-<li>关键结果（论文报告）：在 AppWorld 工具短名单任务中，TabHead
-单次调用约 2.682ms、成本约 2.0×10^-7 美元，对比 GPT-5.4 约 7.50
-秒、0.052 美元；作者据此报告约 99.96% 延迟下降和 99.9996%
-成本下降。SkillsBench 的 <a href="mailto:P@R80" class="email">P@R80</a>/<a href="mailto:Recall@9" class="email">Recall@9</a> 均为 91，Mind2Web 操作选择 F1 为 92，应用选择
-macro-F1 为 97。真正放入 AppWorld 的 24 个跨应用留出任务中，TabAgent <a href="mailto:Pass@1" class="email">Pass@1</a> 为 27.1%，GPT 短名单器为
-29.2%，差值 -2.1 个百分点，95% 区间为
-[-18.8,+16.7]，包含零；低置信度回退到 LLM 的 AUROC 为 0.88。</li>
-<li>创新、局限与失败条件：把 agent
-决策显式化为可审计的结构化特征，并让分类器只处理闭集选择；但它依赖成功轨迹池，主要是同一脚手架内的分布内问题，遇到新工具、新
-schema 或不同 agent
-架构不能直接外推。抽样在线任务很小，模型仍继承轨迹数据偏差。</li>
-<li>适合谁读：agent
-基础设施、工具路由和成本优化工程师。建议优先读特征流水线、跨脚手架迁移、消融和在线热切换实验。</li>
-<li>证据状态：已核读摘要页与 PDF；成本、延迟和任务分数是作者报告的
-benchmark 结果，不等于所有生产流量的真实成本。</li>
+<li>作者：Ido Levy、Segev Shlomov、Avi Yaeli、Nir Mashkif、Asaf Adi、Yinon Goldshtein、Eilam Shapira、Leshem Choshen。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。</li>
+<li>核心问题：工具、技能和应用选择等 agent 内部的封闭集决策，是否可以从成功轨迹中蒸馏为低成本分类器，而不是每次调用大语言模型？</li>
+<li>方法与基线：TabSchema 把状态、schema 和依赖关系转成结构化特征，TabSynth 做 schema 对齐的改写，TabHead 用 CatBoost 等表格模型做决策；实验覆盖 3 类决策、7 个 benchmark/8 个任务，并与 GPT-5.4 短名单器及小型生成模型比较。</li>
+<li>关键结果（论文报告）：在 AppWorld 工具短名单任务中，TabHead 单次调用约 2.682ms、成本约 2.0×10^-7 美元，对比 GPT-5.4 约 7.50 秒、0.052 美元；作者据此报告约 99.96% 延迟下降和 99.9996% 成本下降。SkillsBench 的 P@R80/Recall@9 均为 91，Mind2Web 操作选择 F1 为 92，应用选择 macro-F1 为 97。真正放入 AppWorld 的 24 个跨应用留出任务中，TabAgent Pass@1 为 27.1%，GPT 短名单器为 29.2%，差值 -2.1 个百分点，95% 区间为 [-18.8,+16.7]，包含零；低置信度回退到 LLM 的 AUROC 为 0.88。</li>
+<li>创新、局限与失败条件：把 agent 决策显式化为可审计的结构化特征，并让分类器只处理闭集选择；但它依赖成功轨迹池，主要是同一脚手架内的分布内问题，遇到新工具、新 schema 或不同 agent 架构不能直接外推。抽样在线任务很小，模型仍继承轨迹数据偏差。</li>
+<li>适合谁读：agent 基础设施、工具路由和成本优化工程师。建议优先读特征流水线、跨脚手架迁移、消融和在线热切换实验。</li>
+<li>证据状态：已核读摘要页与 PDF；成本、延迟和任务分数是作者报告的 benchmark 结果，不等于所有生产流量的真实成本。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.16429">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.16429">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/dolev31/TabAgent">代码</a> · <a target="_blank" rel="noopener" href="https://dolev31.github.io/TabAgent">项目页</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2602.16429">arXiv DOI</a></li>
 </ul>
-<h3 id="from-reasoning-to-action-benchmarking-frontier-ai-models-on-libero-10-robot-manipulation-tasks"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.30051">From Reasoning to Action:
-Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation
-Tasks</a></h3>
+<h3 id="from-reasoning-to-action-benchmarking-frontier-ai-models-on-libero-10-robot-manipulation-tasks"><a class="markdownIt-Anchor" href="#from-reasoning-to-action-benchmarking-frontier-ai-models-on-libero-10-robot-manipulation-tasks"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.30051">From Reasoning to Action: Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation Tasks</a></h3>
 <ul>
 <li>作者：May Espinola、Qifan Zhang、Yu Xiang。</li>
-<li>来源/分类：arXiv cs.RO、cs.AI；技术报告。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.RO">cs.RO</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；技术报告。</li>
 <li>核心问题：前沿通用模型在没有任务专门训练、示范或预训练技能时，能否把视觉推理稳定转化为仿真机器人操作？</li>
-<li>方法与基线：统一闭环 zero-shot 协议，Franka Panda 以 20Hz 接收两路
-256×256 相机和本体感知，模型只能调用
-move_to/done/give_up；六个模型、三档 reasoning effort、18 个配置，每配置
-100 回合，共 1,800 回合。论文还讨论 Octo、OpenVLA、pi0.5、UniVLA、UniAct
-等传统机器人策略，但没有在同一协议下完成微调 VLA 的直接竞赛。</li>
-<li>关键结果（论文报告）：总体成功率为 22.2%（400/1,800）；最高为 GPT-6
-Astra 高推理档 44%，Gemini-4 Argon 高档 43%。最佳任务成功率为
-58%，但两个需要多物体精确操作的任务为 0%。失败中模型主动停止 968
-次、超出时域 195 次、达到调用/步数上限 237 次；实际位移约为指令的
-64–72%，21–36% 的动作不足目标距离一半。作者报告最佳模型每回合成本约 7–8
-美元，结果随模型和 reasoning effort 显著变化。</li>
-<li>创新、局限与失败条件：价值在于把模型、努力档位、调用上限、成本和失败类型放进同一闭环协议；但
-LIBERO-10 是仿真环境，API
-版本、价格和控制接口决定结果，没有真实机器人验证，也没有证明“更多推理”具有因果上的物理技能提升。文本中传统
-VLA 只是背景基线，不能把该表格理解为公平的端到端策略排行榜。</li>
+<li>方法与基线：统一闭环 zero-shot 协议，Franka Panda 以 20Hz 接收两路 256×256 相机和本体感知，模型只能调用 move_to/done/give_up；六个模型、三档 reasoning effort、18 个配置，每配置 100 回合，共 1,800 回合。论文还讨论 Octo、OpenVLA、pi0.5、UniVLA、UniAct 等传统机器人策略，但没有在同一协议下完成微调 VLA 的直接竞赛。</li>
+<li>关键结果（论文报告）：总体成功率为 22.2%（400/1,800）；最高为 GPT-6 Astra 高推理档 44%，Gemini-4 Argon 高档 43%。最佳任务成功率为 58%，但两个需要多物体精确操作的任务为 0%。失败中模型主动停止 968 次、超出时域 195 次、达到调用/步数上限 237 次；实际位移约为指令的 64–72%，21–36% 的动作不足目标距离一半。作者报告最佳模型每回合成本约 7–8 美元，结果随模型和 reasoning effort 显著变化。</li>
+<li>创新、局限与失败条件：价值在于把模型、努力档位、调用上限、成本和失败类型放进同一闭环协议；但 LIBERO-10 是仿真环境，API 版本、价格和控制接口决定结果，没有真实机器人验证，也没有证明“更多推理”具有因果上的物理技能提升。文本中传统 VLA 只是背景基线，不能把该表格理解为公平的端到端策略排行榜。</li>
 <li>适合谁读：具身智能、机器人评测和模型服务成本研究者。建议优先读协议与表格，再读失败类型和控制误差分析。</li>
-<li>证据状态：已核读摘要页与 PDF；这是作者报告的仿真 benchmark
-和成本测量，不是实机成功率或生产系统成本。</li>
+<li>证据状态：已核读摘要页与 PDF；这是作者报告的仿真 benchmark 和成本测量，不是实机成功率或生产系统成本。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.30051">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.30051">PDF</a> · <a target="_blank" rel="noopener" href="https://irvlutd.github.io/LLM-LIBERO/">项目页</a> · <a target="_blank" rel="noopener" href="https://github.com/IRVLUTD/LLM_LIBERO">代码</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.30051">arXiv DOI</a></li>
 </ul>
-<h3 id="beyond-binary-labels-diagnostic-evaluation-of-llm-safety-with-prompt-level-rubrics"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29225">Beyond Binary Labels: Diagnostic
-Evaluation of LLM Safety with Prompt-Level Rubrics</a></h3>
+<h3 id="beyond-binary-labels-diagnostic-evaluation-of-llm-safety-with-prompt-level-rubrics"><a class="markdownIt-Anchor" href="#beyond-binary-labels-diagnostic-evaluation-of-llm-safety-with-prompt-level-rubrics"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29225">Beyond Binary Labels: Diagnostic Evaluation of LLM Safety with Prompt-Level Rubrics</a></h3>
 <ul>
-<li>作者：Hongyu Li、Xinlong Huang、Zhan Yu、Jing Zhao、Zhe Zhao、Juntao
-Zhong、Xiong Kuang、Rui Yuan、ZhenXiang Yan、Huilin Xu、Haitao Yu、Lilin
-Wang、Rui Chen、Blaze Chen、Fengzong Lian、Renfen Hu。</li>
-<li>来源/分类：arXiv cs.CL、cs.AI。</li>
-<li>核心问题：把安全性压缩成一个“拒答/不拒答”标签，无法同时发现过度拒答、部分违规和有用性损失；能否用
-prompt-level rubric 做可诊断的安全评测？</li>
-<li>方法与基线：构建 84 类中英双语风险 taxonomy，覆盖普通、单轮、多轮和
-jailbreak 数据，并用 DiagAttack 把有害意图嵌入正常指令外壳；每个 prompt
-同时有安全条目、豁免规则和 8 项 0–3 分有用性条目。评估 11 个 8B–1.6T
-开源模型，比较通用 judge、标签专用 judge 和 rubric judge。</li>
-<li>关键结果（论文报告）：表 3 中 rubric judge 的最高人类一致性为
-95.34%，对照 judge 的相应值约为 69%–87%；跨 judge 一致性为
-93.33%–94.78%，对应 Cohen κ 约 0.828–0.864。DiagAttack 的不安全率是
-DiagBase 的 1.9–8.4 倍，11 个模型中 8 个在攻击集上的不安全率超过
-40%；中文和多轮场景更高。论文强调可把“安全”和“有用”分开看，而不是奖励无差别拒答。</li>
-<li>创新、局限与失败条件：诊断维度比二元标签更接近真实部署风险；但
-prompt、标签和 rubric 含有 LLM 生成成分，覆盖范围受 taxonomy
-限制，实验只包含 11 个开源模型和单一推理模式，也没有覆盖工具调用
-agent。</li>
-<li>适合谁读：安全评测、对齐和 judge 模型研究者。建议优先读 rubric
-构造、表 3/4、攻击诊断和覆盖边界。</li>
-<li>证据状态：已核读摘要页与
-PDF；一致性和不安全率为作者报告的评测结果，不能直接外推为生产安全率。</li>
+<li>作者：Hongyu Li、Xinlong Huang、Zhan Yu、Jing Zhao、Zhe Zhao、Juntao Zhong、Xiong Kuang、Rui Yuan、ZhenXiang Yan、Huilin Xu、Haitao Yu、Lilin Wang、Rui Chen、Blaze Chen、Fengzong Lian、Renfen Hu。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。</li>
+<li>核心问题：把安全性压缩成一个“拒答/不拒答”标签，无法同时发现过度拒答、部分违规和有用性损失；能否用 prompt-level rubric 做可诊断的安全评测？</li>
+<li>方法与基线：构建 84 类中英双语风险 taxonomy，覆盖普通、单轮、多轮和 jailbreak 数据，并用 DiagAttack 把有害意图嵌入正常指令外壳；每个 prompt 同时有安全条目、豁免规则和 8 项 0–3 分有用性条目。评估 11 个 8B–1.6T 开源模型，比较通用 judge、标签专用 judge 和 rubric judge。</li>
+<li>关键结果（论文报告）：表 3 中 rubric judge 的最高人类一致性为 95.34%，对照 judge 的相应值约为 69%–87%；跨 judge 一致性为 93.33%–94.78%，对应 Cohen κ 约 0.828–0.864。DiagAttack 的不安全率是 DiagBase 的 1.9–8.4 倍，11 个模型中 8 个在攻击集上的不安全率超过 40%；中文和多轮场景更高。论文强调可把“安全”和“有用”分开看，而不是奖励无差别拒答。</li>
+<li>创新、局限与失败条件：诊断维度比二元标签更接近真实部署风险；但 prompt、标签和 rubric 含有 LLM 生成成分，覆盖范围受 taxonomy 限制，实验只包含 11 个开源模型和单一推理模式，也没有覆盖工具调用 agent。</li>
+<li>适合谁读：安全评测、对齐和 judge 模型研究者。建议优先读 rubric 构造、表 3/4、攻击诊断和覆盖边界。</li>
+<li>证据状态：已核读摘要页与 PDF；一致性和不安全率为作者报告的评测结果，不能直接外推为生产安全率。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29225">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.29225">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Tencent-Hunyuan/DiagSafe">代码与数据</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.29225">arXiv DOI</a></li>
 </ul>
-<h3 id="bird-rl-scaling-agentic-reinforcement-learning-over-stateful-data-centric-environments"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29426">BIRD-RL: Scaling Agentic
-Reinforcement Learning over Stateful Data-Centric Environments</a></h3>
+<h3 id="bird-rl-scaling-agentic-reinforcement-learning-over-stateful-data-centric-environments"><a class="markdownIt-Anchor" href="#bird-rl-scaling-agentic-reinforcement-learning-over-stateful-data-centric-environments"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29426">BIRD-RL: Scaling Agentic Reinforcement Learning over Stateful Data-Centric Environments</a></h3>
 <ul>
-<li>作者：Ge Qu、Jinyang Li、Xiaohan Xu、Xiaolong Li、Bowen Qin、Nan
-Huo、Ziwei Tang、Chenhao Ma、Reynold Cheng。</li>
-<li>来源/分类：arXiv cs.AI、cs.LG。</li>
-<li>核心问题：SQL 调试等数据 agent
-任务会改变持久化环境状态；如果复用脏数据库，强化学习轨迹就会互相污染，如何在可扩展训练中保持每条轨迹的状态隔离？</li>
-<li>方法与基线：提出 Trajectory-Scoped Persistent Execution
-Infrastructure，用 worker 分区数据库池、registry 和 dirty-aware lazy
-reset 管理环境；训练采用四阶段
-curriculum：推理模仿、多轮工具使用模仿、自适应 reasoning RL、stateful
-agentic RL。评估 BIRD-CRITIC-SQLite 与
-BIRD-ZENO，并做奖励信号和训练阶段消融。</li>
-<li>关键结果（论文报告）：数据库基础设施空间效率提高 12.8
-倍；BIRD-CRITIC-SQLite 上 BIRD-TALON 7B/14B 的结果为
-44.40%/48.00%，Claude-Opus-4.6 Agent 为 48.20%；BIRD-ZENO 统一模型在 dev
-上 EX 为 63.90%。7B 消融中完整流程为 44.40%，只保留前 3 阶段为
-40.60%，只到第 2 阶段为 39.20%，只做第 1 阶段为 35.20%；代理奖励和 LLM
-judge 奖励分别为 42.80% 和 41.40%，低于直接执行奖励
-42.00%（不同设置不可简单横比），作者据此警告 proxy reward hacking。</li>
-<li>创新、局限与失败条件：把“持久化环境本身”作为训练系统的一等公民，并用直接执行结果做奖励；但实验围绕
-SQL benchmark，数据生成使用专有 Claude-Sonnet-4.5
-教师，基础设施和轨迹规模仍是主要成本，不能把 SQL 结果等同一般 agent
-能力。</li>
-<li>适合谁读：agentic RL、工具环境和数据操作系统研究者。建议优先读
-curriculum、状态隔离实现、主表和奖励消融。</li>
-<li>证据状态：已核读摘要页与 PDF；数字来自作者报告的
-benchmark，未独立复现。</li>
+<li>作者：Ge Qu、Jinyang Li、Xiaohan Xu、Xiaolong Li、Bowen Qin、Nan Huo、Ziwei Tang、Chenhao Ma、Reynold Cheng。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG。</li>
+<li>核心问题：SQL 调试等数据 agent 任务会改变持久化环境状态；如果复用脏数据库，强化学习轨迹就会互相污染，如何在可扩展训练中保持每条轨迹的状态隔离？</li>
+<li>方法与基线：提出 Trajectory-Scoped Persistent Execution Infrastructure，用 worker 分区数据库池、registry 和 dirty-aware lazy reset 管理环境；训练采用四阶段 curriculum：推理模仿、多轮工具使用模仿、自适应 reasoning RL、stateful agentic RL。评估 BIRD-CRITIC-SQLite 与 BIRD-ZENO，并做奖励信号和训练阶段消融。</li>
+<li>关键结果（论文报告）：数据库基础设施空间效率提高 12.8 倍；BIRD-CRITIC-SQLite 上 BIRD-TALON 7B/14B 的结果为 44.40%/48.00%，Claude-Opus-4.6 Agent 为 48.20%；BIRD-ZENO 统一模型在 dev 上 EX 为 63.90%。7B 消融中完整流程为 44.40%，只保留前 3 阶段为 40.60%，只到第 2 阶段为 39.20%，只做第 1 阶段为 35.20%；代理奖励和 LLM judge 奖励分别为 42.80% 和 41.40%，低于直接执行奖励 42.00%（不同设置不可简单横比），作者据此警告 proxy reward hacking。</li>
+<li>创新、局限与失败条件：把“持久化环境本身”作为训练系统的一等公民，并用直接执行结果做奖励；但实验围绕 SQL benchmark，数据生成使用专有 Claude-Sonnet-4.5 教师，基础设施和轨迹规模仍是主要成本，不能把 SQL 结果等同一般 agent 能力。</li>
+<li>适合谁读：agentic RL、工具环境和数据操作系统研究者。建议优先读 curriculum、状态隔离实现、主表和奖励消融。</li>
+<li>证据状态：已核读摘要页与 PDF；数字来自作者报告的 benchmark，未独立复现。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29426">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.29426">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/bird-bench/BIRD-RL">代码</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.29426">arXiv DOI</a></li>
 </ul>
-<h3 id="quant-arena-benchmarking-llm-agents-for-quantitative-trading-research"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.30113">Quant-Arena: Benchmarking LLM
-Agents for Quantitative Trading Research</a></h3>
+<h3 id="quant-arena-benchmarking-llm-agents-for-quantitative-trading-research"><a class="markdownIt-Anchor" href="#quant-arena-benchmarking-llm-agents-for-quantitative-trading-research"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.30113">Quant-Arena: Benchmarking LLM Agents for Quantitative Trading Research</a></h3>
 <ul>
-<li>作者：Houde Qian、Zheng Jiang、Wenyi Li、Chenxi Xu、Xinjie
-Lin、Yuzhao Peng、Ruoyu Han、Youjie Zheng、Kaisen Yang、Qinhuai Na、You
-Fu、Calvin Xiao。</li>
-<li>来源/分类：arXiv cs.AI、q-fin.TR、q-fin.CP；与金融研究交叉。</li>
-<li>核心问题：LLM agent
-是否能从原始市场数据出发，完成研究、选股、回测和冻结策略，而不是只生成看似合理的量化叙述？</li>
-<li>方法与基线：使用 3,042 只 A 股的日线与 Level-2 数据；研究期为
-2022–2023 年，最多保留 5 个候选策略，冻结后在封存的 2024
-年测试。执行使用前 75 只等权、现金账户、100
-股整手和交易成本/模拟订单簿冲击；比较 9 个前沿模型、38
-个迭代配置，并与等权市场组合对照。</li>
-<li>关键结果（论文报告）：2024 年没有模型明显超过等权市场；最佳 Sol
-中档年化收益 18.4%，市场基准 17.1%，差值约 1.4 个百分点；13/38
-配置为正年化收益，只有 1 个超过市场。Astra 高档年化收益 10.7%、超额收益
--6.3 个百分点、Sharpe 0.86、最大回撤 -6.8%，其收益主要来自约 70%–75%
-时间持有现金，而非更好的选股。前十策略分位的表现常差于中间分位，RankIC
-与年化收益的 Spearman 相关约 0.09；迭代使 9 个模型总分都上升，但只有 4
-个模型年化收益上升。</li>
-<li>创新、局限与失败条件：把研究流程、策略冻结、时间隔离和模拟执行放进同一评测，能暴露“研究分数上升但收益不升”的错位；但它仍是单一年份的封存回测，不是实盘交易，订单簿冲击是模拟的，模型、harness
-和推理努力也不完全同质。不能把正收益解释成因果选股能力或可持续
-alpha，也不构成投资建议。</li>
-<li>适合谁读：AI agent
-评测、量化研究自动化和金融机器学习研究者。建议优先读 benchmark
-protocol、主表、分位分析和迭代/局限部分。</li>
-<li>证据状态：已核读摘要页与
-PDF；这是作者报告的样本外回测与模拟执行结果，仍需跨市场、跨时期和真实可交易成本验证。</li>
+<li>作者：Houde Qian、Zheng Jiang、Wenyi Li、Chenxi Xu、Xinjie Lin、Yuzhao Peng、Ruoyu Han、Youjie Zheng、Kaisen Yang、Qinhuai Na、You Fu、Calvin Xiao。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://q-fin.TR">q-fin.TR</a>、q-fin.CP；与金融研究交叉。</li>
+<li>核心问题：LLM agent 是否能从原始市场数据出发，完成研究、选股、回测和冻结策略，而不是只生成看似合理的量化叙述？</li>
+<li>方法与基线：使用 3,042 只 A 股的日线与 Level-2 数据；研究期为 2022–2023 年，最多保留 5 个候选策略，冻结后在封存的 2024 年测试。执行使用前 75 只等权、现金账户、100 股整手和交易成本/模拟订单簿冲击；比较 9 个前沿模型、38 个迭代配置，并与等权市场组合对照。</li>
+<li>关键结果（论文报告）：2024 年没有模型明显超过等权市场；最佳 Sol 中档年化收益 18.4%，市场基准 17.1%，差值约 1.4 个百分点；13/38 配置为正年化收益，只有 1 个超过市场。Astra 高档年化收益 10.7%、超额收益 -6.3 个百分点、Sharpe 0.86、最大回撤 -6.8%，其收益主要来自约 70%–75% 时间持有现金，而非更好的选股。前十策略分位的表现常差于中间分位，RankIC 与年化收益的 Spearman 相关约 0.09；迭代使 9 个模型总分都上升，但只有 4 个模型年化收益上升。</li>
+<li>创新、局限与失败条件：把研究流程、策略冻结、时间隔离和模拟执行放进同一评测，能暴露“研究分数上升但收益不升”的错位；但它仍是单一年份的封存回测，不是实盘交易，订单簿冲击是模拟的，模型、harness 和推理努力也不完全同质。不能把正收益解释成因果选股能力或可持续 alpha，也不构成投资建议。</li>
+<li>适合谁读：AI agent 评测、量化研究自动化和金融机器学习研究者。建议优先读 benchmark protocol、主表、分位分析和迭代/局限部分。</li>
+<li>证据状态：已核读摘要页与 PDF；这是作者报告的样本外回测与模拟执行结果，仍需跨市场、跨时期和真实可交易成本验证。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.30113">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.30113">PDF</a> · <a target="_blank" rel="noopener" href="https://lab.einsia.ai/quant-arena">项目页</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.30113">arXiv DOI</a></li>
 </ul>
-<h2 id="ai-论文">AI 论文</h2>
-<h3 id="toward-safe-llm-agents-a-survey-of-specification-verification-and-enforcement"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14590">Toward Safe LLM Agents: A Survey
-of Specification, Verification, and Enforcement</a></h3>
+<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
+<h3 id="toward-safe-llm-agents-a-survey-of-specification-verification-and-enforcement"><a class="markdownIt-Anchor" href="#toward-safe-llm-agents-a-survey-of-specification-verification-and-enforcement"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14590">Toward Safe LLM Agents: A Survey of Specification, Verification, and Enforcement</a></h3>
 <ul>
-<li>作者：Pierre Dantas、Lucas Cordeiro、Ehsan Nowroozi、Norbert
-Tihanyi。</li>
-<li>来源/分类：arXiv cs.AI、cs.SE。</li>
-<li>简介：论文按 PRISMA 2020 系统综述 6 个数据库在 2026 年 5
-月的检索结果，综合 38 项研究，围绕 specification、verification、runtime
-enforcement 建立安全 agent 分类。作者报告安全 PDDL 语义正确率约为
-24.8%–34.2%，一个 household study 中运行时监控使不安全动作下降
-65.37%，但 tau-Bench 中“同时安全且正确”的任务仍低于
-5%；没有方法同时满足其列出的五项期望，9 个关键结论中 7
-个证据确定性很低。</li>
-<li>关注价值与证据限制：价值在于把“安全”拆成可验证规范、运行时监控和执行约束；但这是文献综述，数字依赖原研究的任务定义和短时域，不能当作统一
-benchmark 或生产事故率。</li>
+<li>作者：Pierre Dantas、Lucas Cordeiro、Ehsan Nowroozi、Norbert Tihanyi。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.SE">cs.SE</a>。</li>
+<li>简介：论文按 PRISMA 2020 系统综述 6 个数据库在 2026 年 5 月的检索结果，综合 38 项研究，围绕 specification、verification、runtime enforcement 建立安全 agent 分类。作者报告安全 PDDL 语义正确率约为 24.8%–34.2%，一个 household study 中运行时监控使不安全动作下降 65.37%，但 tau-Bench 中“同时安全且正确”的任务仍低于 5%；没有方法同时满足其列出的五项期望，9 个关键结论中 7 个证据确定性很低。</li>
+<li>关注价值与证据限制：价值在于把“安全”拆成可验证规范、运行时监控和执行约束；但这是文献综述，数字依赖原研究的任务定义和短时域，不能当作统一 benchmark 或生产事故率。</li>
 <li>证据状态：仅依据摘要；未将综述中的原始研究逐篇独立复核。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.14590">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.14590">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.23376335">数据/材料 DOI</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2608.14590">arXiv DOI</a></li>
 </ul>
-<h3 id="the-data-differentiator-framework-ddf-quantifying-marginal-data-value-with-information-theoretic-and-game-theoretic-measures-in-an-agentic-evaluation-pipeline-sdsae"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.28933">The Data Differentiator
-Framework (DDF): Quantifying Marginal Data Value with
-Information-Theoretic and Game-Theoretic Measures in an Agentic
-Evaluation Pipeline (SDSAE)</a></h3>
+<h3 id="the-data-differentiator-framework-ddf-quantifying-marginal-data-value-with-information-theoretic-and-game-theoretic-measures-in-an-agentic-evaluation-pipeline-sdsae"><a class="markdownIt-Anchor" href="#the-data-differentiator-framework-ddf-quantifying-marginal-data-value-with-information-theoretic-and-game-theoretic-measures-in-an-agentic-evaluation-pipeline-sdsae"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.28933">The Data Differentiator Framework (DDF): Quantifying Marginal Data Value with Information-Theoretic and Game-Theoretic Measures in an Agentic Evaluation Pipeline (SDSAE)</a></h3>
 <ul>
 <li>作者：Sukesh Kumar、Dilip Singh。</li>
-<li>来源/分类：arXiv cs.LG、cs.AI。</li>
-<li>简介：论文提出
-DDF/SDSAE，用互信息、成本归一化的显著性门槛和治理输入估计数据的边际价值，并在
-284,807 笔交易、5 个候选资产的欺诈检测 benchmark
-上比较数据增量。作者报告只有差异化数据带来约 +0.0029 AUC（DeLong
-p=1.4×10^-9，Holm 校正 p=7.2×10^-9），DDS 为 +0.663，冗余数据为
--0.135；22 次权重中 19 次稳定，阈值范围为 0.15–0.66。</li>
-<li>关注价值与证据限制：把“更多数据”改写成边际信息和治理决策问题；但只有一个数据集，治理约束是模拟的，AUC
-提升很小且不等于业务收益或可部署风控效果。</li>
+<li>来源/分类：arXiv cs.LG、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。</li>
+<li>简介：论文提出 DDF/SDSAE，用互信息、成本归一化的显著性门槛和治理输入估计数据的边际价值，并在 284,807 笔交易、5 个候选资产的欺诈检测 benchmark 上比较数据增量。作者报告只有差异化数据带来约 +0.0029 AUC（DeLong p=1.4×10^-9，Holm 校正 p=7.2×10^-9），DDS 为 +0.663，冗余数据为 -0.135；22 次权重中 19 次稳定，阈值范围为 0.15–0.66。</li>
+<li>关注价值与证据限制：把“更多数据”改写成边际信息和治理决策问题；但只有一个数据集，治理约束是模拟的，AUC 提升很小且不等于业务收益或可部署风控效果。</li>
 <li>证据状态：仅依据摘要；数字为作者自述，未独立验证。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.28933">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.28933">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.28933">arXiv DOI</a></li>
 </ul>
-<h3 id="decision-language-models-as-affordable-and-rapid-alternatives-to-llm-judges-of-clinical-generative-ai"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.28826">Decision language models as
-affordable and rapid alternatives to LLM judges of clinical generative
-AI</a></h3>
+<h3 id="decision-language-models-as-affordable-and-rapid-alternatives-to-llm-judges-of-clinical-generative-ai"><a class="markdownIt-Anchor" href="#decision-language-models-as-affordable-and-rapid-alternatives-to-llm-judges-of-clinical-generative-ai"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.28826">Decision language models as affordable and rapid alternatives to LLM judges of clinical generative AI</a></h3>
 <ul>
-<li>作者：Rotem Gershon、Seffi Cohen、Dean Ariel、Havatzelet
-Bilavsky-Yarden、Amiel Sberro、Shai Yitzhaki、Osnat Tausky、Naama
-Golan、Maayan Rabinovitch、Ariel Avraham Hasidim、Itay Arianu、Maya
-Dagan、Ran Balicer、Noa Dagan。</li>
-<li>来源/分类：arXiv cs.CL、cs.AI、stat.ML。</li>
-<li>简介：论文研究小型 decision language model
-是否能以更低成本替代临床生成 AI 评测中的 LLM judge，使用 118
-条儿科回答和 12 个评测/judge 对照，比较一致性、速度和成本。作者报告某些
-decision model 达到或超过 12 个对照中的 7 个，Gwet AC2 约为
-0.50（期望一致性 0.53）；frontier judge 的成本约高 73–294 倍、速度慢
-7–57 倍。</li>
-<li>关注价值与证据限制：有助于把评测从昂贵的一次性 judge
-变成可重复服务；但样本是儿科回答，指标接近中等一致性，模型/任务和标准的迁移性仍需外部验证，不能把
-judge 一致性等同临床正确性。</li>
+<li>作者：Rotem Gershon、Seffi Cohen、Dean Ariel、Havatzelet Bilavsky-Yarden、Amiel Sberro、Shai Yitzhaki、Osnat Tausky、Naama Golan、Maayan Rabinovitch、Ariel Avraham Hasidim、Itay Arianu、Maya Dagan、Ran Balicer、Noa Dagan。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://stat.ML">stat.ML</a>。</li>
+<li>简介：论文研究小型 decision language model 是否能以更低成本替代临床生成 AI 评测中的 LLM judge，使用 118 条儿科回答和 12 个评测/judge 对照，比较一致性、速度和成本。作者报告某些 decision model 达到或超过 12 个对照中的 7 个，Gwet AC2 约为 0.50（期望一致性 0.53）；frontier judge 的成本约高 73–294 倍、速度慢 7–57 倍。</li>
+<li>关注价值与证据限制：有助于把评测从昂贵的一次性 judge 变成可重复服务；但样本是儿科回答，指标接近中等一致性，模型/任务和标准的迁移性仍需外部验证，不能把 judge 一致性等同临床正确性。</li>
 <li>证据状态：仅依据摘要；未核读全文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.28826">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.28826">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.28826">arXiv DOI</a></li>
 </ul>
-<h3 id="medicalbench-evaluating-large-language-models-toward-improved-medical-concept-extraction"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.20197">MedicalBench: Evaluating Large
-Language Models Toward Improved Medical Concept Extraction</a></h3>
+<h3 id="medicalbench-evaluating-large-language-models-toward-improved-medical-concept-extraction"><a class="markdownIt-Anchor" href="#medicalbench-evaluating-large-language-models-toward-improved-medical-concept-extraction"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.20197">MedicalBench: Evaluating Large Language Models Toward Improved Medical Concept Extraction</a></h3>
 <ul>
-<li>作者：Zhichao Yang、Gregory D. Lyng、Sanjit Singh Batra、Robert E.
-Tillman。</li>
-<li>来源/分类：arXiv cs.CL、cs.AI。</li>
-<li>简介：论文基于 MIMIC-IV 出院摘要和人工核验的 ICD-10
-标注，构造包含隐式阳性、易混淆阴性和标注分歧的医学概念抽取评测，并比较
-LLM
-的分类、证据句抽取和专家复核表现。作者报告整体提升有限，且性能对文本长度并不保持简单的单调关系。</li>
-<li>关注价值与证据限制：把医学抽取中的证据定位和标注分歧显式纳入
-benchmark；但摘要没有给出完整模型表、置信区间和外部医院验证，MIMIC-IV
-的单中心数据也限制外推。</li>
+<li>作者：Zhichao Yang、Gregory D. Lyng、Sanjit Singh Batra、Robert E. Tillman。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。</li>
+<li>简介：论文基于 MIMIC-IV 出院摘要和人工核验的 ICD-10 标注，构造包含隐式阳性、易混淆阴性和标注分歧的医学概念抽取评测，并比较 LLM 的分类、证据句抽取和专家复核表现。作者报告整体提升有限，且性能对文本长度并不保持简单的单调关系。</li>
+<li>关注价值与证据限制：把医学抽取中的证据定位和标注分歧显式纳入 benchmark；但摘要没有给出完整模型表、置信区间和外部医院验证，MIMIC-IV 的单中心数据也限制外推。</li>
 <li>证据状态：仅依据摘要；未核读全文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.20197">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.20197">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2605.20197">arXiv DOI</a></li>
 </ul>
-<h3 id="eyevqa-benchmarking-ophthalmic-vision-language-models-from-recognition-to-spatial-grounding"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.32352">EyeVQA: Benchmarking Ophthalmic
-Vision-Language Models from Recognition to Spatial Grounding</a></h3>
+<h3 id="eyevqa-benchmarking-ophthalmic-vision-language-models-from-recognition-to-spatial-grounding"><a class="markdownIt-Anchor" href="#eyevqa-benchmarking-ophthalmic-vision-language-models-from-recognition-to-spatial-grounding"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.32352">EyeVQA: Benchmarking Ophthalmic Vision-Language Models from Recognition to Spatial Grounding</a></h3>
 <ul>
-<li>作者：Gujie Shao、Zixun Xie、Xuechun Xing、Ruixiang Wang、Ziyun
-Lan、Yanlin Qi、Gangyi Zhang、Yuxin Yang、Dawei Li、Haiming Tang。</li>
-<li>来源/分类：arXiv cs.CV、cs.AI。</li>
-<li>简介：EyeVQA 汇集 21 个眼科数据集、约 2 万条问答，覆盖 6 类疾病和 7
-类问题，44.5%
-问题需要多图，并从诊断、分级、发现、掩膜、框和地标生成确定性答案。作者评测
-14 个 VLM，报告最佳总体准确率为 62.8%，且在空间 grounding
-和跨数据集泛化上仍有明显差距。</li>
-<li>关注价值与证据限制：把眼科 VLM
-从“识别”推进到证据位置和空间推理；但摘要未提供各任务公平基线、置信区间与临床工作流验证，确定性
-gold 也不等于临床共识。</li>
+<li>作者：Gujie Shao、Zixun Xie、Xuechun Xing、Ruixiang Wang、Ziyun Lan、Yanlin Qi、Gangyi Zhang、Yuxin Yang、Dawei Li、Haiming Tang。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。</li>
+<li>简介：EyeVQA 汇集 21 个眼科数据集、约 2 万条问答，覆盖 6 类疾病和 7 类问题，44.5% 问题需要多图，并从诊断、分级、发现、掩膜、框和地标生成确定性答案。作者评测 14 个 VLM，报告最佳总体准确率为 62.8%，且在空间 grounding 和跨数据集泛化上仍有明显差距。</li>
+<li>关注价值与证据限制：把眼科 VLM 从“识别”推进到证据位置和空间推理；但摘要未提供各任务公平基线、置信区间与临床工作流验证，确定性 gold 也不等于临床共识。</li>
 <li>证据状态：仅依据摘要；未核读全文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.32352">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.32352">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/PKUTHM/EyeVQA">代码</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2609.32352">arXiv DOI</a></li>
 </ul>
-<h3 id="agentic-video-understanding-a-survey"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.31713">Agentic Video Understanding: A
-Survey</a></h3>
+<h3 id="agentic-video-understanding-a-survey"><a class="markdownIt-Anchor" href="#agentic-video-understanding-a-survey"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.31713">Agentic Video Understanding: A Survey</a></h3>
 <ul>
 <li>作者：Xinyu Deng、Siwen Luo、Daochang Liu。</li>
-<li>来源/分类：arXiv cs.CV、cs.AI。</li>
-<li>简介：综述把视频理解 agent
-形式化为主动检查、保留、验证和行动的循环，并按挑战到设计的映射组织方法：用层级证据记忆应对上下文，用主动采集应对稀疏事件，用状态/过程跟踪应对因果，用角色专门化协作应对歧义，同时梳理
-benchmark 和评测维度。</li>
-<li>关注价值与证据限制：有助于区分“长上下文 VLM”和会选择观察动作的
-agent；但综述摘要没有提供统一的跨论文量化合并，benchmark
-覆盖和成本/时延比较仍需读全文逐项核对。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。</li>
+<li>简介：综述把视频理解 agent 形式化为主动检查、保留、验证和行动的循环，并按挑战到设计的映射组织方法：用层级证据记忆应对上下文，用主动采集应对稀疏事件，用状态/过程跟踪应对因果，用角色专门化协作应对歧义，同时梳理 benchmark 和评测维度。</li>
+<li>关注价值与证据限制：有助于区分“长上下文 VLM”和会选择观察动作的 agent；但综述摘要没有提供统一的跨论文量化合并，benchmark 覆盖和成本/时延比较仍需读全文逐项核对。</li>
 <li>证据状态：仅依据摘要；未核读全文。</li>
-<li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.31713">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.31713">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/DXY0711/Awesome-Agentic-Video-Understanding">代码/资料</a>
-· <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2609.31713">arXiv DOI</a></li>
+<li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.31713">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.31713">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/DXY0711/Awesome-Agentic-Video-Understanding">代码/资料</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2609.31713">arXiv DOI</a></li>
 </ul>
-<h3 id="rubrix-rubric-driven-risk-mitigation-in-caregiver-ai-interactions"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.13235">RubRIX: Rubric-Driven Risk
-Mitigation in Caregiver-AI Interactions</a></h3>
+<h3 id="rubrix-rubric-driven-risk-mitigation-in-caregiver-ai-interactions"><a class="markdownIt-Anchor" href="#rubrix-rubric-driven-risk-mitigation-in-caregiver-ai-interactions"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.13235">RubRIX: Rubric-Driven Risk Mitigation in Caregiver-AI Interactions</a></h3>
 <ul>
-<li>作者：Drishti Goel、Jeongah Lee、Qiuyue Joy Zhong、Violeta J.
-Rodriguez、Daniel S. Brown、Ravi Karkar、Dong Whi Yoo、Koustuv
-Saha。</li>
-<li>来源/分类：arXiv cs.HC、cs.CL、cs.AI；ACL Findings 论文，DOI
-见链接。</li>
-<li>简介：RubRIX 为照护者—AI 交互定义
-Inattention、Bias/Stigma、Inaccuracy、Uncritical Affirmation、Epistemic
-Arrogance 五类风险，用超过 2 万条 Reddit/ALZConnected 查询和六个 LLM 做
-rubric-driven 评测与迭代。作者报告一次 rubric 迭代后风险下降约
-45%–98%。</li>
+<li>作者：Drishti Goel、Jeongah Lee、Qiuyue Joy Zhong、Violeta J. Rodriguez、Daniel S. Brown、Ravi Karkar、Dong Whi Yoo、Koustuv Saha。</li>
+<li>来源/分类：arXiv cs.HC、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>；ACL Findings 论文，DOI 见链接。</li>
+<li>简介：RubRIX 为照护者—AI 交互定义 Inattention、Bias/Stigma、Inaccuracy、Uncritical Affirmation、Epistemic Arrogance 五类风险，用超过 2 万条 Reddit/ALZConnected 查询和六个 LLM 做 rubric-driven 评测与迭代。作者报告一次 rubric 迭代后风险下降约 45%–98%。</li>
 <li>关注价值与证据限制：把照护场景中的错误、偏见和盲目肯定拆成可操作风险；但摘要未给出完整错误基线、临床后果和前瞻部署证据，风险下降仍是离线评测结果。</li>
 <li>证据状态：仅依据摘要；未核读全文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.13235">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.13235">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.18653/v1/2026.findings-acl.1774">DOI</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2601.13235">arXiv DOI</a></li>
 </ul>
-<h3 id="multimodal-embodied-agents-a-unified-capability-centric-perspective-from-computer-use-to-robot-use"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.30108">Multimodal Embodied Agents: A
-Unified Capability-centric Perspective from Computer-Use to
-Robot-Use</a></h3>
+<h3 id="multimodal-embodied-agents-a-unified-capability-centric-perspective-from-computer-use-to-robot-use"><a class="markdownIt-Anchor" href="#multimodal-embodied-agents-a-unified-capability-centric-perspective-from-computer-use-to-robot-use"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.30108">Multimodal Embodied Agents: A Unified Capability-centric Perspective from Computer-Use to Robot-Use</a></h3>
 <ul>
-<li>作者：Yanzhe Chen、Ziyi Yang、Jifeng Zhu、Qiming Huang、Ruihe
-An、Peiyao Xu、Hesen Yang、Runda Liu、Chang Gong、Zhijun Cao、Zechen
-Bai、Wenzheng Zeng、Yiqi Lin、Guoqiang Liang、Kevin Yuchen Ma、Kevin
-Qinghong Lin、Mike Zheng Shou。</li>
-<li>来源/分类：arXiv cs.AI、cs.RO、cs.CV。</li>
-<li>简介：综述用
-PAPAV（Perceive、Anticipate、Plan、Act、Verify）统一描述从 computer-use
-到 robot-use 的多模态 embodied agent，整理 64 个 benchmark，并指出只有 5
-个评测 Anticipate、3 个评测 Verify。</li>
+<li>作者：Yanzhe Chen、Ziyi Yang、Jifeng Zhu、Qiming Huang、Ruihe An、Peiyao Xu、Hesen Yang、Runda Liu、Chang Gong、Zhijun Cao、Zechen Bai、Wenzheng Zeng、Yiqi Lin、Guoqiang Liang、Kevin Yuchen Ma、Kevin Qinghong Lin、Mike Zheng Shou。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.RO">cs.RO</a>、<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>。</li>
+<li>简介：综述用 PAPAV（Perceive、Anticipate、Plan、Act、Verify）统一描述从 computer-use 到 robot-use 的多模态 embodied agent，整理 64 个 benchmark，并指出只有 5 个评测 Anticipate、3 个评测 Verify。</li>
 <li>关注价值与证据限制：提醒研究者不要只用感知和动作成功率代表闭环能力；但这是能力框架与文献盘点，摘要没有统一任务分数、成本和真实环境失败率，统计也受纳入标准影响。</li>
 <li>证据状态：仅依据摘要；未核读全文。</li>
-<li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.30108">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.30108">PDF</a> · <a target="_blank" rel="noopener" href="https://showlab.github.io/Awesome-Multimodal-Embodied-Agent/">项目页</a>
-· <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.30108">arXiv DOI</a></li>
+<li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.30108">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.30108">PDF</a> · <a target="_blank" rel="noopener" href="https://showlab.github.io/Awesome-Multimodal-Embodied-Agent/">项目页</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.30108">arXiv DOI</a></li>
 </ul>
-<h3 id="harness-scaling-for-generalizable-agentic-reinforcement-learning"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29458">Harness Scaling for
-Generalizable Agentic Reinforcement Learning</a></h3>
+<h3 id="harness-scaling-for-generalizable-agentic-reinforcement-learning"><a class="markdownIt-Anchor" href="#harness-scaling-for-generalizable-agentic-reinforcement-learning"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29458">Harness Scaling for Generalizable Agentic Reinforcement Learning</a></h3>
 <ul>
-<li>作者：Fei Bai、Huatong Song、Chuan Hao、Ran Tao、Jian Yang、Bryan
-Dai、Wayne Xin Zhao、Ji-Rong Wen。</li>
-<li>来源/分类：arXiv cs.AI、cs.LG。</li>
-<li>简介：论文把 agent harness 的多样性视为强化学习的一个 scaling
-维度，提出因子化 harness 空间、平衡采样和跨 harness 训练，并报告对未见的
-white-box 与 black-box harness 泛化有提升。</li>
-<li>关注价值与证据限制：它把“换环境/换脚手架”从评测细节提升为训练分布问题；但摘要未给出完整
-benchmark、计算预算、基线差异和提升幅度，不能据此判断收益是否超过增加
-harness 的工程成本。</li>
+<li>作者：Fei Bai、Huatong Song、Chuan Hao、Ran Tao、Jian Yang、Bryan Dai、Wayne Xin Zhao、Ji-Rong Wen。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG。</li>
+<li>简介：论文把 agent harness 的多样性视为强化学习的一个 scaling 维度，提出因子化 harness 空间、平衡采样和跨 harness 训练，并报告对未见的 white-box 与 black-box harness 泛化有提升。</li>
+<li>关注价值与证据限制：它把“换环境/换脚手架”从评测细节提升为训练分布问题；但摘要未给出完整 benchmark、计算预算、基线差异和提升幅度，不能据此判断收益是否超过增加 harness 的工程成本。</li>
 <li>证据状态：仅依据摘要；未核读全文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29458">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.29458">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.29458">arXiv DOI</a></li>
 </ul>
-<h3 id="a-unified-evaluation-framework-of-physical-adversarial-robustness-in-the-edge-vlm-era"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29196">A Unified Evaluation Framework
-of Physical Adversarial Robustness in the Edge VLM Era</a></h3>
+<h3 id="a-unified-evaluation-framework-of-physical-adversarial-robustness-in-the-edge-vlm-era"><a class="markdownIt-Anchor" href="#a-unified-evaluation-framework-of-physical-adversarial-robustness-in-the-edge-vlm-era"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29196">A Unified Evaluation Framework of Physical Adversarial Robustness in the Edge VLM Era</a></h3>
 <ul>
 <li>作者：Eric Liang、Alan Luo、Kaiwen Yuan。</li>
-<li>来源/分类：arXiv cs.CV、cs.AI。</li>
-<li>简介：论文为边缘设备 VLM
-提出统一的物理对抗鲁棒性评测，以匹配的灰色遮挡条件化 cASR，区分
-omission、substitution 和 displacement 失败。作者报告 VLM
-的脆弱性可接近传统检测器，且 displacement/substitution
-更危险，分布变化会改变失败模式。</li>
-<li>关注价值与证据限制：把“看错了什么”与“攻击成功率”结合起来；但摘要没有说明完整设备、模型、攻击预算和实地环境，单一
-cASR 不能代表所有物理部署安全性。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。</li>
+<li>简介：论文为边缘设备 VLM 提出统一的物理对抗鲁棒性评测，以匹配的灰色遮挡条件化 cASR，区分 omission、substitution 和 displacement 失败。作者报告 VLM 的脆弱性可接近传统检测器，且 displacement/substitution 更危险，分布变化会改变失败模式。</li>
+<li>关注价值与证据限制：把“看错了什么”与“攻击成功率”结合起来；但摘要没有说明完整设备、模型、攻击预算和实地环境，单一 cASR 不能代表所有物理部署安全性。</li>
 <li>证据状态：仅依据摘要；未核读全文。</li>
-<li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29196">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.29196">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/ericliang1/physical-adversarial-robustness">代码</a>
-· <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.29196">arXiv DOI</a></li>
+<li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29196">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.29196">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/ericliang1/physical-adversarial-robustness">代码</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.29196">arXiv DOI</a></li>
 </ul>
-<h3 id="reasoning-search-augmented-llms-an-operational-taxonomy-benchmark-analysis-and-controlled-evidence-synthesis"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29189">Reasoning-Search-Augmented LLMs:
-An Operational Taxonomy, Benchmark Analysis and Controlled Evidence
-Synthesis</a></h3>
+<h3 id="reasoning-search-augmented-llms-an-operational-taxonomy-benchmark-analysis-and-controlled-evidence-synthesis"><a class="markdownIt-Anchor" href="#reasoning-search-augmented-llms-an-operational-taxonomy-benchmark-analysis-and-controlled-evidence-synthesis"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29189">Reasoning-Search-Augmented LLMs: An Operational Taxonomy, Benchmark Analysis and Controlled Evidence Synthesis</a></h3>
 <ul>
-<li>作者：Biswas Poudel、Nilson Chapagain、Amit Kumar、Xianshun
-Jiang。</li>
-<li>来源/分类：arXiv cs.AI、cs.CL。</li>
-<li>简介：论文把 reasoning-search agent
-拆成规划、查询、检索、整合、验证和停止，按检索耦合方式、控制器、来源和
-grounding 建立操作
-taxonomy，并用受控的同研究消融合并质量—成本证据，避免把不相同实验直接池化。</li>
+<li>作者：Biswas Poudel、Nilson Chapagain、Amit Kumar、Xianshun Jiang。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>。</li>
+<li>简介：论文把 reasoning-search agent 拆成规划、查询、检索、整合、验证和停止，按检索耦合方式、控制器、来源和 grounding 建立操作 taxonomy，并用受控的同研究消融合并质量—成本证据，避免把不相同实验直接池化。</li>
 <li>关注价值与证据限制：对搜索增强推理的组件边界和证据综合方式较清晰；但综述结论依赖纳入论文质量、任务和指标，摘要没有给出统一效应量或跨任务的独立复核。</li>
 <li>证据状态：仅依据摘要；未核读全文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.29189">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.29189">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.23524293">数据/材料 DOI</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.29189">arXiv DOI</a></li>
 </ul>
-<h3 id="a-mechanistic-study-of-automated-failure-attribution-in-llm-based-agentic-systems"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.28811">A Mechanistic Study of Automated
-Failure Attribution in LLM-based Agentic Systems</a></h3>
+<h3 id="a-mechanistic-study-of-automated-failure-attribution-in-llm-based-agentic-systems"><a class="markdownIt-Anchor" href="#a-mechanistic-study-of-automated-failure-attribution-in-llm-based-agentic-systems"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.28811">A Mechanistic Study of Automated Failure Attribution in LLM-based Agentic Systems</a></h3>
 <ul>
-<li>作者：Wendy Zheng、Liang Wu、Yinhan He、Mayank Darbari、Jundong
-Li、Liangjie Hong。</li>
-<li>来源/分类：arXiv cs.AI、cs.LG。</li>
-<li>简介：论文研究多 agent 系统的自动失败归因，使用线性 probe
-观察“知道但不说”的能力差距，并用 activation grafting
-干预在不提供标签的情况下改善失败归因。</li>
-<li>关注价值与证据限制：若失败原因可以从内部表征中定位，agent
-调试可能从日志分析走向机制诊断；但摘要未给出失败类型、干预增益、模型规模和跨任务基线，不能把
-probe 相关性直接解释成可控机制。</li>
+<li>作者：Wendy Zheng、Liang Wu、Yinhan He、Mayank Darbari、Jundong Li、Liangjie Hong。</li>
+<li>来源/分类：arXiv <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG。</li>
+<li>简介：论文研究多 agent 系统的自动失败归因，使用线性 probe 观察“知道但不说”的能力差距，并用 activation grafting 干预在不提供标签的情况下改善失败归因。</li>
+<li>关注价值与证据限制：若失败原因可以从内部表征中定位，agent 调试可能从日志分析走向机制诊断；但摘要未给出失败类型、干预增益、模型规模和跨任务基线，不能把 probe 相关性直接解释成可控机制。</li>
 <li>证据状态：仅依据摘要；未核读全文。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.28811">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.28811">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/wendyzheng22/mi4afa">代码</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2610.28811">arXiv DOI</a></li>
 </ul>

@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="GITHUB TRENDING · 2026.10.21   今天的 GitHub all-languages 日榜列出 15 个候选；逐一核对官方仓库页、README、许可证与最近提交后，保留 10 个。主线从 Agent 的宿主、编排和安全审计，延伸到代码知识图谱、上下文压缩与插件架构，最后落到本地生成和大模型推理；日增 stars 只是榜单快照，不是质量证明。   Agent 宿主安全审">
+    <meta name="description" content="GITHUB TRENDING · 2026.10.21   今天的 GitHub all-languages 日榜列出 15 个候选；逐一核对官方仓库页、README、许可证与最近提交后，保留 10 个。主线从 Agent 的宿主、编排和安全审计，延伸到代码知识图谱、上下文压缩与插件架构，最后落到本地生成和大模型推理；日增 stars 只是榜单快照，不是质量证明。   Agent 宿主安全">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2026-10-21 GitHub 热榜简报：Agent 工程化、知识图谱与本地推理">
 <meta property="og:url" content="https://www.polarishaw.top/2026/10/21/daily-github-trending-2026-10-21/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="GITHUB TRENDING · 2026.10.21   今天的 GitHub all-languages 日榜列出 15 个候选；逐一核对官方仓库页、README、许可证与最近提交后，保留 10 个。主线从 Agent 的宿主、编排和安全审计，延伸到代码知识图谱、上下文压缩与插件架构，最后落到本地生成和大模型推理；日增 stars 只是榜单快照，不是质量证明。   Agent 宿主安全审">
+<meta property="og:description" content="GITHUB TRENDING · 2026.10.21   今天的 GitHub all-languages 日榜列出 15 个候选；逐一核对官方仓库页、README、许可证与最近提交后，保留 10 个。主线从 Agent 的宿主、编排和安全审计，延伸到代码知识图谱、上下文压缩与插件架构，最后落到本地生成和大模型推理；日增 stars 只是榜单快照，不是质量证明。   Agent 宿主安全">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-06-27/pixiv-rank-007-146298642.jpg">
 <meta property="article:published_time" content="2026-10-21T01:00:00.000Z">
@@ -260,7 +260,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-012-146018463.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-09-21/pixiv-rank-010-149676831.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -351,198 +351,48 @@
               <div class="markdown-body">
                 
                 <div class="briefing-masthead">
-<p class="briefing-masthead__eyebrow">
-GITHUB TRENDING · 2026.10.21
-</p>
-<p>
-今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub
-all-languages 日榜</a>列出 15
-个候选；逐一核对官方仓库页、README、许可证与最近提交后，保留 10
-个。主线从 Agent
-的宿主、编排和安全审计，延伸到代码知识图谱、上下文压缩与插件架构，最后落到本地生成和大模型推理；日增
-stars 只是榜单快照，不是质量证明。
-</p>
-<div class="briefing-masthead__topics">
-<span>Agent
-宿主</span><span>安全审计</span><span>代码知识图谱</span><span>上下文工程</span><span>本地推理</span>
-</div>
+  <p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.10.21</p>
+  <p>今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub all-languages 日榜</a>列出 15 个候选；逐一核对官方仓库页、README、许可证与最近提交后，保留 10 个。主线从 Agent 的宿主、编排和安全审计，延伸到代码知识图谱、上下文压缩与插件架构，最后落到本地生成和大模型推理；日增 stars 只是榜单快照，不是质量证明。</p>
+  <div class="briefing-masthead__topics"><span>Agent 宿主</span><span>安全审计</span><span>代码知识图谱</span><span>上下文工程</span><span>本地推理</span></div>
 </div>
 <span id="more"></span>
-<h2 id="今日要点">今日要点</h2>
-<p>今天最清楚的结构，是 Agent
-的工程边界正在被拆开：<a target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode#readme">OpenCode</a>提供
-coding agent
-宿主，<a target="_blank" rel="noopener" href="https://github.com/stablyai/orca#readme">Orca</a>把多个编码
-Agent 放进隔离
-worktree，<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill#readme">Cloudflare
-的 security-audit
-skill</a>则把审计过程拆成覆盖、验证、结构化发现和独立复核。值得学习的不是“Agent
-越多越好”，而是权限、状态、证据和人工复核分别落在哪一层。</p>
-<p>上下文也开始从“塞进窗口”转向可查询、可压缩的中间产物：<a target="_blank" rel="noopener" href="https://github.com/Graphify-Labs/graphify#readme">Graphify</a>把代码与文档映射成带证据标签的知识图谱，<a target="_blank" rel="noopener" href="https://github.com/headroomlabs-ai/headroom#readme">Headroom</a>在工具输出到达模型前做路由、压缩和可逆检索，<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins#readme">Knowledge
-Work
-Plugins</a>则把角色知识、连接器和命令组织成文件化插件。它们把“模型会不会”转成“系统留下了什么可检查的证据”。</p>
-<p>应用层仍然很具体：<a target="_blank" rel="noopener" href="https://github.com/MadsLorentzen/ai-job-search#readme">AI
-Job
-Search</a>把求职拆成长流程，<a target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail#readme">Ponytail</a>把少写代码与补测试变成
-Agent
-约束，<a target="_blank" rel="noopener" href="https://github.com/Comfy-Org/ComfyUI#readme">ComfyUI</a>把视觉生成组织成节点图，<a target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm#readme">vLLM</a>则把大模型推理推进到高吞吐服务层。真正尝试前，仍要先看数据边界、外部服务、GPU/模型依赖、许可证和
-README 中已经写明的限制。</p>
-<h2 id="值得尝试">值得尝试</h2>
-<h3 id="madslorentzenai-job-search"><a target="_blank" rel="noopener" href="https://github.com/MadsLorentzen/ai-job-search">MadsLorentzen/ai-job-search</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/MadsLorentzen/ai-job-search#readme">AI
-Job Search</a>把个人资料、岗位检索、匹配评估、CV/求职信起草、第二 Agent
-复核和面试准备组织成工作流，适合想研究长流程 Agent
-如何落地，或准备把岗位入口替换成自己所在国家服务的开发者。限制是仓库自带的
-Jobindex、Jobnet 等搜索技能偏丹麦市场，<code>/setup</code>
-会把姓名、联系方式、履历和薪资预期写入跟踪文件，而且完整运行还需要
-Claude Code、Python、Bun 与 LaTeX；仓库采用
-<a target="_blank" rel="noopener" href="https://github.com/MadsLorentzen/ai-job-search/blob/master/LICENSE">MIT</a>，主要语言为
-Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
-3,861 stars、总计 60,740
-stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/MadsLorentzen/ai-job-search/commit/4339153f8f5e4bb69eaee2a50af713815409e8e7">跳过
-Excel 逻辑单元格的薪资字段修复</a>。</p>
-<h3 id="cloudflaresecurity-audit-skill"><a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill#readme">security-audit</a>把
-coding-agent
-安全审计拆成侦察、覆盖驱动的查找、候选验证、结构化输出、独立记录复核和目标中立报告六个阶段，适合安全工程师、Agent
-工作流设计者学习如何让发现留下可复核的来源链。限制是它是审计编排方法与校验器，不是自动保证安全的扫描器；README
-要求能运行并行子 Agent 的模型和操作系统级沙箱，没有沙箱时结果会保留为
-<code>needs_validation</code>；仓库采用
-<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill/blob/main/LICENSE">MIT</a>，主要语言为
-JavaScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
-1,712 stars、总计 34,336
-stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill/commit/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8">澄清审计模式指引</a>。</p>
-<h3 id="stablyaiorca"><a target="_blank" rel="noopener" href="https://github.com/stablyai/orca">stablyai/orca</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/stablyai/orca#readme">Orca</a>是面向
-Codex、Claude Code、OpenCode 和 Pi 的 Agent 编排器，让多个 Agent 在独立
-worktree 中并行运行，并提供移动端跟进、SSH 远程
-worktree、终端分屏和浏览器 Design
-Mode，适合需要比较多条实现路径的开发者。限制是它不提供模型或订阅，结果质量取决于已安装的
-CLI Agent、账户和本地/远程环境，多个 worktree
-的结果仍需人工比较与合并；仓库采用
-<a target="_blank" rel="noopener" href="https://github.com/stablyai/orca/blob/main/LICENSE">MIT</a>，主要语言为
-TypeScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
-1,565 stars、总计 99,815
-stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/stablyai/orca/commit/be0961e9111e0d083c669ab9f887c41f12a8facb">重叠临时发布门禁与缓存服务器模板</a>。</p>
-<h3 id="dietrichgebertponytail"><a target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail">DietrichGebert/ponytail</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail#readme">Ponytail</a>是面向
-Claude Code
-的工程约束技能，先检查现有代码、标准库、平台能力和已安装依赖，再要求以最小实现配合测试，并提供
-<code>/ponytail-review</code> 与
-<code>/ponytail-audit</code>；它适合学习如何把
-YAGNI、回归检查和安全审查写进 Agent 工作流。限制是 README 的 39
-个任务、每项 5 次运行等 benchmark
-属于项目自报结果，不能替代独立复现，且部分看板能力要求 Claude Code
-2.1.290 或更高版本；仓库采用
-<a target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail/blob/main/LICENSE">MIT</a>，主要语言为
-JavaScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
-1,208 stars、总计 169,785
-stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail/commit/09c434ab73ca43761c5d8b0c5d341926c2fba710">等待被终止的
-todo
-服务完成后再清理工作目录</a>；详细方法见其<a target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail/blob/main/benchmarks/results/2026-10-07-agentic.md">benchmark
-记录</a>。</p>
-<h3 id="comfy-orgcomfyui"><a target="_blank" rel="noopener" href="https://github.com/Comfy-Org/ComfyUI">Comfy-Org/ComfyUI</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/Comfy-Org/ComfyUI#readme">ComfyUI</a>以节点图组织图像、视频、音频和
-3D 生成工作流，同时提供 GUI、API
-和后端，适合希望把本地生成流程拆成可复用节点、脚本与自定义节点的创作者和开发者。限制是模型权重、GPU、工作流
-JSON 和自定义节点版本可能互相耦合，README 还提醒 master
-分支的提交可能不稳定并破坏自定义节点；仓库采用
-<a target="_blank" rel="noopener" href="https://github.com/Comfy-Org/ComfyUI/blob/master/LICENSE">GPL-3.0</a>，主要语言为
-Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
-1,206 stars、总计 140,818
-stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/Comfy-Org/ComfyUI/commit/37ff76b4d3d47405ba46ac1e14698e280b70b33f">设置最低
-Pillow 版本</a>。</p>
-<h3 id="graphify-labsgraphify"><a target="_blank" rel="noopener" href="https://github.com/Graphify-Labs/graphify">Graphify-Labs/graphify</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/Graphify-Labs/graphify#readme">Graphify</a>把代码库、文档、SQL
-schema、配置和 PDF 转成可查询知识图谱，用 tree-sitter 做本地确定性 AST
-解析，并为每条边标记 <code>EXTRACTED</code> 或
-<code>INFERRED</code>，适合研究 Agent 如何从 grep
-转向可追踪的结构化上下文。限制是文档、PDF、图片和视频的语义阶段可能调用模型或
-API，Graphify Cloud
-还涉及付费服务，图谱质量也取决于语言解析与推断边界；仓库采用
-<a target="_blank" rel="noopener" href="https://github.com/Graphify-Labs/graphify/blob/v8/LICENSE">Apache-2.0</a>，主要语言为
-Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
-802 stars、总计 130,317
-stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/Graphify-Labs/graphify/commit/b90b9df7949bd04a15b40a1624af85d0a9cfdf04">更新
-B3 合并技能测试</a>。</p>
-<h3 id="anomalycoopencode"><a target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode">anomalyco/opencode</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode#readme">OpenCode</a>是开源
-AI coding agent，提供终端界面、桌面 beta、可切换的 build 与只读 plan
-Agent，以及用于复杂搜索和多步骤任务的 general 子 Agent，适合学习 coding
-agent 的宿主、权限和交互设计。限制是桌面端仍标为
-beta，模型供应商、本地凭据与命令执行确认决定实际安全边界；仓库采用
-<a target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode/blob/dev/LICENSE">MIT</a>，主要语言为
-TypeScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
-1,240 stars、总计 218,985
-stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode/commit/80b87629139889ecd8d3b57e690f94d05f6bd745">转发
-provider session 错误的重试时间</a>。</p>
-<h3 id="headroomlabs-aiheadroom"><a target="_blank" rel="noopener" href="https://github.com/headroomlabs-ai/headroom">headroomlabs-ai/headroom</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/headroomlabs-ai/headroom#readme">Headroom</a>在工具输出、日志、文件、RAG
-片段和会话历史到达 LLM 前做内容路由、压缩与可逆检索，同时提供
-Python/TypeScript 库、代理、MCP server、Agent wrap 和跨 Agent
-记忆，适合研究上下文预算与工具输出治理。限制是压缩收益取决于输入的重复度，README
-的离线 benchmark 也显示已经稠密的 prose
-不会同样受益；<code>headroom learn</code>
-会写入规则文件，<code>headroom wrap</code> 还会注册本地
-MCP，因此部署前应审查缓存、隐私和配置变化；仓库采用
-<a target="_blank" rel="noopener" href="https://github.com/headroomlabs-ai/headroom/blob/main/LICENSE">Apache-2.0</a>，主要语言为
-Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
-549 stars、总计 76,789
-stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/headroomlabs-ai/headroom/commit/f380692b463637e90de84f1b5cc29c7ae9f7b969">固定默认
-embedder 快照</a>。</p>
-<h3 id="anthropicsknowledge-work-plugins"><a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins">anthropics/knowledge-work-plugins</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins#readme">Knowledge
-Work Plugins</a>由 Anthropic
-开源，提供面向生产力、销售、客服、产品、营销、法律、财务、数据和企业搜索等角色的
-11 个插件；每个插件把
-<code>plugin.json</code>、<code>.mcp.json</code>、commands、skills 和
-sub-agents 组合起来，适合学习知识工作 Agent
-如何被文件化、定制和接入外部工具。限制是这些插件是 Cowork/Claude Code
-的通用起点，不是独立运行时，连接器与 slash command
-的权限、数据范围和业务正确性仍需由使用团队审查；仓库采用
-<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/blob/main/LICENSE">Apache-2.0</a>，主要语言为
-Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
-267 stars、总计 30,812
-stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/commit/bc8f6922cfeea215a202cdcc9f0d299a990889a8">更新
-security guidance 版本</a>。</p>
-<h3 id="vllm-projectvllm"><a target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm">vllm-project/vllm</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm#readme">vLLM</a>是面向大模型推理与服务的高吞吐引擎，覆盖
-PagedAttention、连续批处理、prefix caching、量化、工具调用解析，以及
-OpenAI-compatible、Anthropic Messages 和 gRPC
-接口，适合做模型服务、推理性能和异构硬件适配的工程师。限制是它更接近基础设施而不是开箱即用的聊天应用，模型架构、GPU/CPU
-后端与编译环境决定可用性，支持列表也需要按目标模型逐项核对；仓库采用
-<a target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm/blob/main/LICENSE">Apache-2.0</a>，主要语言为
-Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
-128 stars、总计 94,457
-stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm/commit/c835207fccae327531d7d64d2d6fe719a601477f">为
-XPU 测试依赖加入 kaldi-native-fbank</a>。</p>
-<h2 id="快速浏览">快速浏览</h2>
+<h2 id="今日要点"><a class="markdownIt-Anchor" href="#今日要点"></a> 今日要点</h2>
+<p>今天最清楚的结构，是 Agent 的工程边界正在被拆开：<a target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode#readme">OpenCode</a>提供 coding agent 宿主，<a target="_blank" rel="noopener" href="https://github.com/stablyai/orca#readme">Orca</a>把多个编码 Agent 放进隔离 worktree，<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill#readme">Cloudflare 的 security-audit skill</a>则把审计过程拆成覆盖、验证、结构化发现和独立复核。值得学习的不是“Agent 越多越好”，而是权限、状态、证据和人工复核分别落在哪一层。</p>
+<p>上下文也开始从“塞进窗口”转向可查询、可压缩的中间产物：<a target="_blank" rel="noopener" href="https://github.com/Graphify-Labs/graphify#readme">Graphify</a>把代码与文档映射成带证据标签的知识图谱，<a target="_blank" rel="noopener" href="https://github.com/headroomlabs-ai/headroom#readme">Headroom</a>在工具输出到达模型前做路由、压缩和可逆检索，<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins#readme">Knowledge Work Plugins</a>则把角色知识、连接器和命令组织成文件化插件。它们把“模型会不会”转成“系统留下了什么可检查的证据”。</p>
+<p>应用层仍然很具体：<a target="_blank" rel="noopener" href="https://github.com/MadsLorentzen/ai-job-search#readme">AI Job Search</a>把求职拆成长流程，<a target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail#readme">Ponytail</a>把少写代码与补测试变成 Agent 约束，<a target="_blank" rel="noopener" href="https://github.com/Comfy-Org/ComfyUI#readme">ComfyUI</a>把视觉生成组织成节点图，<a target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm#readme">vLLM</a>则把大模型推理推进到高吞吐服务层。真正尝试前，仍要先看数据边界、外部服务、GPU/模型依赖、许可证和 README 中已经写明的限制。</p>
+<h2 id="值得尝试"><a class="markdownIt-Anchor" href="#值得尝试"></a> 值得尝试</h2>
+<h3 id="a-hrefhttpsgithubcommadslorentzenai-job-searchmadslorentzenai-job-searcha"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcommadslorentzenai-job-searchmadslorentzenai-job-searcha"></a> <a target="_blank" rel="noopener" href="https://github.com/MadsLorentzen/ai-job-search">MadsLorentzen/ai-job-search</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/MadsLorentzen/ai-job-search#readme">AI Job Search</a>把个人资料、岗位检索、匹配评估、CV/求职信起草、第二 Agent 复核和面试准备组织成工作流，适合想研究长流程 Agent 如何落地，或准备把岗位入口替换成自己所在国家服务的开发者。限制是仓库自带的 Jobindex、Jobnet 等搜索技能偏丹麦市场，<code>/setup</code> 会把姓名、联系方式、履历和薪资预期写入跟踪文件，而且完整运行还需要 Claude Code、Python、Bun 与 LaTeX；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/MadsLorentzen/ai-job-search/blob/master/LICENSE">MIT</a>，主要语言为 Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增 3,861 stars、总计 60,740 stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/MadsLorentzen/ai-job-search/commit/4339153f8f5e4bb69eaee2a50af713815409e8e7">跳过 Excel 逻辑单元格的薪资字段修复</a>。</p>
+<h3 id="a-hrefhttpsgithubcomcloudflaresecurity-audit-skillcloudflaresecurity-audit-skilla"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomcloudflaresecurity-audit-skillcloudflaresecurity-audit-skilla"></a> <a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill#readme">security-audit</a>把 coding-agent 安全审计拆成侦察、覆盖驱动的查找、候选验证、结构化输出、独立记录复核和目标中立报告六个阶段，适合安全工程师、Agent 工作流设计者学习如何让发现留下可复核的来源链。限制是它是审计编排方法与校验器，不是自动保证安全的扫描器；README 要求能运行并行子 Agent 的模型和操作系统级沙箱，没有沙箱时结果会保留为 <code>needs_validation</code>；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill/blob/main/LICENSE">MIT</a>，主要语言为 JavaScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增 1,712 stars、总计 34,336 stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill/commit/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8">澄清审计模式指引</a>。</p>
+<h3 id="a-hrefhttpsgithubcomstablyaiorcastablyaiorcaa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomstablyaiorcastablyaiorcaa"></a> <a target="_blank" rel="noopener" href="https://github.com/stablyai/orca">stablyai/orca</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/stablyai/orca#readme">Orca</a>是面向 Codex、Claude Code、OpenCode 和 Pi 的 Agent 编排器，让多个 Agent 在独立 worktree 中并行运行，并提供移动端跟进、SSH 远程 worktree、终端分屏和浏览器 Design Mode，适合需要比较多条实现路径的开发者。限制是它不提供模型或订阅，结果质量取决于已安装的 CLI Agent、账户和本地/远程环境，多个 worktree 的结果仍需人工比较与合并；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/stablyai/orca/blob/main/LICENSE">MIT</a>，主要语言为 TypeScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增 1,565 stars、总计 99,815 stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/stablyai/orca/commit/be0961e9111e0d083c669ab9f887c41f12a8facb">重叠临时发布门禁与缓存服务器模板</a>。</p>
+<h3 id="a-hrefhttpsgithubcomdietrichgebertponytaildietrichgebertponytaila"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomdietrichgebertponytaildietrichgebertponytaila"></a> <a target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail">DietrichGebert/ponytail</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail#readme">Ponytail</a>是面向 Claude Code 的工程约束技能，先检查现有代码、标准库、平台能力和已安装依赖，再要求以最小实现配合测试，并提供 <code>/ponytail-review</code> 与 <code>/ponytail-audit</code>；它适合学习如何把 YAGNI、回归检查和安全审查写进 Agent 工作流。限制是 README 的 39 个任务、每项 5 次运行等 benchmark 属于项目自报结果，不能替代独立复现，且部分看板能力要求 Claude Code 2.1.290 或更高版本；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail/blob/main/LICENSE">MIT</a>，主要语言为 JavaScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增 1,208 stars、总计 169,785 stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail/commit/09c434ab73ca43761c5d8b0c5d341926c2fba710">等待被终止的 todo 服务完成后再清理工作目录</a>；详细方法见其<a target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail/blob/main/benchmarks/results/2026-10-07-agentic.md">benchmark 记录</a>。</p>
+<h3 id="a-hrefhttpsgithubcomcomfy-orgcomfyuicomfy-orgcomfyuia"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomcomfy-orgcomfyuicomfy-orgcomfyuia"></a> <a target="_blank" rel="noopener" href="https://github.com/Comfy-Org/ComfyUI">Comfy-Org/ComfyUI</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/Comfy-Org/ComfyUI#readme">ComfyUI</a>以节点图组织图像、视频、音频和 3D 生成工作流，同时提供 GUI、API 和后端，适合希望把本地生成流程拆成可复用节点、脚本与自定义节点的创作者和开发者。限制是模型权重、GPU、工作流 JSON 和自定义节点版本可能互相耦合，README 还提醒 master 分支的提交可能不稳定并破坏自定义节点；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/Comfy-Org/ComfyUI/blob/master/LICENSE">GPL-3.0</a>，主要语言为 Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增 1,206 stars、总计 140,818 stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/Comfy-Org/ComfyUI/commit/37ff76b4d3d47405ba46ac1e14698e280b70b33f">设置最低 Pillow 版本</a>。</p>
+<h3 id="a-hrefhttpsgithubcomgraphify-labsgraphifygraphify-labsgraphifya"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomgraphify-labsgraphifygraphify-labsgraphifya"></a> <a target="_blank" rel="noopener" href="https://github.com/Graphify-Labs/graphify">Graphify-Labs/graphify</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/Graphify-Labs/graphify#readme">Graphify</a>把代码库、文档、SQL schema、配置和 PDF 转成可查询知识图谱，用 tree-sitter 做本地确定性 AST 解析，并为每条边标记 <code>EXTRACTED</code> 或 <code>INFERRED</code>，适合研究 Agent 如何从 grep 转向可追踪的结构化上下文。限制是文档、PDF、图片和视频的语义阶段可能调用模型或 API，Graphify Cloud 还涉及付费服务，图谱质量也取决于语言解析与推断边界；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/Graphify-Labs/graphify/blob/v8/LICENSE">Apache-2.0</a>，主要语言为 Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增 802 stars、总计 130,317 stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/Graphify-Labs/graphify/commit/b90b9df7949bd04a15b40a1624af85d0a9cfdf04">更新 B3 合并技能测试</a>。</p>
+<h3 id="a-hrefhttpsgithubcomanomalycoopencodeanomalycoopencodea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomanomalycoopencodeanomalycoopencodea"></a> <a target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode">anomalyco/opencode</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode#readme">OpenCode</a>是开源 AI coding agent，提供终端界面、桌面 beta、可切换的 build 与只读 plan Agent，以及用于复杂搜索和多步骤任务的 general 子 Agent，适合学习 coding agent 的宿主、权限和交互设计。限制是桌面端仍标为 beta，模型供应商、本地凭据与命令执行确认决定实际安全边界；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode/blob/dev/LICENSE">MIT</a>，主要语言为 TypeScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增 1,240 stars、总计 218,985 stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode/commit/80b87629139889ecd8d3b57e690f94d05f6bd745">转发 provider session 错误的重试时间</a>。</p>
+<h3 id="a-hrefhttpsgithubcomheadroomlabs-aiheadroomheadroomlabs-aiheadrooma"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomheadroomlabs-aiheadroomheadroomlabs-aiheadrooma"></a> <a target="_blank" rel="noopener" href="https://github.com/headroomlabs-ai/headroom">headroomlabs-ai/headroom</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/headroomlabs-ai/headroom#readme">Headroom</a>在工具输出、日志、文件、RAG 片段和会话历史到达 LLM 前做内容路由、压缩与可逆检索，同时提供 Python/TypeScript 库、代理、MCP server、Agent wrap 和跨 Agent 记忆，适合研究上下文预算与工具输出治理。限制是压缩收益取决于输入的重复度，README 的离线 benchmark 也显示已经稠密的 prose 不会同样受益；<code>headroom learn</code> 会写入规则文件，<code>headroom wrap</code> 还会注册本地 MCP，因此部署前应审查缓存、隐私和配置变化；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/headroomlabs-ai/headroom/blob/main/LICENSE">Apache-2.0</a>，主要语言为 Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增 549 stars、总计 76,789 stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/headroomlabs-ai/headroom/commit/f380692b463637e90de84f1b5cc29c7ae9f7b969">固定默认 embedder 快照</a>。</p>
+<h3 id="a-hrefhttpsgithubcomanthropicsknowledge-work-pluginsanthropicsknowledge-work-pluginsa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomanthropicsknowledge-work-pluginsanthropicsknowledge-work-pluginsa"></a> <a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins">anthropics/knowledge-work-plugins</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins#readme">Knowledge Work Plugins</a>由 Anthropic 开源，提供面向生产力、销售、客服、产品、营销、法律、财务、数据和企业搜索等角色的 11 个插件；每个插件把 <code>plugin.json</code>、<code>.mcp.json</code>、commands、skills 和 sub-agents 组合起来，适合学习知识工作 Agent 如何被文件化、定制和接入外部工具。限制是这些插件是 Cowork/Claude Code 的通用起点，不是独立运行时，连接器与 slash command 的权限、数据范围和业务正确性仍需由使用团队审查；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/blob/main/LICENSE">Apache-2.0</a>，主要语言为 Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增 267 stars、总计 30,812 stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/commit/bc8f6922cfeea215a202cdcc9f0d299a990889a8">更新 security guidance 版本</a>。</p>
+<h3 id="a-hrefhttpsgithubcomvllm-projectvllmvllm-projectvllma"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomvllm-projectvllmvllm-projectvllma"></a> <a target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm">vllm-project/vllm</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm#readme">vLLM</a>是面向大模型推理与服务的高吞吐引擎，覆盖 PagedAttention、连续批处理、prefix caching、量化、工具调用解析，以及 OpenAI-compatible、Anthropic Messages 和 gRPC 接口，适合做模型服务、推理性能和异构硬件适配的工程师。限制是它更接近基础设施而不是开箱即用的聊天应用，模型架构、GPU/CPU 后端与编译环境决定可用性，支持列表也需要按目标模型逐项核对；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm/blob/main/LICENSE">Apache-2.0</a>，主要语言为 Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增 128 stars、总计 94,457 stars，最近提交为<a target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm/commit/c835207fccae327531d7d64d2d6fe719a601477f">为 XPU 测试依赖加入 kaldi-native-fbank</a>。</p>
+<h2 id="快速浏览"><a class="markdownIt-Anchor" href="#快速浏览"></a> 快速浏览</h2>
 <div class="briefing-quick-list">
-<p><a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/MadsLorentzen/ai-job-search"><span class="briefing-quick-item__source">求职工作流 · Python ·
-+3,861/日</span><span class="briefing-quick-item__body"><strong>MadsLorentzen/ai-job-search</strong><small>把岗位检索、材料起草、复核和面试准备串成工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill"><span class="briefing-quick-item__source">安全审计 · JavaScript ·
-+1,712/日</span><span class="briefing-quick-item__body"><strong>cloudflare/security-audit-skill</strong><small>用覆盖台账、独立验证和结构化发现组织
-Agent 审计。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/stablyai/orca"><span class="briefing-quick-item__source">Agent 编排 · TypeScript ·
-+1,565/日</span><span class="briefing-quick-item__body"><strong>stablyai/orca</strong><small>在隔离
-worktree 中并行运行多个编码 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail"><span class="briefing-quick-item__source">代码约束 · JavaScript ·
-+1,208/日</span><span class="briefing-quick-item__body"><strong>DietrichGebert/ponytail</strong><small>把少写代码、补测试和审查约束写进
-Claude Code 工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Comfy-Org/ComfyUI"><span class="briefing-quick-item__source">节点式创作 · Python ·
-+1,206/日</span><span class="briefing-quick-item__body"><strong>Comfy-Org/ComfyUI</strong><small>用节点图组织图像、视频、音频和
-3D 生成流程。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Graphify-Labs/graphify"><span class="briefing-quick-item__source">代码知识图谱 · Python ·
-+802/日</span><span class="briefing-quick-item__body"><strong>Graphify-Labs/graphify</strong><small>把代码与文档转成可查询、带证据标签的知识图谱。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode"><span class="briefing-quick-item__source">Coding agent · TypeScript ·
-+1,240/日</span><span class="briefing-quick-item__body"><strong>anomalyco/opencode</strong><small>提供终端、桌面
-beta、build/plan Agent 和 general 子 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/headroomlabs-ai/headroom"><span class="briefing-quick-item__source">上下文压缩 · Python ·
-+549/日</span><span class="briefing-quick-item__body"><strong>headroomlabs-ai/headroom</strong><small>在模型看到工具输出前做路由、压缩与可逆检索。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins"><span class="briefing-quick-item__source">插件架构 · Python ·
-+267/日</span><span class="briefing-quick-item__body"><strong>anthropics/knowledge-work-plugins</strong><small>用文件化插件组合角色知识、连接器、命令和技能。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
-<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm"><span class="briefing-quick-item__source">模型服务 · Python ·
-+128/日</span><span class="briefing-quick-item__body"><strong>vllm-project/vllm</strong><small>面向高吞吐大模型推理、量化和多后端服务。</small></span><span class="briefing-quick-item__arrow">↗</span></a></p>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/MadsLorentzen/ai-job-search"><span class="briefing-quick-item__source">求职工作流 · Python · +3,861/日</span><span class="briefing-quick-item__body"><strong>MadsLorentzen/ai-job-search</strong><small>把岗位检索、材料起草、复核和面试准备串成工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill"><span class="briefing-quick-item__source">安全审计 · JavaScript · +1,712/日</span><span class="briefing-quick-item__body"><strong>cloudflare/security-audit-skill</strong><small>用覆盖台账、独立验证和结构化发现组织 Agent 审计。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/stablyai/orca"><span class="briefing-quick-item__source">Agent 编排 · TypeScript · +1,565/日</span><span class="briefing-quick-item__body"><strong>stablyai/orca</strong><small>在隔离 worktree 中并行运行多个编码 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/DietrichGebert/ponytail"><span class="briefing-quick-item__source">代码约束 · JavaScript · +1,208/日</span><span class="briefing-quick-item__body"><strong>DietrichGebert/ponytail</strong><small>把少写代码、补测试和审查约束写进 Claude Code 工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Comfy-Org/ComfyUI"><span class="briefing-quick-item__source">节点式创作 · Python · +1,206/日</span><span class="briefing-quick-item__body"><strong>Comfy-Org/ComfyUI</strong><small>用节点图组织图像、视频、音频和 3D 生成流程。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Graphify-Labs/graphify"><span class="briefing-quick-item__source">代码知识图谱 · Python · +802/日</span><span class="briefing-quick-item__body"><strong>Graphify-Labs/graphify</strong><small>把代码与文档转成可查询、带证据标签的知识图谱。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/anomalyco/opencode"><span class="briefing-quick-item__source">Coding agent · TypeScript · +1,240/日</span><span class="briefing-quick-item__body"><strong>anomalyco/opencode</strong><small>提供终端、桌面 beta、build/plan Agent 和 general 子 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/headroomlabs-ai/headroom"><span class="briefing-quick-item__source">上下文压缩 · Python · +549/日</span><span class="briefing-quick-item__body"><strong>headroomlabs-ai/headroom</strong><small>在模型看到工具输出前做路由、压缩与可逆检索。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins"><span class="briefing-quick-item__source">插件架构 · Python · +267/日</span><span class="briefing-quick-item__body"><strong>anthropics/knowledge-work-plugins</strong><small>用文件化插件组合角色知识、连接器、命令和技能。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm"><span class="briefing-quick-item__source">模型服务 · Python · +128/日</span><span class="briefing-quick-item__body"><strong>vllm-project/vllm</strong><small>面向高吞吐大模型推理、量化和多后端服务。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
 </div>
 
                 
