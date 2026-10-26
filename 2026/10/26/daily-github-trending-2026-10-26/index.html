@@ -1,0 +1,1034 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="GITHUB TRENDING · 2026.10.26   今天的 GitHub all-languages 日榜列出 16 个候选；逐一核对官方仓库、README、许可证和最近提交后，保留 13 个。日增 stars 取日榜快照，总 stars 取核验时的 GitHub 仓库数据，两者采样时间可能不同；stars 只描述热度，不是质量证明。   Agent 工作流本地研究知识库网络与运行时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-10-26 GitHub 热榜简报：从 Agent 流程到本地研究与 3D 工具">
+<meta property="og:url" content="https://www.polarishaw.top/2026/10/26/daily-github-trending-2026-10-26/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="GITHUB TRENDING · 2026.10.26   今天的 GitHub all-languages 日榜列出 16 个候选；逐一核对官方仓库、README、许可证和最近提交后，保留 13 个。日增 stars 取日榜快照，总 stars 取核验时的 GitHub 仓库数据，两者采样时间可能不同；stars 只描述热度，不是质量证明。   Agent 工作流本地研究知识库网络与运行时">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-09/pixiv-rank-013-147988907.jpg">
+<meta property="article:published_time" content="2026-10-26T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-26T02:08:45.218Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="开发工具">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="本地优先">
+<meta property="article:tag" content="研究工作流">
+<meta property="article:tag" content="3D 工具">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-09/pixiv-rank-013-147988907.jpg">
+  
+  
+  
+  <title>2026-10-26 GitHub 热榜简报：从 Agent 流程到本地研究与 3D 工具 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
+<link rel="stylesheet" href="/css/dailyBriefing.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/covers/pixiv-weekly/2026-08-23/pixiv-rank-014-148546035.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2026-10-26 GitHub 热榜简报：从 Agent 流程到本地研究与 3D 工具"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-10-26 09:00" pubdate>
+          2026年10月26日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2026-10-26 GitHub 热榜简报：从 Agent 流程到本地研究与 3D 工具</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="briefing-masthead">
+<p class="briefing-masthead__eyebrow">
+GITHUB TRENDING · 2026.10.26
+</p>
+<p>
+今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub
+all-languages 日榜</a>列出 16
+个候选；逐一核对官方仓库、README、许可证和最近提交后，保留 13 个。日增
+stars 取日榜快照，总 stars 取核验时的 GitHub
+仓库数据，两者采样时间可能不同；stars 只描述热度，不是质量证明。
+</p>
+<div class="briefing-masthead__topics">
+<span>Agent
+工作流</span><span>本地研究</span><span>知识库</span><span>网络与运行时</span><span>3D
+工具</span>
+</div>
+</div>
+<span id="more"></span>
+<h2 id="今日要点">今日要点</h2>
+<p>今天的主线不是“又多了几个 AI 应用”，而是 Agent
+正在被放进更明确的工作边界：<a target="_blank" rel="noopener" href="https://github.com/obra/superpowers#readme">Superpowers</a>把澄清需求、规划、TDD、子
+Agent、审查和收尾组织成强流程，<a target="_blank" rel="noopener" href="https://github.com/github/spec-kit#readme">Spec
+Kit</a>则把功能开发、修 bug
+和想法评估拆成可替换的过程。<a target="_blank" rel="noopener" href="https://github.com/ayghri/i-have-adhd#readme">i-have-adhd</a>解决的是输出层的注意力问题；它们值得学习的是约束设计，而不是“安装后模型就变强”。</p>
+<p>另一条线是“把研究与空间数据变成可复用的本地资产”：<a target="_blank" rel="noopener" href="https://github.com/nashsu/llm_wiki#readme">LLM
+Wiki</a>维护带来源的个人知识库，<a target="_blank" rel="noopener" href="https://github.com/jordan-gibbs/hyperresearch#readme">Hyperresearch</a>把检索、批评、引用核验和持久化
+vault
+组合成研究流水线，<a target="_blank" rel="noopener" href="https://github.com/alphaXiv/OpenResearch#readme">OpenResearch</a>进一步把文献、假设、实验和产物放进本地工作区。<a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view#readme">God's
+Eye
+View</a>与<a target="_blank" rel="noopener" href="https://github.com/pascalorg/editor#readme">Pascal
+Editor</a>则把公开地理数据、建筑空间和 Agent 接口带进 3D
+场景；真正尝试时，数据许可、外部服务、硬件和验证成本都必须单独检查。</p>
+<h2 id="值得尝试">值得尝试</h2>
+<h3 id="ayghrii-have-adhd"><a target="_blank" rel="noopener" href="https://github.com/ayghri/i-have-adhd#readme">ayghri/i-have-adhd</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/ayghri/i-have-adhd#readme">README</a>把它定义为给编码助手加载的输出技能，以
+10
+条规则要求先给行动、限制列表并落到一个具体下一步，解决“答案被冗长前言掩埋”的交互问题。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+2,383
+stars，<a target="_blank" rel="noopener" href="https://github.com/ayghri/i-have-adhd">仓库</a>在核验时为
+58,733★，主要语言
+Python，许可证为<a target="_blank" rel="noopener" href="https://github.com/ayghri/i-have-adhd/blob/main/LICENSE">MIT</a>，最近活动是
+2026-10-11
+的<a target="_blank" rel="noopener" href="https://github.com/ayghri/i-have-adhd/commit/1ecea1993b7fce257ffbd686c070948b5e07eda6">法语翻译合并提交</a>。它改变的是表达和工作流，不会替模型补足推理能力，适合希望控制输出长度和下一步动作的人，但要先确认宿主支持插件或
+skill 机制。</p>
+<h3 id="bilawalsidhugods-eye-view"><a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view#readme">bilawalsidhu/gods-eye-view</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view#readme">God's
+Eye
+View</a>把航班、船舶、卫星、地震、交通和公共摄像头等公开信号放进可交互的
+3D 地球仪，适合学习地理数据、WebGL/Cesium 数据层与语音 Agent
+的组合。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+5,587
+stars，<a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view">仓库</a>在核验时为
+60,084★，主要语言
+JavaScript，源码采用<a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view/blob/main/LICENSE">MIT</a>，最近提交为
+2026-10-26
+的<a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view/commit/2b2dad5bbe1812280b437cccf3f6daa3abca6c5a">本地日志与缓存访问边界修复</a>。交通沿真实道路的部分是模拟，摄像头姿态和发射轨迹是粗略估计，第三方数据与
+Cesium/Google
+服务还有各自的许可和配额限制，因此它适合做可视化研究，不应当被当作情报事实源。</p>
+<h3 id="nab138iloader"><a target="_blank" rel="noopener" href="https://github.com/nab138/iloader#readme">nab138/iloader</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/nab138/iloader#readme">iloader</a>是跨平台
+Tauri 侧载工具，围绕 SideStore/IPA 导入、配对文件和开发证书管理，解决
+iOS
+设备开发安装流程中的手工操作。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+204
+stars，<a target="_blank" rel="noopener" href="https://github.com/nab138/iloader">仓库</a>在核验时为
+4,303★，主要语言
+TypeScript，许可证为<a target="_blank" rel="noopener" href="https://github.com/nab138/iloader/blob/main/LICENSE">MIT</a>，README
+要求 usbmuxd 和 Apple ID，最近提交是 2026-10-22
+的<a target="_blank" rel="noopener" href="https://github.com/nab138/iloader/commit/902597564315442f00ab299dcc758ee0e13b8fa8">默认
+anisette 服务调整</a>。它适合 iOS
+开发者和设备维护者，但受平台工具链、账户和签名机制约束，不能把它当成绕过签名或审核的通用方案。</p>
+<h3 id="vastsapi-desktop"><a target="_blank" rel="noopener" href="https://github.com/vastsa/PI-Desktop#readme">vastsa/PI-Desktop</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/vastsa/PI-Desktop#readme">PI-Desktop</a>把项目、Agent、模型、插件、会话和
+MCP
+工具组织成一个本地优先的桌面工作区，强调模型可替换和插件化扩展。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+223
+stars，<a target="_blank" rel="noopener" href="https://github.com/vastsa/PI-Desktop">仓库</a>在核验时为
+7,265★，主要语言
+TypeScript，许可证为<a target="_blank" rel="noopener" href="https://github.com/vastsa/PI-Desktop/blob/main/LICENSE">LGPL-3.0</a>，README
+标注当前发布线为 0.21.x Early Preview，最近提交是 2026-10-25
+的<a target="_blank" rel="noopener" href="https://github.com/vastsa/PI-Desktop/commit/c099b6a4cdb4dcdc3bf467432e36af10fde77080">会话标题迁移修复</a>。它适合研究
+Agent
+桌面编排和本地状态管理，但仍是早期预览，插件权限、跨平台打包和版本兼容性需要在实际环境中逐项确认。</p>
+<h3 id="armory3darmorpaint"><a target="_blank" rel="noopener" href="https://github.com/armory3d/armorpaint#readme">armory3d/armorpaint</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/armory3d/armorpaint#readme">ArmorPaint</a>是面向
+3D PBR 材质的纹理绘制软件，开发仓库适合学习图形工具的 C
+代码、跨平台构建和资源管线。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+534
+stars，<a target="_blank" rel="noopener" href="https://github.com/armory3d/armorpaint">仓库</a>在核验时为
+5,414★，主要语言
+C，许可证为<a target="_blank" rel="noopener" href="https://github.com/armory3d/armorpaint/blob/main/license.md">zlib/libpng</a>，最近提交是
+2026-10-25
+的<a target="_blank" rel="noopener" href="https://github.com/armory3d/armorpaint/commit/6a9152d79ecf784254dc855e39819a0e25ce7743">书签截断修复</a>。README
+明确提示开发仓库可能不稳定，发行二进制需要付费支持项目，自己构建还要准备
+Visual Studio/clang、Xcode 或 Android Studio
+等工具链，因此更适合图形开发者而非随手安装的普通用户。</p>
+<h3 id="nashsullm_wiki"><a target="_blank" rel="noopener" href="https://github.com/nashsu/llm_wiki#readme">nashsu/llm_wiki</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/nashsu/llm_wiki#readme">LLM Wiki</a>把
+PDF、Office、网页剪藏等材料转成带来源追踪、互相链接和知识图谱的持久知识库，并提供向量检索、深度研究、HTTP
+API 与 MCP
+服务。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+2,136
+stars，<a target="_blank" rel="noopener" href="https://github.com/nashsu/llm_wiki">仓库</a>在核验时为
+20,971★，主要语言
+TypeScript，许可证为<a target="_blank" rel="noopener" href="https://github.com/nashsu/llm_wiki/blob/main/LICENSE">GPL-3.0</a>，最近提交是
+2026-10-21
+的<a target="_blank" rel="noopener" href="https://github.com/nashsu/llm_wiki/commit/e08cfce65aad8b76b13546a081c1a8d4422b70c3">v0.6.13
+发布提交</a>。它适合希望让本地资料持续积累的人，但生成页面、图谱关系和研究结果仍需要人工复核，搜索服务、模型接口和本地资源配置也会直接影响成本与质量。</p>
+<h3 id="obrasuperpowers"><a target="_blank" rel="noopener" href="https://github.com/obra/superpowers#readme">obra/superpowers</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/obra/superpowers#readme">Superpowers</a>把
+Agent
+的软件开发过程组织成可组合技能，覆盖需求澄清、设计、工作树、计划、TDD、子
+Agent、代码审查和分支收尾，并适配多个 Agent
+宿主。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+25,523
+stars，<a target="_blank" rel="noopener" href="https://github.com/obra/superpowers">仓库</a>在核验时为
+305,079★，主要语言
+Shell，许可证为<a target="_blank" rel="noopener" href="https://github.com/obra/superpowers/blob/main/LICENSE">MIT</a>，最近提交是
+2026-10-21
+的<a target="_blank" rel="noopener" href="https://github.com/obra/superpowers/commit/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b">v7.0.1
+发布提交</a>。它适合把“先想清楚再写代码”变成可执行流程，但强制工作流会增加上下文和时间成本，最终质量仍取决于项目测试、审查和使用者是否愿意纠正错误。</p>
+<h3 id="sonarrsonarr"><a target="_blank" rel="noopener" href="https://github.com/Sonarr/Sonarr#readme">Sonarr/Sonarr</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/Sonarr/Sonarr#readme">Sonarr</a>是面向
+Usenet 和 BitTorrent 用户的 PVR，能监视
+RSS、抓取并整理剧集，在出现更高质量版本时自动升级，适合学习长期运行服务、下载器集成和可配置媒体管线。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+1,949
+stars，<a target="_blank" rel="noopener" href="https://github.com/Sonarr/Sonarr">仓库</a>在核验时为
+17,429★，主要语言
+C#，许可证为<a target="_blank" rel="noopener" href="https://github.com/Sonarr/Sonarr/blob/develop/LICENSE.md">GPL-3.0</a>，最近提交是
+2026-10-26
+的<a target="_blank" rel="noopener" href="https://github.com/Sonarr/Sonarr/commit/a6171f0ca61b2a76ec529da3e9aadb11435344f9">v3
+自定义格式响应类型补充</a>。它的价值在成熟工程和自动化边界，而不是媒体内容本身；实际使用依赖索引器、下载客户端和合规的内容来源，也要认真配置网络暴露与凭据。</p>
+<h3 id="p1neapplexpressopenflux"><a target="_blank" rel="noopener" href="https://github.com/p1neappleXpress/OpenFlux#readme">p1neappleXpress/OpenFlux</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/p1neappleXpress/OpenFlux#readme">OpenFlux</a>是网络栈研究工具，提供可插拔传输、IPv4
+TCP/UDP 隧道、签名 JavaScript 传输脚本、批量 zstd 编码，以及 L3
+原始转发和 L4 gVisor
+代理两种出口后端。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+89
+stars，<a target="_blank" rel="noopener" href="https://github.com/p1neappleXpress/OpenFlux">仓库</a>在核验时为
+2,251★，主要语言
+Go，许可证为<a target="_blank" rel="noopener" href="https://github.com/p1neappleXpress/OpenFlux/blob/main/LICENSE">GPL-3.0</a>，最近提交是
+2026-10-13
+的<a target="_blank" rel="noopener" href="https://github.com/p1neappleXpress/OpenFlux/commit/edcf77a1848a72370cfba9f346d3b897b61e7e7d">传输层封装与重排修复</a>。它适合研究协议、隧道和故障切换，但
+L3 需要 Linux 与 root 权限、L4 仍有部署与安全复杂度，README
+也明确不鼓励用它绕过限制或违反平台规则。</p>
+<h3 id="jordan-gibbshyperresearch"><a target="_blank" rel="noopener" href="https://github.com/jordan-gibbs/hyperresearch#readme">jordan-gibbs/hyperresearch</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/jordan-gibbs/hyperresearch#readme">Hyperresearch</a>把
+Claude Code 或 Codex 变成深度研究
+Agent，用分解、检索、矛盾分析、批评、引用核验和持久化 vault 组成 16
+步流水线。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+262
+stars，<a target="_blank" rel="noopener" href="https://github.com/jordan-gibbs/hyperresearch">仓库</a>在核验时为
+4,106★，主要语言
+Python，许可证为<a target="_blank" rel="noopener" href="https://github.com/jordan-gibbs/hyperresearch/blob/main/LICENSE">MIT</a>，最近提交是
+2026-10-10
+的<a target="_blank" rel="noopener" href="https://github.com/jordan-gibbs/hyperresearch/commit/9c16854fed2d345a557e8759156a2ca5d02fa4f4">README
+工作原理说明更新</a>。它适合研究如何把来源、反例和复核写进 Agent
+流程，但需要 Python 3.11–3.14、网络与写权限，Codex
+下的工具锁不是强制隔离，README 的基准测试成绩也不应替代独立评测。</p>
+<h3 id="alphaxivopenresearch"><a target="_blank" rel="noopener" href="https://github.com/alphaXiv/OpenResearch#readme">alphaXiv/OpenResearch</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/alphaXiv/OpenResearch#readme">OpenResearch</a>是本地优先的研究
+Agent 工作区，把文献检索、假设、实验、代码、日志和产物放入本地 SQL
+数据库，并支持 Claude Code、Codex、OpenCode、Cursor
+等宿主与多种计算后端。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+95
+stars，<a target="_blank" rel="noopener" href="https://github.com/alphaXiv/OpenResearch">仓库</a>在核验时为
+7,567★，主要语言
+Rust，许可证为<a target="_blank" rel="noopener" href="https://github.com/alphaXiv/OpenResearch/blob/main/LICENSE">MIT</a>，最近提交是
+2026-10-26
+的<a target="_blank" rel="noopener" href="https://github.com/alphaXiv/OpenResearch/commit/be7fdc6d520f4108cfd0b36192c6971872934369">技能发现路径修复</a>。它适合希望让实验过程可追踪、可复现的人，但
+Windows 仍是 Beta、Linux 需要 glibc 2.35
+以上，官方发行版还会发送可关闭的粗粒度分析和 Agent
+反馈，使用前应核对遥测与数据边界。</p>
+<h3 id="githubspec-kit"><a target="_blank" rel="noopener" href="https://github.com/github/spec-kit#readme">github/spec-kit</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/github/spec-kit#readme">Spec Kit</a>为 AI
+编码 Agent 提供规格驱动开发、修
+bug、想法评估、扩展、预设、工作流和结果记录等结构化过程，重点是把“写代码”前的决策显式化。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+12,202
+stars，<a target="_blank" rel="noopener" href="https://github.com/github/spec-kit">仓库</a>在核验时为
+142,876★，主要语言
+Python，许可证为<a target="_blank" rel="noopener" href="https://github.com/github/spec-kit/blob/main/LICENSE">MIT</a>，最近提交是
+2026-10-23
+的<a target="_blank" rel="noopener" href="https://github.com/github/spec-kit/commit/67e0f7294e6e728ab60bf7b4590deb470448bc2d">GitHub
+CLI 凭据支持</a>。它适合团队统一 Agent 的交付过程，但需要 Python
+3.11+、uv 和受支持的编码
+Agent，模板不能替代领域判断、测试和真正的验收标准。</p>
+<h3 id="pascalorgeditor"><a target="_blank" rel="noopener" href="https://github.com/pascalorg/editor#readme">pascalorg/editor</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/pascalorg/editor#readme">Pascal
+Editor</a>是用 React Three Fiber 与 WebGPU 构建的本地优先 3D
+建筑编辑器，可从浏览器或 CLI 运行，并通过 MCP 连接
+Agent。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+2,945
+stars，<a target="_blank" rel="noopener" href="https://github.com/pascalorg/editor">仓库</a>在核验时为
+25,111★，主要语言
+TypeScript，许可证为<a target="_blank" rel="noopener" href="https://github.com/pascalorg/editor/blob/main/LICENSE">MIT</a>，最近提交是
+2026-10-25
+的<a target="_blank" rel="noopener" href="https://github.com/pascalorg/editor/commit/6275b2caf0041f60525aca31d9256632c5129fd9">Node.js
+最低版本调整</a>。它适合研究建筑空间、3D 编辑器和 Agent 工具接口，但
+README 明确说明 hosted Next 预览还不是开源编辑器的一部分，CLI 依赖特定
+Node 版本且同一服务应避免多个 Agent 客户端并发接入。</p>
+<h2 id="快速浏览">快速浏览</h2>
+<div class="briefing-quick-list">
+<p><a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/ayghri/i-have-adhd"><span class="briefing-quick-item__source">输出约束 · Python · +2,383/日 ·
+58,733★</span><span class="briefing-quick-item__body"><strong>ayghri/i-have-adhd</strong><small>用行动优先和少前言规则约束编码
+Agent 的回答。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view"><span class="briefing-quick-item__source">3D 地理 · JavaScript · +5,587/日 ·
+60,084★</span><span class="briefing-quick-item__body"><strong>bilawalsidhu/gods-eye-view</strong><small>把公开地理信号汇聚到可交互的实时
+3D 地球仪。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/nab138/iloader"><span class="briefing-quick-item__source">iOS 工具 · TypeScript · +204/日 ·
+4,303★</span><span class="briefing-quick-item__body"><strong>nab138/iloader</strong><small>简化
+SideStore、IPA、配对文件和开发证书管理。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/vastsa/PI-Desktop"><span class="briefing-quick-item__source">Agent 桌面 · TypeScript · +223/日 ·
+7,265★</span><span class="briefing-quick-item__body"><strong>vastsa/PI-Desktop</strong><small>以本地优先工作区承载模型、插件、MCP
+与 Agent 会话。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/armory3d/armorpaint"><span class="briefing-quick-item__source">纹理绘制 · C · +534/日 ·
+5,414★</span><span class="briefing-quick-item__body"><strong>armory3d/armorpaint</strong><small>从开发者仓库学习
+3D PBR 材质工具与跨平台构建。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/nashsu/llm_wiki"><span class="briefing-quick-item__source">知识库 · TypeScript · +2,136/日 ·
+20,971★</span><span class="briefing-quick-item__body"><strong>nashsu/llm_wiki</strong><small>把文档、来源、知识图谱和
+Agent 查询沉淀到本地 Wiki。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/obra/superpowers"><span class="briefing-quick-item__source">开发流程 · Shell · +25,523/日 ·
+305,079★</span><span class="briefing-quick-item__body"><strong>obra/superpowers</strong><small>把澄清、计划、TDD、子
+Agent 和审查变成可组合技能。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Sonarr/Sonarr"><span class="briefing-quick-item__source">媒体自动化 · C# · +1,949/日 ·
+17,429★</span><span class="briefing-quick-item__body"><strong>Sonarr/Sonarr</strong><small>用成熟服务自动监视、抓取、整理和升级剧集文件。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/p1neappleXpress/OpenFlux"><span class="briefing-quick-item__source">网络研究 · Go · +89/日 ·
+2,251★</span><span class="briefing-quick-item__body"><strong>p1neappleXpress/OpenFlux</strong><small>研究多传输隧道、编码、出口后端和故障切换。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/jordan-gibbs/hyperresearch"><span class="briefing-quick-item__source">深度研究 · Python · +262/日 ·
+4,106★</span><span class="briefing-quick-item__body"><strong>jordan-gibbs/hyperresearch</strong><small>把来源追踪、反例、引用核验和研究
+vault 编成流水线。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/alphaXiv/OpenResearch"><span class="briefing-quick-item__source">实验工作区 · Rust · +95/日 ·
+7,567★</span><span class="briefing-quick-item__body"><strong>alphaXiv/OpenResearch</strong><small>在本地记录文献、假设、实验、日志与研究产物。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/github/spec-kit"><span class="briefing-quick-item__source">规格驱动 · Python · +12,202/日 ·
+142,876★</span><span class="briefing-quick-item__body"><strong>github/spec-kit</strong><small>将功能、修
+bug 和想法评估组织成可复用开发过程。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/pascalorg/editor"><span class="briefing-quick-item__source">建筑 3D · TypeScript · +2,945/日 ·
+25,111★</span><span class="briefing-quick-item__body"><strong>pascalorg/editor</strong><small>用本地
+CLI、WebGPU 和 MCP 探索建筑空间编辑。</small></span><span class="briefing-quick-item__arrow">↗</span></a></p>
+</div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/GitHub-%E7%83%AD%E6%A6%9C/" class="category-chain-item">GitHub 热榜</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/GitHub/" class="print-no-link">#GitHub</a>
+      
+        <a href="/tags/%E5%BC%80%E6%BA%90/" class="print-no-link">#开源</a>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="print-no-link">#开发工具</a>
+      
+        <a href="/tags/Agent/" class="print-no-link">#Agent</a>
+      
+        <a href="/tags/%E6%9C%AC%E5%9C%B0%E4%BC%98%E5%85%88/" class="print-no-link">#本地优先</a>
+      
+        <a href="/tags/%E7%A0%94%E7%A9%B6%E5%B7%A5%E4%BD%9C%E6%B5%81/" class="print-no-link">#研究工作流</a>
+      
+        <a href="/tags/3D-%E5%B7%A5%E5%85%B7/" class="print-no-link">#3D 工具</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2026-10-26 GitHub 热榜简报：从 Agent 流程到本地研究与 3D 工具</div>
+      <div>https://www.polarishaw.top/2026/10/26/daily-github-trending-2026-10-26/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年10月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/10/25/daily-github-trending-2026-10-25/" title="2026-10-25 GitHub 热榜简报：从 Agent 工作流到本地优先工具">
+                        <span class="hidden-mobile">2026-10-25 GitHub 热榜简报：从 Agent 工作流到本地优先工具</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

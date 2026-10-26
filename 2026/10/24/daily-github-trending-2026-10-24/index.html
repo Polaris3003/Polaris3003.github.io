@@ -32,8 +32,8 @@
 <meta property="article:tag" content="GitHub">
 <meta property="article:tag" content="开源">
 <meta property="article:tag" content="Agent">
-<meta property="article:tag" content="AI 基础设施">
 <meta property="article:tag" content="安全工程">
+<meta property="article:tag" content="AI 基础设施">
 <meta property="article:tag" content="运行时">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-010-146541599.jpg">
@@ -260,7 +260,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-09-21/pixiv-rank-010-149676831.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-08-23/pixiv-rank-014-148546035.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -351,42 +351,149 @@
               <div class="markdown-body">
                 
                 <div class="briefing-masthead">
-  <p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.10.24</p>
-  <p>今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub all-languages 日榜</a>返回 8 个候选；逐一核对官方仓库、README、许可证和最近提交或 Release 后，8 个项目全部保留。主线从 Agent 的沙箱、权限与安全审计，延伸到知识工作插件、语音生成以及 PHP、Node.js 这样的成熟运行时；日增 stars 只是榜单快照，不是质量证明。</p>
-  <div class="briefing-masthead__topics"><span>Agent 沙箱</span><span>安全审计</span><span>知识工作插件</span><span>语音生成</span><span>运行时基础设施</span></div>
+<p class="briefing-masthead__eyebrow">
+GITHUB TRENDING · 2026.10.24
+</p>
+<p>
+今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub
+all-languages 日榜</a>返回 8
+个候选；逐一核对官方仓库、README、许可证和最近提交或 Release 后，8
+个项目全部保留。主线从 Agent
+的沙箱、权限与安全审计，延伸到知识工作插件、语音生成以及 PHP、Node.js
+这样的成熟运行时；日增 stars 只是榜单快照，不是质量证明。
+</p>
+<div class="briefing-masthead__topics">
+<span>Agent
+沙箱</span><span>安全审计</span><span>知识工作插件</span><span>语音生成</span><span>运行时基础设施</span>
+</div>
 </div>
 <span id="more"></span>
-<h2 id="今日要点"><a class="markdownIt-Anchor" href="#今日要点"></a> 今日要点</h2>
-<p>今天最值得注意的变化，是 Agent 的竞争焦点开始从“能调用多少工具”转向“能否被限制在可审计的执行边界内”：<a target="_blank" rel="noopener" href="https://github.com/NVIDIA/OpenShell#readme">NVIDIA OpenShell</a>把文件访问、系统调用和网络连接放进沙箱策略，<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill#readme">Cloudflare 的 security-audit-skill</a>则把侦察、覆盖、验证和独立记录复核写成审计流程。两者解决的是不同层面的问题——一个约束 Agent 的运行时权限，一个约束安全结论的证据链——不应因为都带有 Agent 标签而视为同类产品。</p>
-<p>安全技能生态也在分化：<a target="_blank" rel="noopener" href="https://github.com/SnailSploit/Claude-Red#readme">Claude-Red</a>提供面向授权红队、漏洞赏金和 CTF 的进攻方法知识，<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins#readme">knowledge-work-plugins</a>把角色流程、连接器、命令和技能组织成知识工作插件。前者的价值在于方法覆盖，后者的价值在于把团队流程固化为可定制配置；两者都依赖宿主能力和权限边界，不能把仓库内容本身当成安全或业务结果的保证。</p>
-<p>模型与底层基础设施则给出两种更长期的学习路径：<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM#readme">VoxCPM</a>探索无 tokenizer 的多语言语音合成与可控音色，<a target="_blank" rel="noopener" href="https://github.com/php/php-src#readme">PHP</a>和<a target="_blank" rel="noopener" href="https://github.com/nodejs/node#readme">Node.js</a>继续展示成熟运行时如何维护构建、测试、发布和治理。真正尝试这些项目时，应先看硬件、构建依赖、发布线和许可证，而不是用热榜排名替代技术判断。</p>
-<h2 id="值得尝试"><a class="markdownIt-Anchor" href="#值得尝试"></a> 值得尝试</h2>
-<h3 id="a-hrefhttpsgithubcomcloudflaresecurity-audit-skillcloudflaresecurity-audit-skilla"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomcloudflaresecurity-audit-skillcloudflaresecurity-audit-skilla"></a> <a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill#readme">security-audit-skill</a>把代码代理安全审计拆成侦察、覆盖驱动查找、候选验证、结构化输出、独立记录核验和目标中立报告六个阶段，适合想把“发现”变成可复核证据链的安全工程师或 Agent 流程设计者。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增 2,716 stars、总计 42,225 stars，主要语言为 JavaScript，许可证是<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill/blob/main/LICENSE">MIT</a>；最近可验证活动是 2026-09-14 的<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill/commit/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8">“Clarify guidance and full audit modes”提交</a>。它要求支持工具调用、并行 Agent 和隔离环境，缺少这些控制时结果会停留在 <code>needs_validation</code>，所以它是审计编排与证据规范，不是自动安全保证。</p>
-<h3 id="a-hrefhttpsgithubcomphpphp-srcphpphp-srca"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomphpphp-srcphpphp-srca"></a> <a target="_blank" rel="noopener" href="https://github.com/php/php-src">php/php-src</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/php/php-src#readme">PHP 源码仓库</a>是 PHP 解释器的实现，适合想从 C 代码、扩展机制、运行时和长期维护角度学习成熟语言基础设施的人。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增 716 stars、总计 41,573 stars，主要语言为 C，许可证是<a target="_blank" rel="noopener" href="https://github.com/php/php-src/blob/master/LICENSE">Modified BSD（BSD-3-Clause）</a>；最近 Release 为<a target="_blank" rel="noopener" href="https://github.com/php/php-src/releases/tag/php-8.5.12">PHP 8.5.12</a>。源码构建需要 autoconf、bison、re2c 以及 libxml2、sqlite3 等依赖，并配套完整测试套件；它更适合愿意读构建脚本和运行时内部的人，而不是把它当作低门槛应用模板。</p>
-<h3 id="a-hrefhttpsgithubcomanthropicsknowledge-work-pluginsanthropicsknowledge-work-pluginsa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomanthropicsknowledge-work-pluginsanthropicsknowledge-work-pluginsa"></a> <a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins">anthropics/knowledge-work-plugins</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins#readme">knowledge-work-plugins</a>把生产力、销售、支持、产品、数据和生物研究等角色流程组织成插件，每个插件组合 skills、connectors、slash commands 与 sub-agents，适合研究如何把模型接入团队工作边界。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增 635 stars、总计 32,249 stars，主要语言为 Python，许可证是<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/blob/main/LICENSE">Apache-2.0</a>；仓库没有公开 Release，最近提交为<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/commit/33d3dea41a341b341d4f5da2e8801ae0c89be2b8">更新安全指导的合并提交</a>。它兼容 Claude Cowork 和 Claude Code，组件本身以 Markdown 与 JSON 为主且没有构建步骤，但连接器仍会触及外部系统权限，因此更像可定制工作流骨架，不是脱离宿主即可运行的独立服务。</p>
-<h3 id="a-hrefhttpsgithubcomnvidiaopenshellnvidiaopenshella"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomnvidiaopenshellnvidiaopenshella"></a> <a target="_blank" rel="noopener" href="https://github.com/NVIDIA/OpenShell">NVIDIA/OpenShell</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/NVIDIA/OpenShell#readme">OpenShell</a>为自主 Agent 提供私有运行时，把文件访问、系统调用和网络连接放进隔离沙箱，并在策略变更应用前用形式化验证检查新增权限，适合研究 Agent 执行边界、凭证代理和策略治理。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增 1,119 stars、总计 18,833 stars，主要语言为 Rust，许可证是<a target="_blank" rel="noopener" href="https://github.com/NVIDIA/OpenShell/blob/main/LICENSE">Apache-2.0</a>；最近 Release 为<a target="_blank" rel="noopener" href="https://github.com/NVIDIA/OpenShell/releases/tag/v0.1.5">v0.1.5</a>。它目前支持 Linux、Apple Silicon macOS，以及实验性的 Windows WSL 2，并需要 Docker、Podman 或主机虚拟化；因此应先核对平台、网络策略和遥测配置，再判断是否适合生产环境。</p>
-<h3 id="a-hrefhttpsgithubcomrenhuai123ziwei-doushurenhuai123ziwei-doushua"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomrenhuai123ziwei-doushurenhuai123ziwei-doushua"></a> <a target="_blank" rel="noopener" href="https://github.com/Renhuai123/ziwei-doushu">Renhuai123/ziwei-doushu</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/Renhuai123/ziwei-doushu#readme">ziwei-doushu</a>是 TypeScript 紫微斗数排盘引擎，包含排盘算法、四化系统、格局知识库、古籍原文数据和回归测试，适合观察一个窄领域知识系统如何把规则、数据和可运行代码组合起来。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增 546 stars、总计 6,894 stars，许可证页显示代码采用<a target="_blank" rel="noopener" href="https://github.com/Renhuai123/ziwei-doushu/blob/main/LICENSE">MIT</a>，数据集另采用<a target="_blank" rel="noopener" href="https://github.com/Renhuai123/ziwei-doushu/blob/main/DATASET-LICENSE">CC BY 4.0</a>；最近 Release 为<a target="_blank" rel="noopener" href="https://github.com/Renhuai123/ziwei-doushu/releases/tag/v4.0-13d">v4.0-13d</a>。该版本的解读数据集解压后约 56.6 GB，且 README 明确把部分引文排除在数据集授权范围外；使用者必须把代码许可证、数据许可证和引文限制分开核对，不能只看 MIT 标签。</p>
-<h3 id="a-hrefhttpsgithubcomsnailsploitclaude-redsnailsploitclaude-reda"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomsnailsploitclaude-redsnailsploitclaude-reda"></a> <a target="_blank" rel="noopener" href="https://github.com/SnailSploit/Claude-Red">SnailSploit/Claude-Red</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/SnailSploit/Claude-Red#readme">Claude-Red</a>以结构化 <code><a target="_blank" rel="noopener" href="http://SKILL.md">SKILL.md</a></code> 文件整理 78 个进攻安全技能、23 个类别，覆盖 Web、身份、无线、云、漏洞利用和 AI 安全等方向，适合授权红队、漏洞赏金、CTF 和安全研究训练。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增 226 stars、总计 8,522 stars，主要语言为 Python，许可证是<a target="_blank" rel="noopener" href="https://github.com/SnailSploit/Claude-Red/blob/main/LICENSE">MIT</a>；最近 Release 为<a target="_blank" rel="noopener" href="https://github.com/SnailSploit/Claude-Red/releases/tag/v0.3.0">v0.3.0</a>。它本质上是供 Claude Skills 系统按需加载的方法库，需要显式安装并依赖宿主与工具环境；任何真实测试都必须先取得授权，并对 Agent 输出、命令和目标范围做独立验证。</p>
-<h3 id="a-hrefhttpsgithubcomopenbmbvoxcpmopenbmbvoxcpma"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomopenbmbvoxcpmopenbmbvoxcpma"></a> <a target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM">OpenBMB/VoxCPM</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM#readme">VoxCPM</a>将自己定位为不依赖离散 tokenizer 的多语言文本转语音系统，README 描述了语音设计、可控克隆、48 kHz 输出和流式推理，适合研究连续语音表示、音色控制与模型服务化。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增 150 stars、总计 40,282 stars，主要语言为 Python，许可证是<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM/blob/main/LICENSE">Apache-2.0</a>；最近 Release 为<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM/releases/tag/2.0.3">2.0.3</a>，最近提交为<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM/commit/cce58a5b59303c9bd63d12f23afe6a49a4a80c59">更新国际化的合并提交</a>。README 要求 Python 3.10–3.12、PyTorch 2.5 以上和 CUDA 12.0 以上，语音克隆的实际质量还取决于硬件、参考音频和评测集；试用前应先核对运行成本与内容授权边界。</p>
-<h3 id="a-hrefhttpsgithubcomnodejsnodenodejsnodea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomnodejsnodenodejsnodea"></a> <a target="_blank" rel="noopener" href="https://github.com/nodejs/node">nodejs/node</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/nodejs/node#readme">Node.js</a>是跨平台 JavaScript 运行时，源码仓库同时展示了运行时实现、开放治理、构建流程和 Alpha、Current、LTS、Nightly 发布线，适合学习成熟基础设施如何管理 ABI、兼容性与长期维护。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增 66 stars、总计 122,891 stars，主要语言为 JavaScript；仓库使用<a target="_blank" rel="noopener" href="https://github.com/nodejs/node/blob/main/LICENSE">Node.js 自有许可文本</a>，最近 Release 为<a target="_blank" rel="noopener" href="https://github.com/nodejs/node/releases/tag/v26.12.1">v26.12.1</a>。当前发布线与 LTS 的稳定性目标不同，README 还明确提醒 Alpha 和 Nightly 不适合生产使用；实际部署应按支持周期选择发布线，并阅读许可证文件中的第三方条款。</p>
-<h2 id="快速浏览"><a class="markdownIt-Anchor" href="#快速浏览"></a> 快速浏览</h2>
+<h2 id="今日要点">今日要点</h2>
+<p>今天最值得注意的变化，是 Agent
+的竞争焦点开始从“能调用多少工具”转向“能否被限制在可审计的执行边界内”：<a target="_blank" rel="noopener" href="https://github.com/NVIDIA/OpenShell#readme">NVIDIA
+OpenShell</a>把文件访问、系统调用和网络连接放进沙箱策略，<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill#readme">Cloudflare
+的
+security-audit-skill</a>则把侦察、覆盖、验证和独立记录复核写成审计流程。两者解决的是不同层面的问题——一个约束
+Agent 的运行时权限，一个约束安全结论的证据链——不应因为都带有 Agent
+标签而视为同类产品。</p>
+<p>安全技能生态也在分化：<a target="_blank" rel="noopener" href="https://github.com/SnailSploit/Claude-Red#readme">Claude-Red</a>提供面向授权红队、漏洞赏金和
+CTF
+的进攻方法知识，<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins#readme">knowledge-work-plugins</a>把角色流程、连接器、命令和技能组织成知识工作插件。前者的价值在于方法覆盖，后者的价值在于把团队流程固化为可定制配置；两者都依赖宿主能力和权限边界，不能把仓库内容本身当成安全或业务结果的保证。</p>
+<p>模型与底层基础设施则给出两种更长期的学习路径：<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM#readme">VoxCPM</a>探索无
+tokenizer
+的多语言语音合成与可控音色，<a target="_blank" rel="noopener" href="https://github.com/php/php-src#readme">PHP</a>和<a target="_blank" rel="noopener" href="https://github.com/nodejs/node#readme">Node.js</a>继续展示成熟运行时如何维护构建、测试、发布和治理。真正尝试这些项目时，应先看硬件、构建依赖、发布线和许可证，而不是用热榜排名替代技术判断。</p>
+<h2 id="值得尝试">值得尝试</h2>
+<h3 id="cloudflaresecurity-audit-skill"><a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill#readme">security-audit-skill</a>把代码代理安全审计拆成侦察、覆盖驱动查找、候选验证、结构化输出、独立记录核验和目标中立报告六个阶段，适合想把“发现”变成可复核证据链的安全工程师或
+Agent
+流程设计者。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+2,716 stars、总计 42,225 stars，主要语言为
+JavaScript，许可证是<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill/blob/main/LICENSE">MIT</a>；最近可验证活动是
+2026-09-14
+的<a target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill/commit/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8">“Clarify
+guidance and full audit modes”提交</a>。它要求支持工具调用、并行 Agent
+和隔离环境，缺少这些控制时结果会停留在
+<code>needs_validation</code>，所以它是审计编排与证据规范，不是自动安全保证。</p>
+<h3 id="phpphp-src"><a target="_blank" rel="noopener" href="https://github.com/php/php-src">php/php-src</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/php/php-src#readme">PHP 源码仓库</a>是
+PHP 解释器的实现，适合想从 C
+代码、扩展机制、运行时和长期维护角度学习成熟语言基础设施的人。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+716 stars、总计 41,573 stars，主要语言为
+C，许可证是<a target="_blank" rel="noopener" href="https://github.com/php/php-src/blob/master/LICENSE">Modified
+BSD（BSD-3-Clause）</a>；最近 Release
+为<a target="_blank" rel="noopener" href="https://github.com/php/php-src/releases/tag/php-8.5.12">PHP
+8.5.12</a>。源码构建需要 autoconf、bison、re2c 以及 libxml2、sqlite3
+等依赖，并配套完整测试套件；它更适合愿意读构建脚本和运行时内部的人，而不是把它当作低门槛应用模板。</p>
+<h3 id="anthropicsknowledge-work-plugins"><a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins">anthropics/knowledge-work-plugins</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins#readme">knowledge-work-plugins</a>把生产力、销售、支持、产品、数据和生物研究等角色流程组织成插件，每个插件组合
+skills、connectors、slash commands 与
+sub-agents，适合研究如何把模型接入团队工作边界。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+635 stars、总计 32,249 stars，主要语言为
+Python，许可证是<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/blob/main/LICENSE">Apache-2.0</a>；仓库没有公开
+Release，最近提交为<a target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins/commit/33d3dea41a341b341d4f5da2e8801ae0c89be2b8">更新安全指导的合并提交</a>。它兼容
+Claude Cowork 和 Claude Code，组件本身以 Markdown 与 JSON
+为主且没有构建步骤，但连接器仍会触及外部系统权限，因此更像可定制工作流骨架，不是脱离宿主即可运行的独立服务。</p>
+<h3 id="nvidiaopenshell"><a target="_blank" rel="noopener" href="https://github.com/NVIDIA/OpenShell">NVIDIA/OpenShell</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/NVIDIA/OpenShell#readme">OpenShell</a>为自主
+Agent
+提供私有运行时，把文件访问、系统调用和网络连接放进隔离沙箱，并在策略变更应用前用形式化验证检查新增权限，适合研究
+Agent
+执行边界、凭证代理和策略治理。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+1,119 stars、总计 18,833 stars，主要语言为
+Rust，许可证是<a target="_blank" rel="noopener" href="https://github.com/NVIDIA/OpenShell/blob/main/LICENSE">Apache-2.0</a>；最近
+Release
+为<a target="_blank" rel="noopener" href="https://github.com/NVIDIA/OpenShell/releases/tag/v0.1.5">v0.1.5</a>。它目前支持
+Linux、Apple Silicon macOS，以及实验性的 Windows WSL 2，并需要
+Docker、Podman
+或主机虚拟化；因此应先核对平台、网络策略和遥测配置，再判断是否适合生产环境。</p>
+<h3 id="renhuai123ziwei-doushu"><a target="_blank" rel="noopener" href="https://github.com/Renhuai123/ziwei-doushu">Renhuai123/ziwei-doushu</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/Renhuai123/ziwei-doushu#readme">ziwei-doushu</a>是
+TypeScript
+紫微斗数排盘引擎，包含排盘算法、四化系统、格局知识库、古籍原文数据和回归测试，适合观察一个窄领域知识系统如何把规则、数据和可运行代码组合起来。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+546 stars、总计 6,894
+stars，许可证页显示代码采用<a target="_blank" rel="noopener" href="https://github.com/Renhuai123/ziwei-doushu/blob/main/LICENSE">MIT</a>，数据集另采用<a target="_blank" rel="noopener" href="https://github.com/Renhuai123/ziwei-doushu/blob/main/DATASET-LICENSE">CC
+BY 4.0</a>；最近 Release
+为<a target="_blank" rel="noopener" href="https://github.com/Renhuai123/ziwei-doushu/releases/tag/v4.0-13d">v4.0-13d</a>。该版本的解读数据集解压后约
+56.6 GB，且 README
+明确把部分引文排除在数据集授权范围外；使用者必须把代码许可证、数据许可证和引文限制分开核对，不能只看
+MIT 标签。</p>
+<h3 id="snailsploitclaude-red"><a target="_blank" rel="noopener" href="https://github.com/SnailSploit/Claude-Red">SnailSploit/Claude-Red</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/SnailSploit/Claude-Red#readme">Claude-Red</a>以结构化
+<code>SKILL.md</code> 文件整理 78 个进攻安全技能、23 个类别，覆盖
+Web、身份、无线、云、漏洞利用和 AI
+安全等方向，适合授权红队、漏洞赏金、CTF
+和安全研究训练。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+226 stars、总计 8,522 stars，主要语言为
+Python，许可证是<a target="_blank" rel="noopener" href="https://github.com/SnailSploit/Claude-Red/blob/main/LICENSE">MIT</a>；最近
+Release
+为<a target="_blank" rel="noopener" href="https://github.com/SnailSploit/Claude-Red/releases/tag/v0.3.0">v0.3.0</a>。它本质上是供
+Claude Skills
+系统按需加载的方法库，需要显式安装并依赖宿主与工具环境；任何真实测试都必须先取得授权，并对
+Agent 输出、命令和目标范围做独立验证。</p>
+<h3 id="openbmbvoxcpm"><a target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM">OpenBMB/VoxCPM</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM#readme">VoxCPM</a>将自己定位为不依赖离散
+tokenizer 的多语言文本转语音系统，README 描述了语音设计、可控克隆、48
+kHz
+输出和流式推理，适合研究连续语音表示、音色控制与模型服务化。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+150 stars、总计 40,282 stars，主要语言为
+Python，许可证是<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM/blob/main/LICENSE">Apache-2.0</a>；最近
+Release
+为<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM/releases/tag/2.0.3">2.0.3</a>，最近提交为<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM/commit/cce58a5b59303c9bd63d12f23afe6a49a4a80c59">更新国际化的合并提交</a>。README
+要求 Python 3.10–3.12、PyTorch 2.5 以上和 CUDA 12.0
+以上，语音克隆的实际质量还取决于硬件、参考音频和评测集；试用前应先核对运行成本与内容授权边界。</p>
+<h3 id="nodejsnode"><a target="_blank" rel="noopener" href="https://github.com/nodejs/node">nodejs/node</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/nodejs/node#readme">Node.js</a>是跨平台
+JavaScript 运行时，源码仓库同时展示了运行时实现、开放治理、构建流程和
+Alpha、Current、LTS、Nightly 发布线，适合学习成熟基础设施如何管理
+ABI、兼容性与长期维护。<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示今日新增
+66 stars、总计 122,891 stars，主要语言为
+JavaScript；仓库使用<a target="_blank" rel="noopener" href="https://github.com/nodejs/node/blob/main/LICENSE">Node.js
+自有许可文本</a>，最近 Release
+为<a target="_blank" rel="noopener" href="https://github.com/nodejs/node/releases/tag/v26.12.1">v26.12.1</a>。当前发布线与
+LTS 的稳定性目标不同，README 还明确提醒 Alpha 和 Nightly
+不适合生产使用；实际部署应按支持周期选择发布线，并阅读许可证文件中的第三方条款。</p>
+<h2 id="快速浏览">快速浏览</h2>
 <div class="briefing-quick-list">
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill"><span class="briefing-quick-item__source">安全审计 · JavaScript · +2,716/日 · 42,225★</span><span class="briefing-quick-item__body"><strong>cloudflare/security-audit-skill</strong><small>把安全审计拆成覆盖、验证和独立复核的证据链。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/php/php-src"><span class="briefing-quick-item__source">运行时 · C · +716/日 · 41,573★</span><span class="briefing-quick-item__body"><strong>php/php-src</strong><small>从 C 代码、扩展和测试体系理解 PHP 解释器。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins"><span class="briefing-quick-item__source">Agent 插件 · Python · +635/日 · 32,249★</span><span class="briefing-quick-item__body"><strong>anthropics/knowledge-work-plugins</strong><small>把角色流程、连接器、命令和技能组合成可定制插件。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/NVIDIA/OpenShell"><span class="briefing-quick-item__source">Agent 沙箱 · Rust · +1,119/日 · 18,833★</span><span class="briefing-quick-item__body"><strong>NVIDIA/OpenShell</strong><small>用沙箱、策略和形式化验证限制 Agent 的运行时权限。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Renhuai123/ziwei-doushu"><span class="briefing-quick-item__source">规则引擎 · TypeScript · +546/日 · 6,894★</span><span class="briefing-quick-item__body"><strong>Renhuai123/ziwei-doushu</strong><small>把窄领域规则、排盘算法和大规模数据集组织成可运行引擎。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/SnailSploit/Claude-Red"><span class="briefing-quick-item__source">进攻安全 · Python · +226/日 · 8,522★</span><span class="briefing-quick-item__body"><strong>SnailSploit/Claude-Red</strong><small>用 78 个结构化技能覆盖红队、漏洞利用与安全研究方法。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM"><span class="briefing-quick-item__source">语音生成 · Python · +150/日 · 40,282★</span><span class="briefing-quick-item__body"><strong>OpenBMB/VoxCPM</strong><small>探索无 tokenizer 的多语言 TTS、音色设计和可控克隆。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/nodejs/node"><span class="briefing-quick-item__source">运行时 · JavaScript · +66/日 · 122,891★</span><span class="briefing-quick-item__body"><strong>nodejs/node</strong><small>从运行时源码、发布线和治理机制学习长期基础设施。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+<p><a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/cloudflare/security-audit-skill"><span class="briefing-quick-item__source">安全审计 · JavaScript · +2,716/日 ·
+42,225★</span><span class="briefing-quick-item__body"><strong>cloudflare/security-audit-skill</strong><small>把安全审计拆成覆盖、验证和独立复核的证据链。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/php/php-src"><span class="briefing-quick-item__source">运行时 · C · +716/日 ·
+41,573★</span><span class="briefing-quick-item__body"><strong>php/php-src</strong><small>从
+C 代码、扩展和测试体系理解 PHP 解释器。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/anthropics/knowledge-work-plugins"><span class="briefing-quick-item__source">Agent 插件 · Python · +635/日 ·
+32,249★</span><span class="briefing-quick-item__body"><strong>anthropics/knowledge-work-plugins</strong><small>把角色流程、连接器、命令和技能组合成可定制插件。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/NVIDIA/OpenShell"><span class="briefing-quick-item__source">Agent 沙箱 · Rust · +1,119/日 ·
+18,833★</span><span class="briefing-quick-item__body"><strong>NVIDIA/OpenShell</strong><small>用沙箱、策略和形式化验证限制
+Agent 的运行时权限。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Renhuai123/ziwei-doushu"><span class="briefing-quick-item__source">规则引擎 · TypeScript · +546/日 ·
+6,894★</span><span class="briefing-quick-item__body"><strong>Renhuai123/ziwei-doushu</strong><small>把窄领域规则、排盘算法和大规模数据集组织成可运行引擎。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/SnailSploit/Claude-Red"><span class="briefing-quick-item__source">进攻安全 · Python · +226/日 ·
+8,522★</span><span class="briefing-quick-item__body"><strong>SnailSploit/Claude-Red</strong><small>用
+78 个结构化技能覆盖红队、漏洞利用与安全研究方法。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/OpenBMB/VoxCPM"><span class="briefing-quick-item__source">语音生成 · Python · +150/日 ·
+40,282★</span><span class="briefing-quick-item__body"><strong>OpenBMB/VoxCPM</strong><small>探索无
+tokenizer 的多语言 TTS、音色设计和可控克隆。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/nodejs/node"><span class="briefing-quick-item__source">运行时 · JavaScript · +66/日 ·
+122,891★</span><span class="briefing-quick-item__body"><strong>nodejs/node</strong><small>从运行时源码、发布线和治理机制学习长期基础设施。</small></span><span class="briefing-quick-item__arrow">↗</span></a></p>
 </div>
 
                 
@@ -427,9 +534,9 @@
       
         <a href="/tags/Agent/" class="print-no-link">#Agent</a>
       
-        <a href="/tags/AI-%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/" class="print-no-link">#AI 基础设施</a>
-      
         <a href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B/" class="print-no-link">#安全工程</a>
+      
+        <a href="/tags/AI-%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/" class="print-no-link">#AI 基础设施</a>
       
         <a href="/tags/%E8%BF%90%E8%A1%8C%E6%97%B6/" class="print-no-link">#运行时</a>
       
