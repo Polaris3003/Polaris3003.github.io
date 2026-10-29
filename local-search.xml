@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>每日 AI 论文简报（2026-10-29）</title>
+    <link href="/2026/10/29/daily-ai-papers-2026-10-29/"/>
+    <url>/2026/10/29/daily-ai-papers-2026-10-29/</url>
+    
+    <content type="html"><![CDATA[<span id="more"></span><h2 id="重点关注">重点关注</h2><h3 id="benchmarking-llm-agents-for-behaviorally-adequate-test-generation-from-software-requirements">BenchmarkingLLM Agents for Behaviorally Adequate Test Generation from SoftwareRequirements</h3><p><strong>全文 PDF 核读。</strong> 作者：Binhang Qi、Yiming Liu、YunLin、Yangjie Zhou、Hailong Sun、Jin Song Dong。</p><ul><li><strong>核心问题：</strong>不看目标实现，只给自然语言需求和接口时，代码智能体能否写出真正覆盖需求行为的测试，而不只是让测试运行通过？</li><li><strong>方法与比较：</strong> Req2Test-Bench 从 8个开源项目中恢复并执行验证 5,086 组开发者编写的 Gherkin需求与测试实现，覆盖 5 种语言、4 种 BDD 框架。论文比较 8 种agent、模型和推理配置；除通过率外，还以开发者测试杀死的变异体作为行为充分性参照。</li><li><strong>作者报告的结果：</strong> 最佳配置 Codex CLI +DeepSeek-V4.1-Flash 的测试通过率为 82.8%，但只有 33.8% 达到KillComplete。Codex CLI 配置从 GPT-6 Luna 换到成本约高 6 倍的 DeepSeek后，充分率从 28.3% 提至 33.8%；再换到成本约高 4.9 倍的 GPT-6Sol，充分率反而为31.3%。作者还报告，未通过充分性检查的可运行测试中，90%–99%涉及需求未写明的初始化条件或预期结果。</li><li><strong>创新、限制与复现：</strong>基准把完整的项目内测试实现与需求逐项对应，并用执行、覆盖和变异测试检验行为，而不是只用代码相似度。八个项目和其BDD 习惯仍只是有限样本；变异体集合不等同于需求语义的穷尽证明，模型与agent 框架同时变化也限制了对单个模型的归因。基准<a href="https://github.com/code-philia/Req2Test-Bench">代码</a>和<a href="https://huggingface.co/datasets/code-philia/Req2Test-Bench">数据集</a>公开；公开材料没有给出专门的数据污染审计。</li><li><strong>适合谁读：</strong>软件工程、代码智能体与测试生成研究者。建议读第 3节的数据和充分性定义、第 4 节配置、第 5 节失败分析及第 6节效度威胁。</li></ul><p><a href="https://arxiv.org/abs/2610.36584">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36584">PDF</a></p><h3 id="hedge-bench-benchmarking-agents-on-hard-realistic-tasks-pertaining-to-financial-reasoning">Hedge-Bench:Benchmarking Agents on Hard, Realistic Tasks Pertaining to FinancialReasoning</h3><p><strong>全文 PDF 核读；AI/金融双主题，本篇详细展开。</strong>作者：Mahesh Ramesh、Eric Cho、Alice Lu、Shawn Huang、Baiqing Lyu。</p><ul><li><strong>核心问题：</strong>金融智能体能否在信息截止时点固定的资料上完成研究，并对后来才揭晓的市场事件作出预测？</li><li><strong>方法与比较：</strong> 基准包含 92个真实研究环境，以研究员分析记录和其后已结算的预测问题构造。11个前沿模型各运行 3 次；联合成功要求预测正确且研究覆盖率超过60%。作者再以 GRPO 和逐轮信用分配训练 Muse-Glimmer：165个环境用于训练，22个环境用于留出测试，并报告与基础模型及训练控制组的比较。</li><li><strong>作者报告的结果：</strong> 原始模型联合成功率为2.54%–31.52%。Muse-Glimmer 在留出环境的研究覆盖率从低推理强度的 17.17%提到 33.36%，高强度下从 30.19% 提到 47.02%；训练后高强度预测准确率提高10.06 个百分点。低强度模型相对基础模型高强度运行少用 47.9%token，同时覆盖率更高。作者还报告多个外部任务分数上升。</li><li><strong>创新、限制与复现：</strong>冻结事件发生前的资料并追踪后续真实结果，比静态问答更接近研究工作流；但92 个环境和 22 个留出案例不足以覆盖金融研究的广阔任务分布，analyst trace的筛选方式也会影响难度。时间截断能减少直接看到未来材料的机会，但不能完全排除模型预训练记忆相关事件；基准测的是研究与预测，不是含交易成本的策略收益。作者公开了<a href="https://github.com/Trata-Inc/trata-hedge-bench-verified">代码</a>。</li><li><strong>适合谁读：</strong> 金融研究agent、检索增强生成和预测基准研究者。建议读环境构造、冻结资料协议、联合指标、留出训练结果及外部泛化实验。</li></ul><p><a href="https://arxiv.org/abs/2606.03918">摘要页</a> · <a href="https://arxiv.org/pdf/2606.03918">PDF</a></p><h3 id="gym-anything-rt-scaling-real-time-environments-for-vision-language-agents">Gym-Anything-RT:Scaling Real-Time Environments for Vision-Language Agents</h3><p><strong>全文 PDF 核读。</strong> 作者：Pranjal Aggarwal、SeanWelleck。</p><ul><li><strong>核心问题：</strong>依赖多轮推理的视觉语言智能体，能否在环境持续变化时及时观察并采取行动？</li><li><strong>方法与基线：</strong> 作者按 6 类实时交互能力自动构造 100个小游戏，并为同一任务提供实时、减速和暂停版本；比较前沿闭源模型、开放权重模型和人类表现。这里的关键基线是任务本身不变、只放宽动作时限的对照，便于区分推理能力与响应速度。</li><li><strong>作者报告的结果：</strong> GPT-6Astra（xHigh）在实时任务通过率为 9%，对应的非实时版本为66%；同一批任务暂停环境后为 75%，减速 64 倍后为57%。允许其编写代码后，实时通过率升至 31%。但该设置平均每次尝试约 7.2分钟、费用约 4.50 美元；研究将速度识别为主要瓶颈。</li><li><strong>创新、限制与复现：</strong>同一游戏在不同时限下的可控比较揭示出“离线答得对”与“实时来得及做”的差异。小游戏覆盖的能力和机制有限，能否迁移到完整游戏或真实物理设备仍未验证；代码代理也可能通过脚本绕过模型逐步观察的限制。作者公开了<a href="https://github.com/gym-anything/gym-anything-rt">代码与任务数据</a>。</li><li><strong>适合谁读：</strong> 视觉语言agent、机器人控制和实时交互评测研究者。建议读任务生成与验证设计、实时/非实时对照、减速实验、成本表及附录A 的局限。</li></ul><p><a href="https://arxiv.org/abs/2610.37567">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37567">PDF</a></p><h3 id="pailitaommsearch2.0-technical-report-scaling-generative-retrieval-to-unified-end-to-end-multimodal-search">PailitaoMMSearch2.0Technical Report: Scaling Generative Retrieval to Unified End-to-EndMultimodal Search</h3><p><strong>全文 PDF 核读。</strong> 作者：Xiaohan Ye、ZihanGong、Jingqian Zhao、Lianyu Du、Yunmeng Shu、Xu Chen、ZeshengZhou、Renchun You、Bocheng Chen、Jinsong Lan、Haihong Tang、BoZheng。</p><ul><li><strong>核心问题：</strong>一个多模态检索模型能否用自然语言和图片理解多种购物意图，并适配不同线上资源预算，而不是为单一入口训练多个专用模型？</li><li><strong>方法与基线：</strong> 系统直接由图片与指令生成商品 SemanticID，依次结合持续预训练、混合预算监督微调和统一强化学习；Sample–Beamrollout将训练过程与多候选线上服务对齐。离线对照包括两个视觉语言模型改写查询后全文检索的管线，以及一个内部多路召回加排序系统；在线对照为相应生产基线。</li><li><strong>作者报告的结果：</strong>在匹配初始化、意图混合和奖励评估的离线实验中，2B 模型的 Excellent Rate宏平均由 SFT 的 49.03% 升至 Sample–Beam RL 的 55.00%，提高 5.97个百分点。线上测试约将 10% 流量分配给实验组、持续约 14天；作者报告商品详情页浏览量提高 17.90%、交易量提高 27.04%、GMV 提高8.94%，并称均达到 p&lt;0.05。</li><li><strong>创新、限制与复现：</strong>论文同时报告组件消融、质量/延迟预算与真实业务A/B，且公开了线上实验持续时间和流量比例。训练数据、评估集和服务系统属于企业场景，公开代码与数据不足以让外部团队完整复现；自动评估器可能与数据筛选及奖励模型有相关误差，线上A/B衡量的是整套系统，不能把业务变化归因到某个单独组件。业务指标提升也不等同于其他领域的通用模型能力提升。</li><li><strong>适合谁读：</strong>多模态检索、推荐系统和工业级模型训练团队。建议读多意图任务定义、离线基线、Sample–Beam消融、模型规模与推理预算，以及第 7.6 节线上实验。</li></ul><p><a href="https://arxiv.org/abs/2610.36958">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36958">PDF</a></p><h3 id="livesearch-questions-as-executable-verifier-code-for-a-live-benchmark-of-professional-source-financial-search-agents">LiveSearch:Questions as Executable Verifier Code for a Live Benchmark ofProfessional-Source Financial Search Agents</h3><p><strong>全文 PDF 核读；AI/金融双主题，本篇详细展开。</strong>作者：Sinuo Wang、Wentao Zhao、Jiacheng Lu、Rui Sun、Beidi Luan、QimingShi、Jing Li、Daxin Jiang、Zuo Bai。</p><ul><li><strong>核心问题：</strong>金融数据会随日期变化，如何避免静态基准用过时答案奖励模型记忆，而不是实时检索和核对来源？</li><li><strong>方法与比较：</strong>每道题由固定文字、可执行的数据服务查询程序和答案匹配规则组成；程序直接调用专业金融数据服务，由确定性提取器生成标准答案，并每日刷新。时间变化分析使用153 道中文单跳问题，涉及 12 个工具和 A股、港股、美股、基金、指数、宏观与利率数据；模型榜单则比较 6个工具调用模型在通用网页搜索下的表现。</li><li><strong>作者报告的结果：</strong> 网页搜索模型准确率为70.9%–76.7%，最佳模型仍错约四分之一。连续三日中，109 道当日可回答题里有76道（70%）至少一次改变标准答案；直接复用前一日答案，在一日后多数题上都会失败。研究还展示了平均分近似不变时，单题正确状态仍会频繁翻转。</li><li><strong>创新、限制与复现：</strong>把每道题的答案定义为可重新执行的程序，减轻静态标签陈旧和答案泄漏带来的评测失真。当前时间分析是单跳、中文、结构化金融数据题，不能代表多步研究、因果分析或投资判断；70.9%–76.7%是通用网页搜索设置，不是接入专业付费数据工具后的得分。正文未提供可直接复现数据服务和完整基准的公开代码链接。</li><li><strong>适合谁读：</strong> 实时搜索agent、金融问答评测与基准维护者。建议读题目表示与自动构建、153题时间样本、模型结果、逐题变化分析及局限章节。</li></ul><p><a href="https://arxiv.org/abs/2610.37166">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37166">PDF</a></p><h2 id="ai-论文">AI 论文</h2><h3 id="docxeval-a-systematic-evaluation-of-explainability-in-multimodal-document-understanding">DocXEval:A Systematic Evaluation of Explainability in Multimodal DocumentUnderstanding</h3><p>作者：Saifullah Saifullah、David Dembinsky、Stefan Agne、AndreasDengel、Sheraz Ahmed。<strong>仅依据摘要。</strong>研究多模态文档模型的解释结果如何评测；作者在 3 类任务、8 个数据集、4个模型上比较 13 种解释方法和 17项指标，报告遮挡法整体较稳定，但不同忠实度与复杂度指标只中等或较强一致。该结论依赖所选模型、任务和解释指标，不能据此证明解释能提高高风险场景的实际可靠性。作者提供了<a href="https://github.com/saifullah3396/docxeval/">代码</a>。</p><p><a href="https://arxiv.org/abs/2610.36929">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36929">PDF</a></p><h3 id="benchmarking-llm-agents-for-behaviorally-adequate-test-generation-from-software-requirements-1">BenchmarkingLLM Agents for Behaviorally Adequate Test Generation from SoftwareRequirements</h3><p>作者：Binhang Qi、Yiming Liu、Yun Lin、Yangjie Zhou、Hailong Sun、JinSongDong。智能体在真实项目需求到测试生成中“通过”与“测得充分”之间有明显落差；数据、方法与效度边界见重点关注。</p><p><a href="https://arxiv.org/abs/2610.36584">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36584">PDF</a> · <a href="https://github.com/code-philia/Req2Test-Bench">代码</a> · <a href="https://huggingface.co/datasets/code-philia/Req2Test-Bench">数据</a></p><h3 id="hedge-bench-benchmarking-agents-on-hard-realistic-tasks-pertaining-to-financial-reasoning-1">Hedge-Bench:Benchmarking Agents on Hard, Realistic Tasks Pertaining to FinancialReasoning</h3><p>作者：Mahesh Ramesh、Eric Cho、Alice Lu、Shawn Huang、BaiqingLyu。<strong>AI/金融双主题。</strong>作者以冻结资料和后来揭晓的预测结果评估 agent的研究覆盖与预测质量；少数留出环境上的训练改善不等于可交易收益，详细证据限制见重点关注。</p><p><a href="https://arxiv.org/abs/2606.03918">摘要页</a> · <a href="https://arxiv.org/pdf/2606.03918">PDF</a> · <a href="https://github.com/Trata-Inc/trata-hedge-bench-verified">代码</a></p><h3 id="gym-anything-rt-scaling-real-time-environments-for-vision-language-agents-1">Gym-Anything-RT:Scaling Real-Time Environments for Vision-Language Agents</h3><p>作者：Pranjal Aggarwal、SeanWelleck。实时环境与暂停/减速对照揭示了当前模型的时延瓶颈；从小游戏到实体设备的迁移仍未验证，详见重点关注。</p><p><a href="https://arxiv.org/abs/2610.37567">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37567">PDF</a> · <a href="https://github.com/gym-anything/gym-anything-rt">代码与数据</a></p><h3 id="zhengrong-spatial-aware-1.0-advancing-3d-multimodal-intelligence">Zhengrong-Spatial-Aware1.0: Advancing 3D Multimodal Intelligence</h3><p>作者：Yu Zhang、Xiaogang Wang、Yuhang Cheng、Jingrui Li、WenboChen。<strong>仅依据摘要。</strong> 报告两条 3D空间问答微调流程：HiSpatial-3B 加入度量尺度点图，另一条用 QLoRA 调整Qwen3-VL；作者报告定制基准上 HiSpatial 准确率从 1.73% 升至79.89%，风格化拆分从 14.9% 升至 55.1%，Qwen3-VL-8B/32B也有提升。摘要没有交代数据规模、切分细节或完整基线，定制数据上的大幅提升不能直接视为通用空间能力。</p><p><a href="https://arxiv.org/abs/2610.37216">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37216">PDF</a></p><h3 id="pailitaommsearch2.0-technical-report-scaling-generative-retrieval-to-unified-end-to-end-multimodal-search-1">PailitaoMMSearch2.0Technical Report: Scaling Generative Retrieval to Unified End-to-EndMultimodal Search</h3><p>作者：Xiaohan Ye、Zihan Gong、Jingqian Zhao、Lianyu Du、YunmengShu、Xu Chen、Zesheng Zhou、Renchun You、Bocheng Chen、JinsongLan、Haihong Tang、BoZheng。多意图检索离线提升与线上业务指标来自不同证据层级；外部复现和单组件归因有限，详见重点关注。</p><p><a href="https://arxiv.org/abs/2610.36958">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36958">PDF</a></p><h3 id="lm-dsb-a-lightweight-multi-agent-system-for-automated-daily-safety-bulletin-generation-in-construction">LM-DSB:A Lightweight Multi-agent System for Automated Daily Safety BulletinGeneration in Construction</h3><p>作者：Xianxiang Zhao、Advik Mehta、Falak Sethi、Brian Gue、QipeiMei、Lingzi Wu。<strong>仅依据摘要。</strong>系统由规划、检索和撰写代理、37 份安全文件及本地 Llama 3-8B组成；作者报告 40 位专家给出的可接受度均值为3.50–4.20/5，合规性得分最高。词面指标和专家评分不能代替实际工地事故风险验证，论文也明确没有现场部署验证。</p><p><a href="https://arxiv.org/abs/2610.36433">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36433">PDF</a></p><h3 id="oa-rag-ontology-based-agentic-rag-for-faithful-llm-reasoning">OA-RAG:Ontology-based Agentic RAG for Faithful LLM Reasoning</h3><p>作者：Hui Yang、Jiaoyan Chen、YongshengGao。<strong>仅依据摘要。</strong>方法把本体中的逻辑关系与自然语言注释交给agent，回答时列出所用证据并标注支持等级；作者在 3 个大型本体和 6个医学问答任务上报告整体优于受测本体微调和通用RAG。摘要没有给出绝对提升；由模型评估的 grounding等级与正确率相关，不等于独立证明答案忠实。</p><p><a href="https://arxiv.org/abs/2610.36335">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36335">PDF</a></p><h3 id="amaraspatial-10k-a-spatially-and-semantically-aligned-3d-dataset-for-spatial-computing-and-embodied-ai">AmaraSpatial-10K:A Spatially and Semantically Aligned 3D Dataset for Spatial Computingand Embodied AI</h3><p>作者：Mohammad Sadegh Salehi、Alexander J. P. Perkins、Igor PardoMaurell、Ashkan Dabbagh、Raymond Wong。<strong>仅依据摘要。</strong>数据集含 10,071 个标准化合成 3D 资产；作者报告 CLIP <a href="mailto:Recall@5" class="email">Recall@5</a> 为 0.612，对照Objaverse 为 0.181，314 个资产的非作者抽查中 95.5%被评为尺度合理。页面所连全文在本次核读时无法取得，以上数字和数据审计方式尚未作全文复核；合成资产表现也不直接代表真实机器人任务成功率。</p><p><a href="https://arxiv.org/abs/2604.23018">摘要页</a> · <a href="https://arxiv.org/pdf/2604.23018">PDF</a></p><h3 id="squid-a-benchmark-for-quantitative-spatial-reasoning-on-satellite-imagery">SQuID:A Benchmark for Quantitative Spatial Reasoning on Satellite Imagery</h3><p>作者：Peter A. Massih、Eric Cosatto、Martin RenqiangMin。<strong>仅依据摘要。</strong> 基准含 587 张卫星影像和 2,000道数量空间问题；作者报告最佳端到端零样本视觉语言模型准确率为28.1%，程序化空间测量基线 QASR 为 42.0%，给定正确分割掩码后升至82.6%。结果定位出分割而非测量步骤的主要误差，但基准覆盖的影像分辨率和问题类型仍有限；摘要称提供训练集与参考掩码，未列出数据地址。</p><p><a href="https://arxiv.org/abs/2601.13401">摘要页</a> · <a href="https://arxiv.org/pdf/2601.13401">PDF</a></p><h3 id="scaling-laws-for-tool-use-agents-via-controllable-environment-synthesis">ScalingLaws for Tool-Use Agents via Controllable Environment Synthesis</h3><p>作者：Andrew Szot、Samira Abnar、Omar Attia、Abbas Kazerouni、MichaelKirchhof、Cheng-Yu Hsieh、Raviteja Vemulapalli、AlexanderToshev。<strong>仅依据摘要。</strong> SynthAPI控制工具、任务和数据库的合成环境多样性；作者通过 458,752 个任务和 849个不同规模训练模型拟合 agent泛化规律，报告增加工具与数据库多样性通常比单纯增加任务数量更有效。实验规模大，但摘要没有列出训练算力、绝对基准成绩或污染审计，缩放规律能否推广到真实工具和业务分布仍待全文核验。</p><p><a href="https://arxiv.org/abs/2610.37648">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37648">PDF</a></p><h3 id="livesearch-questions-as-executable-verifier-code-for-a-live-benchmark-of-professional-source-financial-search-agents-1">LiveSearch:Questions as Executable Verifier Code for a Live Benchmark ofProfessional-Source Financial Search Agents</h3><p>作者：Sinuo Wang、Wentao Zhao、Jiacheng Lu、Rui Sun、BeidiLuan、Qiming Shi、Jing Li、Daxin Jiang、ZuoBai。<strong>AI/金融双主题。</strong>可执行答案和每日更新减少了静态标签过时问题，但当前榜单测的是单跳实时金融搜索能力，而非复杂研究推理，详见重点关注。</p><p><a href="https://arxiv.org/abs/2610.37166">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37166">PDF</a></p><h3 id="physics-guided-flow-matching-a-generative-ai-framework-for-global-total-electron-content-forecasting">Physics-GuidedFlow Matching: A Generative AI Framework for Global Total ElectronContent Forecasting</h3><p>作者：Si-Tong Yang、Feng Ye、Xian Lu、Dong Lin、Benjamin C.Martinez。<strong>仅依据摘要。</strong> 研究以电离层偏微分方程引导 flowmatching，使用一年 TIEGCM 全球电子总含量数据作次日预测；作者报告平均RMSE 比 ConvLSTM 低 39.2%，比去掉物理引导的同框架低23.8%。数据来自物理模型模拟而非独立观测，摘要未说明数据污染、随机种子方差和训练算力，结果不能直接等同于业务预报提升。</p><p><a href="https://arxiv.org/abs/2610.37159">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37159">PDF</a></p><h3 id="autovend-benchmarking-llm-agents-on-long-horizon-autonomous-vending-operations">AutoVend:Benchmarking LLM Agents on Long-Horizon Autonomous VendingOperations</h3><p>作者：Qiming Shi、Yikun Li、Beidi Luan、Rui Sun、Yan Ma、JingLi、Daxin Jiang、Zuo Bai。<strong>仅依据摘要。</strong> 模拟一个 agent连续运营 20 台自动售货机 180 天，并与规则库存控制基线比较；作者报告 5 个LLM 中有 4个收益不及规则基线，推理费用也会改变模型的收益/成本排序。模拟器可暴露库存、补货和保质期的长期约束，但仍不是真实零售运营，摘要未给各模型绝对收益或外部验证。</p><p><a href="https://arxiv.org/abs/2610.36980">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36980">PDF</a></p><h3 id="prism-bench-diagnosing-grounded-and-faithful-multimodal-reasoning-beyond-final-answer-accuracy">PRISM-BENCH:Diagnosing Grounded and Faithful Multimodal Reasoning BeyondFinal-Answer Accuracy</h3><p>作者：Vansh Bhatia、Mehdi Rezagholizadeh、Parsa Ashrafi Fashi、IgorGilitschenski、Vikram Appia、Emad Barsoum。<strong>仅依据摘要。</strong>基准含 1,000 道人工策划问题、25 个开放与闭源系统；作者报告约 85%前沿模型错误可归因于感知失败，轨迹对齐预测正确性的宏 AUROC 为0.66，最佳系统准确率为66.0%。推理轨迹由一位标注者撰写、另一位验证，仍可能受题目范围与人工参考答案影响；摘要未列训练污染专项审计。</p><p><a href="https://arxiv.org/abs/2610.36554">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36554">PDF</a></p><h3 id="identity-or-evidence-auditing-evidence-dependence-in-agentic-life-science-benchmarks">Identityor Evidence? Auditing Evidence Dependence in Agentic Life-ScienceBenchmarks</h3><p>作者：Danai Brilli、Maria Georgila。<strong>仅依据摘要。</strong>论文在临床结果和生物医学任务中分别改变实体名称与证据内容；在一组以名称和候选列表为主的任务中，揭示身份可见时准确率为0.742，遮蔽身份后为 0.082，接近 0.093的机会水平。结果支持对记忆线索做审计，但效应依具体题库和遮蔽方式而定；摘要建议同时报告身份遮蔽、检索轨迹和正对照。</p><p><a href="https://arxiv.org/abs/2610.36510">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36510">PDF</a></p><h3 id="cogarena-benchmarking-multimodal-agents-on-interactive-behavioral-experiments">CogArena:Benchmarking Multimodal Agents on Interactive BehavioralExperiments</h3><p>作者：Kiante Fernandez、Caitlin Chen、Jialu Zhou、BartekSadowski、Anthony C. Miceli、Ian Krajbich。<strong>仅依据摘要。</strong>10 种行为实验通过浏览器视觉界面和时间压力运行，4 个多模态模型各重复 10次；作者发现任务完成与复现人类行为特征并非同一能力，部分模型未能完成任务。基准提供任务、评分代码和公开榜单，但摘要未给整体完成率和各实验绝对分数，也不能把人类行为复现视为模型具有人类心理机制。</p><p><a href="https://arxiv.org/abs/2610.36484">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36484">PDF</a></p><h3 id="routedrag-learning-to-route-and-control-agentic-execution-for-multimodal-document-rag">RouteDRAG:Learning to Route and Control Agentic Execution for Multimodal DocumentRAG</h3><p>作者：Zekai Chen、Hao Zhu、Yu Liu、Xunkai Li、Zejian Kang、RuiQian、Quanjiang Li、Rong-Hua Li。<strong>仅依据摘要。</strong>框架先判断问题是否值得启动agent，再控制后续工具调用；作者在两个基准上报告，相对只走短路径的基线准确率平均提高3.47 个百分点，同时仅将 79.3% 的问题交给 agent，并超过统一启动 agent的对照。节省调用是否转化为真实部署成本优势取决于模型与文档长度，摘要未给美元成本或污染审计。作者提供了<a href="https://github.com/Ereshkigal1/RouteDRAG">代码</a>。</p><p><a href="https://arxiv.org/abs/2610.36444">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36444">PDF</a> · <a href="https://github.com/Ereshkigal1/RouteDRAG">代码</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>每日论文</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>论文</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>每日金融论文简报（2026-10-29）</title>
+    <link href="/2026/10/29/daily-finance-papers-2026-10-29/"/>
+    <url>/2026/10/29/daily-finance-papers-2026-10-29/</url>
+    
+    <content type="html"><![CDATA[<span id="more"></span><h2 id="重点关注">重点关注</h2><h3 id="simple-portfolios-that-deliver-consistent-decent-returns">SimplePortfolios that Deliver Consistent Decent Returns</h3><p><strong>全文 PDF 核读。</strong> 作者：Oskar Edén Wallberg、AlexanderKarolin。</p><ul><li><strong>核心问题：</strong>在不卖空、不加杠杆、按月交易并计入成本的个人投资者约束下，简单的 ETF组合能否在历史回测中提供稳定的风险收益权衡？</li><li><strong>方法与基线：</strong> 研究 59 只流动性较好的美国ETF，数据覆盖 2005–2025 年；交易假设为每月调整、买卖价差成本 5个基点，并把目标波动率设为8%。比较固定权重、风险平价、最小波动、多元化及动量/岭回归预测组合，基准包括60/40。</li><li><strong>作者报告的结果：</strong> 等权 SPY/AGG/GLD 组合的 Sharpe 为0.68、最大回撤 24%；文中 60/40 对照分别为 0.52 和30%。作者称参数未针对评估期调优，并报告若干风险控制和预测组合的不同收益—换手折衷。</li><li><strong>创新、限制与可交易性：</strong>组合构造透明，回测明确纳入不卖空、不杠杆和 5bp价差；但这是历史回测，不是实时可交易业绩。策略和 ETF组合经过大量方案比较，整体 2005–2025期间并非独立于研究选择的最终留出样本；5bp也未覆盖税费、冲击成本和所有账户差异。作者的“未调参”与研究者事后选出表现较好的组合应分别看待，不能据此形成投资建议。</li><li><strong>适合谁读：</strong>个人投资组合、资产配置和量化回测方法研究者。建议读 ETF可投资范围、回测时点和成本假设、60/40对照、敏感性分析及结论中的外推边界。</li></ul><p><a href="https://arxiv.org/abs/2610.36491">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36491">PDF</a></p><h3 id="contemporaneous-transmission-networks-and-systemic-risk-in-european-banking">ContemporaneousTransmission Networks and Systemic Risk in European Banking</h3><p><strong>全文 PDF 核读。</strong> 作者：Minh Duc Duong、AlessioMoneta、Fabrizio Lillo、Caterina Giannetti、Tu Anh Doan Nguyen。</p><ul><li><strong>核心问题：</strong>银行股票的同期收益联动能否帮助区分潜在风险传导者与更容易受外部扰动影响的机构？</li><li><strong>方法与基线：</strong> 使用 16 个欧洲国家的 51 家上市银行和STOXX Europe 600 市场代理，样本为 2015 年 11 月至 2025 年 6 月的 2,204个日收益区间。作者先标准化波动，再拟合递归非高斯网络，构造市场资本加权的系统影响分数SIS 与系统脆弱分数 SVS；并与 Diebold–Yilmaz 连通性及 MES等指标作描述性比较。</li><li><strong>作者报告的结果：</strong>网络区分出“向外传导”与“接收风险”的不同排序；接收方角色在重复发现中的稳定性通常更好。被选中的关联边对应更高的下尾联动：平均CoLift 为 7.39，对照的未连接对为5.32。作者同时报告完整样本的恢复冲击未满足其支持独立性的指定标准。</li><li><strong>创新、识别边界与可复现性：</strong>同期结构网络提供了不同于滞后方差分解或市场下跌暴露的估计对象，但“有向网络”不自动等于已识别的因果传染。完整样本冲击独立性诊断未通过，结果依赖递归排序和模型类别；替代排序只能说明某些关联形态相似，不能验证唯一方向。样本仅含当前列出的上市银行，不是欧洲银行全集，也没有把已倒闭或退出机构补入历史面板；价格来自Yahoo Finance。</li><li><strong>适合谁读：</strong>银行系统性风险、金融网络与非高斯识别研究者。建议读样本和收益处理、SIS/SVS定义、冲击独立性诊断、下尾依赖检验及与传统连通性指标的比较。</li></ul><p><a href="https://arxiv.org/abs/2610.37487">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37487">PDF</a></p><h3 id="a-semiparametric-real-time-garch-model-with-nonstationary-variance">ASemiparametric Real-Time GARCH Model with Nonstationary Variance</h3><p><strong>全文 HTML 核读。</strong> 作者：Muyi Li、Yajia Chen、YuqingXu、Feiyu Jiang。</p><ul><li><strong>核心问题：</strong>当长期波动水平缓慢变化时，如何同时建模非平稳长期方差和对当前信息作出反应的短期波动？</li><li><strong>方法与基线：</strong> SRT-GARCH用核平滑估计长期方差，并以条件高斯极大似然估计短期过程；比较参数型RT-GARCH 与带非参数长期项的 S-GARCH。作者对 FTSE 100 的最终 650个交易日作滚动样本外预测，预测期为 1、5、10、15 日，并用 MSE、QLIKE 和DM–HLN 检验比较。</li><li><strong>作者报告的结果：</strong> FTSE 100 样本中，SRT-GARCH四个预测期的 MSE 均最低，分别为 0.9492、0.9689、0.9855、0.9866；相对RT-GARCH，10/15 日 MSE 与 5/10/15 日 QLIKE 的预测精度差异达到 5%显著水平。相对 S-GARCH 的损失虽多数略低，但差异不显著。1% VaR 下SRT-GARCH 与 RT-GARCH 的条件覆盖检验 p 值均为 0.9091，QLoss 分别为0.0224 和 0.0225，差距很小。</li><li><strong>创新、限制与可复现性：</strong>方法同时处理长期方差漂移和实时反馈，并给出估计量渐近性质；作者也在美国天然气期货上报告预测改善，但摘要与当前表格没有提供可直接横向比较的全部数字。FTSE的样本外窗口为 650 天，预测优势主要相对参数型 RT-GARCH成立，不能把它概括为胜过所有基准；波动预测与 VaR评估不是交易收益或经济显著性证据。本文为预测研究，不提供投资建议。</li><li><strong>适合谁读：</strong>波动率建模、风险管理和金融计量研究者。建议读两步估计、渐近推导、FTSE样本外 MSE/QLIKE 表、VaR 校准及天然气应用。</li></ul><p><a href="https://arxiv.org/abs/2610.36739">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36739">PDF</a></p><h3 id="an-application-of-geometric-riemannian-pricing-algorithm-for-valuing-catastrophe-bonds-in-incomplete-markets-market-consistent-financial-entropy-and-the-split-of-frequency-and-severity-risk-premia">AnApplication of Geometric Riemannian Pricing Algorithm for ValuingCatastrophe Bonds in Incomplete Markets: Market-Consistent FinancialEntropy and the Split of Frequency and Severity Risk Premia</h3><p><strong>全文 HTML 核读。</strong> 作者：Saeid Safarveisi。</p><ul><li><strong>核心问题：</strong>灾难债券市场不完备时，如何在频率与损失严重度风险溢价之间选择一个与市场报价一致的定价测度？</li><li><strong>方法与基线：</strong>作者把测度选择写成有限维等价测度流形上的最大金融熵问题，以复合Poisson–广义 Pareto 损失、Wang 扭曲和无风险期限结构定价，并使用 2014 年Golden State Re II参考债券的季度利差校准一个假想加州地震灾难债券。作者还比较 pooled与逐日期校准，并检验票息、折现和损失阈值设定。</li><li><strong>作者报告的结果：</strong> 基准 pooled风险中性触发强度约为物理强度的 9.20 倍；逐日期多在 6.58–10.45倍之间，2015 年末为 18.26倍。模型风险倍数与发行时市场利差/预期损失比接近（8.87 对8.81）。熵准则给出的频率溢价占对数风险倍数53.5%–63.7%，但这个拆分来自所选熵原则，不是市场数据单独识别出的份额；频率和严重度溢价本身无法由价格唯一识别。</li><li><strong>创新、限制与经济解释：</strong>论文清楚区分市场可识别的组合风险价格与熵准则所选的频率/严重度分解。案例是以真实参考债券利差校准的假想合约，不是对灾难债券可交易收益的样本外验证；测度族、损失指数基差、固定票息近似和指数效用都会影响结果。模型数值不能直接推广到不同触发结构或风险偏好。</li><li><strong>适合谁读：</strong>灾难债券、保险金融、非完备市场定价与风险溢价分解研究者。建议读风险中性测度选择、假想债券校准、频率/严重度不可识别证明和参数敏感性表。</li></ul><p><a href="https://arxiv.org/abs/2610.37171">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37171">PDF</a></p><h3 id="does-ecosystem-activity-validate-tvl">Does Ecosystem ActivityValidate TVL?</h3><p><strong>全文 PDF 核读。</strong> 作者：Matthew Brigida。</p><ul><li><strong>核心问题：</strong> DeFi 的锁仓总价值 TVL若再结合用户、开发、协议收入或社交关注等活动指标，能否形成超越加密市场与规模因子的收益信号？</li><li><strong>方法与基线：</strong> 作者按 TVL/市值与 7项生态活动比例独立分组，构造周度价值加权 2×3组合，用滞后市值权重计算代币价格收益，并检验其相对加密市场和规模因子的spanning 关系。对多个相关检验使用 Holm 校正；社交注意力可比样本另用 83周共同样本和移动区块 bootstrap。</li><li><strong>作者报告的结果：</strong> 2022–2025样本中，六项链上活动双重排序均未在多重检验校正后拒绝基准；社交关注共同样本也没有5% 水平的 Holm 调整后拒绝。若干未经校正的 DEX成交量或手续费结果名义显著，但 bootstrap 或多重比较校正后不再稳健。</li><li><strong>创新、限制与经济解释：</strong>论文把代币价格收益与市值变化区分，并使用滞后权重避免形成组合时的当期信息。结果是样本内收益关联测试，不是活动指标对代币收益的因果效应；每周样本短、组合权重集中，基准因子也较简约，其他加密风险因子可能改变结论。作者没有证明TVL或生态活动没有其他信息，只是未在该样本和组合框架中找到稳健的增量异常收益；不构成投资建议。</li><li><strong>适合谁读：</strong> 加密资产定价、DeFi数据研究和多重检验方法读者。建议读收益定义、组合构造、Holm/区块bootstrap 结果与第 4.3 节局限。</li></ul><p><a href="https://arxiv.org/abs/2610.36274">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36274">PDF</a></p><h3 id="optimal-order-placement-under-a-state-dependent-hawkes-process-limit-order-book-model">OptimalOrder Placement under a State-Dependent Hawkes Process Limit Order Bookmodel</h3><p><strong>全文 PDF 核读。</strong> 作者：Jonathan Chávez Casillas、LiGan。</p><ul><li><strong>核心问题：</strong>做市商面对具有状态依赖和自激特征的订单流时，如何根据库存动态调整买卖报价？</li><li><strong>方法与基线：</strong> 作者以状态依赖 Hawkes订单流和分块线性需求函数建立连续时间、离散状态动态规划，并加入二次终端库存惩罚。数值研究用MSFT 的 LOBSTER 逐笔数据，对比自适应策略和固定 1、2、3 档价差策略。</li><li><strong>作者报告的结果：</strong> 样本仅为 2014 年 11 月 3–7 日的 5个交易日。自适应策略的清算终值合计约 316.5 万美元；固定 1 档约 255.0万、固定 3 档约 269.6 万，而固定 2 档约 344.3 万，比自适应策略高8.8%。自适应策略的库存有 52.91% 采样区间超过 5,000股软阈值，最大绝对库存为 6,311.2 股。</li><li><strong>创新、限制与可交易性：</strong>论文给出带库存惩罚的理论报价规则和一套真实订单簿数据上的数值实现，但展示的终值以收盘中间价清算，未包含目标函数中的二次库存惩罚；终值排名不能证明惩罚后目标更优。5天、单一股票和线性成交需求不足以证明跨市场稳定性，软库存调整也不是硬性限额；这是历史数据仿真，不是真实可成交业绩。</li><li><strong>适合谁读：</strong> 做市、订单簿建模、Hawkes过程和计算金融研究者。建议读需求建模、动态规划系数、库存路径、固定价差对照及作者对惩罚目标的解释。</li></ul><p><a href="https://arxiv.org/abs/2610.37324">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37324">PDF</a></p><h2 id="金融论文">金融论文</h2><h3 id="simple-portfolios-that-deliver-consistent-decent-returns-1">SimplePortfolios that Deliver Consistent Decent Returns</h3><p>作者：Oskar Edén Wallberg、Alexander Karolin。作者以 59 只美国 ETF 和2005–2025 年回测比较简单组合与 60/40；等权 SPY/AGG/GLD 组合报告的 Sharpe与最大回撤分别为 0.68 和24%。这些是历史回测指标，成本设定和研究内组合筛选影响外推，详情见重点关注。</p><p><a href="https://arxiv.org/abs/2610.36491">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36491">PDF</a></p><h3 id="finllm-kg-knowledge-graph-enhanced-llms-for-financial-sentiment-analysis-in-algorithmic-trading">FinLLM-KG:Knowledge Graph-Enhanced LLMs for Financial Sentiment Analysis inAlgorithmic Trading</h3><p>作者：Giorgos Iacovides、Oliver Hannibal、Wuyang Zhou、DaniloMandic。<strong>仅依据摘要；AI/金融双主题。</strong> 方法在推理时把 SEC10-K信息组织成公司级知识图谱，再以公司简介或相关事实三元组补充文章情绪判断；作者称模拟组合表现稳定优于其先进基线，并可追溯预测所用句子和事实。摘要没有说明模拟区间、样本外划分、统计不确定性、交易费用或净收益，情绪预测与组合表现也不是因果证据。</p><p><a href="https://arxiv.org/abs/2610.36083">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36083">PDF</a></p><h3 id="practice-makes-perfect-tacit-knowledge-generative-ai-and-returns-to-schooling-and-experience">PracticeMakes Perfect: Tacit Knowledge, Generative AI, and Returns to Schoolingand Experience</h3><p>作者：Eduardo Levy Yeyati、Darío Judzik、Juan IgnacioBarbiero。<strong>仅依据摘要；广义劳动经济学，与金融市场直接关联较弱。</strong>作者用美国 CPS 2018–2026 年收入数据，比较 ChatGPT 发布前 AI暴露指数较高与较低职业的教育和经验工资梯度；报告暴露职业教育回报下降、经验回报呈非线性变化，并通过疫情安慰剂等检验。摘要未提供完整识别假设、标准误和因果设计细节，观察到的工资梯度变化不能直接归因于生成式AI。</p><p><a href="https://arxiv.org/abs/2610.36008">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36008">PDF</a></p><h3 id="contemporaneous-transmission-networks-and-systemic-risk-in-european-banking-1">ContemporaneousTransmission Networks and Systemic Risk in European Banking</h3><p>作者：Minh Duc Duong、Alessio Moneta、Fabrizio Lillo、CaterinaGiannetti、Tu Anh DoanNguyen。网络分数区分上市银行模型中的同期影响与脆弱性，但完整样本的冲击独立性诊断未过指定标准，且网络方向不等于因果传染，详见重点关注。</p><p><a href="https://arxiv.org/abs/2610.37487">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37487">PDF</a></p><h3 id="a-deep-learning-driven-operator-splitting-scheme-for-free-boundary-problems-an-application-to-american-option-pricing-in-incomplete-markets">ADeep Learning-Driven Operator Splitting Scheme for Free BoundaryProblems: An Application to American Option Pricing in IncompleteMarkets</h3><p>作者：Dong Yan、Haocheng Zhu、Yao Li。<strong>仅依据摘要。</strong>对含比例交易成本、随机流动性风险和双因子随机波动的五维变分不等式，作者以物理信息神经网络近似延续方程、再用闭式投影处理提前行权约束；摘要称价格和行权边界与有限差分及最小二乘蒙特卡洛基准接近。摘要未报告绝对误差、运行时间或不同随机种子的方差，因此无法判断相对基线的实际计算优势；这是定价数值方法，不是交易收益证据。</p><p><a href="https://arxiv.org/abs/2610.36921">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36921">PDF</a></p><h3 id="the-term-structure-of-implied-fee-rates-in-liquidity-pools">TheTerm Structure of Implied Fee Rates in Liquidity Pools</h3><p>作者：Diogo Duarte、Lucas X. Ferreira、Emmanuel Gobet、Yuri F.Saporito。<strong>仅依据摘要。</strong> 论文用 Deribit期权校准随机波动跳跃扩散模型，估计 Uniswap v2/v3 ETH–USDC流动性池的风险中性隐含手续费率；作者报告费率随期限下降，并对价格区间设计敏感。该量是模型隐含的未来LP补偿，不是历史实际手续费收益；摘要未提供净无常损失、链上成本或样本外验证。</p><p><a href="https://arxiv.org/abs/2610.36392">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36392">PDF</a></p><h3 id="a-semiparametric-real-time-garch-model-with-nonstationary-variance-1">ASemiparametric Real-Time GARCH Model with Nonstationary Variance</h3><p>作者：Muyi Li、Yajia Chen、Yuqing Xu、FeiyuJiang。滚动样本外实验显示模型相对参数型 RT-GARCH的部分中长期波动损失更低，但相对另一半参数基线并无显著差异；这是预测精度证据，不是可交易收益，详见重点关注。</p><p><a href="https://arxiv.org/abs/2610.36739">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36739">PDF</a></p><h3 id="beyond-greenwashing-algorithmic-resilience-and-the-non-linear-governance-premium-in-sovereign-capital-flows">BeyondGreenwashing: Algorithmic Resilience and the Non-Linear GovernancePremium in Sovereign Capital Flows</h3><p>作者：Sourav Bose、TaoufikBouraoui。<strong>仅依据摘要；AI/金融双主题。</strong> 作者使用2010–2024 年 147 个主权实体的前向链式面板，以梯度提升模型预测 FDI尾部风险，并称极端宏观时期相对 L1 正则基线的预测误差下降超过39%。这是预测关联而非治理质量改善对资本流入的因果识别；摘要没有列出绝对误差、制度阈值识别不确定性或经济显著性，AI模型提升不能证明市场确实按所述机制定价。</p><p><a href="https://arxiv.org/abs/2610.35895">摘要页</a> · <a href="https://arxiv.org/pdf/2610.35895">PDF</a></p><h3 id="matching-llm-historically-anchored-synthetic-prediction-of-public-opinion-and-elections">Matching-LLM:Historically Anchored Synthetic Prediction of Public Opinion andElections</h3><p>作者：Shapeng Jiang、Lijia Wei、ChenZhang。<strong>仅依据摘要；广义政治经济/调查预测，与金融市场直接关联较弱。</strong>第三版于 2026 年 10 月更新。方法把 LLM合成回答与历史人类调查加权结合；作者称在 12 项未用于校准的问题中有 11项优于 LLM-only，但并非持续超过 History-only，2024年美国大选预测为共和党 310 张选举人票、实际 312张。单次选举命中不代表稳健预测能力，摘要没有报告市场变量或投资可交易结果。</p><p><a href="https://arxiv.org/abs/2411.01582">摘要页</a> · <a href="https://arxiv.org/pdf/2411.01582">PDF</a></p><h3 id="an-application-of-geometric-riemannian-pricing-algorithm-for-valuing-catastrophe-bonds-in-incomplete-markets-market-consistent-financial-entropy-and-the-split-of-frequency-and-severity-risk-premia-1">AnApplication of Geometric Riemannian Pricing Algorithm for ValuingCatastrophe Bonds in Incomplete Markets: Market-Consistent FinancialEntropy and the Split of Frequency and Severity Risk Premia</h3><p>作者：SaeidSafarveisi。以参考灾难债券利差校准的假想合约显示风险中性触发强度约为物理强度9.20 倍，但频率与严重度溢价不能由市场单独识别；53.5%–63.7%的频率份额来自所选熵准则，详见重点关注。</p><p><a href="https://arxiv.org/abs/2610.37171">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37171">PDF</a></p><h3 id="does-ecosystem-activity-validate-tvl-1">Does Ecosystem ActivityValidate TVL?</h3><p>作者：Matthew Brigida。对 2022–2025 年加密代币组合的收益排序没有发现TVL与活动指标组合在多重检验后稳定超越市场和规模因子；这是历史样本内关联检验，不能作因果或投资结论，详见重点关注。</p><p><a href="https://arxiv.org/abs/2610.36274">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36274">PDF</a></p><h3 id="reconstructing-the-human-development-index-at-the-individual-level-from-survey-microdata-development-and-validation-of-a-methodology">Reconstructingthe Human Development Index at the Individual Level from SurveyMicrodata: Development and Validation of a Methodology</h3><p>作者：Tcharlies Bachmann Schmitz、Natalia Veronez da Cunha、IsabelleFerreira。<strong>仅依据摘要；广义发展测量，与金融市场直接关联较弱。</strong>方法用 21 国 40,185 名欧洲社会调查受访者及世界银行指标重构个体HDI；作者报告 39,706 个有效样本与官方指数的平均绝对误差为0.0099、相关系数为0.917。相关性和拟合度不证明分维度估计无偏，也不属于金融资产收益研究。</p><p><a href="https://arxiv.org/abs/2610.35893">摘要页</a> · <a href="https://arxiv.org/pdf/2610.35893">PDF</a></p><h3 id="evaluating-the-predictive-validity-of-icts-accumulation-manipulation-distribution-amd-model-on-cme-e-mini-nasdaq-100-futures">Evaluatingthe Predictive Validity of ICT's Accumulation-Manipulation-Distribution(AMD) Model on CME E-Mini NASDAQ-100 Futures</h3><p>作者：Veer Taylor。<strong>仅依据摘要。</strong> 论文将 ICT AMD规则机械化，使用 2022 年 1 月至 2026 年 7 月四年 15 分钟 NQ期货数据，检验 484 个信号日；作者报告 57%信号在预设入场时点前已到达目标，顺势信号正确率 62%–71%，逆势为25%–30%，趋势状态内四格在 Benjamini–Hochberg校正后仍显著。正确率和统计显著不等于扣除滑点、费用后的经济利润；摘要未展示样本外切分、完整交易收益和真实成交测试。</p><p><a href="https://arxiv.org/abs/2610.35887">摘要页</a> · <a href="https://arxiv.org/pdf/2610.35887">PDF</a></p><h3 id="trace-governing-ai-assisted-research-with-principles-from-computer-science">TRACE:Governing AI-Assisted Research with Principles from ComputerScience</h3><p>作者：Amirhossein Zohrehvand、AldonaKapacinskaite。<strong>仅依据摘要；科研治理主题，与金融市场直接关联较弱。</strong>论文借用软件工程和安全研究中的工作流控制原则，提出 Track records、Reviewagainst sources、Accept independently、Control transitions、Evaluatecorrections 五项治理建议，并介绍TRACE-OS。摘要主要是框架论述，没有量化效果或金融市场数据，不能当作投资研究实证。</p><p><a href="https://arxiv.org/abs/2610.24035">摘要页</a> · <a href="https://arxiv.org/pdf/2610.24035">PDF</a></p><h3 id="optimal-order-placement-under-a-state-dependent-hawkes-process-limit-order-book-model-1">OptimalOrder Placement under a State-Dependent Hawkes Process Limit Order Bookmodel</h3><p>作者：Jonathan Chávez Casillas、Li Gan。自适应报价在五天 MSFT订单簿模拟中终值低于固定两档价差基线8.8%；终值未计入惩罚目标，且单股短样本不足以证明样本外或真实可交易优势，详见重点关注。</p><p><a href="https://arxiv.org/abs/2610.37324">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37324">PDF</a></p><h3 id="testing-strong-exogeneity-in-proxy-svars-with-internal-synthetic-proxies">Testingstrong exogeneity in proxy SVARs with internal synthetic proxies</h3><p>作者：Sascha A. Keweloh、Shu Wang。<strong>仅依据摘要。</strong>论文用外部工具识别的目标冲击构造内部合成代理，并检验 Proxy SVAR更强的外生性条件；作者给出大样本理论、弱识别稳健版本和低信噪比 MonteCarlo实验，并在货币政策及石油供给新闻应用中未拒绝基准代理外生性。未拒绝不等于证明外生，检验强度依赖目标冲击非高斯性；该方法改善识别诊断，不自动把相关冲击变成因果事实。</p><p><a href="https://arxiv.org/abs/2610.36093">摘要页</a> · <a href="https://arxiv.org/pdf/2610.36093">PDF</a></p><h3 id="climate-change-sea-level-rise-and-the-agricultural-revolution">Climatechange, sea level rise, and the agricultural revolution</h3><p>作者：Ridhika Mishra、Richard S. J.Tol。<strong>仅依据摘要；经济史主题，与金融市场直接关联较弱。</strong>作者复现既有农业起源研究并比较温度、季节性、海平面等假说，报告季节性结果对替代数据和估计方法较稳健，而海平面变化对早期人口密度作用较小。结论针对历史农业扩散，不提供金融资产或资本流动证据。</p><p><a href="https://arxiv.org/abs/2610.37306">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37306">PDF</a></p><h3 id="personal-preference-or-system-role-battery-swapping-among-uk-electric-vehicle-users">Personalpreference or system role? Battery swapping among UK electric vehicleusers</h3><p>作者：Janak Parmar、Huseyin Ayan、Dilum Dissanayake、MargaretBell。<strong>仅依据摘要；交通与消费者选择主题，与金融市场直接关联较弱。</strong>作者以英国电动车用户为对象，使用行为推理理论、整合选择/潜变量模型和潜类分析，报告站点覆盖和兼容性更关联个人偏好，电池成本更关联网络可行性预期。摘要没有样本量、系数或不确定性，也不是对企业融资、资产回报或政策因果效果的评估。</p><p><a href="https://arxiv.org/abs/2610.37269">摘要页</a> · <a href="https://arxiv.org/pdf/2610.37269">PDF</a></p><p>本文汇总的是作者报告的研究与回测结果，不构成投资建议；相关性、统计显著性、样本外预测或历史回测都不等于真实可交易的净收益。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>每日论文</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>论文</tag>
+      
+      <tag>金融</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2026-10-29 GitHub 热榜简报：Agent 约束、研究工作区与空间工具</title>
     <link href="/2026/10/29/daily-github-trending-2026-10-29/"/>
     <url>/2026/10/29/daily-github-trending-2026-10-29/</url>
@@ -30,9 +84,9 @@
       
       <tag>本地优先</tag>
       
-      <tag>3D 工具</tag>
-      
       <tag>研究工具</tag>
+      
+      <tag>3D 工具</tag>
       
       <tag>网络工程</tag>
       
@@ -123,9 +177,9 @@
       
       <tag>自托管</tag>
       
-      <tag>设计工程</tag>
-      
       <tag>研究工具</tag>
+      
+      <tag>设计工程</tag>
       
     </tags>
     
@@ -216,9 +270,9 @@
       
       <tag>自托管</tag>
       
-      <tag>研究工作流</tag>
-      
       <tag>3D 工具</tag>
+      
+      <tag>研究工作流</tag>
       
     </tags>
     
@@ -253,9 +307,9 @@
       
       <tag>本地优先</tag>
       
-      <tag>研究工作流</tag>
-      
       <tag>3D 工具</tag>
+      
+      <tag>研究工作流</tag>
       
     </tags>
     
@@ -555,9 +609,9 @@
       
       <tag>Agent</tag>
       
-      <tag>工作流</tag>
-      
       <tag>AI 基础设施</tag>
+      
+      <tag>工作流</tag>
       
     </tags>
     
@@ -892,9 +946,9 @@
       
       <tag>Agent</tag>
       
-      <tag>上下文工程</tag>
-      
       <tag>本地 AI</tag>
+      
+      <tag>上下文工程</tag>
       
       <tag>Agent Skills</tag>
       
@@ -983,9 +1037,9 @@
       
       <tag>Agent</tag>
       
-      <tag>上下文工程</tag>
-      
       <tag>本地 AI</tag>
+      
+      <tag>上下文工程</tag>
       
       <tag>推理引擎</tag>
       
@@ -2501,9 +2555,9 @@
       
       <tag>本地软件</tag>
       
-      <tag>系统学习</tag>
-      
       <tag>部署基础设施</tag>
+      
+      <tag>系统学习</tag>
       
     </tags>
     
@@ -2751,9 +2805,9 @@
       
       <tag>Agent</tag>
       
-      <tag>本地软件</tag>
-      
       <tag>数字安全</tag>
+      
+      <tag>本地软件</tag>
       
     </tags>
     
@@ -10490,6 +10544,8 @@
       
       <tag>哈希表</tag>
       
+      <tag>B+树</tag>
+      
       <tag>并发控制</tag>
       
       <tag>索引结构</tag>
@@ -10499,8 +10555,6 @@
       <tag>闩锁 (Latches)</tag>
       
       <tag>自旋锁 (Spin Locks)</tag>
-      
-      <tag>B+树</tag>
       
     </tags>
     
