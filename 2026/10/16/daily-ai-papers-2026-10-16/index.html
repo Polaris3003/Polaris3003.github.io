@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均为论文作者在其数据、模型、提示和评测协议下报告的结果，不代表独立复核。 QuantEval: A Benchmark for Financial Quantitative Tasks in Large Language Models  作者：Zhaolu Kang、Junhao Gong、Wenqing Hu、Ying">
+    <meta name="description" content="重点关注以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均为论文作者在其数据、模型、提示和评测协议下报告的结果，不代表独立复核。 QuantEval: A Benchmark for Financial Quantitative Tasks in Large Language Models 作者：Zhaolu Kang、Junhao Gong、Wenqing Hu、Yingji">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 10 月 16 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/10/16/daily-ai-papers-2026-10-16/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均为论文作者在其数据、模型、提示和评测协议下报告的结果，不代表独立复核。 QuantEval: A Benchmark for Financial Quantitative Tasks in Large Language Models  作者：Zhaolu Kang、Junhao Gong、Wenqing Hu、Ying">
+<meta property="og:description" content="重点关注以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均为论文作者在其数据、模型、提示和评测协议下报告的结果，不代表独立复核。 QuantEval: A Benchmark for Financial Quantitative Tasks in Large Language Models 作者：Zhaolu Kang、Junhao Gong、Wenqing Hu、Yingji">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-02/pixiv-rank-006-147702281.jpg">
 <meta property="article:published_time" content="2026-10-16T02:15:00.000Z">
@@ -347,408 +347,199 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<p>以下 6 篇从今日 18 篇 AI
-候选中选出。除特别说明外，数字均为论文作者在其数据、模型、提示和评测协议下报告的结果，不代表独立复核。</p>
-<h3 id="quanteval-a-benchmark-for-financial-quantitative-tasks-in-large-language-models"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.08689">QuantEval: A Benchmark for
-Financial Quantitative Tasks in Large Language Models</a></h3>
-<ul>
-<li>作者：Zhaolu Kang、Junhao Gong、Wenqing Hu、Yingjie He、Kehan
-Jiang、Leqi Zheng、Shuo Yin、Zhicheng Fang、Chunlei Meng、Eric Hanchen
-Jiang、Yunfei Feng、Yitong Leng、Junfan Zhu、Xiaoyou Chen、Xi
-Yang、Richeng Xuan</li>
+<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><p>以下 6 篇从今日 18 篇 AI 候选中选出。除特别说明外，数字均为论文作者在其数据、模型、提示和评测协议下报告的结果，不代表独立复核。</p>
+<h3 id="QuantEval-A-Benchmark-for-Financial-Quantitative-Tasks-in-Large-Language-Models"><a href="#QuantEval-A-Benchmark-for-Financial-Quantitative-Tasks-in-Large-Language-Models" class="headerlink" title="QuantEval: A Benchmark for Financial Quantitative Tasks in Large Language Models"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.08689">QuantEval: A Benchmark for Financial Quantitative Tasks in Large Language Models</a></h3><ul>
+<li>作者：Zhaolu Kang、Junhao Gong、Wenqing Hu、Yingjie He、Kehan Jiang、Leqi Zheng、Shuo Yin、Zhicheng Fang、Chunlei Meng、Eric Hanchen Jiang、Yunfei Feng、Yitong Leng、Junfan Zhu、Xiaoyou Chen、Xi Yang、Richeng Xuan</li>
 <li>来源/分类：arXiv，AI / 金融量化模型评测</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.08689">PDF</a></li>
 <li>核心问题：金融量化模型不能只回答事实题；它是否能完成“计算—实现—验证”的完整工作流，并把策略真正放进可执行的回测框架？</li>
-<li>方法与基线：QuantEval 含 1,575 个专家验证实例：知识问答
-660、定量数学推理 855、策略编码 60。作者评估 13 个开源和闭源
-LLM，编码任务用确定性的 CTA
-风格回测比较风险收益指标，并以专家基线作参照；另做 SFT 和 GRPO
-训练实验。</li>
-<li>关键结果：专家基线在知识问答、数学推理、可执行编码上的准确率分别为
-91.75%、89.05%、100%。论文报告 GPT-5 在两类问答上的准确率为
-83.9%/82.8%、55.0%/33.8%，策略编码可执行率 53.3%；Claude Sonnet 4.5
-的两类问答为 86.0%/90.8%、43.1%/44.6%，可执行率
-65%。许多开源模型的可执行率为
-0；在作者的领域训练实验中，推理改善伴随事实问答小幅下降。</li>
-<li>创新、局限与失败条件：把代码能否执行、回测风险指标和事实/推理拆开，比只看答案字符串更接近量化工作流；但编码子集只有
-60 题，固定 CTA
-接口可能偏向某些模型，闭源模型不可完全复现，且数据去重不能等同于证明没有训练污染。这里的回测是评测协议，不是实盘交易能力证明。</li>
-<li>适合谁读：做金融 LLM、代码
-agent、量化评测和可复现基准的人。建议先读第 2–3
-节、主结果表、可靠性/泄漏分析和附录。</li>
+<li>方法与基线：QuantEval 含 1,575 个专家验证实例：知识问答 660、定量数学推理 855、策略编码 60。作者评估 13 个开源和闭源 LLM，编码任务用确定性的 CTA 风格回测比较风险收益指标，并以专家基线作参照；另做 SFT 和 GRPO 训练实验。</li>
+<li>关键结果：专家基线在知识问答、数学推理、可执行编码上的准确率分别为 91.75%、89.05%、100%。论文报告 GPT-5 在两类问答上的准确率为 83.9%/82.8%、55.0%/33.8%，策略编码可执行率 53.3%；Claude Sonnet 4.5 的两类问答为 86.0%/90.8%、43.1%/44.6%，可执行率 65%。许多开源模型的可执行率为 0；在作者的领域训练实验中，推理改善伴随事实问答小幅下降。</li>
+<li>创新、局限与失败条件：把代码能否执行、回测风险指标和事实/推理拆开，比只看答案字符串更接近量化工作流；但编码子集只有 60 题，固定 CTA 接口可能偏向某些模型，闭源模型不可完全复现，且数据去重不能等同于证明没有训练污染。这里的回测是评测协议，不是实盘交易能力证明。</li>
+<li>适合谁读：做金融 LLM、代码 agent、量化评测和可复现基准的人。建议先读第 2–3 节、主结果表、可靠性/泄漏分析和附录。</li>
 <li>证据状态：已核阅摘要与 PDF；以上为论文报告，尚未独立复算。</li>
 </ul>
-<h3 id="scaling-multilingual-safety-and-reasoning-evaluation-through-reasoning-guided-translation"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20221">Scaling Multilingual Safety and
-Reasoning Evaluation through Reasoning-Guided Translation</a></h3>
-<ul>
+<h3 id="Scaling-Multilingual-Safety-and-Reasoning-Evaluation-through-Reasoning-Guided-Translation"><a href="#Scaling-Multilingual-Safety-and-Reasoning-Evaluation-through-Reasoning-Guided-Translation" class="headerlink" title="Scaling Multilingual Safety and Reasoning Evaluation through Reasoning-Guided Translation"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20221">Scaling Multilingual Safety and Reasoning Evaluation through Reasoning-Guided Translation</a></h3><ul>
 <li>作者：Zahraa Al Sahili、Ioannis Patras、Matthew Purver</li>
 <li>来源/分类：arXiv，AI / 多语言安全与推理评测</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.20221">PDF</a></li>
 <li>核心问题：把英语安全、对话和数学基准翻译到低资源语言时，是否仍保留伤害意图、推理结构和对话语用，而不是只得到字面上通顺的题目？</li>
-<li>方法与基线：作者先用推理模型选择翻译配置，再做任务感知验证、定向修复和独立质量筛查；集合覆盖
-7 个资源、11 种语言，包括
-WildChat、WildJailbreak、StrongREJECT、JBB、XSTest、MATH500 和
-AIME。两个下游模型 Llama-3.1-8B 与 Qwen2.5-7B
-在配对题目上比较拒答和推理。</li>
-<li>关键结果：需要修复的两个子集保留了 6,816/6,820
-个目标“题目—语言”对，覆盖率 99.94%；人工独立筛查仍发现约 1.2%
-条目残留英语。论文报告 Llama 在有害拒答上从英语 97.5% 降到土耳其语
-69.5%，JBB 有害样本从 94% 降到 74%；MATH500 上 Llama 从英语 44%
-降到阿拉伯语 24%，Qwen 从英语 74% 降到土耳其语 58.6%。在 70
-条泰语试验中，作者选用的 GPT-5-mini 配置正确 68 条（97.1%），GPT-5.1 为
-70 条，但前者估计成本更低。</li>
-<li>创新、局限与失败条件：把翻译配置选择和大规模生成分离，并把覆盖率、语义保持和下游行为同时报告；但配置选择由
-GPT-5.4 Thinking 参与，自动语义筛查不是双语人工等价性证明，70
-条试验不足以代表全部语言，且下游只测两个开放模型。低资源语言的差异也可能混合了模型预训练覆盖、翻译误差和提示效应，不能直接归因于某一个因素。</li>
-<li>适合谁读：做多语言安全、跨语言 benchmark、低资源 NLP
-和公平评测的人。建议先读第 3–5 节及附录的人审和验证分析。</li>
+<li>方法与基线：作者先用推理模型选择翻译配置，再做任务感知验证、定向修复和独立质量筛查；集合覆盖 7 个资源、11 种语言，包括 WildChat、WildJailbreak、StrongREJECT、JBB、XSTest、MATH500 和 AIME。两个下游模型 Llama-3.1-8B 与 Qwen2.5-7B 在配对题目上比较拒答和推理。</li>
+<li>关键结果：需要修复的两个子集保留了 6,816/6,820 个目标“题目—语言”对，覆盖率 99.94%；人工独立筛查仍发现约 1.2% 条目残留英语。论文报告 Llama 在有害拒答上从英语 97.5% 降到土耳其语 69.5%，JBB 有害样本从 94% 降到 74%；MATH500 上 Llama 从英语 44% 降到阿拉伯语 24%，Qwen 从英语 74% 降到土耳其语 58.6%。在 70 条泰语试验中，作者选用的 GPT-5-mini 配置正确 68 条（97.1%），GPT-5.1 为 70 条，但前者估计成本更低。</li>
+<li>创新、局限与失败条件：把翻译配置选择和大规模生成分离，并把覆盖率、语义保持和下游行为同时报告；但配置选择由 GPT-5.4 Thinking 参与，自动语义筛查不是双语人工等价性证明，70 条试验不足以代表全部语言，且下游只测两个开放模型。低资源语言的差异也可能混合了模型预训练覆盖、翻译误差和提示效应，不能直接归因于某一个因素。</li>
+<li>适合谁读：做多语言安全、跨语言 benchmark、低资源 NLP 和公平评测的人。建议先读第 3–5 节及附录的人审和验证分析。</li>
 <li>证据状态：已核阅摘要与 PDF；以上为论文报告，尚未独立复核。</li>
 </ul>
-<h3 id="beyond-benchmark-accuracy-a-diagnostic-test-for-llm-chemical-prediction"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19906">Beyond Benchmark Accuracy: A
-Diagnostic Test for LLM Chemical Prediction</a></h3>
-<ul>
-<li>作者：Yanyi Su、Yu Zeng、Hongshuai Wang、Chenyan Wang、Zhifeng
-Gao、Xiaohui Yang</li>
+<h3 id="Beyond-Benchmark-Accuracy-A-Diagnostic-Test-for-LLM-Chemical-Prediction"><a href="#Beyond-Benchmark-Accuracy-A-Diagnostic-Test-for-LLM-Chemical-Prediction" class="headerlink" title="Beyond Benchmark Accuracy: A Diagnostic Test for LLM Chemical Prediction"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19906">Beyond Benchmark Accuracy: A Diagnostic Test for LLM Chemical Prediction</a></h3><ul>
+<li>作者：Yanyi Su、Yu Zeng、Hongshuai Wang、Chenyan Wang、Zhifeng Gao、Xiaohui Yang</li>
 <li>来源/分类：arXiv，AI / 科学推理与化学预测</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.19906">PDF</a></li>
-<li>核心问题：化学预测 benchmark
-的高分来自可迁移的结构—性质推理，还是来自目标实体名称、来源标签和训练语料中的记忆线索？</li>
-<li>方法与基线：Identity-Blinded Reasoning Diagnostic
-隐去目标实体身份，只给出来源实体和明确的结构编辑操作；C0
-是常规任务，C1/C2/C3
-分别改变身份信息和来源标签。作者在手性气味、BACE、HIV、逆合成和反应产率等六类任务上测试
-Claude Opus 4.8、DeepSeek V4 Pro Preview、GPT-5.5 和 Gemini 3.1
-Pro。</li>
-<li>关键结果：论文报告四个模型都能恢复每个手性目标的结构，结构重建率为
-86.05%–100%，但常规 BACE 准确率仅 51.5%–57.4%、HIV 为
-31.4%–61.2%、逆合成精确匹配为 34.9%–48.8%，产率 MAE 为
-32.34–56.46，高于均值/中位数基线约
-21.98/21.65。只替换来源标签而保持目标、结构编辑和真值不变时，二元预测会向替换标签移动；例如
-Claude 的比例为 91.2%，GPT-5.5 为 58.8%。</li>
+<li>核心问题：化学预测 benchmark 的高分来自可迁移的结构—性质推理，还是来自目标实体名称、来源标签和训练语料中的记忆线索？</li>
+<li>方法与基线：Identity-Blinded Reasoning Diagnostic 隐去目标实体身份，只给出来源实体和明确的结构编辑操作；C0 是常规任务，C1/C2/C3 分别改变身份信息和来源标签。作者在手性气味、BACE、HIV、逆合成和反应产率等六类任务上测试 Claude Opus 4.8、DeepSeek V4 Pro Preview、GPT-5.5 和 Gemini 3.1 Pro。</li>
+<li>关键结果：论文报告四个模型都能恢复每个手性目标的结构，结构重建率为 86.05%–100%，但常规 BACE 准确率仅 51.5%–57.4%、HIV 为 31.4%–61.2%、逆合成精确匹配为 34.9%–48.8%，产率 MAE 为 32.34–56.46，高于均值/中位数基线约 21.98/21.65。只替换来源标签而保持目标、结构编辑和真值不变时，二元预测会向替换标签移动；例如 Claude 的比例为 91.2%，GPT-5.5 为 58.8%。</li>
 <li>创新、局限与失败条件：反事实身份控制比单一准确率更能诊断信息依赖；但任务是小规模、人工整理的诊断集，只测四个模型家族，且仍需从来源和编辑操作推导目标，因此它能证明敏感性，不能单独证明训练数据污染或“模型完全没有结构推理”。工具证据在相关任务上可能帮助，也可能因不完整而伤害预测。</li>
-<li>适合谁读：做 AI for Science、数据污染审计、科学 agent
-和可靠性评测的人。建议先读第 3 节、各任务结果和显著性检验附录。</li>
+<li>适合谁读：做 AI for Science、数据污染审计、科学 agent 和可靠性评测的人。建议先读第 3 节、各任务结果和显著性检验附录。</li>
 <li>证据状态：已核阅摘要与 PDF；以上为论文报告，尚未独立复算。</li>
 </ul>
-<h3 id="ruletrek-benchmarking-agentic-rule-reasoning-in-complex-scenarios"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19698">RuleTrek: Benchmarking Agentic
-Rule Reasoning in Complex Scenarios</a></h3>
-<ul>
-<li>作者：Chenhao Yuan、Bohan Yu、Yinhao Xu、Chao Yin、Chenxi
-Zhou、Zhaoxuan Wang、Shuwen Xu、Shaoping Huang、Haolin Ren、Jiaxiang
-Liu、Yao Xu、Jun Zhao、Kang Liu</li>
+<h3 id="RuleTrek-Benchmarking-Agentic-Rule-Reasoning-in-Complex-Scenarios"><a href="#RuleTrek-Benchmarking-Agentic-Rule-Reasoning-in-Complex-Scenarios" class="headerlink" title="RuleTrek: Benchmarking Agentic Rule Reasoning in Complex Scenarios"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19698">RuleTrek: Benchmarking Agentic Rule Reasoning in Complex Scenarios</a></h3><ul>
+<li>作者：Chenhao Yuan、Bohan Yu、Yinhao Xu、Chao Yin、Chenxi Zhou、Zhaoxuan Wang、Shuwen Xu、Shaoping Huang、Haolin Ren、Jiaxiang Liu、Yao Xu、Jun Zhao、Kang Liu</li>
 <li>来源/分类：arXiv，AI / 复杂规则推理 agent</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.19698">PDF</a>；代码与数据：<a target="_blank" rel="noopener" href="https://github.com/yuan247/RuleTrek">GitHub</a></li>
-<li>核心问题：当规则分散在多个文件、存在依赖关系并需要交互式检索时，LLM
-agent 能否先找对规则，再正确演绎，最后完成端到端任务？</li>
-<li>方法与基线：RuleTrek 有 240
-个实例，覆盖税务、PostgreSQL、网络安全、软件政策、采购和游戏规则六域；平均规则图有
-9.05 个节点、8.69 条边，深度 2.69。作者把能力拆为规则识别 RI、规则演绎
-RD 和端到端 E2E，在禁网交互工作区中评估 11 个前沿
-LLM，每个设置运行三次。</li>
-<li>关键结果：论文报告最高 RI、RD、E2E 分数分别只有 62.47%、60.43% 和
-55.29%，最低模型的三项为 33.35%、35.26% 和 26.97%。规则节点数从不超过 3
-增到至少 14 时，E2E 从 76.5% 降到 23.6%；规则选择错误占 GPT-6.1-Sol
-失败轨迹的 54.9%。E2E 比 RD 还低 3.79–8.15
-个百分点，说明规则找到后仍有组合与执行损失。</li>
-<li>创新、局限与失败条件：规则图、人工核验、分布式文件和依赖感知子场景比“几条事实+一条规则”的基准更接近复杂工作；但场景由模型辅助生成，评分含
-LLM
-judge，覆盖以英文为主，预定义仓库不能代表真实企业知识库。分数也不能直接解释为部署时的法律、合规或安全能力。</li>
-<li>适合谁读：做 agent
-benchmark、工具检索、规则引擎和可复现评测的人。建议先读第 3–4
-节、轨迹分析、限制和附录。</li>
-<li>证据状态：已核阅摘要与
-PDF；以上为论文报告，代码与数据链接来自论文公开信息。</li>
+<li>核心问题：当规则分散在多个文件、存在依赖关系并需要交互式检索时，LLM agent 能否先找对规则，再正确演绎，最后完成端到端任务？</li>
+<li>方法与基线：RuleTrek 有 240 个实例，覆盖税务、PostgreSQL、网络安全、软件政策、采购和游戏规则六域；平均规则图有 9.05 个节点、8.69 条边，深度 2.69。作者把能力拆为规则识别 RI、规则演绎 RD 和端到端 E2E，在禁网交互工作区中评估 11 个前沿 LLM，每个设置运行三次。</li>
+<li>关键结果：论文报告最高 RI、RD、E2E 分数分别只有 62.47%、60.43% 和 55.29%，最低模型的三项为 33.35%、35.26% 和 26.97%。规则节点数从不超过 3 增到至少 14 时，E2E 从 76.5% 降到 23.6%；规则选择错误占 GPT-6.1-Sol 失败轨迹的 54.9%。E2E 比 RD 还低 3.79–8.15 个百分点，说明规则找到后仍有组合与执行损失。</li>
+<li>创新、局限与失败条件：规则图、人工核验、分布式文件和依赖感知子场景比“几条事实+一条规则”的基准更接近复杂工作；但场景由模型辅助生成，评分含 LLM judge，覆盖以英文为主，预定义仓库不能代表真实企业知识库。分数也不能直接解释为部署时的法律、合规或安全能力。</li>
+<li>适合谁读：做 agent benchmark、工具检索、规则引擎和可复现评测的人。建议先读第 3–4 节、轨迹分析、限制和附录。</li>
+<li>证据状态：已核阅摘要与 PDF；以上为论文报告，代码与数据链接来自论文公开信息。</li>
 </ul>
-<h3 id="causalds-benchmarking-causal-reasoning-in-data-science-agents"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.08093">CausalDS: Benchmarking Causal
-Reasoning in Data-Science Agents</a></h3>
-<ul>
+<h3 id="CausalDS-Benchmarking-Causal-Reasoning-in-Data-Science-Agents"><a href="#CausalDS-Benchmarking-Causal-Reasoning-in-Data-Science-Agents" class="headerlink" title="CausalDS: Benchmarking Causal Reasoning in Data-Science Agents"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.08093">CausalDS: Benchmarking Causal Reasoning in Data-Science Agents</a></h3><ul>
 <li>作者：Andrej Leban、Theo Saarinen、Yuekai Sun</li>
 <li>来源/分类：arXiv，AI / 因果数据科学 agent</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.08093">PDF</a></li>
-<li>核心问题：一个数据科学 agent
-是否能同时处理结构因果模型、带噪观察数据、代码工具、不确定性和“不可识别时应拒答”，而不是只在固定的符号题上给出答案？</li>
-<li>方法与基线：CausalDS 用完全合成但按真实数据分布锚定的 SCM
-场景生成新考试；953 个场景覆盖 Pearl 三层任务、编码/工具使用、区间估计和
-abstention。作者在 realistic exam 与 hard exam 上比较 12 个
-agent，每个设置运行三次，并把图结构、识别、数值估计和工具错误分开。</li>
-<li>关键结果：作者报告现实考试中不同模型的
-CausalDSScore、通过率、数值误差和 token 成本出现明显分离：例如表中 GPT-6
-Astra 的分数为 0.2112、通过率 96.1%，GPT-5.5 的分数为 0.5603、通过率
-81.0%；困难考试中模型间分数和有效答案率也有较大差异。所有模型的图结构 F1
-损失接近 0，但 95% 区间常低覆盖，且对不可识别目标的主动 abstain
-约只覆盖一半；token 消耗相差两个数量级。</li>
-<li>创新、局限与失败条件：可重复生成新试卷、把图结构与测量难度拆开、把拒答作为正确行为，是对污染和固定题库过拟合的有力控制；但场景仍是合成的，真实案例有效性未被证明，judge/agent
-harness、供应商拒答和故事生成质量都会影响结果。它不能直接代表真实数据科学家或生产因果分析的表现。</li>
-<li>适合谁读：做因果推理、数据科学
-agent、合成评测和不确定性量化的人。建议先读场景生成、realistic/hard exam
-结果、区间覆盖和 limitation。</li>
+<li>核心问题：一个数据科学 agent 是否能同时处理结构因果模型、带噪观察数据、代码工具、不确定性和“不可识别时应拒答”，而不是只在固定的符号题上给出答案？</li>
+<li>方法与基线：CausalDS 用完全合成但按真实数据分布锚定的 SCM 场景生成新考试；953 个场景覆盖 Pearl 三层任务、编码/工具使用、区间估计和 abstention。作者在 realistic exam 与 hard exam 上比较 12 个 agent，每个设置运行三次，并把图结构、识别、数值估计和工具错误分开。</li>
+<li>关键结果：作者报告现实考试中不同模型的 CausalDSScore、通过率、数值误差和 token 成本出现明显分离：例如表中 GPT-6 Astra 的分数为 0.2112、通过率 96.1%，GPT-5.5 的分数为 0.5603、通过率 81.0%；困难考试中模型间分数和有效答案率也有较大差异。所有模型的图结构 F1 损失接近 0，但 95% 区间常低覆盖，且对不可识别目标的主动 abstain 约只覆盖一半；token 消耗相差两个数量级。</li>
+<li>创新、局限与失败条件：可重复生成新试卷、把图结构与测量难度拆开、把拒答作为正确行为，是对污染和固定题库过拟合的有力控制；但场景仍是合成的，真实案例有效性未被证明，judge/agent harness、供应商拒答和故事生成质量都会影响结果。它不能直接代表真实数据科学家或生产因果分析的表现。</li>
+<li>适合谁读：做因果推理、数据科学 agent、合成评测和不确定性量化的人。建议先读场景生成、realistic/hard exam 结果、区间覆盖和 limitation。</li>
 <li>证据状态：已核阅摘要与 PDF；以上为论文报告，尚未独立复核。</li>
 </ul>
-<h3 id="tabforge-a-tabular-foundation-model-for-generative-modelling"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.09424">TabFORGE: A Tabular Foundation
-Model for Generative Modelling</a></h3>
-<ul>
-<li>作者：Xiangjian Jiang、Mingxuan Liu、Nikola Simidjievski、Tassilo
-Klein、Mateja Jamnik</li>
+<h3 id="TabFORGE-A-Tabular-Foundation-Model-for-Generative-Modelling"><a href="#TabFORGE-A-Tabular-Foundation-Model-for-Generative-Modelling" class="headerlink" title="TabFORGE: A Tabular Foundation Model for Generative Modelling"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.09424">TabFORGE: A Tabular Foundation Model for Generative Modelling</a></h3><ul>
+<li>作者：Xiangjian Jiang、Mingxuan Liu、Nikola Simidjievski、Tassilo Klein、Mateja Jamnik</li>
 <li>来源/分类：arXiv，AI / 表格数据生成</li>
-<li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.09424">PDF</a>；代码：<a target="_blank" rel="noopener" href="https://github.com/SilenceX12138/TabFORGE">GitHub</a>；模型：<a target="_blank" rel="noopener" href="https://huggingface.co/XiangjianJiang/TabFORGE">Hugging
-Face</a></li>
+<li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.09424">PDF</a>；代码：<a target="_blank" rel="noopener" href="https://github.com/SilenceX12138/TabFORGE">GitHub</a>；模型：<a target="_blank" rel="noopener" href="https://huggingface.co/XiangjianJiang/TabFORGE">Hugging Face</a></li>
 <li>核心问题：表格基础模型能否学习可迁移的特征依赖结构，在未见过的数据集上生成既保留全局结构、又能支持下游模型的合成数据？</li>
-<li>方法与基线：TabFORGE 冻结结构感知的特征编码器，用 score-based
-diffusion Transformer 建模潜变量，再训练与去噪潜表示对齐的解码器。作者在
-45 个真实数据集上与 22 类方法比较，采用重复划分和独立 holdout，并排除 43
-个预训练数据集。</li>
-<li>关键结果：论文报告全局结构保真度从 TabICL 的 0.41 提高到
-0.64，最高的数据集专用 TabSyn 为 0.57；局部机器学习效用从 TabEBM 的 0.72
-提高到 0.83。TabFORGE 在未见数据集上拟合耗时约为 TabSyn 的
-9.71%，生成耗时约为 TabEBM 上下文时间的 1.66%；作者也观察到 SMOTE
-的局部效用高但更靠近潜在过拟合区。</li>
-<li>创新、局限与失败条件：把可迁移表征、扩散建模和解码分布偏移拆开，是比单纯逐数据集调参更清晰的基础模型路线；但作者明确说结构保真度只是经验代理，不能证明显式因果图、干预或反事实机制被学到。45
-个数据集的 OOD
-覆盖、预训练语料审计、算力规模和指标选择仍限制结论，未见饱和曲线也不等于模型已高效。</li>
-<li>适合谁读：做合成数据、表格基础模型、隐私/数据增强和结构评测的人。建议先读架构、主结果、消融、效率和
-limitation。</li>
-<li>证据状态：已核阅摘要与
-PDF；以上为论文报告，代码与模型链接来自论文公开信息。</li>
+<li>方法与基线：TabFORGE 冻结结构感知的特征编码器，用 score-based diffusion Transformer 建模潜变量，再训练与去噪潜表示对齐的解码器。作者在 45 个真实数据集上与 22 类方法比较，采用重复划分和独立 holdout，并排除 43 个预训练数据集。</li>
+<li>关键结果：论文报告全局结构保真度从 TabICL 的 0.41 提高到 0.64，最高的数据集专用 TabSyn 为 0.57；局部机器学习效用从 TabEBM 的 0.72 提高到 0.83。TabFORGE 在未见数据集上拟合耗时约为 TabSyn 的 9.71%，生成耗时约为 TabEBM 上下文时间的 1.66%；作者也观察到 SMOTE 的局部效用高但更靠近潜在过拟合区。</li>
+<li>创新、局限与失败条件：把可迁移表征、扩散建模和解码分布偏移拆开，是比单纯逐数据集调参更清晰的基础模型路线；但作者明确说结构保真度只是经验代理，不能证明显式因果图、干预或反事实机制被学到。45 个数据集的 OOD 覆盖、预训练语料审计、算力规模和指标选择仍限制结论，未见饱和曲线也不等于模型已高效。</li>
+<li>适合谁读：做合成数据、表格基础模型、隐私/数据增强和结构评测的人。建议先读架构、主结果、消融、效率和 limitation。</li>
+<li>证据状态：已核阅摘要与 PDF；以上为论文报告，代码与模型链接来自论文公开信息。</li>
 </ul>
-<h2 id="ai-论文">AI 论文</h2>
-<h3 id="towards-a-data-centric-understanding-of-spatial-reasoning-in-multimodal-large-language-models"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19108">Towards a Data-Centric
-Understanding of Spatial Reasoning in Multimodal Large Language
-Models</a></h3>
-<ul>
-<li>作者：Mahdieh Mallahnezhad、Masoud Jafaripour、Mohamadali
-Tofigh、Sheila Schoepp、Osmar R. Zaiane</li>
+<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><h3 id="Towards-a-Data-Centric-Understanding-of-Spatial-Reasoning-in-Multimodal-Large-Language-Models"><a href="#Towards-a-Data-Centric-Understanding-of-Spatial-Reasoning-in-Multimodal-Large-Language-Models" class="headerlink" title="Towards a Data-Centric Understanding of Spatial Reasoning in Multimodal Large Language Models"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19108">Towards a Data-Centric Understanding of Spatial Reasoning in Multimodal Large Language Models</a></h3><ul>
+<li>作者：Mahdieh Mallahnezhad、Masoud Jafaripour、Mohamadali Tofigh、Sheila Schoepp、Osmar R. Zaiane</li>
 <li>来源/分类：arXiv，AI / 多模态空间推理综述</li>
-<li>简介：论文综述 MLLM
-空间推理后训练的数据设计、构造与评测，归纳规则/模板、LLM
-提示、程序生成和人在回路四类标注构造方式，并指出评分、容差和 benchmark
-差异很大。价值是把“数据如何产生”放到能力分析中心；这是综述，摘要没有独立的新实验，也未给统一的公平算力比较。</li>
+<li>简介：论文综述 MLLM 空间推理后训练的数据设计、构造与评测，归纳规则/模板、LLM 提示、程序生成和人在回路四类标注构造方式，并指出评分、容差和 benchmark 差异很大。价值是把“数据如何产生”放到能力分析中心；这是综述，摘要没有独立的新实验，也未给统一的公平算力比较。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19108">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.19108">PDF</a></li>
 </ul>
-<h3 id="quanteval-a-benchmark-for-financial-quantitative-tasks-in-large-language-models-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.08689">QuantEval: A Benchmark for
-Financial Quantitative Tasks in Large Language Models</a></h3>
-<ul>
-<li>作者：Zhaolu Kang、Junhao Gong、Wenqing Hu、Yingjie He、Kehan
-Jiang、Leqi Zheng、Shuo Yin、Zhicheng Fang、Chunlei Meng、Eric Hanchen
-Jiang、Yunfei Feng、Yitong Leng、Junfan Zhu、Xiaoyou Chen、Xi
-Yang、Richeng Xuan</li>
+<h3 id="QuantEval-A-Benchmark-for-Financial-Quantitative-Tasks-in-Large-Language-Models-1"><a href="#QuantEval-A-Benchmark-for-Financial-Quantitative-Tasks-in-Large-Language-Models-1" class="headerlink" title="QuantEval: A Benchmark for Financial Quantitative Tasks in Large Language Models"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.08689">QuantEval: A Benchmark for Financial Quantitative Tasks in Large Language Models</a></h3><ul>
+<li>作者：Zhaolu Kang、Junhao Gong、Wenqing Hu、Yingjie He、Kehan Jiang、Leqi Zheng、Shuo Yin、Zhicheng Fang、Chunlei Meng、Eric Hanchen Jiang、Yunfei Feng、Yitong Leng、Junfan Zhu、Xiaoyou Chen、Xi Yang、Richeng Xuan</li>
 <li>来源/分类：arXiv，AI / 金融量化模型评测</li>
-<li>简介：1,575 个实例把金融 LLM
-评测从事实问答扩展到数学推理和可执行策略编码；论文报告 13
-个模型与专家基线存在明显差距，重点结果和证据边界见上方“重点关注”。固定
-CTA 回测与 60 个编码样本仍限制外推。</li>
+<li>简介：1,575 个实例把金融 LLM 评测从事实问答扩展到数学推理和可执行策略编码；论文报告 13 个模型与专家基线存在明显差距，重点结果和证据边界见上方“重点关注”。固定 CTA 回测与 60 个编码样本仍限制外推。</li>
 <li>证据状态：已核阅摘要与 PDF；论文报告，非独立验证。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.08689">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.08689">PDF</a></li>
 </ul>
-<h3 id="scaling-multilingual-safety-and-reasoning-evaluation-through-reasoning-guided-translation-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20221">Scaling Multilingual Safety and
-Reasoning Evaluation through Reasoning-Guided Translation</a></h3>
-<ul>
+<h3 id="Scaling-Multilingual-Safety-and-Reasoning-Evaluation-through-Reasoning-Guided-Translation-1"><a href="#Scaling-Multilingual-Safety-and-Reasoning-Evaluation-through-Reasoning-Guided-Translation-1" class="headerlink" title="Scaling Multilingual Safety and Reasoning Evaluation through Reasoning-Guided Translation"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20221">Scaling Multilingual Safety and Reasoning Evaluation through Reasoning-Guided Translation</a></h3><ul>
 <li>作者：Zahraa Al Sahili、Ioannis Patras、Matthew Purver</li>
 <li>来源/分类：arXiv，AI / 多语言安全与推理评测</li>
-<li>简介：论文把翻译配置选择、修复、语义筛查和下游安全/推理测试串成流程，在
-11
-种语言上报告覆盖率与明显的语言依赖差异；重点数字和翻译质量限制见上方“重点关注”。这说明跨语言评测的测量误差本身必须被报告。</li>
+<li>简介：论文把翻译配置选择、修复、语义筛查和下游安全/推理测试串成流程，在 11 种语言上报告覆盖率与明显的语言依赖差异；重点数字和翻译质量限制见上方“重点关注”。这说明跨语言评测的测量误差本身必须被报告。</li>
 <li>证据状态：已核阅摘要与 PDF；论文报告，非独立验证。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20221">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.20221">PDF</a></li>
 </ul>
-<h3 id="beyond-benchmark-accuracy-a-diagnostic-test-for-llm-chemical-prediction-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19906">Beyond Benchmark Accuracy: A
-Diagnostic Test for LLM Chemical Prediction</a></h3>
-<ul>
-<li>作者：Yanyi Su、Yu Zeng、Hongshuai Wang、Chenyan Wang、Zhifeng
-Gao、Xiaohui Yang</li>
+<h3 id="Beyond-Benchmark-Accuracy-A-Diagnostic-Test-for-LLM-Chemical-Prediction-1"><a href="#Beyond-Benchmark-Accuracy-A-Diagnostic-Test-for-LLM-Chemical-Prediction-1" class="headerlink" title="Beyond Benchmark Accuracy: A Diagnostic Test for LLM Chemical Prediction"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19906">Beyond Benchmark Accuracy: A Diagnostic Test for LLM Chemical Prediction</a></h3><ul>
+<li>作者：Yanyi Su、Yu Zeng、Hongshuai Wang、Chenyan Wang、Zhifeng Gao、Xiaohui Yang</li>
 <li>来源/分类：arXiv，AI / 科学推理与化学预测</li>
 <li>简介：身份盲诊断用来源实体和结构编辑替代目标名称，发现模型输出会随来源标签系统移动；常规高分因此不能直接当作可靠结构—性质推理证据。任务规模和模型范围较小，详细结果与证据限制见重点关注。</li>
 <li>证据状态：已核阅摘要与 PDF；论文报告，非独立验证。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19906">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.19906">PDF</a></li>
 </ul>
-<h3 id="ruletrek-benchmarking-agentic-rule-reasoning-in-complex-scenarios-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19698">RuleTrek: Benchmarking Agentic
-Rule Reasoning in Complex Scenarios</a></h3>
-<ul>
-<li>作者：Chenhao Yuan、Bohan Yu、Yinhao Xu、Chao Yin、Chenxi
-Zhou、Zhaoxuan Wang、Shuwen Xu、Shaoping Huang、Haolin Ren、Jiaxiang
-Liu、Yao Xu、Jun Zhao、Kang Liu</li>
+<h3 id="RuleTrek-Benchmarking-Agentic-Rule-Reasoning-in-Complex-Scenarios-1"><a href="#RuleTrek-Benchmarking-Agentic-Rule-Reasoning-in-Complex-Scenarios-1" class="headerlink" title="RuleTrek: Benchmarking Agentic Rule Reasoning in Complex Scenarios"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19698">RuleTrek: Benchmarking Agentic Rule Reasoning in Complex Scenarios</a></h3><ul>
+<li>作者：Chenhao Yuan、Bohan Yu、Yinhao Xu、Chao Yin、Chenxi Zhou、Zhaoxuan Wang、Shuwen Xu、Shaoping Huang、Haolin Ren、Jiaxiang Liu、Yao Xu、Jun Zhao、Kang Liu</li>
 <li>来源/分类：arXiv，AI / 复杂规则推理 agent</li>
-<li>简介：RuleTrek
-用规则图、分散文件和交互工作区测试识别、演绎与端到端推理，论文报告 E2E
-最高 55.29%，且复杂度上升时显著下降。模型生成场景与 LLM judge
-是主要证据限制。</li>
+<li>简介：RuleTrek 用规则图、分散文件和交互工作区测试识别、演绎与端到端推理，论文报告 E2E 最高 55.29%，且复杂度上升时显著下降。模型生成场景与 LLM judge 是主要证据限制。</li>
 <li>证据状态：已核阅摘要与 PDF；论文报告，非独立验证。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19698">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.19698">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/yuan247/RuleTrek">代码与数据</a></li>
 </ul>
-<h3 id="debonedit-depth-driven-conditional-bridge-diffusion-transformers-for-bone-suppression-in-chest-x-ray-images"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19466">DeBoneDiT: Depth-Driven
-Conditional Bridge Diffusion Transformers for Bone Suppression in Chest
-X-Ray Images</a></h3>
-<ul>
-<li>作者：Yifei Sun、Fenglei Fan、Junhao Jia、Wenming Deng、Hongxia
-Xu、Changmiao Wang、Ruiquan Ge</li>
+<h3 id="DeBoneDiT-Depth-Driven-Conditional-Bridge-Diffusion-Transformers-for-Bone-Suppression-in-Chest-X-Ray-Images"><a href="#DeBoneDiT-Depth-Driven-Conditional-Bridge-Diffusion-Transformers-for-Bone-Suppression-in-Chest-X-Ray-Images" class="headerlink" title="DeBoneDiT: Depth-Driven Conditional Bridge Diffusion Transformers for Bone Suppression in Chest X-Ray Images"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19466">DeBoneDiT: Depth-Driven Conditional Bridge Diffusion Transformers for Bone Suppression in Chest X-Ray Images</a></h3><ul>
+<li>作者：Yifei Sun、Fenglei Fan、Junhao Jia、Wenming Deng、Hongxia Xu、Changmiao Wang、Ruiquan Ge</li>
 <li>来源/分类：arXiv，AI / 医学影像生成</li>
-<li>简介：DeBoneDiT 用深度特征损失的结构感知 tokenizer 和
-source-conditioned Brownian bridge diffusion 做胸片骨抑制，并发布 741 对
-CXR/DES 软组织图像的
-SZCH-X-Rays。摘要称其在骨抑制和下游评估上优于基线且计算开销更低，但没有给出完整数字、临床外部验证、数据偏差审计或部署成本。</li>
+<li>简介：DeBoneDiT 用深度特征损失的结构感知 tokenizer 和 source-conditioned Brownian bridge diffusion 做胸片骨抑制，并发布 741 对 CXR/DES 软组织图像的 SZCH-X-Rays。摘要称其在骨抑制和下游评估上优于基线且计算开销更低，但没有给出完整数字、临床外部验证、数据偏差审计或部署成本。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19466">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.19466">PDF</a></li>
 </ul>
-<h3 id="causalds-benchmarking-causal-reasoning-in-data-science-agents-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.08093">CausalDS: Benchmarking Causal
-Reasoning in Data-Science Agents</a></h3>
-<ul>
+<h3 id="CausalDS-Benchmarking-Causal-Reasoning-in-Data-Science-Agents-1"><a href="#CausalDS-Benchmarking-Causal-Reasoning-in-Data-Science-Agents-1" class="headerlink" title="CausalDS: Benchmarking Causal Reasoning in Data-Science Agents"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.08093">CausalDS: Benchmarking Causal Reasoning in Data-Science Agents</a></h3><ul>
 <li>作者：Andrej Leban、Theo Saarinen、Yuekai Sun</li>
 <li>来源/分类：arXiv，AI / 因果数据科学 agent</li>
-<li>简介：CausalDS 用可重复生成的合成 SCM
-场景覆盖因果识别、数据科学代码、区间和
-abstention，论文报告图结构、数值识别与区间可靠性之间并不等价。合成场景与
-agent harness 限制真实外部有效性，详见重点关注。</li>
+<li>简介：CausalDS 用可重复生成的合成 SCM 场景覆盖因果识别、数据科学代码、区间和 abstention，论文报告图结构、数值识别与区间可靠性之间并不等价。合成场景与 agent harness 限制真实外部有效性，详见重点关注。</li>
 <li>证据状态：已核阅摘要与 PDF；论文报告，非独立验证。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.08093">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.08093">PDF</a></li>
 </ul>
-<h3 id="tabforge-a-tabular-foundation-model-for-generative-modelling-1"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.09424">TabFORGE: A Tabular Foundation
-Model for Generative Modelling</a></h3>
-<ul>
-<li>作者：Xiangjian Jiang、Mingxuan Liu、Nikola Simidjievski、Tassilo
-Klein、Mateja Jamnik</li>
+<h3 id="TabFORGE-A-Tabular-Foundation-Model-for-Generative-Modelling-1"><a href="#TabFORGE-A-Tabular-Foundation-Model-for-Generative-Modelling-1" class="headerlink" title="TabFORGE: A Tabular Foundation Model for Generative Modelling"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.09424">TabFORGE: A Tabular Foundation Model for Generative Modelling</a></h3><ul>
+<li>作者：Xiangjian Jiang、Mingxuan Liu、Nikola Simidjievski、Tassilo Klein、Mateja Jamnik</li>
 <li>来源/分类：arXiv，AI / 表格数据生成</li>
-<li>简介：TabFORGE
-用结构感知编码器、潜变量扩散和去噪对齐解码器生成表格数据；作者在 45
-个数据集上报告结构保真度和局部效用改善，但经验指标不是因果机制证明，算力与
-OOD 覆盖仍是限制。</li>
+<li>简介：TabFORGE 用结构感知编码器、潜变量扩散和去噪对齐解码器生成表格数据；作者在 45 个数据集上报告结构保真度和局部效用改善，但经验指标不是因果机制证明，算力与 OOD 覆盖仍是限制。</li>
 <li>证据状态：已核阅摘要与 PDF；论文报告，非独立验证。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.09424">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.09424">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/SilenceX12138/TabFORGE">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/XiangjianJiang/TabFORGE">模型</a></li>
 </ul>
-<h3 id="memetrace-a-multimodal-llm-based-agent-for-safety-aware-meme-provenance-analysis"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19267">MemeTrace: A Multimodal
-LLM-Based Agent for Safety-Aware Meme Provenance Analysis</a></h3>
-<ul>
+<h3 id="MemeTrace-A-Multimodal-LLM-Based-Agent-for-Safety-Aware-Meme-Provenance-Analysis"><a href="#MemeTrace-A-Multimodal-LLM-Based-Agent-for-Safety-Aware-Meme-Provenance-Analysis" class="headerlink" title="MemeTrace: A Multimodal LLM-Based Agent for Safety-Aware Meme Provenance Analysis"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19267">MemeTrace: A Multimodal LLM-Based Agent for Safety-Aware Meme Provenance Analysis</a></h3><ul>
 <li>作者：Bo Shao、Yihan Ma、Yiting Qu、Michael Backes、Yang Zhang</li>
 <li>来源/分类：arXiv，AI / 多模态内容安全</li>
-<li>简介：MemeTrace 不只判断单张图片安全与否，而是追踪 meme
-来源、传播、文化符号和潜在风险；在 100 个真实 meme 上，摘要称其优于 VLM
-基线并对视觉扰动保持稳健。摘要没有提供各类误差、数据构造、训练污染或跨事件外推结果，因此不能把“优于”解释成平台级审核可靠性。</li>
+<li>简介：MemeTrace 不只判断单张图片安全与否，而是追踪 meme 来源、传播、文化符号和潜在风险；在 100 个真实 meme 上，摘要称其优于 VLM 基线并对视觉扰动保持稳健。摘要没有提供各类误差、数据构造、训练污染或跨事件外推结果，因此不能把“优于”解释成平台级审核可靠性。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.19267">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.19267">PDF</a></li>
 </ul>
-<h3 id="why-static-skill-inconsistencies-do-not-equate-to-runtime-risks-a-behavioral-analysis-of-llm-agent-execution"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.18927">Why Static Skill Inconsistencies
-Do Not Equate to Runtime Risks: A Behavioral Analysis of LLM Agent
-Execution</a></h3>
-<ul>
-<li>作者：Fengrui Fan、Huahao Wang、Jingyi Fang、Yutao Hu、Yueming
-Wu、Deqing Zou</li>
+<h3 id="Why-Static-Skill-Inconsistencies-Do-Not-Equate-to-Runtime-Risks-A-Behavioral-Analysis-of-LLM-Agent-Execution"><a href="#Why-Static-Skill-Inconsistencies-Do-Not-Equate-to-Runtime-Risks-A-Behavioral-Analysis-of-LLM-Agent-Execution" class="headerlink" title="Why Static Skill Inconsistencies Do Not Equate to Runtime Risks: A Behavioral Analysis of LLM Agent Execution"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.18927">Why Static Skill Inconsistencies Do Not Equate to Runtime Risks: A Behavioral Analysis of LLM Agent Execution</a></h3><ul>
+<li>作者：Fengrui Fan、Huahao Wang、Jingyi Fang、Yutao Hu、Yueming Wu、Deqing Zou</li>
 <li>来源/分类：arXiv，AI / agent 工具安全与可复现性</li>
-<li>简介：论文审计 575 个 skill、人工验证 1,182 个契约不一致，并在 49
-个可执行任务、3 个模型和 441 条配对轨迹上比较无 skill、原始 skill 与修复
-skill。它把静态缺陷量和实际行为影响分开，是很有用的研究问题；摘要没有给出缺陷类型到成功率的完整数字，也不能外推到所有
-agent 框架。</li>
+<li>简介：论文审计 575 个 skill、人工验证 1,182 个契约不一致，并在 49 个可执行任务、3 个模型和 441 条配对轨迹上比较无 skill、原始 skill 与修复 skill。它把静态缺陷量和实际行为影响分开，是很有用的研究问题；摘要没有给出缺陷类型到成功率的完整数字，也不能外推到所有 agent 框架。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.18927">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.18927">PDF</a></li>
 </ul>
-<h3 id="p3d-bench-benchmarking-mllms-for-parametric-3d-generation-and-structural-reasoning"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.11152">P3D-Bench: Benchmarking MLLMs
-for Parametric 3D Generation and Structural Reasoning</a></h3>
-<ul>
-<li>作者：Yikang Yang、Zhanpeng Hu、Youtian Lin、Mengqi Zhou、Jingxi
-Xu、Feihu Zhang、Jiaheng Liu、Yao Yao</li>
+<h3 id="P3D-Bench-Benchmarking-MLLMs-for-Parametric-3D-Generation-and-Structural-Reasoning"><a href="#P3D-Bench-Benchmarking-MLLMs-for-Parametric-3D-Generation-and-Structural-Reasoning" class="headerlink" title="P3D-Bench: Benchmarking MLLMs for Parametric 3D Generation and Structural Reasoning"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.11152">P3D-Bench: Benchmarking MLLMs for Parametric 3D Generation and Structural Reasoning</a></h3><ul>
+<li>作者：Yikang Yang、Zhanpeng Hu、Youtian Lin、Mengqi Zhou、Jingxi Xu、Feihu Zhang、Jiaheng Liu、Yao Yao</li>
 <li>来源/分类：arXiv，AI / 参数化 3D 生成</li>
-<li>简介：P3D-Bench 评测文本到 3D、图像到 3D 和装配任务，数据含 400
-个文本、400 个图像案例和 203
-个装配标注；摘要报告模型能恢复整体形状，却常不能恢复精确参数几何、零件数量和装配关系。评测规模、程序执行环境和模型提示公平性仍需看全文，不能把可运行代码等同于真实可制造性。</li>
+<li>简介：P3D-Bench 评测文本到 3D、图像到 3D 和装配任务，数据含 400 个文本、400 个图像案例和 203 个装配标注；摘要报告模型能恢复整体形状，却常不能恢复精确参数几何、零件数量和装配关系。评测规模、程序执行环境和模型提示公平性仍需看全文，不能把可运行代码等同于真实可制造性。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.11152">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.11152">PDF</a></li>
 </ul>
-<h3 id="genstate-ai-state-aware-dataset-for-text-to-video-retrieval-on-ai-generated-videos"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.14426">GenState-AI: State-Aware Dataset
-for Text-to-Video Retrieval on AI-Generated Videos</a></h3>
-<ul>
-<li>作者：Minghan Li、Tongna Chen、Tianrui Lv、Yishuai Zhang、Suchao
-An、Guodong Zhou</li>
+<h3 id="GenState-AI-State-Aware-Dataset-for-Text-to-Video-Retrieval-on-AI-Generated-Videos"><a href="#GenState-AI-State-Aware-Dataset-for-Text-to-Video-Retrieval-on-AI-Generated-Videos" class="headerlink" title="GenState-AI: State-Aware Dataset for Text-to-Video Retrieval on AI-Generated Videos"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.14426">GenState-AI: State-Aware Dataset for Text-to-Video Retrieval on AI-Generated Videos</a></h3><ul>
+<li>作者：Minghan Li、Tongna Chen、Tianrui Lv、Yishuai Zhang、Suchao An、Guodong Zhou</li>
 <li>来源/分类：arXiv，AI / 视频检索与时序状态</li>
-<li>简介：GenState-AI 含 956 个 AI 视频和 195
-个经核验的状态变化查询，以冲突的时序结果和语义替换构造 hard
-negatives。摘要称 Qwen3-VL 的宏平均 <a href="mailto:R@1" class="email">R@1</a> 和 triplet consistency
-最好，但强检索不总能带来正确的 hard-negative 排序，Manipulation
-子集仍弱；尚无真实视频或跨生成器外部验证。</li>
+<li>简介：GenState-AI 含 956 个 AI 视频和 195 个经核验的状态变化查询，以冲突的时序结果和语义替换构造 hard negatives。摘要称 Qwen3-VL 的宏平均 R@1 和 triplet consistency 最好，但强检索不总能带来正确的 hard-negative 排序，Manipulation 子集仍弱；尚无真实视频或跨生成器外部验证。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.14426">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.14426">PDF</a></li>
 </ul>
-<h3 id="measuring-epistemic-humility-in-multimodal-large-language-models"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2509.09658">Measuring Epistemic Humility in
-Multimodal Large Language Models</a></h3>
-<ul>
+<h3 id="Measuring-Epistemic-Humility-in-Multimodal-Large-Language-Models"><a href="#Measuring-Epistemic-Humility-in-Multimodal-Large-Language-Models" class="headerlink" title="Measuring Epistemic Humility in Multimodal Large Language Models"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2509.09658">Measuring Epistemic Humility in Multimodal Large Language Models</a></h3><ul>
 <li>作者：Bingkui Tong、Jiaer Xia、Sifeng Shang、Kaiyang Zhou</li>
 <li>来源/分类：arXiv，AI / 多模态幻觉与拒答</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2509.09658">PDF</a>；代码与数据：<a target="_blank" rel="noopener" href="https://github.com/maifoundations/HumbleBench">GitHub</a></li>
-<li>简介：HumbleBench 在 22,831
-道带“以上皆非”选项的问题中测量模型是否承认图像不支持任何答案，并评估 27
-个 MLLM。摘要称最强模型在 NOTA
-正确时只有约一半能选择它，人类明显更可靠；谨慎提示只提高 NOTA
-选择，不提高识别能力。数据由场景图和 GPT-4-Turbo
-生成后人工核验，跨图像分布与多语言稳健性仍未证明。</li>
+<li>简介：HumbleBench 在 22,831 道带“以上皆非”选项的问题中测量模型是否承认图像不支持任何答案，并评估 27 个 MLLM。摘要称最强模型在 NOTA 正确时只有约一半能选择它，人类明显更可靠；谨慎提示只提高 NOTA 选择，不提高识别能力。数据由场景图和 GPT-4-Turbo 生成后人工核验，跨图像分布与多语言稳健性仍未证明。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2509.09658">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2509.09658">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/maifoundations/HumbleBench">代码与数据</a></li>
 </ul>
-<h3 id="physga-a-physics-space-grounded-agentic-framework-for-generalizable-and-interactive-3d-composition"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20560">PhySGA: A Physics-Space Grounded
-Agentic Framework for Generalizable and Interactive 3D
-Composition</a></h3>
-<ul>
-<li>作者：Weichen Lyu、Chong Xia、Mingyu Dong、Long Xu、Shengjun
-Zhang、Yueqi Duan</li>
+<h3 id="PhySGA-A-Physics-Space-Grounded-Agentic-Framework-for-Generalizable-and-Interactive-3D-Composition"><a href="#PhySGA-A-Physics-Space-Grounded-Agentic-Framework-for-Generalizable-and-Interactive-3D-Composition" class="headerlink" title="PhySGA: A Physics-Space Grounded Agentic Framework for Generalizable and Interactive 3D Composition"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20560">PhySGA: A Physics-Space Grounded Agentic Framework for Generalizable and Interactive 3D Composition</a></h3><ul>
+<li>作者：Weichen Lyu、Chong Xia、Mingyu Dong、Long Xu、Shengjun Zhang、Yueqi Duan</li>
 <li>来源/分类：arXiv，AI / 物理交互与 3D agent</li>
-<li>简介：PhySGA 在 Isaac Sim 中用 Assembly Agent 做全局规划、Critic
-Agent 做接触动力学诊断和闭环修正，并把试错沉淀为 skill
-library，针对悬挂、沉降和隐藏容纳等需要物理交互的组合任务。摘要称其在关系保真、物理合理性和视觉质量上超过基线，但没有给具体提升、跨模拟器结果、真实机器人迁移或算力成本。</li>
+<li>简介：PhySGA 在 Isaac Sim 中用 Assembly Agent 做全局规划、Critic Agent 做接触动力学诊断和闭环修正，并把试错沉淀为 skill library，针对悬挂、沉降和隐藏容纳等需要物理交互的组合任务。摘要称其在关系保真、物理合理性和视觉质量上超过基线，但没有给具体提升、跨模拟器结果、真实机器人迁移或算力成本。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20560">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.20560">PDF</a></li>
 </ul>
-<h3 id="evalbuilder-can-llms-build-efficient-benchmarks"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20099">EvalBuilder: Can LLMs Build
-Efficient Benchmarks?</a></h3>
-<ul>
-<li>作者：Huaisheng Zhu、Hangfan Zhang、Teng Xiao、Siyuan Xu、Shijie
-Zhou、Zhimeng Guo、Zhengyu Chen、Jingang Wang</li>
+<h3 id="EvalBuilder-Can-LLMs-Build-Efficient-Benchmarks"><a href="#EvalBuilder-Can-LLMs-Build-Efficient-Benchmarks" class="headerlink" title="EvalBuilder: Can LLMs Build Efficient Benchmarks?"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20099">EvalBuilder: Can LLMs Build Efficient Benchmarks?</a></h3><ul>
+<li>作者：Huaisheng Zhu、Hangfan Zhang、Teng Xiao、Siyuan Xu、Shijie Zhou、Zhimeng Guo、Zhengyu Chen、Jingang Wang</li>
 <li>来源/分类：arXiv，AI / 自动化评测构建</li>
-<li>简介：EvalBuilder 把“让 agent 从昂贵参考评测构造低成本代理
-benchmark”形式化为 meta-evaluation，并用
-fidelity、efficiency、robustness 检验排名保持、held-out
-泛化、新响应校准和成本降低。摘要主要介绍框架与迭代环境，没有给出具体模型胜率、成本下降或独立人工验证，因此不能仅凭“能构建”推断评测可靠。</li>
+<li>简介：EvalBuilder 把“让 agent 从昂贵参考评测构造低成本代理 benchmark”形式化为 meta-evaluation，并用 fidelity、efficiency、robustness 检验排名保持、held-out 泛化、新响应校准和成本降低。摘要主要介绍框架与迭代环境，没有给出具体模型胜率、成本下降或独立人工验证，因此不能仅凭“能构建”推断评测可靠。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20099">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.20099">PDF</a></li>
 </ul>
-<h3 id="designing-textual-interfaces-to-enhance-llm-reasoning-on-audio-visual-question-answering"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20085">Designing Textual Interfaces To
-Enhance Llm Reasoning On Audio-Visual Question Answering</a></h3>
-<ul>
+<h3 id="Designing-Textual-Interfaces-To-Enhance-Llm-Reasoning-On-Audio-Visual-Question-Answering"><a href="#Designing-Textual-Interfaces-To-Enhance-Llm-Reasoning-On-Audio-Visual-Question-Answering" class="headerlink" title="Designing Textual Interfaces To Enhance Llm Reasoning On Audio-Visual Question Answering"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20085">Designing Textual Interfaces To Enhance Llm Reasoning On Audio-Visual Question Answering</a></h3><ul>
 <li>作者：Yi Wang、Tianzi Wang、Tong Lei、Dahan Wang、Peter Bell</li>
 <li>来源/分类：arXiv，AI / 音视频问答与 prompt 优化</li>
-<li>简介：论文比较直接 OmniLLM、captioner-reasoner 和由主 agent 编排子
-agent 的三种文字接口，研究 Qwen3-Omni 与 Gemini 上的自动 prompt
-优化。摘要称直接优化的收益依赖模型，后两者更可解释却更难优化；未给出统一的提升数字、算力/延迟、污染审计或跨模型公平比较，代码地址也未在采集结果中给出。</li>
+<li>简介：论文比较直接 OmniLLM、captioner-reasoner 和由主 agent 编排子 agent 的三种文字接口，研究 Qwen3-Omni 与 Gemini 上的自动 prompt 优化。摘要称直接优化的收益依赖模型，后两者更可解释却更难优化；未给出统一的提升数字、算力/延迟、污染审计或跨模型公平比较，代码地址也未在采集结果中给出。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20085">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.20085">PDF</a></li>
 </ul>
-<h3 id="faces-fine-grained-gated-semantic-alignment-for-multimodal-emotional-support-conversation"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20051">FACES: Fine-grained Gated
-Semantic Alignment for Multimodal Emotional Support
-Conversation</a></h3>
-<ul>
-<li>作者：Hang Ren、Peidong Wang、Yichen Gao、Wen Zhang、Jiayang
-Yu、Xiaocui Yang、Shi Feng</li>
+<h3 id="FACES-Fine-grained-Gated-Semantic-Alignment-for-Multimodal-Emotional-Support-Conversation"><a href="#FACES-Fine-grained-Gated-Semantic-Alignment-for-Multimodal-Emotional-Support-Conversation" class="headerlink" title="FACES: Fine-grained Gated Semantic Alignment for Multimodal Emotional Support Conversation"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20051">FACES: Fine-grained Gated Semantic Alignment for Multimodal Emotional Support Conversation</a></h3><ul>
+<li>作者：Hang Ren、Peidong Wang、Yichen Gao、Wen Zhang、Jiayang Yu、Xiaocui Yang、Shi Feng</li>
 <li>来源/分类：arXiv，AI / 多模态情感支持</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.20051">PDF</a>；代码与数据：<a target="_blank" rel="noopener" href="https://github.com/OCT-ARR/arr">GitHub</a></li>
-<li>简介：FACES 用多源奖励、非补偿式门控融合和结构化 CoT anchor
-做细粒度语义对齐与 token 级 credit
-assignment；在控制回答长度下，作者报告 MLLM 评估从 3.61 升到 4.04、相对
-SOTA 的 pairwise win rate 为 80.22%，人工偏好率为
-75.3%，并在三个外部数据集上测试。证据依赖模型评审和人工偏好，不等于真实心理支持效果；摘要未说明长期安全、危机识别、污染和算力成本。</li>
+<li>简介：FACES 用多源奖励、非补偿式门控融合和结构化 CoT anchor 做细粒度语义对齐与 token 级 credit assignment；在控制回答长度下，作者报告 MLLM 评估从 3.61 升到 4.04、相对 SOTA 的 pairwise win rate 为 80.22%，人工偏好率为 75.3%，并在三个外部数据集上测试。证据依赖模型评审和人工偏好，不等于真实心理支持效果；摘要未说明长期安全、危机识别、污染和算力成本。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20051">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.20051">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/OCT-ARR/arr">代码与数据</a></li>
 </ul>
-<h3 id="chemargus-automated-scientific-diagnostics-for-lab-grade-multimodal-chemistry-reasoning-a-frontier-benchmark"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20012">ChemArgus: Automated Scientific
-Diagnostics for Lab-Grade Multimodal Chemistry Reasoning: A Frontier
-Benchmark</a></h3>
-<ul>
-<li>作者：Hanyao Guo、Mo Cui、Zihan Tan、Leixin Sun、Yichun Wang、Yinan
-Shen、Guojun Zhu、Jia Jiang、Erhao Chen、Zui Chen、Wenzhe Gao、Zhihao
-Yu、Qijun Wang、Yetian Zhu、Jiande Chen、Chuhang Pei、Yao Jiang、Yichen
-Fan、Pinhan Wang、Xiaorui Pan、Qianyi Zhu、Yang Liu、Mang Ye、Guancheng
-Wan</li>
+<h3 id="ChemArgus-Automated-Scientific-Diagnostics-for-Lab-Grade-Multimodal-Chemistry-Reasoning-A-Frontier-Benchmark"><a href="#ChemArgus-Automated-Scientific-Diagnostics-for-Lab-Grade-Multimodal-Chemistry-Reasoning-A-Frontier-Benchmark" class="headerlink" title="ChemArgus: Automated Scientific Diagnostics for Lab-Grade Multimodal Chemistry Reasoning: A Frontier Benchmark"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20012">ChemArgus: Automated Scientific Diagnostics for Lab-Grade Multimodal Chemistry Reasoning: A Frontier Benchmark</a></h3><ul>
+<li>作者：Hanyao Guo、Mo Cui、Zihan Tan、Leixin Sun、Yichun Wang、Yinan Shen、Guojun Zhu、Jia Jiang、Erhao Chen、Zui Chen、Wenzhe Gao、Zhihao Yu、Qijun Wang、Yetian Zhu、Jiande Chen、Chuhang Pei、Yao Jiang、Yichen Fan、Pinhan Wang、Xiaorui Pan、Qianyi Zhu、Yang Liu、Mang Ye、Guancheng Wan</li>
 <li>来源/分类：arXiv，AI / 多模态化学推理评测</li>
 <li>直接 PDF：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.20012">PDF</a></li>
-<li>简介：ChemArgus
-用逐小问部分得分、真实图像与受控文字描述配对、共享评分单位的诊断对照，把最终答案拆成整合、传播和局部推理等链路。摘要报告
-GPT-5.6-Sol 整题无辅助为 23.2%，两种顺序诊断为 28.8% 和
-30.4%；这些差距是作者定义的诊断量，不是独立证明某个错误来源。竞赛材料、教材和论文构成的题库仍需做污染审计，且摘要未给完整模型/人类基线和成本。</li>
+<li>简介：ChemArgus 用逐小问部分得分、真实图像与受控文字描述配对、共享评分单位的诊断对照，把最终答案拆成整合、传播和局部推理等链路。摘要报告 GPT-5.6-Sol 整题无辅助为 23.2%，两种顺序诊断为 28.8% 和 30.4%；这些差距是作者定义的诊断量，不是独立证明某个错误来源。竞赛材料、教材和论文构成的题库仍需做污染审计，且摘要未给完整模型/人类基线和成本。</li>
 <li>证据状态：仅依据摘要。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.20012">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.20012">PDF</a></li>
 </ul>

@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注  本期从 18 篇 AI 候选中选出 6 篇重点阅读。重点论文已打开 arXiv 摘要页和公开 PDF；下述数字与结论均是论文报告，未做独立复现。阅读 benchmark 时要区分基准分数与真实能力，并检查比较基线、数据污染、可复现性和算力成本。  1. BRIE：让电子病历检索真正面对“很久以前发生过什么”  论文：A Living Benchmark for Information">
+    <meta name="description" content="重点关注 本期从 18 篇 AI 候选中选出 6 篇重点阅读。重点论文已打开 arXiv 摘要页和公开 PDF；下述数字与结论均是论文报告，未做独立复现。阅读 benchmark 时要区分基准分数与真实能力，并检查比较基线、数据污染、可复现性和算力成本。  1. BRIE：让电子病历检索真正面对“很久以前发生过什么” 论文：A Living Benchmark for Information R">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 10 月 3 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/10/03/daily-ai-papers-2026-10-03/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注  本期从 18 篇 AI 候选中选出 6 篇重点阅读。重点论文已打开 arXiv 摘要页和公开 PDF；下述数字与结论均是论文报告，未做独立复现。阅读 benchmark 时要区分基准分数与真实能力，并检查比较基线、数据污染、可复现性和算力成本。  1. BRIE：让电子病历检索真正面对“很久以前发生过什么”  论文：A Living Benchmark for Information">
+<meta property="og:description" content="重点关注 本期从 18 篇 AI 候选中选出 6 篇重点阅读。重点论文已打开 arXiv 摘要页和公开 PDF；下述数字与结论均是论文报告，未做独立复现。阅读 benchmark 时要区分基准分数与真实能力，并检查比较基线、数据污染、可复现性和算力成本。  1. BRIE：让电子病历检索真正面对“很久以前发生过什么” 论文：A Living Benchmark for Information R">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-06-27/pixiv-rank-011-146299290.jpg">
 <meta property="article:published_time" content="2026-10-03T02:15:00.000Z">
@@ -347,376 +347,148 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<blockquote>
-<p>本期从 18 篇 AI 候选中选出 6 篇重点阅读。重点论文已打开 arXiv
-摘要页和公开 PDF；下述数字与结论均是论文报告，未做独立复现。阅读
-benchmark
-时要区分基准分数与真实能力，并检查比较基线、数据污染、可复现性和算力成本。</p>
+<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><blockquote>
+<p>本期从 18 篇 AI 候选中选出 6 篇重点阅读。重点论文已打开 arXiv 摘要页和公开 PDF；下述数字与结论均是论文报告，未做独立复现。阅读 benchmark 时要区分基准分数与真实能力，并检查比较基线、数据污染、可复现性和算力成本。</p>
 </blockquote>
-<h3 id="brie让电子病历检索真正面对很久以前发生过什么">1.
-BRIE：让电子病历检索真正面对“很久以前发生过什么”</h3>
-<ul>
-<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.30205">A Living Benchmark
-for Information Retrieval from Electronic Health Records</a></li>
+<h3 id="1-BRIE：让电子病历检索真正面对“很久以前发生过什么”"><a href="#1-BRIE：让电子病历检索真正面对“很久以前发生过什么”" class="headerlink" title="1. BRIE：让电子病历检索真正面对“很久以前发生过什么”"></a>1. BRIE：让电子病历检索真正面对“很久以前发生过什么”</h3><ul>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.30205">A Living Benchmark for Information Retrieval from Electronic Health Records</a></li>
 <li>作者/来源：arXiv:2609.30205；Stanford 研究团队</li>
-<li>证据状态：已核阅摘要与
-PDF；结果是作者报告，数据与代码链接以论文发布信息为准。</li>
+<li>证据状态：已核阅摘要与 PDF；结果是作者报告，数据与代码链接以论文发布信息为准。</li>
 </ul>
-<p>这篇论文研究的是长时间跨度电子病历中的事实检索：问题不是模型能否读懂一段文本，而是能否在数千条临床记录中找出回答问题所需的分散证据。作者从
-68 位 Stanford 患者的 63,878 条去标识化临床记录出发，经临床医生审核形成
-508 个问题的 BRIE 基准，其中 276 个单跳、232 个多跳问题；每题中位需要 5
-条支持事实，最早证据距问题可达约 3.8 万 token，另有 63 题超过 18 万
-token。</p>
-<p>作者比较了 Recent、Recent-180K、BM25、Dense 和 Agentic
-等检索/上下文配置，并评估 9 个模型。论文报告的事实召回率约为
-0.28–0.78，最高为 Claude Opus 4.7 的 Recent 配置 0.78；Gemini 2.5 Pro 为
-0.73，GPT-5.4 为 0.72，若干开放权重模型约为 0.74。Dense 检索在处理平均少
-69% 的 token 时达到或超过 Recent，按作者给出的 Claude
-定价估算成本可下降约 86%。多跳与纵向问题明显更难；超过 180K token
-后，Recent 和 Recent-180K 的召回率分别再降约 0.16 和 0.25。随机抽取的 50
-个问题中，模型回答事实的 chart-consistency 为
-97.8%，主要失败形态是遗漏而非幻觉。</p>
-<p>价值在于它把“长上下文”拆成了可测的检索、证据覆盖和成本问题，而不是只报告一个总分。局限也很重要：数据来自单一机构且是去标识化文本，没有完整结构化
-EHR；事实召回不等于临床重要性，更不等于诊断或临床安全性。适合做医疗信息检索、长上下文评测和
-RAG 工程的人阅读。建议顺序：先看第 1–3 节和图 3–6，再看 Online Methods
-1–8，重点核对问题构造、评分口径和成本假设。</p>
-<h3 id="openmtb-audit用支持不支持信息不足约束肿瘤决策模型">2.
-OpenMTB-Audit：用“支持/不支持/信息不足”约束肿瘤决策模型</h3>
-<ul>
-<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01497">OpenMTB-Audit:
-Exposing Over-Refusal and Clinical Expert Perspectives in LLM-Based
-Molecular Tumor Board Safety Evaluation</a></li>
+<p>这篇论文研究的是长时间跨度电子病历中的事实检索：问题不是模型能否读懂一段文本，而是能否在数千条临床记录中找出回答问题所需的分散证据。作者从 68 位 Stanford 患者的 63,878 条去标识化临床记录出发，经临床医生审核形成 508 个问题的 BRIE 基准，其中 276 个单跳、232 个多跳问题；每题中位需要 5 条支持事实，最早证据距问题可达约 3.8 万 token，另有 63 题超过 18 万 token。</p>
+<p>作者比较了 Recent、Recent-180K、BM25、Dense 和 Agentic 等检索/上下文配置，并评估 9 个模型。论文报告的事实召回率约为 0.28–0.78，最高为 Claude Opus 4.7 的 Recent 配置 0.78；Gemini 2.5 Pro 为 0.73，GPT-5.4 为 0.72，若干开放权重模型约为 0.74。Dense 检索在处理平均少 69% 的 token 时达到或超过 Recent，按作者给出的 Claude 定价估算成本可下降约 86%。多跳与纵向问题明显更难；超过 180K token 后，Recent 和 Recent-180K 的召回率分别再降约 0.16 和 0.25。随机抽取的 50 个问题中，模型回答事实的 chart-consistency 为 97.8%，主要失败形态是遗漏而非幻觉。</p>
+<p>价值在于它把“长上下文”拆成了可测的检索、证据覆盖和成本问题，而不是只报告一个总分。局限也很重要：数据来自单一机构且是去标识化文本，没有完整结构化 EHR；事实召回不等于临床重要性，更不等于诊断或临床安全性。适合做医疗信息检索、长上下文评测和 RAG 工程的人阅读。建议顺序：先看第 1–3 节和图 3–6，再看 Online Methods 1–8，重点核对问题构造、评分口径和成本假设。</p>
+<h3 id="2-OpenMTB-Audit：用“支持-不支持-信息不足”约束肿瘤决策模型"><a href="#2-OpenMTB-Audit：用“支持-不支持-信息不足”约束肿瘤决策模型" class="headerlink" title="2. OpenMTB-Audit：用“支持/不支持/信息不足”约束肿瘤决策模型"></a>2. OpenMTB-Audit：用“支持/不支持/信息不足”约束肿瘤决策模型</h3><ul>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01497">OpenMTB-Audit: Exposing Over-Refusal and Clinical Expert Perspectives in LLM-Based Molecular Tumor Board Safety Evaluation</a></li>
 <li>作者/来源：arXiv:2610.01497；项目代码：<a target="_blank" rel="noopener" href="https://github.com/Negiiinx/OpenMTB-Audit">GitHub</a></li>
-<li>证据状态：已核阅摘要与
-PDF；所有性能数字为作者报告，不能视作临床验证。</li>
+<li>证据状态：已核阅摘要与 PDF；所有性能数字为作者报告，不能视作临床验证。</li>
 </ul>
-<p>研究问题是：在分子肿瘤委员会场景，模型为了安全是否会把“有条件地支持”的治疗建议过度拒答，或者在证据不足时错误放行。作者构造了
-500
-个合成非小细胞肺癌病例，覆盖错误药物、错误上下文、信息缺失、虚构变异和不安全自信五类对抗情形，并统一使用
-Supported、Partially Supported、Unsupported、Insufficient Info
-四种标签。基线包括 GPT-4o/mini 的基础提示、简单 RAG、RAG+证据核验和
-checklist；系统还实现了由解析、检索、核验、缺失信息检测、安全分类、拒答和审计报告组成的确定性模块化
-Agent。</p>
-<p>论文报告，普通 LLM 配置对 Partially Supported 样本的过度拒答率为
-83.3%–100%，而 MTB-AuditAgent 为 6.7%，误批准率为 0。Agent 的准确率为
-0.912，macro-F1 为 0.898，缺失信息捕获 F1 为 0.933，安全分为
-92.4；GPT-4o 的 RAG+证据核验准确率为 0.554，checklist 配置为
-0.740。两位肿瘤专家在 50 个分层盲评病例上与基准的一致性分别为 κ=1 和
-κ=0.553，Agent 精炼后为 κ=0.833。作者还报告了 15/16
-个专家分歧与信息充分性或治疗优化有关。</p>
-<p>创新点是把安全评估从“回答得像不像”改成证据状态和审计轨迹，但这也是最需要谨慎的地方：病例是合成的，标签和专家意见本身存在分歧，50
-例并不是独立临床验证，论文没有患者结局或真实部署结果。适合安全评测、医疗
-RAG 和可审计 Agent 设计者。建议先看第 3–5 节和表 1–5，再看第 6–9
-节的专家评估与失败案例。</p>
-<h3 id="flow-guidance生成式天气资料同化是否值得付出算力">3. Flow
-Guidance：生成式天气资料同化是否值得付出算力</h3>
-<ul>
-<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00728">Benchmarking
-Generative Models for Weather Data Assimilation on Real Station
-Observations</a></li>
+<p>研究问题是：在分子肿瘤委员会场景，模型为了安全是否会把“有条件地支持”的治疗建议过度拒答，或者在证据不足时错误放行。作者构造了 500 个合成非小细胞肺癌病例，覆盖错误药物、错误上下文、信息缺失、虚构变异和不安全自信五类对抗情形，并统一使用 Supported、Partially Supported、Unsupported、Insufficient Info 四种标签。基线包括 GPT-4o/mini 的基础提示、简单 RAG、RAG+证据核验和 checklist；系统还实现了由解析、检索、核验、缺失信息检测、安全分类、拒答和审计报告组成的确定性模块化 Agent。</p>
+<p>论文报告，普通 LLM 配置对 Partially Supported 样本的过度拒答率为 83.3%–100%，而 MTB-AuditAgent 为 6.7%，误批准率为 0。Agent 的准确率为 0.912，macro-F1 为 0.898，缺失信息捕获 F1 为 0.933，安全分为 92.4；GPT-4o 的 RAG+证据核验准确率为 0.554，checklist 配置为 0.740。两位肿瘤专家在 50 个分层盲评病例上与基准的一致性分别为 κ=1 和 κ=0.553，Agent 精炼后为 κ=0.833。作者还报告了 15/16 个专家分歧与信息充分性或治疗优化有关。</p>
+<p>创新点是把安全评估从“回答得像不像”改成证据状态和审计轨迹，但这也是最需要谨慎的地方：病例是合成的，标签和专家意见本身存在分歧，50 例并不是独立临床验证，论文没有患者结局或真实部署结果。适合安全评测、医疗 RAG 和可审计 Agent 设计者。建议先看第 3–5 节和表 1–5，再看第 6–9 节的专家评估与失败案例。</p>
+<h3 id="3-Flow-Guidance：生成式天气资料同化是否值得付出算力"><a href="#3-Flow-Guidance：生成式天气资料同化是否值得付出算力" class="headerlink" title="3. Flow Guidance：生成式天气资料同化是否值得付出算力"></a>3. Flow Guidance：生成式天气资料同化是否值得付出算力</h3><ul>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00728">Benchmarking Generative Models for Weather Data Assimilation on Real Station Observations</a></li>
 <li>作者/来源：arXiv:2610.00728；数据集：<a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.18598860">Zenodo</a></li>
 <li>证据状态：已核阅摘要与 PDF；数值是固定实验协议下的作者报告。</li>
 </ul>
-<p>论文在真实 NOAA MADIS 站点观测上比较生成式资料同化与
-3D-Var。数据覆盖美国本土 11,849 个站点、4 个变量和 360
-个快照，分别测试密集站点和只有 1,000 个稀疏站点的情形；基线包括
-3D-Var、Diffusion-SDA、D-Flow 和新提出的 Flow
-Guidance。作者固定架构、数据切分和评价协议，并在生成式方法推理时不提供
-ERA5 背景场，以检验观测稀疏时的恢复能力。</p>
-<p>密集站点实验中，相对 ERA5 的平均留出 RMSE 改善为 3D-Var
-33.3%、Diffusion-SDA 35.4%、Flow Guidance 35.7%、D-Flow 30.5%。一块
-RTX8000 上，Flow Guidance 使用约 3.05GB 显存、耗时 380
-分钟；Diffusion-SDA 为 6.12GB/246 分钟，D-Flow 为 36.01GB/2,563
-分钟，3D-Var 为 0.17GB/4 分钟。稀疏站点中 Flow Guidance 改善
-21.7%，Diffusion 21.5%，3D-Var 13.8%；最佳 Flow Guidance 配置为
-22.4%。论文还报告，停止梯度会使 Flow Guidance 和 D-Flow 降至 7.6% 和
-12.6%，说明完整的梯度引导是关键。</p>
-<p>其价值是把精度、稀疏观测和算力成本放在同一张实验表里；但实验仍局限于
-ERA5 先验、美国本土、四个变量和 RMSE，没有时间一致性、实时业务系统或
-RTMA/URMA/HRRR
-等替代先验。作者表示代码和权重将在接收后发布，当前不应把结果直接外推到业务预报。建议看第
-3–6 节、表 3–4，重点检查稀疏采样协议和“相对 ERA5”的基准定义。</p>
-<h3 id="sonic-o1音视频理解的难点不只在看懂视频">4.
-SONIC-O1：音视频理解的难点不只在“看懂视频”</h3>
-<ul>
-<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.21666">SONIC-O1: A
-Real-World Benchmark for Evaluating Multimodal Large Language Models on
-Audio-Video Understanding</a></li>
-<li>作者/来源：arXiv:2601.21666；项目：<a target="_blank" rel="noopener" href="https://vectorinstitute.github.io/sonic-o1/">SONIC-O1</a>；代码：<a target="_blank" rel="noopener" href="https://github.com/vector-institute/sonic-o1">GitHub</a>；数据集：<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/vector-institute/sonic-o1">Hugging
-Face</a></li>
-<li>证据状态：已核阅摘要与 PDF；排行榜和 LLM-as-a-judge
-结果均为作者报告。</li>
+<p>论文在真实 NOAA MADIS 站点观测上比较生成式资料同化与 3D-Var。数据覆盖美国本土 11,849 个站点、4 个变量和 360 个快照，分别测试密集站点和只有 1,000 个稀疏站点的情形；基线包括 3D-Var、Diffusion-SDA、D-Flow 和新提出的 Flow Guidance。作者固定架构、数据切分和评价协议，并在生成式方法推理时不提供 ERA5 背景场，以检验观测稀疏时的恢复能力。</p>
+<p>密集站点实验中，相对 ERA5 的平均留出 RMSE 改善为 3D-Var 33.3%、Diffusion-SDA 35.4%、Flow Guidance 35.7%、D-Flow 30.5%。一块 RTX8000 上，Flow Guidance 使用约 3.05GB 显存、耗时 380 分钟；Diffusion-SDA 为 6.12GB/246 分钟，D-Flow 为 36.01GB/2,563 分钟，3D-Var 为 0.17GB/4 分钟。稀疏站点中 Flow Guidance 改善 21.7%，Diffusion 21.5%，3D-Var 13.8%；最佳 Flow Guidance 配置为 22.4%。论文还报告，停止梯度会使 Flow Guidance 和 D-Flow 降至 7.6% 和 12.6%，说明完整的梯度引导是关键。</p>
+<p>其价值是把精度、稀疏观测和算力成本放在同一张实验表里；但实验仍局限于 ERA5 先验、美国本土、四个变量和 RMSE，没有时间一致性、实时业务系统或 RTMA/URMA/HRRR 等替代先验。作者表示代码和权重将在接收后发布，当前不应把结果直接外推到业务预报。建议看第 3–6 节、表 3–4，重点检查稀疏采样协议和“相对 ERA5”的基准定义。</p>
+<h3 id="4-SONIC-O1：音视频理解的难点不只在“看懂视频”"><a href="#4-SONIC-O1：音视频理解的难点不只在“看懂视频”" class="headerlink" title="4. SONIC-O1：音视频理解的难点不只在“看懂视频”"></a>4. SONIC-O1：音视频理解的难点不只在“看懂视频”</h3><ul>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.21666">SONIC-O1: A Real-World Benchmark for Evaluating Multimodal Large Language Models on Audio-Video Understanding</a></li>
+<li>作者/来源：arXiv:2601.21666；项目：<a target="_blank" rel="noopener" href="https://vectorinstitute.github.io/sonic-o1/">SONIC-O1</a>；代码：<a target="_blank" rel="noopener" href="https://github.com/vector-institute/sonic-o1">GitHub</a>；数据集：<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/vector-institute/sonic-o1">Hugging Face</a></li>
+<li>证据状态：已核阅摘要与 PDF；排行榜和 LLM-as-a-judge 结果均为作者报告。</li>
 </ul>
-<p>SONIC-O1 关注真实对话场景中的音视频联合理解，覆盖 5 个领域、13
-个场景的 231 段视频，约 60
-小时，包含摘要、选择题和时间定位三项任务。数据经过许可证过滤和人工核验，共
-4,958 条标注：231 条摘要、1,335 道带“证据不足”选项的选择题，以及 3,392
-个时间定位标注。模型比较包括 Gemini 3.0 Pro、Qwen3-Omni 30B、UniMoE 33B
-以及多种 7B–9B 开放模型。</p>
-<p>作者报告 Gemini 3.0 Pro 的选择题准确率为 81.4%，摘要评审分为
-7.07，时间定位 <a href="mailto:R@0.5" class="email">R@0.5</a> 为
-25.4%；最佳开放模型 Qwen3-Omni 的选择题准确率为 65.7%，摘要分为
-5.72，时间定位与闭源最佳模型相差约 22.6
-个百分点。时间定位还出现群体间差异，例如论文报告 Gemini 的 <a href="mailto:R@0.5" class="email">R@0.5</a> 在其标注的 Indigenous 与
-Black 类别间为 40.9% 对
-19.5%。这些类别是可观察的人口标签，可能与主题、时长、音频质量等混杂，不能直接解释为模型对群体的因果偏见。</p>
-<p>数据集把摘要、答案选择和时间定位拆开，能暴露“能说出大意”与“能指出证据发生时间”的差异。局限包括以英语
-CC-BY 视频为主、人口标签部分由模型辅助再人工修正、摘要使用 LLM
-评审，以及尚无真实部署检验。适合多模态评测、音频-视频模型训练和公平性审计的人阅读。建议先看第
-3–4 节、表 3–6，再看附录 A/B 的标注和评审细节。</p>
-<h3 id="ago-ai-quality-gate把-rag-发布决策从单一分数改成证据门控">5. AGO
-AI Quality Gate：把 RAG 发布决策从单一分数改成证据门控</h3>
-<ul>
-<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01218">AGO AI Quality
-Gate: Evidence-First Release Decisions for Retrieval-Augmented
-Generation</a></li>
+<p>SONIC-O1 关注真实对话场景中的音视频联合理解，覆盖 5 个领域、13 个场景的 231 段视频，约 60 小时，包含摘要、选择题和时间定位三项任务。数据经过许可证过滤和人工核验，共 4,958 条标注：231 条摘要、1,335 道带“证据不足”选项的选择题，以及 3,392 个时间定位标注。模型比较包括 Gemini 3.0 Pro、Qwen3-Omni 30B、UniMoE 33B 以及多种 7B–9B 开放模型。</p>
+<p>作者报告 Gemini 3.0 Pro 的选择题准确率为 81.4%，摘要评审分为 7.07，时间定位 R@0.5 为 25.4%；最佳开放模型 Qwen3-Omni 的选择题准确率为 65.7%，摘要分为 5.72，时间定位与闭源最佳模型相差约 22.6 个百分点。时间定位还出现群体间差异，例如论文报告 Gemini 的 R@0.5 在其标注的 Indigenous 与 Black 类别间为 40.9% 对 19.5%。这些类别是可观察的人口标签，可能与主题、时长、音频质量等混杂，不能直接解释为模型对群体的因果偏见。</p>
+<p>数据集把摘要、答案选择和时间定位拆开，能暴露“能说出大意”与“能指出证据发生时间”的差异。局限包括以英语 CC-BY 视频为主、人口标签部分由模型辅助再人工修正、摘要使用 LLM 评审，以及尚无真实部署检验。适合多模态评测、音频-视频模型训练和公平性审计的人阅读。建议先看第 3–4 节、表 3–6，再看附录 A/B 的标注和评审细节。</p>
+<h3 id="5-AGO-AI-Quality-Gate：把-RAG-发布决策从单一分数改成证据门控"><a href="#5-AGO-AI-Quality-Gate：把-RAG-发布决策从单一分数改成证据门控" class="headerlink" title="5. AGO AI Quality Gate：把 RAG 发布决策从单一分数改成证据门控"></a>5. AGO AI Quality Gate：把 RAG 发布决策从单一分数改成证据门控</h3><ul>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01218">AGO AI Quality Gate: Evidence-First Release Decisions for Retrieval-Augmented Generation</a></li>
 <li>作者/来源：arXiv:2610.01218；企业部署框架论文</li>
-<li>证据状态：已核阅摘要与
-PDF；生产部署数据未公开，模拟门控结果不能替代线上安全验证。</li>
+<li>证据状态：已核阅摘要与 PDF；生产部署数据未公开，模拟门控结果不能替代线上安全验证。</li>
 </ul>
-<p>AGO 研究的是企业 RAG
-版本发布时的质量门控：客户数据不能离开本地、每个项目只有很小的分层样本，且观测不完整时，如何判断“提升、人工复核、阻断”或“不可评估”。系统采用四状态决策、确定性检查、本地
-guardrail、LLM judge 和 beta-binomial 后验门控；每个项目再用自己的
-golden set 做元评估。实验使用 RAGBench 的 12 个数据集、100,000 条
-trace，每个数据集分层抽取 100 条测试样本，共 1,200 条，并比较
-gpt-4.1-nano 与 gpt-4o。</p>
-<p>作者报告 gpt-4.1-nano 的 AUROC 为 0.603，gpt-4o 为
-0.783；对应估计成本约为 0.39 美元和 9.42 美元。gpt-4o 在不同数据集的
-AUROC 为 0.620–0.883，MCC 阈值为
-0.040–0.618，说明一个统一阈值并不稳健。合成门控实验中，候选版本退化时，AGO
-的错误 promote 率低于朴素规则；在 N=200
-的模拟里，作者给出的回归、无变化和改善状态平均风险分别约为 0.638、0.249
-和 0.028，但这些是 beta-binomial 模拟结果。</p>
-<p>它的现实价值是承认“评估样本小且标签不完美”，把不确定性和人工复核纳入发布流程。限制同样决定了证据边界：生产数据不可复现，RAGBench
-参考标签由 LLM
-校准而非完整人工真值，门控实验是合成二元场景，作者只验证了 judge
-的一致性而非所有 RAG 质量维度。适合负责 RAG
-发布、质量平台和模型治理的人。建议看第 3–5 节、表 1–4，重点辨析
-AUROC、门控风险和真实业务安全之间的距离。</p>
-<h3 id="agents-are-systems-not-modelsagent-评测中信息比多想几分钟更重要">6.
-Agents Are Systems, Not Models：Agent
-评测中“信息”比“多想几分钟”更重要</h3>
-<ul>
-<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01618">Agents Are Systems,
-Not Models: Rethinking Agentic Evaluation</a></li>
+<p>AGO 研究的是企业 RAG 版本发布时的质量门控：客户数据不能离开本地、每个项目只有很小的分层样本，且观测不完整时，如何判断“提升、人工复核、阻断”或“不可评估”。系统采用四状态决策、确定性检查、本地 guardrail、LLM judge 和 beta-binomial 后验门控；每个项目再用自己的 golden set 做元评估。实验使用 RAGBench 的 12 个数据集、100,000 条 trace，每个数据集分层抽取 100 条测试样本，共 1,200 条，并比较 gpt-4.1-nano 与 gpt-4o。</p>
+<p>作者报告 gpt-4.1-nano 的 AUROC 为 0.603，gpt-4o 为 0.783；对应估计成本约为 0.39 美元和 9.42 美元。gpt-4o 在不同数据集的 AUROC 为 0.620–0.883，MCC 阈值为 0.040–0.618，说明一个统一阈值并不稳健。合成门控实验中，候选版本退化时，AGO 的错误 promote 率低于朴素规则；在 N=200 的模拟里，作者给出的回归、无变化和改善状态平均风险分别约为 0.638、0.249 和 0.028，但这些是 beta-binomial 模拟结果。</p>
+<p>它的现实价值是承认“评估样本小且标签不完美”，把不确定性和人工复核纳入发布流程。限制同样决定了证据边界：生产数据不可复现，RAGBench 参考标签由 LLM 校准而非完整人工真值，门控实验是合成二元场景，作者只验证了 judge 的一致性而非所有 RAG 质量维度。适合负责 RAG 发布、质量平台和模型治理的人。建议看第 3–5 节、表 1–4，重点辨析 AUROC、门控风险和真实业务安全之间的距离。</p>
+<h3 id="6-Agents-Are-Systems-Not-Models：Agent-评测中“信息”比“多想几分钟”更重要"><a href="#6-Agents-Are-Systems-Not-Models：Agent-评测中“信息”比“多想几分钟”更重要" class="headerlink" title="6. Agents Are Systems, Not Models：Agent 评测中“信息”比“多想几分钟”更重要"></a>6. Agents Are Systems, Not Models：Agent 评测中“信息”比“多想几分钟”更重要</h3><ul>
+<li>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01618">Agents Are Systems, Not Models: Rethinking Agentic Evaluation</a></li>
 <li>作者/来源：arXiv:2610.01618；实验轨迹公开情况见论文</li>
-<li>证据状态：已核阅摘要与 PDF；结论来自作者的受控 benchmark，不等于所有
-Agent 场景。</li>
+<li>证据状态：已核阅摘要与 PDF；结论来自作者的受控 benchmark，不等于所有 Agent 场景。</li>
 </ul>
-<p>论文把 Agent
-视为由信息、推理、验证和预算共同构成的系统，研究到底是哪类系统因素推动科学任务表现。作者在红移估计、天文学
-MMLU、启动子预测和 RNA
-折叠四个任务上，测试信息配置、推理配置、验证方式、5/10/20 分钟预算和三种
-Qwen3.5 模型，共 432 个配置、每配置 5 次、8,640 次主实验，并发布 18,240
-条轨迹。</p>
-<p>作者报告，在真正完成的尝试中约 54%
-的分数方差来自运行噪声；信息配置的效应排名第一，三个代表任务的效应量约为
-1.925、1.452 和 1.496，而验证效应排名第五，约为 0.131、0.130 和
-0.077。四个任务完成率分别为 76.3%、95.3%、89.3% 和
-61.7%；提示式验证的提升有限，但 oracle
-工具能在每个任务上提高分数，并使基于参考答案的验证使用量约增至三倍。作者还发现
-4.4% 的行为带有 hill-climbing
-特征，更多预算只有在信息和模型能力足够时才稳定有益。</p>
-<p>论文的创新是把“模型更强”拆成可控系统轴，并将完成率、成本、运行噪声和校准放进同一评估框架。局限是任务仅来自两个科学领域，没有多
-Agent 协作或长期记忆，验证行为也只有一种实现。适合做 Agent
-benchmark、工具设计和评测方法研究的人。建议看第 3–6 节、表 3 和图
-4，重点阅读信息配置的消融与轨迹分析。</p>
-<h2 id="ai-论文">AI 论文</h2>
-<h3 id="llm-based-agentic-reasoning-frameworks-a-survey-from-methods-to-scenariosarxiv2508.17692">1.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.17692">LLM-based Agentic Reasoning
-Frameworks: A Survey from Methods to
-Scenarios</a>（arXiv:2508.17692）</h3>
-<ul>
+<p>论文把 Agent 视为由信息、推理、验证和预算共同构成的系统，研究到底是哪类系统因素推动科学任务表现。作者在红移估计、天文学 MMLU、启动子预测和 RNA 折叠四个任务上，测试信息配置、推理配置、验证方式、5/10/20 分钟预算和三种 Qwen3.5 模型，共 432 个配置、每配置 5 次、8,640 次主实验，并发布 18,240 条轨迹。</p>
+<p>作者报告，在真正完成的尝试中约 54% 的分数方差来自运行噪声；信息配置的效应排名第一，三个代表任务的效应量约为 1.925、1.452 和 1.496，而验证效应排名第五，约为 0.131、0.130 和 0.077。四个任务完成率分别为 76.3%、95.3%、89.3% 和 61.7%；提示式验证的提升有限，但 oracle 工具能在每个任务上提高分数，并使基于参考答案的验证使用量约增至三倍。作者还发现 4.4% 的行为带有 hill-climbing 特征，更多预算只有在信息和模型能力足够时才稳定有益。</p>
+<p>论文的创新是把“模型更强”拆成可控系统轴，并将完成率、成本、运行噪声和校准放进同一评估框架。局限是任务仅来自两个科学领域，没有多 Agent 协作或长期记忆，验证行为也只有一种实现。适合做 Agent benchmark、工具设计和评测方法研究的人。建议看第 3–6 节、表 3 和图 4，重点阅读信息配置的消融与轨迹分析。</p>
+<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><h3 id="1-LLM-based-Agentic-Reasoning-Frameworks-A-Survey-from-Methods-to-Scenarios（arXiv-2508-17692）"><a href="#1-LLM-based-Agentic-Reasoning-Frameworks-A-Survey-from-Methods-to-Scenarios（arXiv-2508-17692）" class="headerlink" title="1. LLM-based Agentic Reasoning Frameworks: A Survey from Methods to Scenarios（arXiv:2508.17692）"></a>1. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.17692">LLM-based Agentic Reasoning Frameworks: A Survey from Methods to Scenarios</a>（arXiv:2508.17692）</h3><ul>
 <li>作者/来源：arXiv:2508.17692；论文类型：综述</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.17692">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2508.17692">PDF</a></li>
 <li>证据状态：仅依据摘要。</li>
 </ul>
-<p>论文试图整理 LLM Agentic reasoning 的方法谱系，从单 Agent
-工具调用、多 Agent
-协作到面向场景的系统进行分类，并讨论规划、记忆、反思、工具使用与评估之间的关系。它的关注价值在于提供术语和方法索引，适合作为进入
-Agent
-推理文献的导航；由于本期未逐节核阅全文，不能据此判断分类是否完整，也不能把综述中的性能说法当成独立验证结果。</p>
-<h3 id="a-living-benchmark-for-information-retrieval-from-electronic-health-recordsarxiv2609.30205">2.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.30205">A Living Benchmark for
-Information Retrieval from Electronic Health
-Records</a>（arXiv:2609.30205）</h3>
-<ul>
+<p>论文试图整理 LLM Agentic reasoning 的方法谱系，从单 Agent 工具调用、多 Agent 协作到面向场景的系统进行分类，并讨论规划、记忆、反思、工具使用与评估之间的关系。它的关注价值在于提供术语和方法索引，适合作为进入 Agent 推理文献的导航；由于本期未逐节核阅全文，不能据此判断分类是否完整，也不能把综述中的性能说法当成独立验证结果。</p>
+<h3 id="2-A-Living-Benchmark-for-Information-Retrieval-from-Electronic-Health-Records（arXiv-2609-30205）"><a href="#2-A-Living-Benchmark-for-Information-Retrieval-from-Electronic-Health-Records（arXiv-2609-30205）" class="headerlink" title="2. A Living Benchmark for Information Retrieval from Electronic Health Records（arXiv:2609.30205）"></a>2. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.30205">A Living Benchmark for Information Retrieval from Electronic Health Records</a>（arXiv:2609.30205）</h3><ul>
 <li>重点论文：详细分析见上文“重点关注”第 1 篇。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.30205">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.30205">PDF</a></li>
 </ul>
-<h3 id="openmtb-audit-exposing-over-refusal-and-clinical-expert-perspectives-in-llm-based-molecular-tumor-board-safety-evaluationarxiv2610.01497">3.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01497">OpenMTB-Audit: Exposing
-Over-Refusal and Clinical Expert Perspectives in LLM-Based Molecular
-Tumor Board Safety Evaluation</a>（arXiv:2610.01497）</h3>
-<ul>
+<h3 id="3-OpenMTB-Audit-Exposing-Over-Refusal-and-Clinical-Expert-Perspectives-in-LLM-Based-Molecular-Tumor-Board-Safety-Evaluation（arXiv-2610-01497）"><a href="#3-OpenMTB-Audit-Exposing-Over-Refusal-and-Clinical-Expert-Perspectives-in-LLM-Based-Molecular-Tumor-Board-Safety-Evaluation（arXiv-2610-01497）" class="headerlink" title="3. OpenMTB-Audit: Exposing Over-Refusal and Clinical Expert Perspectives in LLM-Based Molecular Tumor Board Safety Evaluation（arXiv:2610.01497）"></a>3. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01497">OpenMTB-Audit: Exposing Over-Refusal and Clinical Expert Perspectives in LLM-Based Molecular Tumor Board Safety Evaluation</a>（arXiv:2610.01497）</h3><ul>
 <li>重点论文：详细分析见上文“重点关注”第 2 篇。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01497">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.01497">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Negiiinx/OpenMTB-Audit">代码</a></li>
 </ul>
-<h3 id="video-generation-models-a-survey-of-post-training-and-alignmentarxiv2610.00812">4.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00812">Video Generation Models: A
-Survey of Post-Training and Alignment</a>（arXiv:2610.00812）</h3>
-<ul>
+<h3 id="4-Video-Generation-Models-A-Survey-of-Post-Training-and-Alignment（arXiv-2610-00812）"><a href="#4-Video-Generation-Models-A-Survey-of-Post-Training-and-Alignment（arXiv-2610-00812）" class="headerlink" title="4. Video Generation Models: A Survey of Post-Training and Alignment（arXiv:2610.00812）"></a>4. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00812">Video Generation Models: A Survey of Post-Training and Alignment</a>（arXiv:2610.00812）</h3><ul>
 <li>作者/来源：arXiv:2610.00812；论文类型：综述</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00812">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.00812">PDF</a></li>
 <li>证据状态：仅依据摘要。</li>
 </ul>
 <p>这篇综述把视频生成模型的后训练与对齐方法整理为监督微调、偏好优化、强化学习以及测试时/推理时策略等方向，并讨论数据、奖励建模、时空一致性和安全控制。关注价值在于把“生成质量提升”与对齐目标分开；但摘要没有提供足够的统一实验数字，本期不对其方法优劣做判断。</p>
-<h3 id="benchmarking-generative-models-for-weather-data-assimilation-on-real-station-observationsarxiv2610.00728">5.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00728">Benchmarking Generative
-Models for Weather Data Assimilation on Real Station
-Observations</a>（arXiv:2610.00728）</h3>
-<ul>
+<h3 id="5-Benchmarking-Generative-Models-for-Weather-Data-Assimilation-on-Real-Station-Observations（arXiv-2610-00728）"><a href="#5-Benchmarking-Generative-Models-for-Weather-Data-Assimilation-on-Real-Station-Observations（arXiv-2610-00728）" class="headerlink" title="5. Benchmarking Generative Models for Weather Data Assimilation on Real Station Observations（arXiv:2610.00728）"></a>5. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00728">Benchmarking Generative Models for Weather Data Assimilation on Real Station Observations</a>（arXiv:2610.00728）</h3><ul>
 <li>重点论文：详细分析见上文“重点关注”第 3 篇。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00728">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.00728">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.18598860">数据</a></li>
 </ul>
-<h3 id="decoding-the-disaster-multi-task-geospatial-reasoning-with-vision-language-models-and-crowdsourced-imagery-for-disaster-mappingarxiv2610.00302">6.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00302">Decoding the Disaster:
-Multi-Task Geospatial Reasoning with Vision-Language Models and
-Crowdsourced Imagery for Disaster Mapping</a>（arXiv:2610.00302）</h3>
-<ul>
+<h3 id="6-Decoding-the-Disaster-Multi-Task-Geospatial-Reasoning-with-Vision-Language-Models-and-Crowdsourced-Imagery-for-Disaster-Mapping（arXiv-2610-00302）"><a href="#6-Decoding-the-Disaster-Multi-Task-Geospatial-Reasoning-with-Vision-Language-Models-and-Crowdsourced-Imagery-for-Disaster-Mapping（arXiv-2610-00302）" class="headerlink" title="6. Decoding the Disaster: Multi-Task Geospatial Reasoning with Vision-Language Models and Crowdsourced Imagery for Disaster Mapping（arXiv:2610.00302）"></a>6. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00302">Decoding the Disaster: Multi-Task Geospatial Reasoning with Vision-Language Models and Crowdsourced Imagery for Disaster Mapping</a>（arXiv:2610.00302）</h3><ul>
 <li>作者/来源：arXiv:2610.00302；数据类型：众包图像、街景/遥感图像与地理推理</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00302">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.00302">PDF</a></li>
 <li>证据状态：仅依据摘要。</li>
 </ul>
-<p>论文提出 GRDisaster，多任务地理空间灾害推理基准，使用 26,340
-张图像以及 VGI、SVI、RSI
-三类图像组合，评估地理定位、灾情理解和损害判断。作者报告不同视觉语言模型在多任务联合推理上仍有明显差异，研究价值在于把灾害制图从单一分类扩展到证据组合；摘要未给出足够的基线、数据切分和失败样例，本期不补写具体性能。</p>
-<h3 id="sonic-o1-a-real-world-benchmark-for-evaluating-multimodal-large-language-models-on-audio-video-understandingarxiv2601.21666">7.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.21666">SONIC-O1: A Real-World
-Benchmark for Evaluating Multimodal Large Language Models on Audio-Video
-Understanding</a>（arXiv:2601.21666）</h3>
-<ul>
+<p>论文提出 GRDisaster，多任务地理空间灾害推理基准，使用 26,340 张图像以及 VGI、SVI、RSI 三类图像组合，评估地理定位、灾情理解和损害判断。作者报告不同视觉语言模型在多任务联合推理上仍有明显差异，研究价值在于把灾害制图从单一分类扩展到证据组合；摘要未给出足够的基线、数据切分和失败样例，本期不补写具体性能。</p>
+<h3 id="7-SONIC-O1-A-Real-World-Benchmark-for-Evaluating-Multimodal-Large-Language-Models-on-Audio-Video-Understanding（arXiv-2601-21666）"><a href="#7-SONIC-O1-A-Real-World-Benchmark-for-Evaluating-Multimodal-Large-Language-Models-on-Audio-Video-Understanding（arXiv-2601-21666）" class="headerlink" title="7. SONIC-O1: A Real-World Benchmark for Evaluating Multimodal Large Language Models on Audio-Video Understanding（arXiv:2601.21666）"></a>7. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.21666">SONIC-O1: A Real-World Benchmark for Evaluating Multimodal Large Language Models on Audio-Video Understanding</a>（arXiv:2601.21666）</h3><ul>
 <li>重点论文：详细分析见上文“重点关注”第 4 篇。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.21666">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.21666">PDF</a> · <a target="_blank" rel="noopener" href="https://vectorinstitute.github.io/sonic-o1/">项目</a> · <a target="_blank" rel="noopener" href="https://github.com/vector-institute/sonic-o1">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/vector-institute/sonic-o1">数据集</a></li>
 </ul>
-<h3 id="avsd-scenes-a-dataset-for-audio-visual-description-of-urban-scenesarxiv2610.01861">8.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01861">AVSD-Scenes: A Dataset for
-Audio-Visual Description of Urban Scenes</a>（arXiv:2610.01861）</h3>
-<ul>
+<h3 id="8-AVSD-Scenes-A-Dataset-for-Audio-Visual-Description-of-Urban-Scenes（arXiv-2610-01861）"><a href="#8-AVSD-Scenes-A-Dataset-for-Audio-Visual-Description-of-Urban-Scenes（arXiv-2610-01861）" class="headerlink" title="8. AVSD-Scenes: A Dataset for Audio-Visual Description of Urban Scenes（arXiv:2610.01861）"></a>8. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01861">AVSD-Scenes: A Dataset for Audio-Visual Description of Urban Scenes</a>（arXiv:2610.01861）</h3><ul>
 <li>作者/来源：arXiv:2610.01861；城市音视频描述数据集</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01861">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.01861">PDF</a></li>
 <li>证据状态：仅依据摘要。</li>
 </ul>
-<p>AVSD-Scenes 面向城市场景的音视频描述，构建包含 12,291
-条描述的数据集，并用 Qwen2-Audio、Qwen2.5-VL
-与语言模型评估描述和场景理解。作者报告部分设置下场景分类可达
-94.5%、嵌入相似度可达
-95.4%。它适合关注城市感知和音视频数据构造的人，但摘要没有展示完整的人工基线、切分和污染检查，性能数字应视为作者报告而非独立验证。</p>
-<h3 id="ago-ai-quality-gate-evidence-first-release-decisions-for-retrieval-augmented-generationarxiv2610.01218">9.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01218">AGO AI Quality Gate:
-Evidence-First Release Decisions for Retrieval-Augmented
-Generation</a>（arXiv:2610.01218）</h3>
-<ul>
+<p>AVSD-Scenes 面向城市场景的音视频描述，构建包含 12,291 条描述的数据集，并用 Qwen2-Audio、Qwen2.5-VL 与语言模型评估描述和场景理解。作者报告部分设置下场景分类可达 94.5%、嵌入相似度可达 95.4%。它适合关注城市感知和音视频数据构造的人，但摘要没有展示完整的人工基线、切分和污染检查，性能数字应视为作者报告而非独立验证。</p>
+<h3 id="9-AGO-AI-Quality-Gate-Evidence-First-Release-Decisions-for-Retrieval-Augmented-Generation（arXiv-2610-01218）"><a href="#9-AGO-AI-Quality-Gate-Evidence-First-Release-Decisions-for-Retrieval-Augmented-Generation（arXiv-2610-01218）" class="headerlink" title="9. AGO AI Quality Gate: Evidence-First Release Decisions for Retrieval-Augmented Generation（arXiv:2610.01218）"></a>9. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01218">AGO AI Quality Gate: Evidence-First Release Decisions for Retrieval-Augmented Generation</a>（arXiv:2610.01218）</h3><ul>
 <li>重点论文：详细分析见上文“重点关注”第 5 篇。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01218">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.01218">PDF</a></li>
 </ul>
-<h3 id="ontology-grounded-reasoner-verified-benchmarks-for-evaluating-llm-reasoning-in-scientific-aiarxiv2610.00682">10.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00682">Ontology-Grounded,
-Reasoner-Verified Benchmarks for Evaluating LLM Reasoning in Scientific
-AI</a>（arXiv:2610.00682）</h3>
-<ul>
+<h3 id="10-Ontology-Grounded-Reasoner-Verified-Benchmarks-for-Evaluating-LLM-Reasoning-in-Scientific-AI（arXiv-2610-00682）"><a href="#10-Ontology-Grounded-Reasoner-Verified-Benchmarks-for-Evaluating-LLM-Reasoning-in-Scientific-AI（arXiv-2610-00682）" class="headerlink" title="10. Ontology-Grounded, Reasoner-Verified Benchmarks for Evaluating LLM Reasoning in Scientific AI（arXiv:2610.00682）"></a>10. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00682">Ontology-Grounded, Reasoner-Verified Benchmarks for Evaluating LLM Reasoning in Scientific AI</a>（arXiv:2610.00682）</h3><ul>
 <li>作者/来源：arXiv:2610.00682；科学本体与推理评测</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00682">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.00682">PDF</a></li>
 <li>证据状态：仅依据摘要。</li>
 </ul>
-<p>论文基于 OWL2 本体构造科学推理 benchmark，涵盖 Pizza（112
-个概念）、PMDco（2,491 个概念）和 DOID（15,216
-个概念），并生成多项选择题检验概念关系与逻辑推理。作者报告 6 个 LLM
-的表现约为 41.1%–76.8%，高于 25%
-随机基线。价值在于把推理题与可验证的本体关系绑定；但本期仅依据摘要，尚不能判断题目生成、泄漏筛查和人工核验质量。</p>
-<h3 id="visionq-vlm-as-a-judge-taxonomy-dataset-and-benchmark-for-qualitative-analysis-in-computer-visionarxiv2610.00666">11.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00666">VisionQ: VLM-as-a-Judge
-Taxonomy, Dataset and Benchmark for Qualitative Analysis in Computer
-Vision</a>（arXiv:2610.00666）</h3>
-<ul>
-<li>作者/来源：arXiv:2610.00666；代码：<a target="_blank" rel="noopener" href="https://github.com/ReML-AI/visionq">GitHub</a>；数据：<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/visionq-anon-2026/VisionQ-1k">Hugging
-Face</a></li>
+<p>论文基于 OWL2 本体构造科学推理 benchmark，涵盖 Pizza（112 个概念）、PMDco（2,491 个概念）和 DOID（15,216 个概念），并生成多项选择题检验概念关系与逻辑推理。作者报告 6 个 LLM 的表现约为 41.1%–76.8%，高于 25% 随机基线。价值在于把推理题与可验证的本体关系绑定；但本期仅依据摘要，尚不能判断题目生成、泄漏筛查和人工核验质量。</p>
+<h3 id="11-VisionQ-VLM-as-a-Judge-Taxonomy-Dataset-and-Benchmark-for-Qualitative-Analysis-in-Computer-Vision（arXiv-2610-00666）"><a href="#11-VisionQ-VLM-as-a-Judge-Taxonomy-Dataset-and-Benchmark-for-Qualitative-Analysis-in-Computer-Vision（arXiv-2610-00666）" class="headerlink" title="11. VisionQ: VLM-as-a-Judge Taxonomy, Dataset and Benchmark for Qualitative Analysis in Computer Vision（arXiv:2610.00666）"></a>11. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00666">VisionQ: VLM-as-a-Judge Taxonomy, Dataset and Benchmark for Qualitative Analysis in Computer Vision</a>（arXiv:2610.00666）</h3><ul>
+<li>作者/来源：arXiv:2610.00666；代码：<a target="_blank" rel="noopener" href="https://github.com/ReML-AI/visionq">GitHub</a>；数据：<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/visionq-anon-2026/VisionQ-1k">Hugging Face</a></li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00666">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.00666">PDF</a></li>
 <li>证据状态：仅依据摘要。</li>
 </ul>
-<p>VisionQ 从 1,409 篇论文和 1,800 多张图中整理 3,911 个数据点，研究
-VLM-as-a-Judge 能否对计算机视觉图表做定性分析。作者报告 20 个 VLM judge
-中最佳约 63.1%，随机基线 32.2%，DPO 训练可提升约 2.5
-个百分点。该方向适合评估自动图表分析，但需要进一步核对图表来源、模型训练数据污染、judge
-与人工专家的一致性，本期未打开全文。</p>
-<h3 id="physvista-benchmarking-physical-intelligence-in-vlms-via-a-perception-reasoning-assessment-looparxiv2610.00559">12.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00559">PhysVista: Benchmarking
-Physical Intelligence in VLMs via a Perception-Reasoning-Assessment
-Loop</a>（arXiv:2610.00559）</h3>
-<ul>
+<p>VisionQ 从 1,409 篇论文和 1,800 多张图中整理 3,911 个数据点，研究 VLM-as-a-Judge 能否对计算机视觉图表做定性分析。作者报告 20 个 VLM judge 中最佳约 63.1%，随机基线 32.2%，DPO 训练可提升约 2.5 个百分点。该方向适合评估自动图表分析，但需要进一步核对图表来源、模型训练数据污染、judge 与人工专家的一致性，本期未打开全文。</p>
+<h3 id="12-PhysVista-Benchmarking-Physical-Intelligence-in-VLMs-via-a-Perception-Reasoning-Assessment-Loop（arXiv-2610-00559）"><a href="#12-PhysVista-Benchmarking-Physical-Intelligence-in-VLMs-via-a-Perception-Reasoning-Assessment-Loop（arXiv-2610-00559）" class="headerlink" title="12. PhysVista: Benchmarking Physical Intelligence in VLMs via a Perception-Reasoning-Assessment Loop（arXiv:2610.00559）"></a>12. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00559">PhysVista: Benchmarking Physical Intelligence in VLMs via a Perception-Reasoning-Assessment Loop</a>（arXiv:2610.00559）</h3><ul>
 <li>作者/来源：arXiv:2610.00559；物理智能评测</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00559">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.00559">PDF</a></li>
 <li>证据状态：仅依据摘要。</li>
 </ul>
-<p>PhysVista 用真实视频和 AI 生成视频组成感知—推理—评估闭环，测试 VLM
-对物体、动作、因果和物理可行性的理解。论文的关注价值在于把“看见”与“物理推断”分层；摘要没有给出足够的模型列表、基线和具体分数，因此本期不外推其结论。</p>
-<h3 id="t2spo-trajectory-to-step-policy-optimization-for-agentic-reinforcement-learningarxiv2610.00388">13.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00388">T2SPO: Trajectory-to-Step
-Policy Optimization for Agentic Reinforcement
-Learning</a>（arXiv:2610.00388）</h3>
-<ul>
+<p>PhysVista 用真实视频和 AI 生成视频组成感知—推理—评估闭环，测试 VLM 对物体、动作、因果和物理可行性的理解。论文的关注价值在于把“看见”与“物理推断”分层；摘要没有给出足够的模型列表、基线和具体分数，因此本期不外推其结论。</p>
+<h3 id="13-T2SPO-Trajectory-to-Step-Policy-Optimization-for-Agentic-Reinforcement-Learning（arXiv-2610-00388）"><a href="#13-T2SPO-Trajectory-to-Step-Policy-Optimization-for-Agentic-Reinforcement-Learning（arXiv-2610-00388）" class="headerlink" title="13. T2SPO: Trajectory-to-Step Policy Optimization for Agentic Reinforcement Learning（arXiv:2610.00388）"></a>13. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00388">T2SPO: Trajectory-to-Step Policy Optimization for Agentic Reinforcement Learning</a>（arXiv:2610.00388）</h3><ul>
 <li>作者/来源：arXiv:2610.00388；Agent 强化学习</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.00388">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.00388">PDF</a></li>
 <li>证据状态：仅依据摘要。</li>
 </ul>
-<p>T2SPO 将完整轨迹奖励转成“距离目标还剩多少”的逐步反馈，用于 Agent
-强化学习，并在 ALFWorld 与 WebShop 上比较 GRPO。作者报告在 1.5B 和 7B
-模型上均有改进。它可能缓解长轨迹稀疏奖励，但摘要没有提供完整训练预算、强基线和方差结果，尚不能判断收益是否来自额外监督或调参。</p>
-<h3 id="chillguard-towards-fine-grained-chinese-llm-safety-guardrail-with-scalable-data-construction-and-model-aware-preference-alignmentarxiv2606.15396">14.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.15396">CHILLGuard: Towards
-Fine-Grained Chinese LLM Safety Guardrail with Scalable Data
-Construction and Model-aware Preference
-Alignment</a>（arXiv:2606.15396）</h3>
-<ul>
+<p>T2SPO 将完整轨迹奖励转成“距离目标还剩多少”的逐步反馈，用于 Agent 强化学习，并在 ALFWorld 与 WebShop 上比较 GRPO。作者报告在 1.5B 和 7B 模型上均有改进。它可能缓解长轨迹稀疏奖励，但摘要没有提供完整训练预算、强基线和方差结果，尚不能判断收益是否来自额外监督或调参。</p>
+<h3 id="14-CHILLGuard-Towards-Fine-Grained-Chinese-LLM-Safety-Guardrail-with-Scalable-Data-Construction-and-Model-aware-Preference-Alignment（arXiv-2606-15396）"><a href="#14-CHILLGuard-Towards-Fine-Grained-Chinese-LLM-Safety-Guardrail-with-Scalable-Data-Construction-and-Model-aware-Preference-Alignment（arXiv-2606-15396）" class="headerlink" title="14. CHILLGuard: Towards Fine-Grained Chinese LLM Safety Guardrail with Scalable Data Construction and Model-aware Preference Alignment（arXiv:2606.15396）"></a>14. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.15396">CHILLGuard: Towards Fine-Grained Chinese LLM Safety Guardrail with Scalable Data Construction and Model-aware Preference Alignment</a>（arXiv:2606.15396）</h3><ul>
 <li>作者/来源：arXiv:2606.15396；代码：<a target="_blank" rel="noopener" href="https://github.com/cswbyu/CHILLGuard">GitHub</a></li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.15396">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.15396">PDF</a></li>
 <li>证据状态：仅依据摘要。</li>
 </ul>
-<p>CHILLGuard 面向中文 LLM 安全护栏，构建 5 个宏类、31
-个微类的数据，训练集 405,007 条、测试集 51,745
-条，并引入模型感知的偏好对齐。作者报告相对 Qwen3Guard 的 F1 提升
-15.92%。关注重点应是中文风险分类边界、越狱/污染划分和误拒答代价；摘要不足以确认跨模型、跨域和真实流量上的可复现性。</p>
-<h3 id="medvl-sam2-a-unified-3d-medical-vision-language-model-for-multimodal-reasoning-and-prompt-driven-segmentationarxiv2601.09879">15.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.09879">MedVL-SAM2: A unified 3D
-medical vision-language model for multimodal reasoning and prompt-driven
-segmentation</a>（arXiv:2601.09879）</h3>
-<ul>
+<p>CHILLGuard 面向中文 LLM 安全护栏，构建 5 个宏类、31 个微类的数据，训练集 405,007 条、测试集 51,745 条，并引入模型感知的偏好对齐。作者报告相对 Qwen3Guard 的 F1 提升 15.92%。关注重点应是中文风险分类边界、越狱/污染划分和误拒答代价；摘要不足以确认跨模型、跨域和真实流量上的可复现性。</p>
+<h3 id="15-MedVL-SAM2-A-unified-3D-medical-vision-language-model-for-multimodal-reasoning-and-prompt-driven-segmentation（arXiv-2601-09879）"><a href="#15-MedVL-SAM2-A-unified-3D-medical-vision-language-model-for-multimodal-reasoning-and-prompt-driven-segmentation（arXiv-2601-09879）" class="headerlink" title="15. MedVL-SAM2: A unified 3D medical vision-language model for multimodal reasoning and prompt-driven segmentation（arXiv:2601.09879）"></a>15. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.09879">MedVL-SAM2: A unified 3D medical vision-language model for multimodal reasoning and prompt-driven segmentation</a>（arXiv:2601.09879）</h3><ul>
 <li>作者/来源：arXiv:2601.09879；3D 医疗视觉语言与分割</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.09879">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.09879">PDF</a></li>
 <li>证据状态：仅依据摘要。</li>
 </ul>
-<p>MedVL-SAM2 试图在一个 3D 医疗视觉语言模型中统一 CT
-报告生成、视觉问答和提示驱动分割，并以 SAM2
-风格组件连接多模态推理与像素级输出。作者声称达到若干任务的先进结果，但摘要没有给出完整数据集、切分、基线和数值，不能据此判断其是否公平优于专用模型，也不能视作临床验证。</p>
-<h3 id="kalibench-a-fine-grained-benchmark-for-cybersecurity-tool-use-on-kali-linux-with-runtime-free-verifiable-rewardsarxiv2610.02206">16.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.02206">KaliBench: A Fine-Grained
-Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free
-Verifiable Rewards</a>（arXiv:2610.02206）</h3>
-<ul>
+<p>MedVL-SAM2 试图在一个 3D 医疗视觉语言模型中统一 CT 报告生成、视觉问答和提示驱动分割，并以 SAM2 风格组件连接多模态推理与像素级输出。作者声称达到若干任务的先进结果，但摘要没有给出完整数据集、切分、基线和数值，不能据此判断其是否公平优于专用模型，也不能视作临床验证。</p>
+<h3 id="16-KaliBench-A-Fine-Grained-Benchmark-for-Cybersecurity-Tool-Use-on-Kali-Linux-with-Runtime-Free-Verifiable-Rewards（arXiv-2610-02206）"><a href="#16-KaliBench-A-Fine-Grained-Benchmark-for-Cybersecurity-Tool-Use-on-Kali-Linux-with-Runtime-Free-Verifiable-Rewards（arXiv-2610-02206）" class="headerlink" title="16. KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards（arXiv:2610.02206）"></a>16. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.02206">KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards</a>（arXiv:2610.02206）</h3><ul>
 <li>作者/来源：arXiv:2610.02206；Kali Linux 工具使用评测</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.02206">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.02206">PDF</a></li>
 <li>证据状态：仅依据摘要。</li>
 </ul>
-<p>KaliBench 收集 8,504 个 query-command 对和 1,642 个工具，按 23
-个维度、5
-个阶段评估网络安全工具调用，并设计无需运行环境的可验证奖励。作者报告没有开放模型超过
-42% exact match，经过监督微调和强化学习的 8B 模型接近 685B 模型。该
-benchmark
-对工具选择与参数组合有价值，但摘要不足以核查任务是否覆盖真实攻击链、命令语义是否存在泄漏以及
-exact match 对安全能力是否过窄。</p>
-<h3 id="agents-are-systems-not-models-rethinking-agentic-evaluationarxiv2610.01618">17.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01618">Agents Are Systems, Not
-Models: Rethinking Agentic Evaluation</a>（arXiv:2610.01618）</h3>
-<ul>
+<p>KaliBench 收集 8,504 个 query-command 对和 1,642 个工具，按 23 个维度、5 个阶段评估网络安全工具调用，并设计无需运行环境的可验证奖励。作者报告没有开放模型超过 42% exact match，经过监督微调和强化学习的 8B 模型接近 685B 模型。该 benchmark 对工具选择与参数组合有价值，但摘要不足以核查任务是否覆盖真实攻击链、命令语义是否存在泄漏以及 exact match 对安全能力是否过窄。</p>
+<h3 id="17-Agents-Are-Systems-Not-Models-Rethinking-Agentic-Evaluation（arXiv-2610-01618）"><a href="#17-Agents-Are-Systems-Not-Models-Rethinking-Agentic-Evaluation（arXiv-2610-01618）" class="headerlink" title="17. Agents Are Systems, Not Models: Rethinking Agentic Evaluation（arXiv:2610.01618）"></a>17. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01618">Agents Are Systems, Not Models: Rethinking Agentic Evaluation</a>（arXiv:2610.01618）</h3><ul>
 <li>重点论文：详细分析见上文“重点关注”第 6 篇。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01618">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.01618">PDF</a></li>
 </ul>
-<h3 id="ppo-hrap-proximal-policy-optimization-with-a-hybrid-regime-aware-policy-for-risk-controlled-tradingarxiv2610.01325">18.
-<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01325">PPO-HRAP: Proximal Policy
-Optimization with a Hybrid Regime-Aware Policy for Risk-Controlled
-Trading</a>（arXiv:2610.01325）</h3>
-<ul>
+<h3 id="18-PPO-HRAP-Proximal-Policy-Optimization-with-a-Hybrid-Regime-Aware-Policy-for-Risk-Controlled-Trading（arXiv-2610-01325）"><a href="#18-PPO-HRAP-Proximal-Policy-Optimization-with-a-Hybrid-Regime-Aware-Policy-for-Risk-Controlled-Trading（arXiv-2610-01325）" class="headerlink" title="18. PPO-HRAP: Proximal Policy Optimization with a Hybrid Regime-Aware Policy for Risk-Controlled Trading（arXiv:2610.01325）"></a>18. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01325">PPO-HRAP: Proximal Policy Optimization with a Hybrid Regime-Aware Policy for Risk-Controlled Trading</a>（arXiv:2610.01325）</h3><ul>
 <li>双主题论文：与金融主题交叉；详细方法、回测数字和金融证据边界见金融简报，本节仅保留索引。</li>
 <li>相关链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.01325">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2610.01325">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/chikien07012006/PPO_Regime-Aware-Trading">代码</a></li>
 <li>证据状态：全文已在金融主题中核阅；AI 侧不重复展开。</li>
