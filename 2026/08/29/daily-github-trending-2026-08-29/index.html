@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="GITHUB TRENDING · 2026.08.29   今天的 all-languages 日榜 里，Agent 开始从“会调用工具”走向更清晰的工程边界：GitNexus、Archify 和 Chrome DevTools MCP 分别把代码关系、架构证据和浏览器运行状态暴露给 Agent；TypePHP、Tailcat 与 LiveKit Agents 则把编译、网络和实时交互变成">
+    <meta name="description" content="GITHUB TRENDING · 2026.08.29   今天的 all-languages 日榜 里，Agent 开始从“会调用工具”走向更清晰的工程边界：GitNexus、Archify 和 Chrome DevTools MCP 分别把代码关系、架构证据和浏览器运行状态暴露给 Agent；TypePHP、Tailcat 与 LiveKit Agents 则把编译、网络和实时交互变成可">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2026-08-29 GitHub 热榜简报：Agent 进入可观测、可编译的工程边界">
 <meta property="og:url" content="https://www.polarishaw.top/2026/08/29/daily-github-trending-2026-08-29/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="GITHUB TRENDING · 2026.08.29   今天的 all-languages 日榜 里，Agent 开始从“会调用工具”走向更清晰的工程边界：GitNexus、Archify 和 Chrome DevTools MCP 分别把代码关系、架构证据和浏览器运行状态暴露给 Agent；TypePHP、Tailcat 与 LiveKit Agents 则把编译、网络和实时交互变成">
+<meta property="og:description" content="GITHUB TRENDING · 2026.08.29   今天的 all-languages 日榜 里，Agent 开始从“会调用工具”走向更清晰的工程边界：GitNexus、Archify 和 Chrome DevTools MCP 分别把代码关系、架构证据和浏览器运行状态暴露给 Agent；TypePHP、Tailcat 与 LiveKit Agents 则把编译、网络和实时交互变成可">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-19/pixiv-rank-004-147136554.jpg">
 <meta property="article:published_time" content="2026-08-29T02:00:00.000Z">
@@ -349,59 +349,199 @@
               <div class="markdown-body">
                 
                 <div class="briefing-masthead">
-  <p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.08.29</p>
-  <p>今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">all-languages 日榜</a> 里，Agent 开始从“会调用工具”走向更清晰的工程边界：<a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">GitNexus</a>、<a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a> 和 <a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp">Chrome DevTools MCP</a> 分别把代码关系、架构证据和浏览器运行状态暴露给 Agent；<a target="_blank" rel="noopener" href="https://github.com/swoole/typephp">TypePHP</a>、<a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat">Tailcat</a> 与 <a target="_blank" rel="noopener" href="https://github.com/livekit/agents">LiveKit Agents</a> 则把编译、网络和实时交互变成可复用的基础设施。星标只是注意力快照，不是质量、维护性或安全性的证明。</p>
-  <div class="briefing-masthead__topics"><span>Agent 上下文</span><span>可观测工具</span><span>编译与运行时</span><span>实时系统</span><span>工程学习</span></div>
+<p class="briefing-masthead__eyebrow">
+GITHUB TRENDING · 2026.08.29
+</p>
+<p>
+今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">all-languages
+日榜</a> 里，Agent
+开始从“会调用工具”走向更清晰的工程边界：<a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">GitNexus</a>、<a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a>
+和
+<a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp">Chrome
+DevTools MCP</a> 分别把代码关系、架构证据和浏览器运行状态暴露给
+Agent；<a target="_blank" rel="noopener" href="https://github.com/swoole/typephp">TypePHP</a>、<a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat">Tailcat</a>
+与 <a target="_blank" rel="noopener" href="https://github.com/livekit/agents">LiveKit Agents</a>
+则把编译、网络和实时交互变成可复用的基础设施。星标只是注意力快照，不是质量、维护性或安全性的证明。
+</p>
+<div class="briefing-masthead__topics">
+<span>Agent
+上下文</span><span>可观测工具</span><span>编译与运行时</span><span>实时系统</span><span>工程学习</span>
 </div>
-<h2 id="今日要点"><a class="markdownIt-Anchor" href="#今日要点"></a> 今日要点</h2>
-<p>今天最值得关注的变化，是 Agent 的“中间产物”正在变得可检查：<a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">GitNexus</a> 用代码知识图谱补足依赖、调用链和执行流，<a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a> 用 typed JSON IR 和确定性校验生成架构视图，<a target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines">JetBrains 的 Go 指南</a> 则把版本感知的语言习惯直接交给编码 Agent。它们的共同价值不在于“让模型更会说”，而在于让输出留下可追溯、可复核、能进入工程流程的证据。</p>
-<p>另一条线是把复杂能力往底层推进：<a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp">Chrome DevTools MCP</a> 连接真实浏览器的调试与性能数据，<a target="_blank" rel="noopener" href="https://github.com/swoole/typephp">TypePHP</a> 探索 PHP 到原生二进制的 AOT 路径，<a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat">Tailcat</a> 和 <a target="_blank" rel="noopener" href="https://github.com/livekit/agents">LiveKit Agents</a> 分别处理加密互联和实时多模态会话。真正尝试前，仍要先看许可证、外部服务与数据流、运行时依赖、算力或 API 成本，以及 README 中已经写明的边界。</p>
+</div>
+<h2 id="今日要点">今日要点</h2>
+<p>今天最值得关注的变化，是 Agent
+的“中间产物”正在变得可检查：<a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">GitNexus</a>
+用代码知识图谱补足依赖、调用链和执行流，<a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a>
+用 typed JSON IR
+和确定性校验生成架构视图，<a target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines">JetBrains
+的 Go 指南</a> 则把版本感知的语言习惯直接交给编码
+Agent。它们的共同价值不在于“让模型更会说”，而在于让输出留下可追溯、可复核、能进入工程流程的证据。</p>
+<p>另一条线是把复杂能力往底层推进：<a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp">Chrome
+DevTools MCP</a>
+连接真实浏览器的调试与性能数据，<a target="_blank" rel="noopener" href="https://github.com/swoole/typephp">TypePHP</a>
+探索 PHP 到原生二进制的 AOT
+路径，<a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat">Tailcat</a> 和
+<a target="_blank" rel="noopener" href="https://github.com/livekit/agents">LiveKit Agents</a>
+分别处理加密互联和实时多模态会话。真正尝试前，仍要先看许可证、外部服务与数据流、运行时依赖、算力或
+API 成本，以及 README 中已经写明的边界。</p>
 <span id="more"></span>
-<h2 id="值得尝试"><a class="markdownIt-Anchor" href="#值得尝试"></a> 值得尝试</h2>
-<h3 id="a-hrefhttpsgithubcomtt-a1iarchifytt-a1iarchifya"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomtt-a1iarchifytt-a1iarchifya"></a> <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">tt-a1i/archify</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a> 是面向 Cursor、Claude Code、Codex CLI 和 OpenCode 的 Node.js 渲染与校验系统，让 Agent 先生成 typed JSON IR，再确定性编译成可交互的 HTML/SVG，并覆盖架构、工作流、时序、数据流和生命周期图；这些输入输出边界见 <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify#archify">README</a>。它适合在合并前解释架构变化、研究“源码证据如何变成视图”，但图仍然是对已提取事实的表达，不等于运行时观测，而且当前版本仍标为开发版；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify/blob/main/LICENSE">MIT</a>，主要语言为 JavaScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 27,608 stars、今日新增 4,562 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify/commit/0853a805003514776bef3593ecca091409828902">0853a805</a>（2026-08-28）。</p>
-<h3 id="a-hrefhttpsgithubcomk-dense-aiscientific-agent-skillsk-dense-aiscientific-agent-skillsa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomk-dense-aiscientific-agent-skillsk-dense-aiscientific-agent-skillsa"></a> <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">K-Dense-AI/scientific-agent-skills</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">Scientific Agent Skills</a> 把生物信息、化学、医学、数据分析和科研沟通等流程封装成 163 个 Agent Skills，并连接 100+ 个科学数据库，兼容开放的 Agent Skills 标准；范围、测试入口和支持宿主写在 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills#-whats-included">README</a> 中。它适合科研人员、计算生物学工程师和需要编排领域工具的团队，但技能只是工具与证据链的封装，README 对医疗场景明确限定为研究用途，不能替代领域判断或个体诊疗；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/LICENSE.md">MIT</a>，主要语言为 Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 36,663 stars、今日新增 720 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills/commit/895b4be37ef0ca1cd55c6e628e7ff937ba5a1cf1">895b4be3</a>（2026-08-28）。</p>
-<h3 id="a-hrefhttpsgithubcombilawalsidhugods-eye-viewbilawalsidhugods-eye-viewa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcombilawalsidhugods-eye-viewbilawalsidhugods-eye-viewa"></a> <a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view">bilawalsidhu/gods-eye-view</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view">God’s Eye View</a> 在浏览器中把航班、船舶、卫星、地震和公共摄像头等公开空间信号叠加到可交互的 3D 地球，并提供跟踪、路线、语音控制和传感器样式；数据层与演示入口见 <a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view#-whats-on-the-globe">README</a>。它适合学习实时地理数据融合、空间交互和 OSINT 界面，但需要 Google Maps 等密钥，仓库的 <a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view/blob/main/LICENSE">许可证说明</a> 还特别指出第三方数据和素材不自动继承 MIT，项目结果也不应用于导航、应急或其他安全关键决策；仓库主要语言为 JavaScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 11,141 stars、今日新增 3,829 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view/commit/314a0e1c2ef668cb110674b737e19a44ff6fc1ef">314a0e1c</a>（2026-08-28）。</p>
-<h3 id="a-hrefhttpsgithubcomabhigyanpatwarigitnexusabhigyanpatwarigitnexusa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomabhigyanpatwarigitnexusabhigyanpatwarigitnexusa"></a> <a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">abhigyanpatwari/GitNexus</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">GitNexus</a> 把代码库索引成客户端知识图谱，追踪依赖、调用链、聚类和执行流，再通过 CLI、MCP 和浏览器 UI 供 Agent 查询；<a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus#two-ways-to-use-gitnexus">README</a> 区分了本地 CLI+MCP 与浏览器模式的存储、解析和规模边界。它适合代码库理解、影响面分析和辅助 Agent 避免漏掉依赖，但原生解析、embedding 和大仓库会带来安装、内存与构建成本，且 <a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus/blob/main/LICENSE">PolyForm Noncommercial 1.0.0</a> 对商业使用有明确限制；仓库主要语言为 TypeScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 46,168 stars、今日新增 202 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus/commit/b059ab3541ea68c2ce292955fc367a5de04b39ea">b059ab35</a>（2026-08-28）。</p>
-<h3 id="a-hrefhttpsgithubcomjetbrainsgo-modern-guidelinesjetbrainsgo-modern-guidelinesa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomjetbrainsgo-modern-guidelinesjetbrainsgo-modern-guidelinesa"></a> <a target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines">JetBrains/go-modern-guidelines</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines">Modern Go Guidelines</a> 是给编码 Agent 使用的版本感知型 Go 指南，会读取项目的 <code>go.mod</code>，再按目标版本选择 <code>slices.Contains</code>、<code>cmp.Or</code>、泛型错误匹配等现代语言和标准库写法；具体动机和规则见 <a target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines#motivation">README</a>。它适合维护 Go 代码库、减少训练数据滞后造成的旧写法，但指南只能改善生成起点，不能替代编译、测试和团队风格审查，运行它还需要 Go 工具链，目标环境至少是 Go 1.25；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines/blob/main/LICENSE">Apache-2.0</a>，主要语言为 Go，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 2,616 stars、今日新增 574 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines/commit/40781f167719913666fe2a7dc1c77ea6f256df0a">40781f16</a>（2026-08-19）。</p>
-<h3 id="a-hrefhttpsgithubcomcalesthioopenmontagecalesthioopenmontagea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomcalesthioopenmontagecalesthioopenmontagea"></a> <a target="_blank" rel="noopener" href="https://github.com/calesthio/OpenMontage">calesthio/OpenMontage</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/calesthio/OpenMontage">OpenMontage</a> 把选题、研究、脚本、素材生成或检索、配音、字幕、音频分析和视频渲染组织成 Agent 驱动的生产流水线，README 列出 12 类 pipeline，并使用 Remotion、HyperFrames 和 FFmpeg 等组件；<a target="_blank" rel="noopener" href="https://github.com/calesthio/OpenMontage#quick-start">Quick Start</a> 也给出了零 API Key 的尝试路径。它适合研究创意工作如何被拆成可审查阶段，但完整效果依赖外部模型、素材服务和本地媒体工具，可能产生 API 费用，且 <a target="_blank" rel="noopener" href="https://github.com/calesthio/OpenMontage/blob/main/LICENSE">AGPL-3.0</a> 会影响分发方式；主要语言为 Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 53,355 stars、今日新增 1,144 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/calesthio/OpenMontage/commit/cd9f3c1f03368be87b140af494914b8ee4e3c7a4">cd9f3c1f</a>（2026-08-22）。</p>
-<h3 id="a-hrefhttpsgithubcomabiscreenshot-to-codeabiscreenshot-to-codea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomabiscreenshot-to-codeabiscreenshot-to-codea"></a> <a target="_blank" rel="noopener" href="https://github.com/abi/screenshot-to-code">abi/screenshot-to-code</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/abi/screenshot-to-code">Screenshot to Code</a> 把截图、设计稿、Figma 和屏幕录制转换成 HTML/Tailwind、React、Vue、Bootstrap 或 Ionic 等可运行代码，当前仓库由 React/Vite 前端和 FastAPI 后端组成；支持的技术栈和本地启动要求见 <a target="_blank" rel="noopener" href="https://github.com/abi/screenshot-to-code#-getting-started">README</a>。它适合快速做原型、比较不同模型的界面还原能力，也适合研究视觉输入到代码的评测流程，但本地运行至少需要模型提供商密钥，图片编辑、浏览器预览和生成质量还取决于外部服务与 Chromium 环境；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/abi/screenshot-to-code/blob/main/LICENSE">MIT</a>，主要语言为 Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 75,587 stars、今日新增 326 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/abi/screenshot-to-code/commit/d026163f586dfa8c5c10d28c36edd59a9d3b0e88">d026163f</a>（2026-07-30）。</p>
-<h3 id="a-hrefhttpsgithubcomtailscaletailcattailscaletailcata"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomtailscaletailcattailscaletailcata"></a> <a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat">tailscale/tailcat</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat">Tailcat</a> 把 Tailscale 的数据平面组件重组为类似 netcat 的 CLI 和 Go 库：双方通过带外交换短 token，再用 WireGuard 加密的点对点或 DERP 中继通道传输数据，不需要 Tailscale 控制平面；工作方式和限制见 <a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat#tailcat">README</a>。它适合临时端口转发、跨 NAT 传文件或研究用户态加密网络，但 token 的带外传递本身需要谨慎，默认 DERP 中继有速率限制，浏览器演示在 WebRTC 支持前只能走中继；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat/blob/main/LICENSE">BSD-3-Clause</a>，主要语言为 Go，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 2,748 stars、今日新增 965 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat/commit/53845983d15e5c86fd7ea8dbe0f2eb6b47c7e643">53845983</a>（2026-08-28）。</p>
-<h3 id="a-hrefhttpsgithubcomnationalsecurityagencyghidranationalsecurityagencyghidraa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomnationalsecurityagencyghidranationalsecurityagencyghidraa"></a> <a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra">NationalSecurityAgency/ghidra</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra">Ghidra</a> 是覆盖 Windows、macOS 和 Linux 的软件逆向工程框架，提供反汇编、反编译、图分析、脚本和可扩展插件，并支持交互式与自动化模式；能力和安装路径见 <a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra#ghidra-software-reverse-engineering-framework">README</a>。它适合学习二进制分析、漏洞研究和大型逆向工具的扩展模型，但不同版本存在已知安全漏洞，官方建议先看 <a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra/security/advisories">Security Advisories</a>，构建还需要 JDK、Gradle、Python 和本地编译工具；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra/blob/master/LICENSE">Apache-2.0</a>，主要语言为 Java，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 73,350 stars、今日新增 191 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra/commit/9f377f1cbd79129650a3f88b6ae39041e25774b6">9f377f1c</a>（2026-08-28）。</p>
-<h3 id="a-hrefhttpsgithubcomswooletypephpswooletypephpa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomswooletypephpswooletypephpa"></a> <a target="_blank" rel="noopener" href="https://github.com/swoole/typephp">swoole/typephp</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/swoole/typephp">TypePHP</a> 是一个把 PHP 源码先降级到 C++17、再编译为原生二进制、PHP 扩展或共享库的 AOT 编译器，同时以 PHP 编写并尝试自举；编译阶段和三种构建模式见 <a target="_blank" rel="noopener" href="https://github.com/swoole/typephp#how-it-works">README</a>。它适合研究动态语言的类型信息、编译器管线与运行时互操作，但项目明确处于活跃开发阶段，只支持定义好的 PHP 子集，不能把它当作现有动态 PHP 应用的无缝替代；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/swoole/typephp/blob/master/LICENSE">GPL-3.0</a>，主要语言为 PHP，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 818 stars、今日新增 188 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/swoole/typephp/commit/b493ac79c5c7ff62cdd2ae0b2b17cc6b73c02f7a">b493ac79</a>（2026-08-28）。</p>
-<h3 id="a-hrefhttpsgithubcommarin-communitymarinmarin-communitymarina"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcommarin-communitymarinmarin-communitymarina"></a> <a target="_blank" rel="noopener" href="https://github.com/marin-community/marin">marin-community/marin</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/marin-community/marin">Marin</a> 是面向基础模型研发的开源框架与社区，覆盖数据整理、过滤、Tokenizer、预训练、后训练和评估，并把实验、决策与失败记录作为公开过程的一部分；研究范围和 tiny model 入门入口见 <a target="_blank" rel="noopener" href="https://github.com/marin-community/marin#learning-more--using-marin">README</a>。它适合有分布式训练、数据工程或实验管理背景的研究者拆读，也适合观察研究方法如何成为工程资产，但真实训练需要数据、GPU/TPU、集群调度和较高的实验成本，不是普通应用项目的轻量依赖；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/marin-community/marin/blob/main/LICENSE">Apache-2.0</a>，主要语言为 Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 2,905 stars、今日新增 236 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/marin-community/marin/commit/b352a9e5d49eede33f08e0ab8df1e786425c2db5">b352a9e5</a>（2026-08-28）。</p>
-<h3 id="a-hrefhttpsgithubcomchromedevtoolschrome-devtools-mcpchromedevtoolschrome-devtools-mcpa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomchromedevtoolschrome-devtools-mcpchromedevtoolschrome-devtools-mcpa"></a> <a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp">ChromeDevTools/chrome-devtools-mcp</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp">Chrome DevTools MCP</a> 通过 MCP 服务和 CLI 让编码 Agent 控制、检查真实 Chrome，并调用追踪、网络分析、截图、控制台与性能洞察能力；工具范围和启动配置见 <a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp#key-features">README</a>。它适合浏览器自动化、前端调试和性能回归，把“生成代码”连接到真实运行状态，但 MCP 客户端会看到浏览器实例中的内容，且官方只保证 Google Chrome 和 Chrome for Testing，使用统计默认开启并需按需关闭；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/LICENSE">Apache-2.0</a>，主要语言为 TypeScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 49,979 stars、今日新增 67 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/fd67970881624f231ff84129a1234bb04c762be7">fd679708</a>（2026-08-28）。</p>
-<h3 id="a-hrefhttpsgithubcomrohitg00ai-engineering-from-scratchrohitg00ai-engineering-from-scratcha"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomrohitg00ai-engineering-from-scratchrohitg00ai-engineering-from-scratcha"></a> <a target="_blank" rel="noopener" href="https://github.com/rohitg00/ai-engineering-from-scratch">rohitg00/ai-engineering-from-scratch</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/rohitg00/ai-engineering-from-scratch">AI Engineering from Scratch</a> 把数学、Tokenizer、Attention、训练、LLM 应用、MCP、Agent Loop 和 Skills 组织成 20 个阶段、511 节课，并要求每节课运行代码、保留证据和产出可复用 artefact；课程结构和学习方式见 <a target="_blank" rel="noopener" href="https://github.com/rohitg00/ai-engineering-from-scratch#start-here-choose-what-you-want-to-build">README</a>。它适合希望建立机制直觉而不是只学提示词的工程学习者，但约 329 小时的跨度需要持续投入，英文 README 是规范版本，翻译页面不等于独立的课程实现；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/rohitg00/ai-engineering-from-scratch/blob/main/LICENSE">MIT</a>，主要语言为 Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 50,634 stars、今日新增 703 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/rohitg00/ai-engineering-from-scratch/commit/39ea8a1c6d0b61f071226eff7ede4d4105fed820">39ea8a1c</a>（2026-08-23）。</p>
-<h3 id="a-hrefhttpsgithubcomlivekitagentslivekitagentsa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomlivekitagentslivekitagentsa"></a> <a target="_blank" rel="noopener" href="https://github.com/livekit/agents">livekit/agents</a></h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/livekit/agents">LiveKit Agents</a> 为运行在服务器上的实时可编程参与者提供 Python 框架，组合 STT、LLM、TTS 和实时 API，另含任务调度、WebRTC、电话接入、RPC、MCP 与内置测试能力；<a target="_blank" rel="noopener" href="https://github.com/livekit/agents#features">README</a> 展示了这些可组合边界和最小语音 Agent。它适合构建可对话、可感知的语音或多模态 Agent，也适合研究实时会话中的 turn detection、handoff 和评测，但实际运行需要 LiveKit 凭据、模型/语音服务和稳定的实时网络，成本与延迟要按场景单独验证；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/livekit/agents/blob/main/LICENSE">Apache-2.0</a>，主要语言为 Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 13,347 stars、今日新增 22 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/livekit/agents/commit/cdb37ade6f8e80822e6c5ec4e6de457f2dcaf637">cdb37ade</a>（2026-08-28）。</p>
-<h2 id="快速浏览"><a class="markdownIt-Anchor" href="#快速浏览"></a> 快速浏览</h2>
+<h2 id="值得尝试">值得尝试</h2>
+<h3 id="tt-a1iarchify"><a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">tt-a1i/archify</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify">Archify</a> 是面向
+Cursor、Claude Code、Codex CLI 和 OpenCode 的 Node.js 渲染与校验系统，让
+Agent 先生成 typed JSON IR，再确定性编译成可交互的
+HTML/SVG，并覆盖架构、工作流、时序、数据流和生命周期图；这些输入输出边界见
+<a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify#archify">README</a>。它适合在合并前解释架构变化、研究“源码证据如何变成视图”，但图仍然是对已提取事实的表达，不等于运行时观测，而且当前版本仍标为开发版；仓库采用
+<a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify/blob/main/LICENSE">MIT</a>，主要语言为
+JavaScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计
+27,608 stars、今日新增 4,562 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify/commit/0853a805003514776bef3593ecca091409828902">0853a805</a>（2026-08-28）。</p>
+<h3 id="k-dense-aiscientific-agent-skills"><a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">K-Dense-AI/scientific-agent-skills</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills">Scientific
+Agent Skills</a> 把生物信息、化学、医学、数据分析和科研沟通等流程封装成
+163 个 Agent Skills，并连接 100+ 个科学数据库，兼容开放的 Agent Skills
+标准；范围、测试入口和支持宿主写在 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills#-whats-included">README</a>
+中。它适合科研人员、计算生物学工程师和需要编排领域工具的团队，但技能只是工具与证据链的封装，README
+对医疗场景明确限定为研究用途，不能替代领域判断或个体诊疗；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/LICENSE.md">MIT</a>，主要语言为
+Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计
+36,663 stars、今日新增 720 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills/commit/895b4be37ef0ca1cd55c6e628e7ff937ba5a1cf1">895b4be3</a>（2026-08-28）。</p>
+<h3 id="bilawalsidhugods-eye-view"><a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view">bilawalsidhu/gods-eye-view</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view">God's Eye
+View</a>
+在浏览器中把航班、船舶、卫星、地震和公共摄像头等公开空间信号叠加到可交互的
+3D 地球，并提供跟踪、路线、语音控制和传感器样式；数据层与演示入口见 <a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view#-whats-on-the-globe">README</a>。它适合学习实时地理数据融合、空间交互和
+OSINT 界面，但需要 Google Maps 等密钥，仓库的 <a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view/blob/main/LICENSE">许可证说明</a>
+还特别指出第三方数据和素材不自动继承
+MIT，项目结果也不应用于导航、应急或其他安全关键决策；仓库主要语言为
+JavaScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计
+11,141 stars、今日新增 3,829 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view/commit/314a0e1c2ef668cb110674b737e19a44ff6fc1ef">314a0e1c</a>（2026-08-28）。</p>
+<h3 id="abhigyanpatwarigitnexus"><a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">abhigyanpatwari/GitNexus</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus">GitNexus</a>
+把代码库索引成客户端知识图谱，追踪依赖、调用链、聚类和执行流，再通过
+CLI、MCP 和浏览器 UI 供 Agent 查询；<a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus#two-ways-to-use-gitnexus">README</a>
+区分了本地 CLI+MCP
+与浏览器模式的存储、解析和规模边界。它适合代码库理解、影响面分析和辅助
+Agent 避免漏掉依赖，但原生解析、embedding
+和大仓库会带来安装、内存与构建成本，且 <a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus/blob/main/LICENSE">PolyForm
+Noncommercial 1.0.0</a> 对商业使用有明确限制；仓库主要语言为
+TypeScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计
+46,168 stars、今日新增 202 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus/commit/b059ab3541ea68c2ce292955fc367a5de04b39ea">b059ab35</a>（2026-08-28）。</p>
+<h3 id="jetbrainsgo-modern-guidelines"><a target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines">JetBrains/go-modern-guidelines</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines">Modern Go
+Guidelines</a> 是给编码 Agent 使用的版本感知型 Go 指南，会读取项目的
+<code>go.mod</code>，再按目标版本选择
+<code>slices.Contains</code>、<code>cmp.Or</code>、泛型错误匹配等现代语言和标准库写法；具体动机和规则见
+<a target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines#motivation">README</a>。它适合维护
+Go
+代码库、减少训练数据滞后造成的旧写法，但指南只能改善生成起点，不能替代编译、测试和团队风格审查，运行它还需要
+Go 工具链，目标环境至少是 Go 1.25；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines/blob/main/LICENSE">Apache-2.0</a>，主要语言为
+Go，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计
+2,616 stars、今日新增 574 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines/commit/40781f167719913666fe2a7dc1c77ea6f256df0a">40781f16</a>（2026-08-19）。</p>
+<h3 id="calesthioopenmontage"><a target="_blank" rel="noopener" href="https://github.com/calesthio/OpenMontage">calesthio/OpenMontage</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/calesthio/OpenMontage">OpenMontage</a>
+把选题、研究、脚本、素材生成或检索、配音、字幕、音频分析和视频渲染组织成
+Agent 驱动的生产流水线，README 列出 12 类 pipeline，并使用
+Remotion、HyperFrames 和 FFmpeg 等组件；<a target="_blank" rel="noopener" href="https://github.com/calesthio/OpenMontage#quick-start">Quick
+Start</a> 也给出了零 API Key
+的尝试路径。它适合研究创意工作如何被拆成可审查阶段，但完整效果依赖外部模型、素材服务和本地媒体工具，可能产生
+API 费用，且 <a target="_blank" rel="noopener" href="https://github.com/calesthio/OpenMontage/blob/main/LICENSE">AGPL-3.0</a>
+会影响分发方式；主要语言为 Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计
+53,355 stars、今日新增 1,144 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/calesthio/OpenMontage/commit/cd9f3c1f03368be87b140af494914b8ee4e3c7a4">cd9f3c1f</a>（2026-08-22）。</p>
+<h3 id="abiscreenshot-to-code"><a target="_blank" rel="noopener" href="https://github.com/abi/screenshot-to-code">abi/screenshot-to-code</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/abi/screenshot-to-code">Screenshot to
+Code</a> 把截图、设计稿、Figma 和屏幕录制转换成
+HTML/Tailwind、React、Vue、Bootstrap 或 Ionic 等可运行代码，当前仓库由
+React/Vite 前端和 FastAPI 后端组成；支持的技术栈和本地启动要求见 <a target="_blank" rel="noopener" href="https://github.com/abi/screenshot-to-code#-getting-started">README</a>。它适合快速做原型、比较不同模型的界面还原能力，也适合研究视觉输入到代码的评测流程，但本地运行至少需要模型提供商密钥，图片编辑、浏览器预览和生成质量还取决于外部服务与
+Chromium 环境；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/abi/screenshot-to-code/blob/main/LICENSE">MIT</a>，主要语言为
+Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计
+75,587 stars、今日新增 326 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/abi/screenshot-to-code/commit/d026163f586dfa8c5c10d28c36edd59a9d3b0e88">d026163f</a>（2026-07-30）。</p>
+<h3 id="tailscaletailcat"><a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat">tailscale/tailcat</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat">Tailcat</a> 把
+Tailscale 的数据平面组件重组为类似 netcat 的 CLI 和 Go
+库：双方通过带外交换短 token，再用 WireGuard 加密的点对点或 DERP
+中继通道传输数据，不需要 Tailscale 控制平面；工作方式和限制见 <a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat#tailcat">README</a>。它适合临时端口转发、跨
+NAT 传文件或研究用户态加密网络，但 token 的带外传递本身需要谨慎，默认
+DERP 中继有速率限制，浏览器演示在 WebRTC 支持前只能走中继；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat/blob/main/LICENSE">BSD-3-Clause</a>，主要语言为
+Go，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计
+2,748 stars、今日新增 965 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat/commit/53845983d15e5c86fd7ea8dbe0f2eb6b47c7e643">53845983</a>（2026-08-28）。</p>
+<h3 id="nationalsecurityagencyghidra"><a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra">NationalSecurityAgency/ghidra</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra">Ghidra</a>
+是覆盖 Windows、macOS 和 Linux
+的软件逆向工程框架，提供反汇编、反编译、图分析、脚本和可扩展插件，并支持交互式与自动化模式；能力和安装路径见
+<a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra#ghidra-software-reverse-engineering-framework">README</a>。它适合学习二进制分析、漏洞研究和大型逆向工具的扩展模型，但不同版本存在已知安全漏洞，官方建议先看
+<a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra/security/advisories">Security
+Advisories</a>，构建还需要 JDK、Gradle、Python 和本地编译工具；仓库采用
+<a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra/blob/master/LICENSE">Apache-2.0</a>，主要语言为
+Java，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计
+73,350 stars、今日新增 191 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra/commit/9f377f1cbd79129650a3f88b6ae39041e25774b6">9f377f1c</a>（2026-08-28）。</p>
+<h3 id="swooletypephp"><a target="_blank" rel="noopener" href="https://github.com/swoole/typephp">swoole/typephp</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/swoole/typephp">TypePHP</a> 是一个把 PHP
+源码先降级到 C++17、再编译为原生二进制、PHP 扩展或共享库的 AOT
+编译器，同时以 PHP 编写并尝试自举；编译阶段和三种构建模式见 <a target="_blank" rel="noopener" href="https://github.com/swoole/typephp#how-it-works">README</a>。它适合研究动态语言的类型信息、编译器管线与运行时互操作，但项目明确处于活跃开发阶段，只支持定义好的
+PHP 子集，不能把它当作现有动态 PHP 应用的无缝替代；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/swoole/typephp/blob/master/LICENSE">GPL-3.0</a>，主要语言为
+PHP，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计 818
+stars、今日新增 188 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/swoole/typephp/commit/b493ac79c5c7ff62cdd2ae0b2b17cc6b73c02f7a">b493ac79</a>（2026-08-28）。</p>
+<h3 id="marin-communitymarin"><a target="_blank" rel="noopener" href="https://github.com/marin-community/marin">marin-community/marin</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/marin-community/marin">Marin</a>
+是面向基础模型研发的开源框架与社区，覆盖数据整理、过滤、Tokenizer、预训练、后训练和评估，并把实验、决策与失败记录作为公开过程的一部分；研究范围和
+tiny model 入门入口见 <a target="_blank" rel="noopener" href="https://github.com/marin-community/marin#learning-more--using-marin">README</a>。它适合有分布式训练、数据工程或实验管理背景的研究者拆读，也适合观察研究方法如何成为工程资产，但真实训练需要数据、GPU/TPU、集群调度和较高的实验成本，不是普通应用项目的轻量依赖；仓库采用
+<a target="_blank" rel="noopener" href="https://github.com/marin-community/marin/blob/main/LICENSE">Apache-2.0</a>，主要语言为
+Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计
+2,905 stars、今日新增 236 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/marin-community/marin/commit/b352a9e5d49eede33f08e0ab8df1e786425c2db5">b352a9e5</a>（2026-08-28）。</p>
+<h3 id="chromedevtoolschrome-devtools-mcp"><a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp">ChromeDevTools/chrome-devtools-mcp</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp">Chrome
+DevTools MCP</a> 通过 MCP 服务和 CLI 让编码 Agent 控制、检查真实
+Chrome，并调用追踪、网络分析、截图、控制台与性能洞察能力；工具范围和启动配置见
+<a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp#key-features">README</a>。它适合浏览器自动化、前端调试和性能回归，把“生成代码”连接到真实运行状态，但
+MCP 客户端会看到浏览器实例中的内容，且官方只保证 Google Chrome 和 Chrome
+for Testing，使用统计默认开启并需按需关闭；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/LICENSE">Apache-2.0</a>，主要语言为
+TypeScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计
+49,979 stars、今日新增 67 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/fd67970881624f231ff84129a1234bb04c762be7">fd679708</a>（2026-08-28）。</p>
+<h3 id="rohitg00ai-engineering-from-scratch"><a target="_blank" rel="noopener" href="https://github.com/rohitg00/ai-engineering-from-scratch">rohitg00/ai-engineering-from-scratch</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/rohitg00/ai-engineering-from-scratch">AI
+Engineering from Scratch</a> 把数学、Tokenizer、Attention、训练、LLM
+应用、MCP、Agent Loop 和 Skills 组织成 20 个阶段、511
+节课，并要求每节课运行代码、保留证据和产出可复用
+artefact；课程结构和学习方式见 <a target="_blank" rel="noopener" href="https://github.com/rohitg00/ai-engineering-from-scratch#start-here-choose-what-you-want-to-build">README</a>。它适合希望建立机制直觉而不是只学提示词的工程学习者，但约
+329 小时的跨度需要持续投入，英文 README
+是规范版本，翻译页面不等于独立的课程实现；仓库采用 <a target="_blank" rel="noopener" href="https://github.com/rohitg00/ai-engineering-from-scratch/blob/main/LICENSE">MIT</a>，主要语言为
+Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计
+50,634 stars、今日新增 703 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/rohitg00/ai-engineering-from-scratch/commit/39ea8a1c6d0b61f071226eff7ede4d4105fed820">39ea8a1c</a>（2026-08-23）。</p>
+<h3 id="livekitagents"><a target="_blank" rel="noopener" href="https://github.com/livekit/agents">livekit/agents</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/livekit/agents">LiveKit Agents</a>
+为运行在服务器上的实时可编程参与者提供 Python 框架，组合 STT、LLM、TTS
+和实时 API，另含任务调度、WebRTC、电话接入、RPC、MCP 与内置测试能力；<a target="_blank" rel="noopener" href="https://github.com/livekit/agents#features">README</a>
+展示了这些可组合边界和最小语音
+Agent。它适合构建可对话、可感知的语音或多模态
+Agent，也适合研究实时会话中的 turn detection、handoff
+和评测，但实际运行需要 LiveKit
+凭据、模型/语音服务和稳定的实时网络，成本与延迟要按场景单独验证；仓库采用
+<a target="_blank" rel="noopener" href="https://github.com/livekit/agents/blob/main/LICENSE">Apache-2.0</a>，主要语言为
+Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示总计
+13,347 stars、今日新增 22 stars，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/livekit/agents/commit/cdb37ade6f8e80822e6c5ec4e6de457f2dcaf637">cdb37ade</a>（2026-08-28）。</p>
+<h2 id="快速浏览">快速浏览</h2>
 <div class="briefing-quick-list">
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify"><span class="briefing-quick-item__source">架构事实</span><span class="briefing-quick-item__body"><strong>tt-a1i/archify</strong><small>把 Agent 产出的类型化事实编译成可复核架构图。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills"><span class="briefing-quick-item__source">科研技能</span><span class="briefing-quick-item__body"><strong>K-Dense-AI/scientific-agent-skills</strong><small>把科学数据库和研究流程封装成可编排技能。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view"><span class="briefing-quick-item__source">空间数据</span><span class="briefing-quick-item__body"><strong>bilawalsidhu/gods-eye-view</strong><small>把公开空间信号放进可交互的 3D 地球。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus"><span class="briefing-quick-item__source">代码图谱</span><span class="briefing-quick-item__body"><strong>abhigyanpatwari/GitNexus</strong><small>用知识图谱和 MCP 补足 Agent 的代码上下文。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines"><span class="briefing-quick-item__source">Go 工程</span><span class="briefing-quick-item__body"><strong>JetBrains/go-modern-guidelines</strong><small>让编码 Agent 按项目版本生成现代 Go 写法。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/calesthio/OpenMontage"><span class="briefing-quick-item__source">视频流水线</span><span class="briefing-quick-item__body"><strong>calesthio/OpenMontage</strong><small>把研究、素材、配音、字幕和渲染串成生产流程。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/abi/screenshot-to-code"><span class="briefing-quick-item__source">界面原型</span><span class="briefing-quick-item__body"><strong>abi/screenshot-to-code</strong><small>从截图和录屏生成可运行的前端原型。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat"><span class="briefing-quick-item__source">加密网络</span><span class="briefing-quick-item__body"><strong>tailscale/tailcat</strong><small>用用户态加密通道做无需控制平面的临时互联。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra"><span class="briefing-quick-item__source">逆向工程</span><span class="briefing-quick-item__body"><strong>NationalSecurityAgency/ghidra</strong><small>用成熟的反汇编、反编译和脚本框架研究二进制。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/swoole/typephp"><span class="briefing-quick-item__source">PHP 编译</span><span class="briefing-quick-item__body"><strong>swoole/typephp</strong><small>探索从 PHP 子集到原生二进制的 AOT 路径。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/marin-community/marin"><span class="briefing-quick-item__source">基础模型</span><span class="briefing-quick-item__body"><strong>marin-community/marin</strong><small>公开基础模型训练、评估和实验方法的工程过程。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp"><span class="briefing-quick-item__source">浏览器调试</span><span class="briefing-quick-item__body"><strong>ChromeDevTools/chrome-devtools-mcp</strong><small>让 Agent 直接检查 Chrome 的网络、控制台和性能。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/rohitg00/ai-engineering-from-scratch"><span class="briefing-quick-item__source">AI 学习</span><span class="briefing-quick-item__body"><strong>rohitg00/ai-engineering-from-scratch</strong><small>从模型机制动手学习到 MCP、Skills 与 Agent 工程。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
-  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/livekit/agents"><span class="briefing-quick-item__source">实时语音</span><span class="briefing-quick-item__body"><strong>livekit/agents</strong><small>把语音、模型、调度和 WebRTC 组合成实时 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+<p><a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/tt-a1i/archify"><span class="briefing-quick-item__source">架构事实</span><span class="briefing-quick-item__body"><strong>tt-a1i/archify</strong><small>把
+Agent 产出的类型化事实编译成可复核架构图。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/K-Dense-AI/scientific-agent-skills"><span class="briefing-quick-item__source">科研技能</span><span class="briefing-quick-item__body"><strong>K-Dense-AI/scientific-agent-skills</strong><small>把科学数据库和研究流程封装成可编排技能。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/bilawalsidhu/gods-eye-view"><span class="briefing-quick-item__source">空间数据</span><span class="briefing-quick-item__body"><strong>bilawalsidhu/gods-eye-view</strong><small>把公开空间信号放进可交互的
+3D 地球。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/abhigyanpatwari/GitNexus"><span class="briefing-quick-item__source">代码图谱</span><span class="briefing-quick-item__body"><strong>abhigyanpatwari/GitNexus</strong><small>用知识图谱和
+MCP 补足 Agent 的代码上下文。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/JetBrains/go-modern-guidelines"><span class="briefing-quick-item__source">Go 工程</span><span class="briefing-quick-item__body"><strong>JetBrains/go-modern-guidelines</strong><small>让编码
+Agent 按项目版本生成现代 Go 写法。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/calesthio/OpenMontage"><span class="briefing-quick-item__source">视频流水线</span><span class="briefing-quick-item__body"><strong>calesthio/OpenMontage</strong><small>把研究、素材、配音、字幕和渲染串成生产流程。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/abi/screenshot-to-code"><span class="briefing-quick-item__source">界面原型</span><span class="briefing-quick-item__body"><strong>abi/screenshot-to-code</strong><small>从截图和录屏生成可运行的前端原型。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/tailscale/tailcat"><span class="briefing-quick-item__source">加密网络</span><span class="briefing-quick-item__body"><strong>tailscale/tailcat</strong><small>用用户态加密通道做无需控制平面的临时互联。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra"><span class="briefing-quick-item__source">逆向工程</span><span class="briefing-quick-item__body"><strong>NationalSecurityAgency/ghidra</strong><small>用成熟的反汇编、反编译和脚本框架研究二进制。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/swoole/typephp"><span class="briefing-quick-item__source">PHP 编译</span><span class="briefing-quick-item__body"><strong>swoole/typephp</strong><small>探索从
+PHP 子集到原生二进制的 AOT 路径。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/marin-community/marin"><span class="briefing-quick-item__source">基础模型</span><span class="briefing-quick-item__body"><strong>marin-community/marin</strong><small>公开基础模型训练、评估和实验方法的工程过程。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/ChromeDevTools/chrome-devtools-mcp"><span class="briefing-quick-item__source">浏览器调试</span><span class="briefing-quick-item__body"><strong>ChromeDevTools/chrome-devtools-mcp</strong><small>让
+Agent 直接检查 Chrome 的网络、控制台和性能。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/rohitg00/ai-engineering-from-scratch"><span class="briefing-quick-item__source">AI 学习</span><span class="briefing-quick-item__body"><strong>rohitg00/ai-engineering-from-scratch</strong><small>从模型机制动手学习到
+MCP、Skills 与 Agent 工程。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/livekit/agents"><span class="briefing-quick-item__source">实时语音</span><span class="briefing-quick-item__body"><strong>livekit/agents</strong><small>把语音、模型、调度和
+WebRTC 组合成实时 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a></p>
 </div>
 
                 
