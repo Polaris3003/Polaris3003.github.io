@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本期收录 18 篇金融论文，覆盖期权信号、系统性风险、交易预测、信用与行为金融，以及金融 AI。文中回测和预测结果均是论文作者在特定样本、切分与成本假设下报告的证据，不构成投资建议。 重点关注Option-Implied Signals：期权曲面能预测崩盘风险，但信号不是单一“smirk”论文：Option-Implied Signals and Crash Risk: Predictabili">
+    <meta name="description" content="本期收录 18 篇金融论文，覆盖期权信号、系统性风险、交易预测、信用与行为金融，以及金融 AI。文中回测和预测结果均是论文作者在特定样本、切分与成本假设下报告的证据，不构成投资建议。 重点关注 Option-Implied Signals：期权曲面能预测崩盘风险，但信号不是单一“smirk” 论文：Option-Implied Signals and Crash Risk: Predictabi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日金融论文简报｜2026 年 8 月 29 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/08/29/daily-finance-papers-2026-08-29/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="本期收录 18 篇金融论文，覆盖期权信号、系统性风险、交易预测、信用与行为金融，以及金融 AI。文中回测和预测结果均是论文作者在特定样本、切分与成本假设下报告的证据，不构成投资建议。 重点关注Option-Implied Signals：期权曲面能预测崩盘风险，但信号不是单一“smirk”论文：Option-Implied Signals and Crash Risk: Predictabili">
+<meta property="og:description" content="本期收录 18 篇金融论文，覆盖期权信号、系统性风险、交易预测、信用与行为金融，以及金融 AI。文中回测和预测结果均是论文作者在特定样本、切分与成本假设下报告的证据，不构成投资建议。 重点关注 Option-Implied Signals：期权曲面能预测崩盘风险，但信号不是单一“smirk” 论文：Option-Implied Signals and Crash Risk: Predictabi">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-23/pixiv-rank-010-148544157.jpg">
 <meta property="article:published_time" content="2026-08-29T02:15:00.000Z">
@@ -347,70 +347,335 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<p>本期收录 18 篇金融论文，覆盖期权信号、系统性风险、交易预测、信用与行为金融，以及金融 AI。文中回测和预测结果均是论文作者在特定样本、切分与成本假设下报告的证据，不构成投资建议。</p>
-<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="Option-Implied-Signals：期权曲面能预测崩盘风险，但信号不是单一“smirk”"><a href="#Option-Implied-Signals：期权曲面能预测崩盘风险，但信号不是单一“smirk”" class="headerlink" title="Option-Implied Signals：期权曲面能预测崩盘风险，但信号不是单一“smirk”"></a>Option-Implied Signals：期权曲面能预测崩盘风险，但信号不是单一“smirk”</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26115">Option-Implied Signals and Crash Risk: Predictability and Machine-Learning Evidence from U.S. Equity Options</a>（arXiv:2608.26115）<br><strong>作者</strong>：Baichuan Li、Mengxiao Wang<br><strong>来源/分类</strong>：arXiv · q-fin.ST<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文问的是：美国股票期权隐含波动率曲面的哪些横截面信号，与未来收益、实现波动率和崩盘概率有关，这些关系是否能在不同波动 regime 中样本外保留。数据为 OPRA 日终数据，覆盖 2015 年至 2026 年 4 月、2,910 个交易日和 10,026 个标的，过滤后有 12,362,276 个 firm-day 观测。特征包括 IV surface、smirk、IV spread、期限斜率、put-call ratio、Greeks 和流动性；作者用 OLS、Elastic Net、XGBoost，按 expanding window 做 2017–2026 测试，训练只用 [2015, T-2]、验证 T-1、测试 T。另以统一的约 150 万观测子样本做双向固定效应和双重聚类标准误的面板回归。</p>
-<p>作者报告的统计结果并不支持一个简单的 smirk 故事：21 天 smirk 在低波动/高波动/AI 与 mega-cap 阶段的系数分别为 -0.0234（t=-5.5）、-0.0150（t=-4.2）和 -0.0060（t=-1.5）；AI 阶段 63 天系数为 +0.0156（t=2.1），多变量下仅 AI 阶段约 +0.016（t=2.6）显著。IV spread 与 BKM 风格风险中性偏度在各阶段更稳定，部分 t 值超过 4；2015–2017 的高低 smirk 组合差约为 21 天 -0.409%，年化 -4.91%，小于早期文献的 -10.9%。样本外 XGBoost 在 AI/mega-cap 下一月收益报告 R² +1.29%，而 OLS/Elastic Net 约 +0.07%；高波动阶段 XGBoost 为 -7.9、线性模型为 -1.4。对 5 天崩盘事件，XGBoost AUC 为低波动/高波动/AI 的 0.706/0.561/0.665，logit 为 0.670/0.531/0.652；下一月实现波动率的线性 OOS R² 约为 0.231/0.349/0.410。</p>
-<p>创新是把期权横截面、regime 切分和非线性 OOS 预测放在同一框架中，也显示重要性排名随 regime 改变：低波动 top feature 是 vega，高波动更接近合约数，AI 阶段则偏向价外 call IV。证据限制包括没有 CRSP/Compustat 与签名零售流，风险中性偏度只是风险偏好/需求的代理；smirk 用 K/S 区间而非 delta，排除了 0DTE。相关性不能被解释为期权需求导致崩盘，OOS R²/AUC 也不是扣除价差、冲击、保证金和容量后的可交易收益；论文没有实盘验证。适合资产定价、期权和机器学习读者，建议优先读数据筛选、面板识别、expanding-window 协议、表 3/6/7、重要性分析和局限章节。</p>
+<p>本期收录 18
+篇金融论文，覆盖期权信号、系统性风险、交易预测、信用与行为金融，以及金融
+AI。文中回测和预测结果均是论文作者在特定样本、切分与成本假设下报告的证据，不构成投资建议。</p>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="option-implied-signals期权曲面能预测崩盘风险但信号不是单一smirk">Option-Implied
+Signals：期权曲面能预测崩盘风险，但信号不是单一“smirk”</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26115">Option-Implied Signals and Crash
+Risk: Predictability and Machine-Learning Evidence from U.S. Equity
+Options</a>（arXiv:2608.26115）<br>
+<strong>作者</strong>：Baichuan Li、Mengxiao Wang<br>
+<strong>来源/分类</strong>：arXiv · q-fin.ST<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>论文问的是：美国股票期权隐含波动率曲面的哪些横截面信号，与未来收益、实现波动率和崩盘概率有关，这些关系是否能在不同波动
+regime 中样本外保留。数据为 OPRA 日终数据，覆盖 2015 年至 2026 年 4
+月、2,910 个交易日和 10,026 个标的，过滤后有 12,362,276 个 firm-day
+观测。特征包括 IV surface、smirk、IV spread、期限斜率、put-call
+ratio、Greeks 和流动性；作者用 OLS、Elastic Net、XGBoost，按 expanding
+window 做 2017–2026 测试，训练只用 [2015, T-2]、验证 T-1、测试
+T。另以统一的约 150
+万观测子样本做双向固定效应和双重聚类标准误的面板回归。</p>
+<p>作者报告的统计结果并不支持一个简单的 smirk 故事：21 天 smirk
+在低波动/高波动/AI 与 mega-cap 阶段的系数分别为
+-0.0234（t=-5.5）、-0.0150（t=-4.2）和 -0.0060（t=-1.5）；AI 阶段 63
+天系数为 +0.0156（t=2.1），多变量下仅 AI 阶段约 +0.016（t=2.6）显著。IV
+spread 与 BKM 风格风险中性偏度在各阶段更稳定，部分 t 值超过 4；2015–2017
+的高低 smirk 组合差约为 21 天 -0.409%，年化 -4.91%，小于早期文献的
+-10.9%。样本外 XGBoost 在 AI/mega-cap 下一月收益报告 R² +1.29%，而
+OLS/Elastic Net 约 +0.07%；高波动阶段 XGBoost 为 -7.9、线性模型为
+-1.4。对 5 天崩盘事件，XGBoost AUC 为低波动/高波动/AI 的
+0.706/0.561/0.665，logit 为 0.670/0.531/0.652；下一月实现波动率的线性
+OOS R² 约为 0.231/0.349/0.410。</p>
+<p>创新是把期权横截面、regime 切分和非线性 OOS
+预测放在同一框架中，也显示重要性排名随 regime 改变：低波动 top feature
+是 vega，高波动更接近合约数，AI 阶段则偏向价外 call IV。证据限制包括没有
+CRSP/Compustat 与签名零售流，风险中性偏度只是风险偏好/需求的代理；smirk
+用 K/S 区间而非 delta，排除了
+0DTE。相关性不能被解释为期权需求导致崩盘，OOS R²/AUC
+也不是扣除价差、冲击、保证金和容量后的可交易收益；论文没有实盘验证。适合资产定价、期权和机器学习读者，建议优先读数据筛选、面板识别、expanding-window
+协议、表 3/6/7、重要性分析和局限章节。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26115">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26115">PDF</a></p>
-<h3 id="HMGNN：系统性风险预测优于若干基线，但方向性并没有显著胜出"><a href="#HMGNN：系统性风险预测优于若干基线，但方向性并没有显著胜出" class="headerlink" title="HMGNN：系统性风险预测优于若干基线，但方向性并没有显著胜出"></a>HMGNN：系统性风险预测优于若干基线，但方向性并没有显著胜出</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27295">A Temporal Multiplex Graph Neural Network for Systemic Risk Transmission in Global Banking</a>（arXiv:2608.27295）<br><strong>作者</strong>：Nneka Umeorah、Tolulope Fadina<br><strong>来源/分类</strong>：arXiv · q-fin.CP<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>HMGNN 研究的是银行系统中的流动性和金融相似性如何随时间共同变化，以及这种图结构能否预测下一季度 CDS 风险变化。样本为 29 家全球系统重要性银行，基本面来自 Bloomberg 的 1998Q1–2025Q4 数据，5 年 CDS 日数据聚合为季度；只有 17 家从 2001Q3 起有 CDS，共 1,249 个 bank-quarter 观测。节点包括银行和国家，边分为静态金融相似性、滚动 LCR/LDR/DAR 流动性共动与 country-to-bank 层；模型用 GNN+GRU 和可学习 gate 预测下一季度的 Δlog(1+CDS)。基线为 Last Value、Panel FE、BVAR、XGBoost、LSTM、temporal GCN 和 TGAT。</p>
-<p>作者报告 HMGNN 的 MSE/MAE/R²/相关系数为 0.0309/0.1342/0.8136/0.9032，优于 Last Value 的 0.0328/0.1425/0.8021/0.9008，且平方误差上显著优于多项基线；但 Diebold-Mariano 检验相对基线的 p=0.310，不能拒绝预测损失无差异。方向准确率为 0.5406，185/320，p=0.0811，不足以在常用水平上证明方向性预测显著；XGBoost 的 0.5781、p=0.0030 反而更强。gate 显示危机期间流动性/金融 gate 会重排：COVID 阶段约 0.5333/0.4667，较平静阶段差异更小。反事实扰动中，LCR、LDR、DAR 等流动性变量的冲击有时比单个资本指标更能改变模型输出。</p>
-<p>创新是将静态相似、动态流动性和国家层连接放进时间多层图，并用 gate 观察模型在压力期的结构权重。限制是 CDS 只覆盖大型银行，图边是相似性而非真实双边敞口；季度频率与单步 horizon 看不到高频流动性调用、衍生品和情绪传播。扰动分析是模型内反事实，不是实际危机传播的因果识别；预测相关性也不是监管压力测试或交易收益。适合系统性风险、图时序模型和宏观审慎读者，建议读数据构造、模型 gate、表 2 预测指标、方向/DM 检验、扰动分析和稳健性部分。</p>
+<h3 id="hmgnn系统性风险预测优于若干基线但方向性并没有显著胜出">HMGNN：系统性风险预测优于若干基线，但方向性并没有显著胜出</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27295">A
+Temporal Multiplex Graph Neural Network for Systemic Risk Transmission
+in Global Banking</a>（arXiv:2608.27295）<br>
+<strong>作者</strong>：Nneka Umeorah、Tolulope Fadina<br>
+<strong>来源/分类</strong>：arXiv · q-fin.CP<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>HMGNN
+研究的是银行系统中的流动性和金融相似性如何随时间共同变化，以及这种图结构能否预测下一季度
+CDS 风险变化。样本为 29 家全球系统重要性银行，基本面来自 Bloomberg 的
+1998Q1–2025Q4 数据，5 年 CDS 日数据聚合为季度；只有 17 家从 2001Q3 起有
+CDS，共 1,249 个 bank-quarter
+观测。节点包括银行和国家，边分为静态金融相似性、滚动 LCR/LDR/DAR
+流动性共动与 country-to-bank 层；模型用 GNN+GRU 和可学习 gate
+预测下一季度的 Δlog(1+CDS)。基线为 Last Value、Panel
+FE、BVAR、XGBoost、LSTM、temporal GCN 和 TGAT。</p>
+<p>作者报告 HMGNN 的 MSE/MAE/R²/相关系数为
+0.0309/0.1342/0.8136/0.9032，优于 Last Value 的
+0.0328/0.1425/0.8021/0.9008，且平方误差上显著优于多项基线；但
+Diebold-Mariano 检验相对基线的
+p=0.310，不能拒绝预测损失无差异。方向准确率为
+0.5406，185/320，p=0.0811，不足以在常用水平上证明方向性预测显著；XGBoost
+的 0.5781、p=0.0030 反而更强。gate 显示危机期间流动性/金融 gate
+会重排：COVID 阶段约
+0.5333/0.4667，较平静阶段差异更小。反事实扰动中，LCR、LDR、DAR
+等流动性变量的冲击有时比单个资本指标更能改变模型输出。</p>
+<p>创新是将静态相似、动态流动性和国家层连接放进时间多层图，并用 gate
+观察模型在压力期的结构权重。限制是 CDS
+只覆盖大型银行，图边是相似性而非真实双边敞口；季度频率与单步 horizon
+看不到高频流动性调用、衍生品和情绪传播。扰动分析是模型内反事实，不是实际危机传播的因果识别；预测相关性也不是监管压力测试或交易收益。适合系统性风险、图时序模型和宏观审慎读者，建议读数据构造、模型
+gate、表 2 预测指标、方向/DM 检验、扰动分析和稳健性部分。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27295">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27295">PDF</a></p>
-<h3 id="SPY-同日方向预测：统计上的准确率优势，仍不是可交易策略"><a href="#SPY-同日方向预测：统计上的准确率优势，仍不是可交易策略" class="headerlink" title="SPY 同日方向预测：统计上的准确率优势，仍不是可交易策略"></a>SPY 同日方向预测：统计上的准确率优势，仍不是可交易策略</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26106">A Statistical-Finance Benchmark for Same-Day Directional Stock Prediction: Walk-Forward Evidence from SPY</a>（arXiv:2608.26106）<br><strong>作者</strong>：Alex Chen<br><strong>来源/分类</strong>：arXiv · q-fin.ST<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>这篇 benchmark 研究一个较窄但容易被夸大的问题：在开盘后只使用当前开盘价和滞后价格，能否预测 SPY 当日最高、最低和收盘相对前收的方向。数据来自 Yahoo Finance，1993-02-01 至 2024-03-15，共 7,837 个交易日，最后 800 天作为主要测试窗口；特征只有当前 open 和两阶滞后 target prices。作者采用 expanding walk-forward，比较 XGBoost、Random Forest、LightGBM、Logistic Regression，以及动量、全涨和随机基线。</p>
-<p>主要测试窗口中，收盘方向的 XGBoost 准确率为 58.45%，bootstrap 95% 区间 [54.94%, 62.08%]；Random Forest 为 61.20%，LightGBM 约 52.82%，直接分类的 Logistic Regression 为 71.09%。XGBoost 对 high/low 方向为 63.95%/64.58%，Random Forest 为 69.46%/68.21%。XGBoost 收盘预测相对 RF 的 Diebold-Mariano 统计量 3.657、p&lt;0.001，但 McNemar 统计量 3.150、p=0.076，模型差异的检验并不完全一致。XGBoost 在 2007–2012、2013–2019、2020–2023 的准确率分别为 60.98%、55.60%、65.30%。按预测阈值筛选后，较高阈值的准确率会升至 79.6%–100%，但对应样本数只有 54、20、10、5、3，不能当作稳定估计。</p>
-<p>论文的价值是给出可复核的 walk-forward、置信区间和小样本阈值警告；辅助的 541 只股票筛选、以及附录中的多空/持有回测都只能看作探索性分析。限制包括单一 ETF、输入极少、测试窗口选择、盘中路径未知、滑点/冲击/价差/借券和订单执行未完整建模；作者附录的回测在 0/10/20 bps 假设下给出不同结果，也没有实时交易验证。准确率是统计关联，不是因果关系；样本外预测也不等于经济显著性，更不等于可交易利润。适合金融 ML 基准与统计检验读者，建议读特征/时间切分、主测试表、bootstrap、DM/McNemar、阈值敏感性和附录回测限制。</p>
+<h3 id="spy-同日方向预测统计上的准确率优势仍不是可交易策略">SPY
+同日方向预测：统计上的准确率优势，仍不是可交易策略</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26106">A
+Statistical-Finance Benchmark for Same-Day Directional Stock Prediction:
+Walk-Forward Evidence from SPY</a>（arXiv:2608.26106）<br>
+<strong>作者</strong>：Alex Chen<br>
+<strong>来源/分类</strong>：arXiv · q-fin.ST<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>这篇 benchmark
+研究一个较窄但容易被夸大的问题：在开盘后只使用当前开盘价和滞后价格，能否预测
+SPY 当日最高、最低和收盘相对前收的方向。数据来自 Yahoo
+Finance，1993-02-01 至 2024-03-15，共 7,837 个交易日，最后 800
+天作为主要测试窗口；特征只有当前 open 和两阶滞后 target prices。作者采用
+expanding walk-forward，比较 XGBoost、Random Forest、LightGBM、Logistic
+Regression，以及动量、全涨和随机基线。</p>
+<p>主要测试窗口中，收盘方向的 XGBoost 准确率为 58.45%，bootstrap 95%
+区间 [54.94%, 62.08%]；Random Forest 为 61.20%，LightGBM 约
+52.82%，直接分类的 Logistic Regression 为 71.09%。XGBoost 对 high/low
+方向为 63.95%/64.58%，Random Forest 为 69.46%/68.21%。XGBoost
+收盘预测相对 RF 的 Diebold-Mariano 统计量 3.657、p&lt;0.001，但 McNemar
+统计量 3.150、p=0.076，模型差异的检验并不完全一致。XGBoost 在
+2007–2012、2013–2019、2020–2023 的准确率分别为
+60.98%、55.60%、65.30%。按预测阈值筛选后，较高阈值的准确率会升至
+79.6%–100%，但对应样本数只有 54、20、10、5、3，不能当作稳定估计。</p>
+<p>论文的价值是给出可复核的
+walk-forward、置信区间和小样本阈值警告；辅助的 541
+只股票筛选、以及附录中的多空/持有回测都只能看作探索性分析。限制包括单一
+ETF、输入极少、测试窗口选择、盘中路径未知、滑点/冲击/价差/借券和订单执行未完整建模；作者附录的回测在
+0/10/20 bps
+假设下给出不同结果，也没有实时交易验证。准确率是统计关联，不是因果关系；样本外预测也不等于经济显著性，更不等于可交易利润。适合金融
+ML
+基准与统计检验读者，建议读特征/时间切分、主测试表、bootstrap、DM/McNemar、阈值敏感性和附录回测限制。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26106">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26106">PDF</a> · <a target="_blank" rel="noopener" href="https://osf.io/6thqk/">复现材料</a></p>
-<h3 id="BESS-概率预测：风险约束能减少亏损交易，但回测不是现场运行"><a href="#BESS-概率预测：风险约束能减少亏损交易，但回测不是现场运行" class="headerlink" title="BESS 概率预测：风险约束能减少亏损交易，但回测不是现场运行"></a>BESS 概率预测：风险约束能减少亏损交易，但回测不是现场运行</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26122">From electricity prices to profits: multidimensional probabilistic forecasting for BESS trading</a>（arXiv:2608.26122）<br><strong>作者</strong>：Tomasz Weron、Katarzyna Maciejowska<br><strong>来源/分类</strong>：arXiv · q-fin.ST、stat.AP<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文问的是：日内 24 小时电价的不确定性预测，能否转化为电池储能系统（BESS）更稳健的套利决策。数据来自德国和西班牙 day-ahead 市场 2021–2024，采用滚动一年窗口，在前 3 年验证后预测下一天 11 点时的价格。点预测为 ARX（星期、1/2/3/7 日滞后、历史 min/max、负荷、可再生能源和燃煤/燃气变量）；概率方法包括 IS、历史模拟、QRM、MS 及 averaging。仿真为 1MWh、C-rate 1、含往返效率和每 MWh 成本，比较 naive、ARX/ARX-s、概率中位数+亏损概率阈值 q 和 oracle。</p>
-<p>作者报告在电价覆盖与 CRPS 上，德国 MS-ave 的 PICP 为 94.29%、CRPS99/CRPS20/ES 为 16.421/6.999/16.268，西班牙为 94.18%/12.016/5.030/11.902；点预测对应的成本和收益随市场不同。成本为 40 EUR/MWh 时，德国 MS-ave 的交易比例约为 oracle 的 81.20%，利润为 oracle 的 85.49%，VaR 为 -13.82；西班牙交易比例 62.86%、利润 66.97%、VaR -21.42。作者称 MS-ave 相对 ARX-s 的利润高约 2.5–5.5%，且成本上升时最优 q 从德国 0.4 降到 0.3、西班牙从 0.6 降到 0.4，体现的是更保守的仿真策略。</p>
-<p>创新是把同日多维预测的相关结构和风险阈值直接接入交易规则，而不是只报 MAE。限制是 day-ahead 单一市场、1MWh/单循环简化电池，没有退化、多循环、日内/平衡市场、网络约束和实时执行；成本、效率和 q 是设定，不是所有运营商都能达到。这里的利润是历史回测模拟，既不是因果效果，也不是实际可交易收益；还需检查价格/特征可得时点、容量和市场冲击。适合电力金融、概率预测和储能优化读者，建议读 forecast protocol、表 2/3 CRPS/PICP、BESS 规则、成本敏感性和局限。</p>
+<h3 id="bess-概率预测风险约束能减少亏损交易但回测不是现场运行">BESS
+概率预测：风险约束能减少亏损交易，但回测不是现场运行</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26122">From electricity prices to
+profits: multidimensional probabilistic forecasting for BESS
+trading</a>（arXiv:2608.26122）<br>
+<strong>作者</strong>：Tomasz Weron、Katarzyna Maciejowska<br>
+<strong>来源/分类</strong>：arXiv · q-fin.ST、stat.AP<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>论文问的是：日内 24
+小时电价的不确定性预测，能否转化为电池储能系统（BESS）更稳健的套利决策。数据来自德国和西班牙
+day-ahead 市场 2021–2024，采用滚动一年窗口，在前 3 年验证后预测下一天 11
+点时的价格。点预测为 ARX（星期、1/2/3/7 日滞后、历史
+min/max、负荷、可再生能源和燃煤/燃气变量）；概率方法包括
+IS、历史模拟、QRM、MS 及 averaging。仿真为 1MWh、C-rate
+1、含往返效率和每 MWh 成本，比较
+naive、ARX/ARX-s、概率中位数+亏损概率阈值 q 和 oracle。</p>
+<p>作者报告在电价覆盖与 CRPS 上，德国 MS-ave 的 PICP 为
+94.29%、CRPS99/CRPS20/ES 为 16.421/6.999/16.268，西班牙为
+94.18%/12.016/5.030/11.902；点预测对应的成本和收益随市场不同。成本为 40
+EUR/MWh 时，德国 MS-ave 的交易比例约为 oracle 的 81.20%，利润为 oracle
+的 85.49%，VaR 为 -13.82；西班牙交易比例 62.86%、利润 66.97%、VaR
+-21.42。作者称 MS-ave 相对 ARX-s 的利润高约 2.5–5.5%，且成本上升时最优 q
+从德国 0.4 降到 0.3、西班牙从 0.6 降到
+0.4，体现的是更保守的仿真策略。</p>
+<p>创新是把同日多维预测的相关结构和风险阈值直接接入交易规则，而不是只报
+MAE。限制是 day-ahead
+单一市场、1MWh/单循环简化电池，没有退化、多循环、日内/平衡市场、网络约束和实时执行；成本、效率和
+q
+是设定，不是所有运营商都能达到。这里的利润是历史回测模拟，既不是因果效果，也不是实际可交易收益；还需检查价格/特征可得时点、容量和市场冲击。适合电力金融、概率预测和储能优化读者，建议读
+forecast protocol、表 2/3 CRPS/PICP、BESS 规则、成本敏感性和局限。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26122">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26122">PDF</a></p>
-<h3 id="Tick-与分钟信息柱：统计质量改善，不会自动变成预测-alpha"><a href="#Tick-与分钟信息柱：统计质量改善，不会自动变成预测-alpha" class="headerlink" title="Tick 与分钟信息柱：统计质量改善，不会自动变成预测 alpha"></a>Tick 与分钟信息柱：统计质量改善，不会自动变成预测 alpha</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26158">A Frequency-Controlled Comparison of Tick- and Minute-Based Information Bars for Cryptocurrency Markets</a>（arXiv:2608.26158）<br><strong>作者</strong>：Muhammad Toheed Fayyaz、Abdul Jabbar、Faheem Ahmad Qureshi、Syed Qaisar Jalil<br><strong>来源/分类</strong>：arXiv · q-fin.ST、cs.CE<br><strong>全文状态</strong>：已核阅公开 PDF。</p>
-<p>论文比较不同采样频率下的信息柱能否让 BTCUSDT 的收益更接近理想时间序列。数据为 Binance aggTrade tick 与 1 分钟 OHLCV，2020 年 1 月至 2025 年 12 月共 2,192 天；构造 dollar、volume、volatility、range、Renko、hybrid 六类信息柱，并用 14 天校准的自适应 EMA、柱持续时间上下限和 time-bar 做对照。评估包括超额峰度、Jarque–Bera、Ljung–Box、|VR(4)-1|、|AC1|、柱大小变异系数、Shannon entropy 与 timeout；另做下游 ML 方向预测。</p>
-<p>全样本中，volatility bars 的 tick 版本峰度约 15.504、分钟版本 18.104，tick 的 VR 偏离约 0.028、AC1 约 0.013，而分钟版本约 0.018/0.016，但 tick 柱数量约 164,000、分钟版本约 8,624，接近 19 倍；range 的 tick 版本峰度约 150.699，反而明显糟糕。按匹配频率粗化后，dollar tick 在 6 项统计指标中领先，hybrid 在 6 项中领先 5 项，volatility 在 6 项中领先 4 项；range/Renko 没有稳定优势。原始大样本下 Ljung–Box p 值几乎都接近 0，作者强调应看效应量而不是把 p 值当作通过/不通过。</p>
-<p>创新是控制信息柱频率后再比较结构统计，而非将更高事件量误当作更高质量。下游 ML AUC 仍大致在 0.50–0.60、各柱型没有系统关系，说明统计性质改善不等于方向可预测性，更不等于交易收益。限制包括单交易所、单资产、多 regime，EMA 自适应同时改变活动门槛与平滑，Renko 还有结构性可比问题；没有充分利用原生 tick 特征，也没有完整实盘、容量、手续费和冲击分析。适合市场微观结构、量化特征和时间序列读者，建议读六类柱定义、全样本/匹配频率表、p 值解释、AUC 结果和局限。</p>
+<h3 id="tick-与分钟信息柱统计质量改善不会自动变成预测-alpha">Tick
+与分钟信息柱：统计质量改善，不会自动变成预测 alpha</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26158">A
+Frequency-Controlled Comparison of Tick- and Minute-Based Information
+Bars for Cryptocurrency Markets</a>（arXiv:2608.26158）<br>
+<strong>作者</strong>：Muhammad Toheed Fayyaz、Abdul Jabbar、Faheem
+Ahmad Qureshi、Syed Qaisar Jalil<br>
+<strong>来源/分类</strong>：arXiv · q-fin.ST、cs.CE<br>
+<strong>全文状态</strong>：已核阅公开 PDF。</p>
+<p>论文比较不同采样频率下的信息柱能否让 BTCUSDT
+的收益更接近理想时间序列。数据为 Binance aggTrade tick 与 1 分钟
+OHLCV，2020 年 1 月至 2025 年 12 月共 2,192 天；构造
+dollar、volume、volatility、range、Renko、hybrid 六类信息柱，并用 14
+天校准的自适应 EMA、柱持续时间上下限和 time-bar
+做对照。评估包括超额峰度、Jarque–Bera、Ljung–Box、|VR(4)-1|、|AC1|、柱大小变异系数、Shannon
+entropy 与 timeout；另做下游 ML 方向预测。</p>
+<p>全样本中，volatility bars 的 tick 版本峰度约 15.504、分钟版本
+18.104，tick 的 VR 偏离约 0.028、AC1 约 0.013，而分钟版本约
+0.018/0.016，但 tick 柱数量约 164,000、分钟版本约 8,624，接近 19
+倍；range 的 tick 版本峰度约
+150.699，反而明显糟糕。按匹配频率粗化后，dollar tick 在 6
+项统计指标中领先，hybrid 在 6 项中领先 5 项，volatility 在 6 项中领先 4
+项；range/Renko 没有稳定优势。原始大样本下 Ljung–Box p 值几乎都接近
+0，作者强调应看效应量而不是把 p 值当作通过/不通过。</p>
+<p>创新是控制信息柱频率后再比较结构统计，而非将更高事件量误当作更高质量。下游
+ML AUC 仍大致在
+0.50–0.60、各柱型没有系统关系，说明统计性质改善不等于方向可预测性，更不等于交易收益。限制包括单交易所、单资产、多
+regime，EMA 自适应同时改变活动门槛与平滑，Renko
+还有结构性可比问题；没有充分利用原生 tick
+特征，也没有完整实盘、容量、手续费和冲击分析。适合市场微观结构、量化特征和时间序列读者，建议读六类柱定义、全样本/匹配频率表、p
+值解释、AUC 结果和局限。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26158">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26158">PDF</a></p>
-<h2 id="金融论文"><a href="#金融论文" class="headerlink" title="金融论文"></a>金融论文</h2><h3 id="Graph-Based-Modeling-of-Financial-Volatility-Dynamics"><a href="#Graph-Based-Modeling-of-Financial-Volatility-Dynamics" class="headerlink" title="Graph-Based Modeling of Financial Volatility Dynamics"></a>Graph-Based Modeling of Financial Volatility Dynamics</h3><p><strong>作者</strong>：Chuanzhen Wang、Alice Zhang、Wei Chen、Michael Brown<br><strong>来源/分类</strong>：arXiv · q-fin.ST、cs.CL、cs.LG<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文提出 Finance-Aware Graph Spatio-Temporal Network（FA-GSTN），把隐含波动率曲面网格点作为图节点，边编码日内空间与跨日时间依赖，并加入 Greeks、平滑 gate 和 robust loss 预测实现波动率。摘要报告在大型股票期权数据上 R² 最高 0.473；只用一年数据时 R² 为 0.372，对比 Vision Transformer 的 0.315，且在 2020–2021 压力期更稳健。价值是把 IV surface 的动态结构显式化；但摘要未给数据覆盖、严格 OOS 切分、交易用途和完整基线，R² 是预测指标而非期权交易利润或因果关系。</p>
+<h2 id="金融论文">金融论文</h2>
+<h3 id="graph-based-modeling-of-financial-volatility-dynamics">Graph-Based
+Modeling of Financial Volatility Dynamics</h3>
+<p><strong>作者</strong>：Chuanzhen Wang、Alice Zhang、Wei Chen、Michael
+Brown<br>
+<strong>来源/分类</strong>：arXiv · q-fin.ST、cs.CL、cs.LG<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文提出 Finance-Aware Graph Spatio-Temporal
+Network（FA-GSTN），把隐含波动率曲面网格点作为图节点，边编码日内空间与跨日时间依赖，并加入
+Greeks、平滑 gate 和 robust loss
+预测实现波动率。摘要报告在大型股票期权数据上 R² 最高
+0.473；只用一年数据时 R² 为 0.372，对比 Vision Transformer 的
+0.315，且在 2020–2021 压力期更稳健。价值是把 IV surface
+的动态结构显式化；但摘要未给数据覆盖、严格 OOS
+切分、交易用途和完整基线，R² 是预测指标而非期权交易利润或因果关系。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26127">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26127">PDF</a></p>
-<h3 id="CIFQA：计算密集的金融问答需要确定性工具"><a href="#CIFQA：计算密集的金融问答需要确定性工具" class="headerlink" title="CIFQA：计算密集的金融问答需要确定性工具"></a>CIFQA：计算密集的金融问答需要确定性工具</h3><p><strong>作者</strong>：Kunjesh Parekh、Anil Kumar Tiwari、Divya Saxena<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、q-fin.CP<br><strong>证据状态</strong>：仅依据摘要；跨主题论文在本期金融文章中详细归档。</p>
-<p>【跨主题】CIFQA 将问题理解、路由、参数抽取、计算计划和回答生成分开，并让 Python 工具执行利率、期限、滚动年份和提前支取规则；在定期存款问答 benchmark 上，作者报告计算型问题准确率 95.54%、总体 90.87%，且 17B 开源 backbone 在相同金融资料下超过更大的 frontier 模型。摘要没有给样本规模、数据切分、工具错误和真实客户场景结果；这是受控金融 QA 的数值可靠性，不是投资回报或因果证据。</p>
+<h3 id="cifqa计算密集的金融问答需要确定性工具">CIFQA：计算密集的金融问答需要确定性工具</h3>
+<p><strong>作者</strong>：Kunjesh Parekh、Anil Kumar Tiwari、Divya
+Saxena<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、q-fin.CP<br>
+<strong>证据状态</strong>：仅依据摘要；跨主题论文在本期金融文章中详细归档。</p>
+<p>【跨主题】CIFQA
+将问题理解、路由、参数抽取、计算计划和回答生成分开，并让 Python
+工具执行利率、期限、滚动年份和提前支取规则；在定期存款问答 benchmark
+上，作者报告计算型问题准确率 95.54%、总体 90.87%，且 17B 开源 backbone
+在相同金融资料下超过更大的 frontier
+模型。摘要没有给样本规模、数据切分、工具错误和真实客户场景结果；这是受控金融
+QA 的数值可靠性，不是投资回报或因果证据。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26114">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26114">PDF</a></p>
-<h3 id="Interpretable-hybrid-credit-scoring：可解释区域的公平性可能比总-AUC-更难"><a href="#Interpretable-hybrid-credit-scoring：可解释区域的公平性可能比总-AUC-更难" class="headerlink" title="Interpretable hybrid credit scoring：可解释区域的公平性可能比总 AUC 更难"></a>Interpretable hybrid credit scoring：可解释区域的公平性可能比总 AUC 更难</h3><p><strong>作者</strong>：Belise Kanziga、Ya’e U. Gaba、Olivier Kanamugire<br><strong>来源/分类</strong>：arXiv · q-fin.RM<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文把 logistic scorecard 与梯度提升残差结合，并以逐样本解释比例 ρ(x) 划分线性、混合和 opaque 区域；在 Taiwan Credit Default 上，作者报告 hybrid AUC 0.776，比 LR 高 0.057、仅比 XGBoost 高 0.001，Brier score 降 23%，最高违约率区域 69.5% 完全可解释。在 Zindi 非洲金融普惠数据上 AUC 0.869，比 LR 高 0.015（p&lt;0.001）、比 XGBoost 低 0.004，Brier 0.158→0.085；但农村、低教育和乌干达样本进入 opaque ML 区域的比例分别比对照高 18、32、22 个百分点。摘要没有给审批阈值、样本选择和因果公平性分析；AUC/Brier 是统计预测指标，不等于信用损失改善，opaque routing 差异也需要业务与法律审计。</p>
+<h3 id="interpretable-hybrid-credit-scoring可解释区域的公平性可能比总-auc-更难">Interpretable
+hybrid credit scoring：可解释区域的公平性可能比总 AUC 更难</h3>
+<p><strong>作者</strong>：Belise Kanziga、Ya'e U. Gaba、Olivier
+Kanamugire<br>
+<strong>来源/分类</strong>：arXiv · q-fin.RM<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文把 logistic scorecard 与梯度提升残差结合，并以逐样本解释比例 ρ(x)
+划分线性、混合和 opaque 区域；在 Taiwan Credit Default 上，作者报告
+hybrid AUC 0.776，比 LR 高 0.057、仅比 XGBoost 高 0.001，Brier score 降
+23%，最高违约率区域 69.5% 完全可解释。在 Zindi 非洲金融普惠数据上 AUC
+0.869，比 LR 高 0.015（p&lt;0.001）、比 XGBoost 低 0.004，Brier
+0.158→0.085；但农村、低教育和乌干达样本进入 opaque ML
+区域的比例分别比对照高 18、32、22
+个百分点。摘要没有给审批阈值、样本选择和因果公平性分析；AUC/Brier
+是统计预测指标，不等于信用损失改善，opaque routing
+差异也需要业务与法律审计。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26837">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26837">PDF</a></p>
-<h3 id="Tabular-Deep-Learning-for-Algorithmic-Trading"><a href="#Tabular-Deep-Learning-for-Algorithmic-Trading" class="headerlink" title="Tabular Deep Learning for Algorithmic Trading"></a>Tabular Deep Learning for Algorithmic Trading</h3><p><strong>作者</strong>：Joshua Le Grice<br><strong>来源/分类</strong>：arXiv · cs.LG、q-fin.CP、q-fin.TR<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文以约 300 只美国大盘股、11 年日频数据训练 5 类模型，用 Bayesian optimisation 同时面向三个市场 regime 的交易表现选择超参数。作者报告单个 tabular deep learning 架构没有超过 gradient-boosted trees，但 XGBoost+TabNet rank aggregation 的 Hybrid 在模拟组合中年化收益 51.26%、Sharpe 2.44、CAPM alpha 0.423（p=0.011），近零 beta；输入噪声下表现缓慢下降，超过阈值后崩溃，另类数据在控制技术/基本面后作用较次要。摘要未给完整 walk-forward、股票池生存偏差、交易成本、换手、短侧借券与组合构造，alpha 的统计显著性不等于经济显著性或可实现净收益，也没有真实上线验证。</p>
+<h3 id="tabular-deep-learning-for-algorithmic-trading">Tabular Deep
+Learning for Algorithmic Trading</h3>
+<p><strong>作者</strong>：Joshua Le Grice<br>
+<strong>来源/分类</strong>：arXiv · cs.LG、q-fin.CP、q-fin.TR<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文以约 300 只美国大盘股、11 年日频数据训练 5 类模型，用 Bayesian
+optimisation 同时面向三个市场 regime 的交易表现选择超参数。作者报告单个
+tabular deep learning 架构没有超过 gradient-boosted trees，但
+XGBoost+TabNet rank aggregation 的 Hybrid 在模拟组合中年化收益
+51.26%、Sharpe 2.44、CAPM alpha 0.423（p=0.011），近零
+beta；输入噪声下表现缓慢下降，超过阈值后崩溃，另类数据在控制技术/基本面后作用较次要。摘要未给完整
+walk-forward、股票池生存偏差、交易成本、换手、短侧借券与组合构造，alpha
+的统计显著性不等于经济显著性或可实现净收益，也没有真实上线验证。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27076">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27076">PDF</a></p>
-<h3 id="DTD-VAE：信用风险的时间依赖表示"><a href="#DTD-VAE：信用风险的时间依赖表示" class="headerlink" title="DTD-VAE：信用风险的时间依赖表示"></a>DTD-VAE：信用风险的时间依赖表示</h3><p><strong>作者</strong>：Xiaobo Guo、Lu-an Dong、Yanbo Wang、Peng Zhang、Cai Zhi、Youru Li<br><strong>来源/分类</strong>：arXiv · q-fin.RM、stat.ML<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>DTD-VAE 以 disentangled temporal dependencies VAE 建模信用风险的时间依赖，并在 6 个真实数据集上比较信用预测。作者报告 ROC-AUC 提升 3.2%–4.86%，Accuracy Ratio 提升 6.41–9.71%。这些是基准预测指标，摘要没有说明样本外窗口、违约定义、校准、宏观 regime、与传统 scorecard/GBM 的统一比较或经济损失映射；因此不能把 AUC 提升直接转成更低坏账或授信收益。</p>
+<h3 id="dtd-vae信用风险的时间依赖表示">DTD-VAE：信用风险的时间依赖表示</h3>
+<p><strong>作者</strong>：Xiaobo Guo、Lu-an Dong、Yanbo Wang、Peng
+Zhang、Cai Zhi、Youru Li<br>
+<strong>来源/分类</strong>：arXiv · q-fin.RM、stat.ML<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>DTD-VAE 以 disentangled temporal dependencies VAE
+建模信用风险的时间依赖，并在 6 个真实数据集上比较信用预测。作者报告
+ROC-AUC 提升 3.2%–4.86%，Accuracy Ratio 提升
+6.41–9.71%。这些是基准预测指标，摘要没有说明样本外窗口、违约定义、校准、宏观
+regime、与传统 scorecard/GBM 的统一比较或经济损失映射；因此不能把 AUC
+提升直接转成更低坏账或授信收益。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26473">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26473">PDF</a></p>
-<h3 id="Anonymized-Urn-Dataset：风险与模糊厌恶的实验材料"><a href="#Anonymized-Urn-Dataset：风险与模糊厌恶的实验材料" class="headerlink" title="Anonymized Urn Dataset：风险与模糊厌恶的实验材料"></a>Anonymized Urn Dataset：风险与模糊厌恶的实验材料</h3><p><strong>作者</strong>：Václav Kratochvíl、Radim Jiroušek、Klára Šimůnková、Simona Bažantová<br><strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>数据集提供实验室与线上 Ellsberg urn 任务的匿名决策记录：源导出 4,544 条，剔除 5 名未成年人对应的 58 条后保留 4,486 条决策记录，来自 246 名成年参与者；包含支付意愿等行为代理、任务结果和数据字典。价值是让风险/模糊偏好研究有可复用数据，但摘要没有给随机化、激励支付、被试代表性和预注册细节；WTP 代理不等于真实资产配置，横截面行为也不能证明风险偏好导致金融结果。</p>
+<h3 id="anonymized-urn-dataset风险与模糊厌恶的实验材料">Anonymized Urn
+Dataset：风险与模糊厌恶的实验材料</h3>
+<p><strong>作者</strong>：Václav Kratochvíl、Radim Jiroušek、Klára
+Šimůnková、Simona Bažantová<br>
+<strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>数据集提供实验室与线上 Ellsberg urn 任务的匿名决策记录：源导出 4,544
+条，剔除 5 名未成年人对应的 58 条后保留 4,486 条决策记录，来自 246
+名成年参与者；包含支付意愿等行为代理、任务结果和数据字典。价值是让风险/模糊偏好研究有可复用数据，但摘要没有给随机化、激励支付、被试代表性和预注册细节；WTP
+代理不等于真实资产配置，横截面行为也不能证明风险偏好导致金融结果。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26358">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26358">PDF</a></p>
-<h3 id="S-amp-P-500-相关矩阵的主成分：市场状态的描述性视角"><a href="#S-amp-P-500-相关矩阵的主成分：市场状态的描述性视角" class="headerlink" title="S&amp;P 500 相关矩阵的主成分：市场状态的描述性视角"></a>S&amp;P 500 相关矩阵的主成分：市场状态的描述性视角</h3><p><strong>作者</strong>：Javier Gómez Morales<br><strong>来源/分类</strong>：arXiv · q-fin.ST<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文使用 430 家公司日对数收益，计算滑动 Pearson 相关矩阵，对其主成分和 k-means 市场状态作 econophysics 分析；作者报告 COVID-19 时出现异常状态，并以 C2/C3、q=40、k=5 的设定展示状态差异。研究价值在于描述相关结构的集体变化；摘要没有给交易预测、严格样本外检验、行业/市值加权和状态稳定性，因此主成分变化是相关性描述，不是因果冲击或可交易信号。</p>
+<h3 id="sp-500-相关矩阵的主成分市场状态的描述性视角">S&amp;P 500
+相关矩阵的主成分：市场状态的描述性视角</h3>
+<p><strong>作者</strong>：Javier Gómez Morales<br>
+<strong>来源/分类</strong>：arXiv · q-fin.ST<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文使用 430 家公司日对数收益，计算滑动 Pearson
+相关矩阵，对其主成分和 k-means 市场状态作 econophysics 分析；作者报告
+COVID-19 时出现异常状态，并以 C2/C3、q=40、k=5
+的设定展示状态差异。研究价值在于描述相关结构的集体变化；摘要没有给交易预测、严格样本外检验、行业/市值加权和状态稳定性，因此主成分变化是相关性描述，不是因果冲击或可交易信号。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26128">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26128">PDF</a></p>
-<h3 id="Sophistication-in-GenAI-Use：企业使用方式的现场证据"><a href="#Sophistication-in-GenAI-Use：企业使用方式的现场证据" class="headerlink" title="Sophistication in GenAI Use：企业使用方式的现场证据"></a>Sophistication in GenAI Use：企业使用方式的现场证据</h3><p><strong>作者</strong>：Nicholas J. Hallman、Zachary T. Kowaleski、Anu Puvvada、Jaime J. Schmidt<br><strong>来源/分类</strong>：arXiv · cs.AI、econ.GN、q-fin.EC<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>作者分析一家大型企业 2025 年 8 个月的生成式 AI 使用，数据含 713,564 条 prompt/response、约 4,000 名后台员工、15 个职能。摘要报告资深员工使用更复杂，Strategy、Digital Innovation、Project Management 等职能更集中；使用不会随时间或正式培训而明显改善。价值是观察真实工作流而非实验室 benchmark，但这是单企业、选择性使用的观察数据，没有生产率对照、随机培训或因果识别；复杂 prompt 也不代表更高质量或更高利润。</p>
+<h3 id="sophistication-in-genai-use企业使用方式的现场证据">Sophistication in
+GenAI Use：企业使用方式的现场证据</h3>
+<p><strong>作者</strong>：Nicholas J. Hallman、Zachary T. Kowaleski、Anu
+Puvvada、Jaime J. Schmidt<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、econ.GN、q-fin.EC<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>作者分析一家大型企业 2025 年 8 个月的生成式 AI 使用，数据含 713,564
+条 prompt/response、约 4,000 名后台员工、15
+个职能。摘要报告资深员工使用更复杂，Strategy、Digital
+Innovation、Project Management
+等职能更集中；使用不会随时间或正式培训而明显改善。价值是观察真实工作流而非实验室
+benchmark，但这是单企业、选择性使用的观察数据，没有生产率对照、随机培训或因果识别；复杂
+prompt 也不代表更高质量或更高利润。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27364">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27364">PDF</a></p>
-<h3 id="Forecasting-Economically-Significant-Bitcoin-Moves"><a href="#Forecasting-Economically-Significant-Bitcoin-Moves" class="headerlink" title="Forecasting Economically Significant Bitcoin Moves"></a>Forecasting Economically Significant Bitcoin Moves</h3><p><strong>作者</strong>：Parsa Yousefnezhad、Gholamreza Mansourfar、Mohammadreza Feizi Derakhshi<br><strong>来源/分类</strong>：arXiv · q-fin.ST、q-fin.TR<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文用 2018 年 2 月至 2025 年 12 月的链上、市场和情绪数据，预测未来 7 天是否上涨超过 5%，采用多尺度 TCN/InceptionTCN、通道注意力和 pairwise ranking，并与 LSTM、TCN、XGBoost、Random Forest 等比较。作者报告 AUC 0.6316、profit 1.703，并称优于所有基线。摘要未说明 profit 定义、阈值选择、交易成本、方向/样本外切分和概率校准；AUC 是统计排序指标，profit 若来自回测也不是实时可交易结果，不能据此形成投资建议。</p>
+<h3 id="forecasting-economically-significant-bitcoin-moves">Forecasting
+Economically Significant Bitcoin Moves</h3>
+<p><strong>作者</strong>：Parsa Yousefnezhad、Gholamreza
+Mansourfar、Mohammadreza Feizi Derakhshi<br>
+<strong>来源/分类</strong>：arXiv · q-fin.ST、q-fin.TR<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文用 2018 年 2 月至 2025 年 12 月的链上、市场和情绪数据，预测未来 7
+天是否上涨超过 5%，采用多尺度 TCN/InceptionTCN、通道注意力和 pairwise
+ranking，并与 LSTM、TCN、XGBoost、Random Forest 等比较。作者报告 AUC
+0.6316、profit 1.703，并称优于所有基线。摘要未说明 profit
+定义、阈值选择、交易成本、方向/样本外切分和概率校准；AUC
+是统计排序指标，profit
+若来自回测也不是实时可交易结果，不能据此形成投资建议。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26174">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26174">PDF</a></p>
-<h3 id="Compound-Loss-Models：用条件-Wasserstein-GAN-近似后验风险"><a href="#Compound-Loss-Models：用条件-Wasserstein-GAN-近似后验风险" class="headerlink" title="Compound Loss Models：用条件 Wasserstein GAN 近似后验风险"></a>Compound Loss Models：用条件 Wasserstein GAN 近似后验风险</h3><p><strong>作者</strong>：Aleksandar Arandjelovic、Pavel V. Shevchenko、George Tzougas<br><strong>来源/分类</strong>：arXiv · q-fin.RM、stat.ML<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文提出条件 Wasserstein GAN 来 amortize 复合损失模型中的 Bayesian posterior，处理 Poisson intensity、Pareto shape 和 Gamma/inverse-Gaussian/lognormal 等先验，并用 SBC、解析/数值积分和 MCMC 对照；自然灾害损失案例用滚动一年后验预测分布估计尾部风险。价值是降低重复后验计算成本，但摘要没有给近似误差、尾部校准、样本外风险预测或资本决策结果；这是模型与数值方法贡献，不是保险组合的实盘风险降低证据。</p>
+<h3 id="compound-loss-models用条件-wasserstein-gan-近似后验风险">Compound
+Loss Models：用条件 Wasserstein GAN 近似后验风险</h3>
+<p><strong>作者</strong>：Aleksandar Arandjelovic、Pavel V.
+Shevchenko、George Tzougas<br>
+<strong>来源/分类</strong>：arXiv · q-fin.RM、stat.ML<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文提出条件 Wasserstein GAN 来 amortize 复合损失模型中的 Bayesian
+posterior，处理 Poisson intensity、Pareto shape 和
+Gamma/inverse-Gaussian/lognormal 等先验，并用 SBC、解析/数值积分和 MCMC
+对照；自然灾害损失案例用滚动一年后验预测分布估计尾部风险。价值是降低重复后验计算成本，但摘要没有给近似误差、尾部校准、样本外风险预测或资本决策结果；这是模型与数值方法贡献，不是保险组合的实盘风险降低证据。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27229">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27229">PDF</a></p>
-<h3 id="Traveling-Waves-in-Equity-Markets：秩依赖进入-退出的理论模型"><a href="#Traveling-Waves-in-Equity-Markets：秩依赖进入-退出的理论模型" class="headerlink" title="Traveling Waves in Equity Markets：秩依赖进入/退出的理论模型"></a>Traveling Waves in Equity Markets：秩依赖进入/退出的理论模型</h3><p><strong>作者</strong>：Graeme Baker、Caroline Smyth<br><strong>来源/分类</strong>：arXiv · math.PR、q-fin.MF<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文用几何布朗粒子、按排名进入/退出和反应—扩散 traveling wave 描述股票市场，并用 CRSP 校准；作者报告 turnover 会稳定波，模型可以预测 diversity-weighted portfolio capitalization growth。价值在于把市场参与者流动与组合资本化写进理论结构；摘要没有给校准窗口、识别策略、交易成本或真实组合 OOS，理论预测不是因果估计，也不能当作投资策略。</p>
+<h3 id="traveling-waves-in-equity-markets秩依赖进入退出的理论模型">Traveling
+Waves in Equity Markets：秩依赖进入/退出的理论模型</h3>
+<p><strong>作者</strong>：Graeme Baker、Caroline Smyth<br>
+<strong>来源/分类</strong>：arXiv · math.PR、q-fin.MF<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文用几何布朗粒子、按排名进入/退出和反应—扩散 traveling wave
+描述股票市场，并用 CRSP 校准；作者报告 turnover 会稳定波，模型可以预测
+diversity-weighted portfolio capitalization
+growth。价值在于把市场参与者流动与组合资本化写进理论结构；摘要没有给校准窗口、识别策略、交易成本或真实组合
+OOS，理论预测不是因果估计，也不能当作投资策略。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.27156">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.27156">PDF</a></p>
-<h3 id="The-Pulse-Beneath-the-Job-Title：从-7-5-亿条招聘广告读取任务变化"><a href="#The-Pulse-Beneath-the-Job-Title：从-7-5-亿条招聘广告读取任务变化" class="headerlink" title="The Pulse Beneath the Job Title：从 7.5 亿条招聘广告读取任务变化"></a>The Pulse Beneath the Job Title：从 7.5 亿条招聘广告读取任务变化</h3><p><strong>作者</strong>：Qin Chen、Ying Fang、Xiangyu Wang、Leo Yang Yang<br><strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>论文使用 2022–2026 年约 7.526 亿条中国招聘广告，提取 20,721 项能力要求和 44,479 项任务，用 task LM-absorption score 区分职位标题与具体任务。作者强调任务层与职位名称层的变化不同。大样本能帮助劳动市场与企业采用研究，但平台数据的覆盖、去重、文本漂移和职业选择会影响代表性；这是观察性指标，不识别 AI 导致的工资、就业或企业价值变化。</p>
+<h3 id="the-pulse-beneath-the-job-title从-7.5-亿条招聘广告读取任务变化">The
+Pulse Beneath the Job Title：从 7.5 亿条招聘广告读取任务变化</h3>
+<p><strong>作者</strong>：Qin Chen、Ying Fang、Xiangyu Wang、Leo Yang
+Yang<br>
+<strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>论文使用 2022–2026 年约 7.526 亿条中国招聘广告，提取 20,721
+项能力要求和 44,479 项任务，用 task LM-absorption score
+区分职位标题与具体任务。作者强调任务层与职位名称层的变化不同。大样本能帮助劳动市场与企业采用研究，但平台数据的覆盖、去重、文本漂移和职业选择会影响代表性；这是观察性指标，不识别
+AI 导致的工资、就业或企业价值变化。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26924">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26924">PDF</a></p>
-<h3 id="MESWI：意大利市级福祉的多维指数"><a href="#MESWI：意大利市级福祉的多维指数" class="headerlink" title="MESWI：意大利市级福祉的多维指数"></a>MESWI：意大利市级福祉的多维指数</h3><p><strong>作者</strong>：Nicola Caravaggio、Giuliano Resce、Agapito Emanuele Santangelo<br><strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br><strong>证据状态</strong>：仅依据摘要。</p>
-<p>MESWI 用 12 个领域、49 个指标构建意大利市级公平与可持续福祉指数，报告南北差异和偏远地区的权衡。它适合区域金融、公共投资和政策资源分配的描述性底图；摘要没有给权重敏感性、缺失值、因果政策评估或时间外验证。指数排名不能直接说明某项政策造成福祉差异，也不等于资产定价信号。</p>
+<h3 id="meswi意大利市级福祉的多维指数">MESWI：意大利市级福祉的多维指数</h3>
+<p><strong>作者</strong>：Nicola Caravaggio、Giuliano Resce、Agapito
+Emanuele Santangelo<br>
+<strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br>
+<strong>证据状态</strong>：仅依据摘要。</p>
+<p>MESWI 用 12 个领域、49
+个指标构建意大利市级公平与可持续福祉指数，报告南北差异和偏远地区的权衡。它适合区域金融、公共投资和政策资源分配的描述性底图；摘要没有给权重敏感性、缺失值、因果政策评估或时间外验证。指数排名不能直接说明某项政策造成福祉差异，也不等于资产定价信号。</p>
 <p><strong>链接</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.26426">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.26426">PDF</a></p>
 
                 
