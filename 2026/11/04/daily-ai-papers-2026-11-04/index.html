@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 Same Outputs, Different Scores: Auditing the Unchecked Graders of Multimodal LLM Benchmarks 论文： 2611.03377。作者： Ahmad Jarjis Hasan、Jonathan Lwowski。来源与分类： arXiv 预印本；cs.AI、cs.CL、cs.CV。全文状态： 已核读公开">
+    <meta name="description" content="重点关注Same Outputs, Different Scores: Auditing the Unchecked Graders of Multimodal LLM Benchmarks论文： 2611.03377。作者： Ahmad Jarjis Hasan、Jonathan Lwowski。来源与分类： arXiv 预印本；cs.AI、cs.CL、cs.CV。全文状态： 已核读公开 PD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报（2026-11-04）">
 <meta property="og:url" content="https://www.polarishaw.top/2026/11/04/daily-ai-papers-2026-11-04/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 Same Outputs, Different Scores: Auditing the Unchecked Graders of Multimodal LLM Benchmarks 论文： 2611.03377。作者： Ahmad Jarjis Hasan、Jonathan Lwowski。来源与分类： arXiv 预印本；cs.AI、cs.CL、cs.CV。全文状态： 已核读公开">
+<meta property="og:description" content="重点关注Same Outputs, Different Scores: Auditing the Unchecked Graders of Multimodal LLM Benchmarks论文： 2611.03377。作者： Ahmad Jarjis Hasan、Jonathan Lwowski。来源与分类： arXiv 预印本；cs.AI、cs.CL、cs.CV。全文状态： 已核读公开 PD">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-007-146606921.jpg">
 <meta property="article:published_time" content="2026-11-04T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-09-13/pixiv-rank-001-149365241.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-26/pixiv-rank-004-147400702.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,339 +347,104 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<h3 id="same-outputs-different-scores-auditing-the-unchecked-graders-of-multimodal-llm-benchmarks">Same
-Outputs, Different Scores: Auditing the Unchecked Graders of Multimodal
-LLM Benchmarks</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03377">2611.03377</a>。<strong>作者：</strong>
-Ahmad Jarjis Hasan、Jonathan Lwowski。<strong>来源与分类：</strong>
-arXiv 预印本；cs.AI、cs.CL、cs.CV。<strong>全文状态：</strong>
-已核读公开 PDF。</p>
+<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="Same-Outputs-Different-Scores-Auditing-the-Unchecked-Graders-of-Multimodal-LLM-Benchmarks"><a href="#Same-Outputs-Different-Scores-Auditing-the-Unchecked-Graders-of-Multimodal-LLM-Benchmarks" class="headerlink" title="Same Outputs, Different Scores: Auditing the Unchecked Graders of Multimodal LLM Benchmarks"></a>Same Outputs, Different Scores: Auditing the Unchecked Graders of Multimodal LLM Benchmarks</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03377">2611.03377</a>。<strong>作者：</strong> Ahmad Jarjis Hasan、Jonathan Lwowski。<strong>来源与分类：</strong> arXiv 预印本；cs.AI、cs.CL、cs.CV。<strong>全文状态：</strong> 已核读公开 PDF。</p>
 <ul>
-<li><strong>核心问题：</strong>
-多模态选择题基准把自由文本答案转换成对错时，评分代码的回退规则会不会改变模型排名或准确率？</li>
-<li><strong>方法与基线：</strong> 复现 8 个已发表基准的官方评分器，在 5
-个可用单张 16GB GPU
-运行的开放视觉语言模型上固定模型输出，只变更解析失败规则；在 MMAD 的
-1,670 题上比较“最近选项”“弃答”和似然评分。研究另用盲审的人类标注与 LLM
-判读核对模型实际作答，并将协议与代码公开。</li>
-<li><strong>作者报告的结果：</strong> 同一份输出在 MMAD
-上仅因评分规则不同就相差 21—22 个百分点；对完全合规输出的模型差异为
-0，因此排行榜会把问题隐藏起来。另有一个非合规率为 0
-的模型，仅改变推理轨迹中保留哪一个正则匹配，准确率仍可波动 9.5
-个百分点。盲审 LLM 与人类在 130 题中一致 127 题，Cohen κ=0.956。</li>
-<li><strong>新意与证据边界：</strong>
-把模型输出、解析器和判分结果拆开，让评测者能定位分数到底来自能力还是代码约定。研究覆盖
-5 个 7—12B 开放模型，未测闭源或更大模型；人类锚定证据最强的是二元
-MMAD，医疗问答扩展审查仅 60
-题。作者建议报告非合规率与多种评分规则，而非单一总分。</li>
-<li><strong>适合谁读：</strong>
-多模态基准作者、模型评测与复现团队。建议先读评分协议、固定输出对照实验和第
-7 节局限。</li>
+<li><strong>核心问题：</strong> 多模态选择题基准把自由文本答案转换成对错时，评分代码的回退规则会不会改变模型排名或准确率？</li>
+<li><strong>方法与基线：</strong> 复现 8 个已发表基准的官方评分器，在 5 个可用单张 16GB GPU 运行的开放视觉语言模型上固定模型输出，只变更解析失败规则；在 MMAD 的 1,670 题上比较“最近选项”“弃答”和似然评分。研究另用盲审的人类标注与 LLM 判读核对模型实际作答，并将协议与代码公开。</li>
+<li><strong>作者报告的结果：</strong> 同一份输出在 MMAD 上仅因评分规则不同就相差 21—22 个百分点；对完全合规输出的模型差异为 0，因此排行榜会把问题隐藏起来。另有一个非合规率为 0 的模型，仅改变推理轨迹中保留哪一个正则匹配，准确率仍可波动 9.5 个百分点。盲审 LLM 与人类在 130 题中一致 127 题，Cohen κ=0.956。</li>
+<li><strong>新意与证据边界：</strong> 把模型输出、解析器和判分结果拆开，让评测者能定位分数到底来自能力还是代码约定。研究覆盖 5 个 7—12B 开放模型，未测闭源或更大模型；人类锚定证据最强的是二元 MMAD，医疗问答扩展审查仅 60 题。作者建议报告非合规率与多种评分规则，而非单一总分。</li>
+<li><strong>适合谁读：</strong> 多模态基准作者、模型评测与复现团队。建议先读评分协议、固定输出对照实验和第 7 节局限。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03377">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.03377">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.03377">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/ahmadhasan2k8/grader-audit">代码、标注与复现工具</a></p>
-<h3 id="kerkoporta-injecting-structured-output-backdoors-in-reasoning-coding-agents">Kerkoporta:
-Injecting Structured-Output Backdoors in Reasoning Coding Agents</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00138">2611.00138</a>。<strong>作者：</strong>
-Georgios Syros、Blake Bullwinkel、Alina Oprea、Cristina
-Nita-Rotaru、Amanda Minnich、Xiaodong Liu、Giorgio
-Severi。<strong>来源与分类：</strong> arXiv
-预印本；cs.CR、cs.AI。<strong>全文状态：</strong> 已核读公开 PDF。</p>
+<h3 id="Kerkoporta-Injecting-Structured-Output-Backdoors-in-Reasoning-Coding-Agents"><a href="#Kerkoporta-Injecting-Structured-Output-Backdoors-in-Reasoning-Coding-Agents" class="headerlink" title="Kerkoporta: Injecting Structured-Output Backdoors in Reasoning Coding Agents"></a>Kerkoporta: Injecting Structured-Output Backdoors in Reasoning Coding Agents</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00138">2611.00138</a>。<strong>作者：</strong> Georgios Syros、Blake Bullwinkel、Alina Oprea、Cristina Nita-Rotaru、Amanda Minnich、Xiaodong Liu、Giorgio Severi。<strong>来源与分类：</strong> arXiv 预印本；cs.CR、cs.AI。<strong>全文状态：</strong> 已核读公开 PDF。</p>
 <ul>
-<li><strong>核心问题：</strong>
-当代码智能体能调用本地工具并执行命令时，模型权重中的后门能否跨推理步骤触发恶意工具调用，同时维持正常任务表现？</li>
-<li><strong>方法与基线：</strong>
-作者先用监督微调植入结构化输出后门，再用轻量在线强化学习恢复干净任务效用；在
-Qwen3.5-4B/9B 上测试，并通过 Claude Code、Codex 与 Pi
-三种智能体框架评估跨框架迁移。基线包括干净模型和只做监督微调的后门模型；任务取自代码工程基准。</li>
-<li><strong>作者报告的结果：</strong> 4B 模型的一组设置在 12 次 RL
-更新后后门成功率为
-96.2%，而其干净任务效用恢复到超过干净基线的部分测试指标。毒化率从 25%
-提至 50% 时，跨分布攻击成功率从约 32.7%—63.4% 提升至
-84.1%—94.8%；跨框架迁移也明显随框架而异。</li>
-<li><strong>新意与失败条件：</strong>
-论文显示只用正常任务微调不能确保清除后门，且结构化工具调用可以让同一触发行为适配不同
-harness。实验只覆盖两个同家族开源模型、合成训练轨迹和指定代码工具环境；攻击实验不说明公开模型中此类后门的实际发生率，也不代表每种模型或工具接口都容易受同样影响。</li>
-<li><strong>适合谁读：</strong>
-开源模型供应链、代码智能体安全与模型审计研究者。建议读威胁模型、毒化率/跨分布实验、工具框架迁移和效用恢复结果；本文的攻击数字是作者受控实验结果，不是线上事件统计。</li>
+<li><strong>核心问题：</strong> 当代码智能体能调用本地工具并执行命令时，模型权重中的后门能否跨推理步骤触发恶意工具调用，同时维持正常任务表现？</li>
+<li><strong>方法与基线：</strong> 作者先用监督微调植入结构化输出后门，再用轻量在线强化学习恢复干净任务效用；在 Qwen3.5-4B/9B 上测试，并通过 Claude Code、Codex 与 Pi 三种智能体框架评估跨框架迁移。基线包括干净模型和只做监督微调的后门模型；任务取自代码工程基准。</li>
+<li><strong>作者报告的结果：</strong> 4B 模型的一组设置在 12 次 RL 更新后后门成功率为 96.2%，而其干净任务效用恢复到超过干净基线的部分测试指标。毒化率从 25% 提至 50% 时，跨分布攻击成功率从约 32.7%—63.4% 提升至 84.1%—94.8%；跨框架迁移也明显随框架而异。</li>
+<li><strong>新意与失败条件：</strong> 论文显示只用正常任务微调不能确保清除后门，且结构化工具调用可以让同一触发行为适配不同 harness。实验只覆盖两个同家族开源模型、合成训练轨迹和指定代码工具环境；攻击实验不说明公开模型中此类后门的实际发生率，也不代表每种模型或工具接口都容易受同样影响。</li>
+<li><strong>适合谁读：</strong> 开源模型供应链、代码智能体安全与模型审计研究者。建议读威胁模型、毒化率/跨分布实验、工具框架迁移和效用恢复结果；本文的攻击数字是作者受控实验结果，不是线上事件统计。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00138">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.00138">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.00138">arXiv DOI</a></p>
-<h3 id="can-large-language-model-agents-learn-by-watching-tutorial-videos">Can
-Large Language Model Agents Learn by Watching Tutorial Videos?</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01460">2611.01460</a>。<strong>作者：</strong>
-Haoyu Zhao、Zafeirios Fountas、Jun Wang。<strong>来源与分类：</strong>
-arXiv 预印本；cs.LG、cs.AI、cs.CL、cs.CV。<strong>全文状态：</strong>
-已核读公开 PDF。</p>
+<h3 id="Can-Large-Language-Model-Agents-Learn-by-Watching-Tutorial-Videos"><a href="#Can-Large-Language-Model-Agents-Learn-by-Watching-Tutorial-Videos" class="headerlink" title="Can Large Language Model Agents Learn by Watching Tutorial Videos?"></a>Can Large Language Model Agents Learn by Watching Tutorial Videos?</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01460">2611.01460</a>。<strong>作者：</strong> Haoyu Zhao、Zafeirios Fountas、Jun Wang。<strong>来源与分类：</strong> arXiv 预印本；cs.LG、cs.AI、cs.CL、cs.CV。<strong>全文状态：</strong> 已核读公开 PDF。</p>
 <ul>
-<li><strong>核心问题：</strong>
-智能体能否不更新参数，而从教程视频中积累可迁移知识，像读书一样学会后续任务？</li>
-<li><strong>方法与基线：</strong> Tutorial Agentic
-Learning（TAL）通过两阶段对抗式整理，从视频抽取困难、落到具体视频证据的问题并持续修订结构化
-tutorialbook；推理时用目录树定位知识，而非只按向量相似度检索。VidLearn
-含 72 个国际象棋教程视频、12 种开局；论文比较无微调的多模态模型、文本
-RAG、视频检索与记忆基线，并测试实战棋局和软件教程。</li>
-<li><strong>作者报告的结果：</strong> 相对对应基础多模态模型，VidLearn
-训练/测试拆分的最高相对提升分别为 113% 和 91%；在固定开局的对弈中，TAL
-有 69% 的局面优于基础模型（Stockfish 评估）。软件教程留出测试准确率为
-49.7%，比最强基线高 10.9
-个百分点；作者还报告八种棋类设置中平均准确率均高于匹配的检索与记忆对照。</li>
-<li><strong>新意与证据边界：</strong>
-以可持续编辑的外部记忆承载学习，降低反复微调的需要；但“无参数更新”不等于无计算成本，视频处理、问题生成和记忆维护仍有开销。实证视频集只有
-72
-个、棋类覆盖有限，软件域测试也窄；教程字幕/内容质量、记忆构造误差和更开放任务中的长期遗忘尚不能由这些结果排除。</li>
-<li><strong>适合谁读：</strong>
-多模态智能体、外部记忆、持续学习和视频检索研究者。建议读 TAL
-的记忆构造与目录检索、VidLearn 基线表、实战对局及软件域实验。</li>
+<li><strong>核心问题：</strong> 智能体能否不更新参数，而从教程视频中积累可迁移知识，像读书一样学会后续任务？</li>
+<li><strong>方法与基线：</strong> Tutorial Agentic Learning（TAL）通过两阶段对抗式整理，从视频抽取困难、落到具体视频证据的问题并持续修订结构化 tutorialbook；推理时用目录树定位知识，而非只按向量相似度检索。VidLearn 含 72 个国际象棋教程视频、12 种开局；论文比较无微调的多模态模型、文本 RAG、视频检索与记忆基线，并测试实战棋局和软件教程。</li>
+<li><strong>作者报告的结果：</strong> 相对对应基础多模态模型，VidLearn 训练/测试拆分的最高相对提升分别为 113% 和 91%；在固定开局的对弈中，TAL 有 69% 的局面优于基础模型（Stockfish 评估）。软件教程留出测试准确率为 49.7%，比最强基线高 10.9 个百分点；作者还报告八种棋类设置中平均准确率均高于匹配的检索与记忆对照。</li>
+<li><strong>新意与证据边界：</strong> 以可持续编辑的外部记忆承载学习，降低反复微调的需要；但“无参数更新”不等于无计算成本，视频处理、问题生成和记忆维护仍有开销。实证视频集只有 72 个、棋类覆盖有限，软件域测试也窄；教程字幕/内容质量、记忆构造误差和更开放任务中的长期遗忘尚不能由这些结果排除。</li>
+<li><strong>适合谁读：</strong> 多模态智能体、外部记忆、持续学习和视频检索研究者。建议读 TAL 的记忆构造与目录检索、VidLearn 基线表、实战对局及软件域实验。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01460">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.01460">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.01460">arXiv DOI</a></p>
-<h3 id="dr-pixel-page-native-deep-research-with-vision-language-models">DR
-Pixel: Page-Native Deep Research with Vision-Language Models</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03097">2611.03097</a>。<strong>作者：</strong>
-Tiansheng Hu、Yichuan Wang、James V. Talwar、Nicholas Tomlin、Chen
-Zhao、Sewon Min。<strong>来源与分类：</strong> arXiv
-预印本；cs.CV、cs.CL、cs.IR。<strong>全文状态：</strong> 已核读公开
-PDF。</p>
+<h3 id="DR-Pixel-Page-Native-Deep-Research-with-Vision-Language-Models"><a href="#DR-Pixel-Page-Native-Deep-Research-with-Vision-Language-Models" class="headerlink" title="DR Pixel: Page-Native Deep Research with Vision-Language Models"></a>DR Pixel: Page-Native Deep Research with Vision-Language Models</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03097">2611.03097</a>。<strong>作者：</strong> Tiansheng Hu、Yichuan Wang、James V. Talwar、Nicholas Tomlin、Chen Zhao、Sewon Min。<strong>来源与分类：</strong> arXiv 预印本；cs.CV、cs.CL、cs.IR。<strong>全文状态：</strong> 已核读公开 PDF。</p>
 <ul>
-<li><strong>核心问题：</strong> 深度研究智能体是否必须先把论文 PDF OCR
-成文本？直接在页面图像上检索，能否更好利用图表、表格与公式？</li>
-<li><strong>方法与基线：</strong> DR Pixel
-把渲染页面作为统一检索与推理单位，在 106 万页语料上运行；500 道
-DRPixelBench
-问题要求回答必须读取论文中的文本或视觉证据。论文将页面原生方法与 OCR
-文本检索、文本加图表检索比较，并在 3
-个模型上评估；训练阶段用反事实贡献重加权筛选智能体轨迹。</li>
-<li><strong>作者报告的结果：</strong> 不训练时，GPT-5.4
-的页面原生准确率为 51.9%，OCR 文本基线为 43.5%，平均工具调用从 12.4 降到
-9.2；Gemini-3.5-Flash 为 46.4% 对 40.0%，Qwen3.6-27B 为 40.1% 对
-33.2%。训练后，检索召回约增 15 个百分点、最终准确率增逾 10 个百分点；在
-ViDoRe-V3 上距直接给出标准页面的 oracle 仅差 1.8 个百分点。</li>
-<li><strong>新意与证据边界：</strong>
-把页面视觉结构保留在检索链路，而不是把它压平为 OCR
-文本；训练贡献也按动作对最终答案的反事实影响分配。基准为 500
-道研究论文题，问题先由模型从摘要与全文证据生成、经自动检查和人工润色，领域覆盖仍有限。页面图像输入对显存、视觉
-token
-和调用成本的影响应按部署模型另算；作者报告的调用次数下降不等于端到端成本必然更低。</li>
-<li><strong>适合谁读：</strong> 科学文献检索、多模态 RAG
-和深度研究系统开发者。建议读基准构造、OCR
-对照表、反事实信用分配消融和跨基准泛化。</li>
+<li><strong>核心问题：</strong> 深度研究智能体是否必须先把论文 PDF OCR 成文本？直接在页面图像上检索，能否更好利用图表、表格与公式？</li>
+<li><strong>方法与基线：</strong> DR Pixel 把渲染页面作为统一检索与推理单位，在 106 万页语料上运行；500 道 DRPixelBench 问题要求回答必须读取论文中的文本或视觉证据。论文将页面原生方法与 OCR 文本检索、文本加图表检索比较，并在 3 个模型上评估；训练阶段用反事实贡献重加权筛选智能体轨迹。</li>
+<li><strong>作者报告的结果：</strong> 不训练时，GPT-5.4 的页面原生准确率为 51.9%，OCR 文本基线为 43.5%，平均工具调用从 12.4 降到 9.2；Gemini-3.5-Flash 为 46.4% 对 40.0%，Qwen3.6-27B 为 40.1% 对 33.2%。训练后，检索召回约增 15 个百分点、最终准确率增逾 10 个百分点；在 ViDoRe-V3 上距直接给出标准页面的 oracle 仅差 1.8 个百分点。</li>
+<li><strong>新意与证据边界：</strong> 把页面视觉结构保留在检索链路，而不是把它压平为 OCR 文本；训练贡献也按动作对最终答案的反事实影响分配。基准为 500 道研究论文题，问题先由模型从摘要与全文证据生成、经自动检查和人工润色，领域覆盖仍有限。页面图像输入对显存、视觉 token 和调用成本的影响应按部署模型另算；作者报告的调用次数下降不等于端到端成本必然更低。</li>
+<li><strong>适合谁读：</strong> 科学文献检索、多模态 RAG 和深度研究系统开发者。建议读基准构造、OCR 对照表、反事实信用分配消融和跨基准泛化。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03097">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.03097">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.03097">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/StarTrail-org/DRPixel">代码</a> · <a target="_blank" rel="noopener" href="https://github.com/HughieHu/DRPixel-Bench">基准数据</a></p>
-<h3 id="dependence-aware-risk-assessment-and-optimal-design-of-ai-agent-safeguard-systems">Dependence-Aware
-Risk Assessment and Optimal Design of AI-Agent Safeguard Systems</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00386">2611.00386</a>。<strong>作者：</strong>
-Yijia Li、Maochao Xu、Peng Zhao。<strong>来源与分类：</strong> arXiv
-预印本；cs.AI。<strong>全文状态：</strong> 已核读公开 PDF。</p>
+<h3 id="Dependence-Aware-Risk-Assessment-and-Optimal-Design-of-AI-Agent-Safeguard-Systems"><a href="#Dependence-Aware-Risk-Assessment-and-Optimal-Design-of-AI-Agent-Safeguard-Systems" class="headerlink" title="Dependence-Aware Risk Assessment and Optimal Design of AI-Agent Safeguard Systems"></a>Dependence-Aware Risk Assessment and Optimal Design of AI-Agent Safeguard Systems</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00386">2611.00386</a>。<strong>作者：</strong> Yijia Li、Maochao Xu、Peng Zhao。<strong>来源与分类：</strong> arXiv 预印本；cs.AI。<strong>全文状态：</strong> 已核读公开 PDF。</p>
 <ul>
-<li><strong>核心问题：</strong>
-多层智能体安全护栏的误判往往相关；若把每道护栏当作相互独立，是否会低估安全漏拦或高估服务成本？</li>
-<li><strong>方法与基线：</strong>
-论文为串行筛查和选择性复核构造依赖感知的联合概率模型，给出最优路由的双阈值结构，并设计精确优化算法；与基于独立性假设的策略比较。实证使用
-4 个 LLM 护栏对基准衍生的智能体动作进行联合评估，另有数值情景分析。</li>
-<li><strong>作者报告的结果：</strong> 独立性设计在 8 个数值情景中的 6
-个违反安全约束。主要实证运行设置下，依赖感知方案把安全漏拦从 14 次降至 0
-次、评估总成本降低 39.6%，但误拦从 9 次增至 30 次；在 37
-个运行设置中，依赖模型给出的评估成本较低 17 次、较高 5 次、相同 15
-次。</li>
-<li><strong>新意与证据边界：</strong>
-评估多个护栏的联合错误，而非从各组件单独准确率推算组合系统风险，并发布
-DAPOA 优化软件。成本改善依赖安全漏拦和误拦的代价设定；经验部分只有 4
-个护栏和基准衍生动作，不能直接代表真实业务流量。护栏间依赖估计误差也可能改变最优策略。</li>
-<li><strong>适合谁读：</strong> Agent
-安全、策略路由、内容审核系统和可靠性工程研究者。建议读联合依赖建模、阈值路由定理、四类护栏实证与不同风险成本下的敏感性分析。</li>
+<li><strong>核心问题：</strong> 多层智能体安全护栏的误判往往相关；若把每道护栏当作相互独立，是否会低估安全漏拦或高估服务成本？</li>
+<li><strong>方法与基线：</strong> 论文为串行筛查和选择性复核构造依赖感知的联合概率模型，给出最优路由的双阈值结构，并设计精确优化算法；与基于独立性假设的策略比较。实证使用 4 个 LLM 护栏对基准衍生的智能体动作进行联合评估，另有数值情景分析。</li>
+<li><strong>作者报告的结果：</strong> 独立性设计在 8 个数值情景中的 6 个违反安全约束。主要实证运行设置下，依赖感知方案把安全漏拦从 14 次降至 0 次、评估总成本降低 39.6%，但误拦从 9 次增至 30 次；在 37 个运行设置中，依赖模型给出的评估成本较低 17 次、较高 5 次、相同 15 次。</li>
+<li><strong>新意与证据边界：</strong> 评估多个护栏的联合错误，而非从各组件单独准确率推算组合系统风险，并发布 DAPOA 优化软件。成本改善依赖安全漏拦和误拦的代价设定；经验部分只有 4 个护栏和基准衍生动作，不能直接代表真实业务流量。护栏间依赖估计误差也可能改变最优策略。</li>
+<li><strong>适合谁读：</strong> Agent 安全、策略路由、内容审核系统和可靠性工程研究者。建议读联合依赖建模、阈值路由定理、四类护栏实证与不同风险成本下的敏感性分析。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00386">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.00386">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.00386">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/MSMCI-lab/DAPOA">DAPOA 软件</a></p>
-<h2 id="ai-论文">AI 论文</h2>
-<h3 id="reimagining-text-to-sql-a-survey-of-large-language-model-architectures-and-strategies">Reimagining
-Text-to-SQL: A Survey of Large Language Model Architectures and
-Strategies</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00171">2611.00171</a>。<strong>作者：</strong>
-Shikhar Dave、Bhaskarjit Sarmah、Stefano
-Pasquali。<strong>分类：</strong> cs.AI。</p>
-<p><strong>仅依据摘要。</strong> 综述梳理 2022—2026 年 100 余项
-Text-to-SQL
-研究，把大模型方案归为上下文学习、微调、智能体/工具、检索增强和强化学习五类，并比较模型粒度、监督强度与推理方式。它适合作为系统选型和领域入门地图；综述结论来自文献与技术资料归纳，不是统一基准上的独立实验，也不能把引用工作的最高分视为可比的真实部署能力。</p>
+<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><h3 id="Reimagining-Text-to-SQL-A-Survey-of-Large-Language-Model-Architectures-and-Strategies"><a href="#Reimagining-Text-to-SQL-A-Survey-of-Large-Language-Model-Architectures-and-Strategies" class="headerlink" title="Reimagining Text-to-SQL: A Survey of Large Language Model Architectures and Strategies"></a>Reimagining Text-to-SQL: A Survey of Large Language Model Architectures and Strategies</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00171">2611.00171</a>。<strong>作者：</strong> Shikhar Dave、Bhaskarjit Sarmah、Stefano Pasquali。<strong>分类：</strong> cs.AI。</p>
+<p><strong>仅依据摘要。</strong> 综述梳理 2022—2026 年 100 余项 Text-to-SQL 研究，把大模型方案归为上下文学习、微调、智能体/工具、检索增强和强化学习五类，并比较模型粒度、监督强度与推理方式。它适合作为系统选型和领域入门地图；综述结论来自文献与技术资料归纳，不是统一基准上的独立实验，也不能把引用工作的最高分视为可比的真实部署能力。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00171">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.00171">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.00171">arXiv DOI</a></p>
-<h3 id="same-outputs-different-scores-auditing-the-unchecked-graders-of-multimodal-llm-benchmarks-1">Same
-Outputs, Different Scores: Auditing the Unchecked Graders of Multimodal
-LLM Benchmarks</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03377">2611.03377</a>。<strong>作者：</strong>
-Ahmad Jarjis Hasan、Jonathan Lwowski。<strong>分类：</strong>
-cs.AI、cs.CL、cs.CV。</p>
-<p><strong>重点已详述，全文已核读。</strong>
-重点论文，全文细节见上文。研究表明，同一组多模态模型输出仅因评分器的解析规则不同，基准准确率就可能明显变化；重点在评测器是否把模型实际回答判对，而不是模型能力本身。</p>
+<h3 id="Same-Outputs-Different-Scores-Auditing-the-Unchecked-Graders-of-Multimodal-LLM-Benchmarks-1"><a href="#Same-Outputs-Different-Scores-Auditing-the-Unchecked-Graders-of-Multimodal-LLM-Benchmarks-1" class="headerlink" title="Same Outputs, Different Scores: Auditing the Unchecked Graders of Multimodal LLM Benchmarks"></a>Same Outputs, Different Scores: Auditing the Unchecked Graders of Multimodal LLM Benchmarks</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03377">2611.03377</a>。<strong>作者：</strong> Ahmad Jarjis Hasan、Jonathan Lwowski。<strong>分类：</strong> cs.AI、cs.CL、cs.CV。</p>
+<p><strong>重点已详述，全文已核读。</strong> 重点论文，全文细节见上文。研究表明，同一组多模态模型输出仅因评分器的解析规则不同，基准准确率就可能明显变化；重点在评测器是否把模型实际回答判对，而不是模型能力本身。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03377">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.03377">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.03377">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/ahmadhasan2k8/grader-audit">代码、标注与复现工具</a></p>
-<h3 id="safety4dm-a-vision-language-framework-for-risk-aware-dynamic-maps-in-vehicle-road-cloud-collaborative-driving">Safety4DM:
-A Vision-Language Framework for Risk-Aware Dynamic Maps in
-Vehicle-Road-Cloud Collaborative Driving</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01996">2611.01996</a>。<strong>作者：</strong>
-Zhengshu Zhou、Shaoyu Wang、Lu Tao、Xinhui Hu、Jiaqi Gu、Tingting
-Zhao。<strong>分类：</strong> cs.AI。</p>
-<p><strong>仅依据摘要。</strong> Safety4DM 将真实道路图片数据集
-RoadRisk、微调后的视觉语言模型和动态地图问答接口 SafeStep
-组合起来，摘要报告 Qwen3-VL-4B 风险感知准确率为 89.83%，五类 20B
-以上模型的问答准确率均超过
-93%。面向车路云协同安全的结构化风险表达值得关注；摘要没有给出类别分布、外部道路验证或实车失败率，模拟基准分数不能替代道路安全认证。</p>
+<h3 id="Safety4DM-A-Vision-Language-Framework-for-Risk-Aware-Dynamic-Maps-in-Vehicle-Road-Cloud-Collaborative-Driving"><a href="#Safety4DM-A-Vision-Language-Framework-for-Risk-Aware-Dynamic-Maps-in-Vehicle-Road-Cloud-Collaborative-Driving" class="headerlink" title="Safety4DM: A Vision-Language Framework for Risk-Aware Dynamic Maps in Vehicle-Road-Cloud Collaborative Driving"></a>Safety4DM: A Vision-Language Framework for Risk-Aware Dynamic Maps in Vehicle-Road-Cloud Collaborative Driving</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01996">2611.01996</a>。<strong>作者：</strong> Zhengshu Zhou、Shaoyu Wang、Lu Tao、Xinhui Hu、Jiaqi Gu、Tingting Zhao。<strong>分类：</strong> cs.AI。</p>
+<p><strong>仅依据摘要。</strong> Safety4DM 将真实道路图片数据集 RoadRisk、微调后的视觉语言模型和动态地图问答接口 SafeStep 组合起来，摘要报告 Qwen3-VL-4B 风险感知准确率为 89.83%，五类 20B 以上模型的问答准确率均超过 93%。面向车路云协同安全的结构化风险表达值得关注；摘要没有给出类别分布、外部道路验证或实车失败率，模拟基准分数不能替代道路安全认证。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01996">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.01996">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.01996">arXiv DOI</a></p>
-<h3 id="complianceatlas-a-taxonomy-driven-agentic-ai-framework-for-automated-ai-act-gap-analysis-and-remediation">ComplianceAtlas:
-A Taxonomy-Driven Agentic AI Framework for Automated AI Act Gap Analysis
-and Remediation</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03121">2611.03121</a>。<strong>作者：</strong>
-Ilias Driouich、Hongliu Cao、Eoin Thomas、Yannick Devaux、Agnes
-Brodelle。<strong>分类：</strong> cs.AI。</p>
-<p><strong>仅依据摘要。</strong> ComplianceAtlas
-用两阶段智能体把合规问卷转成技术缺口类型和整改排序，在 9 个 AI 系统、6
-个模型家族上与四类自动检测基线比较；作者报告缺口 F1 为 0.831（最强基线
-0.533），整改 <a href="mailto:P@5" class="email">P@5</a> 为
-0.872（检索基线
-0.635）。可审计的人机协同流程有应用价值；样本系统数量有限，摘要未说明专家标注一致性、跨法规验证或错误整改的成本。</p>
+<h3 id="ComplianceAtlas-A-Taxonomy-Driven-Agentic-AI-Framework-for-Automated-AI-Act-Gap-Analysis-and-Remediation"><a href="#ComplianceAtlas-A-Taxonomy-Driven-Agentic-AI-Framework-for-Automated-AI-Act-Gap-Analysis-and-Remediation" class="headerlink" title="ComplianceAtlas: A Taxonomy-Driven Agentic AI Framework for Automated AI Act Gap Analysis and Remediation"></a>ComplianceAtlas: A Taxonomy-Driven Agentic AI Framework for Automated AI Act Gap Analysis and Remediation</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03121">2611.03121</a>。<strong>作者：</strong> Ilias Driouich、Hongliu Cao、Eoin Thomas、Yannick Devaux、Agnes Brodelle。<strong>分类：</strong> cs.AI。</p>
+<p><strong>仅依据摘要。</strong> ComplianceAtlas 用两阶段智能体把合规问卷转成技术缺口类型和整改排序，在 9 个 AI 系统、6 个模型家族上与四类自动检测基线比较；作者报告缺口 F1 为 0.831（最强基线 0.533），整改 P@5 为 0.872（检索基线 0.635）。可审计的人机协同流程有应用价值；样本系统数量有限，摘要未说明专家标注一致性、跨法规验证或错误整改的成本。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03121">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.03121">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.03121">arXiv DOI</a></p>
-<h3 id="gear-generative-editing-for-scene-conditioned-outfit-retrieval-for-vr-travel">GEAR:
-Generative Editing for Scene-Conditioned Outfit Retrieval for VR
-Travel</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02363">2611.02363</a>。<strong>作者：</strong>
-Gia-Huy Dinh、Thinh-Phuc Nguyen、Thanh-Hai Nguyen、Lam-Huy
-Nguyen-Ngoc、Hoang-Bach Nguyen-Phan、Nam-Quan Nguyen、Minh-Triet
-Tran、Trung-Nghia Le。<strong>分类：</strong> cs.CV。</p>
-<p><strong>仅依据摘要。</strong> GEAR 先让视觉语言模型描述 VR
-场景所需服饰，再用指令扩散模型生成标准人物穿搭图，并以图像嵌入检索商品；受控比较报告
-<a href="mailto:Elo@5" class="email">Elo@5</a> 为 1012.75、Top-10 重合率
-0.180、成对判断一致率 0.539，20 个虚拟旅行场景用户研究中的两项偏好均为
-34.5%。跨域检索路线有趣，但用户研究和场景覆盖较小，自动 Swiss
-配对判断与真实购买/长期使用结果不同。</p>
+<h3 id="GEAR-Generative-Editing-for-Scene-Conditioned-Outfit-Retrieval-for-VR-Travel"><a href="#GEAR-Generative-Editing-for-Scene-Conditioned-Outfit-Retrieval-for-VR-Travel" class="headerlink" title="GEAR: Generative Editing for Scene-Conditioned Outfit Retrieval for VR Travel"></a>GEAR: Generative Editing for Scene-Conditioned Outfit Retrieval for VR Travel</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02363">2611.02363</a>。<strong>作者：</strong> Gia-Huy Dinh、Thinh-Phuc Nguyen、Thanh-Hai Nguyen、Lam-Huy Nguyen-Ngoc、Hoang-Bach Nguyen-Phan、Nam-Quan Nguyen、Minh-Triet Tran、Trung-Nghia Le。<strong>分类：</strong> cs.CV。</p>
+<p><strong>仅依据摘要。</strong> GEAR 先让视觉语言模型描述 VR 场景所需服饰，再用指令扩散模型生成标准人物穿搭图，并以图像嵌入检索商品；受控比较报告 Elo@5 为 1012.75、Top-10 重合率 0.180、成对判断一致率 0.539，20 个虚拟旅行场景用户研究中的两项偏好均为 34.5%。跨域检索路线有趣，但用户研究和场景覆盖较小，自动 Swiss 配对判断与真实购买/长期使用结果不同。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02363">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.02363">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.02363">arXiv DOI</a></p>
-<h3 id="can-large-language-model-agents-learn-by-watching-tutorial-videos-1">Can
-Large Language Model Agents Learn by Watching Tutorial Videos?</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01460">2611.01460</a>。<strong>作者：</strong>
-Haoyu Zhao、Zafeirios Fountas、Jun Wang。<strong>分类：</strong>
-cs.LG、cs.AI、cs.CL、cs.CV。</p>
-<p><strong>重点已详述，全文已核读。</strong>
-重点论文，全文细节见上文。TAL
-把教程视频整理成可逐步修订的外部知识记忆，并通过目录树检索；作者在棋类和软件教程任务中报告，相比视频检索和记忆基线有提升。</p>
+<h3 id="Can-Large-Language-Model-Agents-Learn-by-Watching-Tutorial-Videos-1"><a href="#Can-Large-Language-Model-Agents-Learn-by-Watching-Tutorial-Videos-1" class="headerlink" title="Can Large Language Model Agents Learn by Watching Tutorial Videos?"></a>Can Large Language Model Agents Learn by Watching Tutorial Videos?</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01460">2611.01460</a>。<strong>作者：</strong> Haoyu Zhao、Zafeirios Fountas、Jun Wang。<strong>分类：</strong> cs.LG、cs.AI、cs.CL、cs.CV。</p>
+<p><strong>重点已详述，全文已核读。</strong> 重点论文，全文细节见上文。TAL 把教程视频整理成可逐步修订的外部知识记忆，并通过目录树检索；作者在棋类和软件教程任务中报告，相比视频检索和记忆基线有提升。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01460">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.01460">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.01460">arXiv DOI</a></p>
-<h3 id="kerkoporta-injecting-structured-output-backdoors-in-reasoning-coding-agents-1">Kerkoporta:
-Injecting Structured-Output Backdoors in Reasoning Coding Agents</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00138">2611.00138</a>。<strong>作者：</strong>
-Georgios Syros、Blake Bullwinkel、Alina Oprea、Cristina
-Nita-Rotaru、Amanda Minnich、Xiaodong Liu、Giorgio
-Severi。<strong>分类：</strong> cs.CR、cs.AI。</p>
-<p><strong>重点已详述，全文已核读。</strong>
-重点论文，全文细节见上文。作者展示了训练数据投毒可让代码智能体在特定触发条件下发出结构化恶意工具调用，并研究如何在恢复正常任务效用时保留后门。</p>
+<h3 id="Kerkoporta-Injecting-Structured-Output-Backdoors-in-Reasoning-Coding-Agents-1"><a href="#Kerkoporta-Injecting-Structured-Output-Backdoors-in-Reasoning-Coding-Agents-1" class="headerlink" title="Kerkoporta: Injecting Structured-Output Backdoors in Reasoning Coding Agents"></a>Kerkoporta: Injecting Structured-Output Backdoors in Reasoning Coding Agents</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00138">2611.00138</a>。<strong>作者：</strong> Georgios Syros、Blake Bullwinkel、Alina Oprea、Cristina Nita-Rotaru、Amanda Minnich、Xiaodong Liu、Giorgio Severi。<strong>分类：</strong> cs.CR、cs.AI。</p>
+<p><strong>重点已详述，全文已核读。</strong> 重点论文，全文细节见上文。作者展示了训练数据投毒可让代码智能体在特定触发条件下发出结构化恶意工具调用，并研究如何在恢复正常任务效用时保留后门。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00138">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.00138">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.00138">arXiv DOI</a></p>
-<h3 id="dr-pixel-page-native-deep-research-with-vision-language-models-1">DR
-Pixel: Page-Native Deep Research with Vision-Language Models</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03097">2611.03097</a>。<strong>作者：</strong>
-Tiansheng Hu、Yichuan Wang、James V. Talwar、Nicholas Tomlin、Chen
-Zhao、Sewon Min。<strong>分类：</strong> cs.CV、cs.CL、cs.IR。</p>
-<p><strong>重点已详述，全文已核读。</strong>
-重点论文，全文细节见上文。DR Pixel 直接检索并阅读论文页面图像，避免 OCR
-线性化丢失表格、图形与公式结构；作者报告在自建科学论文问答基准上胜过文本
-OCR 流水线。</p>
+<h3 id="DR-Pixel-Page-Native-Deep-Research-with-Vision-Language-Models-1"><a href="#DR-Pixel-Page-Native-Deep-Research-with-Vision-Language-Models-1" class="headerlink" title="DR Pixel: Page-Native Deep Research with Vision-Language Models"></a>DR Pixel: Page-Native Deep Research with Vision-Language Models</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03097">2611.03097</a>。<strong>作者：</strong> Tiansheng Hu、Yichuan Wang、James V. Talwar、Nicholas Tomlin、Chen Zhao、Sewon Min。<strong>分类：</strong> cs.CV、cs.CL、cs.IR。</p>
+<p><strong>重点已详述，全文已核读。</strong> 重点论文，全文细节见上文。DR Pixel 直接检索并阅读论文页面图像，避免 OCR 线性化丢失表格、图形与公式结构；作者报告在自建科学论文问答基准上胜过文本 OCR 流水线。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03097">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.03097">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.03097">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/StarTrail-org/DRPixel">代码</a> · <a target="_blank" rel="noopener" href="https://github.com/HughieHu/DRPixel-Bench">基准数据</a></p>
-<h3 id="benchmark-of-thred-evaluating-an-llm-agent-and-its-preprocessing-tools-for-turning-electronic-health-records-into-ai-ready-datasets">Benchmark
-of THReD: Evaluating an LLM Agent and Its Preprocessing Tools for
-Turning Electronic Health Records into AI-Ready Datasets</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02484">2611.02484</a>。<strong>作者：</strong>
-Javad Mohammad Alizadeh、Huanmei Wu。<strong>分类：</strong> cs.AI。</p>
-<p><strong>仅依据摘要。</strong> THReD
-评测一套经用户确认才执行的数据预处理智能体：141 个任务、2,550 余次
-Claude Haiku 5.5 测试中，首次回答完成率为 92.7%，数据画像缺失时降至
-58.0%；另以两类慢病真实记录和合成数据检验工具准确性与可复现性。对“正确准备数据”而非只看对话质量的评测很有价值；摘要中的多数结果来自单系统与合成任务，临床场景仍有人类确认环节。</p>
+<h3 id="Benchmark-of-THReD-Evaluating-an-LLM-Agent-and-Its-Preprocessing-Tools-for-Turning-Electronic-Health-Records-into-AI-Ready-Datasets"><a href="#Benchmark-of-THReD-Evaluating-an-LLM-Agent-and-Its-Preprocessing-Tools-for-Turning-Electronic-Health-Records-into-AI-Ready-Datasets" class="headerlink" title="Benchmark of THReD: Evaluating an LLM Agent and Its Preprocessing Tools for Turning Electronic Health Records into AI-Ready Datasets"></a>Benchmark of THReD: Evaluating an LLM Agent and Its Preprocessing Tools for Turning Electronic Health Records into AI-Ready Datasets</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02484">2611.02484</a>。<strong>作者：</strong> Javad Mohammad Alizadeh、Huanmei Wu。<strong>分类：</strong> cs.AI。</p>
+<p><strong>仅依据摘要。</strong> THReD 评测一套经用户确认才执行的数据预处理智能体：141 个任务、2,550 余次 Claude Haiku 5.5 测试中，首次回答完成率为 92.7%，数据画像缺失时降至 58.0%；另以两类慢病真实记录和合成数据检验工具准确性与可复现性。对“正确准备数据”而非只看对话质量的评测很有价值；摘要中的多数结果来自单系统与合成任务，临床场景仍有人类确认环节。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02484">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.02484">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.02484">arXiv DOI</a></p>
-<h3 id="memharmbench-evaluating-cross-session-prompt-injection-in-memory-persistent-ai-agents">MemHarmBench:
-Evaluating Cross-Session Prompt Injection in Memory-Persistent AI
-Agents</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01700">2611.01700</a>。<strong>作者：</strong>
-Zhihua Wang、Yunhao Feng、Yifeng Gao、Rui Pan、Baiheng Zhao、Zixing
-Chen、Xingjun Ma。<strong>分类：</strong> cs.AI。</p>
-<p><strong>仅依据摘要。</strong> MemHarmBench
-在恶意指令被写入持久记忆、原始内容随后移除并开启新会话的条件下，测量智能体是否仍会偏离合法任务，并区分用户、项目所有者和外部相关方三类受害者。摘要指出一些系统能表面完成任务却按攻击意图作出关键决定；这是安全评测的重要补充，但摘要未提供模型数、成功率或跨记忆架构的量化结果。作者公布了基准代码与数据。</p>
+<h3 id="MemHarmBench-Evaluating-Cross-Session-Prompt-Injection-in-Memory-Persistent-AI-Agents"><a href="#MemHarmBench-Evaluating-Cross-Session-Prompt-Injection-in-Memory-Persistent-AI-Agents" class="headerlink" title="MemHarmBench: Evaluating Cross-Session Prompt Injection in Memory-Persistent AI Agents"></a>MemHarmBench: Evaluating Cross-Session Prompt Injection in Memory-Persistent AI Agents</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01700">2611.01700</a>。<strong>作者：</strong> Zhihua Wang、Yunhao Feng、Yifeng Gao、Rui Pan、Baiheng Zhao、Zixing Chen、Xingjun Ma。<strong>分类：</strong> cs.AI。</p>
+<p><strong>仅依据摘要。</strong> MemHarmBench 在恶意指令被写入持久记忆、原始内容随后移除并开启新会话的条件下，测量智能体是否仍会偏离合法任务，并区分用户、项目所有者和外部相关方三类受害者。摘要指出一些系统能表面完成任务却按攻击意图作出关键决定；这是安全评测的重要补充，但摘要未提供模型数、成功率或跨记忆架构的量化结果。作者公布了基准代码与数据。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01700">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.01700">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.01700">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/Kirito14IT/MemHarmBench">代码与数据集</a></p>
-<h3 id="finforesight-a-diagnostic-backtesting-benchmark-for-deep-research-systems-in-financial-forecasting">FinForesight:
-A Diagnostic Backtesting Benchmark for Deep Research Systems in
-Financial Forecasting</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01621">2611.01621</a>。<strong>作者：</strong>
-Fengyuan Liu、Mukai Li、Jieshun You、Yilin Zheng、Chenjia Min、Yizhou
-Zhang、Harper Chen、Qi Liu。<strong>分类：</strong> cs.CL、cs.LG。</p>
-<p><strong>仅依据摘要。</strong> FinForesight
-为金融深度研究系统构造带时间截断的历史回测，覆盖中、美、港市场的估值、收益排序、事件方向和基本面预测，并把反事实推理与金融计算分开评分。作者发现预训练期历史分数多数高于模型训练截止后的时期，限制检索时间可缩小历史回测与实时结果差距。该基准直接针对数据污染；摘要未提供各任务具体分数，历史预测分数也不是可交易收益或未来能力保证。AI/金融双主题；代码与数据据摘要已公开，但摘要未给直达地址。</p>
+<h3 id="FinForesight-A-Diagnostic-Backtesting-Benchmark-for-Deep-Research-Systems-in-Financial-Forecasting"><a href="#FinForesight-A-Diagnostic-Backtesting-Benchmark-for-Deep-Research-Systems-in-Financial-Forecasting" class="headerlink" title="FinForesight: A Diagnostic Backtesting Benchmark for Deep Research Systems in Financial Forecasting"></a>FinForesight: A Diagnostic Backtesting Benchmark for Deep Research Systems in Financial Forecasting</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01621">2611.01621</a>。<strong>作者：</strong> Fengyuan Liu、Mukai Li、Jieshun You、Yilin Zheng、Chenjia Min、Yizhou Zhang、Harper Chen、Qi Liu。<strong>分类：</strong> cs.CL、cs.LG。</p>
+<p><strong>仅依据摘要。</strong> FinForesight 为金融深度研究系统构造带时间截断的历史回测，覆盖中、美、港市场的估值、收益排序、事件方向和基本面预测，并把反事实推理与金融计算分开评分。作者发现预训练期历史分数多数高于模型训练截止后的时期，限制检索时间可缩小历史回测与实时结果差距。该基准直接针对数据污染；摘要未提供各任务具体分数，历史预测分数也不是可交易收益或未来能力保证。AI/金融双主题；代码与数据据摘要已公开，但摘要未给直达地址。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01621">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.01621">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.01621">arXiv DOI</a></p>
-<h3 id="llm-enhanced-multimodal-house-price-prediction-using-structured-textual-and-visual-features">LLM-Enhanced
-Multimodal House Price Prediction using Structured, Textual, and Visual
-Features</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01615">2611.01615</a>。<strong>作者：</strong>
-Khandokar Md. Rahat Hossain、Souvik Das、Tahsina Hashem、Mohammed Eunus
-Ali、Tanzima Hashem。<strong>分类：</strong>
-cs.LG、cs.CL、cs.CV、cs.IR。</p>
-<p><strong>仅依据摘要。</strong>
-房价预测模型融合结构化属性、房源文字和图片：用大模型提取时空/语境特征，并以无监督图文对齐给房屋图片分组，再训练价格回归器。作者报告整体优于传统和既有多模态基线，消融显示文字特征和图片类别嵌入有贡献；摘要没有误差幅度、地区/时间外测试和估值不确定性，不能据此判断异地估价或金融抵押风险表现。AI/金融双主题。</p>
+<h3 id="LLM-Enhanced-Multimodal-House-Price-Prediction-using-Structured-Textual-and-Visual-Features"><a href="#LLM-Enhanced-Multimodal-House-Price-Prediction-using-Structured-Textual-and-Visual-Features" class="headerlink" title="LLM-Enhanced Multimodal House Price Prediction using Structured, Textual, and Visual Features"></a>LLM-Enhanced Multimodal House Price Prediction using Structured, Textual, and Visual Features</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01615">2611.01615</a>。<strong>作者：</strong> Khandokar Md. Rahat Hossain、Souvik Das、Tahsina Hashem、Mohammed Eunus Ali、Tanzima Hashem。<strong>分类：</strong> cs.LG、cs.CL、cs.CV、cs.IR。</p>
+<p><strong>仅依据摘要。</strong> 房价预测模型融合结构化属性、房源文字和图片：用大模型提取时空/语境特征，并以无监督图文对齐给房屋图片分组，再训练价格回归器。作者报告整体优于传统和既有多模态基线，消融显示文字特征和图片类别嵌入有贡献；摘要没有误差幅度、地区/时间外测试和估值不确定性，不能据此判断异地估价或金融抵押风险表现。AI/金融双主题。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.01615">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.01615">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.01615">arXiv DOI</a></p>
-<h3 id="from-white-canes-to-edge-ai-a-survey-of-assistive-navigation-technologies-for-blind-and-low-vision-individuals">From
-White Canes to Edge AI: A Survey of Assistive Navigation Technologies
-for Blind and Low-Vision Individuals</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00671">2611.00671</a>。<strong>作者：</strong>
-Abtin Zandi、Arian Ashrafi、Sarvin Nami、Seyed Sina Negahban、Amirabbas
-Entezari、Parsa Abbasian、Ariyan Azami、Parisa Taherzadeh、Bardia
-SabaghKermani、Roza Ganjipour、Hamed Farbeh。<strong>分类：</strong>
-cs.HC、cs.CV。</p>
-<p><strong>仅依据摘要。</strong> 这篇综述整理 2008—2026 年 108
-项盲人及低视力导航研究，把技术分为机械辅助、电子助行、深度学习和端侧智能四阶段，并汇总
-4 类检测器与 12
-种压缩策略。综述强调用户界面认知负荷、评估碎片化和真实用户研究不足；价值在于把模型优化与实际采用问题放在一起，结论仍受文献检索范围和研究报告质量影响。</p>
+<h3 id="From-White-Canes-to-Edge-AI-A-Survey-of-Assistive-Navigation-Technologies-for-Blind-and-Low-Vision-Individuals"><a href="#From-White-Canes-to-Edge-AI-A-Survey-of-Assistive-Navigation-Technologies-for-Blind-and-Low-Vision-Individuals" class="headerlink" title="From White Canes to Edge AI: A Survey of Assistive Navigation Technologies for Blind and Low-Vision Individuals"></a>From White Canes to Edge AI: A Survey of Assistive Navigation Technologies for Blind and Low-Vision Individuals</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00671">2611.00671</a>。<strong>作者：</strong> Abtin Zandi、Arian Ashrafi、Sarvin Nami、Seyed Sina Negahban、Amirabbas Entezari、Parsa Abbasian、Ariyan Azami、Parisa Taherzadeh、Bardia SabaghKermani、Roza Ganjipour、Hamed Farbeh。<strong>分类：</strong> cs.HC、cs.CV。</p>
+<p><strong>仅依据摘要。</strong> 这篇综述整理 2008—2026 年 108 项盲人及低视力导航研究，把技术分为机械辅助、电子助行、深度学习和端侧智能四阶段，并汇总 4 类检测器与 12 种压缩策略。综述强调用户界面认知负荷、评估碎片化和真实用户研究不足；价值在于把模型优化与实际采用问题放在一起，结论仍受文献检索范围和研究报告质量影响。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00671">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.00671">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.00671">arXiv DOI</a></p>
-<h3 id="discovering-models-for-experimental-quantum-systems-with-agentic-ai">Discovering
-Models for Experimental Quantum Systems with Agentic AI</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00620">2611.00620</a>。<strong>作者：</strong>
-Hannah C. Kleidermacher、Bennet Windt、Miguel Bello、James Zou、Jelena
-Vučković́。<strong>分类：</strong> quant-ph、cs.AI、physics.optics。</p>
-<p><strong>仅依据摘要。</strong> 研究用带工具和结构化流程的 LLM
-智能体，从金刚石和碳化硅色心腔量子电动力学的三组已发表实验数据提出
-Hamiltonian/Lindbladian
-候选并比较物理假设；作者报告可识别模型和无序来源，且复现波动主要来自研究计划生成而非计算分析。它展示科学模型发现的可监督工作流；三组既有数据规模有限，模型是否正确仍需物理专家检验。</p>
+<h3 id="Discovering-Models-for-Experimental-Quantum-Systems-with-Agentic-AI"><a href="#Discovering-Models-for-Experimental-Quantum-Systems-with-Agentic-AI" class="headerlink" title="Discovering Models for Experimental Quantum Systems with Agentic AI"></a>Discovering Models for Experimental Quantum Systems with Agentic AI</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00620">2611.00620</a>。<strong>作者：</strong> Hannah C. Kleidermacher、Bennet Windt、Miguel Bello、James Zou、Jelena Vučković́。<strong>分类：</strong> quant-ph、cs.AI、physics.optics。</p>
+<p><strong>仅依据摘要。</strong> 研究用带工具和结构化流程的 LLM 智能体，从金刚石和碳化硅色心腔量子电动力学的三组已发表实验数据提出 Hamiltonian/Lindbladian 候选并比较物理假设；作者报告可识别模型和无序来源，且复现波动主要来自研究计划生成而非计算分析。它展示科学模型发现的可监督工作流；三组既有数据规模有限，模型是否正确仍需物理专家检验。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00620">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.00620">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.00620">arXiv DOI</a></p>
-<h3 id="dependence-aware-risk-assessment-and-optimal-design-of-ai-agent-safeguard-systems-1">Dependence-Aware
-Risk Assessment and Optimal Design of AI-Agent Safeguard Systems</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00386">2611.00386</a>。<strong>作者：</strong>
-Yijia Li、Maochao Xu、Peng Zhao。<strong>分类：</strong> cs.AI。</p>
-<p><strong>重点已详述，全文已核读。</strong>
-重点论文，全文细节见上文。该研究把多层安全护栏的错误相关性纳入风险计算和策略优化；四类护栏的实证说明，按独立性假设设计可能改变安全风险与误拦成本。</p>
+<h3 id="Dependence-Aware-Risk-Assessment-and-Optimal-Design-of-AI-Agent-Safeguard-Systems-1"><a href="#Dependence-Aware-Risk-Assessment-and-Optimal-Design-of-AI-Agent-Safeguard-Systems-1" class="headerlink" title="Dependence-Aware Risk Assessment and Optimal Design of AI-Agent Safeguard Systems"></a>Dependence-Aware Risk Assessment and Optimal Design of AI-Agent Safeguard Systems</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00386">2611.00386</a>。<strong>作者：</strong> Yijia Li、Maochao Xu、Peng Zhao。<strong>分类：</strong> cs.AI。</p>
+<p><strong>重点已详述，全文已核读。</strong> 重点论文，全文细节见上文。该研究把多层安全护栏的错误相关性纳入风险计算和策略优化；四类护栏的实证说明，按独立性假设设计可能改变安全风险与误拦成本。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00386">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.00386">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.00386">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/MSMCI-lab/DAPOA">DAPOA 软件</a></p>
-<h3 id="omnipiano-diverse-dexterous-piano-playing-challenges-for-standard-robust-safe-and-multi-agent-rl">OmniPiano:
-Diverse Dexterous Piano-Playing Challenges for Standard, Robust, Safe,
-and Multi-Agent RL</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00243">2611.00243</a>。<strong>作者：</strong>
-Fan Xu、Fan Yang、Yifan Xu、Ruiyuan Zhang、Yimou Wu、Nuo Yi、Muning
-Wen、Guang Chen、Costas Spanos、Shangding Gu。<strong>分类：</strong>
-cs.AI。</p>
-<p><strong>仅依据摘要。</strong> OmniPiano 提供 1—5
-只灵巧手的钢琴机器人任务，覆盖标准、鲁棒、安全和多智能体强化学习，含至少
-912 种任务设置与 36 个基线算法。作者报告当前强化学习算法和前沿 LLM
-智能体在较难任务上仍困难；它适合做精细操作统一基准，但仿真钢琴任务的成绩不能直接外推到真实机器人、不同物体或接触安全。</p>
+<h3 id="OmniPiano-Diverse-Dexterous-Piano-Playing-Challenges-for-Standard-Robust-Safe-and-Multi-Agent-RL"><a href="#OmniPiano-Diverse-Dexterous-Piano-Playing-Challenges-for-Standard-Robust-Safe-and-Multi-Agent-RL" class="headerlink" title="OmniPiano: Diverse Dexterous Piano-Playing Challenges for Standard, Robust, Safe, and Multi-Agent RL"></a>OmniPiano: Diverse Dexterous Piano-Playing Challenges for Standard, Robust, Safe, and Multi-Agent RL</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00243">2611.00243</a>。<strong>作者：</strong> Fan Xu、Fan Yang、Yifan Xu、Ruiyuan Zhang、Yimou Wu、Nuo Yi、Muning Wen、Guang Chen、Costas Spanos、Shangding Gu。<strong>分类：</strong> cs.AI。</p>
+<p><strong>仅依据摘要。</strong> OmniPiano 提供 1—5 只灵巧手的钢琴机器人任务，覆盖标准、鲁棒、安全和多智能体强化学习，含至少 912 种任务设置与 36 个基线算法。作者报告当前强化学习算法和前沿 LLM 智能体在较难任务上仍困难；它适合做精细操作统一基准，但仿真钢琴任务的成绩不能直接外推到真实机器人、不同物体或接触安全。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00243">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.00243">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.00243">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://sail-research-lab.github.io/omnipiano/">项目与基准</a></p>
-<h3 id="multimental-ias-a-multimodal-driver-mental-state-analysis-dataset-for-context-aware-non-iid-evaluation">MultiMental-IAS:
-A Multimodal Driver Mental State Analysis Dataset for Context-Aware
-Non-IID Evaluation</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02790">2611.02790</a>。<strong>作者：</strong>
-Baran Can Gül、Nagendra Pal Singh、Anjana Arvind
-Naik。<strong>分类：</strong> cs.HC、cs.AI。</p>
-<p><strong>仅依据摘要。</strong> MultiMental-IAS 发布 23 名参与者在
-CARLA 驾驶舱模拟中的 148 次试验（11.6
-小时）数据，含车辆遥测、EEG、PPG、座舱视频和六种心理状态。作者报告见过的驾驶员宏
-F1 为 0.94；跨未见驾驶员时，驾驶动态加归一化 EEG/PPG 将宏 F1 从 0.408
-提高到 0.485。数据集把非 IID
-个体差异纳入统一协议；样本人数较少且为诱导状态模拟，不能视为真实道路监测已验证。</p>
+<h3 id="MultiMental-IAS-A-Multimodal-Driver-Mental-State-Analysis-Dataset-for-Context-Aware-Non-IID-Evaluation"><a href="#MultiMental-IAS-A-Multimodal-Driver-Mental-State-Analysis-Dataset-for-Context-Aware-Non-IID-Evaluation" class="headerlink" title="MultiMental-IAS: A Multimodal Driver Mental State Analysis Dataset for Context-Aware Non-IID Evaluation"></a>MultiMental-IAS: A Multimodal Driver Mental State Analysis Dataset for Context-Aware Non-IID Evaluation</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02790">2611.02790</a>。<strong>作者：</strong> Baran Can Gül、Nagendra Pal Singh、Anjana Arvind Naik。<strong>分类：</strong> cs.HC、cs.AI。</p>
+<p><strong>仅依据摘要。</strong> MultiMental-IAS 发布 23 名参与者在 CARLA 驾驶舱模拟中的 148 次试验（11.6 小时）数据，含车辆遥测、EEG、PPG、座舱视频和六种心理状态。作者报告见过的驾驶员宏 F1 为 0.94；跨未见驾驶员时，驾驶动态加归一化 EEG/PPG 将宏 F1 从 0.408 提高到 0.485。数据集把非 IID 个体差异纳入统一协议；样本人数较少且为诱导状态模拟，不能视为真实道路监测已验证。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02790">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.02790">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.02790">arXiv DOI</a></p>
-<h3 id="afftom-benchmarking-recursive-affective-theory-of-mind-in-dynamic-multi-party-interactions">AffToM:
-Benchmarking Recursive Affective Theory of Mind in Dynamic Multi-Party
-Interactions</h3>
-<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02725">2611.02725</a>。<strong>作者：</strong>
-Jinpeng Hu、Yiduo Jin、Erqiang Wang、Jia Li、Jingjing Wu、Peipei
-Song。<strong>分类：</strong> cs.AI。</p>
-<p><strong>仅依据摘要。</strong> AffToM 建立递归情感心智理论基准，含
-19,759 个训练对和 1,922
-个测试对，并以事件驱动的多智能体流程生成互动场景；AffToM-R1
-先监督微调、再用视角感知评分强化学习。摘要报告最强受测多模态模型在多人递归推理上仍低于
-60% 准确率，AffToM-R1 比基础模型提升 13.38
-个百分点。它暴露了静态情绪识别未覆盖的动态推理；生成基准的真实性、文化覆盖和外部人类效度仍需检查。作者公开了数据集。</p>
+<h3 id="AffToM-Benchmarking-Recursive-Affective-Theory-of-Mind-in-Dynamic-Multi-Party-Interactions"><a href="#AffToM-Benchmarking-Recursive-Affective-Theory-of-Mind-in-Dynamic-Multi-Party-Interactions" class="headerlink" title="AffToM: Benchmarking Recursive Affective Theory of Mind in Dynamic Multi-Party Interactions"></a>AffToM: Benchmarking Recursive Affective Theory of Mind in Dynamic Multi-Party Interactions</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02725">2611.02725</a>。<strong>作者：</strong> Jinpeng Hu、Yiduo Jin、Erqiang Wang、Jia Li、Jingjing Wu、Peipei Song。<strong>分类：</strong> cs.AI。</p>
+<p><strong>仅依据摘要。</strong> AffToM 建立递归情感心智理论基准，含 19,759 个训练对和 1,922 个测试对，并以事件驱动的多智能体流程生成互动场景；AffToM-R1 先监督微调、再用视角感知评分强化学习。摘要报告最强受测多模态模型在多人递归推理上仍低于 60% 准确率，AffToM-R1 比基础模型提升 13.38 个百分点。它暴露了静态情绪识别未覆盖的动态推理；生成基准的真实性、文化覆盖和外部人类效度仍需检查。作者公开了数据集。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02725">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.02725">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.02725">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/MindIntLab-HFUT/AffToM">数据集</a></p>
 <blockquote>
 <p>本文对模型结果采用作者报告口径。基准成绩不等于真实能力，需结合基线、公平比较、数据来源、污染风险、复现材料与算力成本判断。</p>

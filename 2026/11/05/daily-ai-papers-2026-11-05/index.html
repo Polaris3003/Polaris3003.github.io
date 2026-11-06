@@ -1,0 +1,886 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="重点关注AgenticFinBench: Benchmarking Financial Agents on Diverse Tasks from Real-World Requests论文： 2611.04813。作者： Shu Zhou、Ziyang He、Yuxin Rao、Yudong Fang、Jiali Qian、Dongyuan Chen、Juntao Zhang、Yong Hu。来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日 AI 论文简报（2026-11-05）">
+<meta property="og:url" content="https://www.polarishaw.top/2026/11/05/daily-ai-papers-2026-11-05/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="重点关注AgenticFinBench: Benchmarking Financial Agents on Diverse Tasks from Real-World Requests论文： 2611.04813。作者： Shu Zhou、Ziyang He、Yuxin Rao、Yudong Fang、Jiali Qian、Dongyuan Chen、Juntao Zhang、Yong Hu。来">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-23/pixiv-rank-002-148475000.jpg">
+<meta property="article:published_time" content="2026-11-05T02:15:00.000Z">
+<meta property="article:modified_time" content="2026-11-05T02:30:00.751Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="论文">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-23/pixiv-rank-002-148475000.jpg">
+  
+  
+  
+  <title>每日 AI 论文简报（2026-11-05） - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
+<link rel="stylesheet" href="/css/dailyBriefing.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/covers/pixiv-weekly/2026-07-26/pixiv-rank-004-147400702.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="每日 AI 论文简报（2026-11-05）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-11-05 10:15" pubdate>
+          2026年11月5日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">每日 AI 论文简报（2026-11-05）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="AgenticFinBench-Benchmarking-Financial-Agents-on-Diverse-Tasks-from-Real-World-Requests"><a href="#AgenticFinBench-Benchmarking-Financial-Agents-on-Diverse-Tasks-from-Real-World-Requests" class="headerlink" title="AgenticFinBench: Benchmarking Financial Agents on Diverse Tasks from Real-World Requests"></a>AgenticFinBench: Benchmarking Financial Agents on Diverse Tasks from Real-World Requests</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04813">2611.04813</a>。<strong>作者：</strong> Shu Zhou、Ziyang He、Yuxin Rao、Yudong Fang、Jiali Qian、Dongyuan Chen、Juntao Zhang、Yong Hu。<strong>来源与分类：</strong> arXiv 预印本；cs.AI。<strong>主题：</strong> AI/金融双主题。<strong>全文状态：</strong> 已核读公开 PDF。</p>
+<ul>
+<li><strong>核心问题：</strong> 金融智能体的开放式回答没有唯一标准答案，怎样同时检查回答质量、证据是否来自智能体轨迹，以及关键事实是否被外部证据反驳？</li>
+<li><strong>方法与比较：</strong> 构造 230 个来自真实请求的任务，覆盖 8 类需求、两种语言和四级复杂度；使用问题专属评分量表和两阶段 claim audit，分别检查回答是否有轨迹依据、以及事实是否被外部证据支持或反驳。在 18 种模型与智能体框架组合上比较，并用专家标注核对评判。</li>
+<li><strong>作者报告的结果：</strong> 加入幻觉审计后，基线评分最高者下降 7.58 分、由第一降至第四；不同 harness 对证据落地的差异解释度为 28.6%，模型差异为 8.8%；任务从直接检索升至最高复杂度时，质量分由 89.44 降至 79.18。</li>
+<li><strong>新意与证据边界：</strong> 将“有引用/轨迹”与“事实正确”分开衡量，并显示仅看总分会改变系统排序。任务经筛选、匿名化和专家审查，但作者明确指出它不是生产请求的概率样本；结果也受所测模型、harness 和评分框架限制，不能直接外推为金融工作中的真实错误率。</li>
+<li><strong>适合谁读：</strong> 金融问答、深度研究智能体和模型风险评估团队。建议先看任务构造、claim audit 评分，再看 18 种配置的结果与错误案例。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04813">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04813">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04813">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://nashnovaresearch.github.io/AgenticFinBench/">项目页</a></p>
+<h3 id="HARP-Training-Free-Dual-Profile-Agentic-Communication-for-LLM-Based-Recommendation"><a href="#HARP-Training-Free-Dual-Profile-Agentic-Communication-for-LLM-Based-Recommendation" class="headerlink" title="HARP: Training-Free Dual-Profile Agentic Communication for LLM-Based Recommendation"></a>HARP: Training-Free Dual-Profile Agentic Communication for LLM-Based Recommendation</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05319">2611.05319</a>。<strong>作者：</strong> Zhen Tao、Xun Zhou、Xuhui Chen、Ziyue Qiao、Qingqiang Sun。<strong>来源与分类：</strong> arXiv 预印本；cs.IR、cs.AI。<strong>全文状态：</strong> 已核读公开 PDF。</p>
+<ul>
+<li><strong>核心问题：</strong> 记忆增强推荐通常只给用户建档，物品没有对称画像，画像只在有限上下文的重排阶段使用，而且用户偏好在初始阶段后被冻结；这些设计是否限制了推荐质量？</li>
+<li><strong>方法与基线：</strong> HARP 在冻结的 LLM 推荐骨干上加入双侧用户/物品画像、检索阶段的画像同质性门控，以及依据交互反馈的单次反思更新；无需梯度训练。作者在 Yelp、Books、MovieTV、Goodreads 四个公开数据集上，与最强已发表记忆增强基线 MemRec 比较，并做组件消融和逐例归因。</li>
+<li><strong>作者报告的结果：</strong> Hit@1 相对 MemRec 提升 6.9%–24.0%，四个数据集的 Holm 校正检验均 p&lt;1e-9；提升在 Yelp 最大。消融将主要增益归于检索侧画像门控，反思更新则带来额外收益和个别退化。</li>
+<li><strong>新意与证据边界：</strong> 把用户和物品都视作可沟通、可更新的画像端点，且把画像信号移到检索环节。证据来自四个离线公开基准和既定候选集，不等同于线上点击、长期满意度或新物品冷启动表现；反思更新有推理成本，论文也报告了可能的负向个案。</li>
+<li><strong>适合谁读：</strong> 个性化推荐、LLM 智能体记忆和检索工程团队。建议读 BUILD–TRANSMIT–UNDERSTAND–SYNC 设计、四数据集对比、消融和逐例失败分析。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05319">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.05319">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.05319">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/Jove-Zhen/HARP">代码</a></p>
+<h3 id="Voluntary-Servitude-Weaponized-Safety-Warning-Mechanisms-for-Controlling-AI-Agents"><a href="#Voluntary-Servitude-Weaponized-Safety-Warning-Mechanisms-for-Controlling-AI-Agents" class="headerlink" title="Voluntary Servitude: Weaponized Safety Warning Mechanisms for Controlling AI Agents"></a>Voluntary Servitude: Weaponized Safety Warning Mechanisms for Controlling AI Agents</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04393">2611.04393</a>。<strong>作者：</strong> Ilan Zendel、Matan Levy、Stav Cohen、Avi Mendelson、Amit LeVi。<strong>来源与分类：</strong> arXiv 预印本；cs.CR、cs.AI、cs.CL、cs.LG。<strong>全文状态：</strong> 已核读公开 PDF。</p>
+<ul>
+<li><strong>核心问题：</strong> 如果恶意网页不下达指令，而是假装普通用户评论、捏造安全风险，智能体会不会因自身的避险机制而排除正常选项、替攻击者完成选择？</li>
+<li><strong>方法与基线：</strong> 作者在六个模型、十类消费服务和三种攻击族中，比较普通安全警告与传统指令注入，并测量检索器端到端成功率；随后以要求“危险说法需独立来源佐证”的提示指令作为免训练防护，对照同一批页面和问题。</li>
+<li><strong>作者报告的结果：</strong> 捏造危险信息的攻击诱导率为 60.4%，接近指令注入的 66.0%；注入检测器往往把它当正常内容，在过滤器后其效果高出 1.7–4.4 倍。加入佐证要求后，对非自适应攻击者的暴露约下降 95%；一组消费服务测试的成功率由 68.4% 降至 3.6%。</li>
+<li><strong>新意与证据边界：</strong> 攻击利用的是“内容看起来可信且危险”的语义，而不是可被规则识别的命令字符串。实验集中在旅游等消费服务的单次选择，防护主要对非自适应攻击者验证；不代表所有生产浏览器智能体的实际受攻击概率，攻击者适应后效果未知。</li>
+<li><strong>适合谁读：</strong> 浏览器智能体、检索增强系统和间接提示注入防护研究者。建议读威胁模型、跨模型攻击对照、生产浏览器迁移实验和佐证防护部分。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04393">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04393">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04393">arXiv DOI</a></p>
+<h3 id="Aero-VPA-Few-Step-Flow-Matching-Control-over-Non-Reconstructive-JEPA-Latents-for-Agile-Flight-on-Edge-Hardware"><a href="#Aero-VPA-Few-Step-Flow-Matching-Control-over-Non-Reconstructive-JEPA-Latents-for-Agile-Flight-on-Edge-Hardware" class="headerlink" title="Aero-VPA: Few-Step Flow-Matching Control over Non-Reconstructive JEPA Latents for Agile Flight on Edge Hardware"></a>Aero-VPA: Few-Step Flow-Matching Control over Non-Reconstructive JEPA Latents for Agile Flight on Edge Hardware</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04392">2611.04392</a>。<strong>作者：</strong> Yeonseok Lee。<strong>来源与分类：</strong> arXiv 预印本；cs.LO、cs.LG、cs.RO。<strong>全文状态：</strong> 已核读公开 PDF。</p>
+<ul>
+<li><strong>核心问题：</strong> 自回归视觉—语言—动作模型在边缘设备上逐步生成动作过慢；少步潜状态预测和安全屏蔽能否改善无人机闭环导航，同时显式暴露失败模式？</li>
+<li><strong>方法与基线：</strong> Aero-VPA 用 RGB-D 视觉编码器和五头预测器预估下一潜状态，再以两步 Conditional Flow Matching 产生速度/偏航动作，每次决策需五次串行网络评估；不重建像素，并用预测分歧触发不确定性回退。评估为 PX4 软件在环森林仿真，对比行为克隆、DAgger 检查点以及有无无地图运行时安全屏蔽。</li>
+<li><strong>作者报告的结果：</strong> 首个 DAgger 检查点在 180 组配对任务中，加入安全屏蔽后成功率由 21.1% 升至 52.2%（95% CI 45.0%–59.4%），碰撞率由 72.2% 降至 22.2%；超时率则由 2.8% 升至 23.3%。六个检查点成功率都增加 30.0–34.4 个百分点。</li>
+<li><strong>新意与证据边界：</strong> 结果修正了早期版本“只给架构、没有闭环结果”的不足，也揭示安全屏蔽把部分碰撞转成了超时，而非消除失败。所有结果来自仿真，屏蔽后仍有 22.2%–42.8% 任务以碰撞结束；尚未证明真实硬件的延迟、状态估计漂移和安全性。</li>
+<li><strong>适合谁读：</strong> 边缘机器人控制、VLA 推理效率与安全过滤器工程团队。建议读方法中的潜状态预测和运行时屏蔽、六检查点配对实验及局限章节。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04392">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04392">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04392">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/ylee-sling/Aero-VPA">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/ylee-sling/aero-vpa">模型权重</a></p>
+<h3 id="El-Agente-Farmaco-A-Scalable-AI-Scientist-for-Drug-Discovery"><a href="#El-Agente-Farmaco-A-Scalable-AI-Scientist-for-Drug-Discovery" class="headerlink" title="El Agente Fármaco: A Scalable AI Scientist for Drug Discovery"></a>El Agente Fármaco: A Scalable AI Scientist for Drug Discovery</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03832">2611.03832</a>。<strong>作者：</strong> Marcel Müller、Mohammad Ghazi Vakili、Yoshihiro Ogura、Ella Ashoori、Shimeng Wang、Alessandro S. Nascimento、Eddie Calleja、Yutong Zhao、Yimeng Liu、Ella Miray Rajaonson、Aiwei Yin、Jiaru Bai、Yunheng Zou、Abraham C. Stern、Varinia Bernales、Alán Aspuru-Guzik。<strong>来源与分类：</strong> arXiv 预印本；cs.AI、cs.MA、q-bio.BM。<strong>全文状态：</strong> 已核读公开 PDF。</p>
+<ul>
+<li><strong>核心问题：</strong> 如何让研究者用自然语言发起可扩展的分子筛选，同时让智能体复用工具结果、保留来源和过程，避免每个化合物都重新调用 LLM 决策？</li>
+<li><strong>方法与基线：</strong> 系统由工具编排 harness 和共享科学记忆 Fármaco Atlas 组成，将分子、结构、计算结果和来源记录入库，再按需检索证据；整合分子生成、结合/性质预测和可购化合物查询。论文包含专家主导项目的回顾性比较、22 项任务基准及多个计算案例，并与直接工具调用和 Codex 比较。</li>
+<li><strong>作者报告的结果：</strong> 在回顾性比较中，系统提出了化学结构有差异、对接分数有竞争力且按预设标准计算的类药性更高的候选物；22 项基准中，作者报告其模型评审平均分最高，同时中位累计 token 用量和峰值上下文较低。</li>
+<li><strong>新意与证据边界：</strong> 持久、带 provenance 的结构化记忆使整批化合物可以被工具批处理，便于检查计算步骤。候选物筛选和 docking/计算类药性是早期计算代理指标，不是湿实验验证或临床疗效；22 项任务数量有限，模型评审分数也依赖所用评审器与工具能力。</li>
+<li><strong>适合谁读：</strong> AI for Science、计算化学工作流和智能体记忆系统开发者。建议读 Atlas 数据结构、工具执行/来源追踪、22 项基准表和 AmpC 案例中的工具边界。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03832">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.03832">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.03832">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/marcelmbn/farmaco-artifacts">代码与实验产物</a></p>
+<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><h3 id="RecoAtlas-A-Benchmark-and-RL-Environment-for-LLM-Recommendation-Agents-Optimizing-Set-Level-Utility"><a href="#RecoAtlas-A-Benchmark-and-RL-Environment-for-LLM-Recommendation-Agents-Optimizing-Set-Level-Utility" class="headerlink" title="RecoAtlas: A Benchmark and RL Environment for LLM Recommendation Agents Optimizing Set-Level Utility"></a>RecoAtlas: A Benchmark and RL Environment for LLM Recommendation Agents Optimizing Set-Level Utility</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.18805">2605.18805</a>。<strong>作者：</strong> Imad Aouali、Flavian Vasile、Clijo Jose、Otmane Sakhi、Alexandre Gilotte、Benjamin Heymann。<strong>来源与分类：</strong> arXiv 预印本；cs.IR、cs.AI、cs.LG。</p>
+<p><strong>仅依据摘要。</strong> RecoAtlas 针对推荐智能体生成一组互补商品并附自然语言解释的任务，提供检索、互补性和多样性工具，以及基于用户行为的参考集合与 bundle 级学习奖励，用于精确恢复评估和强化学习。作者摘要报告，模型规模、测试时计算量和工具强度增加时表现也提高，但语义上说得通不必然意味着行为效用高。它将“整组建议是否满足用户”纳入评测；摘要未给具体数值、基线表和用户行为数据的外推范围。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.18805">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.18805">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2605.18805">arXiv DOI</a></p>
+<h3 id="AgenticFinBench-Benchmarking-Financial-Agents-on-Diverse-Tasks-from-Real-World-Requests-1"><a href="#AgenticFinBench-Benchmarking-Financial-Agents-on-Diverse-Tasks-from-Real-World-Requests-1" class="headerlink" title="AgenticFinBench: Benchmarking Financial Agents on Diverse Tasks from Real-World Requests"></a>AgenticFinBench: Benchmarking Financial Agents on Diverse Tasks from Real-World Requests</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04813">2611.04813</a>。<strong>作者：</strong> Shu Zhou、Ziyang He、Yuxin Rao、Yudong Fang、Jiali Qian、Dongyuan Chen、Juntao Zhang、Yong Hu。<strong>来源与分类：</strong> arXiv 预印本；cs.AI。<strong>主题：</strong> AI/金融双主题。</p>
+<p><strong>重点已详述，全文已核读。</strong> 这项评测关注金融智能体回答中证据落地和事实核验的分离；全文结果与边界见上文。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04813">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04813">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04813">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://nashnovaresearch.github.io/AgenticFinBench/">项目页</a></p>
+<h3 id="YANAMI-A-Large-Scale-Multimodal-Dataset-and-Benchmark-for-Multiturn-Stateful-Interaction"><a href="#YANAMI-A-Large-Scale-Multimodal-Dataset-and-Benchmark-for-Multiturn-Stateful-Interaction" class="headerlink" title="YANAMI: A Large-Scale Multimodal Dataset and Benchmark for Multiturn Stateful Interaction"></a>YANAMI: A Large-Scale Multimodal Dataset and Benchmark for Multiturn Stateful Interaction</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05280">2611.05280</a>。<strong>作者：</strong> Shengyu Wang、Tengyue Nong、Junming Liu、Haosong Peng、Siyu Li、Ruiqi Lei、Fushuo Huo、Yuhao Pan、Yunfeng Fan、Ding Wang、Nan Cheng、Haozhao Wang、Wenchao Xu。<strong>来源与分类：</strong> arXiv 预印本；cs.CV。</p>
+<p><strong>仅依据摘要。</strong> YANAMI 面向多轮多模态对话中信息持续保留、更新并落实到图像输出的问题，包含 40 万段对话、超过 200 万张图片和 260 万轮对话，以及 400 段评测对话。作者摘要报告，在 BAGEL 上微调后，图像编辑、生成和多模态状态交互分别提升 10.3%、2.0% 和 13.23%，但现有统一多模态模型仍难持续追踪和呈现对话状态。数据规模和理解/视觉实现分开评估值得关注；本轮 PDF 因体积过大无法解析，未核对具体基线、数据构建和污染控制，以上仅据摘要。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05280">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.05280">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.05280">arXiv DOI</a></p>
+<h3 id="HARP-Training-Free-Dual-Profile-Agentic-Communication-for-LLM-Based-Recommendation-1"><a href="#HARP-Training-Free-Dual-Profile-Agentic-Communication-for-LLM-Based-Recommendation-1" class="headerlink" title="HARP: Training-Free Dual-Profile Agentic Communication for LLM-Based Recommendation"></a>HARP: Training-Free Dual-Profile Agentic Communication for LLM-Based Recommendation</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05319">2611.05319</a>。<strong>作者：</strong> Zhen Tao、Xun Zhou、Xuhui Chen、Ziyue Qiao、Qingqiang Sun。<strong>来源与分类：</strong> arXiv 预印本；cs.IR、cs.AI。</p>
+<p><strong>重点已详述，全文已核读。</strong> 论文报告四个离线公开推荐基准上的 Hit@1 提升，并用消融定位主要收益来自检索侧画像门控；边界与负例见上文。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05319">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.05319">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.05319">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/Jove-Zhen/HARP">代码</a></p>
+<h3 id="OperAItor-An-Agentic-Framework-for-Fault-Tolerant-Operation-of-Chemical-Processes"><a href="#OperAItor-An-Agentic-Framework-for-Fault-Tolerant-Operation-of-Chemical-Processes" class="headerlink" title="OperAItor: An Agentic Framework for Fault-Tolerant Operation of Chemical Processes"></a>OperAItor: An Agentic Framework for Fault-Tolerant Operation of Chemical Processes</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05179">2611.05179</a>。<strong>作者：</strong> Javal Vyas、Mehmet Mercangöz。<strong>来源与分类：</strong> arXiv 预印本；eess.SY、cs.AI、cs.SY。</p>
+<p><strong>仅依据摘要。</strong> OperAItor 将监测、故障诊断、知识图谱检索、计划和监督动作接入化工过程智能体，并用反应器—蒸馏塔动态过程的 113 变量模型、4 个 LLM、20 个单故障与复合故障情景评估 5 种动作校验方案。作者报告，在其假定经济参数下，无干预会令 20 个场景中 18 个停机、损失约 39.9 万美元；经验证的配置将停机减至 5–8 次、挽回约 26.5 万美元。数字来自仿真模型和假设经济学，不代表工厂现场收益或真实安全验证；摘要没有提供代码直达地址。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05179">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.05179">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.05179">arXiv DOI</a></p>
+<h3 id="LLMs-as-MDP-Designers-A-Dependency-Aware-Agentic-Framework-for-Automated-Robot-Policy-Generation"><a href="#LLMs-as-MDP-Designers-A-Dependency-Aware-Agentic-Framework-for-Automated-Robot-Policy-Generation" class="headerlink" title="LLMs as MDP Designers: A Dependency-Aware Agentic Framework for Automated Robot Policy Generation"></a>LLMs as MDP Designers: A Dependency-Aware Agentic Framework for Automated Robot Policy Generation</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04974">2611.04974</a>。<strong>作者：</strong> Hong Je-Gal、Jinwoo Kim、Chanbin Yi、Hyun-Suk Lee。<strong>来源与分类：</strong> arXiv 预印本；cs.RO、cs.AI。</p>
+<p><strong>仅依据摘要。</strong> ARPG 把 LLM 用作部署前的策略设计者，按依赖顺序构建 MDP，再模块化实现模拟器，并逐步校验状态、动作、奖励和终止条件是否语义一致。作者摘要报告，Isaac Sim 实验中其在建模正确性、环境可执行性和策略生成成功率上胜过单体 LLM 和现成智能体基线，并展示机器人、标准 RL 与工程任务迁移。它针对“代码能运行但策略学不出来”的失败模式；摘要未披露样本量、效应数字、模型与算力配置，外部验证仍需看全文。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04974">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04974">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04974">arXiv DOI</a></p>
+<h3 id="When-Is-Fresh-AI-Stock-Analysis-Worth-It-Allocating-a-Limited-Research-Budget-Across-Price-Updates-Deep-Forecast-Refreshes-and-Editorial-Reviews-of-Top-Stock-Picks"><a href="#When-Is-Fresh-AI-Stock-Analysis-Worth-It-Allocating-a-Limited-Research-Budget-Across-Price-Updates-Deep-Forecast-Refreshes-and-Editorial-Reviews-of-Top-Stock-Picks" class="headerlink" title="When Is Fresh AI Stock Analysis Worth It? Allocating a Limited Research Budget Across Price Updates, Deep Forecast Refreshes, and Editorial Reviews of Top Stock Picks"></a>When Is Fresh AI Stock Analysis Worth It? Allocating a Limited Research Budget Across Price Updates, Deep Forecast Refreshes, and Editorial Reviews of Top Stock Picks</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04348">2611.04348</a>。<strong>作者：</strong> Russlan Ramdowar。<strong>来源与分类：</strong> arXiv 预印本；cs.MA。<strong>主题：</strong> AI/金融双主题。</p>
+<p><strong>仅依据摘要。</strong> 研究用 8,120 份生产报告覆盖 203 只股票，比较沿用并重定价旧报告、机械更新目标、重新生成多智能体报告等十种配置。作者报告，在两个模型未变窗口中，计入模型化交易成本和算力费后，复用策略平均收益 2.25%、SPY 为 1.66%、新报告为 4.77%；把首个持有期拉长至近半年，复用策略转为 -11.26%，新报告为 9.12%，SPY 为 3.46%。它提示研究更新频率与“观点半衰期”可能重要；摘要未充分说明样本外隔离、选择窗口和交易执行假设，短期组合回测不等于可复制实盘结果或投资建议。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04348">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04348">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04348">arXiv DOI</a></p>
+<h3 id="Language-Model-Augmented-Decision-Transformer-for-Multi-Task-Offline-Reinforcement-Learning"><a href="#Language-Model-Augmented-Decision-Transformer-for-Multi-Task-Offline-Reinforcement-Learning" class="headerlink" title="Language Model Augmented Decision Transformer for Multi-Task Offline Reinforcement Learning"></a>Language Model Augmented Decision Transformer for Multi-Task Offline Reinforcement Learning</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04031">2611.04031</a>。<strong>作者：</strong> Xinbo Zhao、Yuhang Liu、Xin Zhang、Lei Le、Zhaohan Xi、Yu Yang、Yingxue Zhang。<strong>来源与分类：</strong> arXiv 预印本；cs.CL、cs.LG。</p>
+<p><strong>仅依据摘要。</strong> LaMA-DT 用自然语言任务描述引导离线多任务强化学习轨迹增广，再以质量评分筛选轨迹，并将同一 LLM 微调为语言条件 Decision Transformer。作者在 Meta-World 与 MuJoCo 基准上报告其优于竞争基线，尤其在低数据任务中提高跨任务泛化。值得关注的是把数据生成和策略学习统一在序列模型中；摘要没有具体提升幅度、增广错误率、训练开销或基线规模，合成轨迹能否在不同任务分布下保持有效需看全文。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04031">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04031">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04031">arXiv DOI</a></p>
+<h3 id="El-Agente-Farmaco-A-Scalable-AI-Scientist-for-Drug-Discovery-1"><a href="#El-Agente-Farmaco-A-Scalable-AI-Scientist-for-Drug-Discovery-1" class="headerlink" title="El Agente Fármaco: A Scalable AI Scientist for Drug Discovery"></a>El Agente Fármaco: A Scalable AI Scientist for Drug Discovery</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03832">2611.03832</a>。<strong>作者：</strong> Marcel Müller、Mohammad Ghazi Vakili、Yoshihiro Ogura、Ella Ashoori、Shimeng Wang、Alessandro S. Nascimento、Eddie Calleja、Yutong Zhao、Yimeng Liu、Ella Miray Rajaonson、Aiwei Yin、Jiaru Bai、Yunheng Zou、Abraham C. Stern、Varinia Bernales、Alán Aspuru-Guzik。<strong>来源与分类：</strong> arXiv 预印本；cs.AI、cs.MA、q-bio.BM。</p>
+<p><strong>重点已详述，全文已核读。</strong> Fármaco Atlas 把计算化学工具结果与来源持久化，使研究者能检查从目标到候选物的筛选链；作者报告的比较、效率指标与计算证据限制见上文。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03832">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.03832">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.03832">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/marcelmbn/farmaco-artifacts">代码与实验产物</a></p>
+<h3 id="Towards-Error-Free-EHRs-Reasoning-Intensive-Consistency-Verification-Between-Clinical-Notes-and-Structured-Tables-in-Electronic-Health-Records"><a href="#Towards-Error-Free-EHRs-Reasoning-Intensive-Consistency-Verification-Between-Clinical-Notes-and-Structured-Tables-in-Electronic-Health-Records" class="headerlink" title="Towards Error-Free EHRs: Reasoning-Intensive Consistency Verification Between Clinical Notes and Structured Tables in Electronic Health Records"></a>Towards Error-Free EHRs: Reasoning-Intensive Consistency Verification Between Clinical Notes and Structured Tables in Electronic Health Records</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.26463">2605.26463</a>。<strong>作者：</strong> Yeonsu Kwon、Jiho Kim、Junseong Choi、Paloma Rabaey、Minseo Kim、Sujeong Im、Jeewon Yang、Jun-Min Lee、Sangji Lee、Jiwon Kim、Hangyul Yoon、Hyunwook Kwon、Edward Choi。<strong>来源与分类：</strong> arXiv 预印本；cs.CL、cs.AI。</p>
+<p><strong>仅依据摘要。</strong> EHR-ReasonCon 用 MIMIC-III 病历构建 8,042 个实体级的笔记—表格一致性基准；EHR-INSPECTOR 将临床记录分段、抽取实体和时间线索，再调用表格浏览工具查验。作者报告，在严格和宽松的专家验证 LLM 判分标准下，多种骨干模型达到摘要所称的当前最佳结果。它把时间变化和临床推断纳入一致性检查；摘要未给精确分数和人工复核规模，MIMIC-III 上的结果不能直接视作临床安全证明。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.26463">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.26463">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2605.26463">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/dustn1259/EHR-ReasonCon">代码与数据集</a></p>
+<h3 id="COCOTree-A-Dataset-and-Benchmark-for-Open-Tree-Structured-Visual-Decomposition"><a href="#COCOTree-A-Dataset-and-Benchmark-for-Open-Tree-Structured-Visual-Decomposition" class="headerlink" title="COCOTree: A Dataset and Benchmark for Open Tree-Structured Visual Decomposition"></a>COCOTree: A Dataset and Benchmark for Open Tree-Structured Visual Decomposition</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.22068">2605.22068</a>。<strong>作者：</strong> Junhyub Lee、Seunghun Chae、Hyosu Kim。<strong>来源与分类：</strong> arXiv 预印本；cs.CV。</p>
+<p><strong>仅依据摘要。</strong> COCOTree 针对图像中的开放词汇、层级化部件分解，使用视觉语言模型生成语义标注，再由 SAM 3 提供几何定位；数据集含 2.1 万余张图、180 万结构节点和 3,500 余种标签，提出同时衡量掩码、标签和结构一致性的 OTQ 指标。作者报告人工评估与人类结构判断较一致，并公开数据与代码。自动标注可扩规模，但标签质量、长尾类别覆盖及 OTQ 与下游任务效用的关系需要全文核验。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.22068">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.22068">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2605.22068">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/melonkick3090/COCOTree">代码与基准</a></p>
+<h3 id="PATTS-Parallel-Aware-Test-Time-Scaling-for-Thought-Image-Generation-in-Multimodal-Discrete-Diffusion-LLMs"><a href="#PATTS-Parallel-Aware-Test-Time-Scaling-for-Thought-Image-Generation-in-Multimodal-Discrete-Diffusion-LLMs" class="headerlink" title="PATTS: Parallel-Aware Test-Time Scaling for Thought-Image Generation in Multimodal Discrete Diffusion LLMs"></a>PATTS: Parallel-Aware Test-Time Scaling for Thought-Image Generation in Multimodal Discrete Diffusion LLMs</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04948">2611.04948</a>。<strong>作者：</strong> Yasong Dai、Zeeshan Hayder、David Ahmedt-Aristizabal、Hongdong Li。<strong>来源与分类：</strong> arXiv 预印本；cs.CV。</p>
+<p><strong>仅依据摘要。</strong> PATTS 面向并行多模态离散扩散模型，在生成过程中搜索中间“思考—图像”状态，以轨迹可靠性调节外部语义验证信号。固定 N=32 的 MMaDA-Parallel/GenEval 评测中，作者报告分数 0.844，高于无测试时扩展的 0.628、Best-of-N 的 0.787 和 FKD 的 0.810。贡献在于验证不只看最终图像；结果限于一个模型框架、一个基准和固定搜索预算，摘要未说明不同计算预算下的性价比与人工盲评。代码已公开。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04948">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04948">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04948">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/Ringo-Star/PATTS">代码</a></p>
+<h3 id="NightIQA-A-Comprehensive-Dataset-and-Benchmark-for-MLLM-Based-Nighttime-Image-Quality-Assessment"><a href="#NightIQA-A-Comprehensive-Dataset-and-Benchmark-for-MLLM-Based-Nighttime-Image-Quality-Assessment" class="headerlink" title="NightIQA: A Comprehensive Dataset and Benchmark for MLLM-Based Nighttime Image Quality Assessment"></a>NightIQA: A Comprehensive Dataset and Benchmark for MLLM-Based Nighttime Image Quality Assessment</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04811">2611.04811</a>。<strong>作者：</strong> Yiding Tian、Jiaojiao Yi、Jiayuan Lu、Pufan Xu、Jinlin Wu、Changyuan Wen、Hongyuan Yu。<strong>来源与分类：</strong> arXiv 预印本；cs.CV。</p>
+<p><strong>仅依据摘要。</strong> NightIQA 包含 1,769 张实拍夜景图、1,078 道多层次视觉问答题，以及 8 万张可扩展合成图，针对夜间场景的多种复合退化评估多模态模型。作者报告，使用其数据做 SFT/GRPO 的 Qwen3-VL-8B 超过开源图像质量方法，并在总体准确率上超过所测闭源模型。数据域专门化有价值；摘要未列闭源模型、训练/测试去重、指标和标注一致性，需核实公平比较与潜在数据重叠。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04811">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04811">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04811">arXiv DOI</a></p>
+<h3 id="τ-Rec-Books-A-Disclosure-Controlled-Benchmark-for-Requirement-Elicitation-in-Agentic-Recommender-Systems"><a href="#τ-Rec-Books-A-Disclosure-Controlled-Benchmark-for-Requirement-Elicitation-in-Agentic-Recommender-Systems" class="headerlink" title="τ-Rec-Books: A Disclosure-Controlled Benchmark for Requirement Elicitation in Agentic Recommender Systems"></a>τ-Rec-Books: A Disclosure-Controlled Benchmark for Requirement Elicitation in Agentic Recommender Systems</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04459">2611.04459</a>。<strong>作者：</strong> Bharath Sivaram Narasimhan、Karthik R. Narasimhan。<strong>来源与分类：</strong> arXiv 预印本；cs.IR、cs.AI、cs.CL。</p>
+<p><strong>仅依据摘要。</strong> τ-Rec-Books 在 2 万本 Wikidata 图书上构造 450 项需求逐步披露任务，控制用户何时主动说明、何时等待追问、或永不明说，并用规则模拟用户和目录元数据评分，避免 LLM 判分器。作者报告，四种智能体/两种搜索界面在需求隐藏时平均成功率由 0.975 降至 0.283；要求主动提问可把混合披露任务成功率提高到至少 0.931，但隐藏条件仍难于简单热门书基线。它把“先问清楚”变成可测行为；模拟用户和书目范围限制真实用户迁移。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04459">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04459">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04459">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/nbharaths/tau-rec/tree/main/data/tracks/books-wikidata-v2">代码、数据与轨迹</a></p>
+<h3 id="Voluntary-Servitude-Weaponized-Safety-Warning-Mechanisms-for-Controlling-AI-Agents-1"><a href="#Voluntary-Servitude-Weaponized-Safety-Warning-Mechanisms-for-Controlling-AI-Agents-1" class="headerlink" title="Voluntary Servitude: Weaponized Safety Warning Mechanisms for Controlling AI Agents"></a>Voluntary Servitude: Weaponized Safety Warning Mechanisms for Controlling AI Agents</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04393">2611.04393</a>。<strong>作者：</strong> Ilan Zendel、Matan Levy、Stav Cohen、Avi Mendelson、Amit LeVi。<strong>来源与分类：</strong> arXiv 预印本；cs.CR、cs.AI、cs.CL、cs.LG。</p>
+<p><strong>重点已详述，全文已核读。</strong> 论文展示伪造安全警告可绕过命令式注入检测、驱动智能体主动排除正常选择；攻击测量和防护边界见上文。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04393">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04393">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04393">arXiv DOI</a></p>
+<h3 id="Aero-VPA-Few-Step-Flow-Matching-Control-over-Non-Reconstructive-JEPA-Latents-for-Agile-Flight-on-Edge-Hardware-1"><a href="#Aero-VPA-Few-Step-Flow-Matching-Control-over-Non-Reconstructive-JEPA-Latents-for-Agile-Flight-on-Edge-Hardware-1" class="headerlink" title="Aero-VPA: Few-Step Flow-Matching Control over Non-Reconstructive JEPA Latents for Agile Flight on Edge Hardware"></a>Aero-VPA: Few-Step Flow-Matching Control over Non-Reconstructive JEPA Latents for Agile Flight on Edge Hardware</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04392">2611.04392</a>。<strong>作者：</strong> Yeonseok Lee。<strong>来源与分类：</strong> arXiv 预印本；cs.LO、cs.LG、cs.RO。</p>
+<p><strong>重点已详述，全文已核读。</strong> 论文在软件在环仿真中报告运行时安全屏蔽提升成功率、减少碰撞但增加超时；硬件部署尚未验证，详细实验见上文。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04392">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04392">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04392">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/ylee-sling/Aero-VPA">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/ylee-sling/aero-vpa">模型权重</a></p>
+<h3 id="When-Debate-Amplifies-Risk-Social-Bias-Vulnerabilities-in-Multi-Agent-Safety-Deliberation"><a href="#When-Debate-Amplifies-Risk-Social-Bias-Vulnerabilities-in-Multi-Agent-Safety-Deliberation" class="headerlink" title="When Debate Amplifies Risk: Social-Bias Vulnerabilities in Multi-Agent Safety Deliberation"></a>When Debate Amplifies Risk: Social-Bias Vulnerabilities in Multi-Agent Safety Deliberation</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04289">2611.04289</a>。<strong>作者：</strong> Qinghua Mao、Xi Lin、Yuxin Qi、Zihao Xu、Jinze Gu、Yuliang Chen。<strong>来源与分类：</strong> arXiv 预印本；cs.CR、cs.AI、cs.CY。</p>
+<p><strong>仅依据摘要。</strong> SafeConflict-Bias 在固定查询和检索证据的反事实协议中，分离多智能体辩论中的多数压力、权威提示和信心不对称；作者报告，一些标准辩论设置会把不安全建议采纳率从独立模型的 0% 推高至最高 100%。RiskTrace-Debias 通过预先独立判断、遮蔽社会元数据和一致性仲裁，将所测架构的最坏采纳率压到 2% 以下。结果说明群体讨论并不自动提升安全性；摘要未交代样本规模、攻击条件覆盖和判定者独立性，不能将极值当成生产系统发生率。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04289">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04289">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04289">arXiv DOI</a></p>
+<h3 id="GlucoAgent-Personalized-Glucose-Forecasting-from-Multimodal-Personal-Context"><a href="#GlucoAgent-Personalized-Glucose-Forecasting-from-Multimodal-Personal-Context" class="headerlink" title="GlucoAgent: Personalized Glucose Forecasting from Multimodal Personal Context"></a>GlucoAgent: Personalized Glucose Forecasting from Multimodal Personal Context</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04126">2611.04126</a>。<strong>作者：</strong> Xingzhi Sun、Hyo Jin Kim、Zhiyuan Wang、Hao Chen。<strong>来源与分类：</strong> arXiv 预印本；cs.AI。</p>
+<p><strong>仅依据摘要。</strong> GlucoAgent 在每次血糖预测时读取个人连续血糖、手表、饮食日志和健康档案，动态生成并运行检索或统计分析代码。作者在 CGMacros 上报告平均 RMSE 为 22.5 mg/dL，优于 Chronos-2 的 23.5；加多模态上下文后平均误差下降 1.4 mg/dL，而 Chronos-2 下降 0.3，在餐后 60 分钟窗口分别改善 4.6 和 0.8 mg/dL。逐例选择信号可能适应个体差异；摘要未交代独立临床验证、跨设备漂移、代码执行安全和推理成本，不能据此替代医疗判断。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04126">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04126">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04126">arXiv DOI</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/" class="category-chain-item">每日论文</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/tags/%E8%AE%BA%E6%96%87/" class="print-no-link">#论文</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>每日 AI 论文简报（2026-11-05）</div>
+      <div>https://www.polarishaw.top/2026/11/05/daily-ai-papers-2026-11-05/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年11月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/11/06/daily-github-trending-2026-11-06/" title="2026-11-06 GitHub 热榜简报：Agent 走向可操作的本地基础设施">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2026-11-06 GitHub 热榜简报：Agent 走向可操作的本地基础设施</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/11/05/daily-finance-papers-2026-11-05/" title="每日金融论文简报（2026-11-05）">
+                        <span class="hidden-mobile">每日金融论文简报（2026-11-05）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
