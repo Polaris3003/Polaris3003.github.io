@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注PanelGP: A Probabilistic Factor Model for Asset-Return Panels论文： 2611.04040。作者： Andrea Ruglioni、Damir Filipovic。来源与分类： arXiv 预印本；q-fin.ST、econ.EM、stat.ML。全文状态： 已核读公开 PDF。  核心问题： 能否用同一个概率因子模型同时预测股">
+    <meta name="description" content="重点关注 PanelGP: A Probabilistic Factor Model for Asset-Return Panels 论文： 2611.04040。作者： Andrea Ruglioni、Damir Filipovic。来源与分类： arXiv 预印本；q-fin.ST、econ.EM、stat.ML。全文状态： 已核读公开 PDF。  核心问题： 能否用同一个概率因子模型同时预">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日金融论文简报（2026-11-05）">
 <meta property="og:url" content="https://www.polarishaw.top/2026/11/05/daily-finance-papers-2026-11-05/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注PanelGP: A Probabilistic Factor Model for Asset-Return Panels论文： 2611.04040。作者： Andrea Ruglioni、Damir Filipovic。来源与分类： arXiv 预印本；q-fin.ST、econ.EM、stat.ML。全文状态： 已核读公开 PDF。  核心问题： 能否用同一个概率因子模型同时预测股">
+<meta property="og:description" content="重点关注 PanelGP: A Probabilistic Factor Model for Asset-Return Panels 论文： 2611.04040。作者： Andrea Ruglioni、Damir Filipovic。来源与分类： arXiv 预印本；q-fin.ST、econ.EM、stat.ML。全文状态： 已核读公开 PDF。  核心问题： 能否用同一个概率因子模型同时预">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-019-146558694.jpg">
 <meta property="article:published_time" content="2026-11-05T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-26/pixiv-rank-004-147400702.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-10-11/pixiv-rank-004-150465538.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,113 +347,400 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="PanelGP-A-Probabilistic-Factor-Model-for-Asset-Return-Panels"><a href="#PanelGP-A-Probabilistic-Factor-Model-for-Asset-Return-Panels" class="headerlink" title="PanelGP: A Probabilistic Factor Model for Asset-Return Panels"></a>PanelGP: A Probabilistic Factor Model for Asset-Return Panels</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04040">2611.04040</a>。<strong>作者：</strong> Andrea Ruglioni、Damir Filipovic。<strong>来源与分类：</strong> arXiv 预印本；q-fin.ST、econ.EM、stat.ML。<strong>全文状态：</strong> 已核读公开 PDF。</p>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="panelgp-a-probabilistic-factor-model-for-asset-return-panels">PanelGP:
+A Probabilistic Factor Model for Asset-Return Panels</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04040">2611.04040</a>。<strong>作者：</strong>
+Andrea Ruglioni、Damir Filipovic。<strong>来源与分类：</strong> arXiv
+预印本；q-fin.ST、econ.EM、stat.ML。<strong>全文状态：</strong>
+已核读公开 PDF。</p>
 <ul>
-<li><strong>核心问题：</strong> 能否用同一个概率因子模型同时预测股票收益和协方差，并容纳公司特征、宏观状态与因子载荷间的非线性关系？</li>
-<li><strong>方法与基线：</strong> PanelGP 以高斯过程先验估计“公司特征→因子载荷”和“宏观状态→预期因子”，稀疏变分推断联合估计后验；核函数可退化为 IPCA 线性形式。作者在 1995–2024 年 S&amp;P 500 成分股月度样本上，以 137 个特征和 6 个宏观变量，与固定估计及年度滚动估计下的 IPCA、含截距 IPCA 比较；固定设计训练期为 1960–1989、验证期为 1990–1994。</li>
-<li><strong>作者报告的结果：</strong> 年度滚动 PanelGP 的排序相关为 4.84%、Gaussian log score 为 1.130、切线组合 Sharpe 为 1.90、最小方差组合波动率为 12.3%；滚动 IPCA 加截距对应 3.69%、1.083、1.74 和 13.2%。在按每单位换手 10bp 成本计价后，PanelGP 切线组合 Sharpe 为 1.52，IPCA 加截距为 1.35；作者指出波动率与 log score 差异显著，但 Sharpe 差异不能区分。滚动 PanelGP 的预测 R² 为 0.203%，低于两个滚动 IPCA 基准。</li>
-<li><strong>新意与证据边界：</strong> 一个模型同时给出收益排序和风险协方差，并把后验不确定性传递到组合分布。报告的是历史时序回测，不是实时业绩；交易成本只用线性 10bp 近似，忽略个股价差、借券费用和市场冲击。预测方差能排序风险但幅度偏压缩，2010–2024 的 Sharpe 也明显低于 1995–2009。</li>
-<li><strong>适合谁读：</strong> 因子模型、协方差估计和概率资产定价研究者。建议读模型核函数与 IPCA 嵌套关系、滚动评估表、交易成本敏感度及预测方差限制。</li>
+<li><strong>核心问题：</strong>
+能否用同一个概率因子模型同时预测股票收益和协方差，并容纳公司特征、宏观状态与因子载荷间的非线性关系？</li>
+<li><strong>方法与基线：</strong> PanelGP
+以高斯过程先验估计“公司特征→因子载荷”和“宏观状态→预期因子”，稀疏变分推断联合估计后验；核函数可退化为
+IPCA 线性形式。作者在 1995–2024 年 S&amp;P 500 成分股月度样本上，以 137
+个特征和 6 个宏观变量，与固定估计及年度滚动估计下的 IPCA、含截距 IPCA
+比较；固定设计训练期为 1960–1989、验证期为 1990–1994。</li>
+<li><strong>作者报告的结果：</strong> 年度滚动 PanelGP 的排序相关为
+4.84%、Gaussian log score 为 1.130、切线组合 Sharpe 为
+1.90、最小方差组合波动率为 12.3%；滚动 IPCA 加截距对应
+3.69%、1.083、1.74 和 13.2%。在按每单位换手 10bp 成本计价后，PanelGP
+切线组合 Sharpe 为 1.52，IPCA 加截距为 1.35；作者指出波动率与 log score
+差异显著，但 Sharpe 差异不能区分。滚动 PanelGP 的预测 R² 为
+0.203%，低于两个滚动 IPCA 基准。</li>
+<li><strong>新意与证据边界：</strong>
+一个模型同时给出收益排序和风险协方差，并把后验不确定性传递到组合分布。报告的是历史时序回测，不是实时业绩；交易成本只用线性
+10bp
+近似，忽略个股价差、借券费用和市场冲击。预测方差能排序风险但幅度偏压缩，2010–2024
+的 Sharpe 也明显低于 1995–2009。</li>
+<li><strong>适合谁读：</strong>
+因子模型、协方差估计和概率资产定价研究者。建议读模型核函数与 IPCA
+嵌套关系、滚动评估表、交易成本敏感度及预测方差限制。</li>
 </ul>
-<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04040">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04040">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04040">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/Ruglio/PanelGP">复现代码</a>（个股特征和 S&amp;P 成分历史需 WRDS 订阅）</p>
-<h3 id="Are-LLM-Research-Agents-Reliable-Judges-of-Predictability-Evidence-from-Planted-Signal-Worlds"><a href="#Are-LLM-Research-Agents-Reliable-Judges-of-Predictability-Evidence-from-Planted-Signal-Worlds" class="headerlink" title="Are LLM Research Agents Reliable Judges of Predictability? Evidence from Planted-Signal Worlds"></a>Are LLM Research Agents Reliable Judges of Predictability? Evidence from Planted-Signal Worlds</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04070">2611.04070</a>。<strong>作者：</strong> Chang Liu。<strong>来源与分类：</strong> arXiv 预印本；q-fin.ST。<strong>全文状态：</strong> 已核读公开 PDF。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04040">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04040">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04040">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/Ruglio/PanelGP">复现代码</a>（个股特征和
+S&amp;P 成分历史需 WRDS 订阅）</p>
+<h3 id="are-llm-research-agents-reliable-judges-of-predictability-evidence-from-planted-signal-worlds">Are
+LLM Research Agents Reliable Judges of Predictability? Evidence from
+Planted-Signal Worlds</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04070">2611.04070</a>。<strong>作者：</strong>
+Chang Liu。<strong>来源与分类：</strong> arXiv
+预印本；q-fin.ST。<strong>全文状态：</strong> 已核读公开 PDF。</p>
 <ul>
-<li><strong>核心问题：</strong> 当 LLM 研究智能体判断某预测模型是否胜过静态基准时，它是在发现真实信号，还是仅仅接受了较弱证据、错误设定阈值或受提示措辞影响？</li>
-<li><strong>方法与基线：</strong> 作者把智能体视为统计检验，在已知真值的模拟世界中预先固定提示、模型运行、随机种子和分析代码；模拟线性预测 R² 为 0–4% 的植入信号、无信号和容易误判的陷阱世界。比较 3 个商业模型、1 个开放权重模型，与预先指定样本外检验、Newey–West HAC 标准误、Holm 多重检验修正等统计基线。</li>
-<li><strong>作者报告的结果：</strong> 智能体常在无信号世界仍声称存在可预测性，且概率校准较差；不同模型的假阳性率差异很大，例如一项复现实验中 Terra 为 63%、Sol 为 19%、Claude Opus 为 21%。智能体更常发现弱信号，主要因为接受了更弱证据；把假阳性率对齐后，传统样本内检验的弱信号检出能力相当或更高。附加一句既有研究结论，也会改变部分模型对同一数据的判断。</li>
-<li><strong>新意与证据边界：</strong> 植入已知信号使研究者能把智能体判决的“检验大小”和“检验功效”分开，而真实金融数据的真值通常不可见。结论来自风格化模拟而非真实投资收益；只测若干模型、单一工具集和单一智能体配置。模型服务别名和推理设置不可完全对齐，量化假阳性率不能外推到其他模型版本或实际研究流程。</li>
-<li><strong>适合谁读：</strong> 使用 LLM 自动做因子搜索、预测检验或回测研究的团队。建议读模拟世界设计、假阳性率与功效对照、提示敏感性以及外部有效性限制。</li>
+<li><strong>核心问题：</strong> 当 LLM
+研究智能体判断某预测模型是否胜过静态基准时，它是在发现真实信号，还是仅仅接受了较弱证据、错误设定阈值或受提示措辞影响？</li>
+<li><strong>方法与基线：</strong>
+作者把智能体视为统计检验，在已知真值的模拟世界中预先固定提示、模型运行、随机种子和分析代码；模拟线性预测
+R² 为 0–4% 的植入信号、无信号和容易误判的陷阱世界。比较 3 个商业模型、1
+个开放权重模型，与预先指定样本外检验、Newey–West HAC 标准误、Holm
+多重检验修正等统计基线。</li>
+<li><strong>作者报告的结果：</strong>
+智能体常在无信号世界仍声称存在可预测性，且概率校准较差；不同模型的假阳性率差异很大，例如一项复现实验中
+Terra 为 63%、Sol 为 19%、Claude Opus 为
+21%。智能体更常发现弱信号，主要因为接受了更弱证据；把假阳性率对齐后，传统样本内检验的弱信号检出能力相当或更高。附加一句既有研究结论，也会改变部分模型对同一数据的判断。</li>
+<li><strong>新意与证据边界：</strong>
+植入已知信号使研究者能把智能体判决的“检验大小”和“检验功效”分开，而真实金融数据的真值通常不可见。结论来自风格化模拟而非真实投资收益；只测若干模型、单一工具集和单一智能体配置。模型服务别名和推理设置不可完全对齐，量化假阳性率不能外推到其他模型版本或实际研究流程。</li>
+<li><strong>适合谁读：</strong> 使用 LLM
+自动做因子搜索、预测检验或回测研究的团队。建议读模拟世界设计、假阳性率与功效对照、提示敏感性以及外部有效性限制。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04070">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04070">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04070">arXiv DOI</a></p>
-<h3 id="Safe-Portfolio-Learning-from-Untrusted-Predictions-Signed-Trust-Abstention-and-Cross-Universe-Polarity-Failure"><a href="#Safe-Portfolio-Learning-from-Untrusted-Predictions-Signed-Trust-Abstention-and-Cross-Universe-Polarity-Failure" class="headerlink" title="Safe Portfolio Learning from Untrusted Predictions: Signed Trust, Abstention, and Cross-Universe Polarity Failure"></a>Safe Portfolio Learning from Untrusted Predictions: Signed Trust, Abstention, and Cross-Universe Polarity Failure</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04826">2611.04826</a>。<strong>作者：</strong> Amirhossein MohammadpourAzari、Mohammad Zarei、MohammadAmin Fazli。<strong>来源与分类：</strong> arXiv 预印本；q-fin.MF、cs.CE、q-fin.CP、q-fin.PM。<strong>全文状态：</strong> 已核读公开 PDF。</p>
+<h3 id="safe-portfolio-learning-from-untrusted-predictions-signed-trust-abstention-and-cross-universe-polarity-failure">Safe
+Portfolio Learning from Untrusted Predictions: Signed Trust, Abstention,
+and Cross-Universe Polarity Failure</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04826">2611.04826</a>。<strong>作者：</strong>
+Amirhossein MohammadpourAzari、Mohammad Zarei、MohammadAmin
+Fazli。<strong>来源与分类：</strong> arXiv
+预印本；q-fin.MF、cs.CE、q-fin.CP、q-fin.PM。<strong>全文状态：</strong>
+已核读公开 PDF。</p>
 <ul>
-<li><strong>核心问题：</strong> 预测方向、可靠性和反馈时间都不确定时，组合规则应怎样学会跟随、反向或弃用信号，同时限制预测失灵时的资本损失？</li>
-<li><strong>方法与基线：</strong> 控制器在 Safe、Follow、Reverse 三类动作间在线更新；证据门将无依据的方向概率转给 Safe，延迟抵押预算预留最坏损失资金，分仓机制限制自适应部分可触及的资本。作者在 24 只股票开发集形成结构，再在冻结的 82 只股票留出集合检验预设的 Reverse 方向，并与等权基准比较；基础成本设为每单位漂移后换手 5bp。</li>
-<li><strong>作者报告的结果：</strong> 预设 Reverse 方向在 82 只股票留出集未胜过等权；看到结果后另做的 Follow 方向诊断也没有找回收益优势。自适应控制器的受保护财富路径始终在 Safe 基准 15.9bp 以内。论文因此将贡献限定为“在不可信预测下安全使用信号”，而不是证明了 alpha。</li>
-<li><strong>新意与证据边界：</strong> 将随预测质量变化的收益规则与逐路径抵押安全界限结合，并保留方向迁移失败这一负结果。所谓留出是资产横截面留出，两个股票池的日历期大幅重叠，不是跨时间样本外检验；24/82 只股票也不足以代表广泛市场。交易成本为比例模型，未模拟市场冲击、价差、订单簿深度和流动性冲击。</li>
-<li><strong>适合谁读：</strong> 预测信号组合化、模型风险和带约束在线学习研究者。建议读三动作控制器、冻结留出设计、15.9bp 受保护财富结果及成本/局限分析。</li>
+<li><strong>核心问题：</strong>
+预测方向、可靠性和反馈时间都不确定时，组合规则应怎样学会跟随、反向或弃用信号，同时限制预测失灵时的资本损失？</li>
+<li><strong>方法与基线：</strong> 控制器在 Safe、Follow、Reverse
+三类动作间在线更新；证据门将无依据的方向概率转给
+Safe，延迟抵押预算预留最坏损失资金，分仓机制限制自适应部分可触及的资本。作者在
+24 只股票开发集形成结构，再在冻结的 82 只股票留出集合检验预设的 Reverse
+方向，并与等权基准比较；基础成本设为每单位漂移后换手 5bp。</li>
+<li><strong>作者报告的结果：</strong> 预设 Reverse 方向在 82
+只股票留出集未胜过等权；看到结果后另做的 Follow
+方向诊断也没有找回收益优势。自适应控制器的受保护财富路径始终在 Safe 基准
+15.9bp
+以内。论文因此将贡献限定为“在不可信预测下安全使用信号”，而不是证明了
+alpha。</li>
+<li><strong>新意与证据边界：</strong>
+将随预测质量变化的收益规则与逐路径抵押安全界限结合，并保留方向迁移失败这一负结果。所谓留出是资产横截面留出，两个股票池的日历期大幅重叠，不是跨时间样本外检验；24/82
+只股票也不足以代表广泛市场。交易成本为比例模型，未模拟市场冲击、价差、订单簿深度和流动性冲击。</li>
+<li><strong>适合谁读：</strong>
+预测信号组合化、模型风险和带约束在线学习研究者。建议读三动作控制器、冻结留出设计、15.9bp
+受保护财富结果及成本/局限分析。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04826">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04826">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04826">arXiv DOI</a></p>
-<h3 id="Thinking-Fast-Trading-Late-System-One-Decision-Models-vs-the-Market"><a href="#Thinking-Fast-Trading-Late-System-One-Decision-Models-vs-the-Market" class="headerlink" title="Thinking Fast, Trading Late: System One Decision Models vs the Market"></a>Thinking Fast, Trading Late: System One Decision Models vs the Market</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03985">2611.03985</a>。<strong>作者：</strong> Amir Dehkordi、Alireza Kargarzadeh、Nariman Khaledian、Navid Parvini、Sid Ghatak、Arman Khaledian。<strong>来源与分类：</strong> arXiv 预印本；cs.AI、cs.CL、cs.LG、q-fin.ST。<strong>主题：</strong> AI/金融双主题。<strong>全文状态：</strong> 已核读公开 PDF。</p>
+<h3 id="thinking-fast-trading-late-system-one-decision-models-vs-the-market">Thinking
+Fast, Trading Late: System One Decision Models vs the Market</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03985">2611.03985</a>。<strong>作者：</strong>
+Amir Dehkordi、Alireza Kargarzadeh、Nariman Khaledian、Navid
+Parvini、Sid Ghatak、Arman Khaledian。<strong>来源与分类：</strong>
+arXiv 预印本；cs.AI、cs.CL、cs.LG、q-fin.ST。<strong>主题：</strong>
+AI/金融双主题。<strong>全文状态：</strong> 已核读公开 PDF。</p>
 <ul>
-<li><strong>核心问题：</strong> LLM 对公司新闻的理解在传统回测里似乎能预测股票收益；在控制前视、记忆和多重策略筛选后，这种预测力还剩多少能被交易者获取？</li>
-<li><strong>方法与基线：</strong> OLIVIA 流程对新闻做 point-in-time 输入、遮蔽公司身份、只用验证集选策略、用哈希冻结分析计划并一次性揭盲测试期。评估覆盖 S&amp;P 500 新闻、一个在 2024–2025 数据微调的开放模型、三个商业模型及传统基线；测试期为 2026 年 1–7 月。交易组合按每边 5、10、20bp 成本计算，并对日志中 545 次策略试验做 deflated Sharpe 调整，与同事件随机信号组合比较。</li>
-<li><strong>作者报告的结果：</strong> 微调模型在两个验证季度的日 IC 为 0.055 和 0.065，盲测降至 0.020（t=1.7）。商业模型的文本判断与隔夜至开盘的价格变化相关（IC 0.074–0.077），但对开盘后收益没有同等信号；无预注册策略在成本和 deflated Sharpe 标准下通过。商业模型还能在 62%–74% 的遮蔽新闻中猜出公司，高于 28% 匹配基线，显示遮名不等于去记忆。</li>
-<li><strong>新意与证据边界：</strong> 研究把验证、冻结和一次性测试写入金融文本回测协议，并报告负结果：消息可预测不代表交易者有可执行优势。结果只覆盖大型、受关注的 S&amp;P 500 公司和特定日内时点；底层新闻数据不公开，商业模型训练数据不透明，借券成本未计入。信号与收益相关并非因果识别，策略是历史回测，不是实盘业绩。</li>
-<li><strong>适合谁读：</strong> 金融 NLP、事件驱动策略和回测治理团队。建议读 OLIVIA 协议、遮蔽/记忆探针、开盘前后 IC 分解、交易成本与多重测试部分。</li>
+<li><strong>核心问题：</strong> LLM
+对公司新闻的理解在传统回测里似乎能预测股票收益；在控制前视、记忆和多重策略筛选后，这种预测力还剩多少能被交易者获取？</li>
+<li><strong>方法与基线：</strong> OLIVIA 流程对新闻做 point-in-time
+输入、遮蔽公司身份、只用验证集选策略、用哈希冻结分析计划并一次性揭盲测试期。评估覆盖
+S&amp;P 500 新闻、一个在 2024–2025
+数据微调的开放模型、三个商业模型及传统基线；测试期为 2026 年 1–7
+月。交易组合按每边 5、10、20bp 成本计算，并对日志中 545 次策略试验做
+deflated Sharpe 调整，与同事件随机信号组合比较。</li>
+<li><strong>作者报告的结果：</strong> 微调模型在两个验证季度的日 IC 为
+0.055 和 0.065，盲测降至
+0.020（t=1.7）。商业模型的文本判断与隔夜至开盘的价格变化相关（IC
+0.074–0.077），但对开盘后收益没有同等信号；无预注册策略在成本和 deflated
+Sharpe 标准下通过。商业模型还能在 62%–74% 的遮蔽新闻中猜出公司，高于 28%
+匹配基线，显示遮名不等于去记忆。</li>
+<li><strong>新意与证据边界：</strong>
+研究把验证、冻结和一次性测试写入金融文本回测协议，并报告负结果：消息可预测不代表交易者有可执行优势。结果只覆盖大型、受关注的
+S&amp;P 500
+公司和特定日内时点；底层新闻数据不公开，商业模型训练数据不透明，借券成本未计入。信号与收益相关并非因果识别，策略是历史回测，不是实盘业绩。</li>
+<li><strong>适合谁读：</strong> 金融
+NLP、事件驱动策略和回测治理团队。建议读 OLIVIA
+协议、遮蔽/记忆探针、开盘前后 IC 分解、交易成本与多重测试部分。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03985">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.03985">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.03985">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/AmirDehkordi/NewsAction">代码</a>（原始数据不再分发）</p>
-<h3 id="Beyond-Anonymous-Order-Flow-Wallet-Identity-as-a-Feature-for-Short-Horizon-Return-Prediction"><a href="#Beyond-Anonymous-Order-Flow-Wallet-Identity-as-a-Feature-for-Short-Horizon-Return-Prediction" class="headerlink" title="Beyond Anonymous Order Flow: Wallet Identity as a Feature for Short-Horizon Return Prediction"></a>Beyond Anonymous Order Flow: Wallet Identity as a Feature for Short-Horizon Return Prediction</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05218">2611.05218</a>。<strong>作者：</strong> Jingqiu Ding、Daojing Zhai。<strong>来源与分类：</strong> arXiv 预印本；q-fin.TR、q-fin.ST。<strong>全文状态：</strong> 已核读公开 PDF。</p>
+<h3 id="beyond-anonymous-order-flow-wallet-identity-as-a-feature-for-short-horizon-return-prediction">Beyond
+Anonymous Order Flow: Wallet Identity as a Feature for Short-Horizon
+Return Prediction</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05218">2611.05218</a>。<strong>作者：</strong>
+Jingqiu Ding、Daojing Zhai。<strong>来源与分类：</strong> arXiv
+预印本；q-fin.TR、q-fin.ST。<strong>全文状态：</strong> 已核读公开
+PDF。</p>
 <ul>
-<li><strong>核心问题：</strong> 订单簿通常只聚合订单流；若去中心化交易所提供稳定的匿名钱包地址，账户行为能否在常见订单簿特征之外改善短期收益预测？</li>
-<li><strong>方法与基线：</strong> 作者从 Hyperliquid Level-4 共识排序消息重建全深度订单簿，使用 2026 年 7 月 1–27 日的 171 亿条消息、1,473 万笔主动订单和 147,113 个钱包，名义成交额 843 亿美元。钱包得分期为 7 月 1–10 日，模型拟合期为 11–20 日，评估期为 21–27 日；比较 10 个价格/报价/订单流特征与额外 11 个已评分钱包行为特征，在 ridge 和梯度提升树上评估。</li>
-<li><strong>作者报告的结果：</strong> 跨相邻窗口的钱包排名 Spearman ρ=0.52；最高 5% 钱包的协变量调整后验证 markout 为 3.11bp。加入钱包特征后，一秒 ridge 样本外 R² 从 10.88% 升至 12.31%（相对提升 13.2%，t=9.2）；树模型从 19.48% 升至 20.65%。作者还报告在 200–300 毫秒特征延迟下增量仍为正。</li>
-<li><strong>新意与证据边界：</strong> 提供账户身份信息相对匿名订单流基线的增量预测检验，并用活动量匹配群组做对照。这是按时间先后分段的回顾性预测实验，不是预先锁定的前瞻检验，也没有扣除交易费、滑点或延迟成本来证明可盈利。最终钱包分组、波动率缩放和评估窗口是在观察结果后选择；用共识时间而非交易者实际收到时间标记数据，且数据缺口中的状态延续可能影响结果。</li>
-<li><strong>适合谁读：</strong> 高频市场微观结构、去中心化交易和订单流建模研究者。建议读订单簿重建、三段式时间切分、身份特征增量、延迟稳健性和选择/数据局限。</li>
+<li><strong>核心问题：</strong>
+订单簿通常只聚合订单流；若去中心化交易所提供稳定的匿名钱包地址，账户行为能否在常见订单簿特征之外改善短期收益预测？</li>
+<li><strong>方法与基线：</strong> 作者从 Hyperliquid Level-4
+共识排序消息重建全深度订单簿，使用 2026 年 7 月 1–27 日的 171
+亿条消息、1,473 万笔主动订单和 147,113 个钱包，名义成交额 843
+亿美元。钱包得分期为 7 月 1–10 日，模型拟合期为 11–20 日，评估期为 21–27
+日；比较 10 个价格/报价/订单流特征与额外 11 个已评分钱包行为特征，在
+ridge 和梯度提升树上评估。</li>
+<li><strong>作者报告的结果：</strong> 跨相邻窗口的钱包排名 Spearman
+ρ=0.52；最高 5% 钱包的协变量调整后验证 markout 为
+3.11bp。加入钱包特征后，一秒 ridge 样本外 R² 从 10.88% 升至
+12.31%（相对提升 13.2%，t=9.2）；树模型从 19.48% 升至
+20.65%。作者还报告在 200–300 毫秒特征延迟下增量仍为正。</li>
+<li><strong>新意与证据边界：</strong>
+提供账户身份信息相对匿名订单流基线的增量预测检验，并用活动量匹配群组做对照。这是按时间先后分段的回顾性预测实验，不是预先锁定的前瞻检验，也没有扣除交易费、滑点或延迟成本来证明可盈利。最终钱包分组、波动率缩放和评估窗口是在观察结果后选择；用共识时间而非交易者实际收到时间标记数据，且数据缺口中的状态延续可能影响结果。</li>
+<li><strong>适合谁读：</strong>
+高频市场微观结构、去中心化交易和订单流建模研究者。建议读订单簿重建、三段式时间切分、身份特征增量、延迟稳健性和选择/数据局限。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05218">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.05218">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.05218">arXiv DOI</a></p>
-<h3 id="Honest-Small-Decision-Models-for-Finance-Scale-Specialization-Collapse-and-Mixed-Corpus-Remediation"><a href="#Honest-Small-Decision-Models-for-Finance-Scale-Specialization-Collapse-and-Mixed-Corpus-Remediation" class="headerlink" title="Honest Small Decision Models for Finance: Scale, Specialization Collapse, and Mixed-Corpus Remediation"></a>Honest Small Decision Models for Finance: Scale, Specialization Collapse, and Mixed-Corpus Remediation</h3><p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03755">2611.03755</a>。<strong>作者：</strong> Ajitabh Kumar。<strong>来源与分类：</strong> arXiv 预印本；cs.LG、q-fin.ST。<strong>主题：</strong> AI/金融双主题。<strong>全文状态：</strong> 已核读公开 PDF。</p>
+<h3 id="honest-small-decision-models-for-finance-scale-specialization-collapse-and-mixed-corpus-remediation">Honest
+Small Decision Models for Finance: Scale, Specialization Collapse, and
+Mixed-Corpus Remediation</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03755">2611.03755</a>。<strong>作者：</strong>
+Ajitabh Kumar。<strong>来源与分类：</strong> arXiv
+预印本；cs.LG、q-fin.ST。<strong>主题：</strong>
+AI/金融双主题。<strong>全文状态：</strong> 已核读公开 PDF。</p>
 <ul>
-<li><strong>核心问题：</strong> 面向金融工作流的小型概率决策模型，领域微调会否损害一般决策能力；面对噪声很大的真实收益结果，它们能否学出超越不同持有期基准率的预测信号？</li>
-<li><strong>方法与基线：</strong> 在 K2-Horizon、Qwen3.5/3.8 两个模型家族、0.8B–32B 共九个规模上使用固定 LoRA 配方；训练数据包含公共决策基准、规则可程序判分的政策语料，以及 19,640 条实现的前向收益问题和 1,360 条封存的 2026 测试题。评估准确率、Brier/ECE 校准和跨域能力退化，并比较单一窄语料微调与混合语料修复。</li>
-<li><strong>作者报告的结果：</strong> 窄领域微调使一般决策基准准确率下降 9–45 个百分点；在真实收益问题上，各规模模型都落在持有期条件基准率附近，准确率 0.37–0.38，控制变量后没有可检测的条件预测优势。模型给出较平坦、校准的概率；2B 的 ECE 为 0.026，而 9B–32B 在基准率漂移下升至 0.043–0.044。混合语料适配器据作者报告可恢复多任务能力。</li>
-<li><strong>新意与证据边界：</strong> 结果明确区分“输出概率更可信”与“预测收益有优势”：论文没有展示可用 alpha，模型的诚实不确定性适合把难题路由给人工复核。九个规模梯度大多是单次训练；作者只对其中一个配置做三随机种子复现。结论受自建收益语料、标签口径和单一训练方案影响，不能推断所有决策模型或市场均不可预测。</li>
-<li><strong>适合谁读：</strong> 金融模型风险、概率决策服务和小模型微调团队。建议读训练语料与 walk-forward 划分、跨域能力退化、封存收益测试、ECE 规模趋势和单次训练限制。</li>
+<li><strong>核心问题：</strong>
+面向金融工作流的小型概率决策模型，领域微调会否损害一般决策能力；面对噪声很大的真实收益结果，它们能否学出超越不同持有期基准率的预测信号？</li>
+<li><strong>方法与基线：</strong> 在 K2-Horizon、Qwen3.5/3.8
+两个模型家族、0.8B–32B 共九个规模上使用固定 LoRA
+配方；训练数据包含公共决策基准、规则可程序判分的政策语料，以及 19,640
+条实现的前向收益问题和 1,360 条封存的 2026 测试题。评估准确率、Brier/ECE
+校准和跨域能力退化，并比较单一窄语料微调与混合语料修复。</li>
+<li><strong>作者报告的结果：</strong> 窄领域微调使一般决策基准准确率下降
+9–45
+个百分点；在真实收益问题上，各规模模型都落在持有期条件基准率附近，准确率
+0.37–0.38，控制变量后没有可检测的条件预测优势。模型给出较平坦、校准的概率；2B
+的 ECE 为 0.026，而 9B–32B 在基准率漂移下升至
+0.043–0.044。混合语料适配器据作者报告可恢复多任务能力。</li>
+<li><strong>新意与证据边界：</strong>
+结果明确区分“输出概率更可信”与“预测收益有优势”：论文没有展示可用
+alpha，模型的诚实不确定性适合把难题路由给人工复核。九个规模梯度大多是单次训练；作者只对其中一个配置做三随机种子复现。结论受自建收益语料、标签口径和单一训练方案影响，不能推断所有决策模型或市场均不可预测。</li>
+<li><strong>适合谁读：</strong>
+金融模型风险、概率决策服务和小模型微调团队。建议读训练语料与
+walk-forward 划分、跨域能力退化、封存收益测试、ECE
+规模趋势和单次训练限制。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03755">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.03755">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.03755">arXiv DOI</a></p>
-<h2 id="金融论文"><a href="#金融论文" class="headerlink" title="金融论文"></a>金融论文</h2><h3 id="PanelGP-A-Probabilistic-Factor-Model-for-Asset-Return-Panels-1"><a href="#PanelGP-A-Probabilistic-Factor-Model-for-Asset-Return-Panels-1" class="headerlink" title="PanelGP: A Probabilistic Factor Model for Asset-Return Panels"></a>PanelGP: A Probabilistic Factor Model for Asset-Return Panels</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04040">2611.04040</a>。<strong>作者：</strong> Andrea Ruglioni、Damir Filipovic。<strong>来源与分类：</strong> arXiv 预印本；q-fin.ST、econ.EM、stat.ML。</p>
-<p><strong>重点已详述，全文已核读。</strong> PanelGP 将条件因子模型扩展到非线性载荷与概率协方差；历史样本外组合结果、交易成本假设及 Sharpe 差异的统计边界见上文。</p>
+<h2 id="金融论文">金融论文</h2>
+<h3 id="panelgp-a-probabilistic-factor-model-for-asset-return-panels-1">PanelGP:
+A Probabilistic Factor Model for Asset-Return Panels</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04040">2611.04040</a>。<strong>作者：</strong>
+Andrea Ruglioni、Damir Filipovic。<strong>来源与分类：</strong> arXiv
+预印本；q-fin.ST、econ.EM、stat.ML。</p>
+<p><strong>重点已详述，全文已核读。</strong> PanelGP
+将条件因子模型扩展到非线性载荷与概率协方差；历史样本外组合结果、交易成本假设及
+Sharpe 差异的统计边界见上文。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04040">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04040">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04040">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/Ruglio/PanelGP">复现代码</a></p>
-<h3 id="Are-LLM-Research-Agents-Reliable-Judges-of-Predictability-Evidence-from-Planted-Signal-Worlds-1"><a href="#Are-LLM-Research-Agents-Reliable-Judges-of-Predictability-Evidence-from-Planted-Signal-Worlds-1" class="headerlink" title="Are LLM Research Agents Reliable Judges of Predictability? Evidence from Planted-Signal Worlds"></a>Are LLM Research Agents Reliable Judges of Predictability? Evidence from Planted-Signal Worlds</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04070">2611.04070</a>。<strong>作者：</strong> Chang Liu。<strong>来源与分类：</strong> arXiv 预印本；q-fin.ST。<strong>主题：</strong> AI/金融双主题。</p>
-<p><strong>重点已详述，全文已核读。</strong> 在已知真值的模拟预测世界里，智能体对弱信号的检出率伴随较高且跨模型不一致的假阳性；这不是投资回测，结论范围和复现实验边界见上文。</p>
+<h3 id="are-llm-research-agents-reliable-judges-of-predictability-evidence-from-planted-signal-worlds-1">Are
+LLM Research Agents Reliable Judges of Predictability? Evidence from
+Planted-Signal Worlds</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04070">2611.04070</a>。<strong>作者：</strong>
+Chang Liu。<strong>来源与分类：</strong> arXiv
+预印本；q-fin.ST。<strong>主题：</strong> AI/金融双主题。</p>
+<p><strong>重点已详述，全文已核读。</strong>
+在已知真值的模拟预测世界里，智能体对弱信号的检出率伴随较高且跨模型不一致的假阳性；这不是投资回测，结论范围和复现实验边界见上文。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04070">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04070">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04070">arXiv DOI</a></p>
-<h3 id="Safe-Portfolio-Learning-from-Untrusted-Predictions-Signed-Trust-Abstention-and-Cross-Universe-Polarity-Failure-1"><a href="#Safe-Portfolio-Learning-from-Untrusted-Predictions-Signed-Trust-Abstention-and-Cross-Universe-Polarity-Failure-1" class="headerlink" title="Safe Portfolio Learning from Untrusted Predictions: Signed Trust, Abstention, and Cross-Universe Polarity Failure"></a>Safe Portfolio Learning from Untrusted Predictions: Signed Trust, Abstention, and Cross-Universe Polarity Failure</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04826">2611.04826</a>。<strong>作者：</strong> Amirhossein MohammadpourAzari、Mohammad Zarei、MohammadAmin Fazli。<strong>来源与分类：</strong> arXiv 预印本；q-fin.MF、cs.CE、q-fin.CP、q-fin.PM。</p>
-<p><strong>重点已详述，全文已核读。</strong> 冻结的 82 只股票横截面留出未支持预设预测方向的收益优势；安全控制器限制资本暴露，但未证明 alpha，具体样本划分和成本模型见上文。</p>
+<h3 id="safe-portfolio-learning-from-untrusted-predictions-signed-trust-abstention-and-cross-universe-polarity-failure-1">Safe
+Portfolio Learning from Untrusted Predictions: Signed Trust, Abstention,
+and Cross-Universe Polarity Failure</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04826">2611.04826</a>。<strong>作者：</strong>
+Amirhossein MohammadpourAzari、Mohammad Zarei、MohammadAmin
+Fazli。<strong>来源与分类：</strong> arXiv
+预印本；q-fin.MF、cs.CE、q-fin.CP、q-fin.PM。</p>
+<p><strong>重点已详述，全文已核读。</strong> 冻结的 82
+只股票横截面留出未支持预设预测方向的收益优势；安全控制器限制资本暴露，但未证明
+alpha，具体样本划分和成本模型见上文。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04826">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04826">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04826">arXiv DOI</a></p>
-<h3 id="Decomposing-Rank-Reversals-under-Temporal-Nonstationarity-Alignment-Aggressiveness-and-Instability"><a href="#Decomposing-Rank-Reversals-under-Temporal-Nonstationarity-Alignment-Aggressiveness-and-Instability" class="headerlink" title="Decomposing Rank Reversals under Temporal Nonstationarity: Alignment, Aggressiveness, and Instability"></a>Decomposing Rank Reversals under Temporal Nonstationarity: Alignment, Aggressiveness, and Instability</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04116">2611.04116</a>。<strong>作者：</strong> Deying Song、Xueying Ding。<strong>来源与分类：</strong> arXiv 预印本；cs.LG、q-fin.ST。</p>
-<p><strong>仅依据摘要。</strong> 论文将样本外 R² 分解为目标对齐、预测幅度失准和预测不稳定，并推导局部漂移下岭回归的最优记忆长度；作者在 14 种线性、树和神经模型的大型金融面板比较中，报告模型排名反转与幅度失准上升有关。它试图解释为什么长短训练窗会改变模型排序；摘要未给具体面板、统计检验和性能差距，不能把机制分解当成普适因果解释。</p>
+<h3 id="decomposing-rank-reversals-under-temporal-nonstationarity-alignment-aggressiveness-and-instability">Decomposing
+Rank Reversals under Temporal Nonstationarity: Alignment,
+Aggressiveness, and Instability</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04116">2611.04116</a>。<strong>作者：</strong>
+Deying Song、Xueying Ding。<strong>来源与分类：</strong> arXiv
+预印本；cs.LG、q-fin.ST。</p>
+<p><strong>仅依据摘要。</strong> 论文将样本外 R²
+分解为目标对齐、预测幅度失准和预测不稳定，并推导局部漂移下岭回归的最优记忆长度；作者在
+14
+种线性、树和神经模型的大型金融面板比较中，报告模型排名反转与幅度失准上升有关。它试图解释为什么长短训练窗会改变模型排序；摘要未给具体面板、统计检验和性能差距，不能把机制分解当成普适因果解释。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04116">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04116">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04116">arXiv DOI</a></p>
-<h3 id="Behavioral-Prior-Elicitation-via-LLM-for-Heterogeneous-Agent-Bitcoin-Flash-Crash-Simulation"><a href="#Behavioral-Prior-Elicitation-via-LLM-for-Heterogeneous-Agent-Bitcoin-Flash-Crash-Simulation" class="headerlink" title="Behavioral Prior Elicitation via LLM for Heterogeneous-Agent Bitcoin Flash-Crash Simulation"></a>Behavioral Prior Elicitation via LLM for Heterogeneous-Agent Bitcoin Flash-Crash Simulation</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03660">2611.03660</a>。<strong>作者：</strong> Tran Phuong Linh Pham、Thi Minh Phuong Ngo、Phuong Thao Nguyen、Quang Minh Nguyen、Thai Hoa Ngo、Trong Nghia Nguyen。<strong>来源与分类：</strong> arXiv 预印本；stat.AP、cs.AI、q-fin.TR。</p>
-<p><strong>仅依据摘要。</strong> 作者从 66 次 BTCUSDT 闪崩事件构造 100 毫秒事件面板，以离线 LLM 按实证微观结构锚点给四类交易代理提取行为先验，再运行异质限价订单簿模拟和合成数据反事实分析。500 次模拟中，LLM 先验下崩盘率为 0.176，均匀先验下为 0.008；在模型内把杠杆放大降一个标准差后，模拟崩盘率由 0.176 降至 0.136。该方法可研究机制假设；因果发现和反事实均作用于合成市场，不等于现实减杠杆会产生同等因果效果。</p>
+<h3 id="behavioral-prior-elicitation-via-llm-for-heterogeneous-agent-bitcoin-flash-crash-simulation">Behavioral
+Prior Elicitation via LLM for Heterogeneous-Agent Bitcoin Flash-Crash
+Simulation</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03660">2611.03660</a>。<strong>作者：</strong>
+Tran Phuong Linh Pham、Thi Minh Phuong Ngo、Phuong Thao Nguyen、Quang
+Minh Nguyen、Thai Hoa Ngo、Trong Nghia
+Nguyen。<strong>来源与分类：</strong> arXiv
+预印本；stat.AP、cs.AI、q-fin.TR。</p>
+<p><strong>仅依据摘要。</strong> 作者从 66 次 BTCUSDT 闪崩事件构造 100
+毫秒事件面板，以离线 LLM
+按实证微观结构锚点给四类交易代理提取行为先验，再运行异质限价订单簿模拟和合成数据反事实分析。500
+次模拟中，LLM 先验下崩盘率为 0.176，均匀先验下为
+0.008；在模型内把杠杆放大降一个标准差后，模拟崩盘率由 0.176 降至
+0.136。该方法可研究机制假设；因果发现和反事实均作用于合成市场，不等于现实减杠杆会产生同等因果效果。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03660">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.03660">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.03660">arXiv DOI</a></p>
-<h3 id="Aggregate-Calibration-Can-Mask-Stress-State-Undercoverage-Bounded-Memory-Forecast-Intervals-under-Recurrent-Financial-Stress"><a href="#Aggregate-Calibration-Can-Mask-Stress-State-Undercoverage-Bounded-Memory-Forecast-Intervals-under-Recurrent-Financial-Stress" class="headerlink" title="Aggregate Calibration Can Mask Stress-State Undercoverage: Bounded-Memory Forecast Intervals under Recurrent Financial Stress"></a>Aggregate Calibration Can Mask Stress-State Undercoverage: Bounded-Memory Forecast Intervals under Recurrent Financial Stress</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04223">2611.04223</a>。<strong>作者：</strong> Ruihang Han、Li-Hsiang Lin。<strong>来源与分类：</strong> arXiv 预印本；stat.ME、q-fin.ST。</p>
-<p><strong>仅依据摘要。</strong> 研究固定预测模型、保形分数、自适应更新方式和内存预算，只改变历史误差保留策略，检验次日金融区间预测在压力状态重现后的覆盖率。作者摘要报告，近期 FIFO 缓存整体覆盖率接近标称水平，但在 ETF 开发面板和固定股票面板的高波动状态下明显欠覆盖；按状态保留的 Rare replay 在高 VIX 区间优于同容量近期样本控制。结论提醒总体校准会掩盖尾部状态失效；摘要未给逐状态样本量和区间宽度的具体权衡。</p>
+<h3 id="aggregate-calibration-can-mask-stress-state-undercoverage-bounded-memory-forecast-intervals-under-recurrent-financial-stress">Aggregate
+Calibration Can Mask Stress-State Undercoverage: Bounded-Memory Forecast
+Intervals under Recurrent Financial Stress</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04223">2611.04223</a>。<strong>作者：</strong>
+Ruihang Han、Li-Hsiang Lin。<strong>来源与分类：</strong> arXiv
+预印本；stat.ME、q-fin.ST。</p>
+<p><strong>仅依据摘要。</strong>
+研究固定预测模型、保形分数、自适应更新方式和内存预算，只改变历史误差保留策略，检验次日金融区间预测在压力状态重现后的覆盖率。作者摘要报告，近期
+FIFO 缓存整体覆盖率接近标称水平，但在 ETF
+开发面板和固定股票面板的高波动状态下明显欠覆盖；按状态保留的 Rare replay
+在高 VIX
+区间优于同容量近期样本控制。结论提醒总体校准会掩盖尾部状态失效；摘要未给逐状态样本量和区间宽度的具体权衡。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04223">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04223">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04223">arXiv DOI</a></p>
-<h3 id="Thinking-Fast-Trading-Late-System-One-Decision-Models-vs-the-Market-1"><a href="#Thinking-Fast-Trading-Late-System-One-Decision-Models-vs-the-Market-1" class="headerlink" title="Thinking Fast, Trading Late: System One Decision Models vs the Market"></a>Thinking Fast, Trading Late: System One Decision Models vs the Market</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03985">2611.03985</a>。<strong>作者：</strong> Amir Dehkordi、Alireza Kargarzadeh、Nariman Khaledian、Navid Parvini、Sid Ghatak、Arman Khaledian。<strong>来源与分类：</strong> arXiv 预印本；cs.AI、cs.CL、cs.LG、q-fin.ST。<strong>主题：</strong> AI/金融双主题。</p>
-<p><strong>重点已详述，全文已核读。</strong> 盲测中验证期新闻信号大幅减弱，且作者没有找到扣除成本并通过 deflated Sharpe 的预注册策略；IC 相关不等于因果关系或可交易收益，全文见上文。</p>
+<h3 id="thinking-fast-trading-late-system-one-decision-models-vs-the-market-1">Thinking
+Fast, Trading Late: System One Decision Models vs the Market</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03985">2611.03985</a>。<strong>作者：</strong>
+Amir Dehkordi、Alireza Kargarzadeh、Nariman Khaledian、Navid
+Parvini、Sid Ghatak、Arman Khaledian。<strong>来源与分类：</strong>
+arXiv 预印本；cs.AI、cs.CL、cs.LG、q-fin.ST。<strong>主题：</strong>
+AI/金融双主题。</p>
+<p><strong>重点已详述，全文已核读。</strong>
+盲测中验证期新闻信号大幅减弱，且作者没有找到扣除成本并通过 deflated
+Sharpe 的预注册策略；IC 相关不等于因果关系或可交易收益，全文见上文。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03985">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.03985">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.03985">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/AmirDehkordi/NewsAction">代码</a></p>
-<h3 id="Experimentally-Validated-Digital-Twins-Evaluating-Workforce-Training-Programs-in-the-Age-of-Big-Data"><a href="#Experimentally-Validated-Digital-Twins-Evaluating-Workforce-Training-Programs-in-the-Age-of-Big-Data" class="headerlink" title="Experimentally Validated Digital Twins: Evaluating Workforce Training Programs in the Age of Big Data"></a>Experimentally Validated Digital Twins: Evaluating Workforce Training Programs in the Age of Big Data</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03938">2611.03938</a>。<strong>作者：</strong> Raj Chetty、Jamie Fogel、Lawrence F. Katz、Kadeem Noray、Sonya Porter、James Reisinger。<strong>来源与分类：</strong> arXiv 预印本；econ.GN、q-fin.EC、stat.AP。</p>
-<p><strong>仅依据摘要。</strong> 作者使用覆盖美国成年人 1999–2025 年的匿名税务记录，以丰富工作经历、人口特征和地区数据训练机器学习反事实模型，并用 37 项随机对照试验评估观察性项目效果估计的误差分布。摘要报告其 RMSE 与 RCT 估计误差相当，比以往参数估计器低 60%，并发现培训收益随地区和时间变化。它是劳动/项目评估研究，金融市场关联较间接；观察性估计与 RCT 的匹配不能自动保证其他项目中具有因果识别，跨项目迁移仍取决于未观测混杂与外推条件。</p>
+<h3 id="experimentally-validated-digital-twins-evaluating-workforce-training-programs-in-the-age-of-big-data">Experimentally
+Validated Digital Twins: Evaluating Workforce Training Programs in the
+Age of Big Data</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03938">2611.03938</a>。<strong>作者：</strong>
+Raj Chetty、Jamie Fogel、Lawrence F. Katz、Kadeem Noray、Sonya
+Porter、James Reisinger。<strong>来源与分类：</strong> arXiv
+预印本；econ.GN、q-fin.EC、stat.AP。</p>
+<p><strong>仅依据摘要。</strong> 作者使用覆盖美国成年人 1999–2025
+年的匿名税务记录，以丰富工作经历、人口特征和地区数据训练机器学习反事实模型，并用
+37 项随机对照试验评估观察性项目效果估计的误差分布。摘要报告其 RMSE 与
+RCT 估计误差相当，比以往参数估计器低
+60%，并发现培训收益随地区和时间变化。它是劳动/项目评估研究，金融市场关联较间接；观察性估计与
+RCT
+的匹配不能自动保证其他项目中具有因果识别，跨项目迁移仍取决于未观测混杂与外推条件。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03938">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.03938">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.03938">arXiv DOI</a></p>
-<h3 id="CosmosAlpha-Multi-Relational-Graph-Search-with-Pareto-Guided-Exploration-for-LLM-Driven-Alpha-Mining"><a href="#CosmosAlpha-Multi-Relational-Graph-Search-with-Pareto-Guided-Exploration-for-LLM-Driven-Alpha-Mining" class="headerlink" title="CosmosAlpha: Multi-Relational Graph Search with Pareto-Guided Exploration for LLM-Driven Alpha Mining"></a>CosmosAlpha: Multi-Relational Graph Search with Pareto-Guided Exploration for LLM-Driven Alpha Mining</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04555">2611.04555</a>。<strong>作者：</strong> Zhan-He Wang、Zi-Yang Lang、Yi-Yang Li、Qing-Yu Lan、Yun-Song Piao。<strong>来源与分类：</strong> arXiv 预印本；q-fin.CP、cs.AI、cs.LG。<strong>主题：</strong> AI/金融双主题。</p>
-<p><strong>仅依据摘要。</strong> CosmosAlpha 将 LLM 生成的因子建成多关系图，连接生成谱系、表达式结构相似度和横截面暴露相关，再以图流和 Pareto 选择平衡预测质量、搜索产出和多样性。在 CSI 300、CSI 500 上，作者报告图搜索在七项预测及组合指标上平均排名最好，并在每项指标上优于受控 MCTS 对照。搜索组织方式新颖，但摘要未明确每项时间切分、交易成本和多轮搜索的选择偏差；因子指标领先不是独立验证的投资回报。</p>
+<h3 id="cosmosalpha-multi-relational-graph-search-with-pareto-guided-exploration-for-llm-driven-alpha-mining">CosmosAlpha:
+Multi-Relational Graph Search with Pareto-Guided Exploration for
+LLM-Driven Alpha Mining</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04555">2611.04555</a>。<strong>作者：</strong>
+Zhan-He Wang、Zi-Yang Lang、Yi-Yang Li、Qing-Yu Lan、Yun-Song
+Piao。<strong>来源与分类：</strong> arXiv
+预印本；q-fin.CP、cs.AI、cs.LG。<strong>主题：</strong>
+AI/金融双主题。</p>
+<p><strong>仅依据摘要。</strong> CosmosAlpha 将 LLM
+生成的因子建成多关系图，连接生成谱系、表达式结构相似度和横截面暴露相关，再以图流和
+Pareto 选择平衡预测质量、搜索产出和多样性。在 CSI 300、CSI 500
+上，作者报告图搜索在七项预测及组合指标上平均排名最好，并在每项指标上优于受控
+MCTS
+对照。搜索组织方式新颖，但摘要未明确每项时间切分、交易成本和多轮搜索的选择偏差；因子指标领先不是独立验证的投资回报。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04555">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04555">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04555">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/wzhmtldswz/CosmosAlpha">代码</a></p>
-<h3 id="A-Financial-Brain-Scan-of-the-LLM"><a href="#A-Financial-Brain-Scan-of-the-LLM" class="headerlink" title="A Financial Brain Scan of the LLM"></a>A Financial Brain Scan of the LLM</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.21285">2508.21285</a>。<strong>作者：</strong> Hui Chen、Antoine Didisheim、Mo Pourmohammadi、Luciano Somoza、Hanqing Tian。<strong>来源与分类：</strong> arXiv 预印本；q-fin.GN、cs.AI、cs.CE、econ.GN、q-fin.EC。<strong>主题：</strong> AI/金融双主题。</p>
-<p><strong>仅依据摘要。</strong> 作者用稀疏自编码器把 LLM 内部激活映射为可解释概念，再对经济偏好特征做定向干预；摘要报告，直接提示偏好会同时激活多个非目标概念，而 SAE 干预更平滑、隔离度更高，模型自我解释也未可靠对应内部特征贡献。该研究触及模型经济偏见和解释性的因果操纵问题；摘要未给模型、任务样本和效应量，内部特征操纵不等于真实决策偏差已被消除。</p>
+<h3 id="a-financial-brain-scan-of-the-llm">A Financial Brain Scan of the
+LLM</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.21285">2508.21285</a>。<strong>作者：</strong>
+Hui Chen、Antoine Didisheim、Mo Pourmohammadi、Luciano Somoza、Hanqing
+Tian。<strong>来源与分类：</strong> arXiv
+预印本；q-fin.GN、cs.AI、cs.CE、econ.GN、q-fin.EC。<strong>主题：</strong>
+AI/金融双主题。</p>
+<p><strong>仅依据摘要。</strong> 作者用稀疏自编码器把 LLM
+内部激活映射为可解释概念，再对经济偏好特征做定向干预；摘要报告，直接提示偏好会同时激活多个非目标概念，而
+SAE
+干预更平滑、隔离度更高，模型自我解释也未可靠对应内部特征贡献。该研究触及模型经济偏见和解释性的因果操纵问题；摘要未给模型、任务样本和效应量，内部特征操纵不等于真实决策偏差已被消除。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.21285">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2508.21285">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2508.21285">arXiv DOI</a></p>
-<h3 id="Mitigating-Return-Drag-and-Regime-Whipsaws-in-Sector-Rotation-An-Asymmetric-Downside-Aware-Nested-Clustered-Optimization-Framework"><a href="#Mitigating-Return-Drag-and-Regime-Whipsaws-in-Sector-Rotation-An-Asymmetric-Downside-Aware-Nested-Clustered-Optimization-Framework" class="headerlink" title="Mitigating Return Drag and Regime Whipsaws in Sector Rotation: An Asymmetric Downside-Aware Nested Clustered Optimization Framework"></a>Mitigating Return Drag and Regime Whipsaws in Sector Rotation: An Asymmetric Downside-Aware Nested Clustered Optimization Framework</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05310">2611.05310</a>。<strong>作者：</strong> Supriadi。<strong>来源与分类：</strong> arXiv 预印本；q-fin.PM。</p>
-<p><strong>仅依据摘要。</strong> Asym-Sticky-NCO 用下行半协方差替代对称方差，并为高斯 HMM 加入状态黏性先验，以减少板块轮动的 regime whipsaw。在作者报告的 2020 年 8 月至 2025 年 12 月、65 个月 walk-forward 回测中，年化 CAGR 从 Plain NCO 的 10.65% 升至 13.41%，最大回撤为 14.22%，状态切换从 16 次降至 4 次，月换手率从 60.78% 降至 30.48%。这是单一标普行业板块策略的历史样本外回测；摘要未清楚交代交易成本、参数选择是否完全嵌套、基准风险匹配和统计区间，不能视作实盘可交易收益。</p>
+<h3 id="mitigating-return-drag-and-regime-whipsaws-in-sector-rotation-an-asymmetric-downside-aware-nested-clustered-optimization-framework">Mitigating
+Return Drag and Regime Whipsaws in Sector Rotation: An Asymmetric
+Downside-Aware Nested Clustered Optimization Framework</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05310">2611.05310</a>。<strong>作者：</strong>
+Supriadi。<strong>来源与分类：</strong> arXiv 预印本；q-fin.PM。</p>
+<p><strong>仅依据摘要。</strong> Asym-Sticky-NCO
+用下行半协方差替代对称方差，并为高斯 HMM
+加入状态黏性先验，以减少板块轮动的 regime whipsaw。在作者报告的 2020 年
+8 月至 2025 年 12 月、65 个月 walk-forward 回测中，年化 CAGR 从 Plain
+NCO 的 10.65% 升至 13.41%，最大回撤为 14.22%，状态切换从 16 次降至 4
+次，月换手率从 60.78% 降至
+30.48%。这是单一标普行业板块策略的历史样本外回测；摘要未清楚交代交易成本、参数选择是否完全嵌套、基准风险匹配和统计区间，不能视作实盘可交易收益。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05310">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.05310">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.05310">arXiv DOI</a></p>
-<h3 id="Beyond-Anonymous-Order-Flow-Wallet-Identity-as-a-Feature-for-Short-Horizon-Return-Prediction-1"><a href="#Beyond-Anonymous-Order-Flow-Wallet-Identity-as-a-Feature-for-Short-Horizon-Return-Prediction-1" class="headerlink" title="Beyond Anonymous Order Flow: Wallet Identity as a Feature for Short-Horizon Return Prediction"></a>Beyond Anonymous Order Flow: Wallet Identity as a Feature for Short-Horizon Return Prediction</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05218">2611.05218</a>。<strong>作者：</strong> Jingqiu Ding、Daojing Zhai。<strong>来源与分类：</strong> arXiv 预印本；q-fin.TR、q-fin.ST。</p>
-<p><strong>重点已详述，全文已核读。</strong> 作者报告钱包特征提高 Hyperliquid 一秒收益预测的样本外 R²，但测试期只有数日且特征选择回顾性；未证明扣费后的可交易收益，完整评估见上文。</p>
+<h3 id="beyond-anonymous-order-flow-wallet-identity-as-a-feature-for-short-horizon-return-prediction-1">Beyond
+Anonymous Order Flow: Wallet Identity as a Feature for Short-Horizon
+Return Prediction</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05218">2611.05218</a>。<strong>作者：</strong>
+Jingqiu Ding、Daojing Zhai。<strong>来源与分类：</strong> arXiv
+预印本；q-fin.TR、q-fin.ST。</p>
+<p><strong>重点已详述，全文已核读。</strong> 作者报告钱包特征提高
+Hyperliquid 一秒收益预测的样本外
+R²，但测试期只有数日且特征选择回顾性；未证明扣费后的可交易收益，完整评估见上文。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05218">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.05218">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.05218">arXiv DOI</a></p>
-<h3 id="Agreements-Have-a-Clock-Compute-Growth-and-the-Verification-of-AI-Restraint"><a href="#Agreements-Have-a-Clock-Compute-Growth-and-the-Verification-of-AI-Restraint" class="headerlink" title="Agreements Have a Clock: Compute Growth and the Verification of AI Restraint"></a>Agreements Have a Clock: Compute Growth and the Verification of AI Restraint</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04272">2611.04272</a>。<strong>作者：</strong> Li Gan。<strong>来源与分类：</strong> arXiv 预印本；econ.GN、q-fin.EC。<strong>主题：</strong> AI 治理/经济学交叉，金融市场关联较间接。</p>
-<p><strong>仅依据摘要。</strong> 论文用含自愿加入、付费监测、秘密技术进展和可信回应的博弈模型，分析暂停前沿 AI 的国际协议何时可维持。作者在一个示例中报告，固定领先窗口下协议可维持至第 18.9 个月；可验证的匹配安全研究延至 25.5 个月，监测成本减半则延至 31.8 个月。贡献是把算力增长如何缩短协议执行窗口形式化；数字是模型校准情景而非现实政策的因果估计或金融市场证据。</p>
+<h3 id="agreements-have-a-clock-compute-growth-and-the-verification-of-ai-restraint">Agreements
+Have a Clock: Compute Growth and the Verification of AI Restraint</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04272">2611.04272</a>。<strong>作者：</strong>
+Li Gan。<strong>来源与分类：</strong> arXiv
+预印本；econ.GN、q-fin.EC。<strong>主题：</strong> AI
+治理/经济学交叉，金融市场关联较间接。</p>
+<p><strong>仅依据摘要。</strong>
+论文用含自愿加入、付费监测、秘密技术进展和可信回应的博弈模型，分析暂停前沿
+AI
+的国际协议何时可维持。作者在一个示例中报告，固定领先窗口下协议可维持至第
+18.9 个月；可验证的匹配安全研究延至 25.5 个月，监测成本减半则延至 31.8
+个月。贡献是把算力增长如何缩短协议执行窗口形式化；数字是模型校准情景而非现实政策的因果估计或金融市场证据。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04272">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04272">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04272">arXiv DOI</a></p>
-<h3 id="Prizes-Shared-Hazard-and-the-Speed-of-Frontier-AI"><a href="#Prizes-Shared-Hazard-and-the-Speed-of-Frontier-AI" class="headerlink" title="Prizes, Shared Hazard, and the Speed of Frontier AI"></a>Prizes, Shared Hazard, and the Speed of Frontier AI</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04266">2611.04266</a>。<strong>作者：</strong> Li Gan。<strong>来源与分类：</strong> arXiv 预印本；econ.GN、q-fin.EC。<strong>主题：</strong> AI 治理/经济学交叉，金融市场关联较间接。</p>
-<p><strong>仅依据摘要。</strong> 作者以共享灾难风险、商业竞赛和实验室数量构造前沿 AI 竞速模型；一个校准示例中，三家实验室竞赛 18 个月进入 takeoff，相较统一研究份额规则的 69 个月更快，竞赛激励解释部分风险概率差距。模型显示单家克制的作用有限，协调规则影响更大。结果依赖示例校准和机制假设，不是对真实 AI 产业或资本市场的因果估计；虽属经济学理论，市场金融关联不直接。</p>
+<h3 id="prizes-shared-hazard-and-the-speed-of-frontier-ai">Prizes,
+Shared Hazard, and the Speed of Frontier AI</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04266">2611.04266</a>。<strong>作者：</strong>
+Li Gan。<strong>来源与分类：</strong> arXiv
+预印本；econ.GN、q-fin.EC。<strong>主题：</strong> AI
+治理/经济学交叉，金融市场关联较间接。</p>
+<p><strong>仅依据摘要。</strong>
+作者以共享灾难风险、商业竞赛和实验室数量构造前沿 AI
+竞速模型；一个校准示例中，三家实验室竞赛 18 个月进入
+takeoff，相较统一研究份额规则的 69
+个月更快，竞赛激励解释部分风险概率差距。模型显示单家克制的作用有限，协调规则影响更大。结果依赖示例校准和机制假设，不是对真实
+AI 产业或资本市场的因果估计；虽属经济学理论，市场金融关联不直接。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04266">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04266">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04266">arXiv DOI</a></p>
-<h3 id="Multidimensional-Views-Behind-Target-Price-Revisions-An-LLM-Based-Representation-of-Analyst-Outlooks"><a href="#Multidimensional-Views-Behind-Target-Price-Revisions-An-LLM-Based-Representation-of-Analyst-Outlooks" class="headerlink" title="Multidimensional Views Behind Target-Price Revisions: An LLM-Based Representation of Analyst Outlooks"></a>Multidimensional Views Behind Target-Price Revisions: An LLM-Based Representation of Analyst Outlooks</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04119">2611.04119</a>。<strong>作者：</strong> Kiyoun Kim、Sung-Yeon Nathan Lim。<strong>来源与分类：</strong> arXiv 预印本；q-fin.CP。<strong>主题：</strong> AI/金融双主题。</p>
-<p><strong>仅依据摘要。</strong> 作者从分析师研报提取有关盈利、估值和行业状况的问答式观点分数，并保留支持证据；walk-forward 评估中，这些维度分数对后续目标价修订的预测超过当前修订动量、行业差异、金融词典和 FinBERT 情绪。它预测的是分析师之后如何修订目标价，不是股票收益或可交易超额回报；摘要未给样本规模、具体增量和文本时间戳隔离细节。</p>
+<h3 id="multidimensional-views-behind-target-price-revisions-an-llm-based-representation-of-analyst-outlooks">Multidimensional
+Views Behind Target-Price Revisions: An LLM-Based Representation of
+Analyst Outlooks</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04119">2611.04119</a>。<strong>作者：</strong>
+Kiyoun Kim、Sung-Yeon Nathan Lim。<strong>来源与分类：</strong> arXiv
+预印本；q-fin.CP。<strong>主题：</strong> AI/金融双主题。</p>
+<p><strong>仅依据摘要。</strong>
+作者从分析师研报提取有关盈利、估值和行业状况的问答式观点分数，并保留支持证据；walk-forward
+评估中，这些维度分数对后续目标价修订的预测超过当前修订动量、行业差异、金融词典和
+FinBERT
+情绪。它预测的是分析师之后如何修订目标价，不是股票收益或可交易超额回报；摘要未给样本规模、具体增量和文本时间戳隔离细节。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.04119">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.04119">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.04119">arXiv DOI</a></p>
-<h3 id="Honest-Small-Decision-Models-for-Finance-Scale-Specialization-Collapse-and-Mixed-Corpus-Remediation-1"><a href="#Honest-Small-Decision-Models-for-Finance-Scale-Specialization-Collapse-and-Mixed-Corpus-Remediation-1" class="headerlink" title="Honest Small Decision Models for Finance: Scale, Specialization Collapse, and Mixed-Corpus Remediation"></a>Honest Small Decision Models for Finance: Scale, Specialization Collapse, and Mixed-Corpus Remediation</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03755">2611.03755</a>。<strong>作者：</strong> Ajitabh Kumar。<strong>来源与分类：</strong> arXiv 预印本；cs.LG、q-fin.ST。<strong>主题：</strong> AI/金融双主题。</p>
-<p><strong>重点已详述，全文已核读。</strong> 多个规模的决策模型在实现收益任务中停留在持有期条件基准率附近，论文没有报告预测优势；跨任务退化和校准数据见上文。</p>
+<h3 id="honest-small-decision-models-for-finance-scale-specialization-collapse-and-mixed-corpus-remediation-1">Honest
+Small Decision Models for Finance: Scale, Specialization Collapse, and
+Mixed-Corpus Remediation</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03755">2611.03755</a>。<strong>作者：</strong>
+Ajitabh Kumar。<strong>来源与分类：</strong> arXiv
+预印本；cs.LG、q-fin.ST。<strong>主题：</strong> AI/金融双主题。</p>
+<p><strong>重点已详述，全文已核读。</strong>
+多个规模的决策模型在实现收益任务中停留在持有期条件基准率附近，论文没有报告预测优势；跨任务退化和校准数据见上文。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.03755">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.03755">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.03755">arXiv DOI</a></p>
-<h3 id="Designing-Behavioral-Profiles-for-Language-Model-Simulation-of-Out-of-Distribution-Human-Behavior"><a href="#Designing-Behavioral-Profiles-for-Language-Model-Simulation-of-Out-of-Distribution-Human-Behavior" class="headerlink" title="Designing Behavioral Profiles for Language Model Simulation of Out-of-Distribution Human Behavior"></a>Designing Behavioral Profiles for Language Model Simulation of Out-of-Distribution Human Behavior</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00661">2611.00661</a>。<strong>作者：</strong> Robin Na、Kehang Zhu、Logan Cross、Michiel A. Bakker。<strong>来源与分类：</strong> arXiv 预印本；cs.AI、econ.GN、q-fin.EC。<strong>主题：</strong> LLM/实验经济学交叉，金融关联较间接。</p>
-<p><strong>仅依据摘要。</strong> 研究从既有实验中提取行为特征，由 LLM 形成参与者画像，再让另一 LLM 模拟其行为；在 616 场公共品博弈、144 场多方谈判和 1,480 个金钱请求任务中，作者报告最优单特征画像优于无画像或通用 persona，增加画像特征没有明确收益。将一种博弈家族的画像迁移到另一类任务，结果不稳定且有时更差。画像设计因此需要在新实验设置上验证；它是实验行为预测，不是金融市场投资者或真实客户行为的直接证据。</p>
+<h3 id="designing-behavioral-profiles-for-language-model-simulation-of-out-of-distribution-human-behavior">Designing
+Behavioral Profiles for Language Model Simulation of Out-of-Distribution
+Human Behavior</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00661">2611.00661</a>。<strong>作者：</strong>
+Robin Na、Kehang Zhu、Logan Cross、Michiel A.
+Bakker。<strong>来源与分类：</strong> arXiv
+预印本；cs.AI、econ.GN、q-fin.EC。<strong>主题：</strong>
+LLM/实验经济学交叉，金融关联较间接。</p>
+<p><strong>仅依据摘要。</strong> 研究从既有实验中提取行为特征，由 LLM
+形成参与者画像，再让另一 LLM 模拟其行为；在 616 场公共品博弈、144
+场多方谈判和 1,480
+个金钱请求任务中，作者报告最优单特征画像优于无画像或通用
+persona，增加画像特征没有明确收益。将一种博弈家族的画像迁移到另一类任务，结果不稳定且有时更差。画像设计因此需要在新实验设置上验证；它是实验行为预测，不是金融市场投资者或真实客户行为的直接证据。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.00661">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.00661">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.00661">arXiv DOI</a></p>
-<h3 id="Where-Are-the-Rates-Derivative-Implied-Interest-Rates-in-Cryptocurrency-Markets"><a href="#Where-Are-the-Rates-Derivative-Implied-Interest-Rates-in-Cryptocurrency-Markets" class="headerlink" title="Where Are the Rates? Derivative-Implied Interest Rates in Cryptocurrency Markets"></a>Where Are the Rates? Derivative-Implied Interest Rates in Cryptocurrency Markets</h3><p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2509.03964">2509.03964</a>。<strong>作者：</strong> Philippe Bergault、Sébastien Bieber、Olivier Guéant、Wenkai Zhang。<strong>来源与分类：</strong> arXiv 预印本；q-fin.GN。</p>
-<p><strong>仅依据摘要。</strong> 作者把看跌看涨平价与期货基差合并成封闭式估计，并为加密市场报价设计 RANSAC 过滤器；使用 Deribit 2023 年 2 月至 2026 年 2 月的 BTC、ETH 小时衍生品数据，推导美元和币本位贴现曲线。摘要报告美元隐含利率年均约 8%、在 2024 年上涨阶段走高，而 BTC/ETH 隐含利率多数接近零；美元曲线与 Aave USDC 利率共同变动但持续有差异。结果描述价格关系和市场分割，不识别利率变化的因果机制，也不提供可交易收益评估。</p>
+<h3 id="where-are-the-rates-derivative-implied-interest-rates-in-cryptocurrency-markets">Where
+Are the Rates? Derivative-Implied Interest Rates in Cryptocurrency
+Markets</h3>
+<p><strong>arXiv：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2509.03964">2509.03964</a>。<strong>作者：</strong>
+Philippe Bergault、Sébastien Bieber、Olivier Guéant、Wenkai
+Zhang。<strong>来源与分类：</strong> arXiv 预印本；q-fin.GN。</p>
+<p><strong>仅依据摘要。</strong>
+作者把看跌看涨平价与期货基差合并成封闭式估计，并为加密市场报价设计
+RANSAC 过滤器；使用 Deribit 2023 年 2 月至 2026 年 2 月的 BTC、ETH
+小时衍生品数据，推导美元和币本位贴现曲线。摘要报告美元隐含利率年均约
+8%、在 2024 年上涨阶段走高，而 BTC/ETH 隐含利率多数接近零；美元曲线与
+Aave USDC
+利率共同变动但持续有差异。结果描述价格关系和市场分割，不识别利率变化的因果机制，也不提供可交易收益评估。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2509.03964">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2509.03964">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2509.03964">arXiv DOI</a></p>
 
                 
