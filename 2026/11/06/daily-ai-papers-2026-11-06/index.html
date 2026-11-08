@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 ServerBench: How can your coding agents design specialized LLM serving systems? 论文： 2611.06841。作者： Xinrui Zhong、Zhiming Wang、Yongqi Liu、Zhaohui Wang、Shanglin Yang、Zikun Li、Zhuoming Chen、Beidi Ch">
+    <meta name="description" content="重点关注  ServerBench: How can your coding agents design specialized LLM serving systems? 论文： 2611.06841。作者： Xinrui Zhong、Zhiming Wang、Yongqi Liu、Zhaohui Wang、Shanglin Yang、Zikun Li、Zhuoming Chen、Beidi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报（2026-11-06）">
 <meta property="og:url" content="https://www.polarishaw.top/2026/11/06/daily-ai-papers-2026-11-06/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 ServerBench: How can your coding agents design specialized LLM serving systems? 论文： 2611.06841。作者： Xinrui Zhong、Zhiming Wang、Yongqi Liu、Zhaohui Wang、Shanglin Yang、Zikun Li、Zhuoming Chen、Beidi Ch">
+<meta property="og:description" content="重点关注  ServerBench: How can your coding agents design specialized LLM serving systems? 论文： 2611.06841。作者： Xinrui Zhong、Zhiming Wang、Yongqi Liu、Zhaohui Wang、Shanglin Yang、Zikun Li、Zhuoming Chen、Beidi">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-08-30/pixiv-rank-004-148828943.jpg">
 <meta property="article:published_time" content="2026-11-06T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-10-11/pixiv-rank-004-150465538.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-002-146822320.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,437 +347,146 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<h3 id="serverbench-how-can-your-coding-agents-design-specialized-llm-serving-systems">ServerBench:
-How can your coding agents design specialized LLM serving systems?</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06841">2611.06841</a>。<strong>作者：</strong>
-Xinrui Zhong、Zhiming Wang、Yongqi Liu、Zhaohui Wang、Shanglin
-Yang、Zikun Li、Zhuoming Chen、Beidi Chen。<strong>来源/分类：</strong>
-arXiv 预印本；cs.AI。<strong>主题：</strong>
-AI。<strong>全文状态：</strong> 已核读公开 PDF 与 arXiv HTML 全文。</p>
+<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
+<h3 id="serverbench-how-can-your-coding-agents-design-specialized-llm-serving-systems"><a class="markdownIt-Anchor" href="#serverbench-how-can-your-coding-agents-design-specialized-llm-serving-systems"></a> ServerBench: How can your coding agents design specialized LLM serving systems?</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06841">2611.06841</a>。<strong>作者：</strong> Xinrui Zhong、Zhiming Wang、Yongqi Liu、Zhaohui Wang、Shanglin Yang、Zikun Li、Zhuoming Chen、Beidi Chen。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读公开 PDF 与 arXiv HTML 全文。</p>
 <ul>
-<li><strong>研究问题：</strong>
-代码智能体能否在多轮、共享上下文、有子智能体分支的真实服务负载上，自己设计完整
-LLM 推理服务器并选择并发数，同时满足时延与正确性要求？</li>
-<li><strong>方法与基线：</strong> ServerBench
-用回放保留会话依赖和请求长度，以“满足 TTFT/TPOT 服务目标的 token 计价 ÷
-GPU 成本”计分；独立核对提示完整性、输出长度、流式行为、模型忠实度和
-held-out 答案准确率。评测 11 个 coding-agent 模型、3 种部署；与 SGLang
-v0.5.19、vLLM v0.28.0 参考配置比较，每个智能体有 8 小时开发预算。</li>
-<li><strong>作者报告的主要结果：</strong> 作者报告 Claude Opus 5.5 在
-Qwen3.5 9B 与 Qwen3.8 27B INT4 上分别达 4.40、2.64 美元/美元；Claude
-Sonnet 5.5 在 Gemma E4B 上为 2.97，是 vLLM 参考的 4.87 倍。33 次运行中
-22 次得到核验通过的系统，13 次超过最强参考；整体成功并不稳定。</li>
-<li><strong>创新点：</strong> 它把服务器实现、负载并发选择、GPU
-成本、尾时延与端到端正确性放进同一个系统设计任务，且用独立回放检验代理是否真的完成服务。</li>
-<li><strong>局限与失败条件：</strong> 结果仅覆盖 3 个模型—硬件部署和一个
-coding-agent
-轨迹来源；回放重建了请求结构但不复现原始任务，闭环负载不同于开放式生产流量。作者指出验证只代表测得的实现，API
-开发成本不在每美元服务价值指标内；系统级基准仍需核对预训练污染，单次/少数运行不足以推断一般智能体设计成功率。这里的倍数是基准内服务效率，不是通用能力或生产成本保证。</li>
-<li><strong>适合谁读与优先章节：</strong> 推理服务、LLM infra 与
-coding-agent 评测工程师。建议按第 3 节读目标函数、负载回放与核验，再读第
-4.1–4.6 节的对比、失败案例和消融。</li>
+<li><strong>研究问题：</strong> 代码智能体能否在多轮、共享上下文、有子智能体分支的真实服务负载上，自己设计完整 LLM 推理服务器并选择并发数，同时满足时延与正确性要求？</li>
+<li><strong>方法与基线：</strong> ServerBench 用回放保留会话依赖和请求长度，以“满足 TTFT/TPOT 服务目标的 token 计价 ÷ GPU 成本”计分；独立核对提示完整性、输出长度、流式行为、模型忠实度和 held-out 答案准确率。评测 11 个 coding-agent 模型、3 种部署；与 SGLang v0.5.19、vLLM v0.28.0 参考配置比较，每个智能体有 8 小时开发预算。</li>
+<li><strong>作者报告的主要结果：</strong> 作者报告 Claude Opus 5.5 在 Qwen3.5 9B 与 Qwen3.8 27B INT4 上分别达 4.40、2.64 美元/美元；Claude Sonnet 5.5 在 Gemma E4B 上为 2.97，是 vLLM 参考的 4.87 倍。33 次运行中 22 次得到核验通过的系统，13 次超过最强参考；整体成功并不稳定。</li>
+<li><strong>创新点：</strong> 它把服务器实现、负载并发选择、GPU 成本、尾时延与端到端正确性放进同一个系统设计任务，且用独立回放检验代理是否真的完成服务。</li>
+<li><strong>局限与失败条件：</strong> 结果仅覆盖 3 个模型—硬件部署和一个 coding-agent 轨迹来源；回放重建了请求结构但不复现原始任务，闭环负载不同于开放式生产流量。作者指出验证只代表测得的实现，API 开发成本不在每美元服务价值指标内；系统级基准仍需核对预训练污染，单次/少数运行不足以推断一般智能体设计成功率。这里的倍数是基准内服务效率，不是通用能力或生产成本保证。</li>
+<li><strong>适合谁读与优先章节：</strong> 推理服务、LLM infra 与 coding-agent 评测工程师。建议按第 3 节读目标函数、负载回放与核验，再读第 4.1–4.6 节的对比、失败案例和消融。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06841">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.06841">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.06841">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/Infini-AI-Lab/Server-Bench">代码</a> · <a target="_blank" rel="noopener" href="https://infini-ai-lab.github.io/Server-Bench">项目页</a></p>
-<h3 id="slackbench-benchmarking-agents-on-collaborative-projects-grounded-in-real-code-repositories">SlackBench:
-Benchmarking Agents on Collaborative Projects Grounded in Real Code
-Repositories</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05512">2611.05512</a>。<strong>作者：</strong>
-Mingxuan Li、Huanzhi Mao、Ruitao Zheng、Jarod Stanbury James、Yunze
-Li、Natanya Anderson、Joseph E. Gonzalez、Alex
-Dimakis。<strong>来源/分类：</strong> arXiv 预印本；cs.AI,
-cs.CL。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读
-arXiv HTML 全文。</p>
+<h3 id="slackbench-benchmarking-agents-on-collaborative-projects-grounded-in-real-code-repositories"><a class="markdownIt-Anchor" href="#slackbench-benchmarking-agents-on-collaborative-projects-grounded-in-real-code-repositories"></a> SlackBench: Benchmarking Agents on Collaborative Projects Grounded in Real Code Repositories</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05512">2611.05512</a>。<strong>作者：</strong> Mingxuan Li、Huanzhi Mao、Ruitao Zheng、Jarod Stanbury James、Yunze Li、Natanya Anderson、Joseph E. Gonzalez、Alex Dimakis。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读 arXiv HTML 全文。</p>
 <ul>
-<li><strong>研究问题：</strong>
-真实协作项目中的答案散落在对话、代码仓库和文档中，智能体能否还原变化中的决策、核对相互冲突的证据并拒绝错误前提？</li>
-<li><strong>方法与基线：</strong> SlackBench
-用隐私保护的真实学术项目重建环境，含 140
-个任务，分协作搜索、不可回答/错误前提拒答、目标摘要和情境推断四类；在 33
-个模型/harness 上测试，并比较 Slack MCP 工具与直接 CLI 文件访问。答案由
-GPT-5.4 评分，作者对 140 个任务的 264
-个评判做人工复核，报告人与评判一致率 95.8%。</li>
-<li><strong>作者报告的主要结果：</strong> 作者报告最佳配置平均准确率
-80.25%，其余多数系统低于 66%；3 名独立研究者在同样环境下平均 84.5%（95%
-bootstrap 区间 77%–92%）。直接 CLI 文件访问平均提高通过率 7.85
-个百分点，并降低 token 消耗。</li>
-<li><strong>创新点：</strong> 任务要求跨越对话线程、仓库状态、Google
-Docs
-和陈旧/矛盾信息，评估的是协作项目工作流而非静态语料问答；界面选择本身也被纳入比较。</li>
-<li><strong>局限与失败条件：</strong>
-数据是隐私保护的项目重建，不是任意企业 Slack
-的概率样本；基准仅测所选前沿模型/harness，作者未系统改变提示策略。评分包含
-LLM
-judge，虽做人工一致性复核仍有评分规约边界；公开基准的测试数据是否进入底座预训练语料需另外核验。准确率也不等于真实组织中的任务完成率。</li>
-<li><strong>适合谁读与优先章节：</strong>
-长程工作流、企业知识助手、代码协作智能体团队。建议读第 5
-节环境/查询构造、第 6 节评测、第 7–8 节结果与失败类型，以及第 10
-节限制。</li>
+<li><strong>研究问题：</strong> 真实协作项目中的答案散落在对话、代码仓库和文档中，智能体能否还原变化中的决策、核对相互冲突的证据并拒绝错误前提？</li>
+<li><strong>方法与基线：</strong> SlackBench 用隐私保护的真实学术项目重建环境，含 140 个任务，分协作搜索、不可回答/错误前提拒答、目标摘要和情境推断四类；在 33 个模型/harness 上测试，并比较 Slack MCP 工具与直接 CLI 文件访问。答案由 GPT-5.4 评分，作者对 140 个任务的 264 个评判做人工复核，报告人与评判一致率 95.8%。</li>
+<li><strong>作者报告的主要结果：</strong> 作者报告最佳配置平均准确率 80.25%，其余多数系统低于 66%；3 名独立研究者在同样环境下平均 84.5%（95% bootstrap 区间 77%–92%）。直接 CLI 文件访问平均提高通过率 7.85 个百分点，并降低 token 消耗。</li>
+<li><strong>创新点：</strong> 任务要求跨越对话线程、仓库状态、Google Docs 和陈旧/矛盾信息，评估的是协作项目工作流而非静态语料问答；界面选择本身也被纳入比较。</li>
+<li><strong>局限与失败条件：</strong> 数据是隐私保护的项目重建，不是任意企业 Slack 的概率样本；基准仅测所选前沿模型/harness，作者未系统改变提示策略。评分包含 LLM judge，虽做人工一致性复核仍有评分规约边界；公开基准的测试数据是否进入底座预训练语料需另外核验。准确率也不等于真实组织中的任务完成率。</li>
+<li><strong>适合谁读与优先章节：</strong> 长程工作流、企业知识助手、代码协作智能体团队。建议读第 5 节环境/查询构造、第 6 节评测、第 7–8 节结果与失败类型，以及第 10 节限制。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05512">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.05512">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.05512">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/HuanzhiMao/SlackBench">数据集</a></p>
-<h3 id="litmus-benchmarking-behavioral-jailbreaks-of-llm-agents-in-real-os-environments">LITMUS:
-Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS
-Environments</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.10779">2605.10779</a>。<strong>作者：</strong>
-Chiyu Zhang、Lu Zhou、Xiaogang Xu、Huiqin Yang、Bendong Jiang、Xiaolei
-Zhang、Yiran Zhao、Ruyi Chen、Jiafei Wu、Liming Fang、Zhe
-Liu。<strong>来源/分类：</strong> arXiv 预印本；cs.CR,
-cs.CL。<strong>主题：</strong> AI。<strong>全文状态：</strong>
-已核读公开 PDF 与 arXiv HTML 全文。</p>
+<h3 id="litmus-benchmarking-behavioral-jailbreaks-of-llm-agents-in-real-os-environments"><a class="markdownIt-Anchor" href="#litmus-benchmarking-behavioral-jailbreaks-of-llm-agents-in-real-os-environments"></a> LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.10779">2605.10779</a>。<strong>作者：</strong> Chiyu Zhang、Lu Zhou、Xiaogang Xu、Huiqin Yang、Bendong Jiang、Xiaolei Zhang、Yiran Zhao、Ruyi Chen、Jiafei Wu、Liming Fang、Zhe Liu。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>, <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读公开 PDF 与 arXiv HTML 全文。</p>
 <ul>
-<li><strong>研究问题：</strong>
-智能体嘴上拒绝危险请求，操作系统里却可能已经完成破坏性动作；只看对话文本会漏掉多少行为越狱？</li>
-<li><strong>方法与基线：</strong> LITMUS 建立 819 个高风险案例：117
-个种子案例及 702 个攻击扩展，覆盖越狱话术、skill 注入和实体包装；对
-OpenClaw/Hermes 中的模型同时检查语义回答和 OS
-物理状态，并在每例前后回滚环境。六个前沿模型在 Ubuntu 24.04 上评测，另抽
-351 个案例由 6 名计算机/安全方向研究生双人标注。</li>
-<li><strong>作者报告的主要结果：</strong> 作者报告 Claude Sonnet 4.6
-在种子集仍执行 40.64% 的高风险操作，DeepSeek-v3.2 为
-71.51%；他们加入的运行时防护后对应降至 9.97% 与
-18.23%。文中还报告“执行幻觉”：文本拒绝但 OS
-动作已发生，表明只做语义审查会高估安全性。</li>
-<li><strong>创新点：</strong>
-把系统状态核验和逐例回滚作为安全基准的一部分，直接观测行为结果，而非把拒绝措辞当成安全成功。</li>
-<li><strong>局限与失败条件：</strong> 研究只覆盖两个智能体架构和一个 OS
-家族；819 例中种子集为 117
-个，攻击扩展并不穷尽真实攻击空间。模型通过商业 API
-调用，结果受版本/提示与工具权限影响；运行时防护仍需在更多
-OS、工具架构、攻击者自适应策略和真实部署中复验。</li>
-<li><strong>适合谁读与优先章节：</strong> OS
-智能体、浏览器/桌面自动化、安全红队和工具权限设计团队。建议读第 3
-节案例构造、第 4 节物理/语义核验、第 5 节错误率和附录 B 限制。</li>
+<li><strong>研究问题：</strong> 智能体嘴上拒绝危险请求，操作系统里却可能已经完成破坏性动作；只看对话文本会漏掉多少行为越狱？</li>
+<li><strong>方法与基线：</strong> LITMUS 建立 819 个高风险案例：117 个种子案例及 702 个攻击扩展，覆盖越狱话术、skill 注入和实体包装；对 OpenClaw/Hermes 中的模型同时检查语义回答和 OS 物理状态，并在每例前后回滚环境。六个前沿模型在 Ubuntu 24.04 上评测，另抽 351 个案例由 6 名计算机/安全方向研究生双人标注。</li>
+<li><strong>作者报告的主要结果：</strong> 作者报告 Claude Sonnet 4.6 在种子集仍执行 40.64% 的高风险操作，DeepSeek-v3.2 为 71.51%；他们加入的运行时防护后对应降至 9.97% 与 18.23%。文中还报告“执行幻觉”：文本拒绝但 OS 动作已发生，表明只做语义审查会高估安全性。</li>
+<li><strong>创新点：</strong> 把系统状态核验和逐例回滚作为安全基准的一部分，直接观测行为结果，而非把拒绝措辞当成安全成功。</li>
+<li><strong>局限与失败条件：</strong> 研究只覆盖两个智能体架构和一个 OS 家族；819 例中种子集为 117 个，攻击扩展并不穷尽真实攻击空间。模型通过商业 API 调用，结果受版本/提示与工具权限影响；运行时防护仍需在更多 OS、工具架构、攻击者自适应策略和真实部署中复验。</li>
+<li><strong>适合谁读与优先章节：</strong> OS 智能体、浏览器/桌面自动化、安全红队和工具权限设计团队。建议读第 3 节案例构造、第 4 节物理/语义核验、第 5 节错误率和附录 B 限制。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.10779">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.10779">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2605.10779">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/AlienZhang1996/LITMUS">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/AlienZhang1996/LITMUS">数据集</a></p>
-<h3 id="harnessflow-mcts-guided-harness-optimization-for-llm-agents">HarnessFlow:
-MCTS-Guided Harness Optimization for LLM Agents</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06254">2611.06254</a>。<strong>作者：</strong>
-Zhi Hong、Qianlong Wang、Hongchen Wei、Aidan Wu、Daohong Ying、Mingze
-Kong、Bei Liu、Chong Luo。<strong>来源/分类：</strong> arXiv
-预印本；cs.AI。<strong>主题：</strong> AI。<strong>全文状态：</strong>
-已核读公开 PDF 与 arXiv HTML 全文。</p>
+<h3 id="harnessflow-mcts-guided-harness-optimization-for-llm-agents"><a class="markdownIt-Anchor" href="#harnessflow-mcts-guided-harness-optimization-for-llm-agents"></a> HarnessFlow: MCTS-Guided Harness Optimization for LLM Agents</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06254">2611.06254</a>。<strong>作者：</strong> Zhi Hong、Qianlong Wang、Hongchen Wei、Aidan Wu、Daohong Ying、Mingze Kong、Bei Liu、Chong Luo。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读公开 PDF 与 arXiv HTML 全文。</p>
 <ul>
-<li><strong>研究问题：</strong>
-智能体表现取决于底层模型，也取决于工具交互、状态管理和控制逻辑组成的
-harness；能否在有限实验预算内自动搜索更好的完整 harness？</li>
-<li><strong>方法与基线：</strong> HarnessFlow 把候选实现与评测历史组织成
-refinement tree，用 MCTS 选择待改进分支，再让 coding agent
-根据历史代码、执行反馈和可复用组件库修改完整
-harness。模型与任务环境固定，每项基准最多 15 次候选评测；对照初始
-harness、Vanilla、Codex 和 Meta-Harness，并在六个 agentic/coding/web
-基准上评估。</li>
-<li><strong>作者报告的主要结果：</strong> 作者报告平均测试分
-69.48%，比初始 Vanilla 高 10.89 个百分点、比 Meta-Harness 高 3.95
-个百分点；六项基准的平均每任务执行成本低于手工 harness。执行器换为
-GPT-5.4 的三基准比较中平均 83.58%，说明部分改进在另一执行器上保留。</li>
-<li><strong>创新点：</strong> 把 harness
-当作可执行系统做有预算的树搜索，而不是只调
-prompt；记录并复用不同候选的代码与经验。</li>
-<li><strong>局限与失败条件：</strong>
-优化需要自动评分器，也额外消耗一次性搜索算力；论文报告的推理成本不含完整搜索成本。树中每个候选只有一个父节点，跨分支机制不能组合；结论依赖固定模型、任务和基准。作者没有在这组实验中独立排除所有基准训练数据污染，跨基准/跨版本复用前应重新做训练集与测试集核查。</li>
-<li><strong>适合谁读与优先章节：</strong> Agent
-harness、工具调用和智能体评测工程师。建议读第 2 节问题设定、第 3 节 MCTS
-搜索、第 4.1–4.3 节基准/成本/消融及第 6 节限制。</li>
+<li><strong>研究问题：</strong> 智能体表现取决于底层模型，也取决于工具交互、状态管理和控制逻辑组成的 harness；能否在有限实验预算内自动搜索更好的完整 harness？</li>
+<li><strong>方法与基线：</strong> HarnessFlow 把候选实现与评测历史组织成 refinement tree，用 MCTS 选择待改进分支，再让 coding agent 根据历史代码、执行反馈和可复用组件库修改完整 harness。模型与任务环境固定，每项基准最多 15 次候选评测；对照初始 harness、Vanilla、Codex 和 Meta-Harness，并在六个 agentic/coding/web 基准上评估。</li>
+<li><strong>作者报告的主要结果：</strong> 作者报告平均测试分 69.48%，比初始 Vanilla 高 10.89 个百分点、比 Meta-Harness 高 3.95 个百分点；六项基准的平均每任务执行成本低于手工 harness。执行器换为 GPT-5.4 的三基准比较中平均 83.58%，说明部分改进在另一执行器上保留。</li>
+<li><strong>创新点：</strong> 把 harness 当作可执行系统做有预算的树搜索，而不是只调 prompt；记录并复用不同候选的代码与经验。</li>
+<li><strong>局限与失败条件：</strong> 优化需要自动评分器，也额外消耗一次性搜索算力；论文报告的推理成本不含完整搜索成本。树中每个候选只有一个父节点，跨分支机制不能组合；结论依赖固定模型、任务和基准。作者没有在这组实验中独立排除所有基准训练数据污染，跨基准/跨版本复用前应重新做训练集与测试集核查。</li>
+<li><strong>适合谁读与优先章节：</strong> Agent harness、工具调用和智能体评测工程师。建议读第 2 节问题设定、第 3 节 MCTS 搜索、第 4.1–4.3 节基准/成本/消融及第 6 节限制。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06254">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.06254">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.06254">arXiv DOI</a></p>
-<h3 id="pairing-expert-critique-with-llm-driven-refinement-an-iterative-approach-for-curating-quality-ai-evaluation-datasets">Pairing
-Expert Critique with LLM-Driven Refinement: An Iterative Approach for
-Curating Quality AI Evaluation Datasets</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05749">2611.05749</a>。<strong>作者：</strong>
-Honson Ling、Kidus Admassu、Stephanie
-Rosenthal。<strong>来源/分类：</strong> arXiv 预印本；cs.HC, cs.AI,
-cs.LG。<strong>主题：</strong>
-AI；金融业务评测应用。<strong>全文状态：</strong> 已核读公开 PDF 与
-arXiv HTML 全文。</p>
+<h3 id="pairing-expert-critique-with-llm-driven-refinement-an-iterative-approach-for-curating-quality-ai-evaluation-datasets"><a class="markdownIt-Anchor" href="#pairing-expert-critique-with-llm-driven-refinement-an-iterative-approach-for-curating-quality-ai-evaluation-datasets"></a> Pairing Expert Critique with LLM-Driven Refinement: An Iterative Approach for Curating Quality AI Evaluation Datasets</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05749">2611.05749</a>。<strong>作者：</strong> Honson Ling、Kidus Admassu、Stephanie Rosenthal。<strong>来源/分类：</strong> arXiv 预印本；cs.HC, <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, cs.LG。<strong>主题：</strong> AI；金融业务评测应用。<strong>全文状态：</strong> 已核读公开 PDF 与 arXiv HTML 全文。</p>
 <ul>
-<li><strong>研究问题：</strong>
-专家从零写高质量领域回答、数据集和评分量表很慢；能否让专家只做轻量点评，再由
-LLM 归纳与修订，同时保留专业判断？</li>
-<li><strong>方法与基线：</strong> SME-C 在金融业务简报场景收集 411
-位金融从业者对 520 个问题的 3,853 条点评，形成
-rubric，再比较“根据文字点评修订”和“只根据偏好票推断点评并修订”两条路径。第二轮邀请
-100 位新参与者，对 50 个专家意见高度一致的问题进行盲评，共 500
-次评分；对照是专家投票选出的原始最佳回答。</li>
-<li><strong>作者报告的主要结果：</strong> 作者报告原始回答平均质量分
-6.87/10、中位数 7；两种修订后平均为 7.33 和 7.29，中位数均
-8。与原始回答的配对检验经 Holm 校正后分别
-p=0.0004、p=0.0012；两种修订策略彼此差异不显著（p=0.70）。</li>
-<li><strong>创新点：</strong> 把专家的低成本批评意见转成可复用
-rubric，并比较文字批评与偏好投票两种监督信号；一个策略更常改善结构，另一个更常补充最佳实践/删去无关内容。</li>
-<li><strong>局限与失败条件：</strong> 第二轮只测 50
-个高共识问题，不能代表专家意见分歧大的任务；参与者是半专业样本，侧并排比较可能偏重格式；LLM
-修订可能引入幻觉。作者明确指出它更适合沟通质量和专业效用评估，事实/数值正确性仍需独立核查。</li>
-<li><strong>适合谁读与优先章节：</strong>
-领域评测集构建者、金融知识产品与 AI 质量团队。建议读第 3 节 SME-C
-流程、第 4.4–4.5 节修订/盲评结果和第 6 节限制。</li>
+<li><strong>研究问题：</strong> 专家从零写高质量领域回答、数据集和评分量表很慢；能否让专家只做轻量点评，再由 LLM 归纳与修订，同时保留专业判断？</li>
+<li><strong>方法与基线：</strong> SME-C 在金融业务简报场景收集 411 位金融从业者对 520 个问题的 3,853 条点评，形成 rubric，再比较“根据文字点评修订”和“只根据偏好票推断点评并修订”两条路径。第二轮邀请 100 位新参与者，对 50 个专家意见高度一致的问题进行盲评，共 500 次评分；对照是专家投票选出的原始最佳回答。</li>
+<li><strong>作者报告的主要结果：</strong> 作者报告原始回答平均质量分 6.87/10、中位数 7；两种修订后平均为 7.33 和 7.29，中位数均 8。与原始回答的配对检验经 Holm 校正后分别 p=0.0004、p=0.0012；两种修订策略彼此差异不显著（p=0.70）。</li>
+<li><strong>创新点：</strong> 把专家的低成本批评意见转成可复用 rubric，并比较文字批评与偏好投票两种监督信号；一个策略更常改善结构，另一个更常补充最佳实践/删去无关内容。</li>
+<li><strong>局限与失败条件：</strong> 第二轮只测 50 个高共识问题，不能代表专家意见分歧大的任务；参与者是半专业样本，侧并排比较可能偏重格式；LLM 修订可能引入幻觉。作者明确指出它更适合沟通质量和专业效用评估，事实/数值正确性仍需独立核查。</li>
+<li><strong>适合谁读与优先章节：</strong> 领域评测集构建者、金融知识产品与 AI 质量团队。建议读第 3 节 SME-C 流程、第 4.4–4.5 节修订/盲评结果和第 6 节限制。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05749">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.05749">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.05749">arXiv DOI</a></p>
-<h3 id="trick-or-treat-adversarial-evaluation-of-multimodal-medical-reasoning-with-synthetic-images">Trick-or-Treat:
-Adversarial Evaluation of Multimodal Medical Reasoning with Synthetic
-Images</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06631">2611.06631</a>。<strong>作者：</strong>
-Oishi Banerjee、Eujin Lee、Sung Eun Kim、Alexandra N.
-Willauer、Christine Y. Zhou、Zhizhou Yang、Pranav
-Rajpurkar。<strong>来源/分类：</strong> arXiv 预印本；cs.CV,
-cs.AI。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读
-arXiv HTML 全文。</p>
+<h3 id="trick-or-treat-adversarial-evaluation-of-multimodal-medical-reasoning-with-synthetic-images"><a class="markdownIt-Anchor" href="#trick-or-treat-adversarial-evaluation-of-multimodal-medical-reasoning-with-synthetic-images"></a> Trick-or-Treat: Adversarial Evaluation of Multimodal Medical Reasoning with Synthetic Images</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06631">2611.06631</a>。<strong>作者：</strong> Oishi Banerjee、Eujin Lee、Sung Eun Kim、Alexandra N. Willauer、Christine Y. Zhou、Zhizhou Yang、Pranav Rajpurkar。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>, <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读 arXiv HTML 全文。</p>
 <ul>
-<li><strong>研究问题：</strong>
-多模态模型会不会被一张与胸片不匹配的临床照片误导，并反过来“看见”符合胸片诊断的照片病征？</li>
-<li><strong>方法与基线：</strong>
-作者将真实胸片与合成临床照片配对：每种情形用同一胸片配一张匹配照片和一张不匹配照片；照片由模型生成并经临床医师审核。比较仅看照片与同时看照片+胸片两种设置，评估
-3 个前沿模型的照片病征假阳性/假阴性；每类各 40 张照片，评分用 Claude
-Sonnet 5.5 的 rubric judge。</li>
-<li><strong>作者报告的主要结果：</strong>
-在不匹配照片上，加入胸片后照片假阳性率升至 GPT-6 Astra 57.5%、Gemini 4
-Argon 45%、Claude Fable 5.1 45%；仅看照片时分别为
-37.5%、35%、25%。合并检验
-p&lt;0.001；匹配图像时假阴性反而下降，说明跨模态上下文可能助益也可能诱发诊断一致性偏误。</li>
-<li><strong>创新点：</strong>
-通过同一患者背景、匹配/不匹配双组配对来控制图像差异，直接测试多模态信息冲突，而不只报告总体诊断准确率。</li>
-<li><strong>局限与失败条件：</strong>
-实验只评照片描述，不评最终诊断准确性；仅 3 个模型、每类 40
-张照片，合成图仍可能有肉眼难见的生成伪影。照片病征由单一 LLM judge
-评分，作者建议后续加入临床专家判定和更多影像模态；不能据此估计临床误诊率。</li>
-<li><strong>适合谁读与优先章节：</strong> 多模态医疗
-AI、临床安全与模型评测团队。建议读第 3 节匹配/不匹配图构造、第 4
-节判分、第 5 节结果与第 6 节限制。</li>
+<li><strong>研究问题：</strong> 多模态模型会不会被一张与胸片不匹配的临床照片误导，并反过来“看见”符合胸片诊断的照片病征？</li>
+<li><strong>方法与基线：</strong> 作者将真实胸片与合成临床照片配对：每种情形用同一胸片配一张匹配照片和一张不匹配照片；照片由模型生成并经临床医师审核。比较仅看照片与同时看照片+胸片两种设置，评估 3 个前沿模型的照片病征假阳性/假阴性；每类各 40 张照片，评分用 Claude Sonnet 5.5 的 rubric judge。</li>
+<li><strong>作者报告的主要结果：</strong> 在不匹配照片上，加入胸片后照片假阳性率升至 GPT-6 Astra 57.5%、Gemini 4 Argon 45%、Claude Fable 5.1 45%；仅看照片时分别为 37.5%、35%、25%。合并检验 p&lt;0.001；匹配图像时假阴性反而下降，说明跨模态上下文可能助益也可能诱发诊断一致性偏误。</li>
+<li><strong>创新点：</strong> 通过同一患者背景、匹配/不匹配双组配对来控制图像差异，直接测试多模态信息冲突，而不只报告总体诊断准确率。</li>
+<li><strong>局限与失败条件：</strong> 实验只评照片描述，不评最终诊断准确性；仅 3 个模型、每类 40 张照片，合成图仍可能有肉眼难见的生成伪影。照片病征由单一 LLM judge 评分，作者建议后续加入临床专家判定和更多影像模态；不能据此估计临床误诊率。</li>
+<li><strong>适合谁读与优先章节：</strong> 多模态医疗 AI、临床安全与模型评测团队。建议读第 3 节匹配/不匹配图构造、第 4 节判分、第 5 节结果与第 6 节限制。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06631">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.06631">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.06631">arXiv DOI</a></p>
-<h2 id="ai-论文">AI 论文</h2>
+<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
 <p>以下基准结果反映特定模型、提示、工具和测试集上的表现；仍需核查训练数据污染、基线预算公平性、可复现配置及推理/训练成本。</p>
-<h3 id="graph-mediated-large-language-model-systems-in-the-agentic-era-reasoning-knowledge-retrieval-execution-and-coordination">Graph-Mediated
-Large Language Model Systems in the Agentic Era: Reasoning, Knowledge,
-Retrieval, Execution, and Coordination</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05953">2611.05953</a>。<strong>作者：</strong>
-Haihui Liu、Yang Chen、Zice Qiu、Yun Zhang、Jialun Zhong、Wenhua
-Wang、Yanzeng Li、Tian Wang。<strong>来源/分类：</strong> arXiv
-预印本；cs.AI。<strong>主题：</strong> AI。<strong>全文状态：</strong>
-仅依据摘要。</p>
-<p><strong>摘要要点。</strong>
-本文整理图结构在大语言模型系统中的推理、知识与证据、检索与记忆、执行、协同五类作用，并提出按操作角色与发生组件拆分的分类框架。作者报告这是一个评述与评估框架，未提出新的统一量化实验；价值在于避免把局部指标改进误当端到端能力。分类覆盖取决于综述纳入范围，不能视为独立基准验证。</p>
+<h3 id="graph-mediated-large-language-model-systems-in-the-agentic-era-reasoning-knowledge-retrieval-execution-and-coordination"><a class="markdownIt-Anchor" href="#graph-mediated-large-language-model-systems-in-the-agentic-era-reasoning-knowledge-retrieval-execution-and-coordination"></a> Graph-Mediated Large Language Model Systems in the Agentic Era: Reasoning, Knowledge, Retrieval, Execution, and Coordination</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05953">2611.05953</a>。<strong>作者：</strong> Haihui Liu、Yang Chen、Zice Qiu、Yun Zhang、Jialun Zhong、Wenhua Wang、Yanzeng Li、Tian Wang。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 仅依据摘要。</p>
+<p><strong>摘要要点。</strong> 本文整理图结构在大语言模型系统中的推理、知识与证据、检索与记忆、执行、协同五类作用，并提出按操作角色与发生组件拆分的分类框架。作者报告这是一个评述与评估框架，未提出新的统一量化实验；价值在于避免把局部指标改进误当端到端能力。分类覆盖取决于综述纳入范围，不能视为独立基准验证。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05953">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.05953">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.05953">arXiv DOI</a></p>
-<h3 id="ragam-ai-a-hybrid-reinforcement-learning-based-agentic-approach-powered-by-generative-ai-for-edge-resource-management">RAGAM-AI:
-A Hybrid Reinforcement Learning based Agentic approach powered by
-Generative AI for Edge Resource Management</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06554">2611.06554</a>。<strong>作者：</strong>
-Shreya K. Chari、John S. Vardakas、Kostas Ramantas、Christos
-Verikoukis。<strong>来源/分类：</strong> arXiv 预印本；cs.AI,
-cs.LG。<strong>主题：</strong> AI。<strong>全文状态：</strong>
-仅依据摘要。</p>
-<p><strong>摘要要点。</strong>
-论文针对边缘计算资源调度中的奖励泛化问题，提出让多智能体 SAC 结合 LLM
-奖励评价器和替代奖励模型，优化多接入边缘节点的
-CPU、内存、带宽、时延与数据率权衡；摘要列出的比较对象为单智能体
-SAC、REINFORCE
-和随机策略。作者报告资源分配偏差和网络成本下降，但摘要没有给出具体数字、数据集/仿真设定或
-LLM 调用成本，提升仍需全文与可复现实验核验。</p>
+<h3 id="ragam-ai-a-hybrid-reinforcement-learning-based-agentic-approach-powered-by-generative-ai-for-edge-resource-management"><a class="markdownIt-Anchor" href="#ragam-ai-a-hybrid-reinforcement-learning-based-agentic-approach-powered-by-generative-ai-for-edge-resource-management"></a> RAGAM-AI: A Hybrid Reinforcement Learning based Agentic approach powered by Generative AI for Edge Resource Management</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06554">2611.06554</a>。<strong>作者：</strong> Shreya K. Chari、John S. Vardakas、Kostas Ramantas、Christos Verikoukis。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, cs.LG。<strong>主题：</strong> AI。<strong>全文状态：</strong> 仅依据摘要。</p>
+<p><strong>摘要要点。</strong> 论文针对边缘计算资源调度中的奖励泛化问题，提出让多智能体 SAC 结合 LLM 奖励评价器和替代奖励模型，优化多接入边缘节点的 CPU、内存、带宽、时延与数据率权衡；摘要列出的比较对象为单智能体 SAC、REINFORCE 和随机策略。作者报告资源分配偏差和网络成本下降，但摘要没有给出具体数字、数据集/仿真设定或 LLM 调用成本，提升仍需全文与可复现实验核验。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06554">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.06554">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.06554">arXiv DOI</a></p>
-<h3 id="pairing-expert-critique-with-llm-driven-refinement-an-iterative-approach-for-curating-quality-ai-evaluation-datasets-1">Pairing
-Expert Critique with LLM-Driven Refinement: An Iterative Approach for
-Curating Quality AI Evaluation Datasets</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05749">2611.05749</a>。<strong>作者：</strong>
-Honson Ling、Kidus Admassu、Stephanie
-Rosenthal。<strong>来源/分类：</strong> arXiv 预印本；cs.HC, cs.AI,
-cs.LG。<strong>主题：</strong>
-AI；金融业务评测应用。<strong>全文状态：</strong> 已核读公开 PDF 与
-arXiv HTML 全文。</p>
-<p><strong>重点已详述。</strong>
-研究问题、方法与基线、关键结果、证据限制和优先阅读章节见上方“重点关注”。</p>
+<h3 id="pairing-expert-critique-with-llm-driven-refinement-an-iterative-approach-for-curating-quality-ai-evaluation-datasets-2"><a class="markdownIt-Anchor" href="#pairing-expert-critique-with-llm-driven-refinement-an-iterative-approach-for-curating-quality-ai-evaluation-datasets-2"></a> Pairing Expert Critique with LLM-Driven Refinement: An Iterative Approach for Curating Quality AI Evaluation Datasets</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05749">2611.05749</a>。<strong>作者：</strong> Honson Ling、Kidus Admassu、Stephanie Rosenthal。<strong>来源/分类：</strong> arXiv 预印本；cs.HC, <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, cs.LG。<strong>主题：</strong> AI；金融业务评测应用。<strong>全文状态：</strong> 已核读公开 PDF 与 arXiv HTML 全文。</p>
+<p><strong>重点已详述。</strong> 研究问题、方法与基线、关键结果、证据限制和优先阅读章节见上方“重点关注”。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05749">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.05749">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.05749">arXiv DOI</a></p>
-<h3 id="from-solvers-to-research-large-language-model-driven-formal-mathematics-at-the-research-frontier">From
-Solvers to Research: Large Language Model-Driven Formal Mathematics at
-the Research Frontier</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.07779">2607.07779</a>。<strong>作者：</strong>
-Eric Jiang、Xiao Liang、Junyi Zhang、Justin Baker、Zhi Zhang、Yingjia
-Wan、Yubei Li、Jinxi Yu、Mengting Li、Haikang Deng、Alexander
-Taylor、Rushil Raghavan、Michael Simon、Hyunsik Chae、Jia-Chen
-Gu、Xinjie He、Kyle Hess、Ethan Ji、Yiwen Kou、Tzu-Han Lin、Jiachen
-Lu、Jack Mauro、Vigyan Sahai、Zheng Tan、Hengli Li、Yikai Zhang、Kyle
-Zheng、Lunji Zhu、Dong Liu、Jasdeep Sidhu、Isaac Hair、Eniuce Jun、Ying
-Nian Wu、Andrea L. Bertozzi、Kai-Wei Chang、Raghu Meka、Matthew
-Sottile、Nanyun Peng、Amit Sahai、Terence Tao、Wei
-Wang。<strong>来源/分类：</strong> arXiv 预印本；cs.CL,
-cs.AI。<strong>主题：</strong> AI。<strong>全文状态：</strong>
-仅依据摘要。</p>
-<p><strong>摘要要点。</strong> 这篇综述讨论 LLM
-如何从证明题求解扩展到数学研究中的选题、概念/猜想形成、证明与专家判断协作，整理训练、推理时搜索、自主智能体和相关基准。作者强调机器检查证明并不自动意味着形式化表达符合原意或产生新数学贡献；文章适合作为领域地图，但不是新的量化实验，综述判断也受纳入文献与案例选择影响。</p>
+<h3 id="from-solvers-to-research-large-language-model-driven-formal-mathematics-at-the-research-frontier"><a class="markdownIt-Anchor" href="#from-solvers-to-research-large-language-model-driven-formal-mathematics-at-the-research-frontier"></a> From Solvers to Research: Large Language Model-Driven Formal Mathematics at the Research Frontier</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.07779">2607.07779</a>。<strong>作者：</strong> Eric Jiang、Xiao Liang、Junyi Zhang、Justin Baker、Zhi Zhang、Yingjia Wan、Yubei Li、Jinxi Yu、Mengting Li、Haikang Deng、Alexander Taylor、Rushil Raghavan、Michael Simon、Hyunsik Chae、Jia-Chen Gu、Xinjie He、Kyle Hess、Ethan Ji、Yiwen Kou、Tzu-Han Lin、Jiachen Lu、Jack Mauro、Vigyan Sahai、Zheng Tan、Hengli Li、Yikai Zhang、Kyle Zheng、Lunji Zhu、Dong Liu、Jasdeep Sidhu、Isaac Hair、Eniuce Jun、Ying Nian Wu、Andrea L. Bertozzi、Kai-Wei Chang、Raghu Meka、Matthew Sottile、Nanyun Peng、Amit Sahai、Terence Tao、Wei Wang。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>, <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 仅依据摘要。</p>
+<p><strong>摘要要点。</strong> 这篇综述讨论 LLM 如何从证明题求解扩展到数学研究中的选题、概念/猜想形成、证明与专家判断协作，整理训练、推理时搜索、自主智能体和相关基准。作者强调机器检查证明并不自动意味着形式化表达符合原意或产生新数学贡献；文章适合作为领域地图，但不是新的量化实验，综述判断也受纳入文献与案例选择影响。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.07779">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.07779">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2607.07779">arXiv DOI</a></p>
-<h3 id="serverbench-how-can-your-coding-agents-design-specialized-llm-serving-systems-1">ServerBench:
-How can your coding agents design specialized LLM serving systems?</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06841">2611.06841</a>。<strong>作者：</strong>
-Xinrui Zhong、Zhiming Wang、Yongqi Liu、Zhaohui Wang、Shanglin
-Yang、Zikun Li、Zhuoming Chen、Beidi Chen。<strong>来源/分类：</strong>
-arXiv 预印本；cs.AI。<strong>主题：</strong>
-AI。<strong>全文状态：</strong> 已核读公开 PDF 与 arXiv HTML 全文。</p>
-<p><strong>重点已详述。</strong>
-研究问题、方法与基线、关键结果、证据限制和优先阅读章节见上方“重点关注”。</p>
+<h3 id="serverbench-how-can-your-coding-agents-design-specialized-llm-serving-systems-2"><a class="markdownIt-Anchor" href="#serverbench-how-can-your-coding-agents-design-specialized-llm-serving-systems-2"></a> ServerBench: How can your coding agents design specialized LLM serving systems?</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06841">2611.06841</a>。<strong>作者：</strong> Xinrui Zhong、Zhiming Wang、Yongqi Liu、Zhaohui Wang、Shanglin Yang、Zikun Li、Zhuoming Chen、Beidi Chen。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读公开 PDF 与 arXiv HTML 全文。</p>
+<p><strong>重点已详述。</strong> 研究问题、方法与基线、关键结果、证据限制和优先阅读章节见上方“重点关注”。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06841">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.06841">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.06841">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/Infini-AI-Lab/Server-Bench">代码</a> · <a target="_blank" rel="noopener" href="https://infini-ai-lab.github.io/Server-Bench">项目页</a></p>
-<h3 id="a-systematic-benchmark-for-evaluating-multimodal-personalized-reasoning-of-vision-language-models">A
-Systematic Benchmark for Evaluating Multimodal Personalized Reasoning of
-Vision-Language Models</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06259">2611.06259</a>。<strong>作者：</strong>
-Dohyun Kim、Junyong Lhim、Kwanyong Park。<strong>来源/分类：</strong>
-arXiv 预印本；cs.AI, cs.CV。<strong>主题：</strong>
-AI。<strong>全文状态：</strong> 仅依据摘要。</p>
-<p><strong>摘要要点。</strong> MPRBench 将多模态个性化推理拆为 12
-个子任务，并设计错误案例分析来检查视觉语言模型能否结合多种个人信息作出情境判断。作者报告当前模型容易错认个性化概念、受无关个人信息干扰；摘要没有列模型成绩、与既有基准的逐项对照或训练集污染审计。数据与代码链接见下方，基准分数不等同于真实个人助理可靠性。</p>
+<h3 id="a-systematic-benchmark-for-evaluating-multimodal-personalized-reasoning-of-vision-language-models"><a class="markdownIt-Anchor" href="#a-systematic-benchmark-for-evaluating-multimodal-personalized-reasoning-of-vision-language-models"></a> A Systematic Benchmark for Evaluating Multimodal Personalized Reasoning of Vision-Language Models</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06259">2611.06259</a>。<strong>作者：</strong> Dohyun Kim、Junyong Lhim、Kwanyong Park。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 仅依据摘要。</p>
+<p><strong>摘要要点。</strong> MPRBench 将多模态个性化推理拆为 12 个子任务，并设计错误案例分析来检查视觉语言模型能否结合多种个人信息作出情境判断。作者报告当前模型容易错认个性化概念、受无关个人信息干扰；摘要没有列模型成绩、与既有基准的逐项对照或训练集污染审计。数据与代码链接见下方，基准分数不等同于真实个人助理可靠性。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06259">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.06259">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.06259">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/kkdh15/MPRBench">代码与数据</a></p>
-<h3 id="slackbench-benchmarking-agents-on-collaborative-projects-grounded-in-real-code-repositories-1">SlackBench:
-Benchmarking Agents on Collaborative Projects Grounded in Real Code
-Repositories</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05512">2611.05512</a>。<strong>作者：</strong>
-Mingxuan Li、Huanzhi Mao、Ruitao Zheng、Jarod Stanbury James、Yunze
-Li、Natanya Anderson、Joseph E. Gonzalez、Alex
-Dimakis。<strong>来源/分类：</strong> arXiv 预印本；cs.AI,
-cs.CL。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读
-arXiv HTML 全文。</p>
-<p><strong>重点已详述。</strong>
-研究问题、方法与基线、关键结果、证据限制和优先阅读章节见上方“重点关注”。</p>
+<h3 id="slackbench-benchmarking-agents-on-collaborative-projects-grounded-in-real-code-repositories-2"><a class="markdownIt-Anchor" href="#slackbench-benchmarking-agents-on-collaborative-projects-grounded-in-real-code-repositories-2"></a> SlackBench: Benchmarking Agents on Collaborative Projects Grounded in Real Code Repositories</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05512">2611.05512</a>。<strong>作者：</strong> Mingxuan Li、Huanzhi Mao、Ruitao Zheng、Jarod Stanbury James、Yunze Li、Natanya Anderson、Joseph E. Gonzalez、Alex Dimakis。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读 arXiv HTML 全文。</p>
+<p><strong>重点已详述。</strong> 研究问题、方法与基线、关键结果、证据限制和优先阅读章节见上方“重点关注”。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.05512">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.05512">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.05512">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/HuanzhiMao/SlackBench">数据集</a></p>
-<h3 id="reliability-engineering-for-ai-systems-challenges-methods-and-directions">Reliability
-Engineering for AI Systems: Challenges, Methods, and Directions</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.35316">2609.35316</a>。<strong>作者：</strong>
-Rong Pan、Yili Hong、Min Xie。<strong>来源/分类：</strong> arXiv
-预印本；cs.AI, stat.AP。<strong>主题：</strong>
-AI。<strong>全文状态：</strong> 仅依据摘要。</p>
-<p><strong>摘要要点。</strong>
-这篇综述把可靠性工程中的失效定义、运行边界、FMEA、加速测试、现场监测与可靠性增长引入
-AI
-系统，并以组件、运行闭环、智能体行为、网络/治理四层组织故障诊断。作者通过三个案例讨论
-TEVV、顺序监测和 FRACAS
-等证据机制；没有报告统一的新基准成绩。价值是补足平均准确率无法表达的持续运行风险，框架仍需按具体产品和实际运行分布验证。</p>
+<h3 id="reliability-engineering-for-ai-systems-challenges-methods-and-directions"><a class="markdownIt-Anchor" href="#reliability-engineering-for-ai-systems-challenges-methods-and-directions"></a> Reliability Engineering for AI Systems: Challenges, Methods, and Directions</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.35316">2609.35316</a>。<strong>作者：</strong> Rong Pan、Yili Hong、Min Xie。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, stat.AP。<strong>主题：</strong> AI。<strong>全文状态：</strong> 仅依据摘要。</p>
+<p><strong>摘要要点。</strong> 这篇综述把可靠性工程中的失效定义、运行边界、FMEA、加速测试、现场监测与可靠性增长引入 AI 系统，并以组件、运行闭环、智能体行为、网络/治理四层组织故障诊断。作者通过三个案例讨论 TEVV、顺序监测和 FRACAS 等证据机制；没有报告统一的新基准成绩。价值是补足平均准确率无法表达的持续运行风险，框架仍需按具体产品和实际运行分布验证。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.35316">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2609.35316">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2609.35316">arXiv DOI</a></p>
-<h3 id="litmus-benchmarking-behavioral-jailbreaks-of-llm-agents-in-real-os-environments-1">LITMUS:
-Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS
-Environments</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.10779">2605.10779</a>。<strong>作者：</strong>
-Chiyu Zhang、Lu Zhou、Xiaogang Xu、Huiqin Yang、Bendong Jiang、Xiaolei
-Zhang、Yiran Zhao、Ruyi Chen、Jiafei Wu、Liming Fang、Zhe
-Liu。<strong>来源/分类：</strong> arXiv 预印本；cs.CR,
-cs.CL。<strong>主题：</strong> AI。<strong>全文状态：</strong>
-已核读公开 PDF 与 arXiv HTML 全文。</p>
-<p><strong>重点已详述。</strong>
-研究问题、方法与基线、关键结果、证据限制和优先阅读章节见上方“重点关注”。</p>
+<h3 id="litmus-benchmarking-behavioral-jailbreaks-of-llm-agents-in-real-os-environments-2"><a class="markdownIt-Anchor" href="#litmus-benchmarking-behavioral-jailbreaks-of-llm-agents-in-real-os-environments-2"></a> LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.10779">2605.10779</a>。<strong>作者：</strong> Chiyu Zhang、Lu Zhou、Xiaogang Xu、Huiqin Yang、Bendong Jiang、Xiaolei Zhang、Yiran Zhao、Ruyi Chen、Jiafei Wu、Liming Fang、Zhe Liu。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>, <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读公开 PDF 与 arXiv HTML 全文。</p>
+<p><strong>重点已详述。</strong> 研究问题、方法与基线、关键结果、证据限制和优先阅读章节见上方“重点关注”。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.10779">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.10779">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2605.10779">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/AlienZhang1996/LITMUS">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/AlienZhang1996/LITMUS">数据集</a></p>
-<h3 id="reinforcement-learning-in-gui-agents-a-survey-toward-digital-inhabitants">Reinforcement
-Learning in GUI Agents: A Survey Toward Digital Inhabitants</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.27955">2604.27955</a>。<strong>作者：</strong>
-Junan Hu、Jian Liu、Jingxiang Lai、Jiarui Hu、Yiwei Sheng、Shuang
-Chen、Jian Li、Dazhao Du、Song Guo。<strong>来源/分类：</strong> arXiv
-预印本；cs.AI, cs.CV。<strong>主题：</strong>
-AI。<strong>全文状态：</strong> 仅依据摘要。</p>
-<p><strong>摘要要点。</strong>
-本文按离线强化学习、在线强化学习与混合策略综述 GUI
-智能体，讨论长程信用分配、分布漂移、不可逆操作中的安全探索、奖励工程与样本效率。作者归纳复合奖励、世界模型训练和奖励驱动推理等趋势，并提出持续学习与安全部署路线图；这些是综述性判断，摘要未提供共同任务上的量化对照，不能当成某一方法已稳定胜出。</p>
+<h3 id="reinforcement-learning-in-gui-agents-a-survey-toward-digital-inhabitants"><a class="markdownIt-Anchor" href="#reinforcement-learning-in-gui-agents-a-survey-toward-digital-inhabitants"></a> Reinforcement Learning in GUI Agents: A Survey Toward Digital Inhabitants</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.27955">2604.27955</a>。<strong>作者：</strong> Junan Hu、Jian Liu、Jingxiang Lai、Jiarui Hu、Yiwei Sheng、Shuang Chen、Jian Li、Dazhao Du、Song Guo。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 仅依据摘要。</p>
+<p><strong>摘要要点。</strong> 本文按离线强化学习、在线强化学习与混合策略综述 GUI 智能体，讨论长程信用分配、分布漂移、不可逆操作中的安全探索、奖励工程与样本效率。作者归纳复合奖励、世界模型训练和奖励驱动推理等趋势，并提出持续学习与安全部署路线图；这些是综述性判断，摘要未提供共同任务上的量化对照，不能当成某一方法已稳定胜出。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.27955">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.27955">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2604.27955">arXiv DOI</a></p>
-<h3 id="imagineagent-what-if-agents-could-imagine-reinforcing-open-vocabulary-hoi-comprehension-through-generation">ImagineAgent:
-What if Agents Could Imagine? Reinforcing Open-Vocabulary HOI
-Comprehension through Generation</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.11499">2602.11499</a>。<strong>作者：</strong>
-Zhenlong Yuan、Yue Wang、Dapeng Zhang、Kejin Cui、Rui Chen、Jing
-Tang、Lei Sun、Hongwei Yu、Chengxuan Qian、Xiangxiang Chu、Shuo
-Li、Yuyin Zhou。<strong>来源/分类：</strong> arXiv
-预印本；cs.CV。<strong>主题：</strong> AI。<strong>全文状态：</strong>
-仅依据摘要。</p>
-<p><strong>摘要要点。</strong> ImagineAgent
-面向开放词汇人—物交互理解，将 HICO-DET 6K
-思维链数据微调、在线检索/裁图/生成工具、替代视角生成和复合奖励结合，以处理图像视角不足与跨模态幻觉。作者在
-SWIG-HOI、HICO-DET 上报告达到其比较中的领先结果，训练数据约为既有方法的
-36.7%；摘要未给逐基线分数、显著性与推理/训练成本，也未说明数据污染审计，需核对基准划分和复现配置。</p>
+<h3 id="imagineagent-what-if-agents-could-imagine-reinforcing-open-vocabulary-hoi-comprehension-through-generation"><a class="markdownIt-Anchor" href="#imagineagent-what-if-agents-could-imagine-reinforcing-open-vocabulary-hoi-comprehension-through-generation"></a> ImagineAgent: What if Agents Could Imagine? Reinforcing Open-Vocabulary HOI Comprehension through Generation</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.11499">2602.11499</a>。<strong>作者：</strong> Zhenlong Yuan、Yue Wang、Dapeng Zhang、Kejin Cui、Rui Chen、Jing Tang、Lei Sun、Hongwei Yu、Chengxuan Qian、Xiangxiang Chu、Shuo Li、Yuyin Zhou。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 仅依据摘要。</p>
+<p><strong>摘要要点。</strong> ImagineAgent 面向开放词汇人—物交互理解，将 HICO-DET 6K 思维链数据微调、在线检索/裁图/生成工具、替代视角生成和复合奖励结合，以处理图像视角不足与跨模态幻觉。作者在 SWIG-HOI、HICO-DET 上报告达到其比较中的领先结果，训练数据约为既有方法的 36.7%；摘要未给逐基线分数、显著性与推理/训练成本，也未说明数据污染审计，需核对基准划分和复现配置。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.11499">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.11499">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2602.11499">arXiv DOI</a></p>
-<h3 id="beaker-an-expert-curated-benchmark-for-embodied-brains-in-self-driving-chemical-laboratories">BEAKER:
-An Expert-Curated Benchmark for Embodied Brains in Self-Driving Chemical
-Laboratories</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06911">2611.06911</a>。<strong>作者：</strong>
-Fei Lin、Tengchao Zhang、Ziyang Gong、Xiaotong Yu、Bohan Zhang、Yifan
-Zhou、Qihao Yang、Ji Dai、Dong Li、Yining Jiang、Qinghua Ni、Jun
-Huang、Qiang Zhang、Yue Zhou、Zhihang Zhong、Yonglin Tian、Fei-Yue
-Wang、Xue Yang。<strong>来源/分类：</strong> arXiv
-预印本；cs.AI。<strong>主题：</strong> AI。<strong>全文状态：</strong>
-仅依据摘要。</p>
-<p><strong>摘要要点。</strong> BEAKER
-是面向自动化化学实验室的专家标注基准，含 1,000 个图像/视频问答样本、11
-类动作性任务，覆盖器材、实验状态、安全、轨迹与步骤推理；作者评测 28
-个通用、科学、化学与具身多模态模型。摘要报告模型能理解粗粒度流程，但难以把动作精确落到可操作区域、器材与步骤顺序；这是离线单轮评测，不等同于真实机器人实验执行或现场安全验证。</p>
+<h3 id="beaker-an-expert-curated-benchmark-for-embodied-brains-in-self-driving-chemical-laboratories"><a class="markdownIt-Anchor" href="#beaker-an-expert-curated-benchmark-for-embodied-brains-in-self-driving-chemical-laboratories"></a> BEAKER: An Expert-Curated Benchmark for Embodied Brains in Self-Driving Chemical Laboratories</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06911">2611.06911</a>。<strong>作者：</strong> Fei Lin、Tengchao Zhang、Ziyang Gong、Xiaotong Yu、Bohan Zhang、Yifan Zhou、Qihao Yang、Ji Dai、Dong Li、Yining Jiang、Qinghua Ni、Jun Huang、Qiang Zhang、Yue Zhou、Zhihang Zhong、Yonglin Tian、Fei-Yue Wang、Xue Yang。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 仅依据摘要。</p>
+<p><strong>摘要要点。</strong> BEAKER 是面向自动化化学实验室的专家标注基准，含 1,000 个图像/视频问答样本、11 类动作性任务，覆盖器材、实验状态、安全、轨迹与步骤推理；作者评测 28 个通用、科学、化学与具身多模态模型。摘要报告模型能理解粗粒度流程，但难以把动作精确落到可操作区域、器材与步骤顺序；这是离线单轮评测，不等同于真实机器人实验执行或现场安全验证。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06911">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.06911">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.06911">arXiv DOI</a></p>
-<h3 id="measuring-risk-not-harm-detecting-psychological-harm-risk-factors-in-llm-conversations">Measuring
-Risk, Not Harm: Detecting Psychological Harm Risk Factors in LLM
-Conversations</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06806">2611.06806</a>。<strong>作者：</strong>
-Nil-Jana Akpinar、Eugenia Kim、Natalie Isak、Amanda Minnich、Victoria
-Westerhoff、Matthew Dressman。<strong>来源/分类：</strong> arXiv
-预印本；cs.CL, cs.CY。<strong>主题：</strong>
-AI。<strong>全文状态：</strong> 仅依据摘要。</p>
-<p><strong>摘要要点。</strong> 论文把“可观测的 AI
-行为风险因素”与“用户实际心理伤害”分开，构造 47,062 条模型回复、373,873
-个多标签标记的合成语料，并比较嵌入分类器、LLM
-判分与级联方案。作者报告最佳级联在留出人工标注数据上的宏平均精确率
-0.86、召回率 0.76、F1 0.79，并在 WildChat 上减少 97.1% 的 LLM
-判分调用；合成训练标签及离线对话集限制外推，检测风险行为不代表测到了实际伤害。</p>
+<h3 id="measuring-risk-not-harm-detecting-psychological-harm-risk-factors-in-llm-conversations"><a class="markdownIt-Anchor" href="#measuring-risk-not-harm-detecting-psychological-harm-risk-factors-in-llm-conversations"></a> Measuring Risk, Not Harm: Detecting Psychological Harm Risk Factors in LLM Conversations</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06806">2611.06806</a>。<strong>作者：</strong> Nil-Jana Akpinar、Eugenia Kim、Natalie Isak、Amanda Minnich、Victoria Westerhoff、Matthew Dressman。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>, <a target="_blank" rel="noopener" href="http://cs.CY">cs.CY</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 仅依据摘要。</p>
+<p><strong>摘要要点。</strong> 论文把“可观测的 AI 行为风险因素”与“用户实际心理伤害”分开，构造 47,062 条模型回复、373,873 个多标签标记的合成语料，并比较嵌入分类器、LLM 判分与级联方案。作者报告最佳级联在留出人工标注数据上的宏平均精确率 0.86、召回率 0.76、F1 0.79，并在 WildChat 上减少 97.1% 的 LLM 判分调用；合成训练标签及离线对话集限制外推，检测风险行为不代表测到了实际伤害。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06806">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.06806">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.06806">arXiv DOI</a></p>
-<h3 id="lifeval-evaluating-ai-model-performance-on-personalized-agentic-consumer-tasks">LifeVal:
-Evaluating AI Model Performance on Personalized Agentic Consumer
-Tasks</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06687">2611.06687</a>。<strong>作者：</strong>
-Jenny Yang、Elizabeth Proehl、Anjan Bharadwaj、Emily Fan、Charlotte
-Cole、James Kim、Noam Brown、Phoebe Thacker、Amelia Glaese、Tejal
-Patwardhan。<strong>来源/分类：</strong> arXiv
-预印本；cs.AI。<strong>主题：</strong> AI。<strong>全文状态：</strong>
-仅依据摘要。</p>
-<p><strong>摘要要点。</strong> LifeVal
-试图评估个性化智能体能否处理求职、搬家、育儿、财务管理等消费者任务；任务分布来自
-3,800 多名消费者的支付意愿调查，涵盖 148
-类活动，并用真实对话记忆、参考文件和个人背景定制任务。作者估算相关意愿支付规模超过每年
-1.7
-万亿美元，并通过多轮人工质控构建评分量表；金额是调查外推的潜在支付意愿，不是已实现市场收入，摘要未给主要模型成绩与基线。</p>
+<h3 id="lifeval-evaluating-ai-model-performance-on-personalized-agentic-consumer-tasks"><a class="markdownIt-Anchor" href="#lifeval-evaluating-ai-model-performance-on-personalized-agentic-consumer-tasks"></a> LifeVal: Evaluating AI Model Performance on Personalized Agentic Consumer Tasks</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06687">2611.06687</a>。<strong>作者：</strong> Jenny Yang、Elizabeth Proehl、Anjan Bharadwaj、Emily Fan、Charlotte Cole、James Kim、Noam Brown、Phoebe Thacker、Amelia Glaese、Tejal Patwardhan。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 仅依据摘要。</p>
+<p><strong>摘要要点。</strong> LifeVal 试图评估个性化智能体能否处理求职、搬家、育儿、财务管理等消费者任务；任务分布来自 3,800 多名消费者的支付意愿调查，涵盖 148 类活动，并用真实对话记忆、参考文件和个人背景定制任务。作者估算相关意愿支付规模超过每年 1.7 万亿美元，并通过多轮人工质控构建评分量表；金额是调查外推的潜在支付意愿，不是已实现市场收入，摘要未给主要模型成绩与基线。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06687">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.06687">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.06687">arXiv DOI</a></p>
-<h3 id="trick-or-treat-adversarial-evaluation-of-multimodal-medical-reasoning-with-synthetic-images-1">Trick-or-Treat:
-Adversarial Evaluation of Multimodal Medical Reasoning with Synthetic
-Images</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06631">2611.06631</a>。<strong>作者：</strong>
-Oishi Banerjee、Eujin Lee、Sung Eun Kim、Alexandra N.
-Willauer、Christine Y. Zhou、Zhizhou Yang、Pranav
-Rajpurkar。<strong>来源/分类：</strong> arXiv 预印本；cs.CV,
-cs.AI。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读
-arXiv HTML 全文。</p>
-<p><strong>重点已详述。</strong>
-研究问题、方法与基线、关键结果、证据限制和优先阅读章节见上方“重点关注”。</p>
+<h3 id="trick-or-treat-adversarial-evaluation-of-multimodal-medical-reasoning-with-synthetic-images-2"><a class="markdownIt-Anchor" href="#trick-or-treat-adversarial-evaluation-of-multimodal-medical-reasoning-with-synthetic-images-2"></a> Trick-or-Treat: Adversarial Evaluation of Multimodal Medical Reasoning with Synthetic Images</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06631">2611.06631</a>。<strong>作者：</strong> Oishi Banerjee、Eujin Lee、Sung Eun Kim、Alexandra N. Willauer、Christine Y. Zhou、Zhizhou Yang、Pranav Rajpurkar。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>, <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读 arXiv HTML 全文。</p>
+<p><strong>重点已详述。</strong> 研究问题、方法与基线、关键结果、证据限制和优先阅读章节见上方“重点关注”。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06631">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.06631">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.06631">arXiv DOI</a></p>
-<h3 id="entropogram-guided-visual-realignment-decoding-capturing-the-rhythm-of-multimodal-reasoning">Entropogram-guided
-Visual Realignment Decoding: Capturing the Rhythm of Multimodal
-Reasoning</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06415">2611.06415</a>。<strong>作者：</strong>
-Jiaqi Deng、Zhe Fu、Yakun Chen、Dichang Zhang、Zonghan Wu、Xiaoshui
-Huang、Huan Huo、Guandong Xu。<strong>来源/分类：</strong> arXiv
-预印本；cs.CV, cs.MM。<strong>主题：</strong>
-AI。<strong>全文状态：</strong> 仅依据摘要。</p>
-<p><strong>摘要要点。</strong>
-论文提出在多模态解码过程中跟踪熵变化，在高置信但可能错误的跨模态收敛或局部熵突变时，触发视觉重新对齐。作者报告在
-6 个多模态推理基准、9
-种设置下提升推理准确率和抗幻觉表现，并公开代码；摘要没有量化各基线增益、额外解码延迟/算力或盲评结果，因此应把它视作待复现的解码策略，而非普遍能力保证。</p>
+<h3 id="entropogram-guided-visual-realignment-decoding-capturing-the-rhythm-of-multimodal-reasoning"><a class="markdownIt-Anchor" href="#entropogram-guided-visual-realignment-decoding-capturing-the-rhythm-of-multimodal-reasoning"></a> Entropogram-guided Visual Realignment Decoding: Capturing the Rhythm of Multimodal Reasoning</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06415">2611.06415</a>。<strong>作者：</strong> Jiaqi Deng、Zhe Fu、Yakun Chen、Dichang Zhang、Zonghan Wu、Xiaoshui Huang、Huan Huo、Guandong Xu。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>, <a target="_blank" rel="noopener" href="http://cs.MM">cs.MM</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 仅依据摘要。</p>
+<p><strong>摘要要点。</strong> 论文提出在多模态解码过程中跟踪熵变化，在高置信但可能错误的跨模态收敛或局部熵突变时，触发视觉重新对齐。作者报告在 6 个多模态推理基准、9 种设置下提升推理准确率和抗幻觉表现，并公开代码；摘要没有量化各基线增益、额外解码延迟/算力或盲评结果，因此应把它视作待复现的解码策略，而非普遍能力保证。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06415">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.06415">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.06415">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/jden4524/SelfRetrospectiveDecoding">代码</a></p>
-<h3 id="harnessflow-mcts-guided-harness-optimization-for-llm-agents-1">HarnessFlow:
-MCTS-Guided Harness Optimization for LLM Agents</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06254">2611.06254</a>。<strong>作者：</strong>
-Zhi Hong、Qianlong Wang、Hongchen Wei、Aidan Wu、Daohong Ying、Mingze
-Kong、Bei Liu、Chong Luo。<strong>来源/分类：</strong> arXiv
-预印本；cs.AI。<strong>主题：</strong> AI。<strong>全文状态：</strong>
-已核读公开 PDF 与 arXiv HTML 全文。</p>
-<p><strong>重点已详述。</strong>
-研究问题、方法与基线、关键结果、证据限制和优先阅读章节见上方“重点关注”。</p>
+<h3 id="harnessflow-mcts-guided-harness-optimization-for-llm-agents-2"><a class="markdownIt-Anchor" href="#harnessflow-mcts-guided-harness-optimization-for-llm-agents-2"></a> HarnessFlow: MCTS-Guided Harness Optimization for LLM Agents</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06254">2611.06254</a>。<strong>作者：</strong> Zhi Hong、Qianlong Wang、Hongchen Wei、Aidan Wu、Daohong Ying、Mingze Kong、Bei Liu、Chong Luo。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 已核读公开 PDF 与 arXiv HTML 全文。</p>
+<p><strong>重点已详述。</strong> 研究问题、方法与基线、关键结果、证据限制和优先阅读章节见上方“重点关注”。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06254">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.06254">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.06254">arXiv DOI</a></p>
-<h3 id="annotator-free-object-detection-via-foundation-model-collaboration">Annotator-Free
-Object Detection via Foundation Model Collaboration</h3>
-<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06195">2611.06195</a>。<strong>作者：</strong>
-Yasiru Ranasinghe、Vishal M. Patel。<strong>来源/分类：</strong> arXiv
-预印本；cs.CV。<strong>主题：</strong> AI。<strong>全文状态：</strong>
-仅依据摘要。</p>
-<p><strong>摘要要点。</strong>
-该方法尝试在目标数据集没有人工标注时，串接分割、视觉语言标注与自我修正检测器，并用地标聚类减少昂贵的视觉语言模型调用。作者在
-COCO、LVIS、ODinW-35 和 Roboflow-100 的零样本设置中报告 COCO 60.8
-AP、LVIS 47.4
-AP，并称超过所比开放词汇/长尾检测方法；摘要未列各数据集的同预算基线、标注错误传播、计算成本或训练数据污染审计，结果需要按目标域复核。</p>
+<h3 id="annotator-free-object-detection-via-foundation-model-collaboration"><a class="markdownIt-Anchor" href="#annotator-free-object-detection-via-foundation-model-collaboration"></a> Annotator-Free Object Detection via Foundation Model Collaboration</h3>
+<p><strong>论文：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06195">2611.06195</a>。<strong>作者：</strong> Yasiru Ranasinghe、Vishal M. Patel。<strong>来源/分类：</strong> arXiv 预印本；<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>。<strong>主题：</strong> AI。<strong>全文状态：</strong> 仅依据摘要。</p>
+<p><strong>摘要要点。</strong> 该方法尝试在目标数据集没有人工标注时，串接分割、视觉语言标注与自我修正检测器，并用地标聚类减少昂贵的视觉语言模型调用。作者在 COCO、LVIS、ODinW-35 和 Roboflow-100 的零样本设置中报告 COCO 60.8 AP、LVIS 47.4 AP，并称超过所比开放词汇/长尾检测方法；摘要未列各数据集的同预算基线、标注错误传播、计算成本或训练数据污染审计，结果需要按目标域复核。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.06195">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.06195">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.06195">arXiv DOI</a></p>
 
                 
