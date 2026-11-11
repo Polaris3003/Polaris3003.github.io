@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注  Multimodal-SEA: Benchmarking AI Agent Security under Multimodal Social Engineering Attacks（arXiv:2611.08281） 研究问题与设计。 论文研究个人智能体能否识别伪造图像、文件、网页和视频所支撑的多模态社会工程，并避免实际转账或泄露信息。作者以真实诈骗案例设计 152 个场景、608">
+    <meta name="description" content="重点关注 Multimodal-SEA: Benchmarking AI Agent Security under Multimodal Social Engineering Attacks（arXiv:2611.08281） 研究问题与设计。 论文研究个人智能体能否识别伪造图像、文件、网页和视频所支撑的多模态社会工程，并避免实际转账或泄露信息。作者以真实诈骗案例设计 152 个场景、608 个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日 AI 论文简报｜2026 年 11 月 7 日">
 <meta property="og:url" content="https://www.polarishaw.top/2026/11/07/daily-ai-papers-2026-11-07/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注  Multimodal-SEA: Benchmarking AI Agent Security under Multimodal Social Engineering Attacks（arXiv:2611.08281） 研究问题与设计。 论文研究个人智能体能否识别伪造图像、文件、网页和视频所支撑的多模态社会工程，并避免实际转账或泄露信息。作者以真实诈骗案例设计 152 个场景、608">
+<meta property="og:description" content="重点关注 Multimodal-SEA: Benchmarking AI Agent Security under Multimodal Social Engineering Attacks（arXiv:2611.08281） 研究问题与设计。 论文研究个人智能体能否识别伪造图像、文件、网页和视频所支撑的多模态社会工程，并避免实际转账或泄露信息。作者以真实诈骗案例设计 152 个场景、608 个">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-10-18/pixiv-rank-002-150742084.jpg">
 <meta property="article:published_time" content="2026-11-07T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-002-146822320.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-012-146931602.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,163 +347,351 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
-<h3 id="multimodal-sea-benchmarking-ai-agent-security-under-multimodal-social-engineering-attacksarxiv261108281"><a class="markdownIt-Anchor" href="#multimodal-sea-benchmarking-ai-agent-security-under-multimodal-social-engineering-attacksarxiv261108281"></a> Multimodal-SEA: Benchmarking AI Agent Security under Multimodal Social Engineering Attacks（arXiv:2611.08281）</h3>
-<p><strong>研究问题与设计。</strong> 论文研究个人智能体能否识别伪造图像、文件、网页和视频所支撑的多模态社会工程，并避免实际转账或泄露信息。作者以真实诈骗案例设计 152 个场景、608 个中英文任务，构建含 50 个模拟应用的交互环境；攻击者会根据智能体反应调整多轮话术与内容。攻击成败根据工具调用、环境状态变化和实际损失记录判定，而不是只由文本裁判打分。</p>
-<p><strong>作者报告的结果与基线。</strong> 七个多模态模型在 316 个中文、292 个英文任务上均出现攻击成功。论文摘要概括成功率为 7.1%–34.5%；主结果按语言分开报告时，中文为 8.9%–36.7%，英文为 5.1%–34.2%。去掉多模态内容的消融中，加入图像等内容后，验证覆盖率从 54.7% 升至 65.1%，攻击成功率也从 19.9% 升至 29.2%。对 GPT-5.6-Sol 加安全提示后，中文攻击成功率由 34.8% 降至 10.8%，但欺骗内容漏识率从 50.4% 升到 63.5%；Claude Opus 5 攻击成功率较低（7.1%），同时对 32.1% 的正常请求误拒。</p>
-<p><strong>创新与证据边界。</strong> 价值在于把“说自己会核验”与真实执行核验区分开，覆盖识别率、实际操作、损失和误拒等不同指标。比较是在作者提供的模拟应用和攻击生成器下进行；攻击者使用 DeepSeek-v4-Pro，图片/视频内容分别借助 Gemini 与 Kling 生成。结果不代表真实个人设备、真实资金或所有语言环境；模型版本和闭源接口也会变化。攻击成功率不等同于真实世界损失概率。</p>
-<p><strong>适合谁读。</strong> 做多模态智能体安全、工具权限设计和防诈骗产品的研究者与工程师。建议按第 2 节理解任务与环境、第 3 节看攻击生成器、第 4 节核对主表，随后读第 5 节消融及误拒分析。基准代码：<a target="_blank" rel="noopener" href="https://github.com/Zhitao-He/M-SEABench">M-SEABench</a>。</p>
-<h3 id="concertina-embodying-manipulation-and-cognition-in-one-diffusion-vision-language-modelarxiv261107513"><a class="markdownIt-Anchor" href="#concertina-embodying-manipulation-and-cognition-in-one-diffusion-vision-language-modelarxiv261107513"></a> Concertina: Embodying Manipulation and Cognition in One Diffusion Vision-Language Model（arXiv:2611.07513）</h3>
-<p><strong>研究问题与方法。</strong> 论文质疑视觉语言动作模型把认知与动作拆成两个部件的常见做法，提出 Concertina：在同一扩散式视觉语言 Transformer 中，以连续潜在动作 token 表示每个控制时刻，按动作块生成轨迹，并直接用物理坐标监督共享主干。模型为 4.46B 参数，动作投影仅占 0.21%，没有独立动作生成器；作者对比的连续 VLA 中，专用动作专家约占 16.5%–35.1% 参数。</p>
-<p><strong>作者报告的结果与基线。</strong> 在常规 LIBERO 的 2,000 个回合中，平均成功率 98.15%，高于表列的 π0.5（97.5%）、X-VLA（98.1%）、Dream-VLA（97.2%）和 π0（94.2%）。在 10,030 个扰动任务的 LIBERO-Plus 上为 85.9%（8,615/10,030）；在 CALVIN ABC–D 的 1,000 条未见环境任务链上，平均完成链长 4.142，SR@1 为 98.6%。训练使用 80.2M 帧的混合数据；预训练与下游训练均使用 8 张 GPU。</p>
-<p><strong>创新与边界。</strong> 共享主干让动作梯度直接进入视觉语言模型，作者的 Action Interface Audit 还尝试定位轨迹时间耦合出现的层级。上述成绩来自标准机器人仿真基准，不是实体机器人部署结果。基线训练数据、训练流程和算力并非统一重跑；论文表注也提醒 EFFVLA 的 LIBERO-Plus 数字为套件级平均，与本论文的官方全量任务口径不完全相同，因此不宜把每个差值当成严格同条件胜出。实际延迟、硬件控制稳定性及跨机器人迁移仍需独立验证。</p>
-<p><strong>适合谁读。</strong> 机器人学习、VLA 架构与动作生成研究者。建议先读第 2–3 节架构，再读第 4.1–4.5 节结果和消融，最后读附录 B 的训练配方与推理配置。代码与模型：<a target="_blank" rel="noopener" href="https://github.com/lose4578/Concertina">GitHub</a>、<a target="_blank" rel="noopener" href="https://huggingface.co/collections/Traly/concertina">Hugging Face</a>。</p>
-<h3 id="flyingdrones-a-dataset-and-benchmark-for-optical-flow-estimation-from-uav-motionarxiv261107705"><a class="markdownIt-Anchor" href="#flyingdrones-a-dataset-and-benchmark-for-optical-flow-estimation-from-uav-motionarxiv261107705"></a> FlyingDrones: A Dataset and Benchmark for Optical Flow Estimation from UAV motion（arXiv:2611.07705）</h3>
-<p><strong>研究问题与方法。</strong> 远距离无人机目标只有少量像素且背景复杂，传统光流榜单未充分覆盖这一情况。FlyingDrones 用物理渲染生成带稠密光流真值和分割掩码的数据集，并提出按图像分辨率归一化的 EPE Norm。论文评测 16 个模型家族、88 个公开 checkpoint，在分运动幅度和目标尺寸的 999 对样本、三个分辨率上比较；另用 21 个真实无人机摄像头做无稠密真值的运动对齐验证。</p>
-<p><strong>作者报告的结果与基线。</strong> 所有模型家族都优于零光流基线；分辨率升至 1920×1080 时，global-matching、循环更新、Transformer 与短时序方法整体拉开差距。checkpoint 选择和训练课程造成的组内差异可与架构组间差异相当，部分分辨率下组内差异达到数倍。合成评测的排名与真实镜头上的目标运动定位只有中等相关（Spearman ρ=0.63，41 个 checkpoint），精确名次并不保持。再用 800 对 FlyingDrones 样本微调后，四种架构的真实镜头定位均改善；三种架构的留出合成目标区域误差下降 19%–37%，VideoFlow 的真实镜头 NSS_D 从 4.9 到 17.8。</p>
-<p><strong>创新与限制。</strong> 论文同时报告公开模型、多个 checkpoint、置信区间和真实镜头代理指标，指出排行榜不能脱离训练数据与部署分辨率解读。数据是合成渲染，难以覆盖大气扰动、传感器噪声、压缩和滚动快门；真实测试是静态相机、点标签，不是稠密真值或移动平台测试。公开 checkpoint 的训练课程不同，比较反映架构与训练数据的合成影响，不能单独归因于架构。作者报告主榜约耗 40–50 GPU 小时，微调约 5 GPU 小时。</p>
-<p><strong>适合谁读。</strong> 光流、无人机视觉和数据集迁移研究者。建议读第 3 节数据与指标、第 4–5 节主比较和限制，再读附录 B.7 的真实镜头与 B.9 的 800 对微调。数据集：<a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/flyingdrones/flyingdrones/data">Kaggle</a>。</p>
-<h3 id="mcphallu-benchmarking-reasoning-execution-and-memory-hallucinations-in-mcp-agentsarxiv261107689"><a class="markdownIt-Anchor" href="#mcphallu-benchmarking-reasoning-execution-and-memory-hallucinations-in-mcp-agentsarxiv261107689"></a> MCPHallu: Benchmarking Reasoning, Execution, and Memory Hallucinations in MCP Agents（arXiv:2611.07689）</h3>
-<p><strong>研究问题与方法。</strong> MCP 智能体能调用多个服务器，但常见基准只记任务完成率，难以定位错误来自推理、执行还是记忆。MCPHallu 构造 358 个带结构性失败触发条件的任务，覆盖五个能力域、36 个生产 MCP 服务器和四类失败；在隔离容器中以 ReAct 循环评测 14 个模型、8 家厂商，共 5,012 条轨迹。配置统一为 128k 上下文、每题最多 20 次工具调用。</p>
-<p><strong>作者报告的结果与基线。</strong> 模型平均分为 0.642/1，平均通过率 47.8%，最高模型 0.728；“目标不可达”最难，平均分 0.458、仅 23.2% 轨迹通过。不同失败子类的模型排名差异明显，因此单一总分会掩盖能力结构。主语义裁判为 GPT-4o；论文另报跨裁判和人工校验。</p>
-<p><strong>创新与局限。</strong> 任务把目标不可达、工具误用、分支坍塌、上下文遗忘等风险写进环境，并用工具结果和轨迹核验是否真的完成。它能测试“工具不具备能力时是否承认做不到”，这一点比只测成功任务更贴近真实部署。语义评分仍依赖裁判模型，尽管作者做了人工/跨裁判验证；36 个服务器中 16 个需要调用者自备凭证，第三方 API 可能改变，完全离线的录制回放还未完成。统一工具预算和 ReAct 提示也不等于所有产品的默认工作流。</p>
-<p><strong>适合谁读。</strong> MCP 客户端、工具调用 Agent 与可靠性评测团队。建议优先读第 4 节任务评分、第 5 节实验和第 6 节失败分析，再看附录 H、J 的裁判验证与方法限制。代码：<a target="_blank" rel="noopener" href="https://github.com/J1zz/mcp_hallu">MCPHallu</a>。</p>
-<h3 id="terminal-style-mathematical-modeling-bench-the-first-agentic-and-verifiable-benchmark-for-mathematical-modelingarxiv261108237"><a class="markdownIt-Anchor" href="#terminal-style-mathematical-modeling-bench-the-first-agentic-and-verifiable-benchmark-for-mathematical-modelingarxiv261108237"></a> Terminal-style Mathematical Modeling Bench: The First Agentic and Verifiable Benchmark for Mathematical Modeling（arXiv:2611.08237）</h3>
-<p><strong>研究问题与方法。</strong> 开放式数学建模答案常由 LLM 裁判打分，数值接近参考解也不保证满足物理约束。TB-MathModel 把 2023–2025 年 CUMCM 与 MCM 的 18 道真实赛题装入隔离终端，要求 Agent 输出结构化 JSON；分数以多份优秀论文为参照，并设程序化可行性门槛，再用 Lean 4 对 624 项整数/有理数约束义务做内核检查。无可行性证据的任务不会被默认为通过。</p>
-<p><strong>作者报告的结果与基线。</strong> 七种多模态模型/代码代理组合、每题三次运行中，GPT-6 Astra+Codex 的 O-Eval 为 64.58±2.93，Fable 5.1+Claude Code 为 63.11±1.33；DeepSeek V4.1 Flash+OpenCode 为 59.81±1.25，作者估算 18 题成本 2.54 美元，而前两者约 246–273 美元。每一分差异都不是稳健排序：单种子偏差最高约 2.9 个百分点，邻近模型不能据此认定显著胜负。</p>
-<p><strong>创新与边界。</strong> 可迁移价值是把可判定的数值范围、单位和内部一致性变成可执行、可审计的校验，不让语言评审独自决定“正确”。但 18 道公开竞赛题可能已进入模型训练语料，论文没有证明所有模型都未见过题目；形式化检查只能证明预先编码的约束，不能替代现实物理真值。竞赛题型和多模态终端也不能代表一般科研建模任务。</p>
-<p><strong>适合谁读。</strong> 评测 Agent 长程推理、数学建模和可验证输出的研究者。建议读第 3 节基准与验证、第 4 节评分和结果，再看“Limitations”及附录 G。代码：<a target="_blank" rel="noopener" href="https://github.com/wxj630/terminal-bench-math-modeling">TB-MathModel</a>。</p>
-<h3 id="agent-r2-scaling-agents-for-realistic-productivity-work-via-real-source-data-synthesisarxiv261108219"><a class="markdownIt-Anchor" href="#agent-r2-scaling-agents-for-realistic-productivity-work-via-real-source-data-synthesisarxiv261108219"></a> Agent-R²: Scaling Agents for Realistic Productivity Work via Real-Source Data Synthesis（arXiv:2611.08219）</h3>
-<p><strong>研究问题与方法。</strong> 真实办公任务需要读写不同格式的附件、沿工作流完成多步操作，并交付可核验文件；合成文件可能不够真实。Agent-R² 从职业任务种子和网页工作流证据出发，在 10,000 个候选中筛出 4,000 个带真实多格式附件和细粒度评分规则的任务，用 3,000 个做监督微调、1,000 个做基于评分规则的强化学习，两阶段任务不重叠。</p>
-<p><strong>作者报告的结果与基线。</strong> 4B 模型在 GDPval Pass@1 得分 51.0%，高于论文列出的 Qwen3-235B-A22B-Thinking-2507（48.0%）；OfficeQA 为 14.8% 对 13.8%。在 1,000 个匹配任务的消融里，真实附件训练为 43.3%，模型自行合成附件为 41.4%；加入细粒度评分奖励后 GDPval 从 49.5% 到 51.0%。作者的附件哈希/来源 URL 检查未发现训练附件与 GDPval、OfficeQA 的文件重合。</p>
-<p><strong>公平性、复现与边界。</strong> 比较包含闭源与开源模型，但多模态文件工具、代理框架和评分器会影响成绩；强化学习奖励使用 Qwen3.6-Plus 作为模型裁判。作者做过文件层重合审计，但公开基准题文本是否进入各模型预训练语料无法完全排除。论文没有给出总训练 GPU 小时或完整美元成本，因此 4B 参数不等于低训练成本；两组公开基准的分数也不是所有办公岗位的真实完成率。</p>
-<p><strong>适合谁读。</strong> 文档智能体、办公自动化和 Agent 后训练团队。建议读第 3 节数据合成、第 4.2 节实验设置与主表、第 4.5 节消融，最后核对附录中的污染审计和评分器说明。代码：<a target="_blank" rel="noopener" href="https://github.com/ZJU-REAL/Agent-R2">Agent-R²</a>。</p>
-<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
-<h3 id="arms-adaptive-red-teaming-agent-against-multimodal-models-with-plug-and-play-attacks"><a class="markdownIt-Anchor" href="#arms-adaptive-red-teaming-agent-against-multimodal-models-with-plug-and-play-attacks"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2510.02677">ARMs: Adaptive Red-Teaming Agent against Multimodal Models with Plug-and-Play Attacks</a></h3>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="multimodal-sea-benchmarking-ai-agent-security-under-multimodal-social-engineering-attacksarxiv2611.08281">Multimodal-SEA:
+Benchmarking AI Agent Security under Multimodal Social Engineering
+Attacks（arXiv:2611.08281）</h3>
+<p><strong>研究问题与设计。</strong>
+论文研究个人智能体能否识别伪造图像、文件、网页和视频所支撑的多模态社会工程，并避免实际转账或泄露信息。作者以真实诈骗案例设计
+152 个场景、608 个中英文任务，构建含 50
+个模拟应用的交互环境；攻击者会根据智能体反应调整多轮话术与内容。攻击成败根据工具调用、环境状态变化和实际损失记录判定，而不是只由文本裁判打分。</p>
+<p><strong>作者报告的结果与基线。</strong> 七个多模态模型在 316
+个中文、292 个英文任务上均出现攻击成功。论文摘要概括成功率为
+7.1%–34.5%；主结果按语言分开报告时，中文为 8.9%–36.7%，英文为
+5.1%–34.2%。去掉多模态内容的消融中，加入图像等内容后，验证覆盖率从 54.7%
+升至 65.1%，攻击成功率也从 19.9% 升至 29.2%。对 GPT-5.6-Sol
+加安全提示后，中文攻击成功率由 34.8% 降至 10.8%，但欺骗内容漏识率从
+50.4% 升到 63.5%；Claude Opus 5 攻击成功率较低（7.1%），同时对 32.1%
+的正常请求误拒。</p>
+<p><strong>创新与证据边界。</strong>
+价值在于把“说自己会核验”与真实执行核验区分开，覆盖识别率、实际操作、损失和误拒等不同指标。比较是在作者提供的模拟应用和攻击生成器下进行；攻击者使用
+DeepSeek-v4-Pro，图片/视频内容分别借助 Gemini 与 Kling
+生成。结果不代表真实个人设备、真实资金或所有语言环境；模型版本和闭源接口也会变化。攻击成功率不等同于真实世界损失概率。</p>
+<p><strong>适合谁读。</strong>
+做多模态智能体安全、工具权限设计和防诈骗产品的研究者与工程师。建议按第 2
+节理解任务与环境、第 3 节看攻击生成器、第 4 节核对主表，随后读第 5
+节消融及误拒分析。基准代码：<a target="_blank" rel="noopener" href="https://github.com/Zhitao-He/M-SEABench">M-SEABench</a>。</p>
+<h3 id="concertina-embodying-manipulation-and-cognition-in-one-diffusion-vision-language-modelarxiv2611.07513">Concertina:
+Embodying Manipulation and Cognition in One Diffusion Vision-Language
+Model（arXiv:2611.07513）</h3>
+<p><strong>研究问题与方法。</strong>
+论文质疑视觉语言动作模型把认知与动作拆成两个部件的常见做法，提出
+Concertina：在同一扩散式视觉语言 Transformer 中，以连续潜在动作 token
+表示每个控制时刻，按动作块生成轨迹，并直接用物理坐标监督共享主干。模型为
+4.46B 参数，动作投影仅占 0.21%，没有独立动作生成器；作者对比的连续 VLA
+中，专用动作专家约占 16.5%–35.1% 参数。</p>
+<p><strong>作者报告的结果与基线。</strong> 在常规 LIBERO 的 2,000
+个回合中，平均成功率 98.15%，高于表列的
+π0.5（97.5%）、X-VLA（98.1%）、Dream-VLA（97.2%）和 π0（94.2%）。在
+10,030 个扰动任务的 LIBERO-Plus 上为 85.9%（8,615/10,030）；在 CALVIN
+ABC–D 的 1,000 条未见环境任务链上，平均完成链长 4.142，<a href="mailto:SR@1" class="email">SR@1</a> 为 98.6%。训练使用 80.2M
+帧的混合数据；预训练与下游训练均使用 8 张 GPU。</p>
+<p><strong>创新与边界。</strong>
+共享主干让动作梯度直接进入视觉语言模型，作者的 Action Interface Audit
+还尝试定位轨迹时间耦合出现的层级。上述成绩来自标准机器人仿真基准，不是实体机器人部署结果。基线训练数据、训练流程和算力并非统一重跑；论文表注也提醒
+EFFVLA 的 LIBERO-Plus
+数字为套件级平均，与本论文的官方全量任务口径不完全相同，因此不宜把每个差值当成严格同条件胜出。实际延迟、硬件控制稳定性及跨机器人迁移仍需独立验证。</p>
+<p><strong>适合谁读。</strong> 机器人学习、VLA
+架构与动作生成研究者。建议先读第 2–3 节架构，再读第 4.1–4.5
+节结果和消融，最后读附录 B 的训练配方与推理配置。代码与模型：<a target="_blank" rel="noopener" href="https://github.com/lose4578/Concertina">GitHub</a>、<a target="_blank" rel="noopener" href="https://huggingface.co/collections/Traly/concertina">Hugging
+Face</a>。</p>
+<h3 id="flyingdrones-a-dataset-and-benchmark-for-optical-flow-estimation-from-uav-motionarxiv2611.07705">FlyingDrones:
+A Dataset and Benchmark for Optical Flow Estimation from UAV
+motion（arXiv:2611.07705）</h3>
+<p><strong>研究问题与方法。</strong>
+远距离无人机目标只有少量像素且背景复杂，传统光流榜单未充分覆盖这一情况。FlyingDrones
+用物理渲染生成带稠密光流真值和分割掩码的数据集，并提出按图像分辨率归一化的
+EPE Norm。论文评测 16 个模型家族、88 个公开
+checkpoint，在分运动幅度和目标尺寸的 999 对样本、三个分辨率上比较；另用
+21 个真实无人机摄像头做无稠密真值的运动对齐验证。</p>
+<p><strong>作者报告的结果与基线。</strong>
+所有模型家族都优于零光流基线；分辨率升至 1920×1080
+时，global-matching、循环更新、Transformer
+与短时序方法整体拉开差距。checkpoint
+选择和训练课程造成的组内差异可与架构组间差异相当，部分分辨率下组内差异达到数倍。合成评测的排名与真实镜头上的目标运动定位只有中等相关（Spearman
+ρ=0.63，41 个 checkpoint），精确名次并不保持。再用 800 对 FlyingDrones
+样本微调后，四种架构的真实镜头定位均改善；三种架构的留出合成目标区域误差下降
+19%–37%，VideoFlow 的真实镜头 NSS_D 从 4.9 到 17.8。</p>
+<p><strong>创新与限制。</strong> 论文同时报告公开模型、多个
+checkpoint、置信区间和真实镜头代理指标，指出排行榜不能脱离训练数据与部署分辨率解读。数据是合成渲染，难以覆盖大气扰动、传感器噪声、压缩和滚动快门；真实测试是静态相机、点标签，不是稠密真值或移动平台测试。公开
+checkpoint
+的训练课程不同，比较反映架构与训练数据的合成影响，不能单独归因于架构。作者报告主榜约耗
+40–50 GPU 小时，微调约 5 GPU 小时。</p>
+<p><strong>适合谁读。</strong>
+光流、无人机视觉和数据集迁移研究者。建议读第 3 节数据与指标、第 4–5
+节主比较和限制，再读附录 B.7 的真实镜头与 B.9 的 800 对微调。数据集：<a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/flyingdrones/flyingdrones/data">Kaggle</a>。</p>
+<h3 id="mcphallu-benchmarking-reasoning-execution-and-memory-hallucinations-in-mcp-agentsarxiv2611.07689">MCPHallu:
+Benchmarking Reasoning, Execution, and Memory Hallucinations in MCP
+Agents（arXiv:2611.07689）</h3>
+<p><strong>研究问题与方法。</strong> MCP
+智能体能调用多个服务器，但常见基准只记任务完成率，难以定位错误来自推理、执行还是记忆。MCPHallu
+构造 358 个带结构性失败触发条件的任务，覆盖五个能力域、36 个生产 MCP
+服务器和四类失败；在隔离容器中以 ReAct 循环评测 14 个模型、8 家厂商，共
+5,012 条轨迹。配置统一为 128k 上下文、每题最多 20 次工具调用。</p>
+<p><strong>作者报告的结果与基线。</strong> 模型平均分为
+0.642/1，平均通过率 47.8%，最高模型 0.728；“目标不可达”最难，平均分
+0.458、仅 23.2%
+轨迹通过。不同失败子类的模型排名差异明显，因此单一总分会掩盖能力结构。主语义裁判为
+GPT-4o；论文另报跨裁判和人工校验。</p>
+<p><strong>创新与局限。</strong>
+任务把目标不可达、工具误用、分支坍塌、上下文遗忘等风险写进环境，并用工具结果和轨迹核验是否真的完成。它能测试“工具不具备能力时是否承认做不到”，这一点比只测成功任务更贴近真实部署。语义评分仍依赖裁判模型，尽管作者做了人工/跨裁判验证；36
+个服务器中 16 个需要调用者自备凭证，第三方 API
+可能改变，完全离线的录制回放还未完成。统一工具预算和 ReAct
+提示也不等于所有产品的默认工作流。</p>
+<p><strong>适合谁读。</strong> MCP 客户端、工具调用 Agent
+与可靠性评测团队。建议优先读第 4 节任务评分、第 5 节实验和第 6
+节失败分析，再看附录 H、J 的裁判验证与方法限制。代码：<a target="_blank" rel="noopener" href="https://github.com/J1zz/mcp_hallu">MCPHallu</a>。</p>
+<h3 id="terminal-style-mathematical-modeling-bench-the-first-agentic-and-verifiable-benchmark-for-mathematical-modelingarxiv2611.08237">Terminal-style
+Mathematical Modeling Bench: The First Agentic and Verifiable Benchmark
+for Mathematical Modeling（arXiv:2611.08237）</h3>
+<p><strong>研究问题与方法。</strong> 开放式数学建模答案常由 LLM
+裁判打分，数值接近参考解也不保证满足物理约束。TB-MathModel 把 2023–2025
+年 CUMCM 与 MCM 的 18 道真实赛题装入隔离终端，要求 Agent 输出结构化
+JSON；分数以多份优秀论文为参照，并设程序化可行性门槛，再用 Lean 4 对 624
+项整数/有理数约束义务做内核检查。无可行性证据的任务不会被默认为通过。</p>
+<p><strong>作者报告的结果与基线。</strong>
+七种多模态模型/代码代理组合、每题三次运行中，GPT-6 Astra+Codex 的 O-Eval
+为 64.58±2.93，Fable 5.1+Claude Code 为 63.11±1.33；DeepSeek V4.1
+Flash+OpenCode 为 59.81±1.25，作者估算 18 题成本 2.54 美元，而前两者约
+246–273 美元。每一分差异都不是稳健排序：单种子偏差最高约 2.9
+个百分点，邻近模型不能据此认定显著胜负。</p>
+<p><strong>创新与边界。</strong>
+可迁移价值是把可判定的数值范围、单位和内部一致性变成可执行、可审计的校验，不让语言评审独自决定“正确”。但
+18
+道公开竞赛题可能已进入模型训练语料，论文没有证明所有模型都未见过题目；形式化检查只能证明预先编码的约束，不能替代现实物理真值。竞赛题型和多模态终端也不能代表一般科研建模任务。</p>
+<p><strong>适合谁读。</strong> 评测 Agent
+长程推理、数学建模和可验证输出的研究者。建议读第 3 节基准与验证、第 4
+节评分和结果，再看“Limitations”及附录 G。代码：<a target="_blank" rel="noopener" href="https://github.com/wxj630/terminal-bench-math-modeling">TB-MathModel</a>。</p>
+<h3 id="agent-r²-scaling-agents-for-realistic-productivity-work-via-real-source-data-synthesisarxiv2611.08219">Agent-R²:
+Scaling Agents for Realistic Productivity Work via Real-Source Data
+Synthesis（arXiv:2611.08219）</h3>
+<p><strong>研究问题与方法。</strong>
+真实办公任务需要读写不同格式的附件、沿工作流完成多步操作，并交付可核验文件；合成文件可能不够真实。Agent-R²
+从职业任务种子和网页工作流证据出发，在 10,000 个候选中筛出 4,000
+个带真实多格式附件和细粒度评分规则的任务，用 3,000 个做监督微调、1,000
+个做基于评分规则的强化学习，两阶段任务不重叠。</p>
+<p><strong>作者报告的结果与基线。</strong> 4B 模型在 GDPval <a href="mailto:Pass@1" class="email">Pass@1</a> 得分 51.0%，高于论文列出的
+Qwen3-235B-A22B-Thinking-2507（48.0%）；OfficeQA 为 14.8% 对 13.8%。在
+1,000 个匹配任务的消融里，真实附件训练为 43.3%，模型自行合成附件为
+41.4%；加入细粒度评分奖励后 GDPval 从 49.5% 到
+51.0%。作者的附件哈希/来源 URL 检查未发现训练附件与 GDPval、OfficeQA
+的文件重合。</p>
+<p><strong>公平性、复现与边界。</strong>
+比较包含闭源与开源模型，但多模态文件工具、代理框架和评分器会影响成绩；强化学习奖励使用
+Qwen3.6-Plus
+作为模型裁判。作者做过文件层重合审计，但公开基准题文本是否进入各模型预训练语料无法完全排除。论文没有给出总训练
+GPU 小时或完整美元成本，因此 4B
+参数不等于低训练成本；两组公开基准的分数也不是所有办公岗位的真实完成率。</p>
+<p><strong>适合谁读。</strong> 文档智能体、办公自动化和 Agent
+后训练团队。建议读第 3 节数据合成、第 4.2 节实验设置与主表、第 4.5
+节消融，最后核对附录中的污染审计和评分器说明。代码：<a target="_blank" rel="noopener" href="https://github.com/ZJU-REAL/Agent-R2">Agent-R²</a>。</p>
+<h2 id="ai-论文">AI 论文</h2>
+<h3 id="arms-adaptive-red-teaming-agent-against-multimodal-models-with-plug-and-play-attacks"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2510.02677">ARMs: Adaptive Red-Teaming Agent
+against Multimodal Models with Plug-and-Play Attacks</a></h3>
 <ul>
-<li>作者：Zhaorun Chen、Xun Liu、Mintong Kang、Jiawei Zhang、Minzhou Pan、Shuang Yang、Bo Li</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, cs.LG</li>
+<li>作者：Zhaorun Chen、Xun Liu、Mintong Kang、Jiawei Zhang、Minzhou
+Pan、Shuang Yang、Bo Li</li>
+<li>来源/分类：arXiv；cs.AI, cs.LG</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2510.02677">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2510.02677">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2510.02677">arXiv DOI</a></li>
-<li>研究问题、作者报告结果与证据边界：研究多模态视觉语言模型的安全红队自动化，提出整合多种攻击算法、记忆与探索策略的代理，并构建 3 万余实例、51 类风险的 ARMs-Bench。作者报告平均攻击成功率较基线高 52.1%，在 Claude-4-Sonnet 上超过 90%；这些是作者定义的基准和模型条件下的攻击结果，不能当成普遍安全概率。仅依据摘要。</li>
+<li>研究问题、作者报告结果与证据边界：研究多模态视觉语言模型的安全红队自动化，提出整合多种攻击算法、记忆与探索策略的代理，并构建
+3 万余实例、51 类风险的 ARMs-Bench。作者报告平均攻击成功率较基线高
+52.1%，在 Claude-4-Sonnet 上超过
+90%；这些是作者定义的基准和模型条件下的攻击结果，不能当成普遍安全概率。仅依据摘要。</li>
 </ul>
-<h3 id="a-generative-foundation-model-for-multimodal-tokamak-tasks"><a class="markdownIt-Anchor" href="#a-generative-foundation-model-for-multimodal-tokamak-tasks"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08153">A Generative Foundation Model for Multimodal Tokamak Tasks</a></h3>
+<h3 id="a-generative-foundation-model-for-multimodal-tokamak-tasks"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08153">A Generative Foundation Model
+for Multimodal Tokamak Tasks</a></h3>
 <ul>
-<li>作者：Yingshuai Ji、Haodong Feng、Guohong Deng、Gelin Bian、Yue Wang</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, cs.CE</li>
+<li>作者：Yingshuai Ji、Haodong Feng、Guohong Deng、Gelin Bian、Yue
+Wang</li>
+<li>来源/分类：arXiv；cs.AI, cs.CE</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08153">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.08153">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.08153">arXiv DOI</a></li>
-<li>研究问题、作者报告结果与证据边界：针对托卡马克多任务各自建模的问题，GenToka 用共享条件扩散 Transformer 联合处理波形、剖面、场和标量，并扩展出 20 个 MAST 任务。作者报告相对 TokaMind 多个任务组的误差下降、窗口 F1 上升；摘要未给样本规模外的跨装置验证，不能据此推断可迁移到其他托卡马克。仅依据摘要。</li>
+<li>研究问题、作者报告结果与证据边界：针对托卡马克多任务各自建模的问题，GenToka
+用共享条件扩散 Transformer 联合处理波形、剖面、场和标量，并扩展出 20 个
+MAST 任务。作者报告相对 TokaMind 多个任务组的误差下降、窗口 F1
+上升；摘要未给样本规模外的跨装置验证，不能据此推断可迁移到其他托卡马克。仅依据摘要。</li>
 </ul>
-<h3 id="unified-hallucination-fuzzing-for-multimodal-large-language-models"><a class="markdownIt-Anchor" href="#unified-hallucination-fuzzing-for-multimodal-large-language-models"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.07525">Unified Hallucination Fuzzing for Multimodal Large Language Models</a></h3>
+<h3 id="unified-hallucination-fuzzing-for-multimodal-large-language-models"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.07525">Unified Hallucination Fuzzing
+for Multimodal Large Language Models</a></h3>
 <ul>
-<li>作者：Pengfei Zhou、Jiajun Song、Zhiwei Tang、Yixing Ma、Donghui Si、Yuhang Xu、Huiqi Song、Yiyuan Miao、Yichen Qian、Weihua Chen、Wangbo Zhao、Bohan Zhuang、Jiasheng Tang、Yang You</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>, <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>作者：Pengfei Zhou、Jiajun Song、Zhiwei Tang、Yixing Ma、Donghui
+Si、Yuhang Xu、Huiqi Song、Yiyuan Miao、Yichen Qian、Weihua Chen、Wangbo
+Zhao、Bohan Zhuang、Jiasheng Tang、Yang You</li>
+<li>来源/分类：arXiv；cs.CL, cs.AI</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2608.07525">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.07525">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2608.07525">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/LanceZPF/EvalHall">代码/数据</a></li>
-<li>研究问题、作者报告结果与证据边界：提出 UniHall 分类体系与自适应多模态模糊测试 SAMF，用演化式扰动和多模态裁判主动寻找幻觉边界。作者报告静态基准下表现较好的模型在 fuzzing 条件下显著退化，并观察到有用性与迎合性风险；裁判与扰动生成本身可能影响结果，且不等同真实部署频率。代码与基准见 <a target="_blank" rel="noopener" href="https://github.com/LanceZPF/EvalHall">EvalHall</a>。仅依据摘要。</li>
+<li>研究问题、作者报告结果与证据边界：提出 UniHall
+分类体系与自适应多模态模糊测试
+SAMF，用演化式扰动和多模态裁判主动寻找幻觉边界。作者报告静态基准下表现较好的模型在
+fuzzing
+条件下显著退化，并观察到有用性与迎合性风险；裁判与扰动生成本身可能影响结果，且不等同真实部署频率。代码与基准见
+<a target="_blank" rel="noopener" href="https://github.com/LanceZPF/EvalHall">EvalHall</a>。仅依据摘要。</li>
 </ul>
-<h3 id="multimodal-sea-benchmarking-ai-agent-security-under-multimodal-social-engineering-attacks"><a class="markdownIt-Anchor" href="#multimodal-sea-benchmarking-ai-agent-security-under-multimodal-social-engineering-attacks"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08281">Multimodal-SEA: Benchmarking AI Agent Security under Multimodal Social Engineering Attacks</a></h3>
+<h3 id="multimodal-sea-benchmarking-ai-agent-security-under-multimodal-social-engineering-attacks"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08281">Multimodal-SEA: Benchmarking AI
+Agent Security under Multimodal Social Engineering Attacks</a></h3>
 <ul>
 <li>作者：Zhitao He、Chi Him Zhang、Chengru Han、Yi R Fung</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a></li>
+<li>来源/分类：arXiv；cs.CL</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08281">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.08281">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.08281">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/Zhitao-He/M-SEABench">代码/数据</a></li>
 <li>研究问题、作者报告结果与证据边界：作者报告的结果及其证据边界见重点关注全文解读。</li>
 </ul>
-<h3 id="flyingdrones-a-dataset-and-benchmark-for-optical-flow-estimation-from-uav-motion"><a class="markdownIt-Anchor" href="#flyingdrones-a-dataset-and-benchmark-for-optical-flow-estimation-from-uav-motion"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.07705">FlyingDrones: A Dataset and Benchmark for Optical Flow Estimation from UAV motion</a></h3>
+<h3 id="flyingdrones-a-dataset-and-benchmark-for-optical-flow-estimation-from-uav-motion"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.07705">FlyingDrones: A Dataset and
+Benchmark for Optical Flow Estimation from UAV motion</a></h3>
 <ul>
 <li>作者：Laurenz Ruzicka、Roman Pflugfelder、Daniel Cremers</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a></li>
+<li>来源/分类：arXiv；cs.CV</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.07705">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.07705">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.07705">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/flyingdrones/flyingdrones/data">代码/数据</a></li>
 <li>研究问题、作者报告结果与证据边界：作者报告的结果及其证据边界见重点关注全文解读。</li>
 </ul>
-<h3 id="mcphallu-benchmarking-reasoning-execution-and-memory-hallucinations-in-mcp-agents"><a class="markdownIt-Anchor" href="#mcphallu-benchmarking-reasoning-execution-and-memory-hallucinations-in-mcp-agents"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.07689">MCPHallu: Benchmarking Reasoning, Execution, and Memory Hallucinations in MCP Agents</a></h3>
+<h3 id="mcphallu-benchmarking-reasoning-execution-and-memory-hallucinations-in-mcp-agents"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.07689">MCPHallu: Benchmarking
+Reasoning, Execution, and Memory Hallucinations in MCP Agents</a></h3>
 <ul>
-<li>作者：Yizhen Jiang、Haowei Guo、Tianyi Bai、Zengjie Hu、Lu Ma、Zhengyang Zhao、Haoze Sun、Peng Pei、Wentao Zhang</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>作者：Yizhen Jiang、Haowei Guo、Tianyi Bai、Zengjie Hu、Lu
+Ma、Zhengyang Zhao、Haoze Sun、Peng Pei、Wentao Zhang</li>
+<li>来源/分类：arXiv；cs.AI</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.07689">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.07689">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.07689">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/J1zz/mcp_hallu">代码/数据</a></li>
 <li>研究问题、作者报告结果与证据边界：作者报告的结果及其证据边界见重点关注全文解读。</li>
 </ul>
-<h3 id="concertina-embodying-manipulation-and-cognition-in-one-diffusion-vision-language-model"><a class="markdownIt-Anchor" href="#concertina-embodying-manipulation-and-cognition-in-one-diffusion-vision-language-model"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.07513">Concertina: Embodying Manipulation and Cognition in One Diffusion Vision-Language Model</a></h3>
+<h3 id="concertina-embodying-manipulation-and-cognition-in-one-diffusion-vision-language-model"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.07513">Concertina: Embodying
+Manipulation and Cognition in One Diffusion Vision-Language
+Model</a></h3>
 <ul>
-<li>作者：Chengcheng Wang、Wei He、Wenhao Li、Hongguang Li、Kai Han、Jianyuan Guo、Chang Xu</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>, <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, <a target="_blank" rel="noopener" href="http://cs.RO">cs.RO</a></li>
+<li>作者：Chengcheng Wang、Wei He、Wenhao Li、Hongguang Li、Kai
+Han、Jianyuan Guo、Chang Xu</li>
+<li>来源/分类：arXiv；cs.CV, cs.AI, cs.RO</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.07513">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.07513">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.07513">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/lose4578/Concertina">代码/数据</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/collections/Traly/concertina">其他资源2</a></li>
 <li>研究问题、作者报告结果与证据边界：作者报告的结果及其证据边界见重点关注全文解读。</li>
 </ul>
-<h3 id="compositional-unalignment-auditing-safety-in-large-vision-language-models"><a class="markdownIt-Anchor" href="#compositional-unalignment-auditing-safety-in-large-vision-language-models"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.07216">Compositional Unalignment: Auditing Safety in Large Vision-Language Models</a></h3>
+<h3 id="compositional-unalignment-auditing-safety-in-large-vision-language-models"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.07216">Compositional Unalignment:
+Auditing Safety in Large Vision-Language Models</a></h3>
 <ul>
 <li>作者：Hong kyu Lee、Kai Shu、Li Xiong</li>
-<li>来源/分类：arXiv；cs.LG, <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a></li>
+<li>来源/分类：arXiv；cs.LG, cs.AI, cs.CL</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.07216">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.07216">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.07216">arXiv DOI</a></li>
-<li>研究问题、作者报告结果与证据边界：论文研究视觉语言模型对图像与提示组合伤害的识别/拒绝稳健性，提出 CMaG 用拒绝与服从的 log-probability 梯度从 80 个样例提取训练无关的干预方向；在 Qwen2.5-VL-7B 和 LLaVA-1.5-7B 上，作者报告组合安全分最多下降 65 分且 98% 以上输出保持连贯。该结果是白盒方向干预实验，不是黑盒攻击成功率；证据限于两种模型和作者定义的安全/连贯指标，摘要警示全文含不安全输出。仅依据摘要。</li>
+<li>研究问题、作者报告结果与证据边界：论文研究视觉语言模型对图像与提示组合伤害的识别/拒绝稳健性，提出
+CMaG 用拒绝与服从的 log-probability 梯度从 80
+个样例提取训练无关的干预方向；在 Qwen2.5-VL-7B 和 LLaVA-1.5-7B
+上，作者报告组合安全分最多下降 65 分且 98%
+以上输出保持连贯。该结果是白盒方向干预实验，不是黑盒攻击成功率；证据限于两种模型和作者定义的安全/连贯指标，摘要警示全文含不安全输出。仅依据摘要。</li>
 </ul>
-<h3 id="human-centred-risk-constrained-evaluation-of-financial-document-recognition-evidence-critical-errors-and-selective-automation"><a class="markdownIt-Anchor" href="#human-centred-risk-constrained-evaluation-of-financial-document-recognition-evidence-critical-errors-and-selective-automation"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02775">Human-Centred, Risk-Constrained Evaluation of Financial Document Recognition: Evidence, Critical Errors, and Selective Automation</a></h3>
+<h3 id="human-centred-risk-constrained-evaluation-of-financial-document-recognition-evidence-critical-errors-and-selective-automation"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02775">Human-Centred, Risk-Constrained
+Evaluation of Financial Document Recognition: Evidence, Critical Errors,
+and Selective Automation</a></h3>
 <ul>
 <li>作者：Subodh Lonkar</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>, <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>来源/分类：arXiv；cs.CV, cs.AI</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.02775">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.02775">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.02775">arXiv DOI</a></li>
-<li>研究问题、作者报告结果与证据边界：把金融单据识别从字符错误率改为面向决策的证据恢复，提出金额、符号、期间等关键字段的非补偿验收门槛，以及按残余风险、人工容量与成本分流的自动化框架。论文是理论和方法设计，没有新模型、数据集或实测性能；适合文档 OCR/财务运营团队，不应把框架描述成已验证的产品效果。仅依据摘要。</li>
+<li>研究问题、作者报告结果与证据边界：把金融单据识别从字符错误率改为面向决策的证据恢复，提出金额、符号、期间等关键字段的非补偿验收门槛，以及按残余风险、人工容量与成本分流的自动化框架。论文是理论和方法设计，没有新模型、数据集或实测性能；适合文档
+OCR/财务运营团队，不应把框架描述成已验证的产品效果。仅依据摘要。</li>
 </ul>
-<h3 id="tsqagent-rating-time-series-data-quality-via-dedicated-agentic-reasoning"><a class="markdownIt-Anchor" href="#tsqagent-rating-time-series-data-quality-via-dedicated-agentic-reasoning"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.03629">TSQAgent: Rating Time Series Data Quality via Dedicated Agentic Reasoning</a></h3>
+<h3 id="tsqagent-rating-time-series-data-quality-via-dedicated-agentic-reasoning"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.03629">TSQAgent: Rating Time Series
+Data Quality via Dedicated Agentic Reasoning</a></h3>
 <ul>
-<li>作者：Shunyu Wu、Dan Li、Haozheng Ye、Weibin Feng、Jian Lou、Bo Zhang、Wenjie Feng、Chenjuan Guo、See-Kiong Ng</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>作者：Shunyu Wu、Dan Li、Haozheng Ye、Weibin Feng、Jian Lou、Bo
+Zhang、Wenjie Feng、Chenjuan Guo、See-Kiong Ng</li>
+<li>来源/分类：arXiv；cs.AI</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.03629">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.03629">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2606.03629">arXiv DOI</a></li>
-<li>研究问题、作者报告结果与证据边界：构建 TSQBench 评估模型能否挑选合适的时间序列质量维度，并提出 Perceiver、Inspector、Adjudicator 三角色框架与外部分析工具。作者称在 11 个真实数据集上改善质量比较和数据筛选后的下游表现；摘要没有报告具体提升幅度、基线细节或运行成本。仅依据摘要。</li>
+<li>研究问题、作者报告结果与证据边界：构建 TSQBench
+评估模型能否挑选合适的时间序列质量维度，并提出
+Perceiver、Inspector、Adjudicator 三角色框架与外部分析工具。作者称在 11
+个真实数据集上改善质量比较和数据筛选后的下游表现；摘要没有报告具体提升幅度、基线细节或运行成本。仅依据摘要。</li>
 </ul>
-<h3 id="nureasoning-a-reasoning-centric-dataset-and-benchmark-for-long-tail-autonomous-driving"><a class="markdownIt-Anchor" href="#nureasoning-a-reasoning-centric-dataset-and-benchmark-for-long-tail-autonomous-driving"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.31572">nuReasoning: A Reasoning-Centric Dataset and Benchmark for Long-Tail Autonomous Driving</a></h3>
+<h3 id="nureasoning-a-reasoning-centric-dataset-and-benchmark-for-long-tail-autonomous-driving"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.31572">nuReasoning: A Reasoning-Centric
+Dataset and Benchmark for Long-Tail Autonomous Driving</a></h3>
 <ul>
-<li>作者：Zhiyu Huang、Johnson Liu、Rui Song、Xuewei Qi、Yiluan Guo、Zewei Zhou、Hanyin Zhang、Mingxuan Gao、Valeria Xu、Jiali Chen、Yun Zhang、Tianhui Cai、Ruining Yang、Yishan Shen、Jiaqi Ma</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a></li>
+<li>作者：Zhiyu Huang、Johnson Liu、Rui Song、Xuewei Qi、Yiluan
+Guo、Zewei Zhou、Hanyin Zhang、Mingxuan Gao、Valeria Xu、Jiali Chen、Yun
+Zhang、Tianhui Cai、Ruining Yang、Yishan Shen、Jiaqi Ma</li>
+<li>来源/分类：arXiv；cs.CV</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.31572">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.31572">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2605.31572">arXiv DOI</a></li>
-<li>研究问题、作者报告结果与证据边界：nuReasoning 汇集 2 万段、每段 20 秒的多城市驾驶片段，提供多摄像头、激光雷达、地图与人工核验的空间、决策和反事实推理标注。作者报告推理监督可提升驾驶问答，并在关闭文字推理输出时仍改善规划；公开摘要没有给出量化幅度，数据集分布也不能代替道路实测安全。仅依据摘要。</li>
+<li>研究问题、作者报告结果与证据边界：nuReasoning 汇集 2 万段、每段 20
+秒的多城市驾驶片段，提供多摄像头、激光雷达、地图与人工核验的空间、决策和反事实推理标注。作者报告推理监督可提升驾驶问答，并在关闭文字推理输出时仍改善规划；公开摘要没有给出量化幅度，数据集分布也不能代替道路实测安全。仅依据摘要。</li>
 </ul>
-<h3 id="promoral-bench-evaluating-prompting-strategies-for-moral-reasoning-and-safety-in-llms"><a class="markdownIt-Anchor" href="#promoral-bench-evaluating-prompting-strategies-for-moral-reasoning-and-safety-in-llms"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.13274">ProMoral-Bench: Evaluating Prompting Strategies for Moral Reasoning and Safety in LLMs</a></h3>
+<h3 id="promoral-bench-evaluating-prompting-strategies-for-moral-reasoning-and-safety-in-llms"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.13274">ProMoral-Bench: Evaluating
+Prompting Strategies for Moral Reasoning and Safety in LLMs</a></h3>
 <ul>
-<li>作者：Rohan Subramanian Thomas、Shikhar Shiromani、Abdullah Chaudhry、Ruizhe Li、Vasu Sharma、Kevin Zhu</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a></li>
+<li>作者：Rohan Subramanian Thomas、Shikhar Shiromani、Abdullah
+Chaudhry、Ruizhe Li、Vasu Sharma、Kevin Zhu</li>
+<li>来源/分类：arXiv；cs.AI, cs.CL</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.13274">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.13274">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2602.13274">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/rohanthomas334-sketch/ProMoral_Bench">代码/数据</a></li>
-<li>研究问题、作者报告结果与证据边界：在 ETHICS、Scruples、WildJailbreak 与 200 对对照样本上比较 10 种提示策略和四类模型。作者报告紧凑示例提示在所测模板中以较低 token 成本取得较好的能力/拒答权衡；示例来自评测分布，不能据此声称分布外稳健，综合分数也不是绝对道德或安全量表。代码与数据：<a target="_blank" rel="noopener" href="https://github.com/rohanthomas334-sketch/ProMoral_Bench">ProMoral-Bench</a>。仅依据摘要。</li>
+<li>研究问题、作者报告结果与证据边界：在 ETHICS、Scruples、WildJailbreak
+与 200 对对照样本上比较 10
+种提示策略和四类模型。作者报告紧凑示例提示在所测模板中以较低 token
+成本取得较好的能力/拒答权衡；示例来自评测分布，不能据此声称分布外稳健，综合分数也不是绝对道德或安全量表。代码与数据：<a target="_blank" rel="noopener" href="https://github.com/rohanthomas334-sketch/ProMoral_Bench">ProMoral-Bench</a>。仅依据摘要。</li>
 </ul>
-<h3 id="b-xaic-dataset-benchmarking-explainable-ai-for-graph-neural-networks-using-chemical-data"><a class="markdownIt-Anchor" href="#b-xaic-dataset-benchmarking-explainable-ai-for-graph-neural-networks-using-chemical-data"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.22252">B-XAIC Dataset: Benchmarking Explainable AI for Graph Neural Networks Using Chemical Data</a></h3>
+<h3 id="b-xaic-dataset-benchmarking-explainable-ai-for-graph-neural-networks-using-chemical-data"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.22252">B-XAIC Dataset: Benchmarking
+Explainable AI for Graph Neural Networks Using Chemical Data</a></h3>
 <ul>
-<li>作者：Magdalena Proszewska、Tomasz Danel、Antoni Antoszek、Dawid Rymarczyk</li>
+<li>作者：Magdalena Proszewska、Tomasz Danel、Antoni Antoszek、Dawid
+Rymarczyk</li>
 <li>来源/分类：arXiv；cs.LG, cs.CE</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.22252">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2505.22252">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2505.22252">arXiv DOI</a></li>
-<li>研究问题、作者报告结果与证据边界：B-XAIC 用真实分子数据与已知标签依据构建图神经网络可解释性基准，重点检验解释忠实度。作者报告现有 XAI 方法有明显限制，但摘要未列方法排名或效果量；它是评测资源，不是新的分子预测模型或药物发现收益证据。仅依据摘要。</li>
+<li>研究问题、作者报告结果与证据边界：B-XAIC
+用真实分子数据与已知标签依据构建图神经网络可解释性基准，重点检验解释忠实度。作者报告现有
+XAI
+方法有明显限制，但摘要未列方法排名或效果量；它是评测资源，不是新的分子预测模型或药物发现收益证据。仅依据摘要。</li>
 </ul>
-<h3 id="npcbench-a-clinical-apprenticeship-benchmark-for-multimodal-care-pathway-reasoning-in-nasopharyngeal-carcinoma"><a class="markdownIt-Anchor" href="#npcbench-a-clinical-apprenticeship-benchmark-for-multimodal-care-pathway-reasoning-in-nasopharyngeal-carcinoma"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08369">NPCBench: A Clinical Apprenticeship Benchmark for Multimodal Care-Pathway Reasoning in Nasopharyngeal Carcinoma</a></h3>
+<h3 id="npcbench-a-clinical-apprenticeship-benchmark-for-multimodal-care-pathway-reasoning-in-nasopharyngeal-carcinoma"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08369">NPCBench: A Clinical
+Apprenticeship Benchmark for Multimodal Care-Pathway Reasoning in
+Nasopharyngeal Carcinoma</a></h3>
 <ul>
-<li>作者：Pengkai Wang、Wei-Wei Zhang、Yan Li、Min Tang、Zhitian Hou、Zeyu Liu、Guanghao Zhu、Yuanyi Wang、Yanggan Gu、Wenjun Wang、Minheng Ni、Congkai Xie、Zhijie Sang、Jianmin Wu、Ying Sun、Hongxia Yang</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>作者：Pengkai Wang、Wei-Wei Zhang、Yan Li、Min Tang、Zhitian
+Hou、Zeyu Liu、Guanghao Zhu、Yuanyi Wang、Yanggan Gu、Wenjun
+Wang、Minheng Ni、Congkai Xie、Zhijie Sang、Jianmin Wu、Ying
+Sun、Hongxia Yang</li>
+<li>来源/分类：arXiv；cs.AI</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08369">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.08369">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.08369">arXiv DOI</a></li>
-<li>研究问题、作者报告结果与证据边界：NPCBench 把鼻咽癌专科训练组织成知识、病例计划、纵向复核和照护路径任务，含 4,777 个组件/咨询题及 100 名患者的 417 个照护任务。作者在 30 个模型上发现单题答对不代表同一患者路径联合正确，21 个多模态模型严格路径成功率最高为 23%；这是单癌种基准，不是临床试验或实际患者获益证据。仅依据摘要。</li>
+<li>研究问题、作者报告结果与证据边界：NPCBench
+把鼻咽癌专科训练组织成知识、病例计划、纵向复核和照护路径任务，含 4,777
+个组件/咨询题及 100 名患者的 417 个照护任务。作者在 30
+个模型上发现单题答对不代表同一患者路径联合正确，21
+个多模态模型严格路径成功率最高为
+23%；这是单癌种基准，不是临床试验或实际患者获益证据。仅依据摘要。</li>
 </ul>
-<h3 id="benchmarking-large-language-models-on-heterogeneous-cognitive-and-biomedical-knowledge-graphs-the-role-of-graph-grounding-in-multi-hop-reasoning-and-hallucination-mitigation"><a class="markdownIt-Anchor" href="#benchmarking-large-language-models-on-heterogeneous-cognitive-and-biomedical-knowledge-graphs-the-role-of-graph-grounding-in-multi-hop-reasoning-and-hallucination-mitigation"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08315">Benchmarking Large Language Models on Heterogeneous Cognitive and Biomedical Knowledge Graphs: The Role of Graph Grounding in Multi-Hop Reasoning and Hallucination Mitigation</a></h3>
+<h3 id="benchmarking-large-language-models-on-heterogeneous-cognitive-and-biomedical-knowledge-graphs-the-role-of-graph-grounding-in-multi-hop-reasoning-and-hallucination-mitigation"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08315">Benchmarking Large Language
+Models on Heterogeneous Cognitive and Biomedical Knowledge Graphs: The
+Role of Graph Grounding in Multi-Hop Reasoning and Hallucination
+Mitigation</a></h3>
 <ul>
 <li>作者：Ali Sarabadani、Kheirolah Rahsepar Fard、Tahereh Jeirani</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>, <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>, cs.LG</li>
+<li>来源/分类：arXiv；cs.AI, cs.CL, cs.LG</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08315">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.08315">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.08315">arXiv DOI</a></li>
-<li>研究问题、作者报告结果与证据边界：比较五种 LLM 在五个认知与生物医学知识图谱上的多跳问答，并控制是否提供图谱 grounding。作者报告通用模型在多数设置优于专用模型、难度增加时性能下降，grounding 降低各模型幻觉；一致性 κ 约 0.77–0.781，但摘要未给出幻觉降低幅度和运行成本。仅依据摘要。</li>
+<li>研究问题、作者报告结果与证据边界：比较五种 LLM
+在五个认知与生物医学知识图谱上的多跳问答，并控制是否提供图谱
+grounding。作者报告通用模型在多数设置优于专用模型、难度增加时性能下降，grounding
+降低各模型幻觉；一致性 κ 约
+0.77–0.781，但摘要未给出幻觉降低幅度和运行成本。仅依据摘要。</li>
 </ul>
-<h3 id="terminal-style-mathematical-modeling-bench-the-first-agentic-and-verifiable-benchmark-for-mathematical-modeling"><a class="markdownIt-Anchor" href="#terminal-style-mathematical-modeling-bench-the-first-agentic-and-verifiable-benchmark-for-mathematical-modeling"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08237">Terminal-style Mathematical Modeling Bench: The First Agentic and Verifiable Benchmark for Mathematical Modeling</a></h3>
+<h3 id="terminal-style-mathematical-modeling-bench-the-first-agentic-and-verifiable-benchmark-for-mathematical-modeling"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08237">Terminal-style Mathematical
+Modeling Bench: The First Agentic and Verifiable Benchmark for
+Mathematical Modeling</a></h3>
 <ul>
-<li>作者：Xiaojun Wu、Cehao Yang、Xuhui Jiang、Chengjin Xu、Jia Li、Jian Guo</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a></li>
+<li>作者：Xiaojun Wu、Cehao Yang、Xuhui Jiang、Chengjin Xu、Jia Li、Jian
+Guo</li>
+<li>来源/分类：arXiv；cs.CL</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08237">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.08237">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.08237">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/wxj630/terminal-bench-math-modeling">代码/数据</a></li>
 <li>研究问题、作者报告结果与证据边界：作者报告的结果及其证据边界见重点关注全文解读。</li>
 </ul>
-<h3 id="agent-r2-scaling-agents-for-realistic-productivity-work-via-real-source-data-synthesis"><a class="markdownIt-Anchor" href="#agent-r2-scaling-agents-for-realistic-productivity-work-via-real-source-data-synthesis"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08219">Agent-R²: Scaling Agents for Realistic Productivity Work via Real-Source Data Synthesis</a></h3>
+<h3 id="agent-r²-scaling-agents-for-realistic-productivity-work-via-real-source-data-synthesis"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08219">Agent-R²: Scaling Agents for
+Realistic Productivity Work via Real-Source Data Synthesis</a></h3>
 <ul>
-<li>作者：Teng Pan、Zixuan Wang、Yuchen Yan、Qifei Wu、Yao Chen、Yingqi Qu、Ruiqing Zhang、Yongliang Shen</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a></li>
+<li>作者：Teng Pan、Zixuan Wang、Yuchen Yan、Qifei Wu、Yao Chen、Yingqi
+Qu、Ruiqing Zhang、Yongliang Shen</li>
+<li>来源/分类：arXiv；cs.CL</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08219">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.08219">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.08219">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/ZJU-REAL/Agent-R2">代码/数据</a></li>
 <li>研究问题、作者报告结果与证据边界：作者报告的结果及其证据边界见重点关注全文解读。</li>
 </ul>
-<h3 id="nutrivisrag-multimodal-exemplar-grounding-for-nutrient-estimation-with-vision-language-models"><a class="markdownIt-Anchor" href="#nutrivisrag-multimodal-exemplar-grounding-for-nutrient-estimation-with-vision-language-models"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08054">NutriVisRAG: Multimodal Exemplar Grounding for Nutrient Estimation with Vision-Language Models</a></h3>
+<h3 id="nutrivisrag-multimodal-exemplar-grounding-for-nutrient-estimation-with-vision-language-models"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08054">NutriVisRAG: Multimodal Exemplar
+Grounding for Nutrient Estimation with Vision-Language Models</a></h3>
 <ul>
-<li>作者：Lubnaa Abdur Rahman、Ioannis Papathanail、Maria Panagiotou、Nefeli Dimitropoulou、Margret Harðardóttir、Elisabeth J. den Brok、Bastiaan E. de Galan、Stavroula Georgia Mougiakakou</li>
-<li>来源/分类：arXiv；<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>, <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>作者：Lubnaa Abdur Rahman、Ioannis Papathanail、Maria
+Panagiotou、Nefeli Dimitropoulou、Margret Harðardóttir、Elisabeth J. den
+Brok、Bastiaan E. de Galan、Stavroula Georgia Mougiakakou</li>
+<li>来源/分类：arXiv；cs.CV, cs.AI</li>
 <li>摘要页、PDF、DOI及代码/数据：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.08054">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.08054">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2611.08054">arXiv DOI</a></li>
-<li>研究问题、作者报告结果与证据边界：NutriVisRAG 在推理时检索图片相似且有营养标签的餐食作为多模态示例，不做任务微调；评估覆盖四数据集、四种 VLM、三种检索编码器和两种提示。作者报告 96 种配置中 56 种主误差降低、16 个模型/数据集配对中 13 个最低误差优于纯 VLM；提升依配置而变，糖尿病人群数据也不代表营养建议已可临床使用。仅依据摘要。</li>
+<li>研究问题、作者报告结果与证据边界：NutriVisRAG
+在推理时检索图片相似且有营养标签的餐食作为多模态示例，不做任务微调；评估覆盖四数据集、四种
+VLM、三种检索编码器和两种提示。作者报告 96 种配置中 56 种主误差降低、16
+个模型/数据集配对中 13 个最低误差优于纯
+VLM；提升依配置而变，糖尿病人群数据也不代表营养建议已可临床使用。仅依据摘要。</li>
 </ul>
 
                 
