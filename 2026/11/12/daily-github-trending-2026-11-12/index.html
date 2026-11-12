@@ -1,0 +1,989 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="GITHUB TRENDING · 2026.11.12   今天的 GitHub all-languages 日榜把 Agent 的能力拆成几个可核验的层次：Modern Web Guidance把现代 Web API、兼容性、性能与无障碍规则带进编码 Agent，agent-browser负责按 accessibility tree 操作浏览器，Codex Security负责扫描、验证和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-11-12 GitHub 热榜简报：Agent 的指南、执行边界与真实系统">
+<meta property="og:url" content="https://www.polarishaw.top/2026/11/12/daily-github-trending-2026-11-12/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="GITHUB TRENDING · 2026.11.12   今天的 GitHub all-languages 日榜把 Agent 的能力拆成几个可核验的层次：Modern Web Guidance把现代 Web API、兼容性、性能与无障碍规则带进编码 Agent，agent-browser负责按 accessibility tree 操作浏览器，Codex Security负责扫描、验证和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-10-25/pixiv-rank-002-151016204.jpg">
+<meta property="article:published_time" content="2026-11-12T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-12T02:03:08.047Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="自托管">
+<meta property="article:tag" content="MCP">
+<meta property="article:tag" content="浏览器自动化">
+<meta property="article:tag" content="Web 平台">
+<meta property="article:tag" content="应用安全">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-10-25/pixiv-rank-002-151016204.jpg">
+  
+  
+  
+  <title>2026-11-12 GitHub 热榜简报：Agent 的指南、执行边界与真实系统 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
+<link rel="stylesheet" href="/css/dailyBriefing.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/covers/pixiv-weekly/2026-08-23/pixiv-rank-009-148474828.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2026-11-12 GitHub 热榜简报：Agent 的指南、执行边界与真实系统"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-11-12 09:00" pubdate>
+          2026年11月12日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2026-11-12 GitHub 热榜简报：Agent 的指南、执行边界与真实系统</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="briefing-masthead">
+<p class="briefing-masthead__eyebrow">
+GITHUB TRENDING · 2026.11.12
+</p>
+<p>
+今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub
+all-languages 日榜</a>把 Agent
+的能力拆成几个可核验的层次：<a target="_blank" rel="noopener" href="https://github.com/GoogleChrome/modern-web-guidance-src#readme">Modern
+Web Guidance</a>把现代 Web API、兼容性、性能与无障碍规则带进编码
+Agent，<a target="_blank" rel="noopener" href="https://github.com/vercel-labs/agent-browser#readme">agent-browser</a>负责按
+accessibility tree
+操作浏览器，<a target="_blank" rel="noopener" href="https://github.com/openai/codex-security#readme">Codex
+Security</a>负责扫描、验证和修复漏洞；<a target="_blank" rel="noopener" href="https://github.com/meta/astryx#readme">Astryx</a>与
+<a target="_blank" rel="noopener" href="https://github.com/homeassistant-ai/ha-mcp#readme">HA-MCP</a>则把能力接到
+UI 和真实设备。另有
+<a target="_blank" rel="noopener" href="https://github.com/ZhuLinsen/daily_stock_analysis#readme">daily_stock_analysis</a>
+与 <a target="_blank" rel="noopener" href="https://github.com/we-promise/sure#readme">Sure</a>把 LLM
+或本地自托管推到金融应用，但数据源、凭证和误差边界应排在 stars 之前。
+</p>
+<div class="briefing-masthead__topics">
+<span>Agent Skills</span><span>现代
+Web</span><span>浏览器执行</span><span>应用安全</span><span>MCP
+与家居</span><span>自托管金融</span>
+</div>
+</div>
+<span id="more"></span>
+<h2 id="今日要点">今日要点</h2>
+<p>今天最值得关注的不是某个仓库的 star 数，而是 Agent
+的工作面正在被拆成互相衔接的工程层：<a target="_blank" rel="noopener" href="https://github.com/GoogleChrome/modern-web-guidance-src#readme">Modern
+Web Guidance</a>提供面向现代平台的检索、评估和
+legacy-scan，<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills#readme">addyosmani/agent-skills</a>把定义、计划、构建、测试、评审和发布编码成技能，<a target="_blank" rel="noopener" href="https://github.com/vercel-labs/agent-browser#readme">agent-browser</a>再把读状态和执行动作压缩成可重复的浏览器闭环。它们适合拿来研究“如何减少
+Agent 的自由发挥”，但都不能替代真实测试、权限设计和人工复核。</p>
+<p>另一条主线是从工具链进入真实环境：<a target="_blank" rel="noopener" href="https://github.com/meta/astryx#readme">Astryx</a>尝试让人和
+Agent 共享组件、CLI
+与文档，<a target="_blank" rel="noopener" href="https://github.com/homeassistant-ai/ha-mcp#readme">HA-MCP</a>把家庭设备能力暴露为
+MCP
+工具，<a target="_blank" rel="noopener" href="https://github.com/openai/codex-security#readme">Codex
+Security</a>把扫描结果接到报告、修复和协作流程。<a target="_blank" rel="noopener" href="https://github.com/ZhuLinsen/daily_stock_analysis#readme">daily_stock_analysis</a>与
+<a target="_blank" rel="noopener" href="https://github.com/we-promise/sure#readme">Sure</a>则提醒我们：一旦涉及金融数据，外部
+API、部署成本、权限和结果解释就必须和模型能力一起评估。</p>
+<h2 id="值得尝试">值得尝试</h2>
+<h3 id="metaastryx"><a target="_blank" rel="noopener" href="https://github.com/meta/astryx#readme">meta/astryx</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/meta/astryx#readme">Astryx</a>是基于
+React 19 和 StyleX 的开源设计系统，README 介绍它提供 150+
+可访问组件、主题、模板、CLI、文档和 sandbox，并让人和 AI 助手使用同一套
+API 与参考资料。它适合前端团队研究 Agent-ready UI
+如何落到组件命名、可组合实现和文档；限制是项目仍处于 Beta，要求 React
+19+，实验性组件与图表包还有 canary 发布边界。主要语言为
+TypeScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
+2,776★；<a target="_blank" rel="noopener" href="https://github.com/meta/astryx">仓库页</a>核验总计
+25,090★、<a target="_blank" rel="noopener" href="https://github.com/meta/astryx/blob/main/LICENSE">MIT
+许可证</a>、最近
+<a target="_blank" rel="noopener" href="https://github.com/meta/astryx/releases/tag/v0.7.14">Release
+v0.7.14</a> 和
+<a target="_blank" rel="noopener" href="https://github.com/meta/astryx/commit/0f4e2c3fb78e78e1a6b0eb556e0f6d260668b3c8">2026-11-12
+UTC 的提交</a>。</p>
+<h3 id="zhulinsendaily_stock_analysis"><a target="_blank" rel="noopener" href="https://github.com/ZhuLinsen/daily_stock_analysis#readme">ZhuLinsen/daily_stock_analysis</a></h3>
+<p>这个 Python 项目把多市场行情、新闻、LLM
+分析、决策看板和企业微信/飞书/Telegram/Discord/Slack/邮件推送串成可定时运行的股票分析系统，也提供
+Docker 与 GitHub Actions
+路径。它适合研究“数据源—模型—报告—通知”的端到端流水线；限制是 README
+明确提醒免费行情源会受限流、接口变化和网络波动影响，模型 API
+key、付费数据源和输出质量都需要自行管理，不能把自动化当作收益证明。主要语言为
+Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
+278★；<a target="_blank" rel="noopener" href="https://github.com/ZhuLinsen/daily_stock_analysis">仓库页</a>核验总计
+70,321★、<a target="_blank" rel="noopener" href="https://github.com/ZhuLinsen/daily_stock_analysis/blob/main/LICENSE">MIT
+许可证</a>、最近
+<a target="_blank" rel="noopener" href="https://github.com/ZhuLinsen/daily_stock_analysis/releases/tag/v3.34.0">Release
+v3.34.0</a> 和
+<a target="_blank" rel="noopener" href="https://github.com/ZhuLinsen/daily_stock_analysis/commit/ef44660f00e08ce66dcd4dc4d2e700836c45e833">2026-11-10
+UTC 的提交</a>。</p>
+<h3 id="googlechromemodern-web-guidance-src"><a target="_blank" rel="noopener" href="https://github.com/GoogleChrome/modern-web-guidance-src#readme">GoogleChrome/modern-web-guidance-src</a></h3>
+<p>这是
+<a target="_blank" rel="noopener" href="https://github.com/GoogleChrome/modern-web-guidance-src#readme">Modern
+Web Guidance</a> 的源仓库，负责内容编写、校准和评估；其 CLI
+可以安装技能、搜索指南、按 ID 取回指南，并扫描代码库中的 legacy
+patterns。它适合前端工程师和 Agent 工具链作者学习如何把平台级
+API、浏览器兼容性、性能和无障碍知识压缩进模型上下文；限制是它是指南与评估源代码，不是
+Web 框架，安装向导和指南结果仍需结合目标浏览器与真实项目验证。主要语言为
+TypeScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
+159★；<a target="_blank" rel="noopener" href="https://github.com/GoogleChrome/modern-web-guidance-src">仓库页</a>核验总计
+1,808★、<a target="_blank" rel="noopener" href="https://github.com/GoogleChrome/modern-web-guidance-src/blob/main/LICENSE">Apache-2.0
+许可证</a>、最近
+<a target="_blank" rel="noopener" href="https://github.com/GoogleChrome/modern-web-guidance-src/releases/tag/audit-data">Release
+audit-data</a> 和
+<a target="_blank" rel="noopener" href="https://github.com/GoogleChrome/modern-web-guidance-src/commit/179dbc6fe830be1309f4d0b079a2442d71d983b9">2026-11-12
+UTC 的提交</a>。</p>
+<h3 id="addyosmaniagent-skills"><a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills#readme">addyosmani/agent-skills</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills#readme">Agent
+Skills</a>把需求定义、计划、构建、测试、评审和发布拆成
+<code>/spec</code>、<code>/plan</code>、<code>/build</code>、<code>/test</code>、<code>/review</code>、<code>/ship</code>
+等可安装工作流。它适合希望把团队工程纪律沉淀为 Agent
+可执行步骤的人；限制是 README 明确指出单独安装一个 skill 可能漏掉仓库级
+<code>references/</code>，而且不同 Agent
+宿主的插件发现与命令兼容性仍要单独验证。主要语言为
+JavaScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
+787★；<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills">仓库页</a>核验总计
+115,987★、<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills/blob/main/LICENSE">MIT
+许可证</a>、最近
+<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills/releases/tag/0.6.15">Release
+0.6.15</a> 和
+<a target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills/commit/301b02b12bff98e4688e6984af6556802322bbde">2026-11-01
+UTC 的提交</a>。</p>
+<h3 id="vercel-labsagent-browser"><a target="_blank" rel="noopener" href="https://github.com/vercel-labs/agent-browser#readme">vercel-labs/agent-browser</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/vercel-labs/agent-browser#readme">agent-browser</a>是
+Rust 编写的浏览器自动化 CLI，用 <code>snapshot</code> 把页面读成紧凑的
+accessibility tree，并给元素分配 refs，让 Agent 逐步执行
+open、click、fill 和
+get。它适合研究可读状态、动作闭环和持久会话；限制是首次需要安装 Chrome
+for Testing，页面导航或 DOM 变化后旧 refs 必须重新
+snapshot，认证、域名白名单和动作策略仍由使用者负责。主要语言为
+Rust，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
+708★；<a target="_blank" rel="noopener" href="https://github.com/vercel-labs/agent-browser">仓库页</a>核验总计
+49,904★、<a target="_blank" rel="noopener" href="https://github.com/vercel-labs/agent-browser/blob/main/LICENSE">Apache-2.0
+许可证</a>、最近
+<a target="_blank" rel="noopener" href="https://github.com/vercel-labs/agent-browser/releases/tag/v0.42.0">Release
+v0.42.0</a> 和
+<a target="_blank" rel="noopener" href="https://github.com/vercel-labs/agent-browser/commit/51b6f8a40c6f1b330f4f2021b1af154ebc6be464">2026-11-11
+UTC 的提交</a>。</p>
+<h3 id="we-promisesure"><a target="_blank" rel="noopener" href="https://github.com/we-promise/sure#readme">we-promise/sure</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/we-promise/sure#readme">Sure</a>是 Maybe
+Finance 归档后延续下来的社区 fork，提供可用的个人财务管理应用，可通过
+Docker 自托管，并包含预算、资产负债和 AI
+助手等产品路径。它适合研究如何把成熟 Rails
+应用重新交给社区维护；限制是上游已停止开发，README
+直接列出数据量较大时的性能问题，自托管还需要 Ruby、PostgreSQL 和
+Redis，当前最新 Release 仍带有 alpha 标记。主要语言为
+Ruby，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
+1,078★；<a target="_blank" rel="noopener" href="https://github.com/we-promise/sure">仓库页</a>核验总计
+13,000★、<a target="_blank" rel="noopener" href="https://github.com/we-promise/sure/blob/main/LICENSE">AGPL-3.0
+许可证</a>、最近
+<a target="_blank" rel="noopener" href="https://github.com/we-promise/sure/releases/tag/v2026.11.10-alpha">Release
+v2026.11.10-alpha</a> 和
+<a target="_blank" rel="noopener" href="https://github.com/we-promise/sure/commit/a5ebdca53735a0a52fa445d1993780039559742a">2026-11-11
+UTC 的提交</a>。</p>
+<h3 id="homeassistant-aiha-mcp"><a target="_blank" rel="noopener" href="https://github.com/homeassistant-ai/ha-mcp#readme">homeassistant-ai/ha-mcp</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/homeassistant-ai/ha-mcp#readme">HA-MCP</a>把
+Home Assistant 的设备和自动化能力接入 Claude、ChatGPT 等 AI 助手，README
+当前标注 87 个工具，并推荐在 Home Assistant 2026.11+ 通过 Marketplace 或
+HACS 安装进程内集成。它适合研究 MCP
+如何落到真实家庭设备和权限边界；限制是初始配置需要管理员令牌或专用管理员账户，远程连接要明确选择认证方式，文件与
+YAML 编辑工具默认关闭且应单独评估风险。主要语言为
+Python，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
+645★；<a target="_blank" rel="noopener" href="https://github.com/homeassistant-ai/ha-mcp">仓库页</a>核验总计
+7,396★、<a target="_blank" rel="noopener" href="https://github.com/homeassistant-ai/ha-mcp/blob/master/LICENSE">MIT
+许可证</a>、最近
+<a target="_blank" rel="noopener" href="https://github.com/homeassistant-ai/ha-mcp/releases/tag/v9.3.0.dev3501">Release
+v9.3.0.dev3501</a> 和
+<a target="_blank" rel="noopener" href="https://github.com/homeassistant-ai/ha-mcp/commit/59cec3e9faa54019fbf4ac6815826f6cdfc84208">2026-11-12
+UTC 的提交</a>。</p>
+<h3 id="openaicodex-security"><a target="_blank" rel="noopener" href="https://github.com/openai/codex-security#readme">openai/codex-security</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/openai/codex-security#readme">Codex
+Security</a>提供 CLI、TypeScript SDK 和 GitHub
+Action，用于扫描仓库、验证发现、生成补丁、复核修复，并可导出
+SARIF/JSON/CSV
+或接入协作系统。它适合安全工程师研究“发现—证据—修复—复核”的 Agent
+工作流；限制是 README 要求特定 Node.js 与 Python
+版本，部分请求和受保护发现需要登录或额外权限，发布到云端或外部跟踪器前还必须确认数据边界。主要语言为
+TypeScript，<a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">日榜快照</a>显示当日新增
+52★；<a target="_blank" rel="noopener" href="https://github.com/openai/codex-security">仓库页</a>核验总计
+11,784★、<a target="_blank" rel="noopener" href="https://github.com/openai/codex-security/blob/main/LICENSE">Apache-2.0
+许可证</a>、最近
+<a target="_blank" rel="noopener" href="https://github.com/openai/codex-security/releases/tag/action-v0.9.1">Release
+action-v0.9.1</a> 和
+<a target="_blank" rel="noopener" href="https://github.com/openai/codex-security/commit/2911786f243f08fd61ad854f5c527e7b0c404ccc">2026-11-12
+UTC 的提交</a>。</p>
+<h2 id="快速浏览">快速浏览</h2>
+<div class="briefing-quick-list">
+<p><a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/meta/astryx#readme"><span class="briefing-quick-item__source">Agent-ready UI · TypeScript ·
++2,776/日 · 25,090★</span><span class="briefing-quick-item__body"><strong>meta/astryx</strong><small>用
+React 组件、主题、CLI 和文档构成 Beta 设计系统。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/ZhuLinsen/daily_stock_analysis#readme"><span class="briefing-quick-item__source">LLM 金融分析 · Python · +278/日 ·
+70,321★</span><span class="briefing-quick-item__body"><strong>ZhuLinsen/daily_stock_analysis</strong><small>把行情、新闻、模型分析和多渠道推送串成可定时系统。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/GoogleChrome/modern-web-guidance-src#readme"><span class="briefing-quick-item__source">现代 Web 指南 · TypeScript · +159/日
+· 1,808★</span><span class="briefing-quick-item__body"><strong>GoogleChrome/modern-web-guidance-src</strong><small>用检索、评估和
+legacy-scan 把现代平台知识注入编码 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/addyosmani/agent-skills#readme"><span class="briefing-quick-item__source">工程技能 · JavaScript · +787/日 ·
+115,987★</span><span class="briefing-quick-item__body"><strong>addyosmani/agent-skills</strong><small>把定义、计划、构建、测试、评审和发布串成工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/vercel-labs/agent-browser#readme"><span class="briefing-quick-item__source">浏览器 Agent · Rust · +708/日 ·
+49,904★</span><span class="briefing-quick-item__body"><strong>vercel-labs/agent-browser</strong><small>用
+accessibility tree、refs 和持久会话驱动浏览器。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/we-promise/sure#readme"><span class="briefing-quick-item__source">自托管财务 · Ruby · +1,078/日 ·
+13,000★</span><span class="briefing-quick-item__body"><strong>we-promise/sure</strong><small>从
+Maybe Finance 社区 fork
+延续个人财务应用和多端客户端。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/homeassistant-ai/ha-mcp#readme"><span class="briefing-quick-item__source">家庭自动化 MCP · Python · +645/日 ·
+7,396★</span><span class="briefing-quick-item__body"><strong>homeassistant-ai/ha-mcp</strong><small>把
+Home Assistant 设备与自动化能力暴露给 AI 助手。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br>
+<a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/openai/codex-security#readme"><span class="briefing-quick-item__source">应用安全 · TypeScript · +52/日 ·
+11,784★</span><span class="briefing-quick-item__body"><strong>openai/codex-security</strong><small>把漏洞扫描、验证、修复和报告接成安全工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a></p>
+</div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/GitHub-%E7%83%AD%E6%A6%9C/" class="category-chain-item">GitHub 热榜</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/GitHub/" class="print-no-link">#GitHub</a>
+      
+        <a href="/tags/%E5%BC%80%E6%BA%90/" class="print-no-link">#开源</a>
+      
+        <a href="/tags/Agent/" class="print-no-link">#Agent</a>
+      
+        <a href="/tags/%E8%87%AA%E6%89%98%E7%AE%A1/" class="print-no-link">#自托管</a>
+      
+        <a href="/tags/MCP/" class="print-no-link">#MCP</a>
+      
+        <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" class="print-no-link">#浏览器自动化</a>
+      
+        <a href="/tags/Web-%E5%B9%B3%E5%8F%B0/" class="print-no-link">#Web 平台</a>
+      
+        <a href="/tags/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/" class="print-no-link">#应用安全</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2026-11-12 GitHub 热榜简报：Agent 的指南、执行边界与真实系统</div>
+      <div>https://www.polarishaw.top/2026/11/12/daily-github-trending-2026-11-12/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年11月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/11/11/daily-ai-papers-2026-11-11/" title="每日 AI 论文简报｜2026 年 11 月 11 日">
+                        <span class="hidden-mobile">每日 AI 论文简报｜2026 年 11 月 11 日</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
