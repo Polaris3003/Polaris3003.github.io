@@ -4,6 +4,45 @@
   
   
   <entry>
+    <title>2026-11-14 GitHub 热榜简报：Agent 的审查、人机协作与可运行基础设施</title>
+    <link href="/2026/11/14/daily-github-trending-2026-11-14/"/>
+    <url>/2026/11/14/daily-github-trending-2026-11-14/</url>
+    
+    <content type="html"><![CDATA[<div class="briefing-masthead"><p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.11.14</p><p>今天的 <a href="https://github.com/trending?since=daily">GitHuball-languages 日榜</a>把 Agent从“会生成文本”推进到“可被审查、可被约束、可在真实环境中执行”：<a href="https://github.com/alibaba/open-code-review#readme">OpenCodeReview</a>与 <a href="https://github.com/openai/codex-security#readme">CodexSecurity</a>把 review 和 scan变成带证据的闭环，<a href="https://github.com/GoogleChrome/modern-web-guidance-src#readme">ModernWeb Guidance</a> 与<a href="https://github.com/backnotprop/plannotator#readme">Plannotator</a>分别约束知识和人类反馈，<a href="https://github.com/block/buzz#readme">Buzz</a>、<a href="https://github.com/tailscale/tailcat#readme">Tailcat</a>、<a href="https://github.com/ChromeDevTools/chrome-devtools-mcp#readme">ChromeDevToolsMCP</a>、<a href="https://github.com/Likely7/Veyra-NRVideo#readme">Veyra</a>则把能力推进到协作、网络、浏览器和GPU运行时。<a href="https://github.com/we-promise/sure#readme">Sure</a>提供了一个完整自托管业务应用的参照；stars只是榜单信号，真正需要看的是许可证、最近活动、权限边界和可复现程度。</p><div class="briefing-masthead__topics"><span>代码审查</span><span>应用安全</span><span>Agent反馈</span><span>人机协作</span><span>加密网络</span><span>浏览器调试</span><span>GPU视频</span><span>自托管</span></div></div><span id="more"></span><h2 id="今日要点">今日要点</h2><p>今天的主线是 Agent的执行面开始拥有控制面：<a href="https://github.com/alibaba/open-code-review#readme">OpenCodeReview</a>将审查分成确定性工程与Agent，<a href="https://github.com/openai/codex-security#readme">CodexSecurity</a>把漏洞结果转成验证、修复和复核；<a href="https://github.com/GoogleChrome/modern-web-guidance-src#readme">ModernWeb Guidance</a>把知识约束提前，<a href="https://github.com/backnotprop/plannotator#readme">Plannotator</a>把人类判断放回会话。这样的分层比继续堆提示词更能形成可维护路径，但代价是必须明确权限、版本、模型端点、审计日志和失败回滚。</p><p>另一条线是把执行放入真实系统：<a href="https://github.com/block/buzz#readme">Buzz</a>以签名事件和 relay 组织人／Agent协作，<a href="https://github.com/tailscale/tailcat#readme">Tailcat</a>从用户态网络组件提炼出无需控制平面的加密通道，<a href="https://github.com/ChromeDevTools/chrome-devtools-mcp#readme">ChromeDevTools MCP</a> 让 Agent进入浏览器调试，<a href="https://github.com/Likely7/Veyra-NRVideo#readme">Veyra</a>则把 GPU视频处理链落到桌面硬件。它们适合做小规模实验或学习架构边界；要进入生产，先验证数据暴露、硬件／驱动兼容、身份模型和运维成本，不要把日增stars 当成安全性或稳定性的替代指标。</p><h2 id="值得尝试">值得尝试</h2><h3 id="alibabaopen-code-review"><a href="https://github.com/alibaba/open-code-review#readme">alibaba/open-code-review</a></h3><p><a href="https://github.com/alibaba/open-code-review#readme">OpenCodeReview</a>是 Alibaba 开源的 AI 代码审查CLI：把确定性的文件选择、规则匹配、评论定位与 LLM Agent 组合起来，支持diff review 和整目录 scan。它适合做 CI review、代码质量或 Agent工具链的人研究“确定性工程 × 动态决策”的边界；限制是需要 Git 2.41+和可用模型端点，README 中的 benchmark 不能直接外推到你的仓库。主要语言为<a href="https://github.com/alibaba/open-code-review">Go</a>，<a href="https://github.com/trending?since=daily">日榜新增215★</a>；<a href="https://github.com/alibaba/open-code-review">仓库页</a>核验总计50,661★、<a href="https://github.com/alibaba/open-code-review/blob/main/LICENSE">Apache-2.0许可证</a>，最近<a href="https://github.com/alibaba/open-code-review/commit/0e9060da66af36a96a15516e76a001953095318b">2026-11-13UTC 提交</a>。</p><h3 id="googlechromemodern-web-guidance-src"><a href="https://github.com/GoogleChrome/modern-web-guidance-src#readme">GoogleChrome/modern-web-guidance-src</a></h3><p><a href="https://github.com/GoogleChrome/modern-web-guidance-src#readme">ModernWeb Guidance</a> 源仓库把现代 WebAPI、浏览器兼容、性能与无障碍知识组织成可安装的 Agent skills，CLI 支持search、retrieve 和 legacy-scan。它适合前端团队或编码 Agent作者学习如何把平台知识压缩成可检索规则；限制是它是指南与评估源代码，不是Web 框架，结果仍需结合目标浏览器和真实测试。主要语言为<a href="https://github.com/GoogleChrome/modern-web-guidance-src">TypeScript</a>，<a href="https://github.com/trending?since=daily">日榜新增1,925★</a>；<a href="https://github.com/GoogleChrome/modern-web-guidance-src">仓库页</a>核验总计4,903★、<a href="https://github.com/GoogleChrome/modern-web-guidance-src/blob/main/LICENSE">Apache-2.0许可证</a>，最近<a href="https://github.com/GoogleChrome/modern-web-guidance-src/commit/5e5cd33a7738f21281e3027732bcbd58cfa82bf1">2026-11-14UTC 提交</a>。</p><h3 id="openaicodex-security"><a href="https://github.com/openai/codex-security#readme">openai/codex-security</a></h3><p><a href="https://github.com/openai/codex-security#readme">CodexSecurity</a> 提供 CLI、TypeScript SDK 和 GitHubAction，覆盖扫描、验证发现、生成补丁、复核修复以及 SARIF、JSON、CSV导出。它适合安全工程师和要把 Agent 放进 CI的团队研究“发现—证据—修复—复核”的闭环；限制是需要 Node.js22.13+（22.x、24.x 或 26.x）和 Python3.10+，部分请求、云端发现及外部跟踪器需要额外权限。主要语言为<a href="https://github.com/openai/codex-security">TypeScript</a>，<a href="https://github.com/trending?since=daily">日榜新增751★</a>；<a href="https://github.com/openai/codex-security">仓库页</a>核验总计13,157★、<a href="https://github.com/openai/codex-security/blob/main/LICENSE">Apache-2.0许可证</a>，最近<a href="https://github.com/openai/codex-security/commit/f26b669b56a4423abd773c81f6c6c9c2ebadc42a">2026-11-13UTC 提交</a>。</p><h3 id="we-promisesure"><a href="https://github.com/we-promise/sure#readme">we-promise/sure</a></h3><p><a href="https://github.com/we-promise/sure#readme">Sure</a> 是 MaybeFinance 归档后的社区 fork，提供可用 Docker自托管的个人财务应用，覆盖现金流、资产负债、预算和 AI助手路径。它适合研究真实 Rails业务应用如何在社区维护、自托管和多客户端之间折中；限制是AGPLv3、历史代码库带有数据量较大时的性能问题，生产部署还要自行负责备份、数据源与权限。主要语言为<a href="https://github.com/we-promise/sure">Ruby</a>，<a href="https://github.com/trending?since=daily">日榜新增925★</a>；<a href="https://github.com/we-promise/sure">仓库页</a>核验总计14,777★、<a href="https://github.com/we-promise/sure/blob/main/LICENSE">AGPL-3.0许可证</a>，最近<a href="https://github.com/we-promise/sure/commit/8915cb1393bc319ee3cfd804b29e7898d0dc3fcd">2026-11-13UTC 提交</a>。</p><h3 id="backnotpropplannotator"><a href="https://github.com/backnotprop/plannotator#readme">backnotprop/plannotator</a></h3><p><a href="https://github.com/backnotprop/plannotator#readme">Plannotator</a>是面向 Claude Code、Codex、Copilot CLI 等编码 Agent的本地浏览器审查层，可以标注计划、规格、HTML、Agent 消息、diff 和PR，再把反馈送回会话。它适合需要在多 Agent并行时保留人类决策入口的团队；限制是各宿主通过插件、hooks 或 MCP接入，代理兼容性、权限边界和本地状态管理仍需逐一配置。主要语言为<a href="https://github.com/backnotprop/plannotator">TypeScript</a>，<a href="https://github.com/trending?since=daily">日榜新增108★</a>；<a href="https://github.com/backnotprop/plannotator">仓库页</a>核验总计10,479★、<a href="https://github.com/backnotprop/plannotator/blob/main/LICENSE">Apache-2.0许可证</a>，最近<a href="https://github.com/backnotprop/plannotator/commit/f1a0aabd405eec3573136c00ed6a00a32b6de4ac">2026-11-14UTC 提交</a>。</p><h3 id="blockbuzz"><a href="https://github.com/block/buzz#readme">block/buzz</a></h3><p><a href="https://github.com/block/buzz#readme">Buzz</a>把人、Agent、代码仓库和工作流放进一个自托管 workspace：底层用 Nostrrelay 的签名事件记录消息、审批、Git 事件和执行轨迹，并提供 Rustrelay、移动端和独立桌面端。它适合研究 Agent如何从聊天参与到可审计协作，尤其是身份、事件日志和工作流统一；限制是README 明确把 mobile、workflow approval gates、huddle lifecycle列为正在接线，很多愿景还不是稳定产品。主要语言为<a href="https://github.com/block/buzz">Rust</a>，<a href="https://github.com/trending?since=daily">日榜新增97★</a>；<a href="https://github.com/block/buzz">仓库页</a>核验总计37,308★、<a href="https://github.com/block/buzz/blob/main/LICENSE">Apache-2.0许可证</a>，最近<a href="https://github.com/block/buzz/commit/5780bd7d94098150a6ff4dc5bc4e8c84f20634e7">2026-11-14UTC 提交</a>。</p><h3 id="tailscaletailcat"><a href="https://github.com/tailscale/tailcat#readme">tailscale/tailcat</a></h3><p><a href="https://github.com/tailscale/tailcat#readme">Tailcat</a> 将Tailscale 的用户态网络组件改造成类似 netcat 的加密点对点通道，不依赖Tailscale control plane，连接元数据通过带外方式交换。它适合学习WireGuard、NAT traversal、DERP relay 和端口转发的最小实现；限制是浏览器demo 目前只经 DERP 中继，默认 relay有限流，真实部署需理解地址分发和中继信任边界。主要语言为<a href="https://github.com/tailscale/tailcat">Go</a>，<a href="https://github.com/trending?since=daily">日榜新增256★</a>；<a href="https://github.com/tailscale/tailcat">仓库页</a>核验总计9,476★、<a href="https://github.com/tailscale/tailcat/blob/main/LICENSE">BSD-3-Clause许可证</a>，最近<a href="https://github.com/tailscale/tailcat/commit/e00cdde6ff787f801361ff85ed085775c775d4c5">2026-11-05UTC 提交</a>。</p><h3 id="likely7veyra-nrvideo"><a href="https://github.com/Likely7/Veyra-NRVideo#readme">Likely7/Veyra-NRVideo</a></h3><p><a href="https://github.com/Likely7/Veyra-NRVideo#readme">Veyra</a>是面向 Windows 11、DirectX 12 的 C++ 实时 GPU视频增强工具，覆盖超分、降噪、HDR、帧生成、采集和游戏串流，并提供NVIDIA／AMD 发行包。它适合有 GPU或采集卡的开发者研究多阶段图像处理、模型与渲染链路；限制是硬件和驱动强相关，README说明 AMD路径仍实验性，分辨率、显存和帧生成效果不能从示例直接外推。主要语言为<a href="https://github.com/Likely7/Veyra-NRVideo">C++</a>，<a href="https://github.com/trending?since=daily">日榜新增256★</a>；<a href="https://github.com/Likely7/Veyra-NRVideo">仓库页</a>核验总计1,638★、<a href="https://github.com/Likely7/Veyra-NRVideo/blob/main/LICENSE">GPL-3.0许可证</a>，最近<a href="https://github.com/Likely7/Veyra-NRVideo/commit/8332c8a8382242096a2699d3ba4dd52ad47bbd74">2026-11-11UTC 提交</a>。</p><h3 id="chromedevtoolschrome-devtools-mcp"><a href="https://github.com/ChromeDevTools/chrome-devtools-mcp#readme">ChromeDevTools/chrome-devtools-mcp</a></h3><p><a href="https://github.com/ChromeDevTools/chrome-devtools-mcp#readme">ChromeDevTools MCP</a> 让编码 Agent 通过 MCP 或 CLI 控制并检查Chrome，覆盖性能 trace、网络请求、控制台、截图、source map 和 Puppeteer自动化。它适合做浏览器调试和性能工程的 Agent 化工具链；限制是官方只支持Chrome／Chrome for Testing，浏览器内容会暴露给 MCP 客户端且 usagestatistics 默认开启，需要按场景关闭或评估数据边界。主要语言为<a href="https://github.com/ChromeDevTools/chrome-devtools-mcp">TypeScript</a>，<a href="https://github.com/trending?since=daily">日榜新增67★</a>；<a href="https://github.com/ChromeDevTools/chrome-devtools-mcp">仓库页</a>核验总计55,478★、<a href="https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/LICENSE">Apache-2.0许可证</a>，最近<a href="https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/8ba2ac945ebaf1adb92208c29f3a30e73a920956b">2026-11-13UTC 提交</a>。</p><h2 id="快速浏览">快速浏览</h2><div class="briefing-quick-list"><p><a class="briefing-quick-item" href="https://github.com/alibaba/open-code-review#readme"><span class="briefing-quick-item__source">AI 代码审查 · Go · +215/日 ·50,661★</span><span class="briefing-quick-item__body"><strong>alibaba/open-code-review</strong><small>用确定性流水线和Agent 做精确到行的代码审查。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/GoogleChrome/modern-web-guidance-src#readme"><span class="briefing-quick-item__source">现代 Web 指南 · TypeScript ·+1,925/日 · 4,903★</span><span class="briefing-quick-item__body"><strong>GoogleChrome/modern-web-guidance-src</strong><small>把平台API、兼容性、性能与无障碍知识注入编码 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/openai/codex-security#readme"><span class="briefing-quick-item__source">应用安全 · TypeScript · +751/日 ·13,157★</span><span class="briefing-quick-item__body"><strong>openai/codex-security</strong><small>把漏洞扫描、验证、修复和报告接成安全工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/we-promise/sure#readme"><span class="briefing-quick-item__source">自托管财务 · Ruby · +925/日 ·14,777★</span><span class="briefing-quick-item__body"><strong>we-promise/sure</strong><small>从社区fork 延续个人财务应用与多端自托管路径。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/backnotprop/plannotator#readme"><span class="briefing-quick-item__source">Agent 审查 · TypeScript · +108/日 ·10,479★</span><span class="briefing-quick-item__body"><strong>backnotprop/plannotator</strong><small>让人类在计划、文档、HTML和代码 diff 上给 Agent 反馈。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/block/buzz#readme"><span class="briefing-quick-item__source">人机协作 · Rust · +97/日 ·37,308★</span><span class="briefing-quick-item__body"><strong>block/buzz</strong><small>用签名事件把人、Agent、仓库和工作流放进同一空间。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/tailscale/tailcat#readme"><span class="briefing-quick-item__source">加密网络 · Go · +256/日 ·9,476★</span><span class="briefing-quick-item__body"><strong>tailscale/tailcat</strong><small>用无需控制平面的用户态通道连接两台机器。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/Likely7/Veyra-NRVideo#readme"><span class="briefing-quick-item__source">GPU 视频 · C++ · +256/日 ·1,638★</span><span class="briefing-quick-item__body"><strong>Likely7/Veyra-NRVideo</strong><small>把超分、降噪、HDR、帧生成和采集串成实时处理链。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/ChromeDevTools/chrome-devtools-mcp#readme"><span class="briefing-quick-item__source">浏览器调试 · TypeScript · +67/日 ·55,478★</span><span class="briefing-quick-item__body"><strong>ChromeDevTools/chrome-devtools-mcp</strong><small>让Agent 直接检查 Chrome 的网络、控制台和性能。</small></span><span class="briefing-quick-item__arrow">↗</span></a></p></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>GitHub 热榜</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>GitHub</tag>
+      
+      <tag>开源</tag>
+      
+      <tag>Agent</tag>
+      
+      <tag>自托管</tag>
+      
+      <tag>代码审查</tag>
+      
+      <tag>应用安全</tag>
+      
+      <tag>现代 Web</tag>
+      
+      <tag>网络工具</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2026-11-13 GitHub 热榜简报：Agent 从规则、执行到本地推理</title>
     <link href="/2026/11/13/daily-github-trending-2026-11-13/"/>
     <url>/2026/11/13/daily-github-trending-2026-11-13/</url>
@@ -121,9 +160,9 @@
       
       <tag>浏览器自动化</tag>
       
-      <tag>Web 平台</tag>
-      
       <tag>应用安全</tag>
+      
+      <tag>Web 平台</tag>
       
     </tags>
     
@@ -340,9 +379,9 @@
       
       <tag>安全审计</tag>
       
-      <tag>可观测性</tag>
-      
       <tag>浏览器自动化</tag>
+      
+      <tag>可观测性</tag>
       
       <tag>Kubernetes</tag>
       
@@ -1940,9 +1979,9 @@
       
       <tag>Agent</tag>
       
-      <tag>上下文工程</tag>
-      
       <tag>本地 AI</tag>
+      
+      <tag>上下文工程</tag>
       
       <tag>Agent Skills</tag>
       
@@ -2031,9 +2070,9 @@
       
       <tag>Agent</tag>
       
-      <tag>上下文工程</tag>
-      
       <tag>本地 AI</tag>
+      
+      <tag>上下文工程</tag>
       
       <tag>推理引擎</tag>
       
@@ -2248,11 +2287,11 @@
       
       <tag>模型推理</tag>
       
-      <tag>上下文工程</tag>
-      
       <tag>空间智能</tag>
       
       <tag>开源学习</tag>
+      
+      <tag>上下文工程</tag>
       
     </tags>
     
@@ -3077,9 +3116,9 @@
       
       <tag>开发者工具</tag>
       
-      <tag>RAG</tag>
-      
       <tag>多媒体</tag>
+      
+      <tag>RAG</tag>
       
     </tags>
     
@@ -3313,9 +3352,9 @@
       
       <tag>开发者工具</tag>
       
-      <tag>多媒体</tag>
-      
       <tag>模型编译</tag>
+      
+      <tag>多媒体</tag>
       
     </tags>
     
@@ -3549,9 +3588,9 @@
       
       <tag>本地软件</tag>
       
-      <tag>系统学习</tag>
-      
       <tag>部署基础设施</tag>
+      
+      <tag>系统学习</tag>
       
     </tags>
     
@@ -3729,9 +3768,9 @@
       
       <tag>开发工具</tag>
       
-      <tag>本地软件</tag>
-      
       <tag>基础设施</tag>
+      
+      <tag>本地软件</tag>
       
       <tag>安全工具</tag>
       
@@ -3799,9 +3838,9 @@
       
       <tag>Agent</tag>
       
-      <tag>本地软件</tag>
-      
       <tag>数字安全</tag>
+      
+      <tag>本地软件</tag>
       
     </tags>
     
@@ -4093,11 +4132,11 @@
       
       <tag>Agent</tag>
       
-      <tag>数字安全</tag>
-      
       <tag>基础设施</tag>
       
       <tag>自托管</tag>
+      
+      <tag>数字安全</tag>
       
     </tags>
     
@@ -4217,13 +4256,13 @@
       
       <tag>本地优先</tag>
       
-      <tag>数字安全</tag>
-      
       <tag>基础设施</tag>
       
       <tag>自托管</tag>
       
       <tag>网络协议</tag>
+      
+      <tag>数字安全</tag>
       
     </tags>
     
@@ -4771,9 +4810,9 @@
       
       <tag>Agent</tag>
       
-      <tag>本地优先</tag>
-      
       <tag>工程工作流</tag>
+      
+      <tag>本地优先</tag>
       
     </tags>
     
@@ -11868,11 +11907,11 @@
       
       <tag>Binary Search</tag>
       
+      <tag>Codeforces</tag>
+      
       <tag>Sorting</tag>
       
       <tag>Offline Queries</tag>
-      
-      <tag>Codeforces</tag>
       
       <tag>Union-Find</tag>
       
@@ -12186,6 +12225,10 @@
       
       <tag>Binary Search</tag>
       
+      <tag>Sorting</tag>
+      
+      <tag>Offline Queries</tag>
+      
       <tag>Sliding Window</tag>
       
       <tag>Subarray Sum</tag>
@@ -12194,15 +12237,11 @@
       
       <tag>Array Manipulation</tag>
       
-      <tag>Sorting</tag>
-      
       <tag>Queue</tag>
       
       <tag>Interval Problem</tag>
       
       <tag>Longest Increasing Subsequence (LIS)</tag>
-      
-      <tag>Offline Queries</tag>
       
       <tag>Data Structures</tag>
       
@@ -12229,9 +12268,9 @@
     
     <tags>
       
-      <tag>SQL</tag>
-      
       <tag>数据操作语言</tag>
+      
+      <tag>SQL</tag>
       
       <tag>数据定义语言</tag>
       
@@ -12274,15 +12313,15 @@
     
     <tags>
       
-      <tag>SQL</tag>
-      
-      <tag>数据操作语言</tag>
-      
       <tag>关系模型</tag>
       
       <tag>数据库管理系统</tag>
       
       <tag>关系代数</tag>
+      
+      <tag>数据操作语言</tag>
+      
+      <tag>SQL</tag>
       
       <tag>数据模型</tag>
       
