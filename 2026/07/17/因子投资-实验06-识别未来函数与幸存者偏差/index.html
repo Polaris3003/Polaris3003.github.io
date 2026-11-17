@@ -21,18 +21,18 @@
     <meta name="description" content="QUANT RESEARCH NOTE         &#x2F;         LAB 06              并排构造两条财报管线：错误管线按 report_period 连接，正确管线只允许 announce_date 不晚于决策日。再比较“只保留期末仍上市股票”和历史股票池收益。目标是让两类偏差变成可失败断言，而非抽象警告。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="因子投资-实验06-识别未来函数与幸存者偏差">
-<meta property="og:url" content="https://www.polarishaw.top/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-%E5%AE%9E%E9%AA%8C06-%E8%AF%86%E5%88%AB%E6%9C%AA%E6%9D%A5%E5%87%BD%E6%95%B0%E4%B8%8E%E5%B9%B8%E5%AD%98%E8%80%85%E5%81%8F%E5%B7%AE/index.html">
+<meta property="og:url" content="https://www.polarisac.top/2026/07/17/%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84-%E5%AE%9E%E9%AA%8C06-%E8%AF%86%E5%88%AB%E6%9C%AA%E6%9D%A5%E5%87%BD%E6%95%B0%E4%B8%8E%E5%B9%B8%E5%AD%98%E8%80%85%E5%81%8F%E5%B7%AE/index.html">
 <meta property="og:site_name" content="Polarisのblog">
 <meta property="og:description" content="QUANT RESEARCH NOTE         &#x2F;         LAB 06              并排构造两条财报管线：错误管线按 report_period 连接，正确管线只允许 announce_date 不晚于决策日。再比较“只保留期末仍上市股票”和历史股票池收益。目标是让两类偏差变成可失败断言，而非抽象警告。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-003-146619696.jpg">
+<meta property="og:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-003-146619696.jpg">
 <meta property="article:published_time" content="2026-07-17T09:15:00.000Z">
 <meta property="article:modified_time" content="2026-07-18T11:06:03.300Z">
 <meta property="article:author" content="Polaris">
 <meta property="article:tag" content="因子投资">
 <meta property="article:tag" content="Python 实验">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-003-146619696.jpg">
+<meta name="twitter:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-003-146619696.jpg">
   
   
   
@@ -87,7 +87,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.polarisac.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -461,7 +461,7 @@ A、B 的回溯样本。</p>
   <div class="license-box my-3">
     <div class="license-title">
       <div>因子投资-实验06-识别未来函数与幸存者偏差</div>
-      <div>https://www.polarishaw.top/2026/07/17/因子投资-实验06-识别未来函数与幸存者偏差/</div>
+      <div>https://www.polarisac.top/2026/07/17/因子投资-实验06-识别未来函数与幸存者偏差/</div>
     </div>
     <div class="license-meta">
       

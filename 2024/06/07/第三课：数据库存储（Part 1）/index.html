@@ -21,11 +21,11 @@
     <meta name="description" content="第三课：数据库存储（Part 1） 1 存储  我们将专注于以磁盘为导向的DBMS架构，假设数据库的主要存储位置在非易失性磁盘上。 在存储层次的顶部，你拥有离CPU最近的设备。这是最快的存储设备，但也是最小和最昂贵的。离CPU越远，存储设备越大但速度越慢。这些设备的每GB价格也越便宜。 易失性设备：  易失性意味着如果你将设备断电，那么数据将丢失。 易失性存储支持快速的随机访问，并且具有以字节为寻">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CMU15445-lecture3">
-<meta property="og:url" content="https://www.polarishaw.top/2024/06/07/%E7%AC%AC%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8%EF%BC%88Part%201%EF%BC%89/index.html">
+<meta property="og:url" content="https://www.polarisac.top/2024/06/07/%E7%AC%AC%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8%EF%BC%88Part%201%EF%BC%89/index.html">
 <meta property="og:site_name" content="Polarisのblog">
 <meta property="og:description" content="第三课：数据库存储（Part 1） 1 存储  我们将专注于以磁盘为导向的DBMS架构，假设数据库的主要存储位置在非易失性磁盘上。 在存储层次的顶部，你拥有离CPU最近的设备。这是最快的存储设备，但也是最小和最昂贵的。离CPU越远，存储设备越大但速度越慢。这些设备的每GB价格也越便宜。 易失性设备：  易失性意味着如果你将设备断电，那么数据将丢失。 易失性存储支持快速的随机访问，并且具有以字节为寻">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-001-146821628.jpg">
+<meta property="og:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-001-146821628.jpg">
 <meta property="article:published_time" content="2024-06-07T12:47:51.000Z">
 <meta property="article:modified_time" content="2026-06-10T12:50:47.068Z">
 <meta property="article:author" content="Polaris">
@@ -38,7 +38,7 @@
 <meta property="article:tag" content="数据库页">
 <meta property="article:tag" content="元组布局">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-001-146821628.jpg">
+<meta name="twitter:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-001-146821628.jpg">
   
   
   
@@ -93,7 +93,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.polarisac.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -523,7 +523,7 @@ KB，要么全部不写入。这意味着如果我们的数据库页面大于硬
   <div class="license-box my-3">
     <div class="license-title">
       <div>CMU15445-lecture3</div>
-      <div>https://www.polarishaw.top/2024/06/07/第三课：数据库存储（Part 1）/</div>
+      <div>https://www.polarisac.top/2024/06/07/第三课：数据库存储（Part 1）/</div>
     </div>
     <div class="license-meta">
       

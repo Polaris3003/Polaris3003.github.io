@@ -21,11 +21,11 @@
     <meta name="description" content="第一课：关系模型与代数 1 数据库  数据库是相互关联的数据的有组织的集合，它对现实世界的某些方面进行建模（例如，在课堂或数字音乐商店中为学生建模）。人们经常将“数据库”与“数据库管理系统”（例如 MySQL、Oracle、MongoDB、Snowflake）混淆。数据库管理系统（DBMS）是管理数据库的软件。 考虑一个对数字音乐商店（例如 Spotify）进行建模的数据库。让数据库保存有关艺术家">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CMU15445-lecture1">
-<meta property="og:url" content="https://www.polarishaw.top/2024/06/05/%E7%AC%AC%E4%B8%80%E8%AF%BE%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B8%8E%E4%BB%A3%E6%95%B0/index.html">
+<meta property="og:url" content="https://www.polarisac.top/2024/06/05/%E7%AC%AC%E4%B8%80%E8%AF%BE%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B8%8E%E4%BB%A3%E6%95%B0/index.html">
 <meta property="og:site_name" content="Polarisのblog">
 <meta property="og:description" content="第一课：关系模型与代数 1 数据库  数据库是相互关联的数据的有组织的集合，它对现实世界的某些方面进行建模（例如，在课堂或数字音乐商店中为学生建模）。人们经常将“数据库”与“数据库管理系统”（例如 MySQL、Oracle、MongoDB、Snowflake）混淆。数据库管理系统（DBMS）是管理数据库的软件。 考虑一个对数字音乐商店（例如 Spotify）进行建模的数据库。让数据库保存有关艺术家">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-013-146585592.jpg">
+<meta property="og:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-013-146585592.jpg">
 <meta property="article:published_time" content="2024-06-05T12:47:51.000Z">
 <meta property="article:modified_time" content="2026-06-10T12:50:47.068Z">
 <meta property="article:author" content="Polaris">
@@ -38,7 +38,7 @@
 <meta property="article:tag" content="数据完整性">
 <meta property="article:tag" content="查询优化">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-013-146585592.jpg">
+<meta name="twitter:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-013-146585592.jpg">
   
   
   
@@ -93,7 +93,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.polarisac.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -531,7 +531,7 @@ S)\)</span>表示首先进行R和S的连接，然后进行选择操作，而<spa
   <div class="license-box my-3">
     <div class="license-title">
       <div>CMU15445-lecture1</div>
-      <div>https://www.polarishaw.top/2024/06/05/第一课：关系模型与代数/</div>
+      <div>https://www.polarisac.top/2024/06/05/第一课：关系模型与代数/</div>
     </div>
     <div class="license-meta">
       

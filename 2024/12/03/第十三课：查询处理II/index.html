@@ -21,11 +21,11 @@
     <meta name="description" content="第十三课：查询处理II 1 背景 前面关于查询执行的讨论都假设查询由单个工作器（即线程）执行。然而，在实践中，查询通常由多个工作器并行执行。 并行执行为 DBMS 提供了许多关键优势：  提高吞吐量（每秒更多查询）和延迟（每个查询所用时间更少）的性能。 从 DBMS 外部客户端的角度来看，响应能力和可用性有所提高。 潜在降低总拥有成本 (TCO)。此成本包括硬件采购和软件许可，以及部署 DBMS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CMU15445-lecture13">
-<meta property="og:url" content="https://www.polarishaw.top/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/index.html">
+<meta property="og:url" content="https://www.polarisac.top/2024/12/03/%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AF%BE%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86II/index.html">
 <meta property="og:site_name" content="Polarisのblog">
 <meta property="og:description" content="第十三课：查询处理II 1 背景 前面关于查询执行的讨论都假设查询由单个工作器（即线程）执行。然而，在实践中，查询通常由多个工作器并行执行。 并行执行为 DBMS 提供了许多关键优势：  提高吞吐量（每秒更多查询）和延迟（每个查询所用时间更少）的性能。 从 DBMS 外部客户端的角度来看，响应能力和可用性有所提高。 潜在降低总拥有成本 (TCO)。此成本包括硬件采购和软件许可，以及部署 DBMS">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-007-146606921.jpg">
+<meta property="og:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-007-146606921.jpg">
 <meta property="article:published_time" content="2024-12-03T11:36:40.000Z">
 <meta property="article:modified_time" content="2026-06-10T12:50:47.075Z">
 <meta property="article:author" content="Polaris">
@@ -33,7 +33,7 @@
 <meta property="article:tag" content="查询内并行 (Intra-Query Parallelism)">
 <meta property="article:tag" content="分布式数据库 (Distributed Databases)">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-007-146606921.jpg">
+<meta name="twitter:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-07-04/pixiv-rank-007-146606921.jpg">
   
   
   
@@ -88,7 +88,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.polarisac.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -513,7 +513,7 @@ DBMS 允许指定每个单独数据库的磁盘位置。如果 DBMS
   <div class="license-box my-3">
     <div class="license-title">
       <div>CMU15445-lecture13</div>
-      <div>https://www.polarishaw.top/2024/12/03/第十三课：查询处理II/</div>
+      <div>https://www.polarisac.top/2024/12/03/第十三课：查询处理II/</div>
     </div>
     <div class="license-meta">
       

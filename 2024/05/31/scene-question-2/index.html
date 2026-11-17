@@ -21,11 +21,11 @@
     <meta name="description" content="每天100w次登陆请求，4C8G机器如何做JVM调优？ 典型回答 首先，我们需要问清楚，一天100w次的登陆，在一天内有没有某个时段是高峰的？高峰期的QPS大概可以达到多少。 如果没有高峰期，100w平均下来QPS只有10，这个量不需要做JVM优化。 一般业务场景中，都是有自己的业务高峰期的，比如电商业务基本上上午十点和下午两点是业务高峰期，基本上这时候的QPS是平时的20倍都不止。 我们假设登陆">
 <meta property="og:type" content="article">
 <meta property="og:title" content="scene-question-2">
-<meta property="og:url" content="https://www.polarishaw.top/2024/05/31/scene-question-2/index.html">
+<meta property="og:url" content="https://www.polarisac.top/2024/05/31/scene-question-2/index.html">
 <meta property="og:site_name" content="Polarisのblog">
 <meta property="og:description" content="每天100w次登陆请求，4C8G机器如何做JVM调优？ 典型回答 首先，我们需要问清楚，一天100w次的登陆，在一天内有没有某个时段是高峰的？高峰期的QPS大概可以达到多少。 如果没有高峰期，100w平均下来QPS只有10，这个量不需要做JVM优化。 一般业务场景中，都是有自己的业务高峰期的，比如电商业务基本上上午十点和下午两点是业务高峰期，基本上这时候的QPS是平时的20倍都不止。 我们假设登陆">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-002-145978815.jpg">
+<meta property="og:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-002-145978815.jpg">
 <meta property="article:published_time" content="2024-05-31T14:07:05.000Z">
 <meta property="article:modified_time" content="2026-06-10T12:50:47.063Z">
 <meta property="article:author" content="Polaris">
@@ -40,7 +40,7 @@
 <meta property="article:tag" content="Application Performance">
 <meta property="article:tag" content="Server Configuration">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.polarishaw.top/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-002-145978815.jpg">
+<meta name="twitter:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-06-20/pixiv-rank-002-145978815.jpg">
   
   
   
@@ -95,7 +95,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.polarishaw.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.polarisac.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -455,7 +455,7 @@ Scavenge更加关注吞吐量，而G1作为JDK
   <div class="license-box my-3">
     <div class="license-title">
       <div>scene-question-2</div>
-      <div>https://www.polarishaw.top/2024/05/31/scene-question-2/</div>
+      <div>https://www.polarisac.top/2024/05/31/scene-question-2/</div>
     </div>
     <div class="license-meta">
       

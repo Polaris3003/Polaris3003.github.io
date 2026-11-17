@@ -3,11 +3,11 @@
   <title>Polarisのblog</title>
   
   
-  <link href="https://www.polarishaw.top/atom.xml" rel="self"/>
+  <link href="https://www.polarisac.top/atom.xml" rel="self"/>
   
-  <link href="https://www.polarishaw.top/"/>
-  <updated>2026-11-17T02:10:49.863Z</updated>
-  <id>https://www.polarishaw.top/</id>
+  <link href="https://www.polarisac.top/"/>
+  <updated>2026-11-17T02:33:24.896Z</updated>
+  <id>https://www.polarisac.top/</id>
   
   <author>
     <name>Polaris</name>
@@ -17,9 +17,67 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>每日AI论文简报（2026-11-17）</title>
+    <link href="https://www.polarisac.top/2026/11/17/daily-ai-papers-2026-11-17/"/>
+    <id>https://www.polarisac.top/2026/11/17/daily-ai-papers-2026-11-17/</id>
+    <published>2026-11-17T02:15:00.000Z</published>
+    <updated>2026-11-17T02:33:24.896Z</updated>
+    
+    <content type="html"><![CDATA[<span id="more"></span><h2 id="重点关注">重点关注</h2><h3 id="仿真强化学习能否让开放模型直接操作真实机器人">仿真强化学习能否让开放模型直接操作真实机器人？</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.18562">Training Reasoning Models inSimulation to Natively Use Real Robots</a>（arXiv:2611.18562）<br><strong>作者</strong>：Jiaming Tang、Zhuoyang Zhang、Junxian Guo 等（共11 位）<br><strong>来源/分类</strong>：arXiv · cs.RO、cs.LG<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18562">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18562">PDF</a> · <a href="https://github.com/mit-han-lab/pear">代码</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML全文；以下复述作者报告，非独立复现。</p><ul><li><strong>研究问题、方法与基线</strong>：以 Qwen3.8-27B推理模型为基础，PEAR 提供多轮 robot-use reinforcementlearning；模型直接看相机画面并输出末端执行器位姿，不用示范数据或专门控制harness。训练任务来自 LIBERO 与 RoboDojo，对照包括基础模型、演示微调的π0.5，以及 GPT-6 Astra/GPT-6.1 Sol 等闭源模型。</li><li><strong>作者报告的结果</strong>：作者报告 LIBERO 成功率由基础模型1.6% 提升到 74.4%；在训练未见的真实双臂机器人上，LIBERO 与 RoboDojo混合训练模型成功率为 60%，仅用 LIBERO 的版本为 23%，基础模型为0。LIBERO-Pro 在熟悉场景中的新任务上为 57.4%，π0.5 为0.75%。九个推理、编程和视觉基准的平均变化为 −0.15 分。</li><li><strong>创新与局限/失败条件</strong>：新意是把计算机使用式的多轮 RL迁移到真实机器人，并在没有机器人示范的前提下实测仿真到实机迁移。证据仍受训练规模限制：只用了两个模拟器和少量任务，RoboDojo仅训练两个任务，作者称 GPU资源不足；提示中机器人形态信息也会影响成功率。与演示微调 VLA及闭源前沿模型的对照训练路径不同，不能视为同预算消融。推理每步平均约 4.3秒，偶尔达到 32Ktokens，速度和成本仍是瓶颈；结果也未证明不同机器人、环境和任务下普遍成立。</li><li><strong>适合谁读、建议章节</strong>：适合具身智能、机器人 RL与开源模型训练工程读者。建议先读 §3.2–3.3 的训练引擎和课程，再看§4.1、§4.4 的 LIBERO/实机结果，以及 §4.6 与 §5的速度和失败边界。代码：<a href="https://github.com/mit-han-lab/pear">PEAR</a>。</li></ul><h3 id="webarena-pro网页-agent-的跨应用和媒体能力仍有明显缺口">WebArena-Pro：网页agent 的跨应用和媒体能力仍有明显缺口</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.17955">WebArena-Pro: A Heterogeneous,Multimodal, Reproducible Benchmark for WebAgents</a>（arXiv:2611.17955）<br><strong>作者</strong>：Imene Kerboua、Fatemeh Pesaran Zadeh、Xing Han Lù等（共 22 位）<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、cs.LG<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.17955">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.17955">PDF</a> · <a href="https://webarena-pro.github.io">项目页</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML全文；以下复述作者报告，非独立复现。</p><ul><li><strong>研究问题、方法与基线</strong>：基准包括 300 个任务、20个自托管应用和六个领域，其中 204 个单站点、96 个跨站点任务，另有 79个音频/视频任务。作者以四类 agent harness、12 个模型骨干和 50步上限比较，并用任务 rubric 评估完整成功与部分完成。</li><li><strong>作者报告的结果</strong>：作者报告 Codex + GPT 6.1 Sol 与Claude Code + Claude Opus 5.5 均达到 62.3% 整体成功率；GenericAgent的最佳配置为 30.3%。对 43 个需要实际读取媒体内容的子集，Claude Code +Opus 5.5 从无媒体工具时 14.0% 升至启用转录/帧提取工具后的48.8%，显示媒体访问是关键基线条件。</li><li><strong>创新与局限/失败条件</strong>：贡献是可复现的多应用任务集，而不是单一新模型。最高分同时依赖模型与agent harness，不能把 62.3% 归因于模型本身；38% 任务仍未成功。300 题 API成本因 harness 约为 166–689美元（不含主机设施），闭源模型版本会变化；论文没有提供可证明数据污染已排除的审计。</li><li><strong>适合谁读、建议章节</strong>：适合网页自动化、agent评测与浏览器工具工程读者。建议读 §3.1–3.4的站点、任务和验收协议，§4.1–4.4 的主结果/媒体消融，再读 §5的成本讨论。项目主页：<a href="https://webarena-pro.github.io">WebArena-Pro</a>。</li></ul><h3 id="privacypr代码-agent-能否发现真实隐私缺陷">PrivacyPR：代码 agent能否发现真实隐私缺陷？</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.18293">PrivacyPR: A Dataset ofReal-World Privacy Fixes for Benchmarking Privacy-Aware CodeReview</a>（arXiv:2611.18293）<br><strong>作者</strong>：Hua Yang、Aditya Bhardwaj、Shidong Pan、BowenXu<br><strong>来源/分类</strong>：arXiv · cs.CR、cs.AI、cs.SE<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18293">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18293">PDF</a> · <a href="https://doi.org/10.5281/zenodo.23744765">DOI/数据</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML全文；以下复述作者报告，非独立复现。</p><ul><li><strong>研究问题、方法与基线</strong>：作者整理 2018–2024 年 1,469个仓库的 4,131 个合并 PR，保留 diff、评审讨论和修复上下文；数据包括1,169 个高置信隐私修复、1,643 个非修复 PR，以及人工检查的 Verified/Small子集。评测时回退已接受的修复以重新引入缺陷，再用两种 coding agent分别执行通用代码审查或明确隐私审查。</li><li><strong>作者报告的结果</strong>：在 Small 集（100 个修复、100个非修复）上，通用审查提示发现 42%–51% 隐私缺陷；明确要求检查隐私后升至88%–91%，但会误报 11%–15% 的非修复 PR。对 GDPR原则标签，两位标注者共同认可约 72%，细粒度标注的一致性较弱。</li><li><strong>创新与局限/失败条件</strong>：贡献是基于真实开发者接受的修复，而非合成漏洞。主要边界是提示意图本身带来巨大提升，结果只测两个agent 和 200 条 Small 子集；标注者能看到 LLM 预标记，可能抬高认可率，且21.3% patch经截断。它证明的是受控审查任务的检出率，不等于生产代码审计安全。</li><li><strong>适合谁读、建议章节</strong>：适合安全工程、隐私合规和代码agent 评测读者。建议读 §II-C 的标注流程、§II-E 的标签一致性、§III的回退评测，再读 §IV 的边界。数据及代码：<a href="https://doi.org/10.5281/zenodo.23744765">Zenodo DOI</a>。</li></ul><h3 id="手写作文语病定位工具流水线大幅优于单次视觉问答">手写作文语病定位：工具流水线大幅优于单次视觉问答</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.17966">From Images to Grounded Edits: AReal-World Benchmark for Chinese Grammatical Error Correction inHandwritten Essays</a>（arXiv:2611.17966）<br><strong>作者</strong>：Weiru Zhang、Yuzhong Hong、Junwei Bao 等（共 5位）<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.17966">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.17966">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML全文；以下复述作者报告，非独立复现。</p><ul><li><strong>研究问题、方法与基线</strong>：G-CGEC-Eval 有 150 篇真实K-12 作文、251 张图片、2,731 段需修文本和 2,913项修改，系统需同时给出修改内容与原图字符位置。作者比较三种 VLM的单次输出、OCR + VLM + 视觉定位流水线、单 agent和按错误类型/操作类型拆分的多 agent；定位按 <a href="mailto:IoU@0.3" class="email">IoU@0.3</a> 与较宽松的中心距离匹配。</li><li><strong>作者报告的结果</strong>：表 2 中 GPT-5.5 单次 VLM 的 F1 为0.22%，固定 OCR/grounding 流水线为 12.37%，错误类型多 agent 为22.83%，在受测组合中最高；操作类型拆分仅 14.61%。因此 agent分工有帮助，但绝对 F1 仍低，任务远未解决。</li><li><strong>创新与局限/失败条件</strong>：贡献是把中文手写文本校正和字符级定位联合评测，并记录多种可接受修订。局限包括仅中文K-12、未做任务专用微调、数据集有限；工具流水线和 agent 方法调用了额外OCR/定位组件，比较反映系统配置而非纯模型能力。作者说明OCR/定位模块训练集与基准无重叠，但没有提供基础 VLM预训练污染的独立审计；语言错误发现与字符定位仍是瓶颈。</li><li><strong>适合谁读、建议章节</strong>：适合中文多模态、OCR、教育 AI 与agent workflow 读者。建议读 §3 的任务和数据，§4.2 的主结果、§4.4的失败分析以及附录 E–F 的可复现设置。</li></ul><h3 id="jfinbench用最新日本资格考试缓解金融知识基准老化">JFinBench：用最新日本资格考试缓解金融知识基准老化</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.18130">JFinBench: A ContinuouslyRefreshable Japanese Financial Benchmark from the Latest CertificationExams</a>（arXiv:2611.18130）<br><strong>作者</strong>：Issa Sugiura、Taro Makino、Takashi Ishida<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18130">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18130">PDF</a> · <a href="https://github.com/SakanaAI/JFinBench">代码</a> · <a href="https://huggingface.co/datasets/SakanaAI/JFinBench">数据集</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML全文；以下复述作者报告，非独立复现。</p><ul><li><strong>研究问题、方法与基线</strong>：数据从 2026年六种公开资格考试抽取，包含 321 个评分单元、267道原始问题，覆盖会计、税务、理财和银行业务；coding agent编写格式转换器，人类逐题核验。作者以 12 个 LLM三次运行评测，主要设置是不使用工具的单次 API回答，另测终端/网页工具。</li><li><strong>作者报告的结果</strong>：无工具设置下，Claude Fable 5 得分95.8±0.4，GPT-6 Astra 为 93.6±0.6；最佳开放权重 Kimi K3.1 Pro 为83.4±0.9。工具使用后 Kimi 达 92.9、GPT-6 Astra 达97.3，最高闭源与开放模型的差距从约 12 缩至约 4 分。</li><li><strong>创新与局限/失败条件</strong>：可更新题源是主要创新，但只覆盖能由主办方公开PDF的六类考试，顶级闭源模型除税务题外接近饱和。考试时间晚于模型公开知识截止并不能排除训练或后训练污染；主要对手使用闭源API，复现实验受模型版本、价格和工具 harness影响。高分也不是职业资格，不能替代注册会计师或税务师。</li><li><strong>适合谁读、建议章节</strong>：适合金融 LLM基准、日语模型和数据污染研究者。建议读 §3 的数据构造、§5的模型与工具结果，及 Coverage/Contamination/Saturation 局限段。代码：<a href="https://github.com/SakanaAI/JFinBench">GitHub</a>；数据：<a href="https://huggingface.co/datasets/SakanaAI/JFinBench">HuggingFace</a>。</li></ul><h3 id="telephysica用重力预检把单图生成变成可执行的物理场景">TelePhysica：用重力预检把单图生成变成可执行的物理场景</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.18078">TelePhysica: AgenticReconstruction of Physically InteractiveScenes</a>（arXiv:2611.18078）<br><strong>作者</strong>：Ruiqi Shu、Xufeng Zhan、Yuanzhi Liang 等（共 6位）<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18078">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18078">PDF</a> · <a href="https://interactive4d.vercel.app/">项目主页</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML全文；以下复述作者报告，非独立复现。</p><ul><li><strong>研究问题、方法与基线</strong>：系统从单张照片让vision-language coding agent生成几何网格和声明式物理模型，先做轮廓检查，再做零力重力平衡预检，之后由统一求解器模拟刚体、关节链、布料与弹性体；模拟轨迹再作为视频扩散的结构条件。对照包括单次开环场景生成，以及不带物理轨迹条件的直接图生视频。</li><li><strong>作者报告的结果</strong>：在 100个桌面场景中，二阶段闭环将平衡验证通过率从单次合成 0/100 提到81/100，中位数需 7 次场景提交；完整 5 秒受力 rollout 验证率为49/100。物理轨迹条件视频把运动掩膜 IoU 从 0.17–0.27 提升至0.48–0.87，力方向反转的反事实场景也恢复正向对齐。</li><li><strong>创新与局限/失败条件</strong>：创新是把物理可执行性放入生成闭环，而不只看像素相似度。实测限于作者构造的100个桌面场景和模拟器，不等于真实物体系统辨识，也没有独立团队复现；密度、弹性模量和摩擦来自材料先验，没有通过多步视觉反馈在线识别。14B视频模型需要约 41GB GPU 显存，成本高于 1.3B 配置。</li><li><strong>适合谁读、建议章节</strong>：适合世界模型、生成视频、物理仿真与机器人场景建模读者。建议读§3.1 的闭环重建、§4.1 的 100 场景实验、§4.2–4.3的物理与视频消融。项目主页：<a href="https://interactive4d.vercel.app/">interactive4d</a>。</li></ul><h2 id="ai-论文">AI 论文</h2><h3 id="gamer-a-generalist-vision-language-action-foundation-model-for-long-horizon-real-time-game-agentarxiv2611.18397">Gamer:A Generalist Vision-Language-Action Foundation Model for Long-HorizonReal-Time Game Agent（arXiv:2611.18397）</h3><p><strong>作者</strong>：Run Luo、Kuan Zhang、Qi Deng 等（共 27位）<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.CV<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18397">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18397">PDF</a></p><p>研究通用视觉—语言—动作智能体能否在长时程、实时交互环境完成任务；作者将数万小时键鼠轨迹继续预训练、稀疏思维指令微调、多轮强化学习与云边推理组合，并报告在多款3D 开放世界游戏中达到熟练玩家相近的表现、在 2D游戏基准上也具竞争力。价值在于尝试用统一轨迹训练跨数字与具身环境的agent；摘要未给具体分数、基线细节、训练算力和延迟分布，泛化与成本仍需全文核验。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="tracing-knowledge-and-reasoning-in-llmarxiv2611.17461">TracingKnowledge and Reasoning in LLM（arXiv:2611.17461）</h3><p><strong>作者</strong>：Yang Wang、Xiao Wang、Yiqi Liu 等（共 7位）<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.17461">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.17461">PDF</a> · <a href="https://github.com/extraordinarylab/trace-kr">代码/项目</a></p><p>研究任务级分数是否掩盖大语言模型内部使用知识或推理的差异；作者将注意力、激活和表征信号组合成分析框架，在24 个基准上评估 16 个LLM，观察到知识型与推理型任务的内部处理模式有系统差别。价值在于补充“得分是多少”之外的诊断视角；内部信号与能力的关系仍属分析性证据，不能单独证明模型实际采用了某种推理过程。代码：<a href="https://github.com/extraordinarylab/trace-kr">trace-kr</a>。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="vision-language-action-models-a-life-cycle-survey-of-design-training-and-deploymentarxiv2611.18372">Vision-Language-ActionModels: A Life-Cycle Survey of Design, Training andDeployment（arXiv:2611.18372）</h3><p><strong>作者</strong>：Suvarna Kadam (Witsense AI)、Soran Parsa(University of Huddersfield)<br><strong>来源/分类</strong>：arXiv · cs.RO、cs.AI、cs.ET、cs.LG<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18372">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18372">PDF</a></p><p>综述 2022 年 12 月至 2026 年 10 月的 88项视觉—语言—动作研究，并沿设计、训练和部署七个维度拆解 22个模型。作者归纳数据从遥操作扩展到社区与人类视频、模型规模分化为 3–7B与消费级 GPU可运行的小模型，以及操控与导航合并等趋势；同时指出高基准分数不能保证轻微物体或相机变化下的鲁棒性。适合建立研究地图；趋势结论受纳入工作和快速变化的模型版本影响，本文是综述而非统一实验。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="jfinbench-a-continuously-refreshable-japanese-financial-benchmark-from-the-latest-certification-examsarxiv2611.18130">JFinBench:A Continuously Refreshable Japanese Financial Benchmark from the LatestCertification Exams（arXiv:2611.18130）</h3><p><strong>作者</strong>：Issa Sugiura、Taro Makino、TakashiIshida<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18130">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18130">PDF</a> · <a href="https://github.com/SakanaAI/JFinBench">代码</a> · <a href="https://huggingface.co/datasets/SakanaAI/JFinBench">数据集</a></p><p>JFinBench 用 2026 年六类日本金融资格考试建立 321道可更新题目，并以人工核验的 agentic 流程处理不同考试格式；作者比较 12个模型，报告 Claude Fable 5 为 95.8%、GPT-6 Astra 为93.6%，最佳开放权重模型 Kimi K3.1 Pro 为83.4%，启用终端和网页工具后差距缩小。它测的是地区化金融知识，不是金融专业资格或真实业务能力；题目范围有限，考试晚于报告的知识截止时间也不能排除训练污染。已核读全文，代码和数据链接见条目。</p><p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p><h3 id="from-images-to-grounded-edits-a-real-world-benchmark-for-chinese-grammatical-error-correction-in-handwritten-essaysarxiv2611.17966">FromImages to Grounded Edits: A Real-World Benchmark for Chinese GrammaticalError Correction in Handwritten Essays（arXiv:2611.17966）</h3><p><strong>作者</strong>：Weiru Zhang、Yuzhong Hong、Junwei Bao 等（共 5位）<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.17966">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.17966">PDF</a></p><p>研究模型能否直接从中国中小学生手写作文图像发现语病、生成修改并定位原字符；作者发布含150 篇作文、251 张图像、2,731 段待改文本的 G-CGEC-Eval，并比较单次VLM、OCR/视觉定位流水线和 agent 工作流。作者报告 GPT-5.5 单次 F1 为0.22%，加入 OCR 与定位流水线为 12.37%，按错误类型拆分的多 agent 流程为22.83%；即使最佳方案仍漏掉多数错误。数据仅覆盖中文 K-12作文，且工具链与单模型设置并非纯粹等成本比较；见重点分析。</p><p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p><h3 id="webarena-pro-a-heterogeneous-multimodal-reproducible-benchmark-for-web-agentsarxiv2611.17955">WebArena-Pro:A Heterogeneous, Multimodal, Reproducible Benchmark for WebAgents（arXiv:2611.17955）</h3><p><strong>作者</strong>：Imene Kerboua、Fatemeh Pesaran Zadeh、Xing HanLù 等（共 22 位）<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、cs.LG<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.17955">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.17955">PDF</a> · <a href="https://webarena-pro.github.io">项目页</a></p><p>WebArena-Pro 构造 300 项任务，覆盖 20个自托管网页应用、六类领域，并把音频与视频纳入 agent观察和操作。作者报告在 50 步预算下最佳组合成功率为 62.3%，通用 agent配置最高为30.3%；媒体工具消融显示，去掉媒体访问会显著降低音视频任务表现。基准可复现且应用覆盖广，但模型、agentharness 与 API 配置共同影响排名，不能把成绩归因于单一模型；闭源 API成本也需计入。项目主页见链接，重点分析列出费用和对照限制。</p><p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p><h3 id="from-chats-to-markets-agenticpay-for-llm-powered-negotiation-in-multi-agent-commercearxiv2602.06008">FromChats to Markets: AgenticPay for LLM-Powered Negotiation in Multi-AgentCommerce（arXiv:2602.06008）</h3><p><strong>作者</strong>：Xianyang Liu、Shangding Gu、Fan Xu 等（共 8位）<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.LG<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2602.06008">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2602.06008">PDF</a> · <a href="https://github.com/SAIL-Research-Lab/AgenticPay">代码/项目</a></p><p>AgenticPay 研究多模态模型能否在商品信息、隐藏偏好和多议题条件下进行多agent 商务谈判；基准含 160个任务、四种商业场景和八种市场拓扑。作者报告最强模型 GlobalScore 为42.3/100，市场由双边转向多方时平均下降 5.7 分，开放权重模型最多下降 11.5分。它把议价福利和多方竞争放入同一评测，值得用于研究交易型agent；但任务与效用由基准设计定义，不能外推到真实消费者或商业利润，模型比较也包括闭源API。代码和数据：<a href="https://github.com/SAIL-Research-Lab/AgenticPay">AgenticPay</a>。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="training-reasoning-models-in-simulation-to-natively-use-real-robotsarxiv2611.18562">TrainingReasoning Models in Simulation to Natively Use RealRobots（arXiv:2611.18562）</h3><p><strong>作者</strong>：Jiaming Tang、Zhuoyang Zhang、Junxian Guo等（共 11 位）<br><strong>来源/分类</strong>：arXiv · cs.RO、cs.LG<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18562">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18562">PDF</a> · <a href="https://github.com/mit-han-lab/pear">代码</a></p><p>研究开放权重推理模型能否仅靠仿真强化学习学会直接操作真实机器人；作者以27B 模型、PEAR 训练引擎和 LIBERO/RoboDojo任务训练，不使用机器人演示或额外控制 harness。作者报告 LIBERO 成功率由1.6% 升至 74.4%，在未见过的真实双臂机器人试验成功率为 60%（基础模型为0），在 LIBERO-Pro 的新任务上为 57.4%，对照演示微调的 π0.5 为0.75%。结果支持仿真到实机迁移的可能性；训练只覆盖两个模拟器和少量任务，单步推理平均约4.3 秒且提示设定影响结果。代码：<a href="https://github.com/mit-han-lab/pear">PEAR</a>，重点分析详述全文证据。</p><p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p><h3 id="personalization-of-basic-and-moral-values-guiding-llm-controlled-assistant-robotsarxiv2611.18230">Personalizationof Basic and Moral Values Guiding LLM-Controlled AssistantRobots（arXiv:2611.18230）</h3><p><strong>作者</strong>：Mateusz Wozniak、Qi Gao、AgnieszkaWykowska<br><strong>来源/分类</strong>：arXiv · cs.HC、cs.AI<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18230">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18230">PDF</a></p><p>研究个人会希望助理机器人遵循怎样的基本与道德价值，以及提示词能否让LLM 贴合用户偏好；作者对 22 名潜在用户施测三种心理量表，并比较 15个模型。参与者希望机器人相较自身降低个人导向、提高社会导向价值，提示模型扮演机器人只能弱幅度移动其价值画像。研究提醒“总体对齐”未必等于个性化偏好；样本小、量表自报和假设性情境都不能证明真实人机互动效果。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="mastars-multi-agent-sequential-trajectory-augmentation-with-return-conditioned-subgoalsarxiv2611.17793">MASTARS:Multi-Agent Sequential Trajectory Augmentation with Return-ConditionedSubgoals（arXiv:2611.17793）</h3><p><strong>作者</strong>：Jiwon Jeon、Myungsik Cho、Woojun Kim 等（共 7位）<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.17793">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.17793">PDF</a></p><p>MASTARS针对离线多智能体强化学习中轨迹增强难同时保留多样性与协同的问题，提出扩散式按agent 顺序生成轨迹，并用 inpainting 维持跨 agent 一致性。摘要报告在MPE、SMAC 与 SMAC-v2 等基准上改善多个离线 MARL方法。其价值是把联合轨迹的协调约束放进生成过程；摘要没有提供各任务数值、训练成本和统计区间，基线公平性、生成数据是否带来分布外收益及复现条件需查全文。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="verifiable-pxrd-hill-climbing-pxrd-structure-determination-with-llm-agentsarxiv2611.17539">VerifiablepXRD: Hill-climbing pXRD structure determination with LLMagents（arXiv:2611.17539）</h3><p><strong>作者</strong>：Samuel Chen、Jiaru Bai、Austin Henry Cheng等（共 5 位）<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.17539">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.17539">PDF</a></p><p>研究 LLM agent 能否利用可验证的仿真经验解决粉末 X射线衍射晶体结构识别；pXRD-Bench 含 200 个模拟单相问题，并扩展至 15个实测多相样本。作者报告适配后选定结构恢复率由 27% 升到 69%，重复采样和verifier引导的推理时扩展还能提高结果。亮点是用可计算的衍射图匹配作为验证器，并尝试从合成失败经验改进实验数据求解；实测样本数量仍小，模拟到真实实验与未收录结构的外推有限，具体基线需全文核对。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="vlan-vision-language-accessible-navigationarxiv2611.18346">VLAN:Vision-Language Accessible Navigation（arXiv:2611.18346）</h3><p><strong>作者</strong>：Jie Hu、Yu Zheng、Wenzhi Wu 等（共 6位）<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CV<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18346">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18346">PDF</a> · <a href="https://github.com/InSAI-Lab/VLAN">代码/项目</a></p><p>VLAN 针对“可通行”取决于行动者身体与无障碍需求的问题，建立 1,000个场景、20,000 条导航轨迹和 160,000个关键帧，覆盖轮式/腿式机器人及视觉或行动障碍者，并标记可通过、绕行、高风险和阻断。作者报告现有VLM难以在不同用户画像间稳定调整障碍重要性、安全标准与路径选择。它把可达性约束从普通到达率指标中独立出来；摘要没有提供详细模型分数或统计不确定度，真实人群安全收益尚未验证。代码与数据：<a href="https://github.com/InSAI-Lab/VLAN">VLAN</a>。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="privacypr-a-dataset-of-real-world-privacy-fixes-for-benchmarking-privacy-aware-code-reviewarxiv2611.18293">PrivacyPR:A Dataset of Real-World Privacy Fixes for Benchmarking Privacy-AwareCode Review（arXiv:2611.18293）</h3><p><strong>作者</strong>：Hua Yang、Aditya Bhardwaj、Shidong Pan、BowenXu<br><strong>来源/分类</strong>：arXiv · cs.CR、cs.AI、cs.SE<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18293">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18293">PDF</a> · <a href="https://doi.org/10.5281/zenodo.23744765">DOI/数据</a></p><p>PrivacyPR 从 1,469 个 GitHub 仓库整理 4,131 个已合并PR，包含开发者接受的隐私修复、评审语境与 GDPR标签；评测时回退修复以重新引入缺陷。作者报告两种 coding agent 在 200 条Small 集上，通用审查提示仅发现 42%–51% 缺陷，明确要求检查隐私后升至88%–91%，同时误报 11%–15%；更细粒度 GDPR标签的人类一致性较弱。价值在于测试真实修复而非合成漏洞；标签受 LLM预标注影响，且人工复核者看到了标签。数据、代码和评审材料见DOI，详见重点分析。</p><p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p><h3 id="a-multi-layered-ai-pipeline-for-bpmn-generation-from-natural-languagearxiv2611.18157">AMulti-Layered AI Pipeline for BPMN Generation from NaturalLanguage（arXiv:2611.18157）</h3><p><strong>作者</strong>：Alexandru Rancea、Ionut Anghel、Tudor Cioara等（共 5 位）<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18157">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18157">PDF</a></p><p>研究如何把自然语言流程说明转成 BPMN 业务流程图；作者组合 RoBERTa实体抽取、LLM 控制流推断、动态 few-shot和本体填充，并在文献/行业流程及一个心脏病患者过渡护理流程上评估。摘要报告关系抽取准确率90.7%，并称多个场景下结构与参考图对齐。它把非相邻控制关系与结构校验分开处理；摘要未列出数据规模、严格基线和可复现链接，单个真实流程案例不足以证明跨行业稳健性。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="who-should-be-on-the-panel-task-conditioned-persona-selection-for-llm-trading-agentsarxiv2611.18150">WhoShould Be on the Panel? Task-Conditioned Persona Selection for LLMTrading Agents（arXiv:2611.18150）</h3><p><strong>作者</strong>：Boming Yang、Yuquan Wang、Jiaxian Guo 等（共 5位）<br><strong>来源/分类</strong>：arXiv · q-fin.TR、cs.AI<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18150">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18150">PDF</a> · <a href="https://github.com/tinyrolls/FinPanel">代码</a></p><p>【双主题】FinPanel 根据每只股票的方向盲统计画像，动态挑选不同风格的LLM trader persona，再由 manager 汇总独立观点与分层历史记录。作者在 8只美股的 2025 年历史测试中报告均值收益 16.1%，优于复现的既有 LLMagent；这是带交易成本设定的历史回测，不是因果证据或实盘结果。完整方法、基线、样本外边界和回撤数据见同日<a href="/2026/11/17/daily-finance-papers-2026-11-17/">金融篇重点分析</a>。</p><p><strong>证据状态</strong>：已核阅 arXiv 官方 HTML全文；双主题论文的交易回测详析见同日金融篇。</p><h3 id="telephysica-agentic-reconstruction-of-physically-interactive-scenesarxiv2611.18078">TelePhysica:Agentic Reconstruction of Physically InteractiveScenes（arXiv:2611.18078）</h3><p><strong>作者</strong>：Ruiqi Shu、Xufeng Zhan、Yuanzhi Liang 等（共 6位）<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18078">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18078">PDF</a> · <a href="https://interactive4d.vercel.app/">项目主页</a></p><p>TelePhysica 从单张照片闭环重建可交互的物理场景：视觉语言 coding agent生成几何和物理描述，再以轮廓匹配、零力重力平衡检查及统一刚体/布料/弹性体求解器验证，并用模拟轨迹约束视频扩散。作者在100 场景基准上报告平衡验证通过率从单次合成的 0% 升至 81%，完整 5 秒受力rollout 通过率为 49%；轨迹条件视频的运动掩膜 IoU 也比直接图生视频高约2.3–5倍。限制是材料参数来自先验而非在线识别，证据以小规模桌面场景仿真为主，较大的视频模型需约41GB GPU 显存。重点分析核读全文。</p><p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p><h3 id="agent-as-a-judgearxiv2611.18067">Agent-as-a-Judge（arXiv:2611.18067）</h3><p><strong>作者</strong>：Runyang You、Hongru Cai、Caiqi Zhang 等（共 8位）<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18067">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18067">PDF</a></p><p>综述“主动评估器”如何在给出 verdict 前通过工具、记忆、规划或多 agent协作补齐静态执行日志缺失的证据。作者整理并复现部分 agentic judge结果，指出不同任务和架构的增益并不一致，并把成本、可靠性、安全与治理列为部署约束。价值在于提醒评估器需要主动检查事实与环境状态；摘要未提供可直接横向比较的统一数值，综述整理也不等于独立的大规模验证。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="mineralexp-benchmarking-llm-agents-for-experimental-design-in-real-world-mineral-explorationarxiv2611.17931">MineralExp:Benchmarking LLM Agents for Experimental Design in Real-World MineralExploration（arXiv:2611.17931）</h3><p><strong>作者</strong>：Bing Wang、Mingyang Wang、Yuanhang Mi 等（共11 位）<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.CE<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.17931">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.17931">PDF</a></p><p>MineralExp 把地球化学实验设计改写为假设驱动的多标签选择问题，含 277个案例、1,572 份专家核验计划，将 19类实验映射到五类矿床过程。作者报告当前 agent普遍召回较高、精确率较低，容易建议过多实验。统一分类便于在开放式方案间评估覆盖度；但离散化会压缩仪器与操作细节，LLM-as-a-Judge与文献案例也不能替代真实实验的成本和成功率。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+&lt;h2 id=&quot;重点关注&quot;&gt;重点关注&lt;/h2&gt;
+&lt;h3 id=&quot;仿真强化学习能否让开放模型直接操作真实机器人&quot;&gt;仿真强化学习能否让开放模型直接操作真实机器人？&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;论文&lt;/strong&gt;：&lt;a href=</summary>
+      
+    
+    
+    
+    <category term="每日论文" scheme="https://www.polarisac.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
+    
+    
+    <category term="AI" scheme="https://www.polarisac.top/tags/AI/"/>
+    
+    <category term="论文" scheme="https://www.polarisac.top/tags/%E8%AE%BA%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>每日金融论文简报（2026-11-17）</title>
+    <link href="https://www.polarisac.top/2026/11/17/daily-finance-papers-2026-11-17/"/>
+    <id>https://www.polarisac.top/2026/11/17/daily-finance-papers-2026-11-17/</id>
+    <published>2026-11-17T02:15:00.000Z</published>
+    <updated>2026-11-17T02:34:01.792Z</updated>
+    
+    <content type="html"><![CDATA[<span id="more"></span><h2 id="重点关注">重点关注</h2><h3 id="finpanel多智能体交易系统应先决定由谁组成">FinPanel：多智能体交易系统应先决定由谁组成</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.18150">WhoShould Be on the Panel? Task-Conditioned Persona Selection for LLMTrading Agents</a>（arXiv:2611.18150）<br><strong>作者</strong>：Boming Yang、Yuquan Wang、Jiaxian Guo 等（共 5位）<br><strong>来源/分类</strong>：arXiv · q-fin.TR、cs.AI<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18150">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18150">PDF</a> · <a href="https://github.com/tinyrolls/FinPanel">代码</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML全文；以下复述作者报告，非独立复现。</p><ul><li><strong>研究问题、方法与基线</strong>：FinPanel先用不含涨跌方向的交易统计画像，为每只股票选取不同 traderpersona；成员各自给出每日观点，manager再结合分层历史记录决定持仓。评测遵循 FINSABER 时间排序和成本设定，在 8只美股的 2025 年测试窗运行，并将所有 LLM 方法统一到gpt-oss-120b；对照包括固定 panel、FinMem/FinAgent/TradingAgents重实现、规则、预测和强化学习策略。</li><li><strong>作者报告的结果</strong>：作者表 1 报告 FinPanel八股等权平均累计收益 16.1%，三种既有 LLM agent 中最好为7.9%；平均最大回撤 −20.7%，buy-and-hold 为 −26.9%。固定 panel会失去大部分优势，增加席位或增强 manager 作用有限；不过 2025单年八股表现并非每只股票都胜过 buy-and-hold。</li><li><strong>创新与局限/失败条件</strong>：创新是把“任务条件下选择成员”作为独立设计变量，而非只改协同方式。结果是带成本的历史回测，虽使用模型知识截止后的年份，但只有八只股票和一个完整年度，也没有跨股票显著性检验；基线重实现意味着绝对回报不等同原论文。它不是因果识别、实时交易验证或投资建议。</li><li><strong>适合谁读、建议章节</strong>：适合金融agent、量化回测和多智能体系统读者。建议读 §3 的 recruiter/manager设计、§4.1 的数据切分与成本、§4.2–4.5 的表 1、panel 消融和 warm-up，再读§5 的限制。代码：<a href="https://github.com/tinyrolls/FinPanel">FinPanel</a>。</li></ul><h3 id="白银定盘模拟组织话术可能改变-llm-的合谋行为">白银定盘模拟：组织话术可能改变LLM 的合谋行为</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.17515">APush Down the Mountain: Framing Effects and Internal State Interventionson Collusive Behavior in a Long-Horizon LLMAgent</a>（arXiv:2611.17515）<br><strong>作者</strong>：Harrison C. Margolin<br><strong>来源/分类</strong>：arXiv ·cs.AI、cs.CL、cs.MA、econ.GN、q-fin.EC、q-fin.TR<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.17515">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.17515">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML全文；以下复述作者报告，非独立复现。</p><ul><li><strong>研究问题、方法与基线</strong>：把 Gemma 3 12B置于伦敦白银定盘案中的被告角色，使用真实案件转录材料构造 260次模拟；改变对手提出请求的收益、损失、责备或赞许框架，也测试管理层压力和另一家银行背书。第二阶段把框架诱发的内部状态注入第22 层，观察回复行为变化。</li><li><strong>作者报告的结果</strong>：作者报告第一阶段中损失框架合谋参与率25%（p=.007）、责备框架 33%（p=.0003），中性为5%；另一家银行在赞许框架下背书时参与率从 18% 升至 40%（Holmp=.027）。管理层压力把交易量提高 10–19倍，但没有提高合谋。状态注入的方向不一：损失/责备状态在 60次请求中全部拒绝，赞许/收益状态提高合谋。</li><li><strong>创新与局限/失败条件</strong>：它用情境随机操纵框架，因此对这个模拟环境中的行为差异有较强内部对照；但论文自称evaluation inprogress，只有一个主模型、一个市场和一个历史案件，重复次数有限、请求顺序固定。内部状态干预和行为试验的精度不同，也不能证明真实交易员或部署agent 会同样反应。</li><li><strong>适合谁读、建议章节</strong>：适合金融合规、agent安全与行为经济学读者。建议读 §3 的实验设计、§4 的预设 framing 结果、§5的状态注入与监控，再读 §8 的限制；此研究不是实盘操纵证据。</li></ul><h3 id="decode用可控信贷环境拆解决策器离最优值差在哪里">DECODE：用可控信贷环境拆解决策器离最优值差在哪里</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.18367">DECODE: DecomposableEnvironments for COntrolled Sequential-DecisionEvaluation</a>（arXiv:2611.18367）<br><strong>作者</strong>：Diego Silva Prado、Bruno Caldas de Souza、TiagoAmaral Penteado de Jesus 等（共 6 位）<br><strong>来源/分类</strong>：arXiv · cs.LG、q-fin.RM、stat.ML<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18367">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18367">PDF</a> · <a href="https://github.com/alpha-synthesis/decode-arxiv">代码</a> · <a href="https://doi.org/10.5281/zenodo.24200270">复现材料</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML全文；以下复述作者报告，非独立复现。</p><ul><li><strong>研究问题、方法与基线</strong>：在消费信贷催收生成器中构造五个部分可观测环境，动力学已知、记忆与过程噪声可控。基准固定其余求解器，只改变信息输入、规划期或回应模型；最优值由可访问隐藏状态和借款人特征的oracle 计算，比较梯度提升决策器与精确参考。</li><li><strong>作者报告的结果</strong>：在确定性基础环境里，规划期由 1个月扩到 6 个月，使两个 gradient-boosted solver的得分提高相当于精确最优值的 15–17 个百分点；最佳基线仍低于 oracle 15.6点。指定干预顺序中，三项状态输入改动先降 6.3点，再以真实还款响应替换日志拟合模型提高 15.6 点，最终净恢复 9 点。</li><li><strong>创新与局限/失败条件</strong>：新意是将“为什么分数低”改造成可以逐项干预的决策实验。差异取决于回应模型和干预顺序，不能把中间变化唯一归因；环境是已知机制的合成信贷世界，隐藏状态由研究者设定，不能直接推断真实借贷、催收政策或借款人福利。</li><li><strong>适合谁读、建议章节</strong>：适合信用风险、序贯决策与模型评估读者。建议读§2 的环境与 oracle、§3.1–3.4 的规划/记忆/噪声结果，以及 §4对外部有效性的讨论。代码：<a href="https://github.com/alpha-synthesis/decode-arxiv">GitHub</a>；复现实验：<a href="https://doi.org/10.5281/zenodo.24200270">Zenodo</a>。</li></ul><h3 id="局部随机波动率迭代以少量迭代逼近期权报价">局部随机波动率迭代：以少量迭代逼近期权报价</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.18214">Local Stochastic VolatilityIterations</a>（arXiv:2611.18214）<br><strong>作者</strong>：Christian Bayer、Denis Belomestny、Paul P.Hager、John Schoenmakers<br><strong>来源/分类</strong>：arXiv · q-fin.CP<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18214">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18214">PDF</a> · <a href="https://github.com/hagerpa/locsvol">代码</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML全文；以下复述作者报告，非独立复现。</p><ul><li><strong>研究问题、方法与基线</strong>：对当前 leverage factor进行模拟，并用单次时点—状态回归估计给定现货的随机方差，再更新 leveragefactor；回归用正值 quasi-likelihood，随后可用正则化 Gauss–Newton针对期权报价修正。论文与相同 Bergomi 模型、局部波动率目标和随机路径的particle method 对照；蒙特卡洛使用 2<sup>15</sup> 条 Sobol 路径。</li><li><strong>作者报告的结果</strong>：测试数据是利率公告日的 S&amp;P 500指数期权报价，Bergomi 参数保持为四周前校准值。固定点迭代五轮后，63/143个系数的 leverage surface 在报价区间内已达到数个波动率 bp的拟合误差；再做四步报价修正，流动报价落入 bid–ask 区间的比例由 45%/50%提升至 87%/95%。</li><li><strong>创新与局限/失败条件</strong>：主要贡献是易复现的校准算法和报价拟合，不是收益预测。证据集中在单一利率事件日及指定两因子模型，报价拟合程度不代表模型真实生成机制、样本外定价精度或交易利润；市场报价噪声和目标局部波动率的构造仍会影响结果。</li><li><strong>适合谁读、建议章节</strong>：适合随机波动率建模、期权定价与数值校准读者。建议读§2 的固定点迭代、§3.1–3.3 的市场数据/粒子法基线，以及 §3.4的校准和报价修正结果。代码与数值设置：<a href="https://github.com/hagerpa/locsvol">locsvol</a>。</li></ul><h3 id="高维-var-的-broken-adaptive-ridge预测优势会随时期变化">高维 VAR的 Broken Adaptive Ridge：预测优势会随时期变化</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.18227">Broken Adaptive Ridge inHigh-Dimensional Vector Autoregressions</a>（arXiv:2611.18227）<br><strong>作者</strong>：Gianluca Cubadda、Luca Margaritella、OrestPrifti<br><strong>来源/分类</strong>：arXiv · econ.EM、stat.ME<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18227">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18227">PDF</a> · <a href="https://github.com/orestprifti/TS-BAR">复现代码</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML全文；以下复述作者报告，非独立复现。</p><ul><li><strong>研究问题、方法与基线</strong>：BAR 通过迭代重加权 Ridge在固定点上形成坐标阈值并产生精确零系数；理论处理变量数可超过样本量、且近似稀疏并受物理依赖的情形。论文先用每个设计1,000 次蒙特卡洛对照 Lasso、adaptive Lasso 与 SCAD，再在 126条月度美国宏观序列的 FRED-MD 上预测通胀。</li><li><strong>作者报告的结果</strong>：作者报告 BAR在模拟中的预测误差和相关变量保留率总体占优。FRED-MD 的 1990–2019年一月期 RMSFE/MAFE 相对 AR(1) 为 0.86/0.90；COVID 时段一月 RMSFE 比值为1.10，显示落后于 AR(1)，2022–2025 年为 0.91，优势随宏观状态而变。</li><li><strong>创新与局限/失败条件</strong>：创新是把稀疏选择、理论误差界和宏观预测组合验证；经验部分使用公开FRED-MD 的 June 2026 vintage和明确分期，但表现不是每个预测窗口都胜出。预测误差比率不构成因果识别或资产投资回报，也没有说明该方法可稳定挑选可交易信号。</li><li><strong>适合谁读、建议章节</strong>：适合高维时间序列、宏观预测和计量方法读者。建议读§3 的理论条件、§4 的 Monte Carlo、§5 的分时期通胀预测；代码：<a href="https://github.com/orestprifti/TS-BAR">TS-BAR</a>。</li></ul><h3 id="盈利惊喜的大小本身也是信息估值不确定性改变反应曲线">盈利惊喜的大小本身也是信息：估值不确定性改变反应曲线</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.15747">Huge If True: Learning from theSize of the Surprise</a>（arXiv:2611.15747）<br><strong>作者</strong>：Thomas Graeber、Christopher Roth、MarcoSammon、Constantin Schesch<br><strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.15747">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.15747">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML全文；以下复述作者报告，非独立复现。</p><ul><li><strong>研究问题、方法与基线</strong>：作者建立投资者同时学习盈利惊喜和未知“盈利到价值乘数”的模型；经验部分先随机增加受试者的处理约束，再分析1984–2023 年逾 22.4万次美国公司盈利公告，使用五日市场调整回报和估值不确定性代理。随机实验区分了外生信息处理约束，字段分析检验模型预言的非线性反应。</li><li><strong>作者报告的结果</strong>：实验报告处理约束使对全部盈利新闻的敏感度平均降低约四分之一，却让接近分析师共识的小惊喜反应提高约四分之一。字段中，高估值不确定性公司在大惊喜区间反应更平缓、共识附近更陡；作者报告这种非线性关联符合模型预测，但未发现估值不确定性带来显著的公告后漂移差异。</li><li><strong>创新与局限/失败条件</strong>：随机约束实验对实验任务中的处理效应有因果解释；把valuation uncertainty 当作现实投资者乘数不确定性的 proxy则是观察性识别，不能当成估值不确定性本身的因果效应。作者没有建立样本外可交易信号，公告后收益也未表现出相应显著漂移。</li><li><strong>适合谁读、建议章节</strong>：适合资产定价、行为金融与盈利公告研究读者。建议读§2 的贝叶斯模型、§3 的随机实验、§4.1–4.3 的数据与基准反应，再读 §4.8的公告后收益检验。</li></ul><h2 id="金融论文">金融论文</h2><h3 id="who-should-be-on-the-panel-task-conditioned-persona-selection-for-llm-trading-agentsarxiv2611.18150">WhoShould Be on the Panel? Task-Conditioned Persona Selection for LLMTrading Agents（arXiv:2611.18150）</h3><p><strong>作者</strong>：Boming Yang、Yuquan Wang、Jiaxian Guo 等（共 5位）<br><strong>来源/分类</strong>：arXiv · q-fin.TR、cs.AI<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18150">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18150">PDF</a> · <a href="https://github.com/tinyrolls/FinPanel">代码</a></p><p>【双主题】FinPanel 按股票的方向盲交易特征选择 traderpersona，比较固定 panel、既有 LLM trading agent 与规则/预测/RL基线。作者在 8 只美国股票、2025 年知识截止之后的带成本回测中报告 panel均值收益 16.1%，超过三种既有 LLMagent；细读表格与样本边界见重点。单年、八只股票的历史回测不提供因果识别、统计显著性或真实可交易证明，不能转成投资建议。</p><p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p><h3 id="a-push-down-the-mountain-framing-effects-and-internal-state-interventions-on-collusive-behavior-in-a-long-horizon-llm-agentarxiv2611.17515">APush Down the Mountain: Framing Effects and Internal State Interventionson Collusive Behavior in a Long-Horizon LLMAgent（arXiv:2611.17515）</h3><p><strong>作者</strong>：Harrison C. Margolin<br><strong>来源/分类</strong>：arXiv ·cs.AI、cs.CL、cs.MA、econ.GN、q-fin.EC、q-fin.TR<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.17515">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.17515">PDF</a></p><p>作者把 Gemma 3 12B 放入基于伦敦白银定盘案文本的市场操纵模拟，进行 260次情境实验，并在第二阶段注入不同框架诱发的内部状态。摘要报告损失框架和责备框架下合谋参与率分别为25% 与 33%，中性仅5%；第二家银行背书会提高参与率。它提示普通组织话术可能改变 agent风险行为，但论文注明评估仍在进行；单模型、单案例、固定请求顺序和少量复现使其不能代表真实交易员或真实市场。详见重点分析。</p><p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p><h3 id="decode-decomposable-environments-for-controlled-sequential-decision-evaluationarxiv2611.18367">DECODE:Decomposable Environments for COntrolled Sequential-DecisionEvaluation（arXiv:2611.18367）</h3><p><strong>作者</strong>：Diego Silva Prado、Bruno Caldas deSouza、Tiago Amaral Penteado de Jesus 等（共 6 位）<br><strong>来源/分类</strong>：arXiv · cs.LG、q-fin.RM、stat.ML<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18367">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18367">PDF</a> · <a href="https://github.com/alpha-synthesis/decode-arxiv">代码</a> · <a href="https://doi.org/10.5281/zenodo.24200270">复现材料</a></p><p>DECODE为消费信贷催收构建五个部分可观测、动态已知的合成环境，允许固定决策器、只改输入信息或规划规则，测量每项干预如何改变离最优值的差距。摘要报告把规划期从1 个月延至 6 个月，使两个梯度提升求解器离精确最优值的分数提高 15–17个百分点；即便如此，最佳模型仍低 15.6点。研究价值在于为决策系统提供可控因果式诊断实验；这是已知动力学的模拟基准，干预效应依赖顺序，不能直接推断真实信贷客户结果。</p><p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p><h3 id="local-stochastic-volatility-iterationsarxiv2611.18214">LocalStochastic Volatility Iterations（arXiv:2611.18214）</h3><p><strong>作者</strong>：Christian Bayer、Denis Belomestny、Paul P.Hager、John Schoenmakers<br><strong>来源/分类</strong>：arXiv · q-fin.CP<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18214">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18214">PDF</a> · <a href="https://github.com/hagerpa/locsvol">代码</a></p><p>提出局部随机波动率 leverage factor的固定点校准：每轮模拟当前模型，再以时间/状态回归估计给定现货的随机方差，并可用期权报价作正则化Gauss–Newton 修正。作者将两因子 Bergomi参数固定为四周前校准值，以利率决策日 S&amp;P 500期权报价测试；五轮迭代后，63/143 个系数可把波动率面拟合到数个bp，进一步报价修正后 87%/95% 流动报价落入 bid–ask区间。与同样本路径的粒子法对照，复现包公开。证据限于单日校准，不是样本外收益或真实策略结果；见重点分析。</p><p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p><h3 id="mapping-ngfs-climate-pathways-to-gics-sectors-application-to-portfolio-decarbonizationarxiv2611.17942">MappingNGFS Climate Pathways to GICS Sectors: Application to PortfolioDecarbonization（arXiv:2611.17942）</h3><p><strong>作者</strong>：Maxime Jourand、Adel Medjabri<br><strong>来源/分类</strong>：arXiv · q-fin.GN<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.17942">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.17942">PDF</a></p><p>提出按 Scope 1/2 排放实质性将 NGFS 气候情景部门映射到GICS，再按地区暴露把转型路径下推到组合层面。作者用两个 ETF指数示范：行业权重与地区路径会改变组合融资排放的演进轨迹。方法透明且适用于气候压力测试；证据是说明性案例，没有因果识别、组合回报或样本外检验，不能把减排路径解释为投资表现。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="well-posedness-of-semimartingale-optimal-transport-with-partial-marginal-constraints-for-model-calibrationarxiv2611.17902">Well-Posednessof Semimartingale Optimal Transport with Partial Marginal Constraintsfor Model Calibration（arXiv:2611.17902）</h3><p><strong>作者</strong>：Jean-François Chassagneux、StéphaneCrépey、Grégoire Loeper、Justin Ruelland<br><strong>来源/分类</strong>：arXiv · q-fin.MF、math.OC、math.PR<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.17902">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.17902">PDF</a></p><p>研究以有限期权价格校准连续时间金融模型时，半鞅最优传输问题何时存在解以及价格变化会否造成解跳变；作者在凸对偶、PDE与非退化条件下证明强对偶、原始/对偶解存在或唯一，并给出价格附近的局部Lipschitz稳定性。贡献是为允许历史依赖特征的模型校准提供理论适定性；结论严格依赖数学假设，没有实证拟合或交易业绩检验。适合随机控制、最优传输与量化校准读者。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="a-horizon-specific-attribute-conditioned-neural-network-for-estimating-health-state-transition-probabilities-in-irregular-longitudinal-data-the-lantern-frameworkarxiv2606.13880">AHorizon-Specific Attribute-Conditioned Neural Network for EstimatingHealth-State Transition Probabilities in Irregular Longitudinal Data:The LANTERN Framework（arXiv:2606.13880）</h3><p><strong>作者</strong>：Bright Kwaku Manu、Beckett Sterner、PetarJevtic<br><strong>来源/分类</strong>：arXiv · cs.LG、q-fin.RM<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2606.13880">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2606.13880">PDF</a></p><p>LANTERN 用 Health and Retirement Study不规则纵向健康记录估计健康、轻度失能、重度失能和死亡状态的 1–3年转移概率；模型把历史表征、观测间隔以及人口和社会经济属性放入神经网络，并与RNN、多项逻辑回归、梯度提升树和精算连续时间 Markov链比较。作者报告两年期准确率与校准有竞争力，聚合转移矩阵优于多项逻辑回归且接近较强基线。适用于长期护理精算建模；摘要没有具体差异值，预测校准不等于保费/偿付能力改善，未核实外部地区泛化。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="broken-adaptive-ridge-in-high-dimensional-vector-autoregressionsarxiv2611.18227">BrokenAdaptive Ridge in High-Dimensional VectorAutoregressions（arXiv:2611.18227）</h3><p><strong>作者</strong>：Gianluca Cubadda、Luca Margaritella、OrestPrifti<br><strong>来源/分类</strong>：arXiv · econ.EM、stat.ME<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.18227">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.18227">PDF</a> · <a href="https://github.com/orestprifti/TS-BAR">复现代码</a></p><p>Broken Adaptive Ridge（BAR）以迭代重加权 Ridge 在高维 VAR中产生精确零系数，并在近似稀疏、物理依赖条件下给出误差率；作者比较Lasso、adaptive Lasso 与 SCAD 的蒙特卡洛表现，并用 126个美国月度宏观序列做 FRED-MD 通胀预测。全文报告 1990–2019 年一个月预测RMSFE 为 AR(1) 的 0.86 倍，但 2020–2021 年同一比值升至1.10，说明优势随时期变化。价值是理论与预测应用结合；结果不是因果估计或资产回报，也不是所有周期都胜出，代码公开。重点分析含更多基线与分期结果。</p><p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p><h3 id="intentionally-overidentifying-local-projectionsarxiv2610.13269">IntentionallyOveridentifying Local Projections（arXiv:2610.13269）</h3><p><strong>作者</strong>：Junjie Guo、Endong Wang、Ke-Li Xu<br><strong>来源/分类</strong>：arXiv · econ.EM<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2610.13269">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2610.13269">PDF</a></p><p>提出在局部投影中把额外滞后项作为排除工具变量，旨在高持续性数据下提高脉冲响应估计效率；作者在有限阶模型与鞅差冲击条件下证明渐近性质，并用模拟和实证例子比较OLS。单位根 AR(1) 特例中，单个过度识别限制下的渐近方差为 2−1/h，对比 OLS滞后增强方差h；论文还讨论错设和稳健推断的取舍。对宏观金融识别有方法价值；理论结论依赖动态设定，额外工具也可能放大模型错设，不直接提供因果结论或可交易收益。</p><p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p><h3 id="huge-if-true-learning-from-the-size-of-the-surprisearxiv2611.15747">HugeIf True: Learning from the Size of the Surprise（arXiv:2611.15747）</h3><p><strong>作者</strong>：Thomas Graeber、Christopher Roth、MarcoSammon、Constantin Schesch<br><strong>来源/分类</strong>：arXiv · econ.GN、q-fin.EC<br><strong>原文</strong>：<a href="https://arxiv.org/abs/2611.15747">arXiv摘要页</a> · <a href="https://arxiv.org/pdf/2611.15747">PDF</a></p><p>研究投资者同时学习盈利惊喜与“盈利如何映射为企业价值”的未知乘数时，估值不确定性如何改变市场反应；作者结合随机化的有激励预测实验和1984–2023 年逾 22.4 万次、来自 7,500多家美国企业的盈利公告。实验中更强信息处理约束使平均敏感度下降约四分之一、但对接近共识的小惊喜的敏感度上升约四分之一；实证中估值不确定性与同一非线性形状相关。随机实验识别处理约束的作用，字段结果仍是代理变量下的相关性；作者未发现估值不确定性带来显著的公告后漂移差异，不能当成预测或投资信号。全文重点分析。</p><p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p><blockquote><p>本篇转述的是论文中的理论、经验估计或历史回测结果，不构成投资建议；回测和模拟表现不等于真实可交易收益。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+&lt;h2 id=&quot;重点关注&quot;&gt;重点关注&lt;/h2&gt;
+&lt;h3 id=&quot;finpanel多智能体交易系统应先决定由谁组成&quot;&gt;FinPanel：多智能体交易系统应先决定由谁组成&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;论文&lt;/strong&gt;：&lt;a h</summary>
+      
+    
+    
+    
+    <category term="每日论文" scheme="https://www.polarisac.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
+    
+    
+    <category term="论文" scheme="https://www.polarisac.top/tags/%E8%AE%BA%E6%96%87/"/>
+    
+    <category term="金融" scheme="https://www.polarisac.top/tags/%E9%87%91%E8%9E%8D/"/>
+    
+  </entry>
+  
+  <entry>
     <title>2026-11-17 GitHub 热榜简报：从 Agent 控制面到本地工具链</title>
-    <link href="https://www.polarishaw.top/2026/11/17/daily-github-trending-2026-11-17/"/>
-    <id>https://www.polarishaw.top/2026/11/17/daily-github-trending-2026-11-17/</id>
+    <link href="https://www.polarisac.top/2026/11/17/daily-github-trending-2026-11-17/"/>
+    <id>https://www.polarisac.top/2026/11/17/daily-github-trending-2026-11-17/</id>
     <published>2026-11-17T01:00:00.000Z</published>
     <updated>2026-11-17T02:10:49.863Z</updated>
     
@@ -51,33 +109,33 @@ SDK&lt;/span&gt;&lt;span&gt;容器运维&lt;/span&gt;&lt;span&gt;技能评估&lt
     
     
     
-    <category term="GitHub 热榜" scheme="https://www.polarishaw.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
+    <category term="GitHub 热榜" scheme="https://www.polarisac.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
     
     
-    <category term="GitHub" scheme="https://www.polarishaw.top/tags/GitHub/"/>
+    <category term="GitHub" scheme="https://www.polarisac.top/tags/GitHub/"/>
     
-    <category term="开源" scheme="https://www.polarishaw.top/tags/%E5%BC%80%E6%BA%90/"/>
+    <category term="开源" scheme="https://www.polarisac.top/tags/%E5%BC%80%E6%BA%90/"/>
     
-    <category term="Agent" scheme="https://www.polarishaw.top/tags/Agent/"/>
+    <category term="Agent" scheme="https://www.polarisac.top/tags/Agent/"/>
     
-    <category term="Agent 协议" scheme="https://www.polarishaw.top/tags/Agent-%E5%8D%8F%E8%AE%AE/"/>
+    <category term="代码审查" scheme="https://www.polarisac.top/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
     
-    <category term="代码审查" scheme="https://www.polarishaw.top/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
+    <category term="Agent 协议" scheme="https://www.polarisac.top/tags/Agent-%E5%8D%8F%E8%AE%AE/"/>
     
-    <category term="技能评估" scheme="https://www.polarishaw.top/tags/%E6%8A%80%E8%83%BD%E8%AF%84%E4%BC%B0/"/>
+    <category term="人类反馈" scheme="https://www.polarisac.top/tags/%E4%BA%BA%E7%B1%BB%E5%8F%8D%E9%A6%88/"/>
     
-    <category term="人类反馈" scheme="https://www.polarishaw.top/tags/%E4%BA%BA%E7%B1%BB%E5%8F%8D%E9%A6%88/"/>
+    <category term="技能评估" scheme="https://www.polarisac.top/tags/%E6%8A%80%E8%83%BD%E8%AF%84%E4%BC%B0/"/>
     
-    <category term="浏览器调试" scheme="https://www.polarishaw.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B0%83%E8%AF%95/"/>
+    <category term="浏览器调试" scheme="https://www.polarisac.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B0%83%E8%AF%95/"/>
     
-    <category term="本地工具链" scheme="https://www.polarishaw.top/tags/%E6%9C%AC%E5%9C%B0%E5%B7%A5%E5%85%B7%E9%93%BE/"/>
+    <category term="本地工具链" scheme="https://www.polarisac.top/tags/%E6%9C%AC%E5%9C%B0%E5%B7%A5%E5%85%B7%E9%93%BE/"/>
     
   </entry>
   
   <entry>
     <title>2026-11-16 GitHub 热榜简报：Agent 的协议、审查与可重复交付</title>
-    <link href="https://www.polarishaw.top/2026/11/16/daily-github-trending-2026-11-16/"/>
-    <id>https://www.polarishaw.top/2026/11/16/daily-github-trending-2026-11-16/</id>
+    <link href="https://www.polarisac.top/2026/11/16/daily-github-trending-2026-11-16/"/>
+    <id>https://www.polarisac.top/2026/11/16/daily-github-trending-2026-11-16/</id>
     <published>2026-11-16T01:00:00.000Z</published>
     <updated>2026-11-16T02:09:30.627Z</updated>
     
@@ -109,33 +167,33 @@ Office&lt;/span&gt;&lt;span&gt;技能评估&lt;/span&gt;
     
     
     
-    <category term="GitHub 热榜" scheme="https://www.polarishaw.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
+    <category term="GitHub 热榜" scheme="https://www.polarisac.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
     
     
-    <category term="GitHub" scheme="https://www.polarishaw.top/tags/GitHub/"/>
+    <category term="GitHub" scheme="https://www.polarisac.top/tags/GitHub/"/>
     
-    <category term="开源" scheme="https://www.polarishaw.top/tags/%E5%BC%80%E6%BA%90/"/>
+    <category term="开源" scheme="https://www.polarisac.top/tags/%E5%BC%80%E6%BA%90/"/>
     
-    <category term="Agent" scheme="https://www.polarishaw.top/tags/Agent/"/>
+    <category term="Agent" scheme="https://www.polarisac.top/tags/Agent/"/>
     
-    <category term="工程工作流" scheme="https://www.polarishaw.top/tags/%E5%B7%A5%E7%A8%8B%E5%B7%A5%E4%BD%9C%E6%B5%81/"/>
+    <category term="工程工作流" scheme="https://www.polarisac.top/tags/%E5%B7%A5%E7%A8%8B%E5%B7%A5%E4%BD%9C%E6%B5%81/"/>
     
-    <category term="浏览器自动化" scheme="https://www.polarishaw.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    <category term="浏览器自动化" scheme="https://www.polarisac.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
     
-    <category term="Agent 协议" scheme="https://www.polarishaw.top/tags/Agent-%E5%8D%8F%E8%AE%AE/"/>
+    <category term="Web 平台" scheme="https://www.polarisac.top/tags/Web-%E5%B9%B3%E5%8F%B0/"/>
     
-    <category term="代码审查" scheme="https://www.polarishaw.top/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
+    <category term="代码审查" scheme="https://www.polarisac.top/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
     
-    <category term="Web 平台" scheme="https://www.polarishaw.top/tags/Web-%E5%B9%B3%E5%8F%B0/"/>
+    <category term="Agent 协议" scheme="https://www.polarisac.top/tags/Agent-%E5%8D%8F%E8%AE%AE/"/>
     
-    <category term="技能评估" scheme="https://www.polarishaw.top/tags/%E6%8A%80%E8%83%BD%E8%AF%84%E4%BC%B0/"/>
+    <category term="技能评估" scheme="https://www.polarisac.top/tags/%E6%8A%80%E8%83%BD%E8%AF%84%E4%BC%B0/"/>
     
   </entry>
   
   <entry>
     <title>2026-11-15 GitHub 热榜简报：Agent 的审查闭环、浏览器控制与本地基础设施</title>
-    <link href="https://www.polarishaw.top/2026/11/15/daily-github-trending-2026-11-15/"/>
-    <id>https://www.polarishaw.top/2026/11/15/daily-github-trending-2026-11-15/</id>
+    <link href="https://www.polarisac.top/2026/11/15/daily-github-trending-2026-11-15/"/>
+    <id>https://www.polarisac.top/2026/11/15/daily-github-trending-2026-11-15/</id>
     <published>2026-11-15T01:00:00.000Z</published>
     <updated>2026-11-15T02:10:11.250Z</updated>
     
@@ -169,31 +227,31 @@ SDK&lt;/span&gt;&lt;span&gt;自托管&lt;/span&gt;
     
     
     
-    <category term="GitHub 热榜" scheme="https://www.polarishaw.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
+    <category term="GitHub 热榜" scheme="https://www.polarisac.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
     
     
-    <category term="GitHub" scheme="https://www.polarishaw.top/tags/GitHub/"/>
+    <category term="GitHub" scheme="https://www.polarisac.top/tags/GitHub/"/>
     
-    <category term="开源" scheme="https://www.polarishaw.top/tags/%E5%BC%80%E6%BA%90/"/>
+    <category term="开源" scheme="https://www.polarisac.top/tags/%E5%BC%80%E6%BA%90/"/>
     
-    <category term="Agent" scheme="https://www.polarishaw.top/tags/Agent/"/>
+    <category term="Agent" scheme="https://www.polarisac.top/tags/Agent/"/>
     
-    <category term="自托管" scheme="https://www.polarishaw.top/tags/%E8%87%AA%E6%89%98%E7%AE%A1/"/>
+    <category term="自托管" scheme="https://www.polarisac.top/tags/%E8%87%AA%E6%89%98%E7%AE%A1/"/>
     
-    <category term="本地推理" scheme="https://www.polarishaw.top/tags/%E6%9C%AC%E5%9C%B0%E6%8E%A8%E7%90%86/"/>
+    <category term="本地推理" scheme="https://www.polarisac.top/tags/%E6%9C%AC%E5%9C%B0%E6%8E%A8%E7%90%86/"/>
     
-    <category term="浏览器自动化" scheme="https://www.polarishaw.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    <category term="浏览器自动化" scheme="https://www.polarisac.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
     
-    <category term="代码审查" scheme="https://www.polarishaw.top/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
+    <category term="代码审查" scheme="https://www.polarisac.top/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
     
-    <category term="现代 Web" scheme="https://www.polarishaw.top/tags/%E7%8E%B0%E4%BB%A3-Web/"/>
+    <category term="现代 Web" scheme="https://www.polarisac.top/tags/%E7%8E%B0%E4%BB%A3-Web/"/>
     
   </entry>
   
   <entry>
     <title>每日 AI 论文简报（2026-11-14）</title>
-    <link href="https://www.polarishaw.top/2026/11/14/daily-ai-papers-2026-11-14/"/>
-    <id>https://www.polarishaw.top/2026/11/14/daily-ai-papers-2026-11-14/</id>
+    <link href="https://www.polarisac.top/2026/11/14/daily-ai-papers-2026-11-14/"/>
+    <id>https://www.polarisac.top/2026/11/14/daily-ai-papers-2026-11-14/</id>
     <published>2026-11-14T02:15:00.000Z</published>
     <updated>2026-11-14T02:41:35.582Z</updated>
     
@@ -206,19 +264,19 @@ SDK&lt;/span&gt;&lt;span&gt;自托管&lt;/span&gt;
     
     
     
-    <category term="每日论文" scheme="https://www.polarishaw.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
+    <category term="每日论文" scheme="https://www.polarisac.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
     
     
-    <category term="AI" scheme="https://www.polarishaw.top/tags/AI/"/>
+    <category term="AI" scheme="https://www.polarisac.top/tags/AI/"/>
     
-    <category term="论文" scheme="https://www.polarishaw.top/tags/%E8%AE%BA%E6%96%87/"/>
+    <category term="论文" scheme="https://www.polarisac.top/tags/%E8%AE%BA%E6%96%87/"/>
     
   </entry>
   
   <entry>
     <title>每日金融论文简报（2026-11-14）</title>
-    <link href="https://www.polarishaw.top/2026/11/14/daily-finance-papers-2026-11-14/"/>
-    <id>https://www.polarishaw.top/2026/11/14/daily-finance-papers-2026-11-14/</id>
+    <link href="https://www.polarisac.top/2026/11/14/daily-finance-papers-2026-11-14/"/>
+    <id>https://www.polarisac.top/2026/11/14/daily-finance-papers-2026-11-14/</id>
     <published>2026-11-14T02:15:00.000Z</published>
     <updated>2026-11-14T02:41:35.582Z</updated>
     
@@ -231,19 +289,19 @@ SDK&lt;/span&gt;&lt;span&gt;自托管&lt;/span&gt;
     
     
     
-    <category term="每日论文" scheme="https://www.polarishaw.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
+    <category term="每日论文" scheme="https://www.polarisac.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
     
     
-    <category term="论文" scheme="https://www.polarishaw.top/tags/%E8%AE%BA%E6%96%87/"/>
+    <category term="论文" scheme="https://www.polarisac.top/tags/%E8%AE%BA%E6%96%87/"/>
     
-    <category term="金融" scheme="https://www.polarishaw.top/tags/%E9%87%91%E8%9E%8D/"/>
+    <category term="金融" scheme="https://www.polarisac.top/tags/%E9%87%91%E8%9E%8D/"/>
     
   </entry>
   
   <entry>
     <title>2026-11-14 GitHub 热榜简报：Agent 的审查、人机协作与可运行基础设施</title>
-    <link href="https://www.polarishaw.top/2026/11/14/daily-github-trending-2026-11-14/"/>
-    <id>https://www.polarishaw.top/2026/11/14/daily-github-trending-2026-11-14/</id>
+    <link href="https://www.polarisac.top/2026/11/14/daily-github-trending-2026-11-14/"/>
+    <id>https://www.polarisac.top/2026/11/14/daily-github-trending-2026-11-14/</id>
     <published>2026-11-14T01:00:00.000Z</published>
     <updated>2026-11-14T02:05:08.798Z</updated>
     
@@ -278,31 +336,31 @@ GPU
     
     
     
-    <category term="GitHub 热榜" scheme="https://www.polarishaw.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
+    <category term="GitHub 热榜" scheme="https://www.polarisac.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
     
     
-    <category term="GitHub" scheme="https://www.polarishaw.top/tags/GitHub/"/>
+    <category term="GitHub" scheme="https://www.polarisac.top/tags/GitHub/"/>
     
-    <category term="开源" scheme="https://www.polarishaw.top/tags/%E5%BC%80%E6%BA%90/"/>
+    <category term="开源" scheme="https://www.polarisac.top/tags/%E5%BC%80%E6%BA%90/"/>
     
-    <category term="Agent" scheme="https://www.polarishaw.top/tags/Agent/"/>
+    <category term="Agent" scheme="https://www.polarisac.top/tags/Agent/"/>
     
-    <category term="自托管" scheme="https://www.polarishaw.top/tags/%E8%87%AA%E6%89%98%E7%AE%A1/"/>
+    <category term="自托管" scheme="https://www.polarisac.top/tags/%E8%87%AA%E6%89%98%E7%AE%A1/"/>
     
-    <category term="代码审查" scheme="https://www.polarishaw.top/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
+    <category term="应用安全" scheme="https://www.polarisac.top/tags/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/"/>
     
-    <category term="现代 Web" scheme="https://www.polarishaw.top/tags/%E7%8E%B0%E4%BB%A3-Web/"/>
+    <category term="代码审查" scheme="https://www.polarisac.top/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
     
-    <category term="应用安全" scheme="https://www.polarishaw.top/tags/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/"/>
+    <category term="现代 Web" scheme="https://www.polarisac.top/tags/%E7%8E%B0%E4%BB%A3-Web/"/>
     
-    <category term="网络工具" scheme="https://www.polarishaw.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7/"/>
+    <category term="网络工具" scheme="https://www.polarisac.top/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
   <entry>
     <title>2026-11-13 GitHub 热榜简报：Agent 从规则、执行到本地推理</title>
-    <link href="https://www.polarishaw.top/2026/11/13/daily-github-trending-2026-11-13/"/>
-    <id>https://www.polarishaw.top/2026/11/13/daily-github-trending-2026-11-13/</id>
+    <link href="https://www.polarisac.top/2026/11/13/daily-github-trending-2026-11-13/"/>
+    <id>https://www.polarisac.top/2026/11/13/daily-github-trending-2026-11-13/</id>
     <published>2026-11-13T01:00:00.000Z</published>
     <updated>2026-11-13T02:10:12.693Z</updated>
     
@@ -335,27 +393,27 @@ UI&lt;/span&gt;
     
     
     
-    <category term="GitHub 热榜" scheme="https://www.polarishaw.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
+    <category term="GitHub 热榜" scheme="https://www.polarisac.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
     
     
-    <category term="GitHub" scheme="https://www.polarishaw.top/tags/GitHub/"/>
+    <category term="GitHub" scheme="https://www.polarisac.top/tags/GitHub/"/>
     
-    <category term="开源" scheme="https://www.polarishaw.top/tags/%E5%BC%80%E6%BA%90/"/>
+    <category term="开源" scheme="https://www.polarisac.top/tags/%E5%BC%80%E6%BA%90/"/>
     
-    <category term="Agent" scheme="https://www.polarishaw.top/tags/Agent/"/>
+    <category term="Agent" scheme="https://www.polarisac.top/tags/Agent/"/>
     
-    <category term="自托管" scheme="https://www.polarishaw.top/tags/%E8%87%AA%E6%89%98%E7%AE%A1/"/>
+    <category term="自托管" scheme="https://www.polarisac.top/tags/%E8%87%AA%E6%89%98%E7%AE%A1/"/>
     
-    <category term="本地推理" scheme="https://www.polarishaw.top/tags/%E6%9C%AC%E5%9C%B0%E6%8E%A8%E7%90%86/"/>
+    <category term="本地推理" scheme="https://www.polarisac.top/tags/%E6%9C%AC%E5%9C%B0%E6%8E%A8%E7%90%86/"/>
     
-    <category term="应用安全" scheme="https://www.polarishaw.top/tags/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/"/>
+    <category term="应用安全" scheme="https://www.polarisac.top/tags/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
   <entry>
     <title>每日AI论文简报（2026-11-12）</title>
-    <link href="https://www.polarishaw.top/2026/11/12/daily-ai-papers-2026-11-12/"/>
-    <id>https://www.polarishaw.top/2026/11/12/daily-ai-papers-2026-11-12/</id>
+    <link href="https://www.polarisac.top/2026/11/12/daily-ai-papers-2026-11-12/"/>
+    <id>https://www.polarisac.top/2026/11/12/daily-ai-papers-2026-11-12/</id>
     <published>2026-11-12T02:15:00.000Z</published>
     <updated>2026-11-12T02:36:43.661Z</updated>
     
@@ -371,19 +429,19 @@ UI&lt;/span&gt;
     
     
     
-    <category term="每日论文" scheme="https://www.polarishaw.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
+    <category term="每日论文" scheme="https://www.polarisac.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
     
     
-    <category term="AI" scheme="https://www.polarishaw.top/tags/AI/"/>
+    <category term="AI" scheme="https://www.polarisac.top/tags/AI/"/>
     
-    <category term="论文" scheme="https://www.polarishaw.top/tags/%E8%AE%BA%E6%96%87/"/>
+    <category term="论文" scheme="https://www.polarisac.top/tags/%E8%AE%BA%E6%96%87/"/>
     
   </entry>
   
   <entry>
     <title>每日金融论文简报（2026-11-12）</title>
-    <link href="https://www.polarishaw.top/2026/11/12/daily-finance-papers-2026-11-12/"/>
-    <id>https://www.polarishaw.top/2026/11/12/daily-finance-papers-2026-11-12/</id>
+    <link href="https://www.polarisac.top/2026/11/12/daily-finance-papers-2026-11-12/"/>
+    <id>https://www.polarisac.top/2026/11/12/daily-finance-papers-2026-11-12/</id>
     <published>2026-11-12T02:15:00.000Z</published>
     <updated>2026-11-12T02:36:43.661Z</updated>
     
@@ -399,19 +457,19 @@ UI&lt;/span&gt;
     
     
     
-    <category term="每日论文" scheme="https://www.polarishaw.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
+    <category term="每日论文" scheme="https://www.polarisac.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
     
     
-    <category term="论文" scheme="https://www.polarishaw.top/tags/%E8%AE%BA%E6%96%87/"/>
+    <category term="论文" scheme="https://www.polarisac.top/tags/%E8%AE%BA%E6%96%87/"/>
     
-    <category term="金融" scheme="https://www.polarishaw.top/tags/%E9%87%91%E8%9E%8D/"/>
+    <category term="金融" scheme="https://www.polarisac.top/tags/%E9%87%91%E8%9E%8D/"/>
     
   </entry>
   
   <entry>
     <title>2026-11-12 GitHub 热榜简报：Agent 的指南、执行边界与真实系统</title>
-    <link href="https://www.polarishaw.top/2026/11/12/daily-github-trending-2026-11-12/"/>
-    <id>https://www.polarishaw.top/2026/11/12/daily-github-trending-2026-11-12/</id>
+    <link href="https://www.polarisac.top/2026/11/12/daily-github-trending-2026-11-12/"/>
+    <id>https://www.polarisac.top/2026/11/12/daily-github-trending-2026-11-12/</id>
     <published>2026-11-12T01:00:00.000Z</published>
     <updated>2026-11-12T02:03:08.047Z</updated>
     
@@ -446,31 +504,31 @@ Web&lt;/span&gt;&lt;span&gt;浏览器执行&lt;/span&gt;&lt;span&gt;应用安全
     
     
     
-    <category term="GitHub 热榜" scheme="https://www.polarishaw.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
+    <category term="GitHub 热榜" scheme="https://www.polarisac.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
     
     
-    <category term="GitHub" scheme="https://www.polarishaw.top/tags/GitHub/"/>
+    <category term="GitHub" scheme="https://www.polarisac.top/tags/GitHub/"/>
     
-    <category term="开源" scheme="https://www.polarishaw.top/tags/%E5%BC%80%E6%BA%90/"/>
+    <category term="开源" scheme="https://www.polarisac.top/tags/%E5%BC%80%E6%BA%90/"/>
     
-    <category term="Agent" scheme="https://www.polarishaw.top/tags/Agent/"/>
+    <category term="Agent" scheme="https://www.polarisac.top/tags/Agent/"/>
     
-    <category term="自托管" scheme="https://www.polarishaw.top/tags/%E8%87%AA%E6%89%98%E7%AE%A1/"/>
+    <category term="自托管" scheme="https://www.polarisac.top/tags/%E8%87%AA%E6%89%98%E7%AE%A1/"/>
     
-    <category term="MCP" scheme="https://www.polarishaw.top/tags/MCP/"/>
+    <category term="MCP" scheme="https://www.polarisac.top/tags/MCP/"/>
     
-    <category term="浏览器自动化" scheme="https://www.polarishaw.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    <category term="浏览器自动化" scheme="https://www.polarisac.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
     
-    <category term="Web 平台" scheme="https://www.polarishaw.top/tags/Web-%E5%B9%B3%E5%8F%B0/"/>
+    <category term="Web 平台" scheme="https://www.polarisac.top/tags/Web-%E5%B9%B3%E5%8F%B0/"/>
     
-    <category term="应用安全" scheme="https://www.polarishaw.top/tags/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/"/>
+    <category term="应用安全" scheme="https://www.polarisac.top/tags/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
   <entry>
     <title>每日 AI 论文简报｜2026 年 11 月 11 日</title>
-    <link href="https://www.polarishaw.top/2026/11/11/daily-ai-papers-2026-11-11/"/>
-    <id>https://www.polarishaw.top/2026/11/11/daily-ai-papers-2026-11-11/</id>
+    <link href="https://www.polarisac.top/2026/11/11/daily-ai-papers-2026-11-11/"/>
+    <id>https://www.polarisac.top/2026/11/11/daily-ai-papers-2026-11-11/</id>
     <published>2026-11-11T02:15:00.000Z</published>
     <updated>2026-11-11T02:30:00.259Z</updated>
     
@@ -486,19 +544,19 @@ Web&lt;/span&gt;&lt;span&gt;浏览器执行&lt;/span&gt;&lt;span&gt;应用安全
     
     
     
-    <category term="每日论文" scheme="https://www.polarishaw.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
+    <category term="每日论文" scheme="https://www.polarisac.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
     
     
-    <category term="AI" scheme="https://www.polarishaw.top/tags/AI/"/>
+    <category term="AI" scheme="https://www.polarisac.top/tags/AI/"/>
     
-    <category term="论文" scheme="https://www.polarishaw.top/tags/%E8%AE%BA%E6%96%87/"/>
+    <category term="论文" scheme="https://www.polarisac.top/tags/%E8%AE%BA%E6%96%87/"/>
     
   </entry>
   
   <entry>
     <title>每日金融论文简报｜2026 年 11 月 11 日</title>
-    <link href="https://www.polarishaw.top/2026/11/11/daily-finance-papers-2026-11-11/"/>
-    <id>https://www.polarishaw.top/2026/11/11/daily-finance-papers-2026-11-11/</id>
+    <link href="https://www.polarisac.top/2026/11/11/daily-finance-papers-2026-11-11/"/>
+    <id>https://www.polarisac.top/2026/11/11/daily-finance-papers-2026-11-11/</id>
     <published>2026-11-11T02:15:00.000Z</published>
     <updated>2026-11-11T02:33:11.509Z</updated>
     
@@ -514,19 +572,19 @@ Web&lt;/span&gt;&lt;span&gt;浏览器执行&lt;/span&gt;&lt;span&gt;应用安全
     
     
     
-    <category term="每日论文" scheme="https://www.polarishaw.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
+    <category term="每日论文" scheme="https://www.polarisac.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
     
     
-    <category term="论文" scheme="https://www.polarishaw.top/tags/%E8%AE%BA%E6%96%87/"/>
+    <category term="论文" scheme="https://www.polarisac.top/tags/%E8%AE%BA%E6%96%87/"/>
     
-    <category term="金融" scheme="https://www.polarishaw.top/tags/%E9%87%91%E8%9E%8D/"/>
+    <category term="金融" scheme="https://www.polarisac.top/tags/%E9%87%91%E8%9E%8D/"/>
     
   </entry>
   
   <entry>
     <title>2026-11-11 GitHub 热榜简报：Agent 的技能、浏览器与可执行系统</title>
-    <link href="https://www.polarishaw.top/2026/11/11/daily-github-trending-2026-11-11/"/>
-    <id>https://www.polarishaw.top/2026/11/11/daily-github-trending-2026-11-11/</id>
+    <link href="https://www.polarisac.top/2026/11/11/daily-github-trending-2026-11-11/"/>
+    <id>https://www.polarisac.top/2026/11/11/daily-github-trending-2026-11-11/</id>
     <published>2026-11-11T01:00:00.000Z</published>
     <updated>2026-11-11T02:13:15.582Z</updated>
     
@@ -555,31 +613,31 @@ UI&lt;/span&gt;&lt;span&gt;Home Assistant MCP&lt;/span&gt;&lt;span&gt;Rust
     
     
     
-    <category term="GitHub 热榜" scheme="https://www.polarishaw.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
+    <category term="GitHub 热榜" scheme="https://www.polarisac.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
     
     
-    <category term="GitHub" scheme="https://www.polarishaw.top/tags/GitHub/"/>
+    <category term="GitHub" scheme="https://www.polarisac.top/tags/GitHub/"/>
     
-    <category term="开源" scheme="https://www.polarishaw.top/tags/%E5%BC%80%E6%BA%90/"/>
+    <category term="开源" scheme="https://www.polarisac.top/tags/%E5%BC%80%E6%BA%90/"/>
     
-    <category term="Agent" scheme="https://www.polarishaw.top/tags/Agent/"/>
+    <category term="Agent" scheme="https://www.polarisac.top/tags/Agent/"/>
     
-    <category term="MCP" scheme="https://www.polarishaw.top/tags/MCP/"/>
+    <category term="MCP" scheme="https://www.polarisac.top/tags/MCP/"/>
     
-    <category term="Agent Skills" scheme="https://www.polarishaw.top/tags/Agent-Skills/"/>
+    <category term="Agent Skills" scheme="https://www.polarisac.top/tags/Agent-Skills/"/>
     
-    <category term="浏览器自动化" scheme="https://www.polarishaw.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    <category term="浏览器自动化" scheme="https://www.polarisac.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
     
-    <category term="Rust" scheme="https://www.polarishaw.top/tags/Rust/"/>
+    <category term="Rust" scheme="https://www.polarisac.top/tags/Rust/"/>
     
-    <category term="物理仿真" scheme="https://www.polarishaw.top/tags/%E7%89%A9%E7%90%86%E4%BB%BF%E7%9C%9F/"/>
+    <category term="物理仿真" scheme="https://www.polarisac.top/tags/%E7%89%A9%E7%90%86%E4%BB%BF%E7%9C%9F/"/>
     
   </entry>
   
   <entry>
     <title>每日 AI 论文简报｜2026 年 11 月 10 日</title>
-    <link href="https://www.polarishaw.top/2026/11/10/daily-ai-papers-2026-11-10/"/>
-    <id>https://www.polarishaw.top/2026/11/10/daily-ai-papers-2026-11-10/</id>
+    <link href="https://www.polarisac.top/2026/11/10/daily-ai-papers-2026-11-10/"/>
+    <id>https://www.polarisac.top/2026/11/10/daily-ai-papers-2026-11-10/</id>
     <published>2026-11-10T02:15:00.000Z</published>
     <updated>2026-11-10T02:34:28.602Z</updated>
     
@@ -596,19 +654,19 @@ Whe</summary>
     
     
     
-    <category term="每日论文" scheme="https://www.polarishaw.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
+    <category term="每日论文" scheme="https://www.polarisac.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
     
     
-    <category term="AI" scheme="https://www.polarishaw.top/tags/AI/"/>
+    <category term="AI" scheme="https://www.polarisac.top/tags/AI/"/>
     
-    <category term="论文" scheme="https://www.polarishaw.top/tags/%E8%AE%BA%E6%96%87/"/>
+    <category term="论文" scheme="https://www.polarisac.top/tags/%E8%AE%BA%E6%96%87/"/>
     
   </entry>
   
   <entry>
     <title>每日金融论文简报｜2026 年 11 月 10 日</title>
-    <link href="https://www.polarishaw.top/2026/11/10/daily-finance-papers-2026-11-10/"/>
-    <id>https://www.polarishaw.top/2026/11/10/daily-finance-papers-2026-11-10/</id>
+    <link href="https://www.polarisac.top/2026/11/10/daily-finance-papers-2026-11-10/"/>
+    <id>https://www.polarisac.top/2026/11/10/daily-finance-papers-2026-11-10/</id>
     <published>2026-11-10T02:15:00.000Z</published>
     <updated>2026-11-10T02:36:57.009Z</updated>
     
@@ -624,19 +682,19 @@ Whe</summary>
     
     
     
-    <category term="每日论文" scheme="https://www.polarishaw.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
+    <category term="每日论文" scheme="https://www.polarisac.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
     
     
-    <category term="论文" scheme="https://www.polarishaw.top/tags/%E8%AE%BA%E6%96%87/"/>
+    <category term="论文" scheme="https://www.polarisac.top/tags/%E8%AE%BA%E6%96%87/"/>
     
-    <category term="金融" scheme="https://www.polarishaw.top/tags/%E9%87%91%E8%9E%8D/"/>
+    <category term="金融" scheme="https://www.polarisac.top/tags/%E9%87%91%E8%9E%8D/"/>
     
   </entry>
   
   <entry>
     <title>2026-11-09 GitHub 热榜简报：Agent 从上下文走向执行环境</title>
-    <link href="https://www.polarishaw.top/2026/11/09/daily-github-trending-2026-11-09/"/>
-    <id>https://www.polarishaw.top/2026/11/09/daily-github-trending-2026-11-09/</id>
+    <link href="https://www.polarisac.top/2026/11/09/daily-github-trending-2026-11-09/"/>
+    <id>https://www.polarisac.top/2026/11/09/daily-github-trending-2026-11-09/</id>
     <published>2026-11-09T01:00:00.000Z</published>
     <updated>2026-11-09T02:09:01.554Z</updated>
     
@@ -665,29 +723,29 @@ Kubernetes&lt;/span&gt;&lt;span&gt;Agent-ready UI&lt;/span&gt;&lt;span&gt;物理
     
     
     
-    <category term="GitHub 热榜" scheme="https://www.polarishaw.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
+    <category term="GitHub 热榜" scheme="https://www.polarisac.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
     
     
-    <category term="GitHub" scheme="https://www.polarishaw.top/tags/GitHub/"/>
+    <category term="GitHub" scheme="https://www.polarisac.top/tags/GitHub/"/>
     
-    <category term="开源" scheme="https://www.polarishaw.top/tags/%E5%BC%80%E6%BA%90/"/>
+    <category term="开源" scheme="https://www.polarisac.top/tags/%E5%BC%80%E6%BA%90/"/>
     
-    <category term="开发工具" scheme="https://www.polarishaw.top/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    <category term="开发工具" scheme="https://www.polarisac.top/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
-    <category term="Agent" scheme="https://www.polarishaw.top/tags/Agent/"/>
+    <category term="Agent" scheme="https://www.polarisac.top/tags/Agent/"/>
     
-    <category term="浏览器自动化" scheme="https://www.polarishaw.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    <category term="浏览器自动化" scheme="https://www.polarisac.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
     
-    <category term="Kubernetes" scheme="https://www.polarishaw.top/tags/Kubernetes/"/>
+    <category term="Kubernetes" scheme="https://www.polarisac.top/tags/Kubernetes/"/>
     
-    <category term="机器人" scheme="https://www.polarishaw.top/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/"/>
+    <category term="机器人" scheme="https://www.polarisac.top/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/"/>
     
   </entry>
   
   <entry>
     <title>2026-11-08 GitHub 热榜简报：Agent 从操作界面走向工程底座</title>
-    <link href="https://www.polarishaw.top/2026/11/08/daily-github-trending-2026-11-08/"/>
-    <id>https://www.polarishaw.top/2026/11/08/daily-github-trending-2026-11-08/</id>
+    <link href="https://www.polarisac.top/2026/11/08/daily-github-trending-2026-11-08/"/>
+    <id>https://www.polarisac.top/2026/11/08/daily-github-trending-2026-11-08/</id>
     <published>2026-11-08T01:00:00.000Z</published>
     <updated>2026-11-08T02:08:38.374Z</updated>
     
@@ -716,31 +774,31 @@ UI&lt;/span&gt;&lt;span&gt;GPU Kubernetes&lt;/span&gt;&lt;span&gt;本地协议&l
     
     
     
-    <category term="GitHub 热榜" scheme="https://www.polarishaw.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
+    <category term="GitHub 热榜" scheme="https://www.polarisac.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
     
     
-    <category term="GitHub" scheme="https://www.polarishaw.top/tags/GitHub/"/>
+    <category term="GitHub" scheme="https://www.polarisac.top/tags/GitHub/"/>
     
-    <category term="开源" scheme="https://www.polarishaw.top/tags/%E5%BC%80%E6%BA%90/"/>
+    <category term="开源" scheme="https://www.polarisac.top/tags/%E5%BC%80%E6%BA%90/"/>
     
-    <category term="Agent" scheme="https://www.polarishaw.top/tags/Agent/"/>
+    <category term="Agent" scheme="https://www.polarisac.top/tags/Agent/"/>
     
-    <category term="安全审计" scheme="https://www.polarishaw.top/tags/%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1/"/>
+    <category term="安全审计" scheme="https://www.polarisac.top/tags/%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1/"/>
     
-    <category term="浏览器自动化" scheme="https://www.polarishaw.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    <category term="浏览器自动化" scheme="https://www.polarisac.top/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
     
-    <category term="可观测性" scheme="https://www.polarishaw.top/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/"/>
+    <category term="Kubernetes" scheme="https://www.polarisac.top/tags/Kubernetes/"/>
     
-    <category term="Kubernetes" scheme="https://www.polarishaw.top/tags/Kubernetes/"/>
+    <category term="可观测性" scheme="https://www.polarisac.top/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/"/>
     
-    <category term="Python" scheme="https://www.polarishaw.top/tags/Python/"/>
+    <category term="Python" scheme="https://www.polarisac.top/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>每日 AI 论文简报｜2026 年 11 月 7 日</title>
-    <link href="https://www.polarishaw.top/2026/11/07/daily-ai-papers-2026-11-07/"/>
-    <id>https://www.polarishaw.top/2026/11/07/daily-ai-papers-2026-11-07/</id>
+    <link href="https://www.polarisac.top/2026/11/07/daily-ai-papers-2026-11-07/"/>
+    <id>https://www.polarisac.top/2026/11/07/daily-ai-papers-2026-11-07/</id>
     <published>2026-11-07T02:15:00.000Z</published>
     <updated>2026-11-07T02:34:05.379Z</updated>
     
@@ -756,92 +814,12 @@ UI&lt;/span&gt;&lt;span&gt;GPU Kubernetes&lt;/span&gt;&lt;span&gt;本地协议&l
     
     
     
-    <category term="每日论文" scheme="https://www.polarishaw.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
+    <category term="每日论文" scheme="https://www.polarisac.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
     
     
-    <category term="AI" scheme="https://www.polarishaw.top/tags/AI/"/>
+    <category term="AI" scheme="https://www.polarisac.top/tags/AI/"/>
     
-    <category term="论文" scheme="https://www.polarishaw.top/tags/%E8%AE%BA%E6%96%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>每日金融论文简报｜2026 年 11 月 7 日</title>
-    <link href="https://www.polarishaw.top/2026/11/07/daily-finance-papers-2026-11-07/"/>
-    <id>https://www.polarishaw.top/2026/11/07/daily-finance-papers-2026-11-07/</id>
-    <published>2026-11-07T02:15:00.000Z</published>
-    <updated>2026-11-07T02:33:28.917Z</updated>
-    
-    <content type="html"><![CDATA[<span id="more"></span><h2 id="重点关注">重点关注</h2><h3 id="double-machine-learning-for-panel-data-identification-specification-and-a-bank-regulation-effectarxiv2611.07249">DoubleMachine Learning for Panel Data: Identification, Specification, and aBank Regulation Effect（arXiv:2611.07249）</h3><p><strong>问题与识别设计。</strong>论文检验面板双重机器学习（DML）在非线性变换、固定效应/一阶差分和不同nuisance 设定下究竟估计什么。应用是 2018 年美国银行监管改革：91家银行控股公司、2015Q2–2020Q1 共 20 个季度，比较资产 500–2,500 亿美元与100–500亿美元两组。两组都得到部分监管减免，因此比较的是差异监管暴露，不是“接受改革”相对“完全未处理”的总因果效应。</p><p><strong>作者报告的数字与基线。</strong> 复制的线性双向固定效应系数为0.0193（银行聚类标准误 0.0045），同输入随机森林为0.0181；排除资产分组曾变化的银行后线性系数降为0.0122。加入改革前增长特征，会降低 OLS/logit、森林、Polynomial LASSO 与XGBoost 的 partialling-out 估计。双重稳健 DiD对倾向模型更敏感；某个损失最小化 LASSO 设定的最大标准化对照权重中位数约87%。结果变量是季度风险加权资产增长，不是纯粹的风险偏好变化。</p><p><strong>创新与证据边界。</strong>论文把算法拟合稳定性与因果识别分开，说明不同变换可能改变 nuisance函数、目标效应和识别约束；模型/算法一致不证明平行趋势或其他识别条件成立。样本量是91个银行个体，处理时间统一编码在法规通过期，而实际监管豁免时间与银行不同；对照组也受到了其他减免。作者指出结果会随资产分组、先前增长、结果变量构造与时点定义变化。这里的系数是特定面板模型下的组间暴露差，不是实际可交易信号，也没有样本外收益检验。</p><p><strong>适合谁读。</strong>银行监管、因果机器学习和面板计量研究者。建议读第 2 节样本与制度时间、第3–5 节 DML 目标/识别和推断、第 6 节银行估计，最后核对补充材料 S7的数据来源与复现状态。</p><h3 id="priced-in-or-bet-on-cram-school-lessons-jeonse-leases-and-expected-appreciation-in-seoularxiv2611.05767">PricedIn or Bet On? Cram-School Lessons, Jeonse Leases, and ExpectedAppreciation in Seoul（arXiv:2611.05767）</h3><p><strong>研究问题与方法。</strong>论文问首尔补习学院可达性是否进入房价、全租押金（jeonse）以及预期升值。样本为2015 年至 2026 年 10 月的 2,197,510笔公寓成交与押金租约，使用商业地址地理编码和学院登记课程分类；主设计比较同一中学学区、同一月份的房屋，并进一步做小区、户型与月份控制、押金/售价比检验、新旧租约和政策事件窗。</p><p><strong>作者报告的结果。</strong> 500米内高中/升学考试学院从小区中位数 6 家增加到 97 分位约 50 家，房屋售价与jeonse 押金分别相关高 11.8%（95% 区间 5.2%–18.7%）与7.3%（0.5%–14.6%）；控制小区规模后分别为 5.6% 与5.9%。同户型、小区、月份的 jeonse/售价比没有可检测变化（作者报告p=0.85），所以价格水平的相关溢价并未显示为额外的预期升值。结果并非所有规格都同样强，作者把若干jeonse 结果列为提示性证据，并进行多重检验校正。</p><p><strong>识别、样本外与投资边界。</strong>这是精细控制下的房价相关性研究，不是随机实验；未观测的学区内部位置、房屋质量或学院选址仍可能共同影响价格。作者自己将核心假设写为控制变量后没有与学院密度共同变化的未观测房屋特征。没有样本外预测、可交易策略或租售套利收益；房价水平差异不能转成投资回报。全租押金制度与首尔学区也限制外推。</p><p><strong>适合谁读。</strong>房地产资产定价、城市经济和住房预期研究者。建议读第 4 节数据/地理编码、第5–6 节设计与主结果、第 7 节稳健性/政策检验及第 8 节限制。</p><h3 id="model-fit-vs-prediction-performance-contrasting-fixed-coefficient-models-with-mixture-modelsarxiv2510.09185">Modelfit vs prediction performance: contrasting fixed-coefficient models withmixture models（arXiv:2510.09185）</h3><p><strong>问题与方法。</strong> 混合logit、潜类别等模型经常有更高的面板似然，但单次选择预测未必更准。作者把面板似然提升分解为“选择一致性”（利用同一人的重复选择相关性）与“实现异质性”（对单次选择预测真正有用的部分），在揭示性选择数据与陈述性选择数据上比较七类混合规格，合计14 组面板/横截面模型，并做五折验证。</p><p><strong>作者报告的结果与基线。</strong> 对 14组比较，选择一致性占面板拟合增益的 90%以上；可用于无个人历史信息的单次选择预测的那部分增益介于 −18% 到+8%，在长面板上甚至可能为负。更灵活的混合分布有时提高拟合“天花板”，但不能保证估出的偏好异质性更接近真实，也不能保证无条件预测胜过固定系数模型。若预测可以条件化在同一个人的先前选择上，面板模型回答的是另一个更适当的问题。</p><p><strong>创新与边界。</strong>关键贡献是提醒研究者不要把面板训练似然直接当作实际单次预测力。论文有两类选择数据和交叉验证，但不是金融资产回报预测；具体发现受混合分布设定、样本中每人选择次数和可用历史信息影响。作者指出失配来源尚未完全确定，局部解释不构成对所有混合模型的普遍排序。</p><p><strong>适合谁读。</strong>离散选择、需求预测、消费者金融和模型评估研究者。建议读第 2–3 节分解、第4 节两组数据和五折验证、第 5 节结果与第 6 节限制。</p><h3 id="why-financial-prices-exhibit-brownian-motion-despite-predictable-order-flow-an-exactly-solvable-nonlinear-price-impact-modelarxiv2502.17906">Whyfinancial prices exhibit Brownian motion despite predictable order flow:An exactly solvable nonlinear price impactmodel（arXiv:2502.17906）</h3><p><strong>问题与方法。</strong>大额委托单拆分使买卖订单流呈长记忆、可预测，但价格长期仍近似扩散。论文把Lillo–Mike–Farmer 订单流模型推广为非线性价格冲击，并映射到可解析的Lévy-walk 模型，研究平方根冲击律如何改变价格方差。</p><p><strong>作者报告的核心结果与基线。</strong>在平方根冲击律下，即便订单流持续性存在，价格过程仍可保持布朗式扩散；作者把关键条件联系到委托单冲击有限方差。作为理论基线，若冲击与委托单量线性，模型会给出异常扩散，除非冲击和订单流衰减恰好精细抵消。全文是解析推导，没有新的证券样本、回测、统计显著性或交易成本收益数字。</p><p><strong>创新与边界。</strong>它给出一个解释订单流可预测而价格难预测的可解模型，并把平方根价格冲击与长期有效市场特征联系起来。结论是模型条件下的理论机制，不能证明所有市场都服从平方根律，也不能推出可获利信号；真实价格还有限价簿、异质投资者、制度变化等因素。作者提到的经验规律来自既有研究，本文并未对其做新的独立数据验证。</p><p><strong>适合谁读。</strong>市场微观结构、市场冲击与金融物理研究者。建议读第 2 节模型假设、第 3节解与扩散条件，再读第 4 节讨论；阅读时把理论推导与实证验证分开。</p><h3 id="cross-border-ownership-and-input-access-evidence-from-the-lithium-supply-chainarxiv2611.08430">Cross-BorderOwnership and Input Access: Evidence from the Lithium SupplyChain（arXiv:2611.08430）</h3><p><strong>问题与方法。</strong>论文研究跨境股权如何改变锂矿对精炼厂的供矿、成本与竞争。作者整理2015–2024年全球矿山/精炼厂面板，结合产能、成本、产量、所有权、市场价格与区域需求，估计结构供需模型，再对2024年股权剥离和禁止向中国出口矿石做模型反事实。作者将政策响应解释为短中期情景，固定产能、进入和估计参数。</p><p><strong>作者报告的关键数字。</strong>在继续开放贸易的模型情景中，把中国持有的海外股权转给独立当地所有者后，现货矿石采购增加20.93%，关联采购减少 47.84%，全球锂产量仅增加 0.06%，锂价下降0.12%。禁止向中国出口矿石的情景则令全球产量下降 25.36%，模型锂价上升77.19%；中国矿石价格上升，其他地区下降。两个政策情景结果差异很大，不能把“股权剥离”与“贸易禁令”混为一谈。</p><p><strong>识别与限制。</strong>观察到的共同所有权与供货关系是描述性关联；政策结论主要来自估计模型的反事实，不是准实验因果效应，也不是现实政策预测。结果依赖供需弹性、企业所有权利润目标和固定产能等设定；若短中期产能可调整、贸易替代渠道或投资进入不同，价格和产量会改变。情景数字是结构模型输出，不是统计显著性或可交易收益。</p><p><strong>适合谁读。</strong>关键矿产产业组织、供应链、能源转型与地缘经济研究者。建议读第 3–5节数据、模型与估计，第 7 节政策情景和第 8 节结论。</p><h3 id="the-potential-impact-of-fiscal-rule-changes-on-digital-products-tradearxiv2611.05714">Thepotential impact of fiscal rule changes on digital productstrade（arXiv:2611.05714）</h3><p><strong>问题与方法。</strong>论文比较数字服务税（DST）与对跨境数字产品征收关税等价税的收入、贸易与税收归属。作者将2016–2024 年 31 类数字产品双边贸易与 DST 税率、实物类似品关税合并，用PPML 引力模型估计 DST关联，并用采用事件研究刻画短期变化；之后把事件研究系数代入 2024年税制情景。</p><p><strong>作者报告的结果与基线。</strong> 跨目的地比较中，DST 税率每高1 个百分点与贸易低约 16%相关，但加入目的地或国家对固定效应后估计接近零。事件研究显示采用后贸易短期下降约8%–10%，两年后未见持续下降。按事件研究系数做的 2024 条件模拟，DST 收入约27 亿美元；DST 加关税等价税约 69 亿美元、样本覆盖贸易下降约 90亿美元（1.4%）；只用关税等价税约 43亿美元。若改用跨目的地比较系数，贸易下降变成 490亿美元（7.6%）、组合税制收入约 40 亿美元，结论对估计口径敏感。</p><p><strong>因果与经济边界。</strong>采用事件研究给出的是观察到的短期采用后变化，跨目的地的 16%是相关性；2024数字是依赖系数的条件模拟，不是已实施关税后的实际收入，也非政策“将导致”的预测。模型不扣除征管/合规成本，不计算税负最终由企业还是消费者承担，也省略一般均衡、价格、企业迁移和长期市场结构调整。它不是证券样本内/外回测，更不能转成投资建议。</p><p><strong>适合谁读。</strong>国际贸易、数字税与财政政策研究者。建议读第 3 节数据与 PPML/事件研究、第4–5 节结果、第 6 节情景和第 7 节限制。</p><h2 id="金融论文">金融论文</h2><blockquote><p>本节收录量化金融及采集范围内相关经济学论文。相关性、因果识别、理论推导和模型反事实分别标明；论文作者报告的统计结果不等于独立验证，情景模拟不等于真实可交易收益。本文不构成投资建议。</p></blockquote><h3 id="could-it-have-fit-anything-restrictiveness-of-economic-models-llms-and-ai-workflows"><a href="https://arxiv.org/abs/2602.07688">Could It Have Fit Anything?Restrictiveness of Economic Models, LLMs, and AI Workflows</a></h3><ul><li>作者：Drew Fudenberg、Wayne Yuan Gao、Zhiheng You</li><li>来源/分类：arXiv；econ.GN, q-fin.EC</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2602.07688">摘要页</a> · <a href="https://arxiv.org/pdf/2602.07688">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2602.07688">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：提出模型类别“限制性”的模拟估计与推断，并比较LLM、代码代理、表格基础模型和离散选择模型在彩票确定性等值与产品选择上的完备性/弹性表现。作者报告LLM 与代码代理完备性接近但代理限制性更弱，嵌套/混合 logit拟合份额较好却未改善价格弹性预测；这是 AI与经济方法交叉研究，没有真实交易或投资回报证据。仅依据摘要。</li></ul><h3 id="safety-research-and-the-allocation-of-frontier-compute"><a href="https://arxiv.org/abs/2610.14305">Safety Research and theAllocation of Frontier Compute</a></h3><ul><li>作者：Li Gan</li><li>来源/分类：arXiv；econ.GN, q-fin.EC</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2610.14305">摘要页</a> · <a href="https://arxiv.org/pdf/2610.14305">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2610.14305">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：以理论模型分析前沿 AI实验室如何在能力、安全研究与客户服务之间分配算力，以及监管者允许的延迟成本。基线校准中，客户出资的前置安全研究把灾难概率从75% 降到 51%，另一种假设下从 25% 降到14%；这些是依赖模型结构和校准的情景数值，不是经验因果或金融回报。属于 AI经济学，金融资产关联较间接。仅依据摘要。</li></ul><h3 id="model-fit-vs-prediction-performance-contrasting-fixed-coefficient-models-with-mixture-models"><a href="https://arxiv.org/abs/2510.09185">Model fit vs predictionperformance: contrasting fixed-coefficient models with mixturemodels</a></h3><ul><li>作者：Stephane Hess、Sander van Cranenburgh</li><li>来源/分类：arXiv；econ.EM</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2510.09185">摘要页</a> · <a href="https://arxiv.org/pdf/2510.09185">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2510.09185">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：作者报告的结果及其证据边界见重点关注全文解读。</li></ul><h3 id="why-financial-prices-exhibit-brownian-motion-despite-predictable-order-flow-an-exactly-solvable-nonlinear-price-impact-model"><a href="https://arxiv.org/abs/2502.17906">Why financial prices exhibitBrownian motion despite predictable order flow: An exactly solvablenonlinear price impact model</a></h3><ul><li>作者：Yuki Sato、Shunta Fujiwara、Kiyoshi Kanazawa</li><li>来源/分类：arXiv；q-fin.TR, cond-mat.stat-mech, econ.GN, q-fin.EC,q-fin.MF, q-fin.PR</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2502.17906">摘要页</a> · <a href="https://arxiv.org/pdf/2502.17906">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2502.17906">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：作者报告的结果及其证据边界见重点关注全文解读。</li></ul><h3 id="patch-attention-wisely-understanding-patch-length-in-attention-based-forecasting"><a href="https://arxiv.org/abs/2611.08160">Patch Attention Wisely:Understanding Patch Length in Attention-Based Forecasting</a></h3><ul><li>作者：Junyu Chen、Likai Chen、Weining Wang</li><li>来源/分类：arXiv；stat.ML, cs.LG, econ.EM</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2611.08160">摘要页</a> · <a href="https://arxiv.org/pdf/2611.08160">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2611.08160">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：对线性状态空间模型推导注意力预测器的系数分解，并提出按表示误差与估计误差权衡patch长度的选择准则。摘要给出理论条件而未报告真实金融时间序列上的样本外提升，因此这是统计/预测方法，不应把理论选择准则写成已证实的市场择时能力。仅依据摘要。</li></ul><h3 id="double-machine-learning-for-panel-data-identification-specification-and-a-bank-regulation-effect"><a href="https://arxiv.org/abs/2611.07249">Double Machine Learning forPanel Data: Identification, Specification, and a Bank RegulationEffect</a></h3><ul><li>作者：Ali Habibnia、Esfandiar Maasoumi、Gaurav Shah</li><li>来源/分类：arXiv；econ.EM, stat.ML</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2611.07249">摘要页</a> · <a href="https://arxiv.org/pdf/2611.07249">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2611.07249">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：作者报告的结果及其证据边界见重点关注全文解读。</li></ul><h3 id="discrete-choice-under-congestion-equilibrium-and-welfare"><a href="https://arxiv.org/abs/2611.07787">Discrete Choice underCongestion: Equilibrium and Welfare</a></h3><ul><li>作者：Debopam Bhattacharya、Matias Makiranta</li><li>来源/分类：arXiv；econ.EM, econ.TH</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2611.07787">摘要页</a> · <a href="https://arxiv.org/pdf/2611.07787">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2611.07787">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：建立带拥堵外部性的离散选择均衡框架，并用剑桥大学25,325名申请人的行政数据比较集中随机分配与提高热门学院租金。作者报告随机分配令所有人福利下降、租金方案有得有失；这是教育资源配置与公共经济，不是金融市场因果实验或交易研究。模型识别只覆盖部分干预。仅依据摘要。</li></ul><h3 id="stay-reposition-or-recharge-battery-aware-operation-of-robotaxi-fleets"><a href="https://arxiv.org/abs/2611.07699">Stay, Reposition, or Recharge:Battery-Aware Operation of Robotaxi Fleets</a></h3><ul><li>作者：Philipp Afèche (Kamessi)、Saif Benjaafar (Kamessi)、Jiayu(Kamessi)、Zhao</li><li>来源/分类：arXiv；stat.AP, econ.GN, q-fin.EC</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2611.07699">摘要页</a> · <a href="https://arxiv.org/pdf/2611.07699">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2611.07699">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：为电动 Robotaxi车队建立位置—电量连续时间流体模型，推导何时回库充电、何时按电量重新定位的阈值策略，并用2025 年纽约 TLC行程记录校准案例。作者报告忽视电量的策略可能造成无界性能差距、简单阈值启发式可恢复大部分模型价值；这是运营/车队经济模型，不是实际投资回报或真实车队因果试验。仅依据摘要。</li></ul><h3 id="estimating-treatment-effects-through-intermediate-event-pathways-with-multi-state-data"><a href="https://arxiv.org/abs/2608.22608">Estimating Treatment EffectsThrough Intermediate-Event Pathways with Multi-State Data</a></h3><ul><li>作者：Yuhao Deng、Haoyu Wei、Donglin Zeng、Rui Song、Xiao-HuaZhou</li><li>来源/分类：arXiv；stat.ME, econ.EM, math.ST, stat.TH</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2608.22608">摘要页</a> · <a href="https://arxiv.org/pdf/2608.22608">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2608.22608">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：针对生存分析中多个中间事件相互形成处理后混杂的问题，提出按已观测历史风险率定义的随机干预效应及多重稳健估计，并分析LEADER临床试验。作者报告利拉鲁肽降低心血管与微血管事件风险；这是临床统计方法，虽带econ.EM分类但与金融研究直接相关性弱，不能当作金融因果方法证据。仅依据摘要。</li></ul><h3 id="the-dynamic-theory-of-economic-complexity"><a href="https://arxiv.org/abs/2512.10672">The Dynamic Theory of EconomicComplexity</a></h3><ul><li>作者：Cesar A. Hidalgo、Viktor Stojkoski</li><li>来源/分类：arXiv；econ.GN, q-fin.EC</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2512.10672">摘要页</a> · <a href="https://arxiv.org/pdf/2512.10672">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2512.10672">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：以弱环节生产函数和共享能力积累构造经济复杂度动态模型，用国际贸易及美国、巴西地区产业数据检验条件趋同和相关多元化预测。作者报告观测模式大体支持两项预测；属于增长与发展经济学，摘要未提供识别设计或量化因果效应，不涉及资产收益。仅依据摘要。</li></ul><h3 id="stochastic-optimal-control-with-measurable-coefficients-and-applications"><a href="https://arxiv.org/abs/2502.02352">Stochastic Optimal Control withMeasurable Coefficients and Applications</a></h3><ul><li>作者：Filippo de Feo</li><li>来源/分类：arXiv；math.OC, econ.GN, math.PR, q-fin.EC</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2502.02352">摘要页</a> · <a href="https://arxiv.org/pdf/2502.02352">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2502.02352">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：研究系数仅可测的非线性随机最优控制，利用Lp-viscosity 解证明 HJB解存在并给出最优反馈控制验证条件，再用于经济学中的广告投放例子。贡献是数学理论而非市场策略；摘要没有样本、数值基准或收益结果。仅依据摘要。</li></ul><h3 id="human-responses-to-algorithmic-correction-evidence-from-centre-court"><a href="https://arxiv.org/abs/2401.16754">Human Responses to AlgorithmicCorrection: Evidence from Centre Court</a></h3><ul><li>作者：David Almog、Romain Gauriot、Lionel Page、Daniel Martin</li><li>来源/分类：arXiv；cs.LG, cs.CY, econ.GN, q-fin.EC</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2401.16754">摘要页</a> · <a href="https://arxiv.org/pdf/2401.16754">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2401.16754">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：用职业网球 Hawk-Eye记录研究算法复核如何改变人工判罚错误类型：离线 20 毫米附近错判“界内”增加8.6 个百分点、错判“界外”下降 4.1 个百分点；100毫米范围内未发现初判准确度下降。结果是规则复核下的人类行为关联/组织经济分析，不是金融资产因果或自动化投资收益。仅依据摘要。</li></ul><h3 id="cross-border-ownership-and-input-access-evidence-from-the-lithium-supply-chain"><a href="https://arxiv.org/abs/2611.08430">Cross-Border Ownership and InputAccess: Evidence from the Lithium Supply Chain</a></h3><ul><li>作者：Kei Irizawa</li><li>来源/分类：arXiv；econ.GN, q-fin.EC</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2611.08430">摘要页</a> · <a href="https://arxiv.org/pdf/2611.08430">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2611.08430">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：作者报告的结果及其证据边界见重点关注全文解读。</li></ul><h3 id="economies-of-scale-and-the-equity-efficiency-trade-off-evidence-from-a-piped-water-network-in-rural-bangladesh"><a href="https://arxiv.org/abs/2611.08031">Economies of scale and theequity-efficiency trade-off: Evidence from a piped water network inrural Bangladesh</a></h3><ul><li>作者：Md. Ahasan Habib、Anna Tompsett</li><li>来源/分类：arXiv；econ.GN, q-fin.EC</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2611.08031">摘要页</a> · <a href="https://arxiv.org/pdf/2611.08031">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2611.08031">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：用孟加拉农村新建管网中的家庭支付意愿与项目成本评估规模经济对水费定价的影响。作者报告成本效果最优的接入价格为零，前提是显著规模经济和近零价格处需求敏感；这是公共基础设施定价，非金融市场研究，结论外推需要本地需求与成本结构成立。仅依据摘要。</li></ul><h3 id="priced-in-or-bet-on-cram-school-lessons-jeonse-leases-and-expected-appreciation-in-seoul"><a href="https://arxiv.org/abs/2611.05767">Priced In or Bet On? Cram-SchoolLessons, Jeonse Leases, and Expected Appreciation in Seoul</a></h3><ul><li>作者：Samiha Tariq</li><li>来源/分类：arXiv；econ.GN, q-fin.EC</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2611.05767">摘要页</a> · <a href="https://arxiv.org/pdf/2611.05767">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2611.05767">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：作者报告的结果及其证据边界见重点关注全文解读。</li></ul><h3 id="the-potential-impact-of-fiscal-rule-changes-on-digital-products-trade"><a href="https://arxiv.org/abs/2611.05714">The potential impact of fiscalrule changes on digital products trade</a></h3><ul><li>作者：Sonja Mitikj、Viktor Stojkoski</li><li>来源/分类：arXiv；econ.GN, q-fin.EC</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2611.05714">摘要页</a> · <a href="https://arxiv.org/pdf/2611.05714">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2611.05714">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：作者报告的结果及其证据边界见重点关注全文解读。</li></ul><h3 id="did-a-feedback-mechanism-between-propositional-and-prescriptive-knowledge-create-modern-growth"><a href="https://arxiv.org/abs/2512.16587">Did a feedback mechanism betweenpropositional and prescriptive knowledge create modern growth?</a></h3><ul><li>作者：Julius Koschnick</li><li>来源/分类：arXiv；econ.GN, q-fin.EC</li><li>摘要页、PDF、DOI及代码/数据：<a href="https://arxiv.org/abs/2512.16587">摘要页</a> · <a href="https://arxiv.org/pdf/2512.16587">PDF</a> · <a href="https://doi.org/10.48550/arXiv.2512.16587">arXiv DOI</a></li><li>研究问题、作者报告结果与证据边界：以约 30 万份 1600–1800年英文出版物标题和短专利描述构造文本创新及知识溢出指标，量化检验理论知识与应用知识的反馈。作者报告反馈在18世纪中期转正；指标来自文本代理变量，能支持历史相关模式，但不能单凭摘要证明宏观增长的因果机制。仅依据摘要。</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
-&lt;h2 id=&quot;重点关注&quot;&gt;重点关注&lt;/h2&gt;
-&lt;h3 id=&quot;double-machine-learning-for-panel-data-identification-specification-and-a-bank-regul</summary>
-      
-    
-    
-    
-    <category term="每日论文" scheme="https://www.polarishaw.top/categories/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/"/>
-    
-    
-    <category term="论文" scheme="https://www.polarishaw.top/tags/%E8%AE%BA%E6%96%87/"/>
-    
-    <category term="金融" scheme="https://www.polarishaw.top/tags/%E9%87%91%E8%9E%8D/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2026-11-07 GitHub 热榜简报：Agent 的语义、技能与基础设施底座</title>
-    <link href="https://www.polarishaw.top/2026/11/07/daily-github-trending-2026-11-07/"/>
-    <id>https://www.polarishaw.top/2026/11/07/daily-github-trending-2026-11-07/</id>
-    <published>2026-11-07T01:00:00.000Z</published>
-    <updated>2026-11-07T02:14:46.116Z</updated>
-    
-    <content type="html"><![CDATA[<div class="briefing-masthead"><p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.11.07</p><p>今天的 <a href="https://github.com/trending?since=daily">GitHuball-languages日榜</a>同时出现两种信号：<a href="https://github.com/NVIDIA/auto-ontology#readme">AutoOntology</a>、<a href="https://github.com/mattpocock/skills#readme">工程skills</a>和<a href="https://github.com/cloudflare/security-audit-skill#readme">安全审计skill</a>把 Agent的语义、方法与复核边界说得更具体；<a href="https://github.com/react/react#readme">React</a>、<a href="https://github.com/prometheus/prometheus#readme">Prometheus</a>、<a href="https://github.com/nushell/nushell#readme">Nushell</a>、<a href="https://github.com/etcd-io/etcd#readme">etcd</a>和<a href="https://github.com/astral-sh/ruff#readme">Ruff</a>则说明成熟底座仍在被重新学习和使用。日增stars 是注意力的时间切片，不是质量证明。</p><div class="briefing-masthead__topics"><span>语义数据</span><span>Agentskills</span><span>安全审计</span><span>Python 工具链</span><span>结构化Shell</span><span>可观测性与一致性</span></div></div><span id="more"></span><h2 id="今日要点">今日要点</h2><p>本期最值得追踪的变化，不是 Agent又多了一个“自动完成任务”的入口，而是它开始被放进更明确的工程边界：<a href="https://github.com/NVIDIA/auto-ontology#readme">AutoOntology</a>负责语义与血缘，<a href="https://github.com/mattpocock/skills#readme">skills</a>负责可复用的方法，<a href="https://github.com/cloudflare/security-audit-skill#readme">security-audit</a>负责证据、覆盖率和独立复核。它们适合拿来拆解系统设计，但都不能替代权限控制、测试和人工判断。</p><p>另一条线是基础设施的“可理解性”：<a href="https://github.com/nushell/nushell#readme">Nushell</a>把命令行输出当作结构化数据，<a href="https://github.com/prometheus/prometheus#readme">Prometheus</a>把指标、标签和PromQL组织成监控模型，<a href="https://github.com/etcd-io/etcd#readme">etcd</a>把控制面状态交给Raft，<a href="https://github.com/astral-sh/ruff#readme">Ruff</a>则把Python lint/format 工具链收敛到一个高速CLI。真正可迁移的经验是数据模型、失败边界和验证路径，而不是某个榜单数字。</p><h2 id="值得尝试">值得尝试</h2><h3 id="nvidiaauto-ontology"><a href="https://github.com/NVIDIA/auto-ontology#readme">NVIDIA/auto-ontology</a></h3><p><a href="https://github.com/NVIDIA/auto-ontology#readme">AutoOntology</a>从企业元数据生成语义本体，把指标、实体、关系、血缘和上下文提供给Agent，并通过 MCP、CLI 和 API 暴露给不同的 Agent harness。它适合研究Text-to-SQL、知识图谱和可解释回答，但 README 的 Quickstart 依赖 DockerCompose、Postgres/pgvector 与<a href="https://github.com/NVIDIA/auto-ontology#nvidia-nim">NVIDIANIM</a>或 API key，不能当成零配置RAG。<a href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言Python、当日新增2,015★；<a href="https://github.com/NVIDIA/auto-ontology">仓库页</a>核验总计9,100★、采用<a href="https://github.com/NVIDIA/auto-ontology/blob/main/LICENSE">Apache-2.0许可证</a>，最近提交为<a href="https://github.com/NVIDIA/auto-ontology/commit/c447003f72a822301e927196a4ecb5b597c308d5">2026-11-06UTC 的 c447003（固定 Python 3.12.16）</a>。</p><h3 id="mattpocockskills"><a href="https://github.com/mattpocock/skills#readme">mattpocock/skills</a></h3><p><a href="https://github.com/mattpocock/skills#readme">skills</a>把需求澄清、实现、测试和复盘等工程实践拆成小而可组合的Agent skill，并提供 Codex、Claude Code、Copilot 和 Gemini CLI等安装入口。它适合希望把工程纪律编码进 Agent 工作流的个人与团队；限制是skill仍是可编辑的指导，多个宿主重复安装会制造重复能力，团队仍需自行维护版本和验收标准。<a href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言Shell、当日新增2,070★；<a href="https://github.com/mattpocock/skills">仓库页</a>核验总计316,770★、采用<a href="https://github.com/mattpocock/skills/blob/main/LICENSE">MIT许可证</a>，最近提交为<a href="https://github.com/mattpocock/skills/commit/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d">2026-10-31UTC 的 4ae2317（software-factory glossary skill）</a>。</p><h3 id="cloudflaresecurity-audit-skill"><a href="https://github.com/cloudflare/security-audit-skill#readme">cloudflare/security-audit-skill</a></h3><p><a href="https://github.com/cloudflare/security-audit-skill#readme">security-audit</a>把安全审计拆成侦察、覆盖率导向的hunting、候选验证、结构化 findings、独立复核和目标中立报告六阶段，并用ledger、schema与校验脚本保存证据。它适合研究如何让安全工作流可复核；限制是 README要求支持并行子代理、Node.js 和 OS 级sandbox，且“有结构的审计”不等于保证发现漏洞，目标代码执行仍需隔离。<a href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言JavaScript、当日新增2,548★；<a href="https://github.com/cloudflare/security-audit-skill">仓库页</a>核验总计64,110★、采用<a href="https://github.com/cloudflare/security-audit-skill/blob/main/LICENSE">MIT许可证</a>，最近提交为<a href="https://github.com/cloudflare/security-audit-skill/commit/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8">2026-09-14UTC 的 c1c8a8c（澄清审计模式）</a>。</p><h3 id="astral-shruff"><a href="https://github.com/astral-sh/ruff#readme">astral-sh/ruff</a></h3><p><a href="https://github.com/astral-sh/ruff#readme">Ruff</a>是 Rust编写的 Python linter/formatter，试图以单一 CLI 覆盖 Flake8、Black、isort等多类工具，并提供缓存、自动修复、900 多条规则和编辑器集成。它适合想压缩Python工具链、学习高性能静态分析的人；限制是兼容迁移仍需按项目逐条核对，README中的速度数字是项目自述，不应替代自己的基准测试。<a href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言Rust、当日新增169★；<a href="https://github.com/astral-sh/ruff">仓库页</a>核验总计50,706★、采用<a href="https://github.com/astral-sh/ruff/blob/main/LICENSE">MIT许可证</a>，最近提交为<a href="https://github.com/astral-sh/ruff/commit/5fd37cea5d171dd3862bda0472f54a3f1abd3aeb">2026-11-06UTC 的 5fd37ce（调整 flake8-bugbear B008 规则）</a>。</p><h3 id="reactreact"><a href="https://github.com/react/react#readme">react/react</a></h3><p><a href="https://github.com/react/react#readme">React</a>以声明式、组件化模型构建Web 和原生用户界面，README提供渐进接入、JSX、状态管理和服务端渲染的文档入口。它适合系统学习前端组件模型或维护React Native项目；限制是它是成熟核心库，本次日榜位置不应被解读为新框架或新 API推荐，具体行为仍要以<a href="https://github.com/react/react#readme">README</a>和官方文档为准。<a href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言JavaScript、当日新增248★；<a href="https://github.com/react/react">仓库页</a>核验总计252,264★、采用<a href="https://github.com/react/react/blob/main/LICENSE">MIT许可证</a>，最近提交为<a href="https://github.com/react/react/commit/d71b537241d26861df496413db2142c7ba192c25">2026-11-06UTC 的 d71b537（修复 suspended hydration 的循环）</a>。</p><h3 id="nushellnushell"><a href="https://github.com/nushell/nushell#readme">nushell/nushell</a></h3><p><a href="https://github.com/nushell/nushell#readme">Nushell</a>把Shell管道中的数据视为结构化表格而不是纯文本，命令可以组合并输出结构化结果，同时提供跨平台安装方式。它适合想把CLI 数据处理做得更可组合、更可读的人；README明确项目虽已达到最低可用质量，部分命令仍可能不稳定，脚本迁移需要按平台和命令逐项验证。<a href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言Rust、当日新增131★；<a href="https://github.com/nushell/nushell">仓库页</a>核验总计40,994★、采用<a href="https://github.com/nushell/nushell/blob/main/LICENSE">MIT许可证</a>，最近提交为<a href="https://github.com/nushell/nushell/commit/192e5533546f89eddbb65cc73359aca1598a3076">2026-11-06UTC 的 192e553（修正配置路径测试）</a>。</p><h3 id="prometheusprometheus"><a href="https://github.com/prometheus/prometheus#readme">prometheus/prometheus</a></h3><p><a href="https://github.com/prometheus/prometheus#readme">Prometheus</a>通过拉取模型、标签维度、PromQL、服务发现和告警组成监控系统，README同时给出Docker、本地二进制和源码构建入口。它适合学习时序数据、监控语义和可观测性管道；单节点自主与联邦能力并不替你完成生产环境的高可用、长期存储和权限设计，这些边界仍需结合部署规模验证。<a href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言Go、当日新增148★；<a href="https://github.com/prometheus/prometheus">仓库页</a>核验总计67,197★、采用<a href="https://github.com/prometheus/prometheus/blob/main/LICENSE">Apache-2.0许可证</a>，最近提交为<a href="https://github.com/prometheus/prometheus/commit/dd7aa6b0f19f4e952a55cbebd6e15458fe0ad9c6">2026-11-06UTC 的 dd7aa6b（补充重复时间戳丢弃统计）</a>。</p><h3 id="etcd-ioetcd"><a href="https://github.com/etcd-io/etcd#readme">etcd-io/etcd</a></h3><p><a href="https://github.com/etcd-io/etcd#readme">etcd</a>是用 Go编写的分布式可靠 KV，使用 gRPC API、TLS 和 Raft管理高可用复制日志，README还给出单节点与三成员本地集群示例。它适合学习一致性、选主和控制面状态存储；README明确 main 分支可能处于不稳定甚至不可用状态，实际依赖应使用release，而不是直接跟踪main。<a href="https://github.com/trending?since=daily">日榜快照</a>显示主要语言Go、当日新增128★；<a href="https://github.com/etcd-io/etcd">仓库页</a>核验总计52,618★、采用<a href="https://github.com/etcd-io/etcd/blob/main/LICENSE">Apache-2.0许可证</a>，最近提交为<a href="https://github.com/etcd-io/etcd/commit/d622ec57cf46c119f1a550343c34b26327cead0f">2026-11-06UTC 的 d622ec5（合并 benchmark 更新）</a>。</p><h2 id="快速浏览">快速浏览</h2><div class="briefing-quick-list"><p><a class="briefing-quick-item" href="https://github.com/NVIDIA/auto-ontology#readme"><span class="briefing-quick-item__source">语义数据 · Python · +2,015/日 ·9,100★</span><span class="briefing-quick-item__body"><strong>NVIDIA/auto-ontology</strong><small>为Agent 提供带血缘、定义和可验证查询的企业语义上下文。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/mattpocock/skills#readme"><span class="briefing-quick-item__source">工程技能 · Shell · +2,070/日 ·316,770★</span><span class="briefing-quick-item__body"><strong>mattpocock/skills</strong><small>把工程纪律拆成可组合的Agent skills，跨宿主复用。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/cloudflare/security-audit-skill#readme"><span class="briefing-quick-item__source">安全审计 · JavaScript · +2,548/日 ·64,110★</span><span class="briefing-quick-item__body"><strong>cloudflare/security-audit-skill</strong><small>用覆盖率、候选验证和独立复核组织Agent 安全审计。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/astral-sh/ruff#readme"><span class="briefing-quick-item__source">Python 工具链 · Rust · +169/日 ·50,706★</span><span class="briefing-quick-item__body"><strong>astral-sh/ruff</strong><small>以高速单一CLI 收敛 Python lint、format 和自动修复。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/react/react#readme"><span class="briefing-quick-item__source">前端核心 · JavaScript · +248/日 ·252,264★</span><span class="briefing-quick-item__body"><strong>react/react</strong><small>声明式、组件化的Web 与原生用户界面基础库。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/nushell/nushell#readme"><span class="briefing-quick-item__source">结构化 Shell · Rust · +131/日 ·40,994★</span><span class="briefing-quick-item__body"><strong>nushell/nushell</strong><small>让命令行管道传递结构化数据，而不是只处理文本。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/prometheus/prometheus#readme"><span class="briefing-quick-item__source">可观测性 · Go · +148/日 ·67,197★</span><span class="briefing-quick-item__body"><strong>prometheus/prometheus</strong><small>用标签、PromQL、拉取模型和告警构建监控系统。</small></span><span class="briefing-quick-item__arrow">↗</span></a><br><a class="briefing-quick-item" href="https://github.com/etcd-io/etcd#readme"><span class="briefing-quick-item__source">一致性存储 · Go · +128/日 ·52,618★</span><span class="briefing-quick-item__body"><strong>etcd-io/etcd</strong><small>用Raft、gRPC 和 TLS 支撑分布式系统的关键状态。</small></span><span class="briefing-quick-item__arrow">↗</span></a></p></div>]]></content>
-    
-    
-    <summary type="html">&lt;div class=&quot;briefing-masthead&quot;&gt;
-&lt;p class=&quot;briefing-masthead__eyebrow&quot;&gt;
-GITHUB TRENDING · 2026.11.07
-&lt;/p&gt;
-&lt;p&gt;
-今天的 &lt;a href=&quot;https://github.com/trending?since=daily&quot;&gt;GitHub
-all-languages
-日榜&lt;/a&gt;同时出现两种信号：&lt;a href=&quot;https://github.com/NVIDIA/auto-ontology#readme&quot;&gt;Auto
-Ontology&lt;/a&gt;、&lt;a href=&quot;https://github.com/mattpocock/skills#readme&quot;&gt;工程
-skills&lt;/a&gt;和
-&lt;a href=&quot;https://github.com/cloudflare/security-audit-skill#readme&quot;&gt;安全审计
-skill&lt;/a&gt;把 Agent
-的语义、方法与复核边界说得更具体；&lt;a href=&quot;https://github.com/react/react#readme&quot;&gt;React&lt;/a&gt;、&lt;a href=&quot;https://github.com/prometheus/prometheus#readme&quot;&gt;Prometheus&lt;/a&gt;、&lt;a href=&quot;https://github.com/nushell/nushell#readme&quot;&gt;Nushell&lt;/a&gt;、&lt;a href=&quot;https://github.com/etcd-io/etcd#readme&quot;&gt;etcd&lt;/a&gt;和
-&lt;a href=&quot;https://github.com/astral-sh/ruff#readme&quot;&gt;Ruff&lt;/a&gt;则说明成熟底座仍在被重新学习和使用。日增
-stars 是注意力的时间切片，不是质量证明。
-&lt;/p&gt;
-&lt;div class=&quot;briefing-masthead__topics&quot;&gt;
-&lt;span&gt;语义数据&lt;/span&gt;&lt;span&gt;Agent
-skills&lt;/span&gt;&lt;span&gt;安全审计&lt;/span&gt;&lt;span&gt;Python 工具链&lt;/span&gt;&lt;span&gt;结构化
-Shell&lt;/span&gt;&lt;span&gt;可观测性与一致性&lt;/span&gt;
-&lt;/div&gt;
-&lt;/div&gt;</summary>
-    
-    
-    
-    <category term="GitHub 热榜" scheme="https://www.polarishaw.top/categories/GitHub-%E7%83%AD%E6%A6%9C/"/>
-    
-    
-    <category term="GitHub" scheme="https://www.polarishaw.top/tags/GitHub/"/>
-    
-    <category term="开源" scheme="https://www.polarishaw.top/tags/%E5%BC%80%E6%BA%90/"/>
-    
-    <category term="开发工具" scheme="https://www.polarishaw.top/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-    <category term="Agent" scheme="https://www.polarishaw.top/tags/Agent/"/>
-    
-    <category term="可观测性" scheme="https://www.polarishaw.top/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/"/>
-    
-    <category term="一致性存储" scheme="https://www.polarishaw.top/tags/%E4%B8%80%E8%87%B4%E6%80%A7%E5%AD%98%E5%82%A8/"/>
+    <category term="论文" scheme="https://www.polarisac.top/tags/%E8%AE%BA%E6%96%87/"/>
     
   </entry>
   
