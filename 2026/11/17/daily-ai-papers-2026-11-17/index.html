@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 仿真强化学习能否让开放模型直接操作真实机器人？ 论文：Training Reasoning Models in Simulation to Natively Use Real Robots（arXiv:2611.18562） 作者：Jiaming Tang、Zhuoyang Zhang、Junxian Guo 等（共 11 位） 来源&#x2F;分类：arXiv · cs.RO、cs.LG 原文">
+    <meta name="description" content="重点关注  仿真强化学习能否让开放模型直接操作真实机器人？ 论文：Training Reasoning Models in Simulation to Natively Use Real Robots（arXiv:2611.18562） 作者：Jiaming Tang、Zhuoyang Zhang、Junxian Guo 等（共 11 位） 来源&#x2F;分类：arXiv · cs.RO、cs.LG">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日AI论文简报（2026-11-17）">
 <meta property="og:url" content="https://www.polarisac.top/2026/11/17/daily-ai-papers-2026-11-17/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 仿真强化学习能否让开放模型直接操作真实机器人？ 论文：Training Reasoning Models in Simulation to Natively Use Real Robots（arXiv:2611.18562） 作者：Jiaming Tang、Zhuoyang Zhang、Junxian Guo 等（共 11 位） 来源&#x2F;分类：arXiv · cs.RO、cs.LG 原文">
+<meta property="og:description" content="重点关注  仿真强化学习能否让开放模型直接操作真实机器人？ 论文：Training Reasoning Models in Simulation to Natively Use Real Robots（arXiv:2611.18562） 作者：Jiaming Tang、Zhuoyang Zhang、Junxian Guo 等（共 11 位） 来源&#x2F;分类：arXiv · cs.RO、cs.LG">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-10-18/pixiv-rank-012-150718833.jpg">
 <meta property="article:published_time" content="2026-11-17T02:15:00.000Z">
@@ -347,442 +347,187 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注">重点关注</h2>
-<h3 id="仿真强化学习能否让开放模型直接操作真实机器人">仿真强化学习能否让开放模型直接操作真实机器人？</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18562">Training Reasoning Models in
-Simulation to Natively Use Real Robots</a>（arXiv:2611.18562）<br>
-<strong>作者</strong>：Jiaming Tang、Zhuoyang Zhang、Junxian Guo 等（共
-11 位）<br>
-<strong>来源/分类</strong>：arXiv · cs.RO、cs.LG<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18562">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18562">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/mit-han-lab/pear">代码</a><br>
-<strong>全文状态</strong>：已核阅 arXiv 官方 HTML
-全文；以下复述作者报告，非独立复现。</p>
+<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
+<h3 id="仿真强化学习能否让开放模型直接操作真实机器人"><a class="markdownIt-Anchor" href="#仿真强化学习能否让开放模型直接操作真实机器人"></a> 仿真强化学习能否让开放模型直接操作真实机器人？</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18562">Training Reasoning Models in Simulation to Natively Use Real Robots</a>（arXiv:2611.18562）<br>
+<strong>作者</strong>：Jiaming Tang、Zhuoyang Zhang、Junxian Guo 等（共 11 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.RO">cs.RO</a>、cs.LG<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18562">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18562">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/mit-han-lab/pear">代码</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文；以下复述作者报告，非独立复现。</p>
 <ul>
-<li><strong>研究问题、方法与基线</strong>：以 Qwen3.8-27B
-推理模型为基础，PEAR 提供多轮 robot-use reinforcement
-learning；模型直接看相机画面并输出末端执行器位姿，不用示范数据或专门控制
-harness。训练任务来自 LIBERO 与 RoboDojo，对照包括基础模型、演示微调的
-π0.5，以及 GPT-6 Astra/GPT-6.1 Sol 等闭源模型。</li>
-<li><strong>作者报告的结果</strong>：作者报告 LIBERO 成功率由基础模型
-1.6% 提升到 74.4%；在训练未见的真实双臂机器人上，LIBERO 与 RoboDojo
-混合训练模型成功率为 60%，仅用 LIBERO 的版本为 23%，基础模型为
-0。LIBERO-Pro 在熟悉场景中的新任务上为 57.4%，π0.5 为
-0.75%。九个推理、编程和视觉基准的平均变化为 −0.15 分。</li>
-<li><strong>创新与局限/失败条件</strong>：新意是把计算机使用式的多轮 RL
-迁移到真实机器人，并在没有机器人示范的前提下实测仿真到实机迁移。证据仍受训练规模限制：只用了两个模拟器和少量任务，RoboDojo
-仅训练两个任务，作者称 GPU
-资源不足；提示中机器人形态信息也会影响成功率。与演示微调 VLA
-及闭源前沿模型的对照训练路径不同，不能视为同预算消融。推理每步平均约 4.3
-秒，偶尔达到 32K
-tokens，速度和成本仍是瓶颈；结果也未证明不同机器人、环境和任务下普遍成立。</li>
-<li><strong>适合谁读、建议章节</strong>：适合具身智能、机器人 RL
-与开源模型训练工程读者。建议先读 §3.2–3.3 的训练引擎和课程，再看
-§4.1、§4.4 的 LIBERO/实机结果，以及 §4.6 与 §5
-的速度和失败边界。代码：<a target="_blank" rel="noopener" href="https://github.com/mit-han-lab/pear">PEAR</a>。</li>
+<li><strong>研究问题、方法与基线</strong>：以 Qwen3.8-27B 推理模型为基础，PEAR 提供多轮 robot-use reinforcement learning；模型直接看相机画面并输出末端执行器位姿，不用示范数据或专门控制 harness。训练任务来自 LIBERO 与 RoboDojo，对照包括基础模型、演示微调的 π0.5，以及 GPT-6 Astra/GPT-6.1 Sol 等闭源模型。</li>
+<li><strong>作者报告的结果</strong>：作者报告 LIBERO 成功率由基础模型 1.6% 提升到 74.4%；在训练未见的真实双臂机器人上，LIBERO 与 RoboDojo 混合训练模型成功率为 60%，仅用 LIBERO 的版本为 23%，基础模型为 0。LIBERO-Pro 在熟悉场景中的新任务上为 57.4%，π0.5 为 0.75%。九个推理、编程和视觉基准的平均变化为 −0.15 分。</li>
+<li><strong>创新与局限/失败条件</strong>：新意是把计算机使用式的多轮 RL 迁移到真实机器人，并在没有机器人示范的前提下实测仿真到实机迁移。证据仍受训练规模限制：只用了两个模拟器和少量任务，RoboDojo 仅训练两个任务，作者称 GPU 资源不足；提示中机器人形态信息也会影响成功率。与演示微调 VLA 及闭源前沿模型的对照训练路径不同，不能视为同预算消融。推理每步平均约 4.3 秒，偶尔达到 32K tokens，速度和成本仍是瓶颈；结果也未证明不同机器人、环境和任务下普遍成立。</li>
+<li><strong>适合谁读、建议章节</strong>：适合具身智能、机器人 RL 与开源模型训练工程读者。建议先读 §3.2–3.3 的训练引擎和课程，再看 §4.1、§4.4 的 LIBERO/实机结果，以及 §4.6 与 §5 的速度和失败边界。代码：<a target="_blank" rel="noopener" href="https://github.com/mit-han-lab/pear">PEAR</a>。</li>
 </ul>
-<h3 id="webarena-pro网页-agent-的跨应用和媒体能力仍有明显缺口">WebArena-Pro：网页
-agent 的跨应用和媒体能力仍有明显缺口</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17955">WebArena-Pro: A Heterogeneous,
-Multimodal, Reproducible Benchmark for Web
-Agents</a>（arXiv:2611.17955）<br>
-<strong>作者</strong>：Imene Kerboua、Fatemeh Pesaran Zadeh、Xing Han Lù
-等（共 22 位）<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、cs.LG<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17955">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17955">PDF</a> · <a target="_blank" rel="noopener" href="https://webarena-pro.github.io">项目页</a><br>
-<strong>全文状态</strong>：已核阅 arXiv 官方 HTML
-全文；以下复述作者报告，非独立复现。</p>
+<h3 id="webarena-pro网页-agent-的跨应用和媒体能力仍有明显缺口"><a class="markdownIt-Anchor" href="#webarena-pro网页-agent-的跨应用和媒体能力仍有明显缺口"></a> WebArena-Pro：网页 agent 的跨应用和媒体能力仍有明显缺口</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17955">WebArena-Pro: A Heterogeneous, Multimodal, Reproducible Benchmark for Web Agents</a>（arXiv:2611.17955）<br>
+<strong>作者</strong>：Imene Kerboua、Fatemeh Pesaran Zadeh、Xing Han Lù 等（共 22 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、cs.LG<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17955">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17955">PDF</a> · <a target="_blank" rel="noopener" href="https://webarena-pro.github.io">项目页</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文；以下复述作者报告，非独立复现。</p>
 <ul>
-<li><strong>研究问题、方法与基线</strong>：基准包括 300 个任务、20
-个自托管应用和六个领域，其中 204 个单站点、96 个跨站点任务，另有 79
-个音频/视频任务。作者以四类 agent harness、12 个模型骨干和 50
-步上限比较，并用任务 rubric 评估完整成功与部分完成。</li>
-<li><strong>作者报告的结果</strong>：作者报告 Codex + GPT 6.1 Sol 与
-Claude Code + Claude Opus 5.5 均达到 62.3% 整体成功率；GenericAgent
-的最佳配置为 30.3%。对 43 个需要实际读取媒体内容的子集，Claude Code +
-Opus 5.5 从无媒体工具时 14.0% 升至启用转录/帧提取工具后的
-48.8%，显示媒体访问是关键基线条件。</li>
-<li><strong>创新与局限/失败条件</strong>：贡献是可复现的多应用任务集，而不是单一新模型。最高分同时依赖模型与
-agent harness，不能把 62.3% 归因于模型本身；38% 任务仍未成功。300 题 API
-成本因 harness 约为 166–689
-美元（不含主机设施），闭源模型版本会变化；论文没有提供可证明数据污染已排除的审计。</li>
-<li><strong>适合谁读、建议章节</strong>：适合网页自动化、agent
-评测与浏览器工具工程读者。建议读 §3.1–3.4
-的站点、任务和验收协议，§4.1–4.4 的主结果/媒体消融，再读 §5
-的成本讨论。项目主页：<a target="_blank" rel="noopener" href="https://webarena-pro.github.io">WebArena-Pro</a>。</li>
+<li><strong>研究问题、方法与基线</strong>：基准包括 300 个任务、20 个自托管应用和六个领域，其中 204 个单站点、96 个跨站点任务，另有 79 个音频/视频任务。作者以四类 agent harness、12 个模型骨干和 50 步上限比较，并用任务 rubric 评估完整成功与部分完成。</li>
+<li><strong>作者报告的结果</strong>：作者报告 Codex + GPT 6.1 Sol 与 Claude Code + Claude Opus 5.5 均达到 62.3% 整体成功率；GenericAgent 的最佳配置为 30.3%。对 43 个需要实际读取媒体内容的子集，Claude Code + Opus 5.5 从无媒体工具时 14.0% 升至启用转录/帧提取工具后的 48.8%，显示媒体访问是关键基线条件。</li>
+<li><strong>创新与局限/失败条件</strong>：贡献是可复现的多应用任务集，而不是单一新模型。最高分同时依赖模型与 agent harness，不能把 62.3% 归因于模型本身；38% 任务仍未成功。300 题 API 成本因 harness 约为 166–689 美元（不含主机设施），闭源模型版本会变化；论文没有提供可证明数据污染已排除的审计。</li>
+<li><strong>适合谁读、建议章节</strong>：适合网页自动化、agent 评测与浏览器工具工程读者。建议读 §3.1–3.4 的站点、任务和验收协议，§4.1–4.4 的主结果/媒体消融，再读 §5 的成本讨论。项目主页：<a target="_blank" rel="noopener" href="https://webarena-pro.github.io">WebArena-Pro</a>。</li>
 </ul>
-<h3 id="privacypr代码-agent-能否发现真实隐私缺陷">PrivacyPR：代码 agent
-能否发现真实隐私缺陷？</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18293">PrivacyPR: A Dataset of
-Real-World Privacy Fixes for Benchmarking Privacy-Aware Code
-Review</a>（arXiv:2611.18293）<br>
-<strong>作者</strong>：Hua Yang、Aditya Bhardwaj、Shidong Pan、Bowen
-Xu<br>
-<strong>来源/分类</strong>：arXiv · cs.CR、cs.AI、cs.SE<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18293">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18293">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.23744765">DOI/数据</a><br>
-<strong>全文状态</strong>：已核阅 arXiv 官方 HTML
-全文；以下复述作者报告，非独立复现。</p>
+<h3 id="privacypr代码-agent-能否发现真实隐私缺陷"><a class="markdownIt-Anchor" href="#privacypr代码-agent-能否发现真实隐私缺陷"></a> PrivacyPR：代码 agent 能否发现真实隐私缺陷？</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18293">PrivacyPR: A Dataset of Real-World Privacy Fixes for Benchmarking Privacy-Aware Code Review</a>（arXiv:2611.18293）<br>
+<strong>作者</strong>：Hua Yang、Aditya Bhardwaj、Shidong Pan、Bowen Xu<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.SE">cs.SE</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18293">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18293">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.23744765">DOI/数据</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文；以下复述作者报告，非独立复现。</p>
 <ul>
-<li><strong>研究问题、方法与基线</strong>：作者整理 2018–2024 年 1,469
-个仓库的 4,131 个合并 PR，保留 diff、评审讨论和修复上下文；数据包括
-1,169 个高置信隐私修复、1,643 个非修复 PR，以及人工检查的 Verified/Small
-子集。评测时回退已接受的修复以重新引入缺陷，再用两种 coding agent
-分别执行通用代码审查或明确隐私审查。</li>
-<li><strong>作者报告的结果</strong>：在 Small 集（100 个修复、100
-个非修复）上，通用审查提示发现 42%–51% 隐私缺陷；明确要求检查隐私后升至
-88%–91%，但会误报 11%–15% 的非修复 PR。对 GDPR
-原则标签，两位标注者共同认可约 72%，细粒度标注的一致性较弱。</li>
-<li><strong>创新与局限/失败条件</strong>：贡献是基于真实开发者接受的修复，而非合成漏洞。主要边界是提示意图本身带来巨大提升，结果只测两个
-agent 和 200 条 Small 子集；标注者能看到 LLM 预标记，可能抬高认可率，且
-21.3% patch
-经截断。它证明的是受控审查任务的检出率，不等于生产代码审计安全。</li>
-<li><strong>适合谁读、建议章节</strong>：适合安全工程、隐私合规和代码
-agent 评测读者。建议读 §II-C 的标注流程、§II-E 的标签一致性、§III
-的回退评测，再读 §IV 的边界。数据及代码：<a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.23744765">Zenodo DOI</a>。</li>
+<li><strong>研究问题、方法与基线</strong>：作者整理 2018–2024 年 1,469 个仓库的 4,131 个合并 PR，保留 diff、评审讨论和修复上下文；数据包括 1,169 个高置信隐私修复、1,643 个非修复 PR，以及人工检查的 Verified/Small 子集。评测时回退已接受的修复以重新引入缺陷，再用两种 coding agent 分别执行通用代码审查或明确隐私审查。</li>
+<li><strong>作者报告的结果</strong>：在 Small 集（100 个修复、100 个非修复）上，通用审查提示发现 42%–51% 隐私缺陷；明确要求检查隐私后升至 88%–91%，但会误报 11%–15% 的非修复 PR。对 GDPR 原则标签，两位标注者共同认可约 72%，细粒度标注的一致性较弱。</li>
+<li><strong>创新与局限/失败条件</strong>：贡献是基于真实开发者接受的修复，而非合成漏洞。主要边界是提示意图本身带来巨大提升，结果只测两个 agent 和 200 条 Small 子集；标注者能看到 LLM 预标记，可能抬高认可率，且 21.3% patch 经截断。它证明的是受控审查任务的检出率，不等于生产代码审计安全。</li>
+<li><strong>适合谁读、建议章节</strong>：适合安全工程、隐私合规和代码 agent 评测读者。建议读 §II-C 的标注流程、§II-E 的标签一致性、§III 的回退评测，再读 §IV 的边界。数据及代码：<a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.23744765">Zenodo DOI</a>。</li>
 </ul>
-<h3 id="手写作文语病定位工具流水线大幅优于单次视觉问答">手写作文语病定位：工具流水线大幅优于单次视觉问答</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17966">From Images to Grounded Edits: A
-Real-World Benchmark for Chinese Grammatical Error Correction in
-Handwritten Essays</a>（arXiv:2611.17966）<br>
-<strong>作者</strong>：Weiru Zhang、Yuzhong Hong、Junwei Bao 等（共 5
-位）<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17966">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17966">PDF</a><br>
-<strong>全文状态</strong>：已核阅 arXiv 官方 HTML
-全文；以下复述作者报告，非独立复现。</p>
+<h3 id="手写作文语病定位工具流水线大幅优于单次视觉问答"><a class="markdownIt-Anchor" href="#手写作文语病定位工具流水线大幅优于单次视觉问答"></a> 手写作文语病定位：工具流水线大幅优于单次视觉问答</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17966">From Images to Grounded Edits: A Real-World Benchmark for Chinese Grammatical Error Correction in Handwritten Essays</a>（arXiv:2611.17966）<br>
+<strong>作者</strong>：Weiru Zhang、Yuzhong Hong、Junwei Bao 等（共 5 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17966">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17966">PDF</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文；以下复述作者报告，非独立复现。</p>
 <ul>
-<li><strong>研究问题、方法与基线</strong>：G-CGEC-Eval 有 150 篇真实
-K-12 作文、251 张图片、2,731 段需修文本和 2,913
-项修改，系统需同时给出修改内容与原图字符位置。作者比较三种 VLM
-的单次输出、OCR + VLM + 视觉定位流水线、单 agent
-和按错误类型/操作类型拆分的多 agent；定位按 <a href="mailto:IoU@0.3" class="email">IoU@0.3</a> 与较宽松的中心距离匹配。</li>
-<li><strong>作者报告的结果</strong>：表 2 中 GPT-5.5 单次 VLM 的 F1 为
-0.22%，固定 OCR/grounding 流水线为 12.37%，错误类型多 agent 为
-22.83%，在受测组合中最高；操作类型拆分仅 14.61%。因此 agent
-分工有帮助，但绝对 F1 仍低，任务远未解决。</li>
-<li><strong>创新与局限/失败条件</strong>：贡献是把中文手写文本校正和字符级定位联合评测，并记录多种可接受修订。局限包括仅中文
-K-12、未做任务专用微调、数据集有限；工具流水线和 agent 方法调用了额外
-OCR/定位组件，比较反映系统配置而非纯模型能力。作者说明
-OCR/定位模块训练集与基准无重叠，但没有提供基础 VLM
-预训练污染的独立审计；语言错误发现与字符定位仍是瓶颈。</li>
-<li><strong>适合谁读、建议章节</strong>：适合中文多模态、OCR、教育 AI 与
-agent workflow 读者。建议读 §3 的任务和数据，§4.2 的主结果、§4.4
-的失败分析以及附录 E–F 的可复现设置。</li>
+<li><strong>研究问题、方法与基线</strong>：G-CGEC-Eval 有 150 篇真实 K-12 作文、251 张图片、2,731 段需修文本和 2,913 项修改，系统需同时给出修改内容与原图字符位置。作者比较三种 VLM 的单次输出、OCR + VLM + 视觉定位流水线、单 agent 和按错误类型/操作类型拆分的多 agent；定位按 IoU@0.3 与较宽松的中心距离匹配。</li>
+<li><strong>作者报告的结果</strong>：表 2 中 GPT-5.5 单次 VLM 的 F1 为 0.22%，固定 OCR/grounding 流水线为 12.37%，错误类型多 agent 为 22.83%，在受测组合中最高；操作类型拆分仅 14.61%。因此 agent 分工有帮助，但绝对 F1 仍低，任务远未解决。</li>
+<li><strong>创新与局限/失败条件</strong>：贡献是把中文手写文本校正和字符级定位联合评测，并记录多种可接受修订。局限包括仅中文 K-12、未做任务专用微调、数据集有限；工具流水线和 agent 方法调用了额外 OCR/定位组件，比较反映系统配置而非纯模型能力。作者说明 OCR/定位模块训练集与基准无重叠，但没有提供基础 VLM 预训练污染的独立审计；语言错误发现与字符定位仍是瓶颈。</li>
+<li><strong>适合谁读、建议章节</strong>：适合中文多模态、OCR、教育 AI 与 agent workflow 读者。建议读 §3 的任务和数据，§4.2 的主结果、§4.4 的失败分析以及附录 E–F 的可复现设置。</li>
 </ul>
-<h3 id="jfinbench用最新日本资格考试缓解金融知识基准老化">JFinBench：用最新日本资格考试缓解金融知识基准老化</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18130">JFinBench: A Continuously
-Refreshable Japanese Financial Benchmark from the Latest Certification
-Exams</a>（arXiv:2611.18130）<br>
+<h3 id="jfinbench用最新日本资格考试缓解金融知识基准老化"><a class="markdownIt-Anchor" href="#jfinbench用最新日本资格考试缓解金融知识基准老化"></a> JFinBench：用最新日本资格考试缓解金融知识基准老化</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18130">JFinBench: A Continuously Refreshable Japanese Financial Benchmark from the Latest Certification Exams</a>（arXiv:2611.18130）<br>
 <strong>作者</strong>：Issa Sugiura、Taro Makino、Takashi Ishida<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18130">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18130">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/SakanaAI/JFinBench">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/SakanaAI/JFinBench">数据集</a><br>
-<strong>全文状态</strong>：已核阅 arXiv 官方 HTML
-全文；以下复述作者报告，非独立复现。</p>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18130">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18130">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/SakanaAI/JFinBench">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/SakanaAI/JFinBench">数据集</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文；以下复述作者报告，非独立复现。</p>
 <ul>
-<li><strong>研究问题、方法与基线</strong>：数据从 2026
-年六种公开资格考试抽取，包含 321 个评分单元、267
-道原始问题，覆盖会计、税务、理财和银行业务；coding agent
-编写格式转换器，人类逐题核验。作者以 12 个 LLM
-三次运行评测，主要设置是不使用工具的单次 API
-回答，另测终端/网页工具。</li>
-<li><strong>作者报告的结果</strong>：无工具设置下，Claude Fable 5 得分
-95.8±0.4，GPT-6 Astra 为 93.6±0.6；最佳开放权重 Kimi K3.1 Pro 为
-83.4±0.9。工具使用后 Kimi 达 92.9、GPT-6 Astra 达
-97.3，最高闭源与开放模型的差距从约 12 缩至约 4 分。</li>
-<li><strong>创新与局限/失败条件</strong>：可更新题源是主要创新，但只覆盖能由主办方公开
-PDF
-的六类考试，顶级闭源模型除税务题外接近饱和。考试时间晚于模型公开知识截止并不能排除训练或后训练污染；主要对手使用闭源
-API，复现实验受模型版本、价格和工具 harness
-影响。高分也不是职业资格，不能替代注册会计师或税务师。</li>
-<li><strong>适合谁读、建议章节</strong>：适合金融 LLM
-基准、日语模型和数据污染研究者。建议读 §3 的数据构造、§5
-的模型与工具结果，及 Coverage/Contamination/Saturation 局限段。代码：<a target="_blank" rel="noopener" href="https://github.com/SakanaAI/JFinBench">GitHub</a>；数据：<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/SakanaAI/JFinBench">Hugging
-Face</a>。</li>
+<li><strong>研究问题、方法与基线</strong>：数据从 2026 年六种公开资格考试抽取，包含 321 个评分单元、267 道原始问题，覆盖会计、税务、理财和银行业务；coding agent 编写格式转换器，人类逐题核验。作者以 12 个 LLM 三次运行评测，主要设置是不使用工具的单次 API 回答，另测终端/网页工具。</li>
+<li><strong>作者报告的结果</strong>：无工具设置下，Claude Fable 5 得分 95.8±0.4，GPT-6 Astra 为 93.6±0.6；最佳开放权重 Kimi K3.1 Pro 为 83.4±0.9。工具使用后 Kimi 达 92.9、GPT-6 Astra 达 97.3，最高闭源与开放模型的差距从约 12 缩至约 4 分。</li>
+<li><strong>创新与局限/失败条件</strong>：可更新题源是主要创新，但只覆盖能由主办方公开 PDF 的六类考试，顶级闭源模型除税务题外接近饱和。考试时间晚于模型公开知识截止并不能排除训练或后训练污染；主要对手使用闭源 API，复现实验受模型版本、价格和工具 harness 影响。高分也不是职业资格，不能替代注册会计师或税务师。</li>
+<li><strong>适合谁读、建议章节</strong>：适合金融 LLM 基准、日语模型和数据污染研究者。建议读 §3 的数据构造、§5 的模型与工具结果，及 Coverage/Contamination/Saturation 局限段。代码：<a target="_blank" rel="noopener" href="https://github.com/SakanaAI/JFinBench">GitHub</a>；数据：<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/SakanaAI/JFinBench">Hugging Face</a>。</li>
 </ul>
-<h3 id="telephysica用重力预检把单图生成变成可执行的物理场景">TelePhysica：用重力预检把单图生成变成可执行的物理场景</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18078">TelePhysica: Agentic
-Reconstruction of Physically Interactive
-Scenes</a>（arXiv:2611.18078）<br>
-<strong>作者</strong>：Ruiqi Shu、Xufeng Zhan、Yuanzhi Liang 等（共 6
-位）<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18078">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18078">PDF</a> · <a target="_blank" rel="noopener" href="https://interactive4d.vercel.app/">项目主页</a><br>
-<strong>全文状态</strong>：已核阅 arXiv 官方 HTML
-全文；以下复述作者报告，非独立复现。</p>
+<h3 id="telephysica用重力预检把单图生成变成可执行的物理场景"><a class="markdownIt-Anchor" href="#telephysica用重力预检把单图生成变成可执行的物理场景"></a> TelePhysica：用重力预检把单图生成变成可执行的物理场景</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18078">TelePhysica: Agentic Reconstruction of Physically Interactive Scenes</a>（arXiv:2611.18078）<br>
+<strong>作者</strong>：Ruiqi Shu、Xufeng Zhan、Yuanzhi Liang 等（共 6 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18078">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18078">PDF</a> · <a target="_blank" rel="noopener" href="https://interactive4d.vercel.app/">项目主页</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文；以下复述作者报告，非独立复现。</p>
 <ul>
-<li><strong>研究问题、方法与基线</strong>：系统从单张照片让
-vision-language coding agent
-生成几何网格和声明式物理模型，先做轮廓检查，再做零力重力平衡预检，之后由统一求解器模拟刚体、关节链、布料与弹性体；模拟轨迹再作为视频扩散的结构条件。对照包括单次开环场景生成，以及不带物理轨迹条件的直接图生视频。</li>
-<li><strong>作者报告的结果</strong>：在 100
-个桌面场景中，二阶段闭环将平衡验证通过率从单次合成 0/100 提到
-81/100，中位数需 7 次场景提交；完整 5 秒受力 rollout 验证率为
-49/100。物理轨迹条件视频把运动掩膜 IoU 从 0.17–0.27 提升至
-0.48–0.87，力方向反转的反事实场景也恢复正向对齐。</li>
-<li><strong>创新与局限/失败条件</strong>：创新是把物理可执行性放入生成闭环，而不只看像素相似度。实测限于作者构造的
-100
-个桌面场景和模拟器，不等于真实物体系统辨识，也没有独立团队复现；密度、弹性模量和摩擦来自材料先验，没有通过多步视觉反馈在线识别。14B
-视频模型需要约 41GB GPU 显存，成本高于 1.3B 配置。</li>
-<li><strong>适合谁读、建议章节</strong>：适合世界模型、生成视频、物理仿真与机器人场景建模读者。建议读
-§3.1 的闭环重建、§4.1 的 100 场景实验、§4.2–4.3
-的物理与视频消融。项目主页：<a target="_blank" rel="noopener" href="https://interactive4d.vercel.app/">interactive4d</a>。</li>
+<li><strong>研究问题、方法与基线</strong>：系统从单张照片让 vision-language coding agent 生成几何网格和声明式物理模型，先做轮廓检查，再做零力重力平衡预检，之后由统一求解器模拟刚体、关节链、布料与弹性体；模拟轨迹再作为视频扩散的结构条件。对照包括单次开环场景生成，以及不带物理轨迹条件的直接图生视频。</li>
+<li><strong>作者报告的结果</strong>：在 100 个桌面场景中，二阶段闭环将平衡验证通过率从单次合成 0/100 提到 81/100，中位数需 7 次场景提交；完整 5 秒受力 rollout 验证率为 49/100。物理轨迹条件视频把运动掩膜 IoU 从 0.17–0.27 提升至 0.48–0.87，力方向反转的反事实场景也恢复正向对齐。</li>
+<li><strong>创新与局限/失败条件</strong>：创新是把物理可执行性放入生成闭环，而不只看像素相似度。实测限于作者构造的 100 个桌面场景和模拟器，不等于真实物体系统辨识，也没有独立团队复现；密度、弹性模量和摩擦来自材料先验，没有通过多步视觉反馈在线识别。14B 视频模型需要约 41GB GPU 显存，成本高于 1.3B 配置。</li>
+<li><strong>适合谁读、建议章节</strong>：适合世界模型、生成视频、物理仿真与机器人场景建模读者。建议读 §3.1 的闭环重建、§4.1 的 100 场景实验、§4.2–4.3 的物理与视频消融。项目主页：<a target="_blank" rel="noopener" href="https://interactive4d.vercel.app/">interactive4d</a>。</li>
 </ul>
-<h2 id="ai-论文">AI 论文</h2>
-<h3 id="gamer-a-generalist-vision-language-action-foundation-model-for-long-horizon-real-time-game-agentarxiv2611.18397">Gamer:
-A Generalist Vision-Language-Action Foundation Model for Long-Horizon
-Real-Time Game Agent（arXiv:2611.18397）</h3>
-<p><strong>作者</strong>：Run Luo、Kuan Zhang、Qi Deng 等（共 27
-位）<br>
-<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.CV<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18397">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18397">PDF</a></p>
-<p>研究通用视觉—语言—动作智能体能否在长时程、实时交互环境完成任务；作者将数万小时键鼠轨迹继续预训练、稀疏思维指令微调、多轮强化学习与云边推理组合，并报告在多款
-3D 开放世界游戏中达到熟练玩家相近的表现、在 2D
-游戏基准上也具竞争力。价值在于尝试用统一轨迹训练跨数字与具身环境的
-agent；摘要未给具体分数、基线细节、训练算力和延迟分布，泛化与成本仍需全文核验。</p>
+<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
+<h3 id="gamer-a-generalist-vision-language-action-foundation-model-for-long-horizon-real-time-game-agentarxiv261118397"><a class="markdownIt-Anchor" href="#gamer-a-generalist-vision-language-action-foundation-model-for-long-horizon-real-time-game-agentarxiv261118397"></a> Gamer: A Generalist Vision-Language-Action Foundation Model for Long-Horizon Real-Time Game Agent（arXiv:2611.18397）</h3>
+<p><strong>作者</strong>：Run Luo、Kuan Zhang、Qi Deng 等（共 27 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18397">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18397">PDF</a></p>
+<p>研究通用视觉—语言—动作智能体能否在长时程、实时交互环境完成任务；作者将数万小时键鼠轨迹继续预训练、稀疏思维指令微调、多轮强化学习与云边推理组合，并报告在多款 3D 开放世界游戏中达到熟练玩家相近的表现、在 2D 游戏基准上也具竞争力。价值在于尝试用统一轨迹训练跨数字与具身环境的 agent；摘要未给具体分数、基线细节、训练算力和延迟分布，泛化与成本仍需全文核验。</p>
 <p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p>
-<h3 id="tracing-knowledge-and-reasoning-in-llmarxiv2611.17461">Tracing
-Knowledge and Reasoning in LLM（arXiv:2611.17461）</h3>
-<p><strong>作者</strong>：Yang Wang、Xiao Wang、Yiqi Liu 等（共 7
-位）<br>
-<strong>来源/分类</strong>：arXiv · cs.CL<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17461">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17461">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/extraordinarylab/trace-kr">代码/项目</a></p>
-<p>研究任务级分数是否掩盖大语言模型内部使用知识或推理的差异；作者将注意力、激活和表征信号组合成分析框架，在
-24 个基准上评估 16 个
-LLM，观察到知识型与推理型任务的内部处理模式有系统差别。价值在于补充“得分是多少”之外的诊断视角；内部信号与能力的关系仍属分析性证据，不能单独证明模型实际采用了某种推理过程。代码：<a target="_blank" rel="noopener" href="https://github.com/extraordinarylab/trace-kr">trace-kr</a>。</p>
+<h3 id="tracing-knowledge-and-reasoning-in-llmarxiv261117461"><a class="markdownIt-Anchor" href="#tracing-knowledge-and-reasoning-in-llmarxiv261117461"></a> Tracing Knowledge and Reasoning in LLM（arXiv:2611.17461）</h3>
+<p><strong>作者</strong>：Yang Wang、Xiao Wang、Yiqi Liu 等（共 7 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17461">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17461">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/extraordinarylab/trace-kr">代码/项目</a></p>
+<p>研究任务级分数是否掩盖大语言模型内部使用知识或推理的差异；作者将注意力、激活和表征信号组合成分析框架，在 24 个基准上评估 16 个 LLM，观察到知识型与推理型任务的内部处理模式有系统差别。价值在于补充“得分是多少”之外的诊断视角；内部信号与能力的关系仍属分析性证据，不能单独证明模型实际采用了某种推理过程。代码：<a target="_blank" rel="noopener" href="https://github.com/extraordinarylab/trace-kr">trace-kr</a>。</p>
 <p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p>
-<h3 id="vision-language-action-models-a-life-cycle-survey-of-design-training-and-deploymentarxiv2611.18372">Vision-Language-Action
-Models: A Life-Cycle Survey of Design, Training and
-Deployment（arXiv:2611.18372）</h3>
-<p><strong>作者</strong>：Suvarna Kadam (Witsense AI)、Soran Parsa
-(University of Huddersfield)<br>
-<strong>来源/分类</strong>：arXiv · cs.RO、cs.AI、cs.ET、cs.LG<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18372">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18372">PDF</a></p>
-<p>综述 2022 年 12 月至 2026 年 10 月的 88
-项视觉—语言—动作研究，并沿设计、训练和部署七个维度拆解 22
-个模型。作者归纳数据从遥操作扩展到社区与人类视频、模型规模分化为 3–7B
-与消费级 GPU
-可运行的小模型，以及操控与导航合并等趋势；同时指出高基准分数不能保证轻微物体或相机变化下的鲁棒性。适合建立研究地图；趋势结论受纳入工作和快速变化的模型版本影响，本文是综述而非统一实验。</p>
+<h3 id="vision-language-action-models-a-life-cycle-survey-of-design-training-and-deploymentarxiv261118372"><a class="markdownIt-Anchor" href="#vision-language-action-models-a-life-cycle-survey-of-design-training-and-deploymentarxiv261118372"></a> Vision-Language-Action Models: A Life-Cycle Survey of Design, Training and Deployment（arXiv:2611.18372）</h3>
+<p><strong>作者</strong>：Suvarna Kadam (Witsense AI)、Soran Parsa (University of Huddersfield)<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.RO">cs.RO</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.ET">cs.ET</a>、cs.LG<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18372">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18372">PDF</a></p>
+<p>综述 2022 年 12 月至 2026 年 10 月的 88 项视觉—语言—动作研究，并沿设计、训练和部署七个维度拆解 22 个模型。作者归纳数据从遥操作扩展到社区与人类视频、模型规模分化为 3–7B 与消费级 GPU 可运行的小模型，以及操控与导航合并等趋势；同时指出高基准分数不能保证轻微物体或相机变化下的鲁棒性。适合建立研究地图；趋势结论受纳入工作和快速变化的模型版本影响，本文是综述而非统一实验。</p>
 <p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p>
-<h3 id="jfinbench-a-continuously-refreshable-japanese-financial-benchmark-from-the-latest-certification-examsarxiv2611.18130">JFinBench:
-A Continuously Refreshable Japanese Financial Benchmark from the Latest
-Certification Exams（arXiv:2611.18130）</h3>
-<p><strong>作者</strong>：Issa Sugiura、Taro Makino、Takashi
-Ishida<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18130">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18130">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/SakanaAI/JFinBench">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/SakanaAI/JFinBench">数据集</a></p>
-<p>JFinBench 用 2026 年六类日本金融资格考试建立 321
-道可更新题目，并以人工核验的 agentic 流程处理不同考试格式；作者比较 12
-个模型，报告 Claude Fable 5 为 95.8%、GPT-6 Astra 为
-93.6%，最佳开放权重模型 Kimi K3.1 Pro 为
-83.4%，启用终端和网页工具后差距缩小。它测的是地区化金融知识，不是金融专业资格或真实业务能力；题目范围有限，考试晚于报告的知识截止时间也不能排除训练污染。已核读全文，代码和数据链接见条目。</p>
+<h3 id="jfinbench-a-continuously-refreshable-japanese-financial-benchmark-from-the-latest-certification-examsarxiv261118130"><a class="markdownIt-Anchor" href="#jfinbench-a-continuously-refreshable-japanese-financial-benchmark-from-the-latest-certification-examsarxiv261118130"></a> JFinBench: A Continuously Refreshable Japanese Financial Benchmark from the Latest Certification Exams（arXiv:2611.18130）</h3>
+<p><strong>作者</strong>：Issa Sugiura、Taro Makino、Takashi Ishida<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18130">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18130">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/SakanaAI/JFinBench">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/SakanaAI/JFinBench">数据集</a></p>
+<p>JFinBench 用 2026 年六类日本金融资格考试建立 321 道可更新题目，并以人工核验的 agentic 流程处理不同考试格式；作者比较 12 个模型，报告 Claude Fable 5 为 95.8%、GPT-6 Astra 为 93.6%，最佳开放权重模型 Kimi K3.1 Pro 为 83.4%，启用终端和网页工具后差距缩小。它测的是地区化金融知识，不是金融专业资格或真实业务能力；题目范围有限，考试晚于报告的知识截止时间也不能排除训练污染。已核读全文，代码和数据链接见条目。</p>
 <p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p>
-<h3 id="from-images-to-grounded-edits-a-real-world-benchmark-for-chinese-grammatical-error-correction-in-handwritten-essaysarxiv2611.17966">From
-Images to Grounded Edits: A Real-World Benchmark for Chinese Grammatical
-Error Correction in Handwritten Essays（arXiv:2611.17966）</h3>
-<p><strong>作者</strong>：Weiru Zhang、Yuzhong Hong、Junwei Bao 等（共 5
-位）<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17966">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17966">PDF</a></p>
-<p>研究模型能否直接从中国中小学生手写作文图像发现语病、生成修改并定位原字符；作者发布含
-150 篇作文、251 张图像、2,731 段待改文本的 G-CGEC-Eval，并比较单次
-VLM、OCR/视觉定位流水线和 agent 工作流。作者报告 GPT-5.5 单次 F1 为
-0.22%，加入 OCR 与定位流水线为 12.37%，按错误类型拆分的多 agent 流程为
-22.83%；即使最佳方案仍漏掉多数错误。数据仅覆盖中文 K-12
-作文，且工具链与单模型设置并非纯粹等成本比较；见重点分析。</p>
+<h3 id="from-images-to-grounded-edits-a-real-world-benchmark-for-chinese-grammatical-error-correction-in-handwritten-essaysarxiv261117966"><a class="markdownIt-Anchor" href="#from-images-to-grounded-edits-a-real-world-benchmark-for-chinese-grammatical-error-correction-in-handwritten-essaysarxiv261117966"></a> From Images to Grounded Edits: A Real-World Benchmark for Chinese Grammatical Error Correction in Handwritten Essays（arXiv:2611.17966）</h3>
+<p><strong>作者</strong>：Weiru Zhang、Yuzhong Hong、Junwei Bao 等（共 5 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17966">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17966">PDF</a></p>
+<p>研究模型能否直接从中国中小学生手写作文图像发现语病、生成修改并定位原字符；作者发布含 150 篇作文、251 张图像、2,731 段待改文本的 G-CGEC-Eval，并比较单次 VLM、OCR/视觉定位流水线和 agent 工作流。作者报告 GPT-5.5 单次 F1 为 0.22%，加入 OCR 与定位流水线为 12.37%，按错误类型拆分的多 agent 流程为 22.83%；即使最佳方案仍漏掉多数错误。数据仅覆盖中文 K-12 作文，且工具链与单模型设置并非纯粹等成本比较；见重点分析。</p>
 <p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p>
-<h3 id="webarena-pro-a-heterogeneous-multimodal-reproducible-benchmark-for-web-agentsarxiv2611.17955">WebArena-Pro:
-A Heterogeneous, Multimodal, Reproducible Benchmark for Web
-Agents（arXiv:2611.17955）</h3>
-<p><strong>作者</strong>：Imene Kerboua、Fatemeh Pesaran Zadeh、Xing Han
-Lù 等（共 22 位）<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、cs.LG<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17955">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17955">PDF</a> · <a target="_blank" rel="noopener" href="https://webarena-pro.github.io">项目页</a></p>
-<p>WebArena-Pro 构造 300 项任务，覆盖 20
-个自托管网页应用、六类领域，并把音频与视频纳入 agent
-观察和操作。作者报告在 50 步预算下最佳组合成功率为 62.3%，通用 agent
-配置最高为
-30.3%；媒体工具消融显示，去掉媒体访问会显著降低音视频任务表现。基准可复现且应用覆盖广，但模型、agent
-harness 与 API 配置共同影响排名，不能把成绩归因于单一模型；闭源 API
-成本也需计入。项目主页见链接，重点分析列出费用和对照限制。</p>
+<h3 id="webarena-pro-a-heterogeneous-multimodal-reproducible-benchmark-for-web-agentsarxiv261117955"><a class="markdownIt-Anchor" href="#webarena-pro-a-heterogeneous-multimodal-reproducible-benchmark-for-web-agentsarxiv261117955"></a> WebArena-Pro: A Heterogeneous, Multimodal, Reproducible Benchmark for Web Agents（arXiv:2611.17955）</h3>
+<p><strong>作者</strong>：Imene Kerboua、Fatemeh Pesaran Zadeh、Xing Han Lù 等（共 22 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、cs.LG<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17955">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17955">PDF</a> · <a target="_blank" rel="noopener" href="https://webarena-pro.github.io">项目页</a></p>
+<p>WebArena-Pro 构造 300 项任务，覆盖 20 个自托管网页应用、六类领域，并把音频与视频纳入 agent 观察和操作。作者报告在 50 步预算下最佳组合成功率为 62.3%，通用 agent 配置最高为 30.3%；媒体工具消融显示，去掉媒体访问会显著降低音视频任务表现。基准可复现且应用覆盖广，但模型、agent harness 与 API 配置共同影响排名，不能把成绩归因于单一模型；闭源 API 成本也需计入。项目主页见链接，重点分析列出费用和对照限制。</p>
 <p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p>
-<h3 id="from-chats-to-markets-agenticpay-for-llm-powered-negotiation-in-multi-agent-commercearxiv2602.06008">From
-Chats to Markets: AgenticPay for LLM-Powered Negotiation in Multi-Agent
-Commerce（arXiv:2602.06008）</h3>
-<p><strong>作者</strong>：Xianyang Liu、Shangding Gu、Fan Xu 等（共 8
-位）<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.LG<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.06008">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.06008">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/SAIL-Research-Lab/AgenticPay">代码/项目</a></p>
-<p>AgenticPay 研究多模态模型能否在商品信息、隐藏偏好和多议题条件下进行多
-agent 商务谈判；基准含 160
-个任务、四种商业场景和八种市场拓扑。作者报告最强模型 GlobalScore 为
-42.3/100，市场由双边转向多方时平均下降 5.7 分，开放权重模型最多下降 11.5
-分。它把议价福利和多方竞争放入同一评测，值得用于研究交易型
-agent；但任务与效用由基准设计定义，不能外推到真实消费者或商业利润，模型比较也包括闭源
-API。代码和数据：<a target="_blank" rel="noopener" href="https://github.com/SAIL-Research-Lab/AgenticPay">AgenticPay</a>。</p>
+<h3 id="from-chats-to-markets-agenticpay-for-llm-powered-negotiation-in-multi-agent-commercearxiv260206008"><a class="markdownIt-Anchor" href="#from-chats-to-markets-agenticpay-for-llm-powered-negotiation-in-multi-agent-commercearxiv260206008"></a> From Chats to Markets: AgenticPay for LLM-Powered Negotiation in Multi-Agent Commerce（arXiv:2602.06008）</h3>
+<p><strong>作者</strong>：Xianyang Liu、Shangding Gu、Fan Xu 等（共 8 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.06008">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.06008">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/SAIL-Research-Lab/AgenticPay">代码/项目</a></p>
+<p>AgenticPay 研究多模态模型能否在商品信息、隐藏偏好和多议题条件下进行多 agent 商务谈判；基准含 160 个任务、四种商业场景和八种市场拓扑。作者报告最强模型 GlobalScore 为 42.3/100，市场由双边转向多方时平均下降 5.7 分，开放权重模型最多下降 11.5 分。它把议价福利和多方竞争放入同一评测，值得用于研究交易型 agent；但任务与效用由基准设计定义，不能外推到真实消费者或商业利润，模型比较也包括闭源 API。代码和数据：<a target="_blank" rel="noopener" href="https://github.com/SAIL-Research-Lab/AgenticPay">AgenticPay</a>。</p>
 <p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p>
-<h3 id="training-reasoning-models-in-simulation-to-natively-use-real-robotsarxiv2611.18562">Training
-Reasoning Models in Simulation to Natively Use Real
-Robots（arXiv:2611.18562）</h3>
-<p><strong>作者</strong>：Jiaming Tang、Zhuoyang Zhang、Junxian Guo
-等（共 11 位）<br>
-<strong>来源/分类</strong>：arXiv · cs.RO、cs.LG<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18562">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18562">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/mit-han-lab/pear">代码</a></p>
-<p>研究开放权重推理模型能否仅靠仿真强化学习学会直接操作真实机器人；作者以
-27B 模型、PEAR 训练引擎和 LIBERO/RoboDojo
-任务训练，不使用机器人演示或额外控制 harness。作者报告 LIBERO 成功率由
-1.6% 升至 74.4%，在未见过的真实双臂机器人试验成功率为 60%（基础模型为
-0），在 LIBERO-Pro 的新任务上为 57.4%，对照演示微调的 π0.5 为
-0.75%。结果支持仿真到实机迁移的可能性；训练只覆盖两个模拟器和少量任务，单步推理平均约
-4.3 秒且提示设定影响结果。代码：<a target="_blank" rel="noopener" href="https://github.com/mit-han-lab/pear">PEAR</a>，重点分析详述全文证据。</p>
+<h3 id="training-reasoning-models-in-simulation-to-natively-use-real-robotsarxiv261118562"><a class="markdownIt-Anchor" href="#training-reasoning-models-in-simulation-to-natively-use-real-robotsarxiv261118562"></a> Training Reasoning Models in Simulation to Natively Use Real Robots（arXiv:2611.18562）</h3>
+<p><strong>作者</strong>：Jiaming Tang、Zhuoyang Zhang、Junxian Guo 等（共 11 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.RO">cs.RO</a>、cs.LG<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18562">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18562">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/mit-han-lab/pear">代码</a></p>
+<p>研究开放权重推理模型能否仅靠仿真强化学习学会直接操作真实机器人；作者以 27B 模型、PEAR 训练引擎和 LIBERO/RoboDojo 任务训练，不使用机器人演示或额外控制 harness。作者报告 LIBERO 成功率由 1.6% 升至 74.4%，在未见过的真实双臂机器人试验成功率为 60%（基础模型为 0），在 LIBERO-Pro 的新任务上为 57.4%，对照演示微调的 π0.5 为 0.75%。结果支持仿真到实机迁移的可能性；训练只覆盖两个模拟器和少量任务，单步推理平均约 4.3 秒且提示设定影响结果。代码：<a target="_blank" rel="noopener" href="https://github.com/mit-han-lab/pear">PEAR</a>，重点分析详述全文证据。</p>
 <p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p>
-<h3 id="personalization-of-basic-and-moral-values-guiding-llm-controlled-assistant-robotsarxiv2611.18230">Personalization
-of Basic and Moral Values Guiding LLM-Controlled Assistant
-Robots（arXiv:2611.18230）</h3>
-<p><strong>作者</strong>：Mateusz Wozniak、Qi Gao、Agnieszka
-Wykowska<br>
-<strong>来源/分类</strong>：arXiv · cs.HC、cs.AI<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18230">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18230">PDF</a></p>
-<p>研究个人会希望助理机器人遵循怎样的基本与道德价值，以及提示词能否让
-LLM 贴合用户偏好；作者对 22 名潜在用户施测三种心理量表，并比较 15
-个模型。参与者希望机器人相较自身降低个人导向、提高社会导向价值，提示模型扮演机器人只能弱幅度移动其价值画像。研究提醒“总体对齐”未必等于个性化偏好；样本小、量表自报和假设性情境都不能证明真实人机互动效果。</p>
+<h3 id="personalization-of-basic-and-moral-values-guiding-llm-controlled-assistant-robotsarxiv261118230"><a class="markdownIt-Anchor" href="#personalization-of-basic-and-moral-values-guiding-llm-controlled-assistant-robotsarxiv261118230"></a> Personalization of Basic and Moral Values Guiding LLM-Controlled Assistant Robots（arXiv:2611.18230）</h3>
+<p><strong>作者</strong>：Mateusz Wozniak、Qi Gao、Agnieszka Wykowska<br>
+<strong>来源/分类</strong>：arXiv · cs.HC、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18230">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18230">PDF</a></p>
+<p>研究个人会希望助理机器人遵循怎样的基本与道德价值，以及提示词能否让 LLM 贴合用户偏好；作者对 22 名潜在用户施测三种心理量表，并比较 15 个模型。参与者希望机器人相较自身降低个人导向、提高社会导向价值，提示模型扮演机器人只能弱幅度移动其价值画像。研究提醒“总体对齐”未必等于个性化偏好；样本小、量表自报和假设性情境都不能证明真实人机互动效果。</p>
 <p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p>
-<h3 id="mastars-multi-agent-sequential-trajectory-augmentation-with-return-conditioned-subgoalsarxiv2611.17793">MASTARS:
-Multi-Agent Sequential Trajectory Augmentation with Return-Conditioned
-Subgoals（arXiv:2611.17793）</h3>
-<p><strong>作者</strong>：Jiwon Jeon、Myungsik Cho、Woojun Kim 等（共 7
-位）<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17793">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17793">PDF</a></p>
-<p>MASTARS
-针对离线多智能体强化学习中轨迹增强难同时保留多样性与协同的问题，提出扩散式按
-agent 顺序生成轨迹，并用 inpainting 维持跨 agent 一致性。摘要报告在
-MPE、SMAC 与 SMAC-v2 等基准上改善多个离线 MARL
-方法。其价值是把联合轨迹的协调约束放进生成过程；摘要没有提供各任务数值、训练成本和统计区间，基线公平性、生成数据是否带来分布外收益及复现条件需查全文。</p>
+<h3 id="mastars-multi-agent-sequential-trajectory-augmentation-with-return-conditioned-subgoalsarxiv261117793"><a class="markdownIt-Anchor" href="#mastars-multi-agent-sequential-trajectory-augmentation-with-return-conditioned-subgoalsarxiv261117793"></a> MASTARS: Multi-Agent Sequential Trajectory Augmentation with Return-Conditioned Subgoals（arXiv:2611.17793）</h3>
+<p><strong>作者</strong>：Jiwon Jeon、Myungsik Cho、Woojun Kim 等（共 7 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17793">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17793">PDF</a></p>
+<p>MASTARS 针对离线多智能体强化学习中轨迹增强难同时保留多样性与协同的问题，提出扩散式按 agent 顺序生成轨迹，并用 inpainting 维持跨 agent 一致性。摘要报告在 MPE、SMAC 与 SMAC-v2 等基准上改善多个离线 MARL 方法。其价值是把联合轨迹的协调约束放进生成过程；摘要没有提供各任务数值、训练成本和统计区间，基线公平性、生成数据是否带来分布外收益及复现条件需查全文。</p>
 <p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p>
-<h3 id="verifiable-pxrd-hill-climbing-pxrd-structure-determination-with-llm-agentsarxiv2611.17539">Verifiable
-pXRD: Hill-climbing pXRD structure determination with LLM
-agents（arXiv:2611.17539）</h3>
-<p><strong>作者</strong>：Samuel Chen、Jiaru Bai、Austin Henry Cheng
-等（共 5 位）<br>
-<strong>来源/分类</strong>：arXiv · cs.AI<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17539">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17539">PDF</a></p>
-<p>研究 LLM agent 能否利用可验证的仿真经验解决粉末 X
-射线衍射晶体结构识别；pXRD-Bench 含 200 个模拟单相问题，并扩展至 15
-个实测多相样本。作者报告适配后选定结构恢复率由 27% 升到 69%，重复采样和
-verifier
-引导的推理时扩展还能提高结果。亮点是用可计算的衍射图匹配作为验证器，并尝试从合成失败经验改进实验数据求解；实测样本数量仍小，模拟到真实实验与未收录结构的外推有限，具体基线需全文核对。</p>
+<h3 id="verifiable-pxrd-hill-climbing-pxrd-structure-determination-with-llm-agentsarxiv261117539"><a class="markdownIt-Anchor" href="#verifiable-pxrd-hill-climbing-pxrd-structure-determination-with-llm-agentsarxiv261117539"></a> Verifiable pXRD: Hill-climbing pXRD structure determination with LLM agents（arXiv:2611.17539）</h3>
+<p><strong>作者</strong>：Samuel Chen、Jiaru Bai、Austin Henry Cheng 等（共 5 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17539">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17539">PDF</a></p>
+<p>研究 LLM agent 能否利用可验证的仿真经验解决粉末 X 射线衍射晶体结构识别；pXRD-Bench 含 200 个模拟单相问题，并扩展至 15 个实测多相样本。作者报告适配后选定结构恢复率由 27% 升到 69%，重复采样和 verifier 引导的推理时扩展还能提高结果。亮点是用可计算的衍射图匹配作为验证器，并尝试从合成失败经验改进实验数据求解；实测样本数量仍小，模拟到真实实验与未收录结构的外推有限，具体基线需全文核对。</p>
 <p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p>
-<h3 id="vlan-vision-language-accessible-navigationarxiv2611.18346">VLAN:
-Vision-Language Accessible Navigation（arXiv:2611.18346）</h3>
-<p><strong>作者</strong>：Jie Hu、Yu Zheng、Wenzhi Wu 等（共 6
-位）<br>
-<strong>来源/分类</strong>：arXiv · cs.AI、cs.CV<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18346">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18346">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/InSAI-Lab/VLAN">代码/项目</a></p>
-<p>VLAN 针对“可通行”取决于行动者身体与无障碍需求的问题，建立 1,000
-个场景、20,000 条导航轨迹和 160,000
-个关键帧，覆盖轮式/腿式机器人及视觉或行动障碍者，并标记可通过、绕行、高风险和阻断。作者报告现有
-VLM
-难以在不同用户画像间稳定调整障碍重要性、安全标准与路径选择。它把可达性约束从普通到达率指标中独立出来；摘要没有提供详细模型分数或统计不确定度，真实人群安全收益尚未验证。代码与数据：<a target="_blank" rel="noopener" href="https://github.com/InSAI-Lab/VLAN">VLAN</a>。</p>
+<h3 id="vlan-vision-language-accessible-navigationarxiv261118346"><a class="markdownIt-Anchor" href="#vlan-vision-language-accessible-navigationarxiv261118346"></a> VLAN: Vision-Language Accessible Navigation（arXiv:2611.18346）</h3>
+<p><strong>作者</strong>：Jie Hu、Yu Zheng、Wenzhi Wu 等（共 6 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18346">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18346">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/InSAI-Lab/VLAN">代码/项目</a></p>
+<p>VLAN 针对“可通行”取决于行动者身体与无障碍需求的问题，建立 1,000 个场景、20,000 条导航轨迹和 160,000 个关键帧，覆盖轮式/腿式机器人及视觉或行动障碍者，并标记可通过、绕行、高风险和阻断。作者报告现有 VLM 难以在不同用户画像间稳定调整障碍重要性、安全标准与路径选择。它把可达性约束从普通到达率指标中独立出来；摘要没有提供详细模型分数或统计不确定度，真实人群安全收益尚未验证。代码与数据：<a target="_blank" rel="noopener" href="https://github.com/InSAI-Lab/VLAN">VLAN</a>。</p>
 <p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p>
-<h3 id="privacypr-a-dataset-of-real-world-privacy-fixes-for-benchmarking-privacy-aware-code-reviewarxiv2611.18293">PrivacyPR:
-A Dataset of Real-World Privacy Fixes for Benchmarking Privacy-Aware
-Code Review（arXiv:2611.18293）</h3>
-<p><strong>作者</strong>：Hua Yang、Aditya Bhardwaj、Shidong Pan、Bowen
-Xu<br>
-<strong>来源/分类</strong>：arXiv · cs.CR、cs.AI、cs.SE<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18293">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18293">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.23744765">DOI/数据</a></p>
-<p>PrivacyPR 从 1,469 个 GitHub 仓库整理 4,131 个已合并
-PR，包含开发者接受的隐私修复、评审语境与 GDPR
-标签；评测时回退修复以重新引入缺陷。作者报告两种 coding agent 在 200 条
-Small 集上，通用审查提示仅发现 42%–51% 缺陷，明确要求检查隐私后升至
-88%–91%，同时误报 11%–15%；更细粒度 GDPR
-标签的人类一致性较弱。价值在于测试真实修复而非合成漏洞；标签受 LLM
-预标注影响，且人工复核者看到了标签。数据、代码和评审材料见
-DOI，详见重点分析。</p>
+<h3 id="privacypr-a-dataset-of-real-world-privacy-fixes-for-benchmarking-privacy-aware-code-reviewarxiv261118293"><a class="markdownIt-Anchor" href="#privacypr-a-dataset-of-real-world-privacy-fixes-for-benchmarking-privacy-aware-code-reviewarxiv261118293"></a> PrivacyPR: A Dataset of Real-World Privacy Fixes for Benchmarking Privacy-Aware Code Review（arXiv:2611.18293）</h3>
+<p><strong>作者</strong>：Hua Yang、Aditya Bhardwaj、Shidong Pan、Bowen Xu<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.SE">cs.SE</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18293">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18293">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.23744765">DOI/数据</a></p>
+<p>PrivacyPR 从 1,469 个 GitHub 仓库整理 4,131 个已合并 PR，包含开发者接受的隐私修复、评审语境与 GDPR 标签；评测时回退修复以重新引入缺陷。作者报告两种 coding agent 在 200 条 Small 集上，通用审查提示仅发现 42%–51% 缺陷，明确要求检查隐私后升至 88%–91%，同时误报 11%–15%；更细粒度 GDPR 标签的人类一致性较弱。价值在于测试真实修复而非合成漏洞；标签受 LLM 预标注影响，且人工复核者看到了标签。数据、代码和评审材料见 DOI，详见重点分析。</p>
 <p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p>
-<h3 id="a-multi-layered-ai-pipeline-for-bpmn-generation-from-natural-languagearxiv2611.18157">A
-Multi-Layered AI Pipeline for BPMN Generation from Natural
-Language（arXiv:2611.18157）</h3>
-<p><strong>作者</strong>：Alexandru Rancea、Ionut Anghel、Tudor Cioara
-等（共 5 位）<br>
-<strong>来源/分类</strong>：arXiv · cs.CL<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18157">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18157">PDF</a></p>
-<p>研究如何把自然语言流程说明转成 BPMN 业务流程图；作者组合 RoBERTa
-实体抽取、LLM 控制流推断、动态 few-shot
-和本体填充，并在文献/行业流程及一个心脏病患者过渡护理流程上评估。摘要报告关系抽取准确率
-90.7%，并称多个场景下结构与参考图对齐。它把非相邻控制关系与结构校验分开处理；摘要未列出数据规模、严格基线和可复现链接，单个真实流程案例不足以证明跨行业稳健性。</p>
+<h3 id="a-multi-layered-ai-pipeline-for-bpmn-generation-from-natural-languagearxiv261118157"><a class="markdownIt-Anchor" href="#a-multi-layered-ai-pipeline-for-bpmn-generation-from-natural-languagearxiv261118157"></a> A Multi-Layered AI Pipeline for BPMN Generation from Natural Language（arXiv:2611.18157）</h3>
+<p><strong>作者</strong>：Alexandru Rancea、Ionut Anghel、Tudor Cioara 等（共 5 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18157">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18157">PDF</a></p>
+<p>研究如何把自然语言流程说明转成 BPMN 业务流程图；作者组合 RoBERTa 实体抽取、LLM 控制流推断、动态 few-shot 和本体填充，并在文献/行业流程及一个心脏病患者过渡护理流程上评估。摘要报告关系抽取准确率 90.7%，并称多个场景下结构与参考图对齐。它把非相邻控制关系与结构校验分开处理；摘要未列出数据规模、严格基线和可复现链接，单个真实流程案例不足以证明跨行业稳健性。</p>
 <p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p>
-<h3 id="who-should-be-on-the-panel-task-conditioned-persona-selection-for-llm-trading-agentsarxiv2611.18150">Who
-Should Be on the Panel? Task-Conditioned Persona Selection for LLM
-Trading Agents（arXiv:2611.18150）</h3>
-<p><strong>作者</strong>：Boming Yang、Yuquan Wang、Jiaxian Guo 等（共 5
-位）<br>
-<strong>来源/分类</strong>：arXiv · q-fin.TR、cs.AI<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18150">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18150">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/tinyrolls/FinPanel">代码</a></p>
-<p>【双主题】FinPanel 根据每只股票的方向盲统计画像，动态挑选不同风格的
-LLM trader persona，再由 manager 汇总独立观点与分层历史记录。作者在 8
-只美股的 2025 年历史测试中报告均值收益 16.1%，优于复现的既有 LLM
-agent；这是带交易成本设定的历史回测，不是因果证据或实盘结果。完整方法、基线、样本外边界和回撤数据见同日<a href="/2026/11/17/daily-finance-papers-2026-11-17/">金融篇重点分析</a>。</p>
-<p><strong>证据状态</strong>：已核阅 arXiv 官方 HTML
-全文；双主题论文的交易回测详析见同日金融篇。</p>
-<h3 id="telephysica-agentic-reconstruction-of-physically-interactive-scenesarxiv2611.18078">TelePhysica:
-Agentic Reconstruction of Physically Interactive
-Scenes（arXiv:2611.18078）</h3>
-<p><strong>作者</strong>：Ruiqi Shu、Xufeng Zhan、Yuanzhi Liang 等（共 6
-位）<br>
-<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18078">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18078">PDF</a> · <a target="_blank" rel="noopener" href="https://interactive4d.vercel.app/">项目主页</a></p>
-<p>TelePhysica 从单张照片闭环重建可交互的物理场景：视觉语言 coding agent
-生成几何和物理描述，再以轮廓匹配、零力重力平衡检查及统一刚体/布料/弹性体求解器验证，并用模拟轨迹约束视频扩散。作者在
-100 场景基准上报告平衡验证通过率从单次合成的 0% 升至 81%，完整 5 秒受力
-rollout 通过率为 49%；轨迹条件视频的运动掩膜 IoU 也比直接图生视频高约
-2.3–5
-倍。限制是材料参数来自先验而非在线识别，证据以小规模桌面场景仿真为主，较大的视频模型需约
-41GB GPU 显存。重点分析核读全文。</p>
+<h3 id="who-should-be-on-the-panel-task-conditioned-persona-selection-for-llm-trading-agentsarxiv261118150"><a class="markdownIt-Anchor" href="#who-should-be-on-the-panel-task-conditioned-persona-selection-for-llm-trading-agentsarxiv261118150"></a> Who Should Be on the Panel? Task-Conditioned Persona Selection for LLM Trading Agents（arXiv:2611.18150）</h3>
+<p><strong>作者</strong>：Boming Yang、Yuquan Wang、Jiaxian Guo 等（共 5 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.TR">q-fin.TR</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18150">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18150">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/tinyrolls/FinPanel">代码</a></p>
+<p>【双主题】FinPanel 根据每只股票的方向盲统计画像，动态挑选不同风格的 LLM trader persona，再由 manager 汇总独立观点与分层历史记录。作者在 8 只美股的 2025 年历史测试中报告均值收益 16.1%，优于复现的既有 LLM agent；这是带交易成本设定的历史回测，不是因果证据或实盘结果。完整方法、基线、样本外边界和回撤数据见同日<a href="/2026/11/17/daily-finance-papers-2026-11-17/">金融篇重点分析</a>。</p>
+<p><strong>证据状态</strong>：已核阅 arXiv 官方 HTML 全文；双主题论文的交易回测详析见同日金融篇。</p>
+<h3 id="telephysica-agentic-reconstruction-of-physically-interactive-scenesarxiv261118078"><a class="markdownIt-Anchor" href="#telephysica-agentic-reconstruction-of-physically-interactive-scenesarxiv261118078"></a> TelePhysica: Agentic Reconstruction of Physically Interactive Scenes（arXiv:2611.18078）</h3>
+<p><strong>作者</strong>：Ruiqi Shu、Xufeng Zhan、Yuanzhi Liang 等（共 6 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18078">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18078">PDF</a> · <a target="_blank" rel="noopener" href="https://interactive4d.vercel.app/">项目主页</a></p>
+<p>TelePhysica 从单张照片闭环重建可交互的物理场景：视觉语言 coding agent 生成几何和物理描述，再以轮廓匹配、零力重力平衡检查及统一刚体/布料/弹性体求解器验证，并用模拟轨迹约束视频扩散。作者在 100 场景基准上报告平衡验证通过率从单次合成的 0% 升至 81%，完整 5 秒受力 rollout 通过率为 49%；轨迹条件视频的运动掩膜 IoU 也比直接图生视频高约 2.3–5 倍。限制是材料参数来自先验而非在线识别，证据以小规模桌面场景仿真为主，较大的视频模型需约 41GB GPU 显存。重点分析核读全文。</p>
 <p><strong>证据状态</strong>：重点论文，全文状态与详细分析见上文。</p>
-<h3 id="agent-as-a-judgearxiv2611.18067">Agent-as-a-Judge（arXiv:2611.18067）</h3>
-<p><strong>作者</strong>：Runyang You、Hongru Cai、Caiqi Zhang 等（共 8
-位）<br>
-<strong>来源/分类</strong>：arXiv · cs.CL<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18067">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18067">PDF</a></p>
-<p>综述“主动评估器”如何在给出 verdict 前通过工具、记忆、规划或多 agent
-协作补齐静态执行日志缺失的证据。作者整理并复现部分 agentic judge
-结果，指出不同任务和架构的增益并不一致，并把成本、可靠性、安全与治理列为部署约束。价值在于提醒评估器需要主动检查事实与环境状态；摘要未提供可直接横向比较的统一数值，综述整理也不等于独立的大规模验证。</p>
+<h3 id="agent-as-a-judgearxiv261118067"><a class="markdownIt-Anchor" href="#agent-as-a-judgearxiv261118067"></a> Agent-as-a-Judge（arXiv:2611.18067）</h3>
+<p><strong>作者</strong>：Runyang You、Hongru Cai、Caiqi Zhang 等（共 8 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a><br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18067">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18067">PDF</a></p>
+<p>综述“主动评估器”如何在给出 verdict 前通过工具、记忆、规划或多 agent 协作补齐静态执行日志缺失的证据。作者整理并复现部分 agentic judge 结果，指出不同任务和架构的增益并不一致，并把成本、可靠性、安全与治理列为部署约束。价值在于提醒评估器需要主动检查事实与环境状态；摘要未提供可直接横向比较的统一数值，综述整理也不等于独立的大规模验证。</p>
 <p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p>
-<h3 id="mineralexp-benchmarking-llm-agents-for-experimental-design-in-real-world-mineral-explorationarxiv2611.17931">MineralExp:
-Benchmarking LLM Agents for Experimental Design in Real-World Mineral
-Exploration（arXiv:2611.17931）</h3>
-<p><strong>作者</strong>：Bing Wang、Mingyang Wang、Yuanhang Mi 等（共
-11 位）<br>
-<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI、cs.CE<br>
-<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17931">arXiv
-摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17931">PDF</a></p>
-<p>MineralExp 把地球化学实验设计改写为假设驱动的多标签选择问题，含 277
-个案例、1,572 份专家核验计划，将 19
-类实验映射到五类矿床过程。作者报告当前 agent
-普遍召回较高、精确率较低，容易建议过多实验。统一分类便于在开放式方案间评估覆盖度；但离散化会压缩仪器与操作细节，LLM-as-a-Judge
-与文献案例也不能替代真实实验的成本和成功率。</p>
+<h3 id="mineralexp-benchmarking-llm-agents-for-experimental-design-in-real-world-mineral-explorationarxiv261117931"><a class="markdownIt-Anchor" href="#mineralexp-benchmarking-llm-agents-for-experimental-design-in-real-world-mineral-explorationarxiv261117931"></a> MineralExp: Benchmarking LLM Agents for Experimental Design in Real-World Mineral Exploration（arXiv:2611.17931）</h3>
+<p><strong>作者</strong>：Bing Wang、Mingyang Wang、Yuanhang Mi 等（共 11 位）<br>
+<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.CE<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17931">arXiv 摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17931">PDF</a></p>
+<p>MineralExp 把地球化学实验设计改写为假设驱动的多标签选择问题，含 277 个案例、1,572 份专家核验计划，将 19 类实验映射到五类矿床过程。作者报告当前 agent 普遍召回较高、精确率较低，容易建议过多实验。统一分类便于在开放式方案间评估覆盖度；但离散化会压缩仪器与操作细节，LLM-as-a-Judge 与文献案例也不能替代真实实验的成本和成功率。</p>
 <p><strong>证据状态</strong>：仅依据摘要；未核验全文中的实验设置、基线和复现细节。</p>
 
                 
@@ -876,9 +621,9 @@ Exploration（arXiv:2611.17931）</h3>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/11/18/daily-briefing-2026-11-18/" title="每日信息简报｜2026 年 11 月 18 日">
+                      <a href="/2026/11/18/daily-github-trending-2026-11-18/" title="2026-11-18 GitHub 热榜简报：从 Agent 交付闭环到可复现学习">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">每日信息简报｜2026 年 11 月 18 日</span>
+                        <span class="hidden-mobile">2026-11-18 GitHub 热榜简报：从 Agent 交付闭环到可复现学习</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

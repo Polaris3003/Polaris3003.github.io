@@ -1,0 +1,853 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="GITHUB TRENDING · 2026.11.18   今天的 GitHub all-languages 日榜更像一张 Agent 工程边界图：LoopForge、OpenCodeReview和 Superpowers把交付、审查和开发方法做成流程，AG-UI与 Plannotator把协议和人的判断接回执行链。另一端，Univer、Arcane、Svelte、MiniMind和 Pa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-11-18 GitHub 热榜简报：从 Agent 交付闭环到可复现学习">
+<meta property="og:url" content="https://www.polarisac.top/2026/11/18/daily-github-trending-2026-11-18/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="GITHUB TRENDING · 2026.11.18   今天的 GitHub all-languages 日榜更像一张 Agent 工程边界图：LoopForge、OpenCodeReview和 Superpowers把交付、审查和开发方法做成流程，AG-UI与 Plannotator把协议和人的判断接回执行链。另一端，Univer、Arcane、Svelte、MiniMind和 Pa">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-08-09/pixiv-rank-014-147953294.jpg">
+<meta property="article:published_time" content="2026-11-18T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-18T02:07:55.066Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="代码审查">
+<meta property="article:tag" content="Agent 交付">
+<meta property="article:tag" content="人类反馈">
+<meta property="article:tag" content="Office SDK">
+<meta property="article:tag" content="小模型训练">
+<meta property="article:tag" content="本地工具链">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-08-09/pixiv-rank-014-147953294.jpg">
+  
+  
+  
+  <title>2026-11-18 GitHub 热榜简报：从 Agent 交付闭环到可复现学习 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
+<link rel="stylesheet" href="/css/dailyBriefing.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.polarisac.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/covers/pixiv-weekly/2026-09-13/pixiv-rank-001-149365241.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2026-11-18 GitHub 热榜简报：从 Agent 交付闭环到可复现学习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-11-18 09:00" pubdate>
+          2026年11月18日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2026-11-18 GitHub 热榜简报：从 Agent 交付闭环到可复现学习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="briefing-masthead">
+  <p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.11.18</p>
+  <p>今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub all-languages 日榜</a>更像一张 Agent 工程边界图：<a target="_blank" rel="noopener" href="https://github.com/Tencent/LoopForge#readme">LoopForge</a>、<a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review#readme">OpenCodeReview</a>和 <a target="_blank" rel="noopener" href="https://github.com/obra/superpowers#readme">Superpowers</a>把交付、审查和开发方法做成流程，<a target="_blank" rel="noopener" href="https://github.com/ag-ui-protocol/ag-ui#readme">AG-UI</a>与 <a target="_blank" rel="noopener" href="https://github.com/backnotprop/plannotator#readme">Plannotator</a>把协议和人的判断接回执行链。另一端，<a target="_blank" rel="noopener" href="https://github.com/dream-num/univer#readme">Univer</a>、<a target="_blank" rel="noopener" href="https://github.com/getarcaneapp/arcane#readme">Arcane</a>、<a target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte#readme">Svelte</a>、<a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind#readme">MiniMind</a>和 <a target="_blank" rel="noopener" href="https://github.com/google-research/paper-orchestra#readme">PaperOrchestra</a>把能力落到 Office、容器、前端、模型训练和研究写作这些具体环境。</p>
+  <div class="briefing-masthead__topics"><span>Agent 交付</span><span>确定性审查</span><span>人类反馈</span><span>Office SDK</span><span>容器运维</span><span>Agent 协议</span><span>编译型前端</span><span>小模型训练</span></div>
+</div>
+<span id="more"></span>
+<h2 id="今日要点"><a class="markdownIt-Anchor" href="#今日要点"></a> 今日要点</h2>
+<p>今天最清晰的主线是 Agent 正在从“能不能调用工具”转向“能不能稳定交付”：<a target="_blank" rel="noopener" href="https://github.com/Tencent/LoopForge#readme">LoopForge</a>用 Docker sandbox、SOP、checkpoint 和 human gate 组织团队交付，<a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review#readme">OpenCodeReview</a>把文件选择、规则匹配和评论定位留给确定性工程，<a target="_blank" rel="noopener" href="https://github.com/obra/superpowers#readme">Superpowers</a>则把澄清需求、写计划、TDD、子 Agent 和代码审查串成强制流程。它们共同说明：模型只是执行器，真正决定长期成本的是上下文、权限、验证和暂停点如何被编码。</p>
+<p>另一条线是 Agent 与真实应用之间的接口正在变厚：<a target="_blank" rel="noopener" href="https://github.com/ag-ui-protocol/ag-ui#readme">AG-UI</a>用事件协议承载流式文本、工具调用、共享状态和人工介入，<a target="_blank" rel="noopener" href="https://github.com/backnotprop/plannotator#readme">Plannotator</a>把计划、文档、HTML 和 diff 的反馈送回会话，<a target="_blank" rel="noopener" href="https://github.com/dream-num/univer#readme">Univer</a>把表格、文档和计算能力嵌入产品。再看 <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind#readme">MiniMind</a>和 <a target="_blank" rel="noopener" href="https://github.com/google-research/paper-orchestra#readme">PaperOrchestra</a>，今天的学习价值不在于追逐最大模型，而在于理解训练链路和长流程编排怎样被拆解、复现与验收。</p>
+<h2 id="值得尝试"><a class="markdownIt-Anchor" href="#值得尝试"></a> 值得尝试</h2>
+<h3 id="a-hrefhttpsgithubcomelementalsoulsclaude-bughunterreadmeelementalsoulsclaude-bughuntera"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomelementalsoulsclaude-bughunterreadmeelementalsoulsclaude-bughuntera"></a> <a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter#readme">elementalsouls/Claude-BugHunter</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter#readme">Claude-BugHunter</a> 是面向授权安全测试的 Claude Code skill bundle，README 列出 83 个 skills、15 个命令、漏洞报告模式、企业身份与基础设施攻击面，以及 Burp MCP 接入。它适合安全研究者学习如何把侦察、验证、证据整理和报告卫生做成可复用流程；限制是只应作用于自有或明确授权的目标，代码与内容还分别受 <a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter/blob/main/LICENSE">MIT</a> 和 <a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter/blob/main/LICENSE-CONTENT">CC BY 4.0</a> 约束，不能把技能包当成未经授权的攻击工具。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter">Python</a>，日榜新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">1,005★</a>，仓库页核验总计 <a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter">9,411★</a>，最近 <a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter/commit/5d91c812ee25efc0c1d5191377632e3aed7e8d2d">2026-11-17 提交</a>，最近 Release 为 <a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter/releases/tag/v2.1">v2.1</a>。</p>
+<h3 id="a-hrefhttpsgithubcomalibabaopen-code-reviewreadmealibabaopen-code-reviewa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomalibabaopen-code-reviewreadmealibabaopen-code-reviewa"></a> <a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review#readme">alibaba/open-code-review</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review#readme">OpenCodeReview</a> 是 AI 代码审查 CLI：它读取 Git diff 或整目录，把精确文件选择、文件分组、规则匹配和评论定位交给工程逻辑，再让 Agent 处理动态判断。它适合研究“哪些步骤必须确定，哪些步骤可以交给模型”；限制是需要配置模型端点，仓库给出的 benchmark 明确偏向更高 precision、recall 较低，不能直接外推到你的代码库。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review">Go</a>，日榜新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">763★</a>，仓库页核验总计 <a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review">53,772★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review/blob/main/LICENSE">Apache-2.0</a>，最近 <a target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review/releases/tag/v1.13.11">Release v1.13.11</a> 于 2026-11-17 发布。</p>
+<h3 id="a-hrefhttpsgithubcomtencentloopforgereadmetencentloopforgea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomtencentloopforgereadmetencentloopforgea"></a> <a target="_blank" rel="noopener" href="https://github.com/Tencent/LoopForge#readme">Tencent/LoopForge</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/Tencent/LoopForge#readme">LoopForge</a> 是面向团队的自托管 Agent 交付工作区：它在 Docker sandbox 中检出仓库、调用多个 coding-agent CLI、按角色协作，并通过 SOP、checkpoint 和 human gate 产出 PR、文档或代码。它适合把一次性的“让 Agent 修 bug”改造成可暂停、可重试、可观察的重复流程；限制是需要 Docker、模型凭据和外部 Agent CLI，当前版本也仍处于快速迭代阶段，部署权限与运行成本不能省略。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/Tencent/LoopForge">Go</a>，日榜新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">591★</a>，仓库页核验总计 <a target="_blank" rel="noopener" href="https://github.com/Tencent/LoopForge">3,227★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/Tencent/LoopForge/blob/main/LICENSE">MIT（第三方组件保留各自条款）</a>，最近 <a target="_blank" rel="noopener" href="https://github.com/Tencent/LoopForge/releases/tag/v0.4.0">Release v0.4.0</a> 于 2026-11-17 发布。</p>
+<h3 id="a-hrefhttpsgithubcomdream-numuniverreadmedream-numunivera"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomdream-numuniverreadmedream-numunivera"></a> <a target="_blank" rel="noopener" href="https://github.com/dream-num/univer#readme">dream-num/univer</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/dream-num/univer#readme">Univer</a> 是可嵌入产品的 Office SDK，提供表格和文档编辑、计算、协作、文件处理，以及面向 Agent 的 Facade API；其插件架构把内容模型、命令、公式和 UI 扩展拆开。它适合产品团队研究如何把 Office 能力作为基础设施暴露给人和 Agent；限制是开源仓库的 Apache-2.0 核心与 Server SDK、商业插件、商业 AI 扩展的边界需要分别核对。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/dream-num/univer">TypeScript</a>，日榜新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">1,774★</a>，仓库页核验总计 <a target="_blank" rel="noopener" href="https://github.com/dream-num/univer">28,928★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/dream-num/univer/blob/dev/LICENSE">Apache-2.0</a>，最近 <a target="_blank" rel="noopener" href="https://github.com/dream-num/univer/releases/tag/v1.5.2">Release v1.5.2</a> 于 2026-11-16 发布。</p>
+<h3 id="a-hrefhttpsgithubcomgetarcaneapparcanereadmegetarcaneapparcanea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomgetarcaneapparcanereadmegetarcaneapparcanea"></a> <a target="_blank" rel="noopener" href="https://github.com/getarcaneapp/arcane#readme">getarcaneapp/arcane</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/getarcaneapp/arcane#readme">Arcane</a> 是用 Go 实现的现代 Docker 管理界面，目标是把镜像、容器和自托管运维集中到一个可视化控制面。它适合个人服务器或小团队观察容器运维如何从命令行走向可审计的 Web 工作区；限制是主分支已进入 v3，实际部署前应按 <a target="_blank" rel="noopener" href="https://getarcane.app">官方文档</a>确认版本迁移、宿主机权限和数据持久化。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/getarcaneapp/arcane">Go</a>，日榜新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">618★</a>，仓库页核验总计 <a target="_blank" rel="noopener" href="https://github.com/getarcaneapp/arcane">9,356★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/getarcaneapp/arcane/blob/main/LICENSE">BSD-3-Clause</a>，最近 <a target="_blank" rel="noopener" href="https://github.com/getarcaneapp/arcane/releases/tag/v3.0.1">Release v3.0.1</a> 于 2026-11-15 发布。</p>
+<h3 id="a-hrefhttpsgithubcomobrasuperpowersreadmeobrasuperpowersa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomobrasuperpowersreadmeobrasuperpowersa"></a> <a target="_blank" rel="noopener" href="https://github.com/obra/superpowers#readme">obra/superpowers</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/obra/superpowers#readme">Superpowers</a> 是由可组合 skills 和启动指令组成的编码 Agent 开发方法论，核心流程覆盖需求澄清、设计、实现计划、TDD、子 Agent 开发和独立代码审查。它适合希望把“先想清楚再写代码”变成 Agent 默认行为的开发者；限制是不同 harness 需要分别安装和验证，视觉 companion 默认会向项目网站发送版本级遥测，可按 README 设置 <code>SUPERPOWERS_DISABLE_TELEMETRY</code> 关闭。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/obra/superpowers">Shell</a>，日榜新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">1,917★</a>，仓库页核验总计 <a target="_blank" rel="noopener" href="https://github.com/obra/superpowers">319,373★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/obra/superpowers/blob/main/LICENSE">MIT</a>，最近 <a target="_blank" rel="noopener" href="https://github.com/obra/superpowers/releases/tag/v7.0.2">Release v7.0.2</a> 于 2026-11-03 发布。</p>
+<h3 id="a-hrefhttpsgithubcomag-ui-protocolag-uireadmeag-ui-protocolag-uia"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomag-ui-protocolag-uireadmeag-ui-protocolag-uia"></a> <a target="_blank" rel="noopener" href="https://github.com/ag-ui-protocol/ag-ui#readme">ag-ui-protocol/ag-ui</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/ag-ui-protocol/ag-ui#readme">AG-UI</a> 是面向 Agent—用户交互的开放事件协议，用双向事件流承载流式文本、工具调用、共享状态、人工介入和子 Agent，并提供 TypeScript、Python 与 .NET SDK。它适合做实时聊天、生成式 UI、状态同步和 human-in-the-loop 集成；限制是它只解决运行时协议，不提供模型或 Agent，事件映射、权限、错误处理和后端适配仍由集成方负责。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/ag-ui-protocol/ag-ui">TypeScript</a>，日榜新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">1,445★</a>，仓库页核验总计 <a target="_blank" rel="noopener" href="https://github.com/ag-ui-protocol/ag-ui">20,034★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/ag-ui-protocol/ag-ui/blob/main/LICENSE">MIT</a>，最近 <a target="_blank" rel="noopener" href="https://github.com/ag-ui-protocol/ag-ui/releases/tag/release/2026-11-17">Release 2026-11-17</a> 发布。</p>
+<h3 id="a-hrefhttpsgithubcombacknotpropplannotatorreadmebacknotpropplannotatora"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcombacknotpropplannotatorreadmebacknotpropplannotatora"></a> <a target="_blank" rel="noopener" href="https://github.com/backnotprop/plannotator#readme">backnotprop/plannotator</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/backnotprop/plannotator#readme">Plannotator</a> 是面向编码 Agent 的本地浏览器审查层，可以标注计划、规格、Markdown、HTML、Agent 消息、代码 diff 和 PR，再把反馈送回会话；Inbox 还允许 Agent 在继续工作时留下问题和待决策项。它适合需要在多 Agent 并行时保留人类决策入口的团队；限制是仍需通过宿主的插件、hooks 或 MCP 接入，共享链接由持有完整链接者读取，大内容上传后会加密并在 7 天后过期。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/backnotprop/plannotator">TypeScript</a>，日榜新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">691★</a>，仓库页核验总计 <a target="_blank" rel="noopener" href="https://github.com/backnotprop/plannotator">13,087★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/backnotprop/plannotator/blob/main/LICENSE-APACHE">Apache-2.0</a> / <a target="_blank" rel="noopener" href="https://github.com/backnotprop/plannotator/blob/main/LICENSE-MIT">MIT</a>，最近 <a target="_blank" rel="noopener" href="https://github.com/backnotprop/plannotator/releases/tag/v0.28.67">Release v0.28.67</a> 于 2026-11-17 发布。</p>
+<h3 id="a-hrefhttpsgithubcomsveltejssveltereadmesveltejssveltea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomsveltejssveltereadmesveltejssveltea"></a> <a target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte#readme">sveltejs/svelte</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte#readme">Svelte</a> 是编译型前端框架，把声明式组件转换成直接更新 DOM 的 JavaScript，把更多工作从运行时移到编译阶段。它适合用来理解编译时优化、组件模型和前端运行时边界；限制是它本身不是 Agent 平台或后端框架，选型仍要结合团队生态、构建链和目标运行环境。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte">JavaScript</a>，日榜新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">477★</a>，仓库页核验总计 <a target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte">89,620★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte/blob/main/LICENSE.md">MIT</a>，最近 <a target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte/commit/0de3934780f33a3d393b0af5a4c88b0178d66ce3">2026-11-17 提交</a>，最近 Release 为 <a target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte/releases/tag/svelte%405.57.3">svelte@5.57.3</a>。</p>
+<h3 id="a-hrefhttpsgithubcomjingyaogongminimindreadmejingyaogongminiminda"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomjingyaogongminimindreadmejingyaogongminiminda"></a> <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind#readme">jingyaogong/minimind</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind#readme">MiniMind</a> 是从零训练约 64M 参数小语言模型的教学项目，公开了从 tokenizer、预训练、SFT、LoRA 到 RLHF、Tool Use、Agentic RL 和蒸馏的完整链路，并尽量使用 PyTorch 原生实现。它适合想理解 LLM 内部机制而不满足于调用高层框架的人；限制是 README 中“2 小时、3 元”指单张 RTX 3090 上的 SFT 阶段实测，不等于完整训练成本，数据、显存和实验配置仍需自己复现。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind">Python</a>，日榜新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">192★</a>，仓库页核验总计 <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind">66,037★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind/blob/master/LICENSE">Apache-2.0</a>，最近 <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind/commit/233d00fa068ec2b8c0d4f07b703934d6391a5a73">2026-10-27 提交</a>。</p>
+<h3 id="a-hrefhttpsgithubcomgoogle-researchpaper-orchestrareadmegoogle-researchpaper-orchestraa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomgoogle-researchpaper-orchestrareadmegoogle-researchpaper-orchestraa"></a> <a target="_blank" rel="noopener" href="https://github.com/google-research/paper-orchestra#readme">google-research/paper-orchestra</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/google-research/paper-orchestra#readme">PaperOrchestra</a> 是多 Agent 研究写作框架，把想法和实验日志编排成包含文献综合、章节写作、内容精炼、图表生成和 LaTeX 输出的研究稿件。它适合研究如何把长流程任务拆成有角色分工的 Agent 管线；限制是数据集不随仓库提供，运行需要 Conda、模型和文献 API 配置，README 也明确说明它不是 Google 官方支持产品。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/google-research/paper-orchestra">Python</a>，日榜新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">1,072★</a>，仓库页核验总计 <a target="_blank" rel="noopener" href="https://github.com/google-research/paper-orchestra">3,081★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/google-research/paper-orchestra/blob/main/LICENSE">Apache-2.0</a>，最近 <a target="_blank" rel="noopener" href="https://github.com/google-research/paper-orchestra/commit/d9bae997e793a015ed38bb1605be9eb58c00284">2026-11-15 提交</a>。</p>
+<h2 id="快速浏览"><a class="markdownIt-Anchor" href="#快速浏览"></a> 快速浏览</h2>
+<div class="briefing-quick-list">
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter#readme"><span class="briefing-quick-item__source">授权安全 · Python · +1,005/日 · 9,411★</span><span class="briefing-quick-item__body"><strong>elementalsouls/Claude-BugHunter</strong><small>把授权安全测试的侦察、验证和报告流程做成 skills。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/alibaba/open-code-review#readme"><span class="briefing-quick-item__source">AI 代码审查 · Go · +763/日 · 53,772★</span><span class="briefing-quick-item__body"><strong>alibaba/open-code-review</strong><small>用确定性流水线和 Agent 做精确到行的代码审查。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Tencent/LoopForge#readme"><span class="briefing-quick-item__source">Agent 交付 · Go · +591/日 · 3,227★</span><span class="briefing-quick-item__body"><strong>Tencent/LoopForge</strong><small>用沙箱、SOP、checkpoint 和人类门控组织交付。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/dream-num/univer#readme"><span class="briefing-quick-item__source">Office SDK · TypeScript · +1,774/日 · 28,928★</span><span class="briefing-quick-item__body"><strong>dream-num/univer</strong><small>把表格、文档、计算和协作能力嵌入自己的产品。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/getarcaneapp/arcane#readme"><span class="briefing-quick-item__source">容器运维 · Go · +618/日 · 9,356★</span><span class="briefing-quick-item__body"><strong>getarcaneapp/arcane</strong><small>用自托管管理界面整理 Docker 容器运维。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/obra/superpowers#readme"><span class="briefing-quick-item__source">Agent 方法论 · Shell · +1,917/日 · 319,373★</span><span class="briefing-quick-item__body"><strong>obra/superpowers</strong><small>把澄清、计划、TDD、子 Agent 和审查串成默认流程。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/ag-ui-protocol/ag-ui#readme"><span class="briefing-quick-item__source">Agent 协议 · TypeScript · +1,445/日 · 20,034★</span><span class="briefing-quick-item__body"><strong>ag-ui-protocol/ag-ui</strong><small>用事件协议把 Agent 执行接到实时用户界面。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/backnotprop/plannotator#readme"><span class="briefing-quick-item__source">人类反馈 · TypeScript · +691/日 · 13,087★</span><span class="briefing-quick-item__body"><strong>backnotprop/plannotator</strong><small>让人类在计划、文档和代码 diff 上给 Agent 反馈。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/sveltejs/svelte#readme"><span class="briefing-quick-item__source">编译型前端 · JavaScript · +477/日 · 89,620★</span><span class="briefing-quick-item__body"><strong>sveltejs/svelte</strong><small>在编译阶段把声明式组件变成高效 JavaScript。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind#readme"><span class="briefing-quick-item__source">小模型训练 · Python · +192/日 · 66,037★</span><span class="briefing-quick-item__body"><strong>jingyaogong/minimind</strong><small>用小规模硬件学习语言模型的完整训练链路。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/google-research/paper-orchestra#readme"><span class="briefing-quick-item__source">研究写作 · Python · +1,072/日 · 3,081★</span><span class="briefing-quick-item__body"><strong>google-research/paper-orchestra</strong><small>把原始研究材料编排成带文献与图表的 LaTeX 稿件。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+</div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/GitHub-%E7%83%AD%E6%A6%9C/" class="category-chain-item">GitHub 热榜</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/GitHub/" class="print-no-link">#GitHub</a>
+      
+        <a href="/tags/%E5%BC%80%E6%BA%90/" class="print-no-link">#开源</a>
+      
+        <a href="/tags/Agent/" class="print-no-link">#Agent</a>
+      
+        <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/" class="print-no-link">#代码审查</a>
+      
+        <a href="/tags/Agent-%E4%BA%A4%E4%BB%98/" class="print-no-link">#Agent 交付</a>
+      
+        <a href="/tags/%E4%BA%BA%E7%B1%BB%E5%8F%8D%E9%A6%88/" class="print-no-link">#人类反馈</a>
+      
+        <a href="/tags/Office-SDK/" class="print-no-link">#Office SDK</a>
+      
+        <a href="/tags/%E5%B0%8F%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/" class="print-no-link">#小模型训练</a>
+      
+        <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%B7%A5%E5%85%B7%E9%93%BE/" class="print-no-link">#本地工具链</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2026-11-18 GitHub 热榜简报：从 Agent 交付闭环到可复现学习</div>
+      <div>https://www.polarisac.top/2026/11/18/daily-github-trending-2026-11-18/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年11月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/11/18/daily-briefing-2026-11-18/" title="每日信息简报｜2026 年 11 月 18 日">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">每日信息简报｜2026 年 11 月 18 日</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/11/17/daily-ai-papers-2026-11-17/" title="每日AI论文简报（2026-11-17）">
+                        <span class="hidden-mobile">每日AI论文简报（2026-11-17）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
