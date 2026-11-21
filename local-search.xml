@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>每日AI论文简报（2026-11-21）</title>
+    <link href="/2026/11/21/daily-ai-papers-2026-11-21/"/>
+    <url>/2026/11/21/daily-ai-papers-2026-11-21/</url>
+    
+    <content type="html"><![CDATA[<span id="more"></span><h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="局部意图让机器人动作可以逐步核查"><a href="#局部意图让机器人动作可以逐步核查" class="headerlink" title="局部意图让机器人动作可以逐步核查"></a>局部意图让机器人动作可以逐步核查</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.26613">AgentRoboCritic: Understanding the Capability of Frontier Agents on Direct Robot Control</a>（arXiv:2611.26613）<br><strong>作者</strong>：Yiyang Du、Yuxuan Kuang、Qitao Zhao、Yixuan Wang、Zhanqiu Guo、Yi Xu、Xin Li、Wenbin He、Liu Ren、Chenyan Xiong<br><strong>来源/分类</strong>：arXiv · cs.RO（cs.RO, cs.CL, cs.CV）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.26613">PDF</a> · <a href="https://adu2021.github.io/blog/AgentRoboCritic">代码</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p><ul><li><strong>核心问题、方法与基线</strong>：常见机器人评测只报告整段任务成功率，无法解释具体失败。作者让策略模型为每个低层动作附上局部意图，再由多模态 critic 根据任务目标、意图和动作前后多视角图像判断成败与失败类型；分析覆盖 12 个操作基准。评测同时比较 GPT-6 Astra 与专用 VLA/WAM 基线，并在 400 个经人工标注动作上检验 critic。</li><li><strong>作者报告的关键结果</strong>：跨基准中，38.9% 的失败动作在之后 10 个动作内被修复，57.7% 在回合结束前得到恢复。动作级数据集含 12,844 条标注；Muse-Glimmer-30B 的失败模式准确率从零样本的 32.58% 升至微调后的 74.24%。74 个匹配任务中，GPT-6 Astra 的决策中位延迟为 31.9 秒，专用策略 π0.5 为 0.11 秒。</li><li><strong>创新与证据边界</strong>：局部意图让动作判断有明确参照，人工小样本验证也检查了自动 critic；论文还测了同一前沿模型兼任策略与 critic 的自偏差。但核心策略依赖闭源模型，模型版本、API 与成本会影响复现；400 个动作的人类集较小，12 个基准的成功率不能直接外推到真实生产任务，且 31.9 秒延迟显示其闭环速度有明显限制。全文未见对公开机器人基准训练污染的专项审计。作者报告结果，尚无独立复现。</li><li><strong>适合谁读、建议章节</strong>：适合机器人策略、具身 agent、动作级评测和安全监控读者。建议读 §3.2 的意图条件 critic、§4.1–4.3 的能力与失败、§5 的人工验证，再看附录 H.4 的延迟与附录 I 的自偏差检查。</li></ul><h3 id="直接修改权重能否修复小型视觉语言模型的循环推理？"><a href="#直接修改权重能否修复小型视觉语言模型的循环推理？" class="headerlink" title="直接修改权重能否修复小型视觉语言模型的循环推理？"></a>直接修改权重能否修复小型视觉语言模型的循环推理？</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.25257">Keel: A Frontier Model Teaches a Vision-Language Model by Rewriting Its Weights</a>（arXiv:2611.25257）<br><strong>作者</strong>：Jiajun Fan、Neil He、Bangji Yang、Qinglong Zheng、Ziwen Wang、Chaoran Cheng、Changyi Yang、Hanqi Mao、Ge Liu<br><strong>来源/分类</strong>：arXiv · cs.CV（cs.CV, cs.AI）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25257">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p><ul><li><strong>核心问题、方法与基线</strong>：Qwen3.5 小模型在视觉问题的思考模式中会反复循环，耗尽 token 预算。Keel 让前沿多模态模型在只知道症状的条件下检查失败案例、定位权重方向并提出编辑；编辑需通过失误比例下降且留出题准确率不降的筛选。作者在 Qwen3.5-0.8B/2B 的六个视觉基准上，对比原始思考模式、presence penalty、reflection suppression、budget forcing 和既有权重编辑。</li><li><strong>作者报告的关键结果</strong>：六项任务平均准确率中，0.8B 从思考模式的 48.2% 升至 Keel 的 56.1%（+7.9 个百分点）；2B 从 65.2% 升至 72.3%（+7.1 个百分点）。两模型输出中以逐字循环结束的答案比例，平均分别下降 21.8 和 12.4 个百分点；2B 在 GUI grounding 上的提升尤其大，该任务未进入编辑练习题。</li><li><strong>创新与证据边界</strong>：它把修复直接写入模型权重，再与解码时 budget forcing 组合；作者的注意力诊断指向中间层注意力输出。比较含多种推理时基线，且以留出题筛除只会损害准确率的编辑。限制是只测两个 Qwen 小模型和六个既有基准；文本未报告明确的预训练污染审计。每个模型需 3–4 轮前沿编辑器、每轮数小时并占用 GPU，部署推理虽不增单 token 成本，但编辑成本不低。</li><li><strong>适合谁读、建议章节</strong>：适合模型编辑、视觉推理和推理成本优化读者。建议读 §2 的失败盘点与筛选目标、§3.1–3.2 的基线和结果、附录 C.2–C.9 的数据/统计/资源设置及附录 D.2。</li></ul><h3 id="图像编辑安全评测暴露文本与视觉判断错位"><a href="#图像编辑安全评测暴露文本与视觉判断错位" class="headerlink" title="图像编辑安全评测暴露文本与视觉判断错位"></a>图像编辑安全评测暴露文本与视觉判断错位</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.26569">Text-Aware, Vision-Blind: How Multimodal Image Editing Systems Handle Unsafe Inputs</a>（arXiv:2611.26569）<br><strong>作者</strong>：Ziqing Yang、Yixin Wu、Michael Backes、Yang Zhang<br><strong>来源/分类</strong>：arXiv · cs.CR（cs.CR, cs.CV, cs.LG）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.26569">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p><ul><li><strong>核心问题、方法与基线</strong>：编辑请求是否安全，取决于输入图像和文字意图两部分。EditSafetyBench 将 660 张安全/不安全图像与九类通用编辑指令配对，共 5,940 对，覆盖 11 个风险类别和中性、降低风险、危险意图三种指令；同一提示在安全与不安全图像上保持一致。作者比较 Gemini、GPT、Qwen API 与 Qwen 本地版的系统级允许/拒绝/错误决策。</li><li><strong>作者报告的关键结果</strong>：Gemini 与 GPT 对危险编辑意图分别拒绝 87.1% 和 81.6%，但面对不安全图像加中性指令时只拒绝 24.2% 和 22.4%。政治内容的危险编辑允许率也有差异：GPT 为 70.4%，Gemini 为 34.8%。这些比例衡量系统决策，不是生成图像最终有害程度。</li><li><strong>创新与证据边界</strong>：相同提示配安全与风险图像，能较干净地检验系统是否读取视觉风险；四个系统提供一定横向比较。但论文只评估允许/拒绝，不审核输出图像伤害或编辑质量；九条提示不能覆盖对抗性绕过和全部真实请求。闭源 API 的版本变化也会影响复现，全文未见对测试图像与模型训练数据重叠的专项审计。结果是作者对指定系统和基准的评测，尚无独立复现。</li><li><strong>适合谁读、建议章节</strong>：适合多模态安全、图像编辑平台和红队评测读者。建议读 §3 的基准构造、§4.2–4.7 的决策/跨模态差异及消融，再读 §5 与 Limitations。</li></ul><h3 id="深度研究代理的搜索查询会拼出私有信息"><a href="#深度研究代理的搜索查询会拼出私有信息" class="headerlink" title="深度研究代理的搜索查询会拼出私有信息"></a>深度研究代理的搜索查询会拼出私有信息</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2605.30727">MosaicLeaks: Privacy Risks in Querying-in-the-Open for Deep Research Agents</a>（arXiv:2605.30727）<br><strong>作者</strong>：Alexander Gurung、Spandana Gella、Alexandre Drouin、Issam H. Laradji、Perouz Taslakian、Rafael Pardinas<br><strong>来源/分类</strong>：arXiv · cs.CL（cs.CL）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2605.30727">PDF</a> · <a href="https://huggingface.co/datasets/ServiceNow/MosaicLeaks">数据集</a> · <a href="https://github.com/ServiceNow/MosaicProject">代码</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p><ul><li><strong>核心问题、方法与基线</strong>：代理将企业内部文档与公开网页交替检索时，单条看似无害的搜索词也可能被外部观察者拼成敏感信息。MosaicLeaks 用 1,001 个多跳任务连接私有企业文档与公开网页，令攻击者只观察代理的外部查询，并尝试推断研究意图、私有问题答案和可核验文档事实。论文评测六个开放模型，并比较普通隐私提示、只优化任务成功的强化学习与 PA-DR。</li><li><strong>作者报告的关键结果</strong>：Qwen3-4B-Instruct 基线严格链式成功率为 48.7%、隐私泄漏率为 34.0%；仅做任务导向强化学习后，成功率升至 59.3%，泄漏也升至 51.8%。加入对查询级和拼接泄漏都给密集反馈的 PA-DR 后，成功率为 58.1%，泄漏降至 6.5%。摘要还报告在其他开放模型和独立 judge 上有相同方向。</li><li><strong>创新与证据边界</strong>：把“任务做成了”与“外部查询暴露多少私有上下文”同时计分，比只检查最终答案更接近真实检索边界；代码与数据集公开链接见下。结果建立在三个企业上下文和合成/人工质检任务上，攻击者拥有完整查询日志这一压力设定偏强；代理场景目前集中在多跳问答，不代表所有长篇研究流程。摘要未量化训练算力。</li><li><strong>适合谁读、建议章节</strong>：适合企业 RAG、隐私保护、工具调用与 agent 强化学习读者。建议读 §3 的泄漏定义、§4 的任务设计、§5 的奖励、§6 的评测与 §8 的限制。</li></ul><h3 id="Agent-能否独立完成在线强化学习后训练？"><a href="#Agent-能否独立完成在线强化学习后训练？" class="headerlink" title="Agent 能否独立完成在线强化学习后训练？"></a>Agent 能否独立完成在线强化学习后训练？</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2604.10547">Agent^2 RL-Bench: Can LLM Agents Engineer Agentic RL Post-Training?</a>（arXiv:2604.10547）<br><strong>作者</strong>：Wanyi Chen、Xiao Yang、Xu Yang、Tianming Sha、Qizheng Li、Zhuo Wang、Bowen Xian、Fang Kong、Weiqing Liu、Jiang Bian<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2604.10547">PDF</a> · <a href="https://github.com/microsoft/RD-Agent">代码</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p><ul><li><strong>核心问题、方法与基线</strong>：现有评测常检查模型会不会写训练脚本，却不要求它在环境中采集轨迹、更新模型并闭合在线 RL 循环。Agent² RL-Bench 设六个任务、三个难度层级，从规则奖励的监督训练、judge 奖励优化到需要真实交互的在线 RL；比较五类 agent 系统和六种驱动模型，按每次 12 小时预算运行，并记录代码、训练产物和提交轨迹。</li><li><strong>作者报告的关键结果</strong>：某个 RL 导向运行通过 SFT 热启动、GRPO 和在线 rollout，把 ALFWorld 分数从 4.85 提到 93.28；但 DeepSearchQA 仍难，多数成功路径依赖监督式训练，交互结果对 agent 栈差异明显。基准原始试验共计 1,404 H200 等效 GPU 小时、5.48B 驱动上下文 token。</li><li><strong>创新与证据边界</strong>：它要求 agent 完成工程闭环而非仅生成代码，且把训练过程留痕，能区分分数提高与真正使用在线 RL。数字亮点来自个别任务/运行，不代表普遍能力；消融中有单次运行，任务只有六类，系统配置和驱动模型仍有混杂，成本也高。代码见摘要链接。</li><li><strong>适合谁读、建议章节</strong>：适合 RL 工程、自动化研究和 agent 评测读者。建议读 §2 的任务协议、§3.2–3.4 的跨系统/行为结果、§5 的限制，以及附录 C 的复现和成本表。</li></ul><h3 id="用真实轨迹校准-Agent-推理服务的负载测试"><a href="#用真实轨迹校准-Agent-推理服务的负载测试" class="headerlink" title="用真实轨迹校准 Agent 推理服务的负载测试"></a>用真实轨迹校准 Agent 推理服务的负载测试</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.25905">Validation-driven Deployment of LLM Inference Platforms for Agentic Workloads</a>（arXiv:2611.25905）<br><strong>作者</strong>：Shai Gretz、Alon Halfon、Yoav Katz、Lena Dankin、Michal Jacovi、Rachel Tzoref-Brill、Kfir Toledo、Elron Bandel、Natan Ergas、Michal Malka、Pravein Govindan Kannan、Maroon Ayoub、Michal Shmueli-Scheuer<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25905">PDF</a> · <a href="https://github.com/kubernetes-sigs/inference-perf">代码</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p><ul><li><strong>核心问题、方法与基线</strong>：agent 请求会因长上下文、多轮工具调用与随机路径而波动，合成压力测试容易低估真实部署需求。作者提出从 live benchmark 记录完整会话，再用 trace replay 做容量 sizing、预生产和回归检查；对照是重新实时运行同一任务，并以 vLLM 代码覆盖检查不同负载的互补性。案例把四个大型 MoE 模型部署到 llm-d。</li><li><strong>作者报告的关键结果</strong>：在 HWE-Bench 和 CyberGym 各 40 条会话中，trace replay 的输入 token P95 最大约为记录值的 1.18 倍，而实时重跑在 HWE-Bench 达 4.98 倍；这说明固定回放更稳定，不代表它总能代表真实到达流。四个 MoE 案例中，基于捕获负载测出的目标并发约只有最优值一半，吞吐约为公开 trace 负载下的 60%。</li><li><strong>创新与证据边界</strong>：把模型质量评测产出的真实轨迹直接用于服务容量测试，量化了重跑随机性。限制是覆盖分析只看 vLLM 的 Python 路径，不含编译的 CUDA/C++ 核心，执行覆盖不等于正确性；案例只涉及特定模型、硬件和服务栈。工具与 trace 数据按论文说明开放，复现需匹配环境。</li><li><strong>适合谁读、建议章节</strong>：适合推理平台、LLM serving、SRE 与容量规划读者。建议读 §2 的全生命周期流程、§4 的 trace replay、§7 的覆盖分析、§8 的 MoE 部署案例及附录 D.3 的限制。</li></ul><h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><p>重点论文已在上文展开；以下为其余候选，均仅依据 arXiv 摘要概述。</p><h3 id="Verifiable-Logic-in-Medical-LLMs-A-Critical-Review-of-Agentic-Clinical-Reasoning-Optimization-and-Neuro-Symbolic-Grounding（arXiv-2611-25898）"><a href="#Verifiable-Logic-in-Medical-LLMs-A-Critical-Review-of-Agentic-Clinical-Reasoning-Optimization-and-Neuro-Symbolic-Grounding（arXiv-2611-25898）" class="headerlink" title="Verifiable Logic in Medical LLMs: A Critical Review of Agentic Clinical Reasoning Optimization and Neuro-Symbolic Grounding（arXiv:2611.25898）"></a><a href="https://arxiv.org/abs/2611.25898">Verifiable Logic in Medical LLMs: A Critical Review of Agentic Clinical Reasoning Optimization and Neuro-Symbolic Grounding</a>（arXiv:2611.25898）</h3><p><strong>作者</strong>：Youssef ElNahas、Adel Ammar、Soumaya Chaffar、Wadii Boulila<br><strong>来源/分类</strong>：arXiv · cs.CL（cs.CL, cs.AI, cs.CY, cs.LG）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25898">PDF</a></p><p>这篇批判性综述讨论临床 LLM 的幻觉、多智能体错误传播、过程奖励模型和神经符号约束，提出把失败类型映射到可验证干预点。作者引用的安全提升主要来自单项、小样本或模拟研究，彼此不可直接比较；适合了解临床 AI 的验证问题，不能视为临床效能证据。<strong>证据状态：仅依据摘要。</strong></p><h3 id="TwinLab-Bench-Evaluating-AI-Scientists-in-Agentic-Twins-of-Real-Labs（arXiv-2611-26248）"><a href="#TwinLab-Bench-Evaluating-AI-Scientists-in-Agentic-Twins-of-Real-Labs（arXiv-2611-26248）" class="headerlink" title="TwinLab-Bench: Evaluating AI Scientists in Agentic Twins of Real Labs（arXiv:2611.26248）"></a><a href="https://arxiv.org/abs/2611.26248">TwinLab-Bench: Evaluating AI Scientists in Agentic Twins of Real Labs</a>（arXiv:2611.26248）</h3><p><strong>作者</strong>：Yang Wan、Linchao Zhu<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI, cs.CL, cs.LG）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.26248">PDF</a></p><p>TwinLab-Bench 用 52 项真实实验室任务、100 多种实验操作和由真实实验记录驱动的数字孪生，评估 AI 科学家自行设计实验的能力；摘要报告最强模型 Claude Fable 5.2 平均得分仅 45.0。它补上了“自己设计实验”这一评测环节；得分受任务、隐藏答案与模拟环境覆盖限制，不能等同真实实验室成功率。<strong>证据状态：仅依据摘要。</strong></p><h3 id="Iterative-Scarcity-Guided-Exploration-Bootstrapping-Generative-Auto-bidding-from-Narrow-Support（arXiv-2611-26060）"><a href="#Iterative-Scarcity-Guided-Exploration-Bootstrapping-Generative-Auto-bidding-from-Narrow-Support（arXiv-2611-26060）" class="headerlink" title="Iterative Scarcity-Guided Exploration: Bootstrapping Generative Auto-bidding from Narrow Support（arXiv:2611.26060）"></a><a href="https://arxiv.org/abs/2611.26060">Iterative Scarcity-Guided Exploration: Bootstrapping Generative Auto-bidding from Narrow Support</a>（arXiv:2611.26060）</h3><p><strong>作者</strong>：Qingmao Yao、Guangzheng Hu、Yusen Huo、Zhilin Zhang、Chuan Yu、Jian Xu、Xu Chu、Bo Zheng、Xiaotie Deng<br><strong>来源/分类</strong>：arXiv · cs.LG（cs.LG）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.26060">PDF</a> · <a href="https://github.com/alimama-tech/ISGE">代码</a></p><p>论文研究广告竞价冷启动中生成式自动出价难以越过狭窄历史数据支持的问题，提出由稀缺度判别器和探索器交替工作的 ISGE；作者称其在 AuctionNet 上三轮迭代后超过全量数据基线。结果来自指定工业基准与作者实验，摘要未给出提升幅度、成本和跨环境稳定性，尚不足以推断线上拍卖效果。代码链接见论文摘要。<strong>证据状态：仅依据摘要。</strong></p><h3 id="When-Safety-Rationales-Hallucinate-Diagnosing-and-Grounding-Multimodal-Safety-Guards（arXiv-2611-25793）"><a href="#When-Safety-Rationales-Hallucinate-Diagnosing-and-Grounding-Multimodal-Safety-Guards（arXiv-2611-25793）" class="headerlink" title="When Safety Rationales Hallucinate: Diagnosing and Grounding Multimodal Safety Guards（arXiv:2611.25793）"></a><a href="https://arxiv.org/abs/2611.25793">When Safety Rationales Hallucinate: Diagnosing and Grounding Multimodal Safety Guards</a>（arXiv:2611.25793）</h3><p><strong>作者</strong>：Yingshuo Wang、Weixiang Zhao、Guancheng Li、Jiahe Guo、Yu Zhang、Yanyan Zhao<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25793">PDF</a></p><p>作者研究多模态安全分类器给出的理由是否真的由图像支持，覆盖多个视觉语言骨干与安全数据集，并提出只在工具调用改善证据落地时奖励工具使用的 TCG-RL。摘要报告理由幻觉普遍存在，且不会随准确率或模型规模稳定下降；新训练法降低幻觉并保持有竞争力的分类表现。没有公开量化幅度、评审协议及算力对比，理由可信度也不等同于分类安全性。<strong>证据状态：仅依据摘要。</strong></p><h3 id="Goal-Guided-Reinforcement-Learning-via-Fine-Tuning-Vision-Language-Models（arXiv-2611-25742）"><a href="#Goal-Guided-Reinforcement-Learning-via-Fine-Tuning-Vision-Language-Models（arXiv-2611-25742）" class="headerlink" title="Goal-Guided Reinforcement Learning via Fine-Tuning Vision-Language Models（arXiv:2611.25742）"></a><a href="https://arxiv.org/abs/2611.25742">Goal-Guided Reinforcement Learning via Fine-Tuning Vision-Language Models</a>（arXiv:2611.25742）</h3><p><strong>作者</strong>：Yajie Qi、Wei Wei、Lin Li、Lijun Zhang、Jianye Hao<br><strong>来源/分类</strong>：arXiv · cs.LG（cs.LG）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25742">PDF</a></p><p>作者构造 CCGP-2M 目标偏好数据，并先以 KLTDPO 微调视觉语言模型，再将其用于 Craftax-Classic 在线强化学习；摘要报告更早采到钻石、总体分数和奖励最高，并在多数成就上取得最高成功率。该工作把目标生成与环境内适配连接起来；证据只来自单一游戏环境，摘要没有分数、种子方差和训练成本，不能外推到真实机器人或开放世界。<strong>证据状态：仅依据摘要。</strong></p><h3 id="Beyond-Entity-Recognition-Vision-Centric-Knowledge-Visual-Question-Answering（arXiv-2611-25680）"><a href="#Beyond-Entity-Recognition-Vision-Centric-Knowledge-Visual-Question-Answering（arXiv-2611-25680）" class="headerlink" title="Beyond Entity Recognition: Vision-Centric Knowledge Visual Question Answering（arXiv:2611.25680）"></a><a href="https://arxiv.org/abs/2611.25680">Beyond Entity Recognition: Vision-Centric Knowledge Visual Question Answering</a>（arXiv:2611.25680）</h3><p><strong>作者</strong>：Jiatong Ma、Yuchen Liu、Longteng Guo、Yichen Yuan、Yuze Wu、Dongze Hao、Ru Zhen、Yanhao Zhang、Haonan Lu、Jing Liu<br><strong>来源/分类</strong>：arXiv · cs.CV（cs.CV, cs.AI）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25680">PDF</a> · <a href="https://github.com/CASIA-IVA-Lab/VC-VQA">代码</a></p><p>VC-VQA 基准要求模型在外部检索前后读取、定位和核对视觉证据，并以四种知识供给设置评测 21 个多模态模型。作者报告当前模型的主要瓶颈仍是细粒度视觉知识获取，检索式 agent 则显示多步规划和跨模态整合的价值。代码与数据集链接见摘要；题目构造、图像预训练重叠和检索来源对成绩的影响尚未核实。<strong>证据状态：仅依据摘要。</strong></p><h3 id="AppSci-Bench-Can-LLMs-Build-AI-Agents-and-Make-Them-Better-（arXiv-2611-25360）"><a href="#AppSci-Bench-Can-LLMs-Build-AI-Agents-and-Make-Them-Better-（arXiv-2611-25360）" class="headerlink" title="AppSci-Bench: Can LLMs Build AI Agents and Make Them Better?（arXiv:2611.25360）"></a><a href="https://arxiv.org/abs/2611.25360">AppSci-Bench: Can LLMs Build AI Agents and Make Them Better?</a>（arXiv:2611.25360）</h3><p><strong>作者</strong>：Sanjari Srivastava、Manpreet Kaur、Cheng Chang、Sofía Ramós Anton、Oumaima Essamadi、Rishu Garg、Alejandro Lavale Jiménez、Marcos Caballero Yus、Mercedes García Martínez、Peng Qi<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25360">PDF</a> · <a href="https://github.com/sanjari-orb/appsci-bench">代码</a></p><p>AppSci-Bench 模拟企业应用科学家从需求访谈、基础设施探索到设计实验和内部评测的完整工作；七个业务领域、七个前沿模型中，摘要报告最佳模型 Claude Opus 5.0 三次构建尝试的 mean-minimum 得分为 59.1%，需求访谈完成率为 65%。它测试的是建 agent 的端到端能力；模型常把自建评测做高却未解决留出任务，且结论受七个场景和闭源模型版本限制。代码链接见摘要。<strong>证据状态：仅依据摘要。</strong></p><h3 id="A-Neurosymbolic-Multimodal-Framework-for-30-Day-Diabetic-Readmission-Prediction-Integrating-Structured-EHR-Data-Dense-Clinical-Embeddings-and-Knowledge-Grounded-Symbolic-Extraction（arXiv-2611-25236）"><a href="#A-Neurosymbolic-Multimodal-Framework-for-30-Day-Diabetic-Readmission-Prediction-Integrating-Structured-EHR-Data-Dense-Clinical-Embeddings-and-Knowledge-Grounded-Symbolic-Extraction（arXiv-2611-25236）" class="headerlink" title="A Neurosymbolic Multimodal Framework for 30-Day Diabetic Readmission Prediction: Integrating Structured EHR Data, Dense Clinical Embeddings, and Knowledge-Grounded Symbolic Extraction（arXiv:2611.25236）"></a><a href="https://arxiv.org/abs/2611.25236">A Neurosymbolic Multimodal Framework for 30-Day Diabetic Readmission Prediction: Integrating Structured EHR Data, Dense Clinical Embeddings, and Knowledge-Grounded Symbolic Extraction</a>（arXiv:2611.25236）</h3><p><strong>作者</strong>：Una Suman Kumar Patro、Sibangi Subhadarsani、Narendra Badam<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25236">PDF</a></p><p>研究用 Diabetes 130-US Hospitals 的 101,766 次就诊记录预测 30 日糖尿病再入院，融合结构化病历、临床文本嵌入与带否定审计的检索抽取，并按患者划分 80/20 测试集。作者报告多模态模型灵敏度和 F2 较高、Brier 分数较低，但 AUROC 从结构化基线 0.6477 降至 0.6375；代码混写症状抽取也有提升。单一历史数据集和阈值选择限制临床迁移，预测表现不等于干预效益。<strong>证据状态：仅依据摘要。</strong></p><h3 id="When-AI-Analysts-Disagree-Agentic-Multiverse-Analysis-and-the-Robustness-of-Empirical-Research（arXiv-2611-25198）"><a href="#When-AI-Analysts-Disagree-Agentic-Multiverse-Analysis-and-the-Robustness-of-Empirical-Research（arXiv-2611-25198）" class="headerlink" title="When AI Analysts Disagree: Agentic Multiverse Analysis and the Robustness of Empirical Research（arXiv:2611.25198）"></a><a href="https://arxiv.org/abs/2611.25198">When AI Analysts Disagree: Agentic Multiverse Analysis and the Robustness of Empirical Research</a>（arXiv:2611.25198）</h3><p><strong>作者</strong>：Ruijiang Gao、Steven Chong Xiao<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25198">PDF</a></p><p>Agentic Multiverse Analysis 让代理枚举并执行实证研究中经审查的分析分支，再由代理互审。摘要报告：150 个代理在一个试点数据集上出现方法分歧；应用于管理学期刊 10 项研究、1,755 个规格估计时，复现了原文估计，并显示部分结论对合理分析选择敏感，单篇运行成本为数十美元量级。它可降低稳健性审查成本，但案例仍少，代理判断不是专家真值，且复现不自动证明原因果解释成立。<strong>证据状态：仅依据摘要。</strong></p><h3 id="RICapBench-A-Fine-Grained-Visual-Understanding-Benchmark-Dataset-for-Vision-Language-Models-in-Remote-Sensing（arXiv-2611-16413）"><a href="#RICapBench-A-Fine-Grained-Visual-Understanding-Benchmark-Dataset-for-Vision-Language-Models-in-Remote-Sensing（arXiv-2611-16413）" class="headerlink" title="RICapBench: A Fine-Grained Visual Understanding Benchmark Dataset for Vision-Language Models in Remote Sensing（arXiv:2611.16413）"></a><a href="https://arxiv.org/abs/2611.16413">RICapBench: A Fine-Grained Visual Understanding Benchmark Dataset for Vision-Language Models in Remote Sensing</a>（arXiv:2611.16413）</h3><p><strong>作者</strong>：Xue Wang、Yubin Xu、Kun Tan<br><strong>来源/分类</strong>：arXiv · cs.CV（cs.CV）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.16413">PDF</a> · <a href="https://github.com/Xldln/RICapBench">代码</a></p><p>RICapBench 面向遥感图像中的实例定位、属性描述和空间关系，含 245,466 个实例标注与 498,005 个空间关系，比较 15 个开源及闭源视觉语言模型。摘要报告最佳 RICScore 为 31.68，但该模型在空间关系描述上不及若干任务微调模型，定位仍是主要瓶颈。代码和数据集链接见摘要；复合指标、遥感地区覆盖与模型闭源性会影响可比性。<strong>证据状态：仅依据摘要。</strong></p><h3 id="VESTA-Visual-Exploration-with-Statistical-Tool-Agents（arXiv-2606-00384）"><a href="#VESTA-Visual-Exploration-with-Statistical-Tool-Agents（arXiv-2606-00384）" class="headerlink" title="VESTA: Visual Exploration with Statistical Tool Agents（arXiv:2606.00384）"></a><a href="https://arxiv.org/abs/2606.00384">VESTA: Visual Exploration with Statistical Tool Agents</a>（arXiv:2606.00384）</h3><p><strong>作者</strong>：William Rudman、Abhishek Divekar、Kanishk Jain、Sebastian Joseph、Stella S. R. Offner、Matthew Lease、Kyle Mahowald、Greg Durrett、Junyi Jessy Li<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI, cs.CL, cs.CV, cs.LG, stat.CO）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2606.00384">PDF</a></p><p>VESTA 为视觉语言模型提供可动态生成的统计工具，用于探索数据、变换变量、绘制诊断图并执行统计检验；作者同时提出 DAWN，覆盖分布拟合、时间序列和天文学任务。摘要称其在所有时间序列及复杂分布拟合任务上优于 Claude Code、Codex 和 OpenCode，但简单分布拟合中这些通用代码 agent 更好。摘要没有报告任务数量、得分差异与算力，不能判断优势是否显著或成本有效。<strong>证据状态：仅依据摘要。</strong></p><h3 id="Replication-of-Agentic-Security-Events-Audit-and-Investigation-ROGUE-AI-（arXiv-2611-26553）"><a href="#Replication-of-Agentic-Security-Events-Audit-and-Investigation-ROGUE-AI-（arXiv-2611-26553）" class="headerlink" title="Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)（arXiv:2611.26553）"></a><a href="https://arxiv.org/abs/2611.26553">Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)</a>（arXiv:2611.26553）</h3><p><strong>作者</strong>：Mengxiao Wang、Mahbub Alam、Kalyan Nakka、Nitesh Saxena<br><strong>来源/分类</strong>：arXiv · cs.CR（cs.CR, cs.AI, cs.MA）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.26553">PDF</a></p><p>ROGUE-AI 将媒体报道的 agent 安全事故离线重建，并为每个事故建立只移除被指认原因的对照条件；108 次尝试中，作者报告 89% 复现了所述伤害，五个模型在有原因时的出错率为 18%–33%，对照中至多 1%。说明普通操作危险可能比提示注入更常被忽视；事故案例是经过选择的压力测试，不是线上事故发生率估计。<strong>证据状态：仅依据摘要。</strong></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>每日论文</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>论文</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>每日金融论文简报（2026-11-21）</title>
+    <link href="/2026/11/21/daily-finance-papers-2026-11-21/"/>
+    <url>/2026/11/21/daily-finance-papers-2026-11-21/</url>
+    
+    <content type="html"><![CDATA[<span id="more"></span><h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="把收益率曲线路径映射为宏观金融压力分布"><a href="#把收益率曲线路径映射为宏观金融压力分布" class="headerlink" title="把收益率曲线路径映射为宏观金融压力分布"></a>把收益率曲线路径映射为宏观金融压力分布</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.26200">A Three-Factor Hull-White Scenario Generator for Macro-Financial Stress Forecasting</a>（arXiv:2611.26200）<br><strong>作者</strong>：Ahmad Qadi、Thomas Schröder、Francesca Medda<br><strong>来源/分类</strong>：arXiv · q-fin.GN（q-fin.GN, q-fin.RM）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.26200">PDF</a> · <a href="https://fred.stlouisfed.org/">FRED 数据</a> · <a href="https://www.dallasfed.org/research/wei">Dallas Fed WEI</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p><ul><li><strong>核心问题、方法与基线</strong>：监管者需要问“如果利率曲线走成某条路径，经济活动、通胀和银行脆弱性会怎样”，而常规宏观模型与期限结构模型各自缺一环。作者以三因子 Gaussian Hull–White 生成无套利曲线，用物理测度估计因子和市场风险价格，再以 Minnesota prior VARX 连接周度股票收益、联邦基金利率、WEI、通胀和银行 MES 代理；货币政策冲击用符号限制识别。对照包括 VAR(1)、随机游走及不加入曲线块的预测。</li><li><strong>作者报告的关键结果</strong>：2017–2024 年 29–31 个扩展窗口的样本外测试中，期限结构块在 20 个期限—预测期单元中有 13 个 RMSE 最低，另一个与随机游走并列；连续变化变量的密度预测校准良好。但在周频变量上，控制自身滞后后收益率曲线没有稳定的增量预测信息；曲线条件化的联合流程在 15 个单元中仅 8 个优于零基线，幅度多数很小。</li><li><strong>创新与证据边界</strong>：主要价值是给定一条曲线情景后生成无套利、可解释的下游分布，而不是证明曲线能预测或导致宏观变量变化。13/20 是误差排名，不等于显著胜出；DM 检验多数未拒绝，预测样本也有限。不能据此推断利率冲击的因果效应或交易信号。</li><li><strong>适合谁读、建议章节</strong>：适合宏观金融、银行压力测试和利率模型读者。建议读 §3.1–3.7 的数据/测度/验证设计、§4 的样本外结果与政策建议。</li></ul><h3 id="AI-因子研究流程的回测成绩有多少真正样本外？"><a href="#AI-因子研究流程的回测成绩有多少真正样本外？" class="headerlink" title="AI 因子研究流程的回测成绩有多少真正样本外？"></a>AI 因子研究流程的回测成绩有多少真正样本外？</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.25732">Auto-Alpha: A Framework for Autonomous Factor Research</a>（arXiv:2611.25732）<br><strong>作者</strong>：Hui Cai、Kangcheng Deng、Tianyi Ma、Qixuan Yang、Jiacheng Lu、Rui Sun、Beidi Luan、Jing Li、Zuo Bai<br><strong>来源/分类</strong>：arXiv · q-fin.CP（q-fin.CP, cs.AI, cs.SE）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25732">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p><ul><li><strong>核心问题、方法与基线</strong>：Auto-Alpha 把经济假设生成、因子实现、回测反馈、语义审计、量化筛选和人工准入串成长期研究流程；从 120 份研究报告起步，建出 32 个初始因子，再生成 420 个实现并保留 62 个新因子，最终以 105 因子库构造周频 Top-300 组合。</li><li><strong>作者报告的关键结果</strong>：库内因子 1 日 Rank IC 中位数为 0.0301；2020-01-02 至 2026-11-03 的回测年化收益 16.81%、Sharpe 0.763、最大回撤 32.16%、单边年换手 19.15 倍，对照 CSI 1000 价格指数收益 1.71%。作者明确称这是回溯性历史展示，尚需受控评估区分流程各组件贡献。</li><li><strong>创新与证据边界</strong>：论文报告了从假设到代码、审计和淘汰的过程记录，比只展示一个因子更可审查。但滚动权重估计不意味着此前因子发现与筛选已样本外；组合包含股息调整收益，对照却是价格指数，且未估计市场冲击或设置成交量上限；两只长期无新报价股票按旧价估值。历史回测的经济显著性不等于实盘可交易 alpha，也没有因果比较证明 AI 工作流带来收益。</li><li><strong>适合谁读、建议章节</strong>：适合量化研究、因子挖掘与 AI for Finance 读者。建议读 §3 的数据时间、§4 的研究闭环、§5.5 的组合构造、§7 的边界和附录 A 的点时信息定义。</li></ul><h3 id="稳定币挤兑只在恐慌阶段与国债收益率相关吗？"><a href="#稳定币挤兑只在恐慌阶段与国债收益率相关吗？" class="headerlink" title="稳定币挤兑只在恐慌阶段与国债收益率相关吗？"></a>稳定币挤兑只在恐慌阶段与国债收益率相关吗？</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.26180">Stablecoin Runs as Safe-Asset Stress Signals: Episode-Level Evidence for Central Bank Surveillance</a>（arXiv:2611.26180）<br><strong>作者</strong>：Ahmad Qadi、Hui Gong、Francesca Medda<br><strong>来源/分类</strong>：arXiv · q-fin.GN（q-fin.GN）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.26180">PDF</a> · <a href="https://www.coingecko.com/">CoinGecko 数据</a> · <a href="https://fred.stlouisfed.org/">FRED 数据</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p><ul><li><strong>核心问题、方法与基线</strong>：作者考察 USDT、USDC、BUSD 的赎回是否携带美国国债信息，使用 2021–2025 日度数据和五个压力事件。流量按代币单位数量变化计算，避免脱锚恢复造成市值口径的虚假流入；识别上使用状态切换、事件窗口和状态依赖 local projections，并比较恐慌挤兑与监管事件。</li><li><strong>作者报告的关键结果</strong>：正常期没有稳定流量—收益率关系。三次恐慌事件中，五日 10 亿美元赎回与十个交易日内三个月国库券收益率下降 8.5 个基点相关（作者报告 p=0.026，交互 p=0.003）；两次监管事件无同类结果，影响主要由 TerraUSD 事件带动并由 USDC/SVB 事件佐证。全样本的工具变量估计对平均关系为不显著（p=0.96）。</li><li><strong>创新与证据边界</strong>：流量单位修正了脱锚期间市值变化误当作现金流的问题，并按事件类型拆分结果。事件数量只有五个，恐慌期间的风险厌恶、银行压力和避险需求同时变化；作者明言发行人比较是描述性证据，不是因果估计。统计显著不等于稳定的经济预测能力，也没有投资组合或可交易检验。</li><li><strong>适合谁读、建议章节</strong>：适合稳定币、货币市场和金融稳定监测研究者。建议读 §3 的流量构造、§4 的识别流程、§5 的 episode 分解与 §6 的监测建议。</li></ul><h3 id="排放增长相对气候表述能解释企业债务结构吗？"><a href="#排放增长相对气候表述能解释企业债务结构吗？" class="headerlink" title="排放增长相对气候表述能解释企业债务结构吗？"></a>排放增长相对气候表述能解释企业债务结构吗？</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.25951">Measuring climate credibility? Talk, emissions, and corporate debt composition</a>（arXiv:2611.25951）<br><strong>作者</strong>：Georgios Chortareas、Fangyuan Kou、Alexia Ventouri<br><strong>来源/分类</strong>：arXiv · econ.EM（econ.EM）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25951">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p><ul><li><strong>核心问题、方法与基线</strong>：研究把 2010–2021 年上市公司的电话会气候语言、LSEG/Refinitiv 排放、Capital IQ 债务份额、RepRisk 事件和财报信息合并，构造排放增长相对前期气候讨论的 ETI，检验它与银行债务份额的关系。比较行业—年份固定效应、公司与年份固定效应、滞后预测以及多种替代指标和推断方法。</li><li><strong>作者报告的关键结果</strong>：在行业—年份基准规格中，ETI 较高与银行债务份额较低相关；加入公司和年份固定效应后，估计约缩小五分之四且不显著。同一完成指数预测一年后的债务组成也不显著，敏感性和 leave-one-year-out 结果显示同时期结论依赖规格；共同样本的多项信息指标经多重比较校正后均不显著。</li><li><strong>创新与证据边界</strong>：论文谨慎把 ETI 解释为一个具体构造的方向性比率，不把它直接叫作漂绿或披露质量。固定效应面板给出的是相关性，没有外生识别；结果不支持“公司为了逃避监督而少借银行债”的因果说法。行业间关联不等于公司内变化，统计显著性对规格敏感，也没有债券/贷款的投资收益检验。</li><li><strong>适合谁读、建议章节</strong>：适合气候金融、企业融资与面板识别读者。建议读 §2 的 ETI 定义、§4–5 的规格和主结果、§7 的联合信息比较及结论中的因果边界。</li></ul><h3 id="公开预测何时会提高机构再平衡成本？"><a href="#公开预测何时会提高机构再平衡成本？" class="headerlink" title="公开预测何时会提高机构再平衡成本？"></a>公开预测何时会提高机构再平衡成本？</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.25762">Trading Before a Committed Rebalance</a>（arXiv:2611.25762）<br><strong>作者</strong>：Khizar Qureshi<br><strong>来源/分类</strong>：arXiv · q-fin.TR（q-fin.TR, math.OC, q-fin.MF）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25762">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p><ul><li><strong>核心问题、方法与基线</strong>：论文研究机构必须完成组合调整、但提前囤货的交易者可选择是否参与时，公共预测如何改变机构执行成本。作者建立含可选进入、瞬时价格冲击和统一价格终端竞价的贝叶斯数量博弈，推导固定参与名单与可选供给下的信息价值条件，并讨论向量组合扩展；盘中 ETF 数据仅用于描述目标不确定性和交易环境。</li><li><strong>作者报告的关键结果</strong>：理论上，固定参与名单时信息通常降低机构成本；可选进入会反转这一判断，预测可能吸引带来冲击的供给，也可能减少有帮助的库存，效果取决于供给曲率、参与成本和目标方向。同一先验下，关于目标规模与目标构成的等精度信号也可能有相反执行价值。实证部分不识别机构目标单、参与概率或成本参数。</li><li><strong>创新与证据边界</strong>：它拆开了“信息更准确”与“执行成本更低”这两个不同命题，提供明确的理论适用条件。主要结果是模型均衡比较，ETF 价格面板不是事件的因果识别，也没有真实机构成交回测或交易费用收益分析；假设中的终端竞价和共同日程决定结论适用范围。</li><li><strong>适合谁读、建议章节</strong>：适合市场微观结构、指数再平衡和执行算法研究者。建议读 §3 的博弈设定、§5 的信息价值、§7 的有限参与者、§10 的 ETF 数据边界及附录 I 的识别检查。</li></ul><h3 id="用经济约束适配预测模型：收益取决于约束是否可信"><a href="#用经济约束适配预测模型：收益取决于约束是否可信" class="headerlink" title="用经济约束适配预测模型：收益取决于约束是否可信"></a>用经济约束适配预测模型：收益取决于约束是否可信</h3><p><strong>论文</strong>：<a href="https://arxiv.org/abs/2611.25420">Structural Fine-Tuning under Economic Restrictions</a>（arXiv:2611.25420）<br><strong>作者</strong>：Yi Niu、Yuecheng Su、Ethan Yang<br><strong>来源/分类</strong>：arXiv · econ.EM（econ.EM）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25420">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p><ul><li><strong>核心问题、方法与基线</strong>：当历史模型迁移到新制度、目标样本又很少时，普通微调容易忽略经济知识。结构化微调把资格规则、医疗支出、现金流和群体风险界限加入预测器适配，并与冻结模型、普通 neuron gating、LoRA 和 full fine-tuning 比较；理论部分刻画约束减少方差与错误约束引入偏差之间的条件。</li><li><strong>作者报告的关键结果</strong>：在一个 Medicaid 式医疗支付扩张后的信用额度决策模拟中，每轮含 1,000 个目标借款人用于拟合/验证，另用 32,768 个借款人样本评估；十轮 Monte Carlo 下，风险预测 RMSE 相对普通微调降低约 28.15%–38.72%，政策遗憾降低约 3.13%–10.21%，主要收益来自现金流约束。</li><li><strong>创新与证据边界</strong>：它把经济限制作为可调的模型结构先验，而不要求完整结构模型，并同时报告预测误差和决策遗憾。证据完全来自设定的模拟 DGP，不是实际信贷机构的样本外评估；错误或失真的经济约束可能引入系统性偏差，模拟政策收益不能视作真实授信效果。</li><li><strong>适合谁读、建议章节</strong>：适合经济学机器学习、信用风险和模型迁移读者。建议读 §2 的约束微调、§3 的条件定理、§4.1–4.5 的模拟设计/结果及附录 B 的 Monte Carlo 设定。</li></ul><h2 id="金融论文"><a href="#金融论文" class="headerlink" title="金融论文"></a>金融论文</h2><p>重点论文已在上文展开；以下为其余候选，均仅依据 arXiv 摘要概述。</p><h3 id="Statistical-moments-risk-weighting-and-percentiles-of-a-loss-distribution-of-a-finite-homogeneous-credit-portfolio-extending-the-Vasicek-distribution（arXiv-2611-25881）"><a href="#Statistical-moments-risk-weighting-and-percentiles-of-a-loss-distribution-of-a-finite-homogeneous-credit-portfolio-extending-the-Vasicek-distribution（arXiv-2611-25881）" class="headerlink" title="Statistical moments, risk weighting and percentiles of a loss distribution of a finite homogeneous credit portfolio; extending the Vasicek distribution（arXiv:2611.25881）"></a><a href="https://arxiv.org/abs/2611.25881">Statistical moments, risk weighting and percentiles of a loss distribution of a finite homogeneous credit portfolio; extending the Vasicek distribution</a>（arXiv:2611.25881）</h3><p><strong>作者</strong>：Marco van der Burgt<br><strong>来源/分类</strong>：arXiv · q-fin.MF（q-fin.MF）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25881">PDF</a></p><p>论文把 Vasicek 无限同质借款人损失分布扩展到有限规模组合，推导中心矩，并用 Cornish–Fisher 展开和矩加权法近似损失分位数与资本要求。模拟显示调整主要影响少于 100 个借款人的小组合，扩展分布可支持分评级资本计算。价值在于小组合尾部风险近似；结论依赖同质性与分布假设，摘要未报告现实违约样本的外部验证。<strong>证据状态：仅依据摘要。</strong></p><h3 id="The-American-Medical-Directory-Panel-Comparing-AI-Assisted-and-LLM-Transcription-with-Manual-Data-Entry-at-Scale（arXiv-2611-25218）"><a href="#The-American-Medical-Directory-Panel-Comparing-AI-Assisted-and-LLM-Transcription-with-Manual-Data-Entry-at-Scale（arXiv-2611-25218）" class="headerlink" title="The American Medical Directory Panel: Comparing AI-Assisted and LLM Transcription with Manual Data Entry at Scale（arXiv:2611.25218）"></a><a href="https://arxiv.org/abs/2611.25218">The American Medical Directory Panel: Comparing AI-Assisted and LLM Transcription with Manual Data Entry at Scale</a>（arXiv:2611.25218）</h3><p><strong>作者</strong>：Christian M. Dahl、Sophie Li、Rasmus Emil Nyholm、Maja U. Pedersen、Anthony Wray<br><strong>来源/分类</strong>：arXiv · cs.DB（cs.DB, econ.GN, q-fin.EC）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25218">PDF</a></p><p>作者把 1912 与 1921 年《美国医学名录》约 29 万条记录数字化，比较五种自动提取流程与双人全量人工录入；规则解析商业 OCR 的记录召回约 97%，合并互补错误后召回与精确率约 98%，而人工成本高得多。它对历史经济数据数字化有方法价值，但研究对象是名录转录，不是金融市场；人工标注自身误差未知，因此报告的是一致率而非真实准确率。<strong>证据状态：仅依据摘要。</strong></p><h3 id="The-Coevolution-and-Coexistence-of-Humans-and-AI（arXiv-2611-25393）"><a href="#The-Coevolution-and-Coexistence-of-Humans-and-AI（arXiv-2611-25393）" class="headerlink" title="The Coevolution and Coexistence of Humans and AI（arXiv:2611.25393）"></a><a href="https://arxiv.org/abs/2611.25393">The Coevolution and Coexistence of Humans and AI</a>（arXiv:2611.25393）</h3><p><strong>作者</strong>：Andrew W. Lo、Chaoyi Zhao<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI, q-fin.GN）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25393">PDF</a></p><p>这篇 AI 与经济理论交叉论文构造人类和 AI 人口共同演化模型，分析人类支持、AI 复制与对齐之间的选择机制。模型中持续依赖人类资源时，对齐可能保护 AI 谱系；自主性增强、资源稀释或监督失真时，这种优势会消失，且对齐程度未必足以保障人类生存。它是机制模型而非金融实证，没有资产定价、交易或市场数据结果。<strong>证据状态：仅依据摘要。</strong></p><h3 id="Intrinsic-Geometry-of-the-Stock-Market-from-Graph-Ricci-Flow（arXiv-2510-15942）"><a href="#Intrinsic-Geometry-of-the-Stock-Market-from-Graph-Ricci-Flow（arXiv-2510-15942）" class="headerlink" title="Intrinsic Geometry of the Stock Market from Graph Ricci Flow（arXiv:2510.15942）"></a><a href="https://arxiv.org/abs/2510.15942">Intrinsic Geometry of the Stock Market from Graph Ricci Flow</a>（arXiv:2510.15942）</h3><p><strong>作者</strong>：Bhargavi Srinivasan<br><strong>来源/分类</strong>：arXiv · q-fin.ST（q-fin.ST）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2510.15942">PDF</a></p><p>论文在 NASDAQ-100 相关性图上应用离散 Ollivier–Ricci 曲率流和递归剪切算法 ARCUS，报告初始正曲率图演化出类似 neckpinch 的分化，并得到八个与已知市场结构相符的层次簇。该方法将图几何用于相关网络结构探索；相关性聚类不识别因果关系，也未证明对风险预测、组合配置或样本外交易有增益。<strong>证据状态：仅依据摘要。</strong></p><h3 id="Joint-calibration-of-the-volatility-surface-and-variance-term-structure（arXiv-2509-08096）"><a href="#Joint-calibration-of-the-volatility-surface-and-variance-term-structure（arXiv-2509-08096）" class="headerlink" title="Joint calibration of the volatility surface and variance term structure（arXiv:2509.08096）"></a><a href="https://arxiv.org/abs/2509.08096">Joint calibration of the volatility surface and variance term structure</a>（arXiv:2509.08096）</h3><p><strong>作者</strong>：Jiwook Yoo<br><strong>来源/分类</strong>：arXiv · q-fin.GN（q-fin.GN）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2509.08096">PDF</a></p><p>作者用 1996–2025 年标普 500 指数期权逐日校准 Bates 随机波动跳跃模型，对照只拟合隐含波动率曲面与同时惩罚方差期限结构误差的设定。加入较小期限结构权重可明显改善期限结构拟合，略微牺牲曲面误差，对冲表现变化较小；参数约束方式对对冲误差影响更大。结果依赖模型、校准协议与历史期权，模型拟合更好不保证真实交易更赚钱。<strong>证据状态：仅依据摘要。</strong></p><h3 id="Feasible-sub-replicating-portfolios-for-basket-options-via-the-block-rearrangement-algorithm（arXiv-2611-26119）"><a href="#Feasible-sub-replicating-portfolios-for-basket-options-via-the-block-rearrangement-algorithm（arXiv-2611-26119）" class="headerlink" title="Feasible sub-replicating portfolios for basket options via the block rearrangement algorithm（arXiv:2611.26119）"></a><a href="https://arxiv.org/abs/2611.26119">Feasible sub-replicating portfolios for basket options via the block rearrangement algorithm</a>（arXiv:2611.26119）</h3><p><strong>作者</strong>：Mohamad Hassan Abou Daya、Carole Bernard、Steven Vanduffel<br><strong>来源/分类</strong>：arXiv · q-fin.CP（q-fin.CP, q-fin.MF, q-fin.PR）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.26119">PDF</a></p><p>研究在仅知道各资产边际分布、但未知依赖关系时，为篮子期权构造可行的次复制组合；将多资产问题拆为双资产问题并用 Block Rearrangement Algorithm 近似最不利依赖。三资产与六资产对数正态例子中的上下界相对宽度至多 0.1%，且优于网格化多边际最优传输基线。结果是定价界限而非成交策略收益，精度依赖边际与数值设置。<strong>证据状态：仅依据摘要。</strong></p><h3 id="Quantum-Calibration-of-Local-Volatility-Surfaces-from-Sparse-Option-Quotes（arXiv-2611-25344）"><a href="#Quantum-Calibration-of-Local-Volatility-Surfaces-from-Sparse-Option-Quotes（arXiv-2611-25344）" class="headerlink" title="Quantum Calibration of Local-Volatility Surfaces from Sparse Option Quotes（arXiv:2611.25344）"></a><a href="https://arxiv.org/abs/2611.25344">Quantum Calibration of Local-Volatility Surfaces from Sparse Option Quotes</a>（arXiv:2611.25344）</h3><p><strong>作者</strong>：Kentaro Hoshisashi<br><strong>来源/分类</strong>：arXiv · q-fin.CP（q-fin.CP）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25344">PDF</a></p><p>论文把 Dupire 局部波动率曲面校准写成混合量子—经典优化：以逻辑门模拟器近似定价演化，用测量结果构造目标，再由经典优化器更新参数，并与经典求解器比较。摘要说明测试了多到期合成数据及小型完整电路，并记录门数和采样预算；没有声称在真实量子硬件上获得速度或精度优势。应用仍属模拟验证，实际噪声、资源与市场报价规模尚待评估。<strong>证据状态：仅依据摘要。</strong></p><h3 id="A-joint-framework-for-SPX-VIX-and-VXX（arXiv-2611-25047）"><a href="#A-joint-framework-for-SPX-VIX-and-VXX（arXiv-2611-25047）" class="headerlink" title="A joint framework for SPX, VIX and VXX（arXiv:2611.25047）"></a><a href="https://arxiv.org/abs/2611.25047">A joint framework for SPX, VIX and VXX</a>（arXiv:2611.25047）</h3><p><strong>作者</strong>：Martino Grasselli、Andrea Stanghellini、Sara Svaluto-Ferro<br><strong>来源/分类</strong>：arXiv · q-fin.MF（q-fin.MF）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.25047">PDF</a></p><p>作者构造同时描述 SPX、VIX 与 VXX 的定价框架：先建模 VIX，再由未来 30 日方差条件期望与 VIX 平方的关系恢复即时 SPX 方差，并用时间扩展多项式扩散的截断签名化为有限维计算。短期期权曲面示例中，VIX/VXX 代理定价误差的蒙特卡洛界低于报价买卖价差。该结果是模型校准和数值误差比较，不代表对冲盈利或样本外可交易优势。<strong>证据状态：仅依据摘要。</strong></p><h3 id="tempdisagg-A-Python-Framework-for-Temporal-Disaggregation-of-Time-Series-Data（arXiv-2503-22054）"><a href="#tempdisagg-A-Python-Framework-for-Temporal-Disaggregation-of-Time-Series-Data（arXiv-2503-22054）" class="headerlink" title="tempdisagg: A Python Framework for Temporal Disaggregation of Time Series Data（arXiv:2503.22054）"></a><a href="https://arxiv.org/abs/2503.22054">tempdisagg: A Python Framework for Temporal Disaggregation of Time Series Data</a>（arXiv:2503.22054）</h3><p><strong>作者</strong>：Jaime Vera-Jaramillo<br><strong>来源/分类</strong>：arXiv · econ.EM（econ.EM, stat.CO, stat.ML）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2503.22054">PDF</a></p><p>tempdisagg 是用于把低频基准分解为高频序列的 Python 包，涵盖 Chow–Lin、Fernández、Litterman、Denton 等方法，并提供约束、滚动回测和修订分析。作者报告在 29 个参考案例中与 R 包结果高度一致：固定自回归参数时相对差异约 10^-15 至 10^-7，估计参数时约 10^-8。它是计量工具，不是金融实证；软件默认值、数据条件和高维性能仍需按具体项目核对。<strong>证据状态：仅依据摘要。</strong></p><h3 id="Optimal-Control-in-Pairs-Trading-with-Negative-Power-Utility（arXiv-2611-26568）"><a href="#Optimal-Control-in-Pairs-Trading-with-Negative-Power-Utility（arXiv-2611-26568）" class="headerlink" title="Optimal Control in Pairs Trading with Negative-Power Utility（arXiv:2611.26568）"></a><a href="https://arxiv.org/abs/2611.26568">Optimal Control in Pairs Trading with Negative-Power Utility</a>（arXiv:2611.26568）</h3><p><strong>作者</strong>：Aleksei Kozhevnikov (Lomonosov Moscow State University、Vega Institute Foundation)<br><strong>来源/分类</strong>：arXiv · q-fin.MF（q-fin.MF, math.OC）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.26568">PDF</a></p><p>论文在 Ornstein–Uhlenbeck 价差的配对交易模型中，用负幂效用求有限期限消费与投资问题的最优反馈控制，并给出利率、均值回复速度与期限之间的可积性边界。摘要特别指出当利率超过均值回复速度时财富/消费可能越过任意给定水平；更高阈值下，部分期限的期望终值财富可发散，而效用仍有限。这是连续时间理论结果，不是历史配对交易回测或真实收益证据。<strong>证据状态：仅依据摘要。</strong></p><h3 id="Bond-yield-dynamics-a-multi-country-multi-horizon-string-model（arXiv-2611-26466）"><a href="#Bond-yield-dynamics-a-multi-country-multi-horizon-string-model（arXiv-2611-26466）" class="headerlink" title="Bond yield dynamics: a multi-country multi-horizon string model（arXiv:2611.26466）"></a><a href="https://arxiv.org/abs/2611.26466">Bond yield dynamics: a multi-country multi-horizon string model</a>（arXiv:2611.26466）</h3><p><strong>作者</strong>：Paul Ruelloux<br><strong>来源/分类</strong>：arXiv · q-fin.ST（q-fin.ST）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.26466">PDF</a></p><p>作者将远期利率曲线弦模型扩展到多国债券市场，用各国特有时间尺度拟合跨国、跨期限收益率相关结构；在九个欧元区国家政府债券数据上，典型重构误差为 1.7%，并同时覆盖日内与日频。贡献是相关结构的模型拟合，样本拟合误差不代表预测精度、因果关系或交易价值，跨国家与时期的稳定性仍需外部检验。<strong>证据状态：仅依据摘要。</strong></p><h3 id="Interpreting-the-Morbidity-Gap（arXiv-2611-26365）"><a href="#Interpreting-the-Morbidity-Gap（arXiv-2611-26365）" class="headerlink" title="Interpreting the Morbidity Gap（arXiv:2611.26365）"></a><a href="https://arxiv.org/abs/2611.26365">Interpreting the Morbidity Gap</a>（arXiv:2611.26365）</h3><p><strong>作者</strong>：Alec Morton<br><strong>来源/分类</strong>：arXiv · stat.AP（stat.AP, econ.GN, q-fin.EC）<br><strong>原文</strong>：<a href="https://arxiv.org/pdf/2611.26365">PDF</a></p><p>这篇统计与健康经济学交叉论文用随机占优刻画“预期寿命减健康预期寿命”的 morbidity gap 与伤残生存年、死亡率和人口年龄结构之间的关系；新加坡示例显示该指标从 1990 年的 8.9 年升至 2023 年的 11.2 年。它是公共卫生统计结果，不涉及金融市场或金融决策，故其金融适用性有限。<strong>证据状态：仅依据摘要。</strong></p><hr><p>以上为论文研究证据梳理，不构成投资建议。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>每日论文</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>论文</tag>
+      
+      <tag>金融</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>每日信息简报｜2026 年 11 月 21 日</title>
     <link href="/2026/11/21/daily-briefing-2026-11-21/"/>
     <url>/2026/11/21/daily-briefing-2026-11-21/</url>
@@ -57,9 +111,9 @@
       
       <tag>数据采集</tag>
       
-      <tag>CI/CD</tag>
-      
       <tag>推理优化</tag>
+      
+      <tag>CI/CD</tag>
       
       <tag>知识工作台</tag>
       
@@ -123,13 +177,13 @@
       
       <tag>Agent</tag>
       
+      <tag>CI/CD</tag>
+      
       <tag>开发工作流</tag>
       
       <tag>小模型训练</tag>
       
       <tag>网页数据</tag>
-      
-      <tag>CI/CD</tag>
       
       <tag>知识管理</tag>
       
@@ -371,17 +425,17 @@
       
       <tag>Agent</tag>
       
-      <tag>人类反馈</tag>
-      
       <tag>代码审查</tag>
-      
-      <tag>本地工具链</tag>
       
       <tag>小模型训练</tag>
       
       <tag>Agent 交付</tag>
       
+      <tag>人类反馈</tag>
+      
       <tag>Office SDK</tag>
+      
+      <tag>本地工具链</tag>
       
     </tags>
     
@@ -466,17 +520,17 @@
       
       <tag>Agent</tag>
       
-      <tag>Agent 协议</tag>
-      
-      <tag>人类反馈</tag>
-      
       <tag>代码审查</tag>
+      
+      <tag>Agent 协议</tag>
       
       <tag>技能评估</tag>
       
-      <tag>浏览器调试</tag>
+      <tag>人类反馈</tag>
       
       <tag>本地工具链</tag>
+      
+      <tag>浏览器调试</tag>
       
     </tags>
     
@@ -511,11 +565,11 @@
       
       <tag>浏览器自动化</tag>
       
+      <tag>代码审查</tag>
+      
       <tag>Web 平台</tag>
       
       <tag>Agent 协议</tag>
-      
-      <tag>代码审查</tag>
       
       <tag>技能评估</tag>
       
@@ -643,11 +697,11 @@
       
       <tag>自托管</tag>
       
-      <tag>应用安全</tag>
-      
       <tag>代码审查</tag>
       
       <tag>现代 Web</tag>
+      
+      <tag>应用安全</tag>
       
       <tag>网络工具</tag>
       
@@ -775,9 +829,9 @@
       
       <tag>浏览器自动化</tag>
       
-      <tag>Web 平台</tag>
-      
       <tag>应用安全</tag>
+      
+      <tag>Web 平台</tag>
       
     </tags>
     
@@ -994,9 +1048,9 @@
       
       <tag>安全审计</tag>
       
-      <tag>浏览器自动化</tag>
-      
       <tag>可观测性</tag>
+      
+      <tag>浏览器自动化</tag>
       
       <tag>Kubernetes</tag>
       
@@ -2594,9 +2648,9 @@
       
       <tag>Agent</tag>
       
-      <tag>本地 AI</tag>
-      
       <tag>上下文工程</tag>
+      
+      <tag>本地 AI</tag>
       
       <tag>Agent Skills</tag>
       
@@ -2685,9 +2739,9 @@
       
       <tag>Agent</tag>
       
-      <tag>本地 AI</tag>
-      
       <tag>上下文工程</tag>
+      
+      <tag>本地 AI</tag>
       
       <tag>推理引擎</tag>
       
@@ -2902,11 +2956,11 @@
       
       <tag>模型推理</tag>
       
+      <tag>上下文工程</tag>
+      
       <tag>空间智能</tag>
       
       <tag>开源学习</tag>
-      
-      <tag>上下文工程</tag>
       
     </tags>
     
@@ -3731,9 +3785,9 @@
       
       <tag>开发者工具</tag>
       
-      <tag>RAG</tag>
-      
       <tag>多媒体</tag>
+      
+      <tag>RAG</tag>
       
     </tags>
     
@@ -3967,9 +4021,9 @@
       
       <tag>开发者工具</tag>
       
-      <tag>多媒体</tag>
-      
       <tag>模型编译</tag>
+      
+      <tag>多媒体</tag>
       
     </tags>
     
@@ -12967,11 +13021,11 @@
     
     <tags>
       
-      <tag>Performance Tuning</tag>
-      
       <tag>High QPS</tag>
       
       <tag>DDoS</tag>
+      
+      <tag>Performance Tuning</tag>
       
       <tag>Scalability</tag>
       
@@ -13014,17 +13068,17 @@
     
     <tags>
       
-      <tag>JVM</tag>
+      <tag>High QPS</tag>
       
       <tag>Performance Tuning</tag>
+      
+      <tag>JVM</tag>
       
       <tag>Garbage Collection</tag>
       
       <tag>G1GC</tag>
       
       <tag>Memory Management</tag>
-      
-      <tag>High QPS</tag>
       
       <tag>System Optimization</tag>
       
@@ -13147,6 +13201,8 @@
       
       <tag>6.824</tag>
       
+      <tag>分布式系统</tag>
+      
       <tag>比特币</tag>
       
       <tag>电子现金</tag>
@@ -13162,8 +13218,6 @@
       <tag>工作量证明</tag>
       
       <tag>加密货币</tag>
-      
-      <tag>分布式系统</tag>
       
       <tag>交易验证</tag>
       
