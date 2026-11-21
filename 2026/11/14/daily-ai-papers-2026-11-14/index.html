@@ -348,182 +348,157 @@
                 
                 <p>今日收录 18 篇 AI 论文，重点详析 5 篇，另有 12 篇仅依据摘要整理。主题涉及安全微调、AI 审稿、代理时间序列预测、编译器推理与多轮强化学习。下文区分作者报告结果与独立证据，并注明复现、数据污染和算力限制。</p>
 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
-<h3 id="data-efficient-llm-safety-alignment-guided-by-interpretable-features"><a class="markdownIt-Anchor" href="#data-efficient-llm-safety-alignment-guided-by-interpretable-features"></a> Data-Efficient LLM Safety Alignment Guided by Interpretable Features</h3>
-<ul>
+<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="Data-Efficient-LLM-Safety-Alignment-Guided-by-Interpretable-Features"><a href="#Data-Efficient-LLM-Safety-Alignment-Guided-by-Interpretable-Features" class="headerlink" title="Data-Efficient LLM Safety Alignment Guided by Interpretable Features"></a>Data-Efficient LLM Safety Alignment Guided by Interpretable Features</h3><ul>
 <li>作者：Hongyu Li、Zhan Yu、Zhe Zhao、Kimmo Yan、Xiong Kuang、Renfen Hu</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>来源 / 分类：arXiv · cs.CL、cs.AI</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16183">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.16183">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.16183">arXiv DOI</a></li>
 </ul>
 <p><strong>全文状态与研究问题。</strong> 已核读 arXiv HTML 与 PDF 全文。论文关注安全微调数据过大且容易导致对无害请求过度拒绝的问题。LIS 用稀疏自编码器（SAE）激活找出覆盖多类安全特征的提示，再用多智能体对抗合成补充容易被误拒的无害提示。</p>
 <p><strong>方法、基线与作者报告的结果。</strong> 数据集仅 2.4K 条；作者在统一训练设置下与 TRIDENT-Core（26K）、TRIDENT-Edge（19K）、WildJailbreak（262K）及同规模随机子集比较，并在两个模型系列、4 个安全和 5 个过度拒绝基准上评测。作者报告 LIS 的安全性与可用性平衡更好；消融显示安全数据或无害拒绝数据单独使用都不够。LLaMA 3.1-Alpaca 上，SAE 筛选单样本成本为 H20 GPU 10.7 毫秒，低于论文比较的嵌入式 K-means 15.5 毫秒；LIS 微调使用 8 张 H20、两轮、0.99 GPU 小时。以上均是作者实验报告，不是独立复现。</p>
 <p><strong>创新、风险与失败条件。</strong> 贡献在于以可解释特征指导数据覆盖，显式平衡拒答与安全。基线采用统一训练设置，较大数据集比较有说服力；但作者未提供训练语料污染的系统审计。SAE 特征可能混入非安全语义，合成质量受生成模型能力限制，2.4K 数据也可能漏掉极端风险，测试仍是有限模型和基准的微调结果，不能直接等同部署安全。</p>
 <p><strong>适合谁读。</strong> 安全微调、拒答校准和训练数据工程团队。建议先读第 3 节数据选择与合成，再读第 4.2–4.5 节基准、消融和算力，最后看第 7 节局限。</p>
-<h3 id="auditing-ai-peer-reviewers-a-benchmark-on-real-scientific-papers"><a class="markdownIt-Anchor" href="#auditing-ai-peer-reviewers-a-benchmark-on-real-scientific-papers"></a> Auditing AI peer reviewers: a benchmark on real scientific papers</h3>
-<ul>
-<li>作者：'Iñigo Zubeldia、Boris Bolliet、Francisco Villaescusa-Navarro、Pablo Villanueva-Domingo、Miles Cranmer</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://astro-ph.IM">astro-ph.IM</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.DL</li>
+<h3 id="Auditing-AI-peer-reviewers-a-benchmark-on-real-scientific-papers"><a href="#Auditing-AI-peer-reviewers-a-benchmark-on-real-scientific-papers" class="headerlink" title="Auditing AI peer reviewers: a benchmark on real scientific papers"></a>Auditing AI peer reviewers: a benchmark on real scientific papers</h3><ul>
+<li>作者：\’Iñigo Zubeldia、Boris Bolliet、Francisco Villaescusa-Navarro、Pablo Villanueva-Domingo、Miles Cranmer</li>
+<li>来源 / 分类：arXiv · cs.CL、astro-ph.IM、cs.AI、cs.DL</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17052">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17052">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.17052">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/inigozubeldia/skepthical-benchmark">代码/基准</a></li>
 </ul>
 <p><strong>全文状态与研究问题。</strong> 已核读 arXiv HTML 与 PDF 全文。论文测量 AI 审稿系统能否发现论文中客观、可定位的错误，以及它们会不会把干净论文误报。</p>
 <p><strong>方法、比较与作者报告的结果。</strong> 作者在天体物理与机器学习各选 15 篇近期 arXiv 论文，注入数学、数值、引文和一般问题四类、三个严重度共 357 个错误；比较 12 种审稿系统，包含单模型、Claude Code 配置和 Skepthical 多智能体工具链。Skepthical 检索引文、用计算代数查数学、运行代码核对数字。按论文级 bootstrap，天体物理语料中 Skepthical 总检出率 70.6%（95% 区间半宽 6.2），高于结构化 GPT-5.5 的 61.3%；机器学习语料中两者为 76.7% 与 81.1%，差异不显著。强模型使用相同提示时，总检出率仍相差约 50 个百分点。</p>
 <p><strong>创新、风险与失败条件。</strong> 贡献是把干净稿误报率和注入错误检出率同时纳入评测，并按错误类型拆分。它只检验客观、可定位的缺陷，不能代表新颖性、实验充分性或解释质量；每个领域仅 15 篇且每稿同时含多类错误。误报中的数学标记尤需谨慎；大部分裁定依赖 LLM，盲法人类复核只覆盖一篇论文。Skepthical 使用更多调用和三个模型提供商，比较不是等成本，收益不能单独归因于框架设计。代码、注入清单和裁定日志已发布。</p>
 <p><strong>适合谁读。</strong> AI 审稿、科学工作流与自动化验证研究者。建议读第 2 节基准构造、第 3.1–3.2 节检出和误报、第 4 节局限，以及附录 M 的算力与成本。</p>
-<h3 id="castworld-benchmarking-context-aware-agentic-time-series-forecasting-beyond-predictive-accuracy"><a class="markdownIt-Anchor" href="#castworld-benchmarking-context-aware-agentic-time-series-forecasting-beyond-predictive-accuracy"></a> CastWorld: Benchmarking Context-Aware Agentic Time Series Forecasting Beyond Predictive Accuracy</h3>
-<ul>
+<h3 id="CastWorld-Benchmarking-Context-Aware-Agentic-Time-Series-Forecasting-Beyond-Predictive-Accuracy"><a href="#CastWorld-Benchmarking-Context-Aware-Agentic-Time-Series-Forecasting-Beyond-Predictive-Accuracy" class="headerlink" title="CastWorld: Benchmarking Context-Aware Agentic Time Series Forecasting Beyond Predictive Accuracy"></a>CastWorld: Benchmarking Context-Aware Agentic Time Series Forecasting Beyond Predictive Accuracy</h3><ul>
 <li>作者：Bokai Pan、Ruijie Yang、Mingyue Cheng、Jiahao Wang、Xiaoyu Tao</li>
-<li>来源 / 分类：arXiv · cs.LG、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>来源 / 分类：arXiv · cs.LG、cs.AI</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15262">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.15262">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.15262">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/Forever-Pan/CastWorld">代码/数据</a></li>
 </ul>
 <p><strong>全文状态与研究问题。</strong> 已核读 arXiv HTML 全文；官方 PDF 链接可访问，但本次 PDF 抓取超时。论文问的是：在有外部信息和工具的交互式时间序列预测中，只看最终误差是否会漏掉代理如何搜证、改预测、选版本和消耗资源。</p>
 <p><strong>方法、比较与作者报告的结果。</strong> CastWorld 含 25 个真实数据集、8 个领域、1,310 个任务回合和 49 个预测工具；15 个 LLM 在同一 250 个测试回合、相同历史、预测跨度和评分配置下比较，并与 ARIMAX、PatchTST、Chronos 等系统级预测基线对照。除预测误差外，评分还覆盖流程执行、可信行为和资源效率。作者的 CastWorld 预测系统在比较表中报告 MASE 0.8284、RMSSE 0.6869、平均名次 3.06；实验同时发现同等准确率的代理会表现出不同决策轨迹，额外交互不一定改善结果，允许搜证后修订则提高了三种被测模型的任务感知预测分数。</p>
 <p><strong>创新、风险与失败条件。</strong> 任务清单、候选、结果和依赖配置在代码库中提供，有利于复跑；测试上下文有截止时间、隐藏未来目标，并人工复查可能的目标泄漏。主要限制是人工整理的25个数据集和固定250回合，公开历史数据仍可能与模型训练语料重合，论文未给出完整的预训练污染审计。模型的工具、预算和推理配置也不同。附录报告 GPT-6 Astra 每回合平均约 345.8 秒、40.1 万输入输出 token，资源成本会显著改变比较结论。</p>
 <p><strong>适合谁读。</strong> 时间序列代理、金融预测系统和工具使用评测团队。建议读第 3 节交互框架、第 4 节任务集、第 5 节评测指标、第 6.1–6.5 节结果，及附录 A.4 的资源消耗。</p>
-<h3 id="mlirbench-a-benchmark-and-dataset-for-compiler-and-hardware-aware-reasoning"><a class="markdownIt-Anchor" href="#mlirbench-a-benchmark-and-dataset-for-compiler-and-hardware-aware-reasoning"></a> MLIRBench - A Benchmark and Dataset for Compiler and Hardware-Aware Reasoning</h3>
-<ul>
+<h3 id="MLIRBench-A-Benchmark-and-Dataset-for-Compiler-and-Hardware-Aware-Reasoning"><a href="#MLIRBench-A-Benchmark-and-Dataset-for-Compiler-and-Hardware-Aware-Reasoning" class="headerlink" title="MLIRBench - A Benchmark and Dataset for Compiler and Hardware-Aware Reasoning"></a>MLIRBench - A Benchmark and Dataset for Compiler and Hardware-Aware Reasoning</h3><ul>
 <li>作者：Pranava Sai Maganti、Meghasyam Peddireddy、Muzakker Hossain、Kaining Gao、Farhan Ahmed、Ali Jannesari</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.PL">cs.PL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG</li>
+<li>来源 / 分类：arXiv · cs.PL、cs.AI、cs.LG</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.14881">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.14881">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.14881">arXiv DOI</a></li>
 </ul>
 <p><strong>全文状态与研究问题。</strong> 已核读 arXiv HTML 与 PDF 全文。论文检验 LLM 能否判断编译器中间表示（MLIR）程序对的语义关系，而不只是识别熟悉的代码模式。</p>
 <p><strong>方法、基线与作者报告的结果。</strong> 多智能体流水线生成程序变体，再通过编译执行得到 EQUIV、DIVERGE 或 ERROR 标签；基准含 1,768 对程序（torch 888、linalg 880）。9 个模型（5 个开放权重、4 个专有模型）使用相同提示模板、温度 0 和确定输入。作者报告 Gemini 3.1 Pro 标签准确率最高，为 92.65%，但详细结果行为分仅 5.04/10，说明标签分类正确并不意味着能准确解释实际运行结果；全体模型平均标签准确率 74.59%，平均结果行为分 3.63/10。</p>
 <p><strong>创新、风险与失败条件。</strong> 执行派生标签比单纯 LLM 裁判更可审计，并惩罚没有依据的解释。比较提示和输入较一致，但评估同时混有闭源与开放权重模型，API 价格、延迟和算力并未等成本归一；解释分仍依赖固定 LLM 裁判，不能当作绝对理解能力。数据由 40 个手工种子程序生成，限于 torch/linalg 两种 dialect 和固定 IREE 环境，未覆盖更广泛的真实编译变换。全文未展示系统化的模型训练数据污染审计。</p>
 <p><strong>适合谁读。</strong> 编译器、代码模型和程序验证研究者。建议读第 3–5 节基准生成、数据集与模型结果，再看第 6.5 节局限和附录 D/E 的提示、记录及评分协议。</p>
-<h3 id="outcome-mass-alignment-controlling-length-dependent-trajectory-influence-in-multi-turn-llm-agent-reinforcement-learning"><a class="markdownIt-Anchor" href="#outcome-mass-alignment-controlling-length-dependent-trajectory-influence-in-multi-turn-llm-agent-reinforcement-learning"></a> Outcome-Mass Alignment: Controlling Length-Dependent Trajectory Influence in Multi-Turn LLM Agent Reinforcement Learning</h3>
-<ul>
+<h3 id="Outcome-Mass-Alignment-Controlling-Length-Dependent-Trajectory-Influence-in-Multi-Turn-LLM-Agent-Reinforcement-Learning"><a href="#Outcome-Mass-Alignment-Controlling-Length-Dependent-Trajectory-Influence-in-Multi-Turn-LLM-Agent-Reinforcement-Learning" class="headerlink" title="Outcome-Mass Alignment: Controlling Length-Dependent Trajectory Influence in Multi-Turn LLM Agent Reinforcement Learning"></a>Outcome-Mass Alignment: Controlling Length-Dependent Trajectory Influence in Multi-Turn LLM Agent Reinforcement Learning</h3><ul>
 <li>作者：Dawei Zhang、Yubin Huangfu、Jessica Fan、Boyu Wei、Likang Wu、Hongke Zhao、Ming He、Zhu Teng</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a></li>
+<li>来源 / 分类：arXiv · cs.CL</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16816">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.16816">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.16816">arXiv DOI</a></li>
 </ul>
 <p><strong>全文状态与研究问题。</strong> 已核读 arXiv HTML 与 PDF 全文。多轮代理训练把一条交互轨迹拆成多行和 token 后，长轨迹可能因结果被重复计入、优化目标按 token 赋权而获得不成比例的训练影响。OMA 将这两个外层记账选择拆开控制：Outcome Alignment 按唯一轨迹统计结果，Mass Alignment 再按轨迹平均优化目标。</p>
 <p><strong>方法、基线与作者报告的结果。</strong> 作者用 Qwen2.5-1.5B/3B-Instruct，在 ALFWorld、WebShop 上以 GRPO 为主基线，并做 GiGPO、GSPO 兼容性比较。ALFWorld 两种规模的主实验中，GRPO 端点成功率分别由 73.4% 提至 82.8%、74.2% 提至 81.2%。在 WebShop-SOL，成功率 nAUC 从 39.9% 提至 51.1%；但普通 WebShop 3B 设置端点成功率由 64.8% 降至 57.0%，效果依赖长轨迹与失败结果的相关结构，并非普遍增益。主实验每种配置主要报告单一 seed；附录两 seed 的补充运行是描述性证据。训练使用四张 GPU。</p>
 <p><strong>创新、风险与失败条件。</strong> 该方法修正轨迹被拆分后的样本权重，不改变优化器内部 credit assignment、importance ratio 或 clipping。相同任务与配置的对照较直接，但只有少量环境、模型尺度和更新步数；公开基准的任务记忆/污染没有单独审计。普通 WebShop 出现回退，作者也指出扩展长度与结果关联弱或反向时效果会混杂。</p>
 <p><strong>适合谁读。</strong> 多轮 Agent RL、GRPO 数据管线和长上下文训练团队。建议读第 3 节两种对齐定义、第 4.1–4.4 节实验与消融、第 4.7 节边界案例，及附录 C/D 的运行与多 seed 证据。</p>
-<h2 id="ai-论文"><a class="markdownIt-Anchor" href="#ai-论文"></a> AI 论文</h2>
-<p>以下作者报告的实验结果尚未独立复核。重点论文见上节；其余条目仅依据 arXiv 摘要。基准提升不等于真实部署能力；闭源模型、训练数据污染、推理预算和复现条件会影响横向比较。</p>
-<h3 id="food-critic-an-agentic-visualization-system-for-auditable-restaurant-safety-reasoning"><a class="markdownIt-Anchor" href="#food-critic-an-agentic-visualization-system-for-auditable-restaurant-safety-reasoning"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15843">Food Critic: An Agentic Visualization System for Auditable Restaurant-Safety Reasoning</a></h3>
-<ul>
+<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><p>以下作者报告的实验结果尚未独立复核。重点论文见上节；其余条目仅依据 arXiv 摘要。基准提升不等于真实部署能力；闭源模型、训练数据污染、推理预算和复现条件会影响横向比较。</p>
+<h3 id="Food-Critic-An-Agentic-Visualization-System-for-Auditable-Restaurant-Safety-Reasoning"><a href="#Food-Critic-An-Agentic-Visualization-System-for-Auditable-Restaurant-Safety-Reasoning" class="headerlink" title="Food Critic: An Agentic Visualization System for Auditable Restaurant-Safety Reasoning"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15843">Food Critic: An Agentic Visualization System for Auditable Restaurant-Safety Reasoning</a></h3><ul>
 <li>作者：Arleth Salinas、Ishrat Jahan Eliza、Valerio Pascucci</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、<a target="_blank" rel="noopener" href="http://cs.MA">cs.MA</a></li>
+<li>来源 / 分类：arXiv · cs.AI、cs.MA</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15843">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.15843">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.15843">arXiv DOI</a></li>
 <li>中文简介：研究餐馆安全决策中的代理回答如何让用户检查证据来源；Food Critic 将公共卫生检查记录与用户评论结合，比较数据库 ReAct、检索法规和本体结构化证据三种 grounding。作者报告多个使用场景下可把推理外显为可视证据，但摘要未给量化基线或用户研究效应；适合关注可审计界面，证据目前是系统案例而非真实决策效果。（仅依据摘要。）</li>
 </ul>
-<h3 id="towards-robust-vision-language-reasoning-a-multi-stage-optimization-pipeline-with-masked-diffusion-model"><a class="markdownIt-Anchor" href="#towards-robust-vision-language-reasoning-a-multi-stage-optimization-pipeline-with-masked-diffusion-model"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15238">Towards Robust Vision-Language Reasoning: A Multi-Stage Optimization Pipeline with Masked Diffusion Model</a></h3>
-<ul>
+<h3 id="Towards-Robust-Vision-Language-Reasoning-A-Multi-Stage-Optimization-Pipeline-with-Masked-Diffusion-Model"><a href="#Towards-Robust-Vision-Language-Reasoning-A-Multi-Stage-Optimization-Pipeline-with-Masked-Diffusion-Model" class="headerlink" title="Towards Robust Vision-Language Reasoning: A Multi-Stage Optimization Pipeline with Masked Diffusion Model"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15238">Towards Robust Vision-Language Reasoning: A Multi-Stage Optimization Pipeline with Masked Diffusion Model</a></h3><ul>
 <li>作者：Shunming Liu、Pei Huang、Yajing Sun、Huaxiao Liu</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>来源 / 分类：arXiv · cs.AI</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15238">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.15238">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.15238">arXiv DOI</a></li>
 <li>中文简介：研究离散扩散式视觉语言模型用于自动驾驶规划时如何弥补领域迁移与推理幻觉；方法结合规划输入微调、指标引导的强化学习筛选和按场景复杂度切换的 DAD 解码。作者报告 MD-Drive 比未优化版本提升 29.7%，并在 NAVSIM 闭环及 nuScenes、DriveCoT 开环任务胜过同架构自回归基线；摘要未列具体指标、显著性、数据污染审计或完整算力比较。（仅依据摘要。）</li>
 </ul>
-<h3 id="castworld-benchmarking-context-aware-agentic-time-series-forecasting-beyond-predictive-accuracy-2"><a class="markdownIt-Anchor" href="#castworld-benchmarking-context-aware-agentic-time-series-forecasting-beyond-predictive-accuracy-2"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15262">CastWorld: Benchmarking Context-Aware Agentic Time Series Forecasting Beyond Predictive Accuracy</a></h3>
-<ul>
+<h3 id="CastWorld-Benchmarking-Context-Aware-Agentic-Time-Series-Forecasting-Beyond-Predictive-Accuracy-1"><a href="#CastWorld-Benchmarking-Context-Aware-Agentic-Time-Series-Forecasting-Beyond-Predictive-Accuracy-1" class="headerlink" title="CastWorld: Benchmarking Context-Aware Agentic Time Series Forecasting Beyond Predictive Accuracy"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15262">CastWorld: Benchmarking Context-Aware Agentic Time Series Forecasting Beyond Predictive Accuracy</a></h3><ul>
 <li>作者：Bokai Pan、Ruijie Yang、Mingyue Cheng、Jiahao Wang、Xiaoyu Tao</li>
-<li>来源 / 分类：arXiv · cs.LG、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>来源 / 分类：arXiv · cs.LG、cs.AI</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15262">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.15262">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.15262">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/Forever-Pan/CastWorld">代码/数据</a></li>
 <li>中文简介：研究代理时间序列预测除误差外的搜证、修订、可信度与资源效率；CastWorld 提供 8 个领域、25 个数据集和 49 个工具的上下文基准。作者报告三种模型中，允许搜证后修订均提高任务感知得分，但额外交互不保证更准，代理也可能未选出自己曾生成的最佳预测；跨真实任务的外推受基准构造限制。（重点论文，详析见上节。）</li>
 </ul>
-<h3 id="conformal-risk-certificates-for-portfolio-optimization-under-uncertainty-a-gated-reinforcement-learning-approach"><a class="markdownIt-Anchor" href="#conformal-risk-certificates-for-portfolio-optimization-under-uncertainty-a-gated-reinforcement-learning-approach"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.14699">Conformal Risk Certificates for Portfolio Optimization Under Uncertainty: A Gated Reinforcement-Learning Approach</a></h3>
-<ul>
+<h3 id="Conformal-Risk-Certificates-for-Portfolio-Optimization-Under-Uncertainty-A-Gated-Reinforcement-Learning-Approach"><a href="#Conformal-Risk-Certificates-for-Portfolio-Optimization-Under-Uncertainty-A-Gated-Reinforcement-Learning-Approach" class="headerlink" title="Conformal Risk Certificates for Portfolio Optimization Under Uncertainty: A Gated Reinforcement-Learning Approach"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.14699">Conformal Risk Certificates for Portfolio Optimization Under Uncertainty: A Gated Reinforcement-Learning Approach</a></h3><ul>
 <li>作者：Mohammad Zarei、Amirhossein MohammadpourAzari、Moslem Habibi</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.PM">q-fin.PM</a>、cs.LG、math.OC、q-fin.RM</li>
+<li>来源 / 分类：arXiv · q-fin.PM、cs.LG、math.OC、q-fin.RM</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.14699">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.14699">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.14699">arXiv DOI</a></li>
 <li>中文简介：【AI/金融双主题】研究文本驱动的语义风险状态如何给强化学习组合配置加可回放的交易前风险闸门；文本风险经共形校准和二阶锥约束检查 PPO 配置。作者在 9 只行业 ETF 的 walk-forward 测试报告风险违规减少，金融篇核读全文并详析；这里仅作交叉主题索引。 （AI/金融双主题；金融篇详析，本节仅作索引。）</li>
 </ul>
-<h3 id="moralbench-moral-evaluation-of-llms"><a class="markdownIt-Anchor" href="#moralbench-moral-evaluation-of-llms"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.04428">MoralBench: Moral Evaluation of LLMs</a></h3>
-<ul>
+<h3 id="MoralBench-Moral-Evaluation-of-LLMs"><a href="#MoralBench-Moral-Evaluation-of-LLMs" class="headerlink" title="MoralBench: Moral Evaluation of LLMs"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.04428">MoralBench: Moral Evaluation of LLMs</a></h3><ul>
 <li>作者：Jianchao Ji、Yutong Chen、Mingyu Jin、Wujiang Xu、Wenyue Hua、Yongfeng Zhang</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>来源 / 分类：arXiv · cs.CL、cs.AI</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.04428">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2406.04428">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2406.04428">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://drive.google.com/drive/u/0/folders/1k93YZJserYc2CkqP8d4B3M3sgd3kA8W7">数据</a> · <a target="_blank" rel="noopener" href="https://github.com/agiresearch/MoralBench">代码</a></li>
 <li>中文简介：研究如何评估 LLM 在伦理困境中的道德推理；作者构建包含伦理情境、量化指标及伦理学者质性审阅的 MoralBench，并报告不同模型表现存在差异。值得关注的是评测把伦理问题纳入模型比较；但摘要未给样本规模和具体效应值，道德判断受文化与标注标准影响，不能视作通用道德能力。（仅依据摘要。）</li>
 </ul>
-<h3 id="data-efficient-llm-safety-alignment-guided-by-interpretable-features-2"><a class="markdownIt-Anchor" href="#data-efficient-llm-safety-alignment-guided-by-interpretable-features-2"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16183">Data-Efficient LLM Safety Alignment Guided by Interpretable Features</a></h3>
-<ul>
+<h3 id="Data-Efficient-LLM-Safety-Alignment-Guided-by-Interpretable-Features-1"><a href="#Data-Efficient-LLM-Safety-Alignment-Guided-by-Interpretable-Features-1" class="headerlink" title="Data-Efficient LLM Safety Alignment Guided by Interpretable Features"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16183">Data-Efficient LLM Safety Alignment Guided by Interpretable Features</a></h3><ul>
 <li>作者：Hongyu Li、Zhan Yu、Zhe Zhao、Kimmo Yan、Xiong Kuang、Renfen Hu</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>来源 / 分类：arXiv · cs.CL、cs.AI</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16183">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.16183">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.16183">arXiv DOI</a></li>
 <li>中文简介：研究问题、方法、主要结果、证据限制与阅读建议见上方重点详析。 （重点论文，详析见上节。）</li>
 </ul>
-<h3 id="reward-driven-collider-physics-challenges-for-self-improving-agentic-ai-via-reinforcement-learning"><a class="markdownIt-Anchor" href="#reward-driven-collider-physics-challenges-for-self-improving-agentic-ai-via-reinforcement-learning"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15885">Reward-Driven Collider Physics Challenges for Self-Improving Agentic AI via Reinforcement Learning</a></h3>
-<ul>
+<h3 id="Reward-Driven-Collider-Physics-Challenges-for-Self-Improving-Agentic-AI-via-Reinforcement-Learning"><a href="#Reward-Driven-Collider-Physics-Challenges-for-Self-Improving-Agentic-AI-via-Reinforcement-Learning" class="headerlink" title="Reward-Driven Collider Physics Challenges for Self-Improving Agentic AI via Reinforcement Learning"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15885">Reward-Driven Collider Physics Challenges for Self-Improving Agentic AI via Reinforcement Learning</a></h3><ul>
 <li>作者：Alexander Yue、Qibin Liu、Julia Gonski</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG</li>
+<li>来源 / 分类：arXiv · cs.AI、cs.LG</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15885">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.15885">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.15885">arXiv DOI</a></li>
 <li>中文简介：研究如何用持续、自动可评分的高能物理挑战训练科学代理，而不是只测任务完成；作者建立强化学习任务格式并比较前沿推理模型，报告小型语言模型可在自动反馈下改进。它把可验证科学奖励带入 agent RL；摘要没有任务数、提升幅度、基线细节或算力，当前证据属于初步概念验证。（仅依据摘要。）</li>
 </ul>
-<h3 id="nibench-benchmarking-autonomous-ai-agents-for-execution-skill-evolution-and-scientific-judgment-in-neuroimaging"><a class="markdownIt-Anchor" href="#nibench-benchmarking-autonomous-ai-agents-for-execution-skill-evolution-and-scientific-judgment-in-neuroimaging"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15831">NIBench: benchmarking autonomous AI agents for execution, skill evolution and scientific judgment in neuroimaging</a></h3>
-<ul>
+<h3 id="NIBench-benchmarking-autonomous-AI-agents-for-execution-skill-evolution-and-scientific-judgment-in-neuroimaging"><a href="#NIBench-benchmarking-autonomous-AI-agents-for-execution-skill-evolution-and-scientific-judgment-in-neuroimaging" class="headerlink" title="NIBench: benchmarking autonomous AI agents for execution, skill evolution and scientific judgment in neuroimaging"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15831">NIBench: benchmarking autonomous AI agents for execution, skill evolution and scientific judgment in neuroimaging</a></h3><ul>
 <li>作者：Lujia Zhong、Yihao Xia、Jianwei Zhang、Shuo Huang、Xinyu Nie、Mingyang Xia、Zhiwei Deng、Jiaxin Yue、Xinkai Wang、Junhan Zhao、Yonggang Shi</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>来源 / 分类：arXiv · cs.AI</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15831">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.15831">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.15831">arXiv DOI</a></li>
 <li>中文简介：研究神经影像代理能否执行工作流、积累程序技能并基于原始队列数据作科学判断；NIBench 含 7 种工具生态中的 56 项任务、19 个模型及阿尔茨海默病研究的 36 条主张。作者报告给定流程时领先模型几乎完全执行成功，但缺少程序指导会拉开差异；技能蒸馏对未见任务的迁移不稳定，结果可复现也不代表结论正确。（仅依据摘要。）</li>
 </ul>
-<h3 id="mlirbench-a-benchmark-and-dataset-for-compiler-and-hardware-aware-reasoning-2"><a class="markdownIt-Anchor" href="#mlirbench-a-benchmark-and-dataset-for-compiler-and-hardware-aware-reasoning-2"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.14881">MLIRBench - A Benchmark and Dataset for Compiler and Hardware-Aware Reasoning</a></h3>
-<ul>
+<h3 id="MLIRBench-A-Benchmark-and-Dataset-for-Compiler-and-Hardware-Aware-Reasoning-1"><a href="#MLIRBench-A-Benchmark-and-Dataset-for-Compiler-and-Hardware-Aware-Reasoning-1" class="headerlink" title="MLIRBench - A Benchmark and Dataset for Compiler and Hardware-Aware Reasoning"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.14881">MLIRBench - A Benchmark and Dataset for Compiler and Hardware-Aware Reasoning</a></h3><ul>
 <li>作者：Pranava Sai Maganti、Meghasyam Peddireddy、Muzakker Hossain、Kaining Gao、Farhan Ahmed、Ali Jannesari</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.PL">cs.PL</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.LG</li>
+<li>来源 / 分类：arXiv · cs.PL、cs.AI、cs.LG</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.14881">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.14881">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.14881">arXiv DOI</a></li>
 <li>中文简介：研究 LLM 是否真正理解 MLIR 编译器程序语义；作者构造经执行验证的 torch/linalg 程序对并评测 9 个模型。摘要报告 Gemini 3.1 Pro 标签准确率 92.65%，但详细结果行为分仅 5.04/10，反映“判对类别”与解释执行结果不同；局限包括仅两种 dialect、种子程序与运行环境有限。（重点论文，详析见上节。）</li>
 </ul>
-<h3 id="pertreason-a-knowledge-grounded-benchmark-and-framework-for-cell-state-conditioned-mechanistic-reasoning-of-perturbation-effects"><a class="markdownIt-Anchor" href="#pertreason-a-knowledge-grounded-benchmark-and-framework-for-cell-state-conditioned-mechanistic-reasoning-of-perturbation-effects"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.18777">PertReason: A Knowledge-Grounded Benchmark and Framework for Cell-State-Conditioned Mechanistic Reasoning of Perturbation Effects</a></h3>
-<ul>
+<h3 id="PertReason-A-Knowledge-Grounded-Benchmark-and-Framework-for-Cell-State-Conditioned-Mechanistic-Reasoning-of-Perturbation-Effects"><a href="#PertReason-A-Knowledge-Grounded-Benchmark-and-Framework-for-Cell-State-Conditioned-Mechanistic-Reasoning-of-Perturbation-Effects" class="headerlink" title="PertReason: A Knowledge-Grounded Benchmark and Framework for Cell-State-Conditioned Mechanistic Reasoning of Perturbation Effects"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.18777">PertReason: A Knowledge-Grounded Benchmark and Framework for Cell-State-Conditioned Mechanistic Reasoning of Perturbation Effects</a></h3><ul>
 <li>作者：Dongkwan Kim、Yiming Gao、Yining Yang、Yang Shen</li>
-<li>来源 / 分类：arXiv · cs.LG、<a target="_blank" rel="noopener" href="http://q-bio.MN">q-bio.MN</a></li>
+<li>来源 / 分类：arXiv · cs.LG、q-bio.MN</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.18777">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.18777">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2607.18777">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://dongkwan-kim.github.io/PertReason/">项目与数据</a></li>
 <li>中文简介：研究科学模型是否不仅预测扰动结果，也能给出对细胞状态敏感的机制解释；PertReason 将单细胞遗传/化学扰动数据、知识图谱和细胞基态相结合，提供问答基准与参考模型。作者报告机制监督改善预测并减少答案与理由不一致，数据在项目页开放；摘要没有具体增益数字，跨细胞与组合外推仍是关键压力测试。（仅依据摘要。）</li>
 </ul>
-<h3 id="synthesizing-human-trajectory-anomalies-an-llm-driven-framework-with-map-constrained-routing-and-sensor-noise-simulation"><a class="markdownIt-Anchor" href="#synthesizing-human-trajectory-anomalies-an-llm-driven-framework-with-map-constrained-routing-and-sensor-noise-simulation"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.10314">Synthesizing Human Trajectory Anomalies: An LLM-Driven Framework with Map-Constrained Routing and Sensor Noise Simulation</a></h3>
-<ul>
+<h3 id="Synthesizing-Human-Trajectory-Anomalies-An-LLM-Driven-Framework-with-Map-Constrained-Routing-and-Sensor-Noise-Simulation"><a href="#Synthesizing-Human-Trajectory-Anomalies-An-LLM-Driven-Framework-with-Map-Constrained-Routing-and-Sensor-Noise-Simulation" class="headerlink" title="Synthesizing Human Trajectory Anomalies: An LLM-Driven Framework with Map-Constrained Routing and Sensor Noise Simulation"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.10314">Synthesizing Human Trajectory Anomalies: An LLM-Driven Framework with Map-Constrained Routing and Sensor Noise Simulation</a></h3><ul>
 <li>作者：Yueyang Liu、Joon-Seok Kim、Andreas Züfle</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>来源 / 分类：arXiv · cs.AI</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.10314">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.10314">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2606.10314">arXiv DOI</a></li>
 <li>中文简介：研究在真实异常轨迹难收集时如何构造可解释的移动异常数据；框架用 LLM agent 注入异常停留点，再以地图约束路由和环境相关 GPS 噪声保持空间合理性。作者报告生成带异常标注的移动数据集格式，摘要未提供下游检测器性能或真实异常验证；合成到现实的差距和隐私安全仍需独立评估。（仅依据摘要。）</li>
 </ul>
-<h3 id="poirot-agents-as-their-own-auditors-for-failure-attribution-in-large-language-model-multi-agent-systems"><a class="markdownIt-Anchor" href="#poirot-agents-as-their-own-auditors-for-failure-attribution-in-large-language-model-multi-agent-systems"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.02282">POIROT: Agents as their own auditors for failure attribution in large language model multi-agent systems</a></h3>
-<ul>
-<li>作者：Iñaki Dellibarda Varela、R. Sendra-Arranz、Pablo Romero-Sorozabal、J. M. Valverde-García、Annemarie F. Laudanski、'Alvaro Gutiérrez、Eduardo Rocon、Manuel Cebrian</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<h3 id="POIROT-Agents-as-their-own-auditors-for-failure-attribution-in-large-language-model-multi-agent-systems"><a href="#POIROT-Agents-as-their-own-auditors-for-failure-attribution-in-large-language-model-multi-agent-systems" class="headerlink" title="POIROT: Agents as their own auditors for failure attribution in large language model multi-agent systems"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.02282">POIROT: Agents as their own auditors for failure attribution in large language model multi-agent systems</a></h3><ul>
+<li>作者：Iñaki Dellibarda Varela、R. Sendra-Arranz、Pablo Romero-Sorozabal、J. M. Valverde-García、Annemarie F. Laudanski、\’Alvaro Gutiérrez、Eduardo Rocon、Manuel Cebrian</li>
+<li>来源 / 分类：arXiv · cs.AI</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.02282">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.02282">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2606.02282">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://www.poirot-framework.com/">项目页</a></li>
 <li>中文简介：研究多智能体系统如何定位自身失败，提出 POIROT 分阶段自评、私有投票和风险归因协议，并建立 BLAME 临床康复与算法交易故障基准。作者在 Who&amp;When 与 BLAME 上报告独立自评比单一 LLM 评估器高，公开摘要称最高提升 50 个百分点；但分享评估会使 agent 收敛到常见错误归因。本条按当前摘要版本整理，旧 HTML 未同步 v2，故不引用全文细节。（仅依据摘要。）</li>
 </ul>
-<h3 id="marsretrieval-benchmarking-vision-language-models-for-planetary-scale-geospatial-retrieval-on-mars"><a class="markdownIt-Anchor" href="#marsretrieval-benchmarking-vision-language-models-for-planetary-scale-geospatial-retrieval-on-mars"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.13961">MarsRetrieval: Benchmarking Vision-Language Models for Planetary-Scale Geospatial Retrieval on Mars</a></h3>
-<ul>
+<h3 id="MarsRetrieval-Benchmarking-Vision-Language-Models-for-Planetary-Scale-Geospatial-Retrieval-on-Mars"><a href="#MarsRetrieval-Benchmarking-Vision-Language-Models-for-Planetary-Scale-Geospatial-Retrieval-on-Mars" class="headerlink" title="MarsRetrieval: Benchmarking Vision-Language Models for Planetary-Scale Geospatial Retrieval on Mars"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.13961">MarsRetrieval: Benchmarking Vision-Language Models for Planetary-Scale Geospatial Retrieval on Mars</a></h3><ul>
 <li>作者：Shuoyuan Wang、Yiran Wang、Hongxin Wei</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://astro-ph.IM">astro-ph.IM</a>、<a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a></li>
+<li>来源 / 分类：arXiv · cs.CV、astro-ph.IM、cs.CL</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.13961">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2602.13961">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2602.13961">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/ml-stat-Sustech/MarsRetrieval">代码</a></li>
 <li>中文简介：研究视觉语言模型能否在火星图像中做文本引导的地理检索；MarsRetrieval 覆盖图文检索、地貌检索和全球定位三类任务。作者报告强基础模型仍难识别行星地貌细节、领域微调有助泛化，并提供代码；摘要未给量化分数或跨行星外部验证，基准内提升不等同实际探测部署。（仅依据摘要。）</li>
 </ul>
-<h3 id="towards-accurate-uav-image-perception-guiding-vision-language-models-with-stronger-task-prompts"><a class="markdownIt-Anchor" href="#towards-accurate-uav-image-perception-guiding-vision-language-models-with-stronger-task-prompts"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.07302">Towards Accurate UAV Image Perception: Guiding Vision-Language Models with Stronger Task Prompts</a></h3>
-<ul>
+<h3 id="Towards-Accurate-UAV-Image-Perception-Guiding-Vision-Language-Models-with-Stronger-Task-Prompts"><a href="#Towards-Accurate-UAV-Image-Perception-Guiding-Vision-Language-Models-with-Stronger-Task-Prompts" class="headerlink" title="Towards Accurate UAV Image Perception: Guiding Vision-Language Models with Stronger Task Prompts"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.07302">Towards Accurate UAV Image Perception: Guiding Vision-Language Models with Stronger Task Prompts</a></h3><ul>
 <li>作者：Mingning Guo、Mengwei Wu、Shaoxian Li、Haifeng Li、Chao Tao</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>来源 / 分类：arXiv · cs.CV、cs.AI</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.07302">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2512.07302">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2512.07302">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/lostwolves/AerialVP">代码</a></li>
 <li>中文简介：研究无人机图像中小目标、密集目标和提示不足的问题；AerialVP 通过 LLM 工具代理为原图提示补充语义、空间和对象关系，不更新视觉语言模型参数，并提出 AerialSense 三类任务基准。作者报告多个开源和专有 VLM 均有改善，效果可比 LoRA 微调；摘要没有具体增益、API 成本或提示污染检查，仍需核对模型/场景覆盖。（仅依据摘要。）</li>
 </ul>
-<h3 id="auditing-ai-peer-reviewers-a-benchmark-on-real-scientific-papers-2"><a class="markdownIt-Anchor" href="#auditing-ai-peer-reviewers-a-benchmark-on-real-scientific-papers-2"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17052">Auditing AI peer reviewers: a benchmark on real scientific papers</a></h3>
-<ul>
-<li>作者：'Iñigo Zubeldia、Boris Bolliet、Francisco Villaescusa-Navarro、Pablo Villanueva-Domingo、Miles Cranmer</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a>、<a target="_blank" rel="noopener" href="http://astro-ph.IM">astro-ph.IM</a>、<a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a>、cs.DL</li>
+<h3 id="Auditing-AI-peer-reviewers-a-benchmark-on-real-scientific-papers-1"><a href="#Auditing-AI-peer-reviewers-a-benchmark-on-real-scientific-papers-1" class="headerlink" title="Auditing AI peer reviewers: a benchmark on real scientific papers"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17052">Auditing AI peer reviewers: a benchmark on real scientific papers</a></h3><ul>
+<li>作者：\’Iñigo Zubeldia、Boris Bolliet、Francisco Villaescusa-Navarro、Pablo Villanueva-Domingo、Miles Cranmer</li>
+<li>来源 / 分类：arXiv · cs.CL、astro-ph.IM、cs.AI、cs.DL</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.17052">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.17052">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.17052">arXiv DOI</a> · <a target="_blank" rel="noopener" href="https://github.com/inigozubeldia/skepthical-benchmark">代码/基准</a></li>
 <li>中文简介：研究 AI 审稿系统能否发现真实论文里的可定位数学、数值、引文和一般错误，并度量干净稿误报；作者构造注入错误的双领域基准、比较 12 个系统。作者报告相同提示下前沿模型检出率相差约 50 个百分点，工具优势随领域变化且并非总胜过单模型；因每领域仅 15 篇、LLM 裁定占多数且系统成本不等，不能将结果解读为整体审稿质量。（重点论文，详析见上节。）</li>
 </ul>
-<h3 id="analoglayoutworld-an-open-benchmark-for-agentic-analog-layout-design"><a class="markdownIt-Anchor" href="#analoglayoutworld-an-open-benchmark-for-agentic-analog-layout-design"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16991">AnalogLayoutWorld: An Open Benchmark for Agentic Analog Layout Design</a></h3>
-<ul>
+<h3 id="AnalogLayoutWorld-An-Open-Benchmark-for-Agentic-Analog-Layout-Design"><a href="#AnalogLayoutWorld-An-Open-Benchmark-for-Agentic-Analog-Layout-Design" class="headerlink" title="AnalogLayoutWorld: An Open Benchmark for Agentic Analog Layout Design"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16991">AnalogLayoutWorld: An Open Benchmark for Agentic Analog Layout Design</a></h3><ul>
 <li>作者：NovaSilicon Team</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.AI">cs.AI</a></li>
+<li>来源 / 分类：arXiv · cs.AI</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16991">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.16991">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.16991">arXiv DOI</a></li>
 <li>中文简介：研究代码代理能否完成受物理规则约束的模拟电路布局；AnalogLayoutWorld 提供 40 个专家审阅任务及物理与版图后电气验证。作者报告 13 种模型/工具配置中 91.1% 尝试能生成 GDS，但仅 23.0% 达到验收标准，Novara 得分最高；结果揭示能生成文件不等于工程可用，当前任务量与内部系统比较限制外部复现。（仅依据摘要。）</li>
 </ul>
-<h3 id="visual-cipher-bench-benchmarking-llm-agents-on-long-horizon-visual-reasoning"><a class="markdownIt-Anchor" href="#visual-cipher-bench-benchmarking-llm-agents-on-long-horizon-visual-reasoning"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16861">Visual Cipher Bench: Benchmarking LLM Agents on Long-Horizon Visual Reasoning</a></h3>
-<ul>
+<h3 id="Visual-Cipher-Bench-Benchmarking-LLM-Agents-on-Long-Horizon-Visual-Reasoning"><a href="#Visual-Cipher-Bench-Benchmarking-LLM-Agents-on-Long-Horizon-Visual-Reasoning" class="headerlink" title="Visual Cipher Bench: Benchmarking LLM Agents on Long-Horizon Visual Reasoning"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16861">Visual Cipher Bench: Benchmarking LLM Agents on Long-Horizon Visual Reasoning</a></h3><ul>
 <li>作者：Deyao Hong、Jiayi Jiang、Yuchun Chen、Yixuan Shi、Wenyi Li、Zheng Jiang、Chengxing Xie、Mingyu Su、Qingle Liu、Mingju Gao、Yizhe Chi、Youjie Zheng、Calvin Xiao、Kaisen Yang、Huan-ang Gao</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.CV">cs.CV</a></li>
+<li>来源 / 分类：arXiv · cs.CV</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16861">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.16861">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.16861">arXiv DOI</a></li>
 <li>中文简介：研究代理能否只凭图片独立发现长链视觉谜题规则；Visual Cipher Bench 含四类共 40 个原创谜题，并评测 8 个模型的 29 种推理配置。作者报告最强 GPT-6 Astra 配置准确率 26.7%，8 个模型中 5 个低于 1%；在 10 题子集给出非剧透机制提示后，准确率由 7.8% 到 55.6%。提示子集小且属新基准，反映规则发现瓶颈，不代表通用视觉推理。（仅依据摘要。）</li>
 </ul>
-<h3 id="outcome-mass-alignment-controlling-length-dependent-trajectory-influence-in-multi-turn-llm-agent-reinforcement-learning-2"><a class="markdownIt-Anchor" href="#outcome-mass-alignment-controlling-length-dependent-trajectory-influence-in-multi-turn-llm-agent-reinforcement-learning-2"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16816">Outcome-Mass Alignment: Controlling Length-Dependent Trajectory Influence in Multi-Turn LLM Agent Reinforcement Learning</a></h3>
-<ul>
+<h3 id="Outcome-Mass-Alignment-Controlling-Length-Dependent-Trajectory-Influence-in-Multi-Turn-LLM-Agent-Reinforcement-Learning-1"><a href="#Outcome-Mass-Alignment-Controlling-Length-Dependent-Trajectory-Influence-in-Multi-Turn-LLM-Agent-Reinforcement-Learning-1" class="headerlink" title="Outcome-Mass Alignment: Controlling Length-Dependent Trajectory Influence in Multi-Turn LLM Agent Reinforcement Learning"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16816">Outcome-Mass Alignment: Controlling Length-Dependent Trajectory Influence in Multi-Turn LLM Agent Reinforcement Learning</a></h3><ul>
 <li>作者：Dawei Zhang、Yubin Huangfu、Jessica Fan、Boyu Wei、Likang Wu、Hongke Zhao、Ming He、Zhu Teng</li>
-<li>来源 / 分类：arXiv · <a target="_blank" rel="noopener" href="http://cs.CL">cs.CL</a></li>
+<li>来源 / 分类：arXiv · cs.CL</li>
 <li>链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16816">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.16816">PDF</a> · <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv/2611.16816">arXiv DOI</a></li>
 <li>中文简介：研究多轮 GRPO 训练拆分轨迹后，行数和 token 数如何改变每条轨迹的统计与优化权重；OMA 将结果统计和目标质量两层分别按唯一轨迹对齐。作者在 ALFWorld 报告端点成功率提高 7.0–9.4 个百分点，WebShop-SOL 的成功 nAUC 由 0.399 升至 0.511，但普通 WebShop 效果混合；有限模型/任务与少量训练种子约束外推。（重点论文，详析见上节。）</li>
 </ul>
