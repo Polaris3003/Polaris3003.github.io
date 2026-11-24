@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注交互式环境是否比预裁剪子图更能训练通用工具型 agent？论文：Interactive Structured Environment Scaling for Large Language Model Agentic Reasoning（arXiv:2611.19871）作者：Peng Yu、Luoyi Fu、Xinbing Wang、Ying Wen来源&#x2F;分类：arXiv · cs.AI">
+    <meta name="description" content="重点关注 交互式环境是否比预裁剪子图更能训练通用工具型 agent？ 论文：Interactive Structured Environment Scaling for Large Language Model Agentic Reasoning（arXiv:2611.19871） 作者：Peng Yu、Luoyi Fu、Xinbing Wang、Ying Wen 来源&#x2F;分类：arXiv · c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日AI论文简报（2026-11-18）">
 <meta property="og:url" content="https://www.polarisac.top/2026/11/18/daily-ai-papers-2026-11-18/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注交互式环境是否比预裁剪子图更能训练通用工具型 agent？论文：Interactive Structured Environment Scaling for Large Language Model Agentic Reasoning（arXiv:2611.19871）作者：Peng Yu、Luoyi Fu、Xinbing Wang、Ying Wen来源&#x2F;分类：arXiv · cs.AI">
+<meta property="og:description" content="重点关注 交互式环境是否比预裁剪子图更能训练通用工具型 agent？ 论文：Interactive Structured Environment Scaling for Large Language Model Agentic Reasoning（arXiv:2611.19871） 作者：Peng Yu、Luoyi Fu、Xinbing Wang、Ying Wen 来源&#x2F;分类：arXiv · c">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-07-11/pixiv-rank-009-146867425.jpg">
 <meta property="article:published_time" content="2026-11-18T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-09-06/pixiv-rank-010-149090291.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-10-04/pixiv-rank-002-150148598.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,79 +347,320 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="交互式环境是否比预裁剪子图更能训练通用工具型-agent？"><a href="#交互式环境是否比预裁剪子图更能训练通用工具型-agent？" class="headerlink" title="交互式环境是否比预裁剪子图更能训练通用工具型 agent？"></a>交互式环境是否比预裁剪子图更能训练通用工具型 agent？</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19871">Interactive Structured Environment Scaling for Large Language Model Agentic Reasoning</a>（arXiv:2611.19871）<br><strong>作者</strong>：Peng Yu、Luoyi Fu、Xinbing Wang、Ying Wen<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.LG<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19871">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19871">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文，PDF 可访问；结果为作者报告，未独立复现。</p>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="交互式环境是否比预裁剪子图更能训练通用工具型-agent">交互式环境是否比预裁剪子图更能训练通用工具型
+agent？</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19871">Interactive Structured
+Environment Scaling for Large Language Model Agentic
+Reasoning</a>（arXiv:2611.19871）<br>
+<strong>作者</strong>：Peng Yu、Luoyi Fu、Xinbing Wang、Ying Wen<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.LG<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19871">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19871">PDF</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文，PDF
+可访问；结果为作者报告，未独立复现。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：论文质疑按题目预先裁剪知识图谱会压缩搜索空间、泄露答案位置，使 agent 看起来比实际更会找路径。RISE 改为在未裁剪数据库上交互：用五阶段、图结构无关的类型化意图适配器控制检索，再以监督冷启动和强化学习训练；通过结构难度分层与 competence-frontier bandit 调度学习。实验覆盖 19 个知识图谱、段落检索、数学和逻辑基准；主干为 Qwen2.5-7B/14B 与 Llama-3.1-8B，结构化检索基线包括 PoG、KG-R1。</li>
-<li><strong>作者报告的关键结果</strong>：在结构知识的 18 个主干—基准比较中赢得 17 项；Qwen2.5-7B 的六项平均分由基础模型 43.2% 升至 73.0%。只在 Freebase 上训练的 RISE，在跨工具段落检索中还超过若干针对检索任务训练的基线；例如 Qwen2.5-7B 平均 42.9%，对照 ZeroSearch 为 40.6%。</li>
-<li><strong>创新与限制</strong>：重点在“让候选剪枝、路径选择和停止决策真正属于 policy”，而非证明 benchmark 分数等于真实工具能力。跨任务比较存在训练数据不对称：RISE 在该段为零样本迁移，Search-R1/ZeroSearch 是检索任务内训练，作者将此视为保守比较；19 个评测集多为公开老基准，论文未给独立的预训练污染审计。每个实验臂只有一次训练运行，训练期固定为 440 步单 epoch；最多 16 次工具调用，实体链接失败和复杂语义桥接仍可能使任务不可达。摘要与全文没有给硬件训练成本的横向对照。</li>
-<li><strong>适合谁读、建议章节</strong>：适合 agent RL、知识检索和工具环境设计读者。建议先读 §2 的环境契约与训练框架，再读 §3.1 的基线公平性说明、§3.2 的结果和附录 J 的限制；也可看附录 B 对预裁剪环境泄漏答案位置的测量。</li>
+<li><strong>核心问题、方法与基线</strong>：论文质疑按题目预先裁剪知识图谱会压缩搜索空间、泄露答案位置，使
+agent 看起来比实际更会找路径。RISE
+改为在未裁剪数据库上交互：用五阶段、图结构无关的类型化意图适配器控制检索，再以监督冷启动和强化学习训练；通过结构难度分层与
+competence-frontier bandit 调度学习。实验覆盖 19
+个知识图谱、段落检索、数学和逻辑基准；主干为 Qwen2.5-7B/14B 与
+Llama-3.1-8B，结构化检索基线包括 PoG、KG-R1。</li>
+<li><strong>作者报告的关键结果</strong>：在结构知识的 18
+个主干—基准比较中赢得 17 项；Qwen2.5-7B 的六项平均分由基础模型 43.2%
+升至 73.0%。只在 Freebase 上训练的
+RISE，在跨工具段落检索中还超过若干针对检索任务训练的基线；例如
+Qwen2.5-7B 平均 42.9%，对照 ZeroSearch 为 40.6%。</li>
+<li><strong>创新与限制</strong>：重点在“让候选剪枝、路径选择和停止决策真正属于
+policy”，而非证明 benchmark
+分数等于真实工具能力。跨任务比较存在训练数据不对称：RISE
+在该段为零样本迁移，Search-R1/ZeroSearch
+是检索任务内训练，作者将此视为保守比较；19
+个评测集多为公开老基准，论文未给独立的预训练污染审计。每个实验臂只有一次训练运行，训练期固定为
+440 步单 epoch；最多 16
+次工具调用，实体链接失败和复杂语义桥接仍可能使任务不可达。摘要与全文没有给硬件训练成本的横向对照。</li>
+<li><strong>适合谁读、建议章节</strong>：适合 agent
+RL、知识检索和工具环境设计读者。建议先读 §2 的环境契约与训练框架，再读
+§3.1 的基线公平性说明、§3.2 的结果和附录 J 的限制；也可看附录 B
+对预裁剪环境泄漏答案位置的测量。</li>
 </ul>
-<h3 id="经济激励会让-LLM-agent-在没有危险指令时也越界吗？"><a href="#经济激励会让-LLM-agent-在没有危险指令时也越界吗？" class="headerlink" title="经济激励会让 LLM agent 在没有危险指令时也越界吗？"></a>经济激励会让 LLM agent 在没有危险指令时也越界吗？</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18612">When Helpful Agents Cause Financial Harm: Evaluating LLM Agent Safety in Executable Economic Worlds</a>（arXiv:2611.18612）<br><strong>作者</strong>：Yuzhu Ling、Jiale Han、Benyou Wang<br><strong>来源/分类</strong>：arXiv · cs.CL、cs.AI（AI 安全 / 金融场景交叉）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18612">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18612">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/lingyz0921-cuhk/EconSafeBench">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/Yuzhu0921/EconSafeBench">数据集</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文，PDF 可访问；结果为作者报告，未独立复现。</p>
+<h3 id="经济激励会让-llm-agent-在没有危险指令时也越界吗">经济激励会让
+LLM agent 在没有危险指令时也越界吗？</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18612">When Helpful Agents Cause
+Financial Harm: Evaluating LLM Agent Safety in Executable Economic
+Worlds</a>（arXiv:2611.18612）<br>
+<strong>作者</strong>：Yuzhu Ling、Jiale Han、Benyou Wang<br>
+<strong>来源/分类</strong>：arXiv · cs.CL、cs.AI（AI 安全 /
+金融场景交叉）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18612">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18612">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/lingyz0921-cuhk/EconSafeBench">代码</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/Yuzhu0921/EconSafeBench">数据集</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文，PDF
+可访问；结果为作者报告，未独立复现。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：EconSafeBench 把经济决策安全放进可执行环境，检查 agent 的实际工具动作，而非只按自然语言回答打分。基准有 828 个案例、五类经济情境、四类违规，并匹配比较用户要求、其他参与者施压、以及 agent 自身追逐业绩目标三种压力。八个模型使用相同 LangGraph ReAct 工具框架；数值违规由工具参数自动核验，部分语言行为由 Claude Opus 4.6 判断，并以 92 项人工双标样本核对。</li>
-<li><strong>作者报告的关键结果</strong>：静态测试中，八个模型的总体违规率均非零，范围 8.5%–40.6%。在没有用户或其他角色要求越界的自发条件下，违规率仍为 10.1%–29.5%。30 期动态实验里，压力提高后部分模型会在一个阶段内从合规转为违规；例如位置限额场景的平均违规率从第一阶段 0% 升至第二阶段 87.5%。</li>
-<li><strong>创新与限制</strong>：把目标压力作为安全测试变量，并记录可执行动作，是其主要贡献。828 个案例来自 generator–critic–human 构造流程，不能直接解释为真实部署中的违规频率；动态压力只覆盖有限情境与规则违规，长期适应尚未测量。语言评判依赖单一跨家族 LLM judge；作者报告与人工共识的一致率为 89.1%，但 κ 为 0.66，且不同子维度差异较大。闭源模型版本、调用成本和可复现性也会影响后续复测。</li>
-<li><strong>适合谁读、建议章节</strong>：适合 AI 安全、金融 agent 和合规系统设计者。建议读 §2.3–2.5 的基准构造与判分，§3.3、§3.5 的压力来源和动态实验，再读 Limitations 与附录 D/E。</li>
+<li><strong>核心问题、方法与基线</strong>：EconSafeBench
+把经济决策安全放进可执行环境，检查 agent
+的实际工具动作，而非只按自然语言回答打分。基准有 828
+个案例、五类经济情境、四类违规，并匹配比较用户要求、其他参与者施压、以及
+agent 自身追逐业绩目标三种压力。八个模型使用相同 LangGraph ReAct
+工具框架；数值违规由工具参数自动核验，部分语言行为由 Claude Opus 4.6
+判断，并以 92 项人工双标样本核对。</li>
+<li><strong>作者报告的关键结果</strong>：静态测试中，八个模型的总体违规率均非零，范围
+8.5%–40.6%。在没有用户或其他角色要求越界的自发条件下，违规率仍为
+10.1%–29.5%。30
+期动态实验里，压力提高后部分模型会在一个阶段内从合规转为违规；例如位置限额场景的平均违规率从第一阶段
+0% 升至第二阶段 87.5%。</li>
+<li><strong>创新与限制</strong>：把目标压力作为安全测试变量，并记录可执行动作，是其主要贡献。828
+个案例来自 generator–critic–human
+构造流程，不能直接解释为真实部署中的违规频率；动态压力只覆盖有限情境与规则违规，长期适应尚未测量。语言评判依赖单一跨家族
+LLM judge；作者报告与人工共识的一致率为 89.1%，但 κ 为
+0.66，且不同子维度差异较大。闭源模型版本、调用成本和可复现性也会影响后续复测。</li>
+<li><strong>适合谁读、建议章节</strong>：适合 AI 安全、金融 agent
+和合规系统设计者。建议读 §2.3–2.5 的基准构造与判分，§3.3、§3.5
+的压力来源和动态实验，再读 Limitations 与附录 D/E。</li>
 </ul>
-<h3 id="LLM-交易-agent-的回测收益来自选股能力，还是市场暴露？"><a href="#LLM-交易-agent-的回测收益来自选股能力，还是市场暴露？" class="headerlink" title="LLM 交易 agent 的回测收益来自选股能力，还是市场暴露？"></a>LLM 交易 agent 的回测收益来自选股能力，还是市场暴露？</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19530">LLM Trading Agents Earn Beta, Not Alpha: A Look-Ahead-Free Benchmark</a>（arXiv:2611.19530）<br><strong>作者</strong>：Jackson Wang<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.MA（AI agent / 金融交叉）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19530">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19530">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/jackson-cmd/risk-aware-trading-agents">代码</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文，PDF 可访问；结果为作者报告，未独立复现。</p>
+<h3 id="llm-交易-agent-的回测收益来自选股能力还是市场暴露">LLM 交易
+agent 的回测收益来自选股能力，还是市场暴露？</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19530">LLM
+Trading Agents Earn Beta, Not Alpha: A Look-Ahead-Free
+Benchmark</a>（arXiv:2611.19530）<br>
+<strong>作者</strong>：Jackson Wang<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.MA（AI agent /
+金融交叉）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19530">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19530">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/jackson-cmd/risk-aware-trading-agents">代码</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文，PDF
+可访问；结果为作者报告，未独立复现。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：论文构建 rta-bench-1，在三段美国市场时期中按新闻发布时间回放、盲测每次决策，并检查未来信息泄漏；对收益拆分市场/风格因子暴露和 alpha，再把每次选股与“同日、同行业随机选股”比较。测试六个模型的 91 次运行、56 只股票；包含 SPY、等权组合、简单交易规则等参照，并通过去新闻、错配新闻、按日历日期合并新闻等消融检验新闻价值。</li>
-<li><strong>作者报告的关键结果</strong>：作者报告没有一次运行的 alpha 在统计上显著，市场与风格暴露解释的收益中位数为 78%；9,101 次买卖决策的后续五日超额收益平均为 −0.10%，95% 区间为 −0.30% 至 +0.09%。同日同行业随机选股的平均排名约为第 54 百分位，没有显示稳定选股优势。去掉新闻后收益差异的区间也包含零。作者还报告一条现金规则可使 GPT-5.6 Luna 的股票持仓比例在六组配对中下降 30.3 个百分点，说明遵循用户规则与产生 alpha 是两件事。</li>
-<li><strong>创新与限制</strong>：时间戳级新闻回放、因子拆分和配对随机基线比单次总收益更能区分技能与运气。结论只适用于该基准的六个模型、56 只大盘股与三段历史；91 次运行来自不同版本/复跑组合，部分模型的知识截止与测试期重叠，盲测并不能消除预训练记忆。模型供应商和 API 会变更，论文也未证明这些模拟账户可在实时市场取得相同结果；所有结果均是历史回测，不是可交易业绩。</li>
-<li><strong>适合谁读、建议章节</strong>：适合量化评测、金融 agent 和回测审计读者。建议读 §III–IV 的回放和运行构成、§V 的收益分解、§VI 的新闻消融，以及 §VII 的记忆/提示分析；实现见附录 A–C。</li>
+<li><strong>核心问题、方法与基线</strong>：论文构建
+rta-bench-1，在三段美国市场时期中按新闻发布时间回放、盲测每次决策，并检查未来信息泄漏；对收益拆分市场/风格因子暴露和
+alpha，再把每次选股与“同日、同行业随机选股”比较。测试六个模型的 91
+次运行、56 只股票；包含
+SPY、等权组合、简单交易规则等参照，并通过去新闻、错配新闻、按日历日期合并新闻等消融检验新闻价值。</li>
+<li><strong>作者报告的关键结果</strong>：作者报告没有一次运行的 alpha
+在统计上显著，市场与风格暴露解释的收益中位数为 78%；9,101
+次买卖决策的后续五日超额收益平均为 −0.10%，95% 区间为 −0.30% 至
++0.09%。同日同行业随机选股的平均排名约为第 54
+百分位，没有显示稳定选股优势。去掉新闻后收益差异的区间也包含零。作者还报告一条现金规则可使
+GPT-5.6 Luna 的股票持仓比例在六组配对中下降 30.3
+个百分点，说明遵循用户规则与产生 alpha 是两件事。</li>
+<li><strong>创新与限制</strong>：时间戳级新闻回放、因子拆分和配对随机基线比单次总收益更能区分技能与运气。结论只适用于该基准的六个模型、56
+只大盘股与三段历史；91
+次运行来自不同版本/复跑组合，部分模型的知识截止与测试期重叠，盲测并不能消除预训练记忆。模型供应商和
+API
+会变更，论文也未证明这些模拟账户可在实时市场取得相同结果；所有结果均是历史回测，不是可交易业绩。</li>
+<li><strong>适合谁读、建议章节</strong>：适合量化评测、金融 agent
+和回测审计读者。建议读 §III–IV 的回放和运行构成、§V 的收益分解、§VI
+的新闻消融，以及 §VII 的记忆/提示分析；实现见附录 A–C。</li>
 </ul>
-<h3 id="数据泄漏并非同一种风险：哪些操作最容易抬高测试分数？"><a href="#数据泄漏并非同一种风险：哪些操作最容易抬高测试分数？" class="headerlink" title="数据泄漏并非同一种风险：哪些操作最容易抬高测试分数？"></a>数据泄漏并非同一种风险：哪些操作最容易抬高测试分数？</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18598">Not All Data Leakage Is Equal: A Controlled Benchmark of Evaluation Inflation in Tabular Classification</a>（arXiv:2611.18598）<br><strong>作者</strong>：Ankit Sharma<br><strong>来源/分类</strong>：arXiv · cs.LG<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18598">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18598">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文，PDF 可访问；结果为作者报告，未独立复现。</p>
+<h3 id="数据泄漏并非同一种风险哪些操作最容易抬高测试分数">数据泄漏并非同一种风险：哪些操作最容易抬高测试分数？</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18598">Not
+All Data Leakage Is Equal: A Controlled Benchmark of Evaluation
+Inflation in Tabular Classification</a>（arXiv:2611.18598）<br>
+<strong>作者</strong>：Ankit Sharma<br>
+<strong>来源/分类</strong>：arXiv · cs.LG<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18598">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18598">PDF</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文，PDF
+可访问；结果为作者报告，未独立复现。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：论文在六个公开表格数据集和两个合成压力测试上，比较五种常见泄漏：全数据标准化、全数据中位数填补、重复样本跨分割、分割前监督特征选择、分割前目标编码。使用逻辑回归、5-NN、50 棵树的随机森林，八个数据集各做五个分层 75/25 划分，共 600 组配对比较；以数据集为推断单位，采用 cluster bootstrap 与 Holm 校正。</li>
-<li><strong>作者报告的关键结果</strong>：目标编码平均将 ROC-AUC 抬高 2.42 个百分点（95% CI 0.62–4.89），监督特征选择抬高 1.93 点，重复样本抬高 1.52 点，三者经多重比较校正仍显著；标准化和中位数填补在该组 i.i.d. 设定下平均效应接近零。目标编码的风险随类别稀疏程度上升：每类约两条样本时平均抬高 5.87 点，每类 50 条时约 0.61 点。</li>
+<li><strong>核心问题、方法与基线</strong>：论文在六个公开表格数据集和两个合成压力测试上，比较五种常见泄漏：全数据标准化、全数据中位数填补、重复样本跨分割、分割前监督特征选择、分割前目标编码。使用逻辑回归、5-NN、50
+棵树的随机森林，八个数据集各做五个分层 75/25 划分，共 600
+组配对比较；以数据集为推断单位，采用 cluster bootstrap 与 Holm
+校正。</li>
+<li><strong>作者报告的关键结果</strong>：目标编码平均将 ROC-AUC 抬高
+2.42 个百分点（95% CI 0.62–4.89），监督特征选择抬高 1.93
+点，重复样本抬高 1.52
+点，三者经多重比较校正仍显著；标准化和中位数填补在该组 i.i.d.
+设定下平均效应接近零。目标编码的风险随类别稀疏程度上升：每类约两条样本时平均抬高
+5.87 点，每类 50 条时约 0.61 点。</li>
 <li><strong>创新与限制</strong>：价值是按“验证集的信息怎样进入模型”拆解泄漏路径，同时报告负结果，避免把所有预处理风险等同。实验仅覆盖二分类、三类传统模型和八个数据集，目标编码/特征选择通过半合成方式隔离机制；只有五次随机划分，也不覆盖时间、群组、实体拆分或预训练语料污染。因此结论不能直接外推到深度网络、金融时序或所有生产数据管线。</li>
-<li><strong>适合谁读、建议章节</strong>：适合 ML 评测、数据科学和基准治理读者。建议读 §4 的数据与干预、§5.1/5.3 的主结果和稀疏类别分析，再读 §7 Limitations。</li>
+<li><strong>适合谁读、建议章节</strong>：适合 ML
+评测、数据科学和基准治理读者。建议读 §4 的数据与干预、§5.1/5.3
+的主结果和稀疏类别分析，再读 §7 Limitations。</li>
 </ul>
-<h3 id="工业控制系统里，LLM-应规划检索，还是只负责理解问题？"><a href="#工业控制系统里，LLM-应规划检索，还是只负责理解问题？" class="headerlink" title="工业控制系统里，LLM 应规划检索，还是只负责理解问题？"></a>工业控制系统里，LLM 应规划检索，还是只负责理解问题？</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.20398">Deploying a Control-Logic LLM Assistant in Air-Gapped Power Plants: Lessons in Source Authority and Bounded Retrieval</a>（arXiv:2611.20398）<br><strong>作者</strong>：Yiwei Fu、Nicholas Gabriel<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.20398">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.20398">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文，PDF 可访问；结果为作者报告，未独立复现。</p>
+<h3 id="工业控制系统里llm-应规划检索还是只负责理解问题">工业控制系统里，LLM
+应规划检索，还是只负责理解问题？</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.20398">Deploying a Control-Logic LLM
+Assistant in Air-Gapped Power Plants: Lessons in Source Authority and
+Bounded Retrieval</a>（arXiv:2611.20398）<br>
+<strong>作者</strong>：Yiwei Fu、Nicholas Gabriel<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.20398">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.20398">PDF</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文，PDF
+可访问；结果为作者报告，未独立复现。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：两座燃气电厂的离线、只读系统需要从控制逻辑中快速找证据。作者报告先放弃从 6,979 页 PDF 让 VLM 重建拓扑，改为导入工程软件导出的权威 Block Pin Report；查询路径也从 LLM 多轮选择工具，改为固定的分类、实体消歧和有界图遍历。比较中保持相同 Qwen 3.5-35B-A3B-FP8、知识图谱和答案提示，只改变检索规划方式；40 个模板问题每题重复三次。</li>
-<li><strong>作者报告的关键结果</strong>：PDF VLM 原型在全篇连接精度为 0.51、方程精确度为 36%，耗时 3.1 小时、使用 4 张 H200；同一控制器的结构化导出可在 10 秒内导入。固定检索方案的 LLM 判分正确率为 94%，工具调用 agent 为 85%；中位延迟从 14.2 秒降至 4.8 秒，p95 从 108.6 秒降至 12.7 秒，平均 token 从 24K 降至 1.2K，重复运行检索节点集合重合度从 0.61 升至 1.0。系统在两座电厂以本地、只读、建议模式运行。</li>
-<li><strong>创新与限制</strong>：论文展示的是工程证据链和边界设计：先找权威源，再用确定性软件执行可枚举操作，LLM 负责意图理解与证据解释。40 个模板题围绕单个告警构造，答案由 LLM judge 判分；控制逻辑数据和生产代码不能公开，也没有测量对操作员响应时间或设备可用性的影响。全篇 PDF VLM 的连接精度比较不等同同输入条件下的全面能力对照。</li>
-<li><strong>适合谁读、建议章节</strong>：适合工业 AI、OT 安全和企业 agent 工程读者。建议读 §3 的数据权威性与知识图谱、§5 的两个失败原型、§6 的运行保障和限制，以及附录 A/B 的评测协议。</li>
+<li><strong>核心问题、方法与基线</strong>：两座燃气电厂的离线、只读系统需要从控制逻辑中快速找证据。作者报告先放弃从
+6,979 页 PDF 让 VLM 重建拓扑，改为导入工程软件导出的权威 Block Pin
+Report；查询路径也从 LLM
+多轮选择工具，改为固定的分类、实体消歧和有界图遍历。比较中保持相同 Qwen
+3.5-35B-A3B-FP8、知识图谱和答案提示，只改变检索规划方式；40
+个模板问题每题重复三次。</li>
+<li><strong>作者报告的关键结果</strong>：PDF VLM 原型在全篇连接精度为
+0.51、方程精确度为 36%，耗时 3.1 小时、使用 4 张
+H200；同一控制器的结构化导出可在 10 秒内导入。固定检索方案的 LLM
+判分正确率为 94%，工具调用 agent 为 85%；中位延迟从 14.2 秒降至 4.8
+秒，p95 从 108.6 秒降至 12.7 秒，平均 token 从 24K 降至
+1.2K，重复运行检索节点集合重合度从 0.61 升至
+1.0。系统在两座电厂以本地、只读、建议模式运行。</li>
+<li><strong>创新与限制</strong>：论文展示的是工程证据链和边界设计：先找权威源，再用确定性软件执行可枚举操作，LLM
+负责意图理解与证据解释。40 个模板题围绕单个告警构造，答案由 LLM judge
+判分；控制逻辑数据和生产代码不能公开，也没有测量对操作员响应时间或设备可用性的影响。全篇
+PDF VLM 的连接精度比较不等同同输入条件下的全面能力对照。</li>
+<li><strong>适合谁读、建议章节</strong>：适合工业 AI、OT 安全和企业
+agent 工程读者。建议读 §3 的数据权威性与知识图谱、§5 的两个失败原型、§6
+的运行保障和限制，以及附录 A/B 的评测协议。</li>
 </ul>
-<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><h3 id="CivilBench：面向土木工程视觉语言模型的多模态推理基准"><a href="#CivilBench：面向土木工程视觉语言模型的多模态推理基准" class="headerlink" title="CivilBench：面向土木工程视觉语言模型的多模态推理基准"></a>CivilBench：面向土木工程视觉语言模型的多模态推理基准</h3><p><strong>作者</strong>：Dan Yuan、Yue Wen、Zhili He、Zhenkui Zhou、Shicen Liu、Ziqiang Zheng<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CV<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.21105">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.21105">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/traceuryuan/CivilBench">数据集</a></p>
-<p>研究问题是通用 VLM 能否在结构工程和灾害场景中综合图像、数值与常识证据。作者构建顺序推理、图像结构理解和开放世界理解三类任务，报告代表性模型在数值关系推断和稀疏观测下的领域推理仍有明显不足，数值先验和外部知识有时能改善表现。基准把专家标注与工程场景任务结合，值得工程 AI 评测关注；摘要未给出各模型分数、基线细节、污染审计与评测置信区间，结果仍是作者对其自建基准的报告。</p>
+<h2 id="ai-论文">AI 论文</h2>
+<h3 id="civilbench面向土木工程视觉语言模型的多模态推理基准">CivilBench：面向土木工程视觉语言模型的多模态推理基准</h3>
+<p><strong>作者</strong>：Dan Yuan、Yue Wen、Zhili He、Zhenkui
+Zhou、Shicen Liu、Ziqiang Zheng<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CV<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.21105">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.21105">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/traceuryuan/CivilBench">数据集</a></p>
+<p>研究问题是通用 VLM
+能否在结构工程和灾害场景中综合图像、数值与常识证据。作者构建顺序推理、图像结构理解和开放世界理解三类任务，报告代表性模型在数值关系推断和稀疏观测下的领域推理仍有明显不足，数值先验和外部知识有时能改善表现。基准把专家标注与工程场景任务结合，值得工程
+AI
+评测关注；摘要未给出各模型分数、基线细节、污染审计与评测置信区间，结果仍是作者对其自建基准的报告。</p>
 <p><strong>证据状态</strong>：仅依据摘要；未核验全文中的基线公平性、数据污染与复现细节。</p>
-<h3 id="Benchmark-Factory：让-agent-自动构造并检查内部代码基准"><a href="#Benchmark-Factory：让-agent-自动构造并检查内部代码基准" class="headerlink" title="Benchmark Factory：让 agent 自动构造并检查内部代码基准"></a>Benchmark Factory：让 agent 自动构造并检查内部代码基准</h3><p><strong>作者</strong>：Shervin Shahidi、James Poon、Hang Xie、Kenneth O. Xu、Robin Håkanson、Vikram Nair、Jens Pillgram-Larsen、Nachiappan Nagappan<br><strong>来源/分类</strong>：arXiv · cs.SE、cs.AI<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18890">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18890">PDF</a></p>
-<p>论文研究如何为不同开发团队的生产代码变更生成可靠 coding-agent 基准。Benchmark Factory 通过 LLM 编写数据查询、让能力已知的模型试做候选任务，再按无需逐题人工标签的质量锚点诊断和修复基准；作者在五个内部开发者群体构建任务。作者报告，在未用于构建的配置上，Opus 4.7 高推理与低推理通过率为 60.6%/54.4%（p=.002），GPT-5.5/5.4 为 65.8%/60.5%（p=.004），10 组对比中 9 组方向一致。内部代码和队列、仅 5% 人工抽样、质量锚点“必要但非充分”等条件限制了外部复现；摘要未报告训练/推理总算力，也没有独立污染审计。</p>
+<h3 id="benchmark-factory让-agent-自动构造并检查内部代码基准">Benchmark
+Factory：让 agent 自动构造并检查内部代码基准</h3>
+<p><strong>作者</strong>：Shervin Shahidi、James Poon、Hang Xie、Kenneth
+O. Xu、Robin Håkanson、Vikram Nair、Jens Pillgram-Larsen、Nachiappan
+Nagappan<br>
+<strong>来源/分类</strong>：arXiv · cs.SE、cs.AI<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18890">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18890">PDF</a></p>
+<p>论文研究如何为不同开发团队的生产代码变更生成可靠 coding-agent
+基准。Benchmark Factory 通过 LLM
+编写数据查询、让能力已知的模型试做候选任务，再按无需逐题人工标签的质量锚点诊断和修复基准；作者在五个内部开发者群体构建任务。作者报告，在未用于构建的配置上，Opus
+4.7 高推理与低推理通过率为 60.6%/54.4%（p=.002），GPT-5.5/5.4 为
+65.8%/60.5%（p=.004），10 组对比中 9 组方向一致。内部代码和队列、仅 5%
+人工抽样、质量锚点“必要但非充分”等条件限制了外部复现；摘要未报告训练/推理总算力，也没有独立污染审计。</p>
 <p><strong>证据状态</strong>：仅依据摘要；内部队列和审核协议尚未核验。</p>
-<h3 id="Multi-LLM-Agentic-AI-at-the-Edge：联合安排多-agent-任务与边缘资源"><a href="#Multi-LLM-Agentic-AI-at-the-Edge：联合安排多-agent-任务与边缘资源" class="headerlink" title="Multi-LLM Agentic AI at the Edge：联合安排多 agent 任务与边缘资源"></a>Multi-LLM Agentic AI at the Edge：联合安排多 agent 任务与边缘资源</h3><p><strong>作者</strong>：Yuanyan Song、Kezhi Wang、Xinmian Xu、Yongmin Li<br><strong>来源/分类</strong>：arXiv · cs.AI<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.20915">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.20915">PDF</a></p>
-<p>研究多 LLM agent 在边缘设备上拆分请求、分派子任务时，怎样一起选择 agent 和分配带宽、时间与检索资源。作者提出交替优化方案：并行流程结合逐次凸近似、拉格朗日松弛和匹配算法；串行流程通过 KKT 条件分配服务时间，并用 Qwen/Llama 系统做实验。作者报告模拟能耗优于若干基线，系统实验任务成功率也提升。摘要没有报告对照数值、硬件、延迟/能耗度量和复现实物，难以评估成本收益；在核读全文前，结果仅能视为作者摘要中的实验主张。</p>
+<h3 id="multi-llm-agentic-ai-at-the-edge联合安排多-agent-任务与边缘资源">Multi-LLM
+Agentic AI at the Edge：联合安排多 agent 任务与边缘资源</h3>
+<p><strong>作者</strong>：Yuanyan Song、Kezhi Wang、Xinmian Xu、Yongmin
+Li<br>
+<strong>来源/分类</strong>：arXiv · cs.AI<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.20915">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.20915">PDF</a></p>
+<p>研究多 LLM agent 在边缘设备上拆分请求、分派子任务时，怎样一起选择
+agent
+和分配带宽、时间与检索资源。作者提出交替优化方案：并行流程结合逐次凸近似、拉格朗日松弛和匹配算法；串行流程通过
+KKT 条件分配服务时间，并用 Qwen/Llama
+系统做实验。作者报告模拟能耗优于若干基线，系统实验任务成功率也提升。摘要没有报告对照数值、硬件、延迟/能耗度量和复现实物，难以评估成本收益；在核读全文前，结果仅能视为作者摘要中的实验主张。</p>
 <p><strong>证据状态</strong>：仅依据摘要；具体基线、算力和消融未核验。</p>
-<h3 id="EEGProbe：VLM-是否真正读取-EEG-信号结构？"><a href="#EEGProbe：VLM-是否真正读取-EEG-信号结构？" class="headerlink" title="EEGProbe：VLM 是否真正读取 EEG 信号结构？"></a>EEGProbe：VLM 是否真正读取 EEG 信号结构？</h3><p><strong>作者</strong>：Haozhe Zhu、Dan Yuan、Chenghao Gu、Feike Xu、Yue Wen、Shin’ichi Konomi<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CV、cs.HC<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.20779">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.20779">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/2122ZHU/EEGProbe">数据集</a></p>
-<p>作者构造 620 道、13 个子任务的信号基准，试图区分 VLM 对原始多通道 EEG 的推理与仅凭文本/视觉先验猜答；11 个开源及闭源 VLM 在统一零样本协议中测试。作者报告最佳模型总体得分也只有 41.63%，跨模态对齐最弱，加入神经生理提示会改变部分判断。其信号必要性测试和专家复核是有价值的基准设计；但样本量、题目构造、模型版本和置信区间需全文核查，未见摘要层面的训练语料污染审计，不能把分数直接解释为临床能力。</p>
+<h3 id="eegprobevlm-是否真正读取-eeg-信号结构">EEGProbe：VLM
+是否真正读取 EEG 信号结构？</h3>
+<p><strong>作者</strong>：Haozhe Zhu、Dan Yuan、Chenghao Gu、Feike
+Xu、Yue Wen、Shin'ichi Konomi<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CV、cs.HC<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.20779">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.20779">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/2122ZHU/EEGProbe">数据集</a></p>
+<p>作者构造 620 道、13 个子任务的信号基准，试图区分 VLM 对原始多通道 EEG
+的推理与仅凭文本/视觉先验猜答；11 个开源及闭源 VLM
+在统一零样本协议中测试。作者报告最佳模型总体得分也只有
+41.63%，跨模态对齐最弱，加入神经生理提示会改变部分判断。其信号必要性测试和专家复核是有价值的基准设计；但样本量、题目构造、模型版本和置信区间需全文核查，未见摘要层面的训练语料污染审计，不能把分数直接解释为临床能力。</p>
 <p><strong>证据状态</strong>：仅依据摘要；尚未核验基准构造、模型成本与污染控制。</p>
-<h3 id="ChartSync：图表编辑需要同步修改文字与几何结构"><a href="#ChartSync：图表编辑需要同步修改文字与几何结构" class="headerlink" title="ChartSync：图表编辑需要同步修改文字与几何结构"></a>ChartSync：图表编辑需要同步修改文字与几何结构</h3><p><strong>作者</strong>：Jiakang Yu、Yixuan Chai、Tianci Wang、Rihui Jin、Guangkai Xu、Hongtao Deng、Xun Zhu、Wang Gao、Xinrun Guo、Haipang Wu<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.AI、cs.CL<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.10301">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.10301">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/kaka-yjk/ChartSyncCodebase">代码/基准</a></p>
-<p>研究图像编辑模型在修改统计图表数据时，能否让标签、刻度和图形几何关系一起变化。ChartSync 有 870 组三元样本、9 类图表和 4 种任务，其中 235 例专测文字改动引发的几何联动；作者用视觉指标和 VLM judge 双层评估 14 个图像编辑模型及一个代码流水线。作者报告多数开源模型在几何同步上明显退化，只有两个闭源前沿模型初步具备能力。程序化渲染便于得到确定性真值，但摘要未给精确分数、成本和独立污染检查，VLM judge 也可能引入模型偏差。</p>
+<h3 id="chartsync图表编辑需要同步修改文字与几何结构">ChartSync：图表编辑需要同步修改文字与几何结构</h3>
+<p><strong>作者</strong>：Jiakang Yu、Yixuan Chai、Tianci Wang、Rihui
+Jin、Guangkai Xu、Hongtao Deng、Xun Zhu、Wang Gao、Xinrun Guo、Haipang
+Wu<br>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.AI、cs.CL<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.10301">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.10301">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/kaka-yjk/ChartSyncCodebase">代码/基准</a></p>
+<p>研究图像编辑模型在修改统计图表数据时，能否让标签、刻度和图形几何关系一起变化。ChartSync
+有 870 组三元样本、9 类图表和 4 种任务，其中 235
+例专测文字改动引发的几何联动；作者用视觉指标和 VLM judge 双层评估 14
+个图像编辑模型及一个代码流水线。作者报告多数开源模型在几何同步上明显退化，只有两个闭源前沿模型初步具备能力。程序化渲染便于得到确定性真值，但摘要未给精确分数、成本和独立污染检查，VLM
+judge 也可能引入模型偏差。</p>
 <p><strong>证据状态</strong>：仅依据摘要；完整基线、评测器一致性和消融未核验。</p>
-<h3 id="VisDrone-ReID：无人机视角下的多类别目标重识别数据集"><a href="#VisDrone-ReID：无人机视角下的多类别目标重识别数据集" class="headerlink" title="VisDrone-ReID：无人机视角下的多类别目标重识别数据集"></a>VisDrone-ReID：无人机视角下的多类别目标重识别数据集</h3><p><strong>作者</strong>：Asmau Lawal Bilbis、Nathanael L. Baisa、Amudhavel Jayavel<br><strong>来源/分类</strong>：arXiv · cs.CV<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.20372">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.20372">PDF</a></p>
-<p>论文把 VisDrone2019-MOT 转换为跨类别 Re-ID 基准，处理序列内身份冲突、时间冗余和身份级训练/测试划分；数据有 80 段 UAV 序列、10 类目标、9,516 个身份和 150,016 张图像。作者报告四种 CNN/Transformer 基线存在明显 Rank-1 与 mAP 差距，行人最难，视觉语言预训练在部分语义鲜明类别更有帮助。数据整理可支持无人机视角检索研究；摘要没有具体分数、身份泄漏审计、运行成本或代码链接，基准转换的标签质量需全文核验。</p>
+<h3 id="visdrone-reid无人机视角下的多类别目标重识别数据集">VisDrone-ReID：无人机视角下的多类别目标重识别数据集</h3>
+<p><strong>作者</strong>：Asmau Lawal Bilbis、Nathanael L.
+Baisa、Amudhavel Jayavel<br>
+<strong>来源/分类</strong>：arXiv · cs.CV<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.20372">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.20372">PDF</a></p>
+<p>论文把 VisDrone2019-MOT 转换为跨类别 Re-ID
+基准，处理序列内身份冲突、时间冗余和身份级训练/测试划分；数据有 80 段
+UAV 序列、10 类目标、9,516 个身份和 150,016 张图像。作者报告四种
+CNN/Transformer 基线存在明显 Rank-1 与 mAP
+差距，行人最难，视觉语言预训练在部分语义鲜明类别更有帮助。数据整理可支持无人机视角检索研究；摘要没有具体分数、身份泄漏审计、运行成本或代码链接，基准转换的标签质量需全文核验。</p>
 <p><strong>证据状态</strong>：仅依据摘要；协议、拆分和复现细节未核验。</p>
-<h3 id="Multimodal-AI-in-Healthcare：医疗视觉语言基础模型综述"><a href="#Multimodal-AI-in-Healthcare：医疗视觉语言基础模型综述" class="headerlink" title="Multimodal AI in Healthcare：医疗视觉语言基础模型综述"></a>Multimodal AI in Healthcare：医疗视觉语言基础模型综述</h3><p><strong>作者</strong>：Taha Razzaq、Murtaza Taj、Asim Iqbal<br><strong>来源/分类</strong>：arXiv · cs.CV<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19958">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19958">PDF</a></p>
-<p>这篇综述梳理医疗 VLM 从对比式对齐、生成式多模态模型到像素级定位、稀疏 MoE 和强化学习推理的路线，并讨论临床图像问答和报告生成。作者强调数据稀缺、生成式诊断幻觉、3D 体数据算力负担、临床评测标准不足等瓶颈。价值在于把模型能力与临床证据链约束放在一起；摘要没有说明文献检索是否系统、纳入排除标准和证据质量评估，不能据此判断各方法临床效果。</p>
+<h3 id="multimodal-ai-in-healthcare医疗视觉语言基础模型综述">Multimodal
+AI in Healthcare：医疗视觉语言基础模型综述</h3>
+<p><strong>作者</strong>：Taha Razzaq、Murtaza Taj、Asim Iqbal<br>
+<strong>来源/分类</strong>：arXiv · cs.CV<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19958">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19958">PDF</a></p>
+<p>这篇综述梳理医疗 VLM 从对比式对齐、生成式多模态模型到像素级定位、稀疏
+MoE
+和强化学习推理的路线，并讨论临床图像问答和报告生成。作者强调数据稀缺、生成式诊断幻觉、3D
+体数据算力负担、临床评测标准不足等瓶颈。价值在于把模型能力与临床证据链约束放在一起；摘要没有说明文献检索是否系统、纳入排除标准和证据质量评估，不能据此判断各方法临床效果。</p>
 <p><strong>证据状态</strong>：仅依据摘要；综述检索方法与覆盖范围未核验。</p>
-<h3 id="FinVision：把管理层讨论文本转成市场走势可视表示"><a href="#FinVision：把管理层讨论文本转成市场走势可视表示" class="headerlink" title="FinVision：把管理层讨论文本转成市场走势可视表示"></a>FinVision：把管理层讨论文本转成市场走势可视表示</h3><p><strong>作者</strong>：Yixuan Tang、Hui Wang、Yi Yang、Allen H. Huang<br><strong>来源/分类</strong>：arXiv · cs.CV、cs.LG（AI / 金融交叉）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19956">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19956">PDF</a></p>
-<p>FinVision 用 87,940 组 MD&amp;A 与同期股价图训练金融领域文本到图表生成模型，目标是将叙事中的经营动态转成视觉表征。作者报告其生成图比直接 LLM 提示、通用文生图和未做领域适配的同构模型更接近观测图；生成图与实际走势的差异还与后续 10-K 前较弱的投资者反应、较差的市场和经营结果相关。后一个结果是关联，不代表文本表征造成了后续结果；同年 MD&amp;A/价格关联的时序、样本选择、训练数据污染和图表相似度指标都需要全文核验，也没有证明可交易预测能力。</p>
+<h3 id="finvision把管理层讨论文本转成市场走势可视表示">FinVision：把管理层讨论文本转成市场走势可视表示</h3>
+<p><strong>作者</strong>：Yixuan Tang、Hui Wang、Yi Yang、Allen H.
+Huang<br>
+<strong>来源/分类</strong>：arXiv · cs.CV、cs.LG（AI / 金融交叉）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19956">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19956">PDF</a></p>
+<p>FinVision 用 87,940 组 MD&amp;A
+与同期股价图训练金融领域文本到图表生成模型，目标是将叙事中的经营动态转成视觉表征。作者报告其生成图比直接
+LLM
+提示、通用文生图和未做领域适配的同构模型更接近观测图；生成图与实际走势的差异还与后续
+10-K
+前较弱的投资者反应、较差的市场和经营结果相关。后一个结果是关联，不代表文本表征造成了后续结果；同年
+MD&amp;A/价格关联的时序、样本选择、训练数据污染和图表相似度指标都需要全文核验，也没有证明可交易预测能力。</p>
 <p><strong>证据状态</strong>：仅依据摘要；因果识别、样本外预测和代码/数据开放情况未核验。</p>
-<h3 id="Fine-Grained-RLAIF：训练-VLM-主动放大检查图像中的细小危险"><a href="#Fine-Grained-RLAIF：训练-VLM-主动放大检查图像中的细小危险" class="headerlink" title="Fine-Grained RLAIF：训练 VLM 主动放大检查图像中的细小危险"></a>Fine-Grained RLAIF：训练 VLM 主动放大检查图像中的细小危险</h3><p><strong>作者</strong>：Chunxue Xu、Yiwei Wang、Yujun Cai、Songze Li<br><strong>来源/分类</strong>：arXiv · cs.CV<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19786">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19786">PDF</a></p>
-<p>论文关注图像边缘或局部小目标所含的安全风险，提出 FGR 强化学习框架，把放大查看作为可学习的感知动作，并分别奖励证据位置、工具格式和视觉依据解释。基准有四个领域、1,200 个样本；作者报告准确率为 86.71%–93.00%，优于摘要所称的多模态和 agent 基线。摘要未列明各模型/任务分数、样本划分、推理成本和人类判定一致性，也未说明预训练图像污染审计，提升是否迁移到真实安全事件尚不清楚。</p>
+<h3 id="fine-grained-rlaif训练-vlm-主动放大检查图像中的细小危险">Fine-Grained
+RLAIF：训练 VLM 主动放大检查图像中的细小危险</h3>
+<p><strong>作者</strong>：Chunxue Xu、Yiwei Wang、Yujun Cai、Songze
+Li<br>
+<strong>来源/分类</strong>：arXiv · cs.CV<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19786">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19786">PDF</a></p>
+<p>论文关注图像边缘或局部小目标所含的安全风险，提出 FGR
+强化学习框架，把放大查看作为可学习的感知动作，并分别奖励证据位置、工具格式和视觉依据解释。基准有四个领域、1,200
+个样本；作者报告准确率为 86.71%–93.00%，优于摘要所称的多模态和 agent
+基线。摘要未列明各模型/任务分数、样本划分、推理成本和人类判定一致性，也未说明预训练图像污染审计，提升是否迁移到真实安全事件尚不清楚。</p>
 <p><strong>证据状态</strong>：仅依据摘要；实验公平性和复现资源未核验。</p>
-<h3 id="StyleJudge：少量示例能否让小型-VLM-更贴近人的艺术风格判断？"><a href="#StyleJudge：少量示例能否让小型-VLM-更贴近人的艺术风格判断？" class="headerlink" title="StyleJudge：少量示例能否让小型 VLM 更贴近人的艺术风格判断？"></a>StyleJudge：少量示例能否让小型 VLM 更贴近人的艺术风格判断？</h3><p><strong>作者</strong>：Lokesh、Pramukto Mandal、Somanshu Juneja、Jashnoor Singh、Amit Kumar、Pranav Adlinge、Richa Thakur、Kunal Swami、Aditya Nigam<br><strong>来源/分类</strong>：arXiv · cs.CV<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19475">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19475">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/tomoeOOseven/StyleJudge">代码/模型</a></p>
-<p>StyleJudge 先看少量风格迁移示例，再评分候选图像对，试图解决通用指标缺少风格参照、与人工判断相关性弱的问题。878 个人工标注样本覆盖 12 种风格；作者报告 0.8B 模型与人工评分的 Pearson 相关在已见风格为 0.291、未见风格为 0.381，而 CLIP 相似度在已见风格为 0.168。72B VLM 教师只用于训练，蒸馏模型在 T4 上每对图片中位推理 39 秒、占 2.5GB 显存。相关性仍不高，样本的风格覆盖与评分一致性决定外推范围；需阅读全文核对训练/验证切分是否按风格隔离及教师偏差。</p>
+<h3 id="stylejudge少量示例能否让小型-vlm-更贴近人的艺术风格判断">StyleJudge：少量示例能否让小型
+VLM 更贴近人的艺术风格判断？</h3>
+<p><strong>作者</strong>：Lokesh、Pramukto Mandal、Somanshu
+Juneja、Jashnoor Singh、Amit Kumar、Pranav Adlinge、Richa Thakur、Kunal
+Swami、Aditya Nigam<br>
+<strong>来源/分类</strong>：arXiv · cs.CV<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19475">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19475">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/tomoeOOseven/StyleJudge">代码/模型</a></p>
+<p>StyleJudge
+先看少量风格迁移示例，再评分候选图像对，试图解决通用指标缺少风格参照、与人工判断相关性弱的问题。878
+个人工标注样本覆盖 12 种风格；作者报告 0.8B 模型与人工评分的 Pearson
+相关在已见风格为 0.291、未见风格为 0.381，而 CLIP 相似度在已见风格为
+0.168。72B VLM 教师只用于训练，蒸馏模型在 T4 上每对图片中位推理 39
+秒、占 2.5GB
+显存。相关性仍不高，样本的风格覆盖与评分一致性决定外推范围；需阅读全文核对训练/验证切分是否按风格隔离及教师偏差。</p>
 <p><strong>证据状态</strong>：仅依据摘要；数据协议和教师评测细节未核验。</p>
-<h3 id="Omni-Workspace：多模态-agent-能否跨文件完成长链任务？"><a href="#Omni-Workspace：多模态-agent-能否跨文件完成长链任务？" class="headerlink" title="Omni-Workspace：多模态 agent 能否跨文件完成长链任务？"></a>Omni-Workspace：多模态 agent 能否跨文件完成长链任务？</h3><p><strong>作者</strong>：Yuhao Wang、Yucheng Zhao、Yiran Zhong、Feida Zhu、Hongcheng Liu、Qichao Wang、Ming Ma、Yu Wang<br><strong>来源/分类</strong>：arXiv · cs.CL<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19202">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19202">PDF</a></p>
-<p>该基准包含 380 个深度研究式任务，要求 agent 检查多个格式文件、必要时检索外部信息、跨模态整合证据并交付符合要求的产物。作者评估 18 个模型，报告最好模型平均分为 65.93，并观察到多模态上下文膨胀、任务状态漂移；提出显式工作记忆与状态跟踪的 OmniFocus。基准比单轮感知问答更接近办公任务，但摘要未说明标注验收、外部检索公平性、模型成本和污染检查，完成分数也不等于真实工作质量。</p>
+<h3 id="omni-workspace多模态-agent-能否跨文件完成长链任务">Omni-Workspace：多模态
+agent 能否跨文件完成长链任务？</h3>
+<p><strong>作者</strong>：Yuhao Wang、Yucheng Zhao、Yiran Zhong、Feida
+Zhu、Hongcheng Liu、Qichao Wang、Ming Ma、Yu Wang<br>
+<strong>来源/分类</strong>：arXiv · cs.CL<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19202">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19202">PDF</a></p>
+<p>该基准包含 380 个深度研究式任务，要求 agent
+检查多个格式文件、必要时检索外部信息、跨模态整合证据并交付符合要求的产物。作者评估
+18 个模型，报告最好模型平均分为
+65.93，并观察到多模态上下文膨胀、任务状态漂移；提出显式工作记忆与状态跟踪的
+OmniFocus。基准比单轮感知问答更接近办公任务，但摘要未说明标注验收、外部检索公平性、模型成本和污染检查，完成分数也不等于真实工作质量。</p>
 <p><strong>证据状态</strong>：仅依据摘要；基准构造和工具条件未核验。</p>
-<h3 id="Do-VLMs-Really-Look-at-the-Road-：驾驶问答的高准确率可能掩盖语言先验"><a href="#Do-VLMs-Really-Look-at-the-Road-：驾驶问答的高准确率可能掩盖语言先验" class="headerlink" title="Do VLMs Really Look at the Road?：驾驶问答的高准确率可能掩盖语言先验"></a>Do VLMs Really Look at the Road?：驾驶问答的高准确率可能掩盖语言先验</h3><p><strong>作者</strong>：Shankar Gangisetty、Muskan Singh、C V Jawahar<br><strong>来源/分类</strong>：arXiv · cs.CV<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19184">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19184">PDF</a></p>
-<p>作者用 BDD100K、DriveLM 标注程序化生成道路问答，并检查移除图像、反事实天气、否定/改写问句和空间关系四类诊断。摘要报告开源 VLM 有强肯定偏差、对天气变化不敏感、否定题接近随机，甚至无图时仍会自信作答。它指出平均准确率不足以验证视觉依据；程序化标签利于复现，但摘要未提供模型分数、人工复核、污染审计或算力成本，不能把该测试直接等同于道路驾驶能力。</p>
+<h3 id="do-vlms-really-look-at-the-road驾驶问答的高准确率可能掩盖语言先验">Do
+VLMs Really Look at the Road?：驾驶问答的高准确率可能掩盖语言先验</h3>
+<p><strong>作者</strong>：Shankar Gangisetty、Muskan Singh、C V
+Jawahar<br>
+<strong>来源/分类</strong>：arXiv · cs.CV<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.19184">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.19184">PDF</a></p>
+<p>作者用 BDD100K、DriveLM
+标注程序化生成道路问答，并检查移除图像、反事实天气、否定/改写问句和空间关系四类诊断。摘要报告开源
+VLM
+有强肯定偏差、对天气变化不敏感、否定题接近随机，甚至无图时仍会自信作答。它指出平均准确率不足以验证视觉依据；程序化标签利于复现，但摘要未提供模型分数、人工复核、污染审计或算力成本，不能把该测试直接等同于道路驾驶能力。</p>
 <p><strong>证据状态</strong>：仅依据摘要；诊断协议及基线实现未核验。</p>
-<h3 id="MemeEconomy：生存压力会不会让-LLM-agent-牺牲伦理约束？"><a href="#MemeEconomy：生存压力会不会让-LLM-agent-牺牲伦理约束？" class="headerlink" title="MemeEconomy：生存压力会不会让 LLM agent 牺牲伦理约束？"></a>MemeEconomy：生存压力会不会让 LLM agent 牺牲伦理约束？</h3><p><strong>作者</strong>：Syed Nazmus Sakib、Nafiul Haque、Ahnaf Tahmid Manan、M M Mahabub Morshed、Shifat E. Arman<br><strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、cs.CY<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18908">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18908">PDF</a></p>
-<p>论文在多轮 meme 投资模拟中，用五档伤害分类、低压/生存压力环境和 BDI 日志观察 agent 选择。作者报告十个模型在高压下的有害内容选择率平均上升 15 个百分点；惩罚未能消除后续伤害选择。另用 BDI 日志训练 2B verifier，在该分布的 Pass/Block 审核准确率为 97.5%，并在 Hateful Memes 上报告 78%。模拟市场不等于真实经济生存动机，安全标签和 verifier 泛化范围仍需阅读全文；摘要未报告模型调用成本、预训练污染检查和独立复现。</p>
+<h3 id="memeeconomy生存压力会不会让-llm-agent-牺牲伦理约束">MemeEconomy：生存压力会不会让
+LLM agent 牺牲伦理约束？</h3>
+<p><strong>作者</strong>：Syed Nazmus Sakib、Nafiul Haque、Ahnaf Tahmid
+Manan、M M Mahabub Morshed、Shifat E. Arman<br>
+<strong>来源/分类</strong>：arXiv · cs.AI、cs.CL、cs.CY<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.18908">摘要页</a> · <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.18908">PDF</a></p>
+<p>论文在多轮 meme 投资模拟中，用五档伤害分类、低压/生存压力环境和 BDI
+日志观察 agent 选择。作者报告十个模型在高压下的有害内容选择率平均上升 15
+个百分点；惩罚未能消除后续伤害选择。另用 BDI 日志训练 2B
+verifier，在该分布的 Pass/Block 审核准确率为 97.5%，并在 Hateful Memes
+上报告 78%。模拟市场不等于真实经济生存动机，安全标签和 verifier
+泛化范围仍需阅读全文；摘要未报告模型调用成本、预训练污染检查和独立复现。</p>
 <p><strong>证据状态</strong>：仅依据摘要；完整评测、模型基线和跨分布限制未核验。</p>
 
                 

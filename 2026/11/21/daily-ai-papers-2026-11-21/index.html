@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注局部意图让机器人动作可以逐步核查论文：AgentRoboCritic: Understanding the Capability of Frontier Agents on Direct Robot Control（arXiv:2611.26613）作者：Yiyang Du、Yuxuan Kuang、Qitao Zhao、Yixuan Wang、Zhanqiu Guo、Yi Xu、Xin">
+    <meta name="description" content="重点关注 局部意图让机器人动作可以逐步核查 论文：AgentRoboCritic: Understanding the Capability of Frontier Agents on Direct Robot Control（arXiv:2611.26613） 作者：Yiyang Du、Yuxuan Kuang、Qitao Zhao、Yixuan Wang、Zhanqiu Guo、Yi Xu、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日AI论文简报（2026-11-21）">
 <meta property="og:url" content="https://www.polarisac.top/2026/11/21/daily-ai-papers-2026-11-21/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注局部意图让机器人动作可以逐步核查论文：AgentRoboCritic: Understanding the Capability of Frontier Agents on Direct Robot Control（arXiv:2611.26613）作者：Yiyang Du、Yuxuan Kuang、Qitao Zhao、Yixuan Wang、Zhanqiu Guo、Yi Xu、Xin">
+<meta property="og:description" content="重点关注 局部意图让机器人动作可以逐步核查 论文：AgentRoboCritic: Understanding the Capability of Frontier Agents on Direct Robot Control（arXiv:2611.26613） 作者：Yiyang Du、Yuxuan Kuang、Qitao Zhao、Yixuan Wang、Zhanqiu Guo、Yi Xu、">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-10-04/pixiv-rank-005-150195945.jpg">
 <meta property="article:published_time" content="2026-11-21T02:15:00.000Z">
@@ -256,7 +256,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/covers/pixiv-weekly/2026-09-06/pixiv-rank-010-149090291.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/covers/pixiv-weekly/2026-10-04/pixiv-rank-002-150148598.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -347,73 +347,325 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a href="#重点关注" class="headerlink" title="重点关注"></a>重点关注</h2><h3 id="局部意图让机器人动作可以逐步核查"><a href="#局部意图让机器人动作可以逐步核查" class="headerlink" title="局部意图让机器人动作可以逐步核查"></a>局部意图让机器人动作可以逐步核查</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26613">AgentRoboCritic: Understanding the Capability of Frontier Agents on Direct Robot Control</a>（arXiv:2611.26613）<br><strong>作者</strong>：Yiyang Du、Yuxuan Kuang、Qitao Zhao、Yixuan Wang、Zhanqiu Guo、Yi Xu、Xin Li、Wenbin He、Liu Ren、Chenyan Xiong<br><strong>来源/分类</strong>：arXiv · cs.RO（cs.RO, cs.CL, cs.CV）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26613">PDF</a> · <a target="_blank" rel="noopener" href="https://adu2021.github.io/blog/AgentRoboCritic">代码</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p>
+<h2 id="重点关注">重点关注</h2>
+<h3 id="局部意图让机器人动作可以逐步核查">局部意图让机器人动作可以逐步核查</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26613">AgentRoboCritic: Understanding
+the Capability of Frontier Agents on Direct Robot
+Control</a>（arXiv:2611.26613）<br>
+<strong>作者</strong>：Yiyang Du、Yuxuan Kuang、Qitao Zhao、Yixuan
+Wang、Zhanqiu Guo、Yi Xu、Xin Li、Wenbin He、Liu Ren、Chenyan
+Xiong<br>
+<strong>来源/分类</strong>：arXiv · cs.RO（cs.RO, cs.CL, cs.CV）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26613">PDF</a> · <a target="_blank" rel="noopener" href="https://adu2021.github.io/blog/AgentRoboCritic">代码</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或
+PDF；以下结论为作者报告，尚无独立复现。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：常见机器人评测只报告整段任务成功率，无法解释具体失败。作者让策略模型为每个低层动作附上局部意图，再由多模态 critic 根据任务目标、意图和动作前后多视角图像判断成败与失败类型；分析覆盖 12 个操作基准。评测同时比较 GPT-6 Astra 与专用 VLA/WAM 基线，并在 400 个经人工标注动作上检验 critic。</li>
-<li><strong>作者报告的关键结果</strong>：跨基准中，38.9% 的失败动作在之后 10 个动作内被修复，57.7% 在回合结束前得到恢复。动作级数据集含 12,844 条标注；Muse-Glimmer-30B 的失败模式准确率从零样本的 32.58% 升至微调后的 74.24%。74 个匹配任务中，GPT-6 Astra 的决策中位延迟为 31.9 秒，专用策略 π0.5 为 0.11 秒。</li>
-<li><strong>创新与证据边界</strong>：局部意图让动作判断有明确参照，人工小样本验证也检查了自动 critic；论文还测了同一前沿模型兼任策略与 critic 的自偏差。但核心策略依赖闭源模型，模型版本、API 与成本会影响复现；400 个动作的人类集较小，12 个基准的成功率不能直接外推到真实生产任务，且 31.9 秒延迟显示其闭环速度有明显限制。全文未见对公开机器人基准训练污染的专项审计。作者报告结果，尚无独立复现。</li>
-<li><strong>适合谁读、建议章节</strong>：适合机器人策略、具身 agent、动作级评测和安全监控读者。建议读 §3.2 的意图条件 critic、§4.1–4.3 的能力与失败、§5 的人工验证，再看附录 H.4 的延迟与附录 I 的自偏差检查。</li>
+<li><strong>核心问题、方法与基线</strong>：常见机器人评测只报告整段任务成功率，无法解释具体失败。作者让策略模型为每个低层动作附上局部意图，再由多模态
+critic
+根据任务目标、意图和动作前后多视角图像判断成败与失败类型；分析覆盖 12
+个操作基准。评测同时比较 GPT-6 Astra 与专用 VLA/WAM 基线，并在 400
+个经人工标注动作上检验 critic。</li>
+<li><strong>作者报告的关键结果</strong>：跨基准中，38.9%
+的失败动作在之后 10 个动作内被修复，57.7%
+在回合结束前得到恢复。动作级数据集含 12,844 条标注；Muse-Glimmer-30B
+的失败模式准确率从零样本的 32.58% 升至微调后的 74.24%。74
+个匹配任务中，GPT-6 Astra 的决策中位延迟为 31.9 秒，专用策略 π0.5 为
+0.11 秒。</li>
+<li><strong>创新与证据边界</strong>：局部意图让动作判断有明确参照，人工小样本验证也检查了自动
+critic；论文还测了同一前沿模型兼任策略与 critic
+的自偏差。但核心策略依赖闭源模型，模型版本、API 与成本会影响复现；400
+个动作的人类集较小，12 个基准的成功率不能直接外推到真实生产任务，且 31.9
+秒延迟显示其闭环速度有明显限制。全文未见对公开机器人基准训练污染的专项审计。作者报告结果，尚无独立复现。</li>
+<li><strong>适合谁读、建议章节</strong>：适合机器人策略、具身
+agent、动作级评测和安全监控读者。建议读 §3.2 的意图条件 critic、§4.1–4.3
+的能力与失败、§5 的人工验证，再看附录 H.4 的延迟与附录 I
+的自偏差检查。</li>
 </ul>
-<h3 id="直接修改权重能否修复小型视觉语言模型的循环推理？"><a href="#直接修改权重能否修复小型视觉语言模型的循环推理？" class="headerlink" title="直接修改权重能否修复小型视觉语言模型的循环推理？"></a>直接修改权重能否修复小型视觉语言模型的循环推理？</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25257">Keel: A Frontier Model Teaches a Vision-Language Model by Rewriting Its Weights</a>（arXiv:2611.25257）<br><strong>作者</strong>：Jiajun Fan、Neil He、Bangji Yang、Qinglong Zheng、Ziwen Wang、Chaoran Cheng、Changyi Yang、Hanqi Mao、Ge Liu<br><strong>来源/分类</strong>：arXiv · cs.CV（cs.CV, cs.AI）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25257">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p>
+<h3 id="直接修改权重能否修复小型视觉语言模型的循环推理">直接修改权重能否修复小型视觉语言模型的循环推理？</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25257">Keel: A Frontier Model Teaches a
+Vision-Language Model by Rewriting Its
+Weights</a>（arXiv:2611.25257）<br>
+<strong>作者</strong>：Jiajun Fan、Neil He、Bangji Yang、Qinglong
+Zheng、Ziwen Wang、Chaoran Cheng、Changyi Yang、Hanqi Mao、Ge Liu<br>
+<strong>来源/分类</strong>：arXiv · cs.CV（cs.CV, cs.AI）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25257">PDF</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或
+PDF；以下结论为作者报告，尚无独立复现。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：Qwen3.5 小模型在视觉问题的思考模式中会反复循环，耗尽 token 预算。Keel 让前沿多模态模型在只知道症状的条件下检查失败案例、定位权重方向并提出编辑；编辑需通过失误比例下降且留出题准确率不降的筛选。作者在 Qwen3.5-0.8B/2B 的六个视觉基准上，对比原始思考模式、presence penalty、reflection suppression、budget forcing 和既有权重编辑。</li>
-<li><strong>作者报告的关键结果</strong>：六项任务平均准确率中，0.8B 从思考模式的 48.2% 升至 Keel 的 56.1%（+7.9 个百分点）；2B 从 65.2% 升至 72.3%（+7.1 个百分点）。两模型输出中以逐字循环结束的答案比例，平均分别下降 21.8 和 12.4 个百分点；2B 在 GUI grounding 上的提升尤其大，该任务未进入编辑练习题。</li>
-<li><strong>创新与证据边界</strong>：它把修复直接写入模型权重，再与解码时 budget forcing 组合；作者的注意力诊断指向中间层注意力输出。比较含多种推理时基线，且以留出题筛除只会损害准确率的编辑。限制是只测两个 Qwen 小模型和六个既有基准；文本未报告明确的预训练污染审计。每个模型需 3–4 轮前沿编辑器、每轮数小时并占用 GPU，部署推理虽不增单 token 成本，但编辑成本不低。</li>
-<li><strong>适合谁读、建议章节</strong>：适合模型编辑、视觉推理和推理成本优化读者。建议读 §2 的失败盘点与筛选目标、§3.1–3.2 的基线和结果、附录 C.2–C.9 的数据/统计/资源设置及附录 D.2。</li>
+<li><strong>核心问题、方法与基线</strong>：Qwen3.5
+小模型在视觉问题的思考模式中会反复循环，耗尽 token 预算。Keel
+让前沿多模态模型在只知道症状的条件下检查失败案例、定位权重方向并提出编辑；编辑需通过失误比例下降且留出题准确率不降的筛选。作者在
+Qwen3.5-0.8B/2B 的六个视觉基准上，对比原始思考模式、presence
+penalty、reflection suppression、budget forcing 和既有权重编辑。</li>
+<li><strong>作者报告的关键结果</strong>：六项任务平均准确率中，0.8B
+从思考模式的 48.2% 升至 Keel 的 56.1%（+7.9 个百分点）；2B 从 65.2% 升至
+72.3%（+7.1
+个百分点）。两模型输出中以逐字循环结束的答案比例，平均分别下降 21.8 和
+12.4 个百分点；2B 在 GUI grounding
+上的提升尤其大，该任务未进入编辑练习题。</li>
+<li><strong>创新与证据边界</strong>：它把修复直接写入模型权重，再与解码时
+budget forcing
+组合；作者的注意力诊断指向中间层注意力输出。比较含多种推理时基线，且以留出题筛除只会损害准确率的编辑。限制是只测两个
+Qwen 小模型和六个既有基准；文本未报告明确的预训练污染审计。每个模型需
+3–4 轮前沿编辑器、每轮数小时并占用 GPU，部署推理虽不增单 token
+成本，但编辑成本不低。</li>
+<li><strong>适合谁读、建议章节</strong>：适合模型编辑、视觉推理和推理成本优化读者。建议读
+§2 的失败盘点与筛选目标、§3.1–3.2 的基线和结果、附录 C.2–C.9
+的数据/统计/资源设置及附录 D.2。</li>
 </ul>
-<h3 id="图像编辑安全评测暴露文本与视觉判断错位"><a href="#图像编辑安全评测暴露文本与视觉判断错位" class="headerlink" title="图像编辑安全评测暴露文本与视觉判断错位"></a>图像编辑安全评测暴露文本与视觉判断错位</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26569">Text-Aware, Vision-Blind: How Multimodal Image Editing Systems Handle Unsafe Inputs</a>（arXiv:2611.26569）<br><strong>作者</strong>：Ziqing Yang、Yixin Wu、Michael Backes、Yang Zhang<br><strong>来源/分类</strong>：arXiv · cs.CR（cs.CR, cs.CV, cs.LG）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26569">PDF</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p>
+<h3 id="图像编辑安全评测暴露文本与视觉判断错位">图像编辑安全评测暴露文本与视觉判断错位</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26569">Text-Aware, Vision-Blind: How
+Multimodal Image Editing Systems Handle Unsafe
+Inputs</a>（arXiv:2611.26569）<br>
+<strong>作者</strong>：Ziqing Yang、Yixin Wu、Michael Backes、Yang
+Zhang<br>
+<strong>来源/分类</strong>：arXiv · cs.CR（cs.CR, cs.CV, cs.LG）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26569">PDF</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或
+PDF；以下结论为作者报告，尚无独立复现。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：编辑请求是否安全，取决于输入图像和文字意图两部分。EditSafetyBench 将 660 张安全/不安全图像与九类通用编辑指令配对，共 5,940 对，覆盖 11 个风险类别和中性、降低风险、危险意图三种指令；同一提示在安全与不安全图像上保持一致。作者比较 Gemini、GPT、Qwen API 与 Qwen 本地版的系统级允许/拒绝/错误决策。</li>
-<li><strong>作者报告的关键结果</strong>：Gemini 与 GPT 对危险编辑意图分别拒绝 87.1% 和 81.6%，但面对不安全图像加中性指令时只拒绝 24.2% 和 22.4%。政治内容的危险编辑允许率也有差异：GPT 为 70.4%，Gemini 为 34.8%。这些比例衡量系统决策，不是生成图像最终有害程度。</li>
-<li><strong>创新与证据边界</strong>：相同提示配安全与风险图像，能较干净地检验系统是否读取视觉风险；四个系统提供一定横向比较。但论文只评估允许/拒绝，不审核输出图像伤害或编辑质量；九条提示不能覆盖对抗性绕过和全部真实请求。闭源 API 的版本变化也会影响复现，全文未见对测试图像与模型训练数据重叠的专项审计。结果是作者对指定系统和基准的评测，尚无独立复现。</li>
-<li><strong>适合谁读、建议章节</strong>：适合多模态安全、图像编辑平台和红队评测读者。建议读 §3 的基准构造、§4.2–4.7 的决策/跨模态差异及消融，再读 §5 与 Limitations。</li>
+<li><strong>核心问题、方法与基线</strong>：编辑请求是否安全，取决于输入图像和文字意图两部分。EditSafetyBench
+将 660 张安全/不安全图像与九类通用编辑指令配对，共 5,940 对，覆盖 11
+个风险类别和中性、降低风险、危险意图三种指令；同一提示在安全与不安全图像上保持一致。作者比较
+Gemini、GPT、Qwen API 与 Qwen 本地版的系统级允许/拒绝/错误决策。</li>
+<li><strong>作者报告的关键结果</strong>：Gemini 与 GPT
+对危险编辑意图分别拒绝 87.1% 和
+81.6%，但面对不安全图像加中性指令时只拒绝 24.2% 和
+22.4%。政治内容的危险编辑允许率也有差异：GPT 为 70.4%，Gemini 为
+34.8%。这些比例衡量系统决策，不是生成图像最终有害程度。</li>
+<li><strong>创新与证据边界</strong>：相同提示配安全与风险图像，能较干净地检验系统是否读取视觉风险；四个系统提供一定横向比较。但论文只评估允许/拒绝，不审核输出图像伤害或编辑质量；九条提示不能覆盖对抗性绕过和全部真实请求。闭源
+API
+的版本变化也会影响复现，全文未见对测试图像与模型训练数据重叠的专项审计。结果是作者对指定系统和基准的评测，尚无独立复现。</li>
+<li><strong>适合谁读、建议章节</strong>：适合多模态安全、图像编辑平台和红队评测读者。建议读
+§3 的基准构造、§4.2–4.7 的决策/跨模态差异及消融，再读 §5 与
+Limitations。</li>
 </ul>
-<h3 id="深度研究代理的搜索查询会拼出私有信息"><a href="#深度研究代理的搜索查询会拼出私有信息" class="headerlink" title="深度研究代理的搜索查询会拼出私有信息"></a>深度研究代理的搜索查询会拼出私有信息</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.30727">MosaicLeaks: Privacy Risks in Querying-in-the-Open for Deep Research Agents</a>（arXiv:2605.30727）<br><strong>作者</strong>：Alexander Gurung、Spandana Gella、Alexandre Drouin、Issam H. Laradji、Perouz Taslakian、Rafael Pardinas<br><strong>来源/分类</strong>：arXiv · cs.CL（cs.CL）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.30727">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/ServiceNow/MosaicLeaks">数据集</a> · <a target="_blank" rel="noopener" href="https://github.com/ServiceNow/MosaicProject">代码</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p>
+<h3 id="深度研究代理的搜索查询会拼出私有信息">深度研究代理的搜索查询会拼出私有信息</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.30727">MosaicLeaks: Privacy Risks in
+Querying-in-the-Open for Deep Research
+Agents</a>（arXiv:2605.30727）<br>
+<strong>作者</strong>：Alexander Gurung、Spandana Gella、Alexandre
+Drouin、Issam H. Laradji、Perouz Taslakian、Rafael Pardinas<br>
+<strong>来源/分类</strong>：arXiv · cs.CL（cs.CL）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2605.30727">PDF</a> · <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/ServiceNow/MosaicLeaks">数据集</a>
+· <a target="_blank" rel="noopener" href="https://github.com/ServiceNow/MosaicProject">代码</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或
+PDF；以下结论为作者报告，尚无独立复现。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：代理将企业内部文档与公开网页交替检索时，单条看似无害的搜索词也可能被外部观察者拼成敏感信息。MosaicLeaks 用 1,001 个多跳任务连接私有企业文档与公开网页，令攻击者只观察代理的外部查询，并尝试推断研究意图、私有问题答案和可核验文档事实。论文评测六个开放模型，并比较普通隐私提示、只优化任务成功的强化学习与 PA-DR。</li>
-<li><strong>作者报告的关键结果</strong>：Qwen3-4B-Instruct 基线严格链式成功率为 48.7%、隐私泄漏率为 34.0%；仅做任务导向强化学习后，成功率升至 59.3%，泄漏也升至 51.8%。加入对查询级和拼接泄漏都给密集反馈的 PA-DR 后，成功率为 58.1%，泄漏降至 6.5%。摘要还报告在其他开放模型和独立 judge 上有相同方向。</li>
+<li><strong>核心问题、方法与基线</strong>：代理将企业内部文档与公开网页交替检索时，单条看似无害的搜索词也可能被外部观察者拼成敏感信息。MosaicLeaks
+用 1,001
+个多跳任务连接私有企业文档与公开网页，令攻击者只观察代理的外部查询，并尝试推断研究意图、私有问题答案和可核验文档事实。论文评测六个开放模型，并比较普通隐私提示、只优化任务成功的强化学习与
+PA-DR。</li>
+<li><strong>作者报告的关键结果</strong>：Qwen3-4B-Instruct
+基线严格链式成功率为 48.7%、隐私泄漏率为
+34.0%；仅做任务导向强化学习后，成功率升至 59.3%，泄漏也升至
+51.8%。加入对查询级和拼接泄漏都给密集反馈的 PA-DR 后，成功率为
+58.1%，泄漏降至 6.5%。摘要还报告在其他开放模型和独立 judge
+上有相同方向。</li>
 <li><strong>创新与证据边界</strong>：把“任务做成了”与“外部查询暴露多少私有上下文”同时计分，比只检查最终答案更接近真实检索边界；代码与数据集公开链接见下。结果建立在三个企业上下文和合成/人工质检任务上，攻击者拥有完整查询日志这一压力设定偏强；代理场景目前集中在多跳问答，不代表所有长篇研究流程。摘要未量化训练算力。</li>
-<li><strong>适合谁读、建议章节</strong>：适合企业 RAG、隐私保护、工具调用与 agent 强化学习读者。建议读 §3 的泄漏定义、§4 的任务设计、§5 的奖励、§6 的评测与 §8 的限制。</li>
+<li><strong>适合谁读、建议章节</strong>：适合企业
+RAG、隐私保护、工具调用与 agent 强化学习读者。建议读 §3 的泄漏定义、§4
+的任务设计、§5 的奖励、§6 的评测与 §8 的限制。</li>
 </ul>
-<h3 id="Agent-能否独立完成在线强化学习后训练？"><a href="#Agent-能否独立完成在线强化学习后训练？" class="headerlink" title="Agent 能否独立完成在线强化学习后训练？"></a>Agent 能否独立完成在线强化学习后训练？</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.10547">Agent^2 RL-Bench: Can LLM Agents Engineer Agentic RL Post-Training?</a>（arXiv:2604.10547）<br><strong>作者</strong>：Wanyi Chen、Xiao Yang、Xu Yang、Tianming Sha、Qizheng Li、Zhuo Wang、Bowen Xian、Fang Kong、Weiqing Liu、Jiang Bian<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.10547">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/microsoft/RD-Agent">代码</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p>
+<h3 id="agent-能否独立完成在线强化学习后训练">Agent
+能否独立完成在线强化学习后训练？</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.10547">Agent<sup>2</sup> RL-Bench: Can
+LLM Agents Engineer Agentic RL
+Post-Training?</a>（arXiv:2604.10547）<br>
+<strong>作者</strong>：Wanyi Chen、Xiao Yang、Xu Yang、Tianming
+Sha、Qizheng Li、Zhuo Wang、Bowen Xian、Fang Kong、Weiqing Liu、Jiang
+Bian<br>
+<strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2604.10547">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/microsoft/RD-Agent">代码</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或
+PDF；以下结论为作者报告，尚无独立复现。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：现有评测常检查模型会不会写训练脚本，却不要求它在环境中采集轨迹、更新模型并闭合在线 RL 循环。Agent² RL-Bench 设六个任务、三个难度层级，从规则奖励的监督训练、judge 奖励优化到需要真实交互的在线 RL；比较五类 agent 系统和六种驱动模型，按每次 12 小时预算运行，并记录代码、训练产物和提交轨迹。</li>
-<li><strong>作者报告的关键结果</strong>：某个 RL 导向运行通过 SFT 热启动、GRPO 和在线 rollout，把 ALFWorld 分数从 4.85 提到 93.28；但 DeepSearchQA 仍难，多数成功路径依赖监督式训练，交互结果对 agent 栈差异明显。基准原始试验共计 1,404 H200 等效 GPU 小时、5.48B 驱动上下文 token。</li>
-<li><strong>创新与证据边界</strong>：它要求 agent 完成工程闭环而非仅生成代码，且把训练过程留痕，能区分分数提高与真正使用在线 RL。数字亮点来自个别任务/运行，不代表普遍能力；消融中有单次运行，任务只有六类，系统配置和驱动模型仍有混杂，成本也高。代码见摘要链接。</li>
-<li><strong>适合谁读、建议章节</strong>：适合 RL 工程、自动化研究和 agent 评测读者。建议读 §2 的任务协议、§3.2–3.4 的跨系统/行为结果、§5 的限制，以及附录 C 的复现和成本表。</li>
+<li><strong>核心问题、方法与基线</strong>：现有评测常检查模型会不会写训练脚本，却不要求它在环境中采集轨迹、更新模型并闭合在线
+RL 循环。Agent² RL-Bench
+设六个任务、三个难度层级，从规则奖励的监督训练、judge
+奖励优化到需要真实交互的在线 RL；比较五类 agent
+系统和六种驱动模型，按每次 12
+小时预算运行，并记录代码、训练产物和提交轨迹。</li>
+<li><strong>作者报告的关键结果</strong>：某个 RL 导向运行通过 SFT
+热启动、GRPO 和在线 rollout，把 ALFWorld 分数从 4.85 提到 93.28；但
+DeepSearchQA 仍难，多数成功路径依赖监督式训练，交互结果对 agent
+栈差异明显。基准原始试验共计 1,404 H200 等效 GPU 小时、5.48B 驱动上下文
+token。</li>
+<li><strong>创新与证据边界</strong>：它要求 agent
+完成工程闭环而非仅生成代码，且把训练过程留痕，能区分分数提高与真正使用在线
+RL。数字亮点来自个别任务/运行，不代表普遍能力；消融中有单次运行，任务只有六类，系统配置和驱动模型仍有混杂，成本也高。代码见摘要链接。</li>
+<li><strong>适合谁读、建议章节</strong>：适合 RL 工程、自动化研究和
+agent 评测读者。建议读 §2 的任务协议、§3.2–3.4 的跨系统/行为结果、§5
+的限制，以及附录 C 的复现和成本表。</li>
 </ul>
-<h3 id="用真实轨迹校准-Agent-推理服务的负载测试"><a href="#用真实轨迹校准-Agent-推理服务的负载测试" class="headerlink" title="用真实轨迹校准 Agent 推理服务的负载测试"></a>用真实轨迹校准 Agent 推理服务的负载测试</h3><p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25905">Validation-driven Deployment of LLM Inference Platforms for Agentic Workloads</a>（arXiv:2611.25905）<br><strong>作者</strong>：Shai Gretz、Alon Halfon、Yoav Katz、Lena Dankin、Michal Jacovi、Rachel Tzoref-Brill、Kfir Toledo、Elron Bandel、Natan Ergas、Michal Malka、Pravein Govindan Kannan、Maroon Ayoub、Michal Shmueli-Scheuer<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25905">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/inference-perf">代码</a><br><strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或 PDF；以下结论为作者报告，尚无独立复现。</p>
+<h3 id="用真实轨迹校准-agent-推理服务的负载测试">用真实轨迹校准 Agent
+推理服务的负载测试</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25905">Validation-driven Deployment of
+LLM Inference Platforms for Agentic
+Workloads</a>（arXiv:2611.25905）<br>
+<strong>作者</strong>：Shai Gretz、Alon Halfon、Yoav Katz、Lena
+Dankin、Michal Jacovi、Rachel Tzoref-Brill、Kfir Toledo、Elron
+Bandel、Natan Ergas、Michal Malka、Pravein Govindan Kannan、Maroon
+Ayoub、Michal Shmueli-Scheuer<br>
+<strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25905">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/inference-perf">代码</a><br>
+<strong>全文状态</strong>：已核阅 arXiv 官方 HTML 全文或
+PDF；以下结论为作者报告，尚无独立复现。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：agent 请求会因长上下文、多轮工具调用与随机路径而波动，合成压力测试容易低估真实部署需求。作者提出从 live benchmark 记录完整会话，再用 trace replay 做容量 sizing、预生产和回归检查；对照是重新实时运行同一任务，并以 vLLM 代码覆盖检查不同负载的互补性。案例把四个大型 MoE 模型部署到 llm-d。</li>
-<li><strong>作者报告的关键结果</strong>：在 HWE-Bench 和 CyberGym 各 40 条会话中，trace replay 的输入 token P95 最大约为记录值的 1.18 倍，而实时重跑在 HWE-Bench 达 4.98 倍；这说明固定回放更稳定，不代表它总能代表真实到达流。四个 MoE 案例中，基于捕获负载测出的目标并发约只有最优值一半，吞吐约为公开 trace 负载下的 60%。</li>
-<li><strong>创新与证据边界</strong>：把模型质量评测产出的真实轨迹直接用于服务容量测试，量化了重跑随机性。限制是覆盖分析只看 vLLM 的 Python 路径，不含编译的 CUDA/C++ 核心，执行覆盖不等于正确性；案例只涉及特定模型、硬件和服务栈。工具与 trace 数据按论文说明开放，复现需匹配环境。</li>
-<li><strong>适合谁读、建议章节</strong>：适合推理平台、LLM serving、SRE 与容量规划读者。建议读 §2 的全生命周期流程、§4 的 trace replay、§7 的覆盖分析、§8 的 MoE 部署案例及附录 D.3 的限制。</li>
+<li><strong>核心问题、方法与基线</strong>：agent
+请求会因长上下文、多轮工具调用与随机路径而波动，合成压力测试容易低估真实部署需求。作者提出从
+live benchmark 记录完整会话，再用 trace replay 做容量
+sizing、预生产和回归检查；对照是重新实时运行同一任务，并以 vLLM
+代码覆盖检查不同负载的互补性。案例把四个大型 MoE 模型部署到 llm-d。</li>
+<li><strong>作者报告的关键结果</strong>：在 HWE-Bench 和 CyberGym 各 40
+条会话中，trace replay 的输入 token P95 最大约为记录值的 1.18
+倍，而实时重跑在 HWE-Bench 达 4.98
+倍；这说明固定回放更稳定，不代表它总能代表真实到达流。四个 MoE
+案例中，基于捕获负载测出的目标并发约只有最优值一半，吞吐约为公开 trace
+负载下的 60%。</li>
+<li><strong>创新与证据边界</strong>：把模型质量评测产出的真实轨迹直接用于服务容量测试，量化了重跑随机性。限制是覆盖分析只看
+vLLM 的 Python 路径，不含编译的 CUDA/C++
+核心，执行覆盖不等于正确性；案例只涉及特定模型、硬件和服务栈。工具与
+trace 数据按论文说明开放，复现需匹配环境。</li>
+<li><strong>适合谁读、建议章节</strong>：适合推理平台、LLM serving、SRE
+与容量规划读者。建议读 §2 的全生命周期流程、§4 的 trace replay、§7
+的覆盖分析、§8 的 MoE 部署案例及附录 D.3 的限制。</li>
 </ul>
-<h2 id="AI-论文"><a href="#AI-论文" class="headerlink" title="AI 论文"></a>AI 论文</h2><p>重点论文已在上文展开；以下为其余候选，均仅依据 arXiv 摘要概述。</p>
-<h3 id="Verifiable-Logic-in-Medical-LLMs-A-Critical-Review-of-Agentic-Clinical-Reasoning-Optimization-and-Neuro-Symbolic-Grounding（arXiv-2611-25898）"><a href="#Verifiable-Logic-in-Medical-LLMs-A-Critical-Review-of-Agentic-Clinical-Reasoning-Optimization-and-Neuro-Symbolic-Grounding（arXiv-2611-25898）" class="headerlink" title="Verifiable Logic in Medical LLMs: A Critical Review of Agentic Clinical Reasoning Optimization and Neuro-Symbolic Grounding（arXiv:2611.25898）"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25898">Verifiable Logic in Medical LLMs: A Critical Review of Agentic Clinical Reasoning Optimization and Neuro-Symbolic Grounding</a>（arXiv:2611.25898）</h3><p><strong>作者</strong>：Youssef ElNahas、Adel Ammar、Soumaya Chaffar、Wadii Boulila<br><strong>来源/分类</strong>：arXiv · cs.CL（cs.CL, cs.AI, cs.CY, cs.LG）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25898">PDF</a></p>
-<p>这篇批判性综述讨论临床 LLM 的幻觉、多智能体错误传播、过程奖励模型和神经符号约束，提出把失败类型映射到可验证干预点。作者引用的安全提升主要来自单项、小样本或模拟研究，彼此不可直接比较；适合了解临床 AI 的验证问题，不能视为临床效能证据。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="TwinLab-Bench-Evaluating-AI-Scientists-in-Agentic-Twins-of-Real-Labs（arXiv-2611-26248）"><a href="#TwinLab-Bench-Evaluating-AI-Scientists-in-Agentic-Twins-of-Real-Labs（arXiv-2611-26248）" class="headerlink" title="TwinLab-Bench: Evaluating AI Scientists in Agentic Twins of Real Labs（arXiv:2611.26248）"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26248">TwinLab-Bench: Evaluating AI Scientists in Agentic Twins of Real Labs</a>（arXiv:2611.26248）</h3><p><strong>作者</strong>：Yang Wan、Linchao Zhu<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI, cs.CL, cs.LG）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26248">PDF</a></p>
-<p>TwinLab-Bench 用 52 项真实实验室任务、100 多种实验操作和由真实实验记录驱动的数字孪生，评估 AI 科学家自行设计实验的能力；摘要报告最强模型 Claude Fable 5.2 平均得分仅 45.0。它补上了“自己设计实验”这一评测环节；得分受任务、隐藏答案与模拟环境覆盖限制，不能等同真实实验室成功率。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="Iterative-Scarcity-Guided-Exploration-Bootstrapping-Generative-Auto-bidding-from-Narrow-Support（arXiv-2611-26060）"><a href="#Iterative-Scarcity-Guided-Exploration-Bootstrapping-Generative-Auto-bidding-from-Narrow-Support（arXiv-2611-26060）" class="headerlink" title="Iterative Scarcity-Guided Exploration: Bootstrapping Generative Auto-bidding from Narrow Support（arXiv:2611.26060）"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26060">Iterative Scarcity-Guided Exploration: Bootstrapping Generative Auto-bidding from Narrow Support</a>（arXiv:2611.26060）</h3><p><strong>作者</strong>：Qingmao Yao、Guangzheng Hu、Yusen Huo、Zhilin Zhang、Chuan Yu、Jian Xu、Xu Chu、Bo Zheng、Xiaotie Deng<br><strong>来源/分类</strong>：arXiv · cs.LG（cs.LG）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26060">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/alimama-tech/ISGE">代码</a></p>
-<p>论文研究广告竞价冷启动中生成式自动出价难以越过狭窄历史数据支持的问题，提出由稀缺度判别器和探索器交替工作的 ISGE；作者称其在 AuctionNet 上三轮迭代后超过全量数据基线。结果来自指定工业基准与作者实验，摘要未给出提升幅度、成本和跨环境稳定性，尚不足以推断线上拍卖效果。代码链接见论文摘要。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="When-Safety-Rationales-Hallucinate-Diagnosing-and-Grounding-Multimodal-Safety-Guards（arXiv-2611-25793）"><a href="#When-Safety-Rationales-Hallucinate-Diagnosing-and-Grounding-Multimodal-Safety-Guards（arXiv-2611-25793）" class="headerlink" title="When Safety Rationales Hallucinate: Diagnosing and Grounding Multimodal Safety Guards（arXiv:2611.25793）"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25793">When Safety Rationales Hallucinate: Diagnosing and Grounding Multimodal Safety Guards</a>（arXiv:2611.25793）</h3><p><strong>作者</strong>：Yingshuo Wang、Weixiang Zhao、Guancheng Li、Jiahe Guo、Yu Zhang、Yanyan Zhao<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25793">PDF</a></p>
-<p>作者研究多模态安全分类器给出的理由是否真的由图像支持，覆盖多个视觉语言骨干与安全数据集，并提出只在工具调用改善证据落地时奖励工具使用的 TCG-RL。摘要报告理由幻觉普遍存在，且不会随准确率或模型规模稳定下降；新训练法降低幻觉并保持有竞争力的分类表现。没有公开量化幅度、评审协议及算力对比，理由可信度也不等同于分类安全性。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="Goal-Guided-Reinforcement-Learning-via-Fine-Tuning-Vision-Language-Models（arXiv-2611-25742）"><a href="#Goal-Guided-Reinforcement-Learning-via-Fine-Tuning-Vision-Language-Models（arXiv-2611-25742）" class="headerlink" title="Goal-Guided Reinforcement Learning via Fine-Tuning Vision-Language Models（arXiv:2611.25742）"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25742">Goal-Guided Reinforcement Learning via Fine-Tuning Vision-Language Models</a>（arXiv:2611.25742）</h3><p><strong>作者</strong>：Yajie Qi、Wei Wei、Lin Li、Lijun Zhang、Jianye Hao<br><strong>来源/分类</strong>：arXiv · cs.LG（cs.LG）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25742">PDF</a></p>
-<p>作者构造 CCGP-2M 目标偏好数据，并先以 KLTDPO 微调视觉语言模型，再将其用于 Craftax-Classic 在线强化学习；摘要报告更早采到钻石、总体分数和奖励最高，并在多数成就上取得最高成功率。该工作把目标生成与环境内适配连接起来；证据只来自单一游戏环境，摘要没有分数、种子方差和训练成本，不能外推到真实机器人或开放世界。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="Beyond-Entity-Recognition-Vision-Centric-Knowledge-Visual-Question-Answering（arXiv-2611-25680）"><a href="#Beyond-Entity-Recognition-Vision-Centric-Knowledge-Visual-Question-Answering（arXiv-2611-25680）" class="headerlink" title="Beyond Entity Recognition: Vision-Centric Knowledge Visual Question Answering（arXiv:2611.25680）"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25680">Beyond Entity Recognition: Vision-Centric Knowledge Visual Question Answering</a>（arXiv:2611.25680）</h3><p><strong>作者</strong>：Jiatong Ma、Yuchen Liu、Longteng Guo、Yichen Yuan、Yuze Wu、Dongze Hao、Ru Zhen、Yanhao Zhang、Haonan Lu、Jing Liu<br><strong>来源/分类</strong>：arXiv · cs.CV（cs.CV, cs.AI）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25680">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/CASIA-IVA-Lab/VC-VQA">代码</a></p>
-<p>VC-VQA 基准要求模型在外部检索前后读取、定位和核对视觉证据，并以四种知识供给设置评测 21 个多模态模型。作者报告当前模型的主要瓶颈仍是细粒度视觉知识获取，检索式 agent 则显示多步规划和跨模态整合的价值。代码与数据集链接见摘要；题目构造、图像预训练重叠和检索来源对成绩的影响尚未核实。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="AppSci-Bench-Can-LLMs-Build-AI-Agents-and-Make-Them-Better-（arXiv-2611-25360）"><a href="#AppSci-Bench-Can-LLMs-Build-AI-Agents-and-Make-Them-Better-（arXiv-2611-25360）" class="headerlink" title="AppSci-Bench: Can LLMs Build AI Agents and Make Them Better?（arXiv:2611.25360）"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25360">AppSci-Bench: Can LLMs Build AI Agents and Make Them Better?</a>（arXiv:2611.25360）</h3><p><strong>作者</strong>：Sanjari Srivastava、Manpreet Kaur、Cheng Chang、Sofía Ramós Anton、Oumaima Essamadi、Rishu Garg、Alejandro Lavale Jiménez、Marcos Caballero Yus、Mercedes García Martínez、Peng Qi<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25360">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/sanjari-orb/appsci-bench">代码</a></p>
-<p>AppSci-Bench 模拟企业应用科学家从需求访谈、基础设施探索到设计实验和内部评测的完整工作；七个业务领域、七个前沿模型中，摘要报告最佳模型 Claude Opus 5.0 三次构建尝试的 mean-minimum 得分为 59.1%，需求访谈完成率为 65%。它测试的是建 agent 的端到端能力；模型常把自建评测做高却未解决留出任务，且结论受七个场景和闭源模型版本限制。代码链接见摘要。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="A-Neurosymbolic-Multimodal-Framework-for-30-Day-Diabetic-Readmission-Prediction-Integrating-Structured-EHR-Data-Dense-Clinical-Embeddings-and-Knowledge-Grounded-Symbolic-Extraction（arXiv-2611-25236）"><a href="#A-Neurosymbolic-Multimodal-Framework-for-30-Day-Diabetic-Readmission-Prediction-Integrating-Structured-EHR-Data-Dense-Clinical-Embeddings-and-Knowledge-Grounded-Symbolic-Extraction（arXiv-2611-25236）" class="headerlink" title="A Neurosymbolic Multimodal Framework for 30-Day Diabetic Readmission Prediction: Integrating Structured EHR Data, Dense Clinical Embeddings, and Knowledge-Grounded Symbolic Extraction（arXiv:2611.25236）"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25236">A Neurosymbolic Multimodal Framework for 30-Day Diabetic Readmission Prediction: Integrating Structured EHR Data, Dense Clinical Embeddings, and Knowledge-Grounded Symbolic Extraction</a>（arXiv:2611.25236）</h3><p><strong>作者</strong>：Una Suman Kumar Patro、Sibangi Subhadarsani、Narendra Badam<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25236">PDF</a></p>
-<p>研究用 Diabetes 130-US Hospitals 的 101,766 次就诊记录预测 30 日糖尿病再入院，融合结构化病历、临床文本嵌入与带否定审计的检索抽取，并按患者划分 80/20 测试集。作者报告多模态模型灵敏度和 F2 较高、Brier 分数较低，但 AUROC 从结构化基线 0.6477 降至 0.6375；代码混写症状抽取也有提升。单一历史数据集和阈值选择限制临床迁移，预测表现不等于干预效益。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="When-AI-Analysts-Disagree-Agentic-Multiverse-Analysis-and-the-Robustness-of-Empirical-Research（arXiv-2611-25198）"><a href="#When-AI-Analysts-Disagree-Agentic-Multiverse-Analysis-and-the-Robustness-of-Empirical-Research（arXiv-2611-25198）" class="headerlink" title="When AI Analysts Disagree: Agentic Multiverse Analysis and the Robustness of Empirical Research（arXiv:2611.25198）"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25198">When AI Analysts Disagree: Agentic Multiverse Analysis and the Robustness of Empirical Research</a>（arXiv:2611.25198）</h3><p><strong>作者</strong>：Ruijiang Gao、Steven Chong Xiao<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25198">PDF</a></p>
-<p>Agentic Multiverse Analysis 让代理枚举并执行实证研究中经审查的分析分支，再由代理互审。摘要报告：150 个代理在一个试点数据集上出现方法分歧；应用于管理学期刊 10 项研究、1,755 个规格估计时，复现了原文估计，并显示部分结论对合理分析选择敏感，单篇运行成本为数十美元量级。它可降低稳健性审查成本，但案例仍少，代理判断不是专家真值，且复现不自动证明原因果解释成立。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="RICapBench-A-Fine-Grained-Visual-Understanding-Benchmark-Dataset-for-Vision-Language-Models-in-Remote-Sensing（arXiv-2611-16413）"><a href="#RICapBench-A-Fine-Grained-Visual-Understanding-Benchmark-Dataset-for-Vision-Language-Models-in-Remote-Sensing（arXiv-2611-16413）" class="headerlink" title="RICapBench: A Fine-Grained Visual Understanding Benchmark Dataset for Vision-Language Models in Remote Sensing（arXiv:2611.16413）"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16413">RICapBench: A Fine-Grained Visual Understanding Benchmark Dataset for Vision-Language Models in Remote Sensing</a>（arXiv:2611.16413）</h3><p><strong>作者</strong>：Xue Wang、Yubin Xu、Kun Tan<br><strong>来源/分类</strong>：arXiv · cs.CV（cs.CV）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.16413">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Xldln/RICapBench">代码</a></p>
-<p>RICapBench 面向遥感图像中的实例定位、属性描述和空间关系，含 245,466 个实例标注与 498,005 个空间关系，比较 15 个开源及闭源视觉语言模型。摘要报告最佳 RICScore 为 31.68，但该模型在空间关系描述上不及若干任务微调模型，定位仍是主要瓶颈。代码和数据集链接见摘要；复合指标、遥感地区覆盖与模型闭源性会影响可比性。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="VESTA-Visual-Exploration-with-Statistical-Tool-Agents（arXiv-2606-00384）"><a href="#VESTA-Visual-Exploration-with-Statistical-Tool-Agents（arXiv-2606-00384）" class="headerlink" title="VESTA: Visual Exploration with Statistical Tool Agents（arXiv:2606.00384）"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.00384">VESTA: Visual Exploration with Statistical Tool Agents</a>（arXiv:2606.00384）</h3><p><strong>作者</strong>：William Rudman、Abhishek Divekar、Kanishk Jain、Sebastian Joseph、Stella S. R. Offner、Matthew Lease、Kyle Mahowald、Greg Durrett、Junyi Jessy Li<br><strong>来源/分类</strong>：arXiv · cs.AI（cs.AI, cs.CL, cs.CV, cs.LG, stat.CO）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.00384">PDF</a></p>
-<p>VESTA 为视觉语言模型提供可动态生成的统计工具，用于探索数据、变换变量、绘制诊断图并执行统计检验；作者同时提出 DAWN，覆盖分布拟合、时间序列和天文学任务。摘要称其在所有时间序列及复杂分布拟合任务上优于 Claude Code、Codex 和 OpenCode，但简单分布拟合中这些通用代码 agent 更好。摘要没有报告任务数量、得分差异与算力，不能判断优势是否显著或成本有效。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="Replication-of-Agentic-Security-Events-Audit-and-Investigation-ROGUE-AI-（arXiv-2611-26553）"><a href="#Replication-of-Agentic-Security-Events-Audit-and-Investigation-ROGUE-AI-（arXiv-2611-26553）" class="headerlink" title="Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)（arXiv:2611.26553）"></a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26553">Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)</a>（arXiv:2611.26553）</h3><p><strong>作者</strong>：Mengxiao Wang、Mahbub Alam、Kalyan Nakka、Nitesh Saxena<br><strong>来源/分类</strong>：arXiv · cs.CR（cs.CR, cs.AI, cs.MA）<br><strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26553">PDF</a></p>
-<p>ROGUE-AI 将媒体报道的 agent 安全事故离线重建，并为每个事故建立只移除被指认原因的对照条件；108 次尝试中，作者报告 89% 复现了所述伤害，五个模型在有原因时的出错率为 18%–33%，对照中至多 1%。说明普通操作危险可能比提示注入更常被忽视；事故案例是经过选择的压力测试，不是线上事故发生率估计。<strong>证据状态：仅依据摘要。</strong></p>
+<h2 id="ai-论文">AI 论文</h2>
+<p>重点论文已在上文展开；以下为其余候选，均仅依据 arXiv 摘要概述。</p>
+<h3 id="verifiable-logic-in-medical-llms-a-critical-review-of-agentic-clinical-reasoning-optimization-and-neuro-symbolic-groundingarxiv2611.25898"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25898">Verifiable Logic in Medical
+LLMs: A Critical Review of Agentic Clinical Reasoning Optimization and
+Neuro-Symbolic Grounding</a>（arXiv:2611.25898）</h3>
+<p><strong>作者</strong>：Youssef ElNahas、Adel Ammar、Soumaya
+Chaffar、Wadii Boulila<br>
+<strong>来源/分类</strong>：arXiv · cs.CL（cs.CL, cs.AI, cs.CY,
+cs.LG）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25898">PDF</a></p>
+<p>这篇批判性综述讨论临床 LLM
+的幻觉、多智能体错误传播、过程奖励模型和神经符号约束，提出把失败类型映射到可验证干预点。作者引用的安全提升主要来自单项、小样本或模拟研究，彼此不可直接比较；适合了解临床
+AI
+的验证问题，不能视为临床效能证据。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="twinlab-bench-evaluating-ai-scientists-in-agentic-twins-of-real-labsarxiv2611.26248"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26248">TwinLab-Bench: Evaluating AI
+Scientists in Agentic Twins of Real Labs</a>（arXiv:2611.26248）</h3>
+<p><strong>作者</strong>：Yang Wan、Linchao Zhu<br>
+<strong>来源/分类</strong>：arXiv · cs.AI（cs.AI, cs.CL, cs.LG）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26248">PDF</a></p>
+<p>TwinLab-Bench 用 52 项真实实验室任务、100
+多种实验操作和由真实实验记录驱动的数字孪生，评估 AI
+科学家自行设计实验的能力；摘要报告最强模型 Claude Fable 5.2 平均得分仅
+45.0。它补上了“自己设计实验”这一评测环节；得分受任务、隐藏答案与模拟环境覆盖限制，不能等同真实实验室成功率。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="iterative-scarcity-guided-exploration-bootstrapping-generative-auto-bidding-from-narrow-supportarxiv2611.26060"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26060">Iterative Scarcity-Guided
+Exploration: Bootstrapping Generative Auto-bidding from Narrow
+Support</a>（arXiv:2611.26060）</h3>
+<p><strong>作者</strong>：Qingmao Yao、Guangzheng Hu、Yusen Huo、Zhilin
+Zhang、Chuan Yu、Jian Xu、Xu Chu、Bo Zheng、Xiaotie Deng<br>
+<strong>来源/分类</strong>：arXiv · cs.LG（cs.LG）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26060">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/alimama-tech/ISGE">代码</a></p>
+<p>论文研究广告竞价冷启动中生成式自动出价难以越过狭窄历史数据支持的问题，提出由稀缺度判别器和探索器交替工作的
+ISGE；作者称其在 AuctionNet
+上三轮迭代后超过全量数据基线。结果来自指定工业基准与作者实验，摘要未给出提升幅度、成本和跨环境稳定性，尚不足以推断线上拍卖效果。代码链接见论文摘要。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="when-safety-rationales-hallucinate-diagnosing-and-grounding-multimodal-safety-guardsarxiv2611.25793"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25793">When Safety Rationales
+Hallucinate: Diagnosing and Grounding Multimodal Safety
+Guards</a>（arXiv:2611.25793）</h3>
+<p><strong>作者</strong>：Yingshuo Wang、Weixiang Zhao、Guancheng
+Li、Jiahe Guo、Yu Zhang、Yanyan Zhao<br>
+<strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25793">PDF</a></p>
+<p>作者研究多模态安全分类器给出的理由是否真的由图像支持，覆盖多个视觉语言骨干与安全数据集，并提出只在工具调用改善证据落地时奖励工具使用的
+TCG-RL。摘要报告理由幻觉普遍存在，且不会随准确率或模型规模稳定下降；新训练法降低幻觉并保持有竞争力的分类表现。没有公开量化幅度、评审协议及算力对比，理由可信度也不等同于分类安全性。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="goal-guided-reinforcement-learning-via-fine-tuning-vision-language-modelsarxiv2611.25742"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25742">Goal-Guided Reinforcement
+Learning via Fine-Tuning Vision-Language
+Models</a>（arXiv:2611.25742）</h3>
+<p><strong>作者</strong>：Yajie Qi、Wei Wei、Lin Li、Lijun Zhang、Jianye
+Hao<br>
+<strong>来源/分类</strong>：arXiv · cs.LG（cs.LG）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25742">PDF</a></p>
+<p>作者构造 CCGP-2M 目标偏好数据，并先以 KLTDPO
+微调视觉语言模型，再将其用于 Craftax-Classic
+在线强化学习；摘要报告更早采到钻石、总体分数和奖励最高，并在多数成就上取得最高成功率。该工作把目标生成与环境内适配连接起来；证据只来自单一游戏环境，摘要没有分数、种子方差和训练成本，不能外推到真实机器人或开放世界。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="beyond-entity-recognition-vision-centric-knowledge-visual-question-answeringarxiv2611.25680"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25680">Beyond Entity Recognition:
+Vision-Centric Knowledge Visual Question
+Answering</a>（arXiv:2611.25680）</h3>
+<p><strong>作者</strong>：Jiatong Ma、Yuchen Liu、Longteng Guo、Yichen
+Yuan、Yuze Wu、Dongze Hao、Ru Zhen、Yanhao Zhang、Haonan Lu、Jing
+Liu<br>
+<strong>来源/分类</strong>：arXiv · cs.CV（cs.CV, cs.AI）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25680">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/CASIA-IVA-Lab/VC-VQA">代码</a></p>
+<p>VC-VQA
+基准要求模型在外部检索前后读取、定位和核对视觉证据，并以四种知识供给设置评测
+21
+个多模态模型。作者报告当前模型的主要瓶颈仍是细粒度视觉知识获取，检索式
+agent
+则显示多步规划和跨模态整合的价值。代码与数据集链接见摘要；题目构造、图像预训练重叠和检索来源对成绩的影响尚未核实。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="appsci-bench-can-llms-build-ai-agents-and-make-them-betterarxiv2611.25360"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25360">AppSci-Bench: Can LLMs Build AI
+Agents and Make Them Better?</a>（arXiv:2611.25360）</h3>
+<p><strong>作者</strong>：Sanjari Srivastava、Manpreet Kaur、Cheng
+Chang、Sofía Ramós Anton、Oumaima Essamadi、Rishu Garg、Alejandro Lavale
+Jiménez、Marcos Caballero Yus、Mercedes García Martínez、Peng Qi<br>
+<strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25360">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/sanjari-orb/appsci-bench">代码</a></p>
+<p>AppSci-Bench
+模拟企业应用科学家从需求访谈、基础设施探索到设计实验和内部评测的完整工作；七个业务领域、七个前沿模型中，摘要报告最佳模型
+Claude Opus 5.0 三次构建尝试的 mean-minimum 得分为
+59.1%，需求访谈完成率为 65%。它测试的是建 agent
+的端到端能力；模型常把自建评测做高却未解决留出任务，且结论受七个场景和闭源模型版本限制。代码链接见摘要。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="a-neurosymbolic-multimodal-framework-for-30-day-diabetic-readmission-prediction-integrating-structured-ehr-data-dense-clinical-embeddings-and-knowledge-grounded-symbolic-extractionarxiv2611.25236"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25236">A Neurosymbolic Multimodal
+Framework for 30-Day Diabetic Readmission Prediction: Integrating
+Structured EHR Data, Dense Clinical Embeddings, and Knowledge-Grounded
+Symbolic Extraction</a>（arXiv:2611.25236）</h3>
+<p><strong>作者</strong>：Una Suman Kumar Patro、Sibangi
+Subhadarsani、Narendra Badam<br>
+<strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25236">PDF</a></p>
+<p>研究用 Diabetes 130-US Hospitals 的 101,766 次就诊记录预测 30
+日糖尿病再入院，融合结构化病历、临床文本嵌入与带否定审计的检索抽取，并按患者划分
+80/20 测试集。作者报告多模态模型灵敏度和 F2 较高、Brier 分数较低，但
+AUROC 从结构化基线 0.6477 降至
+0.6375；代码混写症状抽取也有提升。单一历史数据集和阈值选择限制临床迁移，预测表现不等于干预效益。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="when-ai-analysts-disagree-agentic-multiverse-analysis-and-the-robustness-of-empirical-researcharxiv2611.25198"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.25198">When AI Analysts Disagree:
+Agentic Multiverse Analysis and the Robustness of Empirical
+Research</a>（arXiv:2611.25198）</h3>
+<p><strong>作者</strong>：Ruijiang Gao、Steven Chong Xiao<br>
+<strong>来源/分类</strong>：arXiv · cs.AI（cs.AI）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.25198">PDF</a></p>
+<p>Agentic Multiverse Analysis
+让代理枚举并执行实证研究中经审查的分析分支，再由代理互审。摘要报告：150
+个代理在一个试点数据集上出现方法分歧；应用于管理学期刊 10 项研究、1,755
+个规格估计时，复现了原文估计，并显示部分结论对合理分析选择敏感，单篇运行成本为数十美元量级。它可降低稳健性审查成本，但案例仍少，代理判断不是专家真值，且复现不自动证明原因果解释成立。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="ricapbench-a-fine-grained-visual-understanding-benchmark-dataset-for-vision-language-models-in-remote-sensingarxiv2611.16413"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.16413">RICapBench: A Fine-Grained
+Visual Understanding Benchmark Dataset for Vision-Language Models in
+Remote Sensing</a>（arXiv:2611.16413）</h3>
+<p><strong>作者</strong>：Xue Wang、Yubin Xu、Kun Tan<br>
+<strong>来源/分类</strong>：arXiv · cs.CV（cs.CV）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.16413">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Xldln/RICapBench">代码</a></p>
+<p>RICapBench 面向遥感图像中的实例定位、属性描述和空间关系，含 245,466
+个实例标注与 498,005 个空间关系，比较 15
+个开源及闭源视觉语言模型。摘要报告最佳 RICScore 为
+31.68，但该模型在空间关系描述上不及若干任务微调模型，定位仍是主要瓶颈。代码和数据集链接见摘要；复合指标、遥感地区覆盖与模型闭源性会影响可比性。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="vesta-visual-exploration-with-statistical-tool-agentsarxiv2606.00384"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.00384">VESTA: Visual Exploration with
+Statistical Tool Agents</a>（arXiv:2606.00384）</h3>
+<p><strong>作者</strong>：William Rudman、Abhishek Divekar、Kanishk
+Jain、Sebastian Joseph、Stella S. R. Offner、Matthew Lease、Kyle
+Mahowald、Greg Durrett、Junyi Jessy Li<br>
+<strong>来源/分类</strong>：arXiv · cs.AI（cs.AI, cs.CL, cs.CV, cs.LG,
+stat.CO）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.00384">PDF</a></p>
+<p>VESTA
+为视觉语言模型提供可动态生成的统计工具，用于探索数据、变换变量、绘制诊断图并执行统计检验；作者同时提出
+DAWN，覆盖分布拟合、时间序列和天文学任务。摘要称其在所有时间序列及复杂分布拟合任务上优于
+Claude Code、Codex 和 OpenCode，但简单分布拟合中这些通用代码 agent
+更好。摘要没有报告任务数量、得分差异与算力，不能判断优势是否显著或成本有效。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="replication-of-agentic-security-events-audit-and-investigation-rogue-aiarxiv2611.26553"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26553">Replication of Agentic Security
+Events: Audit and Investigation (ROGUE-AI)</a>（arXiv:2611.26553）</h3>
+<p><strong>作者</strong>：Mengxiao Wang、Mahbub Alam、Kalyan
+Nakka、Nitesh Saxena<br>
+<strong>来源/分类</strong>：arXiv · cs.CR（cs.CR, cs.AI, cs.MA）<br>
+<strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26553">PDF</a></p>
+<p>ROGUE-AI 将媒体报道的 agent
+安全事故离线重建，并为每个事故建立只移除被指认原因的对照条件；108
+次尝试中，作者报告 89% 复现了所述伤害，五个模型在有原因时的出错率为
+18%–33%，对照中至多
+1%。说明普通操作危险可能比提示注入更常被忽视；事故案例是经过选择的压力测试，不是线上事故发生率估计。<strong>证据状态：仅依据摘要。</strong></p>
 
                 
               </div>
