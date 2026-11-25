@@ -18,12 +18,12 @@
   <meta name="author" content="Polaris">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重点关注 以下为 arXiv 预印本中的作者报告，不构成投资建议，也不代表已获独立复现。回测和模拟结果不等于真实可交易表现。  经济物理指标没有胜过强金融基线 论文：Do Econophysics-Inspired Inputs Improve Neural Covariance Forecasting? A Leakage-Free Walk-Forward Study of Intrada">
+    <meta name="description" content="重点关注 以下为 arXiv 预印本中的作者报告，不构成投资建议，也不代表已获独立复现。回测和模拟结果不等于真实可交易表现。 经济物理指标没有胜过强金融基线 论文：Do Econophysics-Inspired Inputs Improve Neural Covariance Forecasting? A Leakage-Free Walk-Forward Study of Intraday">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日金融论文简报（2026-11-24）">
 <meta property="og:url" content="https://www.polarisac.top/2026/11/24/daily-finance-papers-2026-11-24/index.html">
 <meta property="og:site_name" content="Polarisのblog">
-<meta property="og:description" content="重点关注 以下为 arXiv 预印本中的作者报告，不构成投资建议，也不代表已获独立复现。回测和模拟结果不等于真实可交易表现。  经济物理指标没有胜过强金融基线 论文：Do Econophysics-Inspired Inputs Improve Neural Covariance Forecasting? A Leakage-Free Walk-Forward Study of Intrada">
+<meta property="og:description" content="重点关注 以下为 arXiv 预印本中的作者报告，不构成投资建议，也不代表已获独立复现。回测和模拟结果不等于真实可交易表现。 经济物理指标没有胜过强金融基线 论文：Do Econophysics-Inspired Inputs Improve Neural Covariance Forecasting? A Leakage-Free Walk-Forward Study of Intraday">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-07-18/pixiv-rank-005-147052101.jpg">
 <meta property="article:published_time" content="2026-11-24T02:15:00.000Z">
@@ -347,132 +347,275 @@
               <div class="markdown-body">
                 
                 <span id="more"></span>
-<h2 id="重点关注"><a class="markdownIt-Anchor" href="#重点关注"></a> 重点关注</h2>
-<p>以下为 arXiv 预印本中的作者报告，不构成投资建议，也不代表已获独立复现。回测和模拟结果不等于真实可交易表现。</p>
-<h3 id="经济物理指标没有胜过强金融基线"><a class="markdownIt-Anchor" href="#经济物理指标没有胜过强金融基线"></a> 经济物理指标没有胜过强金融基线</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.27616">Do Econophysics-Inspired Inputs Improve Neural Covariance Forecasting? A Leakage-Free Walk-Forward Study of Intraday DJIA Data</a>（arXiv:2611.27616）<br>
+<h2 id="重点关注">重点关注</h2>
+<p>以下为 arXiv
+预印本中的作者报告，不构成投资建议，也不代表已获独立复现。回测和模拟结果不等于真实可交易表现。</p>
+<h3 id="经济物理指标没有胜过强金融基线">经济物理指标没有胜过强金融基线</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.27616">Do
+Econophysics-Inspired Inputs Improve Neural Covariance Forecasting? A
+Leakage-Free Walk-Forward Study of Intraday DJIA
+Data</a>（arXiv:2611.27616）<br>
 <strong>作者</strong>：Gabriele Ranco<br>
 <strong>来源/分类</strong>：arXiv · q-fin.CP<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.27616">PDF</a><br>
 <strong>全文状态</strong>：已核阅官方 PDF 全文。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：研究 RMT 清洗相关性、Tsallis 尾部指数、Hawkes 强度和 Fokker–Planck 式正则项能否改善下一日协方差预测。作者用 2012–2015 年道指 29 个成分股、545 个交易日的一分钟数据，在 11 折嵌套 walk-forward 中比较样本协方差、Ledoit–Wolf、RMT、极值方法、HAR-RV、LSTM 和同容量普通神经网络；另做前视泄漏与逐位复现检查。</li>
-<li><strong>作者报告的关键结果</strong>：样本外共 231 个交易日。神经预测相对静态估计器显著较好（Holm 校正 p&lt;0.001），但没有显著优于 HAR-RV（p=0.151）或 LSTM（p=0.528）；正则项在每折验证中都被选为零，移除 RMT、Tsallis、Hawkes 输入也没有可检测影响。扣除交易成本后，最小方差组合的 Sharpe 比率没有显著提升。</li>
-<li><strong>创新与证据边界</strong>：这是一项重要的负结果：增加有物理解释的特征不等于增加样本外价值。统计检验没有支持超越强基准；组合结果仍是历史样本上的回测，不是实际执行交易。数据期仅 2012–2015、样本外 231 天，结论不能外推到其他市场、制度或波动期限。</li>
-<li><strong>适合谁读、建议章节</strong>：适合量化风控、协方差预测与金融机器学习研究者。建议读 §3 的特征/基线/时间验证、§4.1–4.3 的预测和成本后组合结果，再看 §4.5 的稳健性。</li>
+<li><strong>核心问题、方法与基线</strong>：研究 RMT 清洗相关性、Tsallis
+尾部指数、Hawkes 强度和 Fokker–Planck
+式正则项能否改善下一日协方差预测。作者用 2012–2015 年道指 29
+个成分股、545 个交易日的一分钟数据，在 11 折嵌套 walk-forward
+中比较样本协方差、Ledoit–Wolf、RMT、极值方法、HAR-RV、LSTM
+和同容量普通神经网络；另做前视泄漏与逐位复现检查。</li>
+<li><strong>作者报告的关键结果</strong>：样本外共 231
+个交易日。神经预测相对静态估计器显著较好（Holm 校正
+p&lt;0.001），但没有显著优于 HAR-RV（p=0.151）或
+LSTM（p=0.528）；正则项在每折验证中都被选为零，移除 RMT、Tsallis、Hawkes
+输入也没有可检测影响。扣除交易成本后，最小方差组合的 Sharpe
+比率没有显著提升。</li>
+<li><strong>创新与证据边界</strong>：这是一项重要的负结果：增加有物理解释的特征不等于增加样本外价值。统计检验没有支持超越强基准；组合结果仍是历史样本上的回测，不是实际执行交易。数据期仅
+2012–2015、样本外 231 天，结论不能外推到其他市场、制度或波动期限。</li>
+<li><strong>适合谁读、建议章节</strong>：适合量化风控、协方差预测与金融机器学习研究者。建议读
+§3 的特征/基线/时间验证、§4.1–4.3 的预测和成本后组合结果，再看 §4.5
+的稳健性。</li>
 </ul>
-<h3 id="时间序列基础模型的优势只在少数设定中显现"><a class="markdownIt-Anchor" href="#时间序列基础模型的优势只在少数设定中显现"></a> 时间序列基础模型的优势只在少数设定中显现</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.05291">Forecasting Realized Volatility with Time Series Foundation Models: A Comparison with Econometric Benchmarks</a>（arXiv:2607.05291v2）<br>
+<h3 id="时间序列基础模型的优势只在少数设定中显现">时间序列基础模型的优势只在少数设定中显现</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.05291">Forecasting Realized Volatility
+with Time Series Foundation Models: A Comparison with Econometric
+Benchmarks</a>（arXiv:2607.05291v2）<br>
 <strong>作者</strong>：Alessio Brini<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.ST">q-fin.ST</a><br>
+<strong>来源/分类</strong>：arXiv · q-fin.ST<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2607.05291">PDF</a> · <a target="_blank" rel="noopener" href="https://github.com/Alessiobrini/tsfm-rv">复现代码</a> · <a target="_blank" rel="noopener" href="https://volare-project.org/">VOLARE 数据说明</a><br>
 <strong>全文状态</strong>：已核阅官方 PDF 全文。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：在 VOLARE 的 50 个股票、外汇与期货资产上，对比 9 个零样本时间序列基础模型和 8 个计量经济模型，预测 1、5、22 日已实现波动率；使用 QLIKE、模型置信集与配对检验，并报告恒定波动率目标下的效用及点差成本。</li>
-<li><strong>作者报告的关键结果</strong>：基础模型整体没有胜过计量模型类别；只有较小的 TTM 在三个期限的平均 QLIKE 上略胜对数 HAR。大多数资产的模型置信集同时容纳 TTM 和 Log-HAR。恒定波动率模拟中，TTM 无成本优势约为每年 2 个基点；计入完整点差后，日频优势最高约 21 个基点，主要来自股票，而且依赖较低换手，期货在 5 日和 22 日期限则不占优。</li>
-<li><strong>创新与证据边界</strong>：样本外模型比较涵盖多资产、多个期限，且同时展示统计和组合层面结果。交易效用是历史预测驱动的模拟，不是实盘成交；成本模型和再平衡规则会影响结论。高频原始行情来自 Kibot 授权数据，不能由作者再分发，派生 VOLARE 数据受其许可条款约束；代码开放但复现仍需满足数据许可。</li>
-<li><strong>适合谁读、建议章节</strong>：适合波动率建模、时序基础模型和风险管理研究者。建议读 §3–4 的数据与零样本协议、§5–6 的误差/显著性、§7 的成本后效用及 §8 的稳健性。</li>
+<li><strong>核心问题、方法与基线</strong>：在 VOLARE 的 50
+个股票、外汇与期货资产上，对比 9 个零样本时间序列基础模型和 8
+个计量经济模型，预测 1、5、22 日已实现波动率；使用
+QLIKE、模型置信集与配对检验，并报告恒定波动率目标下的效用及点差成本。</li>
+<li><strong>作者报告的关键结果</strong>：基础模型整体没有胜过计量模型类别；只有较小的
+TTM 在三个期限的平均 QLIKE 上略胜对数
+HAR。大多数资产的模型置信集同时容纳 TTM 和
+Log-HAR。恒定波动率模拟中，TTM 无成本优势约为每年 2
+个基点；计入完整点差后，日频优势最高约 21
+个基点，主要来自股票，而且依赖较低换手，期货在 5 日和 22
+日期限则不占优。</li>
+<li><strong>创新与证据边界</strong>：样本外模型比较涵盖多资产、多个期限，且同时展示统计和组合层面结果。交易效用是历史预测驱动的模拟，不是实盘成交；成本模型和再平衡规则会影响结论。高频原始行情来自
+Kibot 授权数据，不能由作者再分发，派生 VOLARE
+数据受其许可条款约束；代码开放但复现仍需满足数据许可。</li>
+<li><strong>适合谁读、建议章节</strong>：适合波动率建模、时序基础模型和风险管理研究者。建议读
+§3–4 的数据与零样本协议、§5–6 的误差/显著性、§7 的成本后效用及 §8
+的稳健性。</li>
 </ul>
-<h3 id="市场问答模型的概率需要先校准基准率"><a class="markdownIt-Anchor" href="#市场问答模型的概率需要先校准基准率"></a> 市场问答模型的概率需要先校准基准率</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26716">Are Calibrated Decision Models Calibrated on Markets? Geolocated News, Markov Switching and a System One Model for Nasdaq-100 Allocation</a>（arXiv:2611.26716）<br>
+<h3 id="市场问答模型的概率需要先校准基准率">市场问答模型的概率需要先校准基准率</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26716">Are
+Calibrated Decision Models Calibrated on Markets? Geolocated News,
+Markov Switching and a System One Model for Nasdaq-100
+Allocation</a>（arXiv:2611.26716）<br>
 <strong>作者</strong>：Jakub Zając、Michał Dyrek<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.ST">q-fin.ST</a><br>
+<strong>来源/分类</strong>：arXiv · q-fin.ST<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26716">PDF</a><br>
 <strong>全文状态</strong>：已核阅官方 PDF 全文。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：作者每周五询问 Jev 决策模型“纳指 100 四周后是否收低”，比较读取新闻的 Jev、1990–2026 年数据估计的两状态 Markov 模型、地理新闻特征及组合方法；并用历史基准率做先验偏移校准。知识探针显示 Jev 知道截至 2024 年末的事件，因此 Jev 的主测试只用 2025 年 1 月起 88 周。</li>
-<li><strong>作者报告的关键结果</strong>：测试样本中各模型对涨跌方向的预测都未超过历史基准率。Jev 原始下跌概率均值为 0.48，而实际频率为 0.38，ECE 为 0.10；不使用测试期结果的基准率偏移把 ECE 降至 0.015，Platt、isotonic 和与 Markov 组合反而更差。半 Kelly 模拟中，原始 Jev 年化回报 3.1%，校准后 14.5%，同期 QQQ 买入持有为 15.3%；Markov 的大跌预测 AUC 0.81 和 Sharpe 比率使用更长的 1999–2026 期，不能与 Jev 的短测试窗直接视为同一场比较。</li>
-<li><strong>创新与证据边界</strong>：论文把概率校准与方向命中率区分开来，指出不校准的概率会放大仓位错误。88 周四周预测相互重叠，约相当于 22 个独立结果，检验功效有限；作者也说明 2025–2026 年仓位回报只是示范。Jev 是版本固定的闭源模型，且这里报告的是策略模拟而非真实可交易账户。</li>
-<li><strong>适合谁读、建议章节</strong>：适合概率校准、决策模型和市场预测评估读者。建议读 §3–4 的测试窗和校准规则、§5 的结果、§6 的限制；文中组合数字不构成投资建议。</li>
+<li><strong>核心问题、方法与基线</strong>：作者每周五询问 Jev
+决策模型“纳指 100 四周后是否收低”，比较读取新闻的 Jev、1990–2026
+年数据估计的两状态 Markov
+模型、地理新闻特征及组合方法；并用历史基准率做先验偏移校准。知识探针显示
+Jev 知道截至 2024 年末的事件，因此 Jev 的主测试只用 2025 年 1 月起 88
+周。</li>
+<li><strong>作者报告的关键结果</strong>：测试样本中各模型对涨跌方向的预测都未超过历史基准率。Jev
+原始下跌概率均值为 0.48，而实际频率为 0.38，ECE 为
+0.10；不使用测试期结果的基准率偏移把 ECE 降至 0.015，Platt、isotonic
+和与 Markov 组合反而更差。半 Kelly 模拟中，原始 Jev 年化回报
+3.1%，校准后 14.5%，同期 QQQ 买入持有为 15.3%；Markov 的大跌预测 AUC
+0.81 和 Sharpe 比率使用更长的 1999–2026 期，不能与 Jev
+的短测试窗直接视为同一场比较。</li>
+<li><strong>创新与证据边界</strong>：论文把概率校准与方向命中率区分开来，指出不校准的概率会放大仓位错误。88
+周四周预测相互重叠，约相当于 22 个独立结果，检验功效有限；作者也说明
+2025–2026 年仓位回报只是示范。Jev
+是版本固定的闭源模型，且这里报告的是策略模拟而非真实可交易账户。</li>
+<li><strong>适合谁读、建议章节</strong>：适合概率校准、决策模型和市场预测评估读者。建议读
+§3–4 的测试窗和校准规则、§5 的结果、§6
+的限制；文中组合数字不构成投资建议。</li>
 </ul>
-<h3 id="高阶矩收缩改善风险估计但不是收益预测"><a class="markdownIt-Anchor" href="#高阶矩收缩改善风险估计但不是收益预测"></a> 高阶矩收缩改善风险估计，但不是收益预测</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.27274">Nonlinear Shrinkage for Higher Moments Estimation in Large Portfolios</a>（arXiv:2611.27274）<br>
-<strong>作者</strong>：Paul Ruelloux、Christian Bongiorno、Damien Challet<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.PM">q-fin.PM</a><br>
+<h3 id="高阶矩收缩改善风险估计但不是收益预测">高阶矩收缩改善风险估计，但不是收益预测</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.27274">Nonlinear Shrinkage for Higher
+Moments Estimation in Large Portfolios</a>（arXiv:2611.27274）<br>
+<strong>作者</strong>：Paul Ruelloux、Christian Bongiorno、Damien
+Challet<br>
+<strong>来源/分类</strong>：arXiv · q-fin.PM<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.27274">PDF</a><br>
 <strong>全文状态</strong>：已核阅官方 PDF 全文。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：样本协方差和四阶共矩在大组合中噪声很高。作者用张量分解把交叉验证清洗与 Higher-Order Average Oracle（HOAO）扩展到偶数阶共矩，并与样本估计、偶对称投影和交叉验证估计比较。数据为历史 Russell 1000 成分股，样本期 1990–2025，覆盖 3,557 只证券；在共同抽取的历史日期和资产上做 100 日样本外评估。</li>
-<li><strong>作者报告的关键结果</strong>：对 50 只股票、100 日估计窗的 5,000 次实验，HOAO 相对样本估计把组合波动率误差均方降低 50%、把组合峰度误差均方降低 56%；500 日估计窗下，样本估计的共峰度误差从 3.048 增至 8.157，而 HOAO 的误差较稳定。考虑重叠样本外窗口的区块自举后，HOAO 仍进入每个指标/窗长的 95% 模型置信集。</li>
-<li><strong>创新与证据边界</strong>：它把协方差清洗延伸到峰度风险，并检查估计精度是否传到组合层面。实验通过风险目标优化组合，没有预测收益或证明更高回报；数据依赖 Norgate 授权，且缺失收益按零记录、未确认终值现金流。短卖允许，结果也不是含冲击成本的真实交易。</li>
-<li><strong>适合谁读、建议章节</strong>：适合高维组合风险、尾部风险和协方差估计读者。建议读 §3 的张量收缩、§4.1–4.4 的样本外实验与风险组合，再看附录 S2 数据、S3 协议和 S4 统计检验。</li>
+<li><strong>核心问题、方法与基线</strong>：样本协方差和四阶共矩在大组合中噪声很高。作者用张量分解把交叉验证清洗与
+Higher-Order Average
+Oracle（HOAO）扩展到偶数阶共矩，并与样本估计、偶对称投影和交叉验证估计比较。数据为历史
+Russell 1000 成分股，样本期 1990–2025，覆盖 3,557
+只证券；在共同抽取的历史日期和资产上做 100 日样本外评估。</li>
+<li><strong>作者报告的关键结果</strong>：对 50 只股票、100 日估计窗的
+5,000 次实验，HOAO 相对样本估计把组合波动率误差均方降低
+50%、把组合峰度误差均方降低 56%；500 日估计窗下，样本估计的共峰度误差从
+3.048 增至 8.157，而 HOAO
+的误差较稳定。考虑重叠样本外窗口的区块自举后，HOAO 仍进入每个指标/窗长的
+95% 模型置信集。</li>
+<li><strong>创新与证据边界</strong>：它把协方差清洗延伸到峰度风险，并检查估计精度是否传到组合层面。实验通过风险目标优化组合，没有预测收益或证明更高回报；数据依赖
+Norgate
+授权，且缺失收益按零记录、未确认终值现金流。短卖允许，结果也不是含冲击成本的真实交易。</li>
+<li><strong>适合谁读、建议章节</strong>：适合高维组合风险、尾部风险和协方差估计读者。建议读
+§3 的张量收缩、§4.1–4.4 的样本外实验与风险组合，再看附录 S2 数据、S3
+协议和 S4 统计检验。</li>
 </ul>
-<h3 id="agent-使用增加与上市公司招聘放缓相关"><a class="markdownIt-Anchor" href="#agent-使用增加与上市公司招聘放缓相关"></a> Agent 使用增加与上市公司招聘放缓相关</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.27210">The Rise of Agents and the Human Labor Market</a>（arXiv:2611.27210，AI × 劳动力经济学；金融相关度来自上市公司暴露度的构造）<br>
-<strong>作者</strong>：Nicola Borri、Anton Cheremukhin、Yukun Liu、Aleh Tsyvinski<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a><br>
+<h3 id="agent-使用增加与上市公司招聘放缓相关">Agent
+使用增加与上市公司招聘放缓相关</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.27210">The
+Rise of Agents and the Human Labor Market</a>（arXiv:2611.27210，AI ×
+劳动力经济学；金融相关度来自上市公司暴露度的构造）<br>
+<strong>作者</strong>：Nicola Borri、Anton Cheremukhin、Yukun Liu、Aleh
+Tsyvinski<br>
+<strong>来源/分类</strong>：arXiv · econ.GN<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.27210">PDF</a><br>
 <strong>全文状态</strong>：已核阅官方 PDF 全文。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：作者把 OpenRouter 的实际模型调用与 Lightcast 招聘广告匹配，以超过 400 个模型、约 2 quadrillion 个 token（其中约 1.1 quadrillion 个被归为 Agent 调用）构造每周 Agent 使用因子，再用上市公司股票收益与该因子的共同变动估计公司暴露度；样本含 1,784 家上市母公司、3,689 个雇主和 3,480 万条美国招聘广告。面板回归控制公司特征、行业和时间，并另以 2025 年 9 月 Claude Code 2.0 发布做事件研究。</li>
-<li><strong>作者报告的关键结果</strong>：Agent 暴露度提高一个标准差，与未来 6 个月招聘广告增速低 2.11%、9 个月低 3.20%相关；事件研究中，发布前暴露度高一个标准差的公司在发布后 6 个月招聘增速低 4.73%。下降集中于非资深岗位，资深岗位估计不显著；作者报告工资广告未同步下降。</li>
-<li><strong>创新与证据边界</strong>：数据提供了跨模型的实际付费调用量，而非企业自报采纳率；但公司暴露度由股票收益共同变动推算，不是公司实际内部使用量。事件研究依赖高、低暴露公司若无该发布会有平行趋势，不能直接视为随机因果识别。招聘广告是计划需求，不等于实际就业、工时或生产率；OpenRouter 数据按许可提供、原始记录不公开。它是劳动力经济学结果，不是资产回报或交易信号。</li>
-<li><strong>适合谁读、建议章节</strong>：适合 AI 经济影响、招聘数据和企业暴露度研究者。建议读 §2 的数据/暴露度、§3 的回归与事件研究设定、§4 的岗位异质性，再看 §5 的稳健性。</li>
+<li><strong>核心问题、方法与基线</strong>：作者把 OpenRouter
+的实际模型调用与 Lightcast 招聘广告匹配，以超过 400 个模型、约 2
+quadrillion 个 token（其中约 1.1 quadrillion 个被归为 Agent
+调用）构造每周 Agent
+使用因子，再用上市公司股票收益与该因子的共同变动估计公司暴露度；样本含
+1,784 家上市母公司、3,689 个雇主和 3,480
+万条美国招聘广告。面板回归控制公司特征、行业和时间，并另以 2025 年 9 月
+Claude Code 2.0 发布做事件研究。</li>
+<li><strong>作者报告的关键结果</strong>：Agent
+暴露度提高一个标准差，与未来 6 个月招聘广告增速低 2.11%、9 个月低
+3.20%相关；事件研究中，发布前暴露度高一个标准差的公司在发布后 6
+个月招聘增速低
+4.73%。下降集中于非资深岗位，资深岗位估计不显著；作者报告工资广告未同步下降。</li>
+<li><strong>创新与证据边界</strong>：数据提供了跨模型的实际付费调用量，而非企业自报采纳率；但公司暴露度由股票收益共同变动推算，不是公司实际内部使用量。事件研究依赖高、低暴露公司若无该发布会有平行趋势，不能直接视为随机因果识别。招聘广告是计划需求，不等于实际就业、工时或生产率；OpenRouter
+数据按许可提供、原始记录不公开。它是劳动力经济学结果，不是资产回报或交易信号。</li>
+<li><strong>适合谁读、建议章节</strong>：适合 AI
+经济影响、招聘数据和企业暴露度研究者。建议读 §2 的数据/暴露度、§3
+的回归与事件研究设定、§4 的岗位异质性，再看 §5 的稳健性。</li>
 </ul>
-<h3 id="defi-借贷的保护资本可作为网络设计变量"><a class="markdownIt-Anchor" href="#defi-借贷的保护资本可作为网络设计变量"></a> DeFi 借贷的保护资本可作为网络设计变量</h3>
-<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26948">Bottlenecked: The Capital Cost of Protected DeFi Lending</a>（arXiv:2611.26948）<br>
-<strong>作者</strong>：Tarun Chitra、Manvir Schneider、Nagu Thogiti<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://cs.GT">cs.GT</a><br>
+<h3 id="defi-借贷的保护资本可作为网络设计变量">DeFi
+借贷的保护资本可作为网络设计变量</h3>
+<p><strong>论文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26948">Bottlenecked: The Capital Cost
+of Protected DeFi Lending</a>（arXiv:2611.26948）<br>
+<strong>作者</strong>：Tarun Chitra、Manvir Schneider、Nagu
+Thogiti<br>
+<strong>来源/分类</strong>：arXiv · cs.GT<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26948">PDF</a><br>
 <strong>全文状态</strong>：已核阅官方 PDF 全文。</p>
 <ul>
-<li><strong>核心问题、方法与基线</strong>：论文研究如何在 DeFi 借贷网络分配先于用户承担损失的次级资本。作者以“资产—受保护负债—可覆盖资金”三部图刻画权限和损失，用图割与静态攻击博弈定义 adversarial default premium（ADP），比较类似 Aave/Morpho 的设计、隔离保护和优化图结构。</li>
-<li><strong>作者报告的关键结果</strong>：理论上，现有结构在模型条件下保险成本随借款类型数 N 为 Θ(N)，某类优化图可降为 Θ(√N)。在三个回溯挑选的历史 cohort 上，论文估算优化设计相对相似 Aave/Morpho 的结构最多节省 34.5% 资本成本。</li>
-<li><strong>创新与证据边界</strong>：把保护资金的位置与授权网络一并优化，而非只看抵押率。34.5% 是带有共同服务目标、资本价格与故障范围假设的反事实设计，不是已部署协议的实际节省；历史样本只有三个 cohort、22 个日期，重叠窗口不独立。作者明确指出这些历史校准没有证明部署义务或完整攻击覆盖。</li>
-<li><strong>适合谁读、建议章节</strong>：适合 DeFi 风险、协议设计和经济安全研究者。建议读 §2–3 的网络模型、§6 的匹配合同与历史校准，再看附录 0.G 的复现边界。</li>
+<li><strong>核心问题、方法与基线</strong>：论文研究如何在 DeFi
+借贷网络分配先于用户承担损失的次级资本。作者以“资产—受保护负债—可覆盖资金”三部图刻画权限和损失，用图割与静态攻击博弈定义
+adversarial default premium（ADP），比较类似 Aave/Morpho
+的设计、隔离保护和优化图结构。</li>
+<li><strong>作者报告的关键结果</strong>：理论上，现有结构在模型条件下保险成本随借款类型数
+N 为 Θ(N)，某类优化图可降为 Θ(√N)。在三个回溯挑选的历史 cohort
+上，论文估算优化设计相对相似 Aave/Morpho 的结构最多节省 34.5%
+资本成本。</li>
+<li><strong>创新与证据边界</strong>：把保护资金的位置与授权网络一并优化，而非只看抵押率。34.5%
+是带有共同服务目标、资本价格与故障范围假设的反事实设计，不是已部署协议的实际节省；历史样本只有三个
+cohort、22
+个日期，重叠窗口不独立。作者明确指出这些历史校准没有证明部署义务或完整攻击覆盖。</li>
+<li><strong>适合谁读、建议章节</strong>：适合 DeFi
+风险、协议设计和经济安全研究者。建议读 §2–3 的网络模型、§6
+的匹配合同与历史校准，再看附录 0.G 的复现边界。</li>
 </ul>
-<h2 id="金融论文"><a class="markdownIt-Anchor" href="#金融论文"></a> 金融论文</h2>
-<p>重点论文已在上文展开；以下其余 10 篇仅依据 arXiv 摘要概述。统计关联、理论推导或数值模拟不自动意味着因果关系或可交易收益。</p>
-<h3 id="verifiquant-governance-by-execution-for-financial-llm-workflows"><a class="markdownIt-Anchor" href="#verifiquant-governance-by-execution-for-financial-llm-workflows"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26649">VerifiQuant: Governance-by-Execution for Financial LLM Workflows</a>（arXiv:2611.26649）</h3>
+<h2 id="金融论文">金融论文</h2>
+<p>重点论文已在上文展开；以下其余 10 篇仅依据 arXiv
+摘要概述。统计关联、理论推导或数值模拟不自动意味着因果关系或可交易收益。</p>
+<h3 id="verifiquant-governance-by-execution-for-financial-llm-workflowsarxiv2611.26649"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26649">VerifiQuant:
+Governance-by-Execution for Financial LLM
+Workflows</a>（arXiv:2611.26649）</h3>
 <p><strong>作者</strong>：Yu-Chi Ko、Mi-Yen Yeh、Shou-De Lin<br>
 <strong>来源/分类</strong>：arXiv · q-fin.CP<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26649">PDF</a></p>
-<p>VerifiQuant 把金融计算放在确定性执行逻辑中，并在输出前检查问题是否满足可执行合约；不满足时转为澄清、拦截或拒答。作者与匹配的检索加执行基线比较，强调收益主要在不充分输入上的安全处理，而非可回答问题的准确率提升；摘要未给总体准确率和线上误报成本，覆盖率与安全性存在取舍。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="reconstructing-risk-preferences-from-data"><a class="markdownIt-Anchor" href="#reconstructing-risk-preferences-from-data"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.27692">Reconstructing risk preferences from data</a>（arXiv:2611.27692）</h3>
-<p><strong>作者</strong>：Anastasis Kratsios、Silvana M. Pesenti、Philipp Zimmermann<br>
+<p>VerifiQuant
+把金融计算放在确定性执行逻辑中，并在输出前检查问题是否满足可执行合约；不满足时转为澄清、拦截或拒答。作者与匹配的检索加执行基线比较，强调收益主要在不充分输入上的安全处理，而非可回答问题的准确率提升；摘要未给总体准确率和线上误报成本，覆盖率与安全性存在取舍。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="reconstructing-risk-preferences-from-dataarxiv2611.27692"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.27692">Reconstructing risk preferences
+from data</a>（arXiv:2611.27692）</h3>
+<p><strong>作者</strong>：Anastasis Kratsios、Silvana M.
+Pesenti、Philipp Zimmermann<br>
 <strong>来源/分类</strong>：arXiv · q-fin.RM<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.27692">PDF</a></p>
-<p>研究如何从有限或有价证券及其评价重建有限值、现金可加、凸且 Lipschitz 连续的风险度量，给出数据兼容性的充要条件和“通用风险度量”重建公式，并展示线性偏好、Expected Shortfall 与欧洲期权的数值例子。主要贡献是理论识别与构造；数值示范不等同于市场风险偏好估计的样本外检验。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="accountable-ai-delegation-in-banking-identity-commitment-controls-decision-evidence-and-recovery"><a class="markdownIt-Anchor" href="#accountable-ai-delegation-in-banking-identity-commitment-controls-decision-evidence-and-recovery"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.27505">Accountable AI Delegation in Banking: Identity, Commitment Controls, Decision Evidence and Recovery</a>（arXiv:2611.27505）</h3>
-<p><strong>作者</strong>：Walter Kurz、Besnik Alidemi、Marco Schmidt<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.GN">q-fin.GN</a><br>
+<p>研究如何从有限或有价证券及其评价重建有限值、现金可加、凸且 Lipschitz
+连续的风险度量，给出数据兼容性的充要条件和“通用风险度量”重建公式，并展示线性偏好、Expected
+Shortfall
+与欧洲期权的数值例子。主要贡献是理论识别与构造；数值示范不等同于市场风险偏好估计的样本外检验。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="accountable-ai-delegation-in-banking-identity-commitment-controls-decision-evidence-and-recoveryarxiv2611.27505"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.27505">Accountable AI Delegation in
+Banking: Identity, Commitment Controls, Decision Evidence and
+Recovery</a>（arXiv:2611.27505）</h3>
+<p><strong>作者</strong>：Walter Kurz、Besnik Alidemi、Marco
+Schmidt<br>
+<strong>来源/分类</strong>：arXiv · q-fin.GN<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.27505">PDF</a></p>
-<p>论文提出银行支付授权执行器：在同一原子状态转换中核验身份、额度、可用工具与损失覆盖，并记录决策证据。作者报告，在 32 种行为组合中改变传递优先级会改变 4 种路由；复用旧状态在 123 段历史中放过 23 笔参考实现会阻止的支付，而当前状态实现与基线在 144 段承诺历史、624 个并发安排中一致。结果来自固定资源和行为格点，不是银行真实支付流量的故障率估计。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="held-to-maturity-accounting-hidden-losses-and-systemic-fragility"><a class="markdownIt-Anchor" href="#held-to-maturity-accounting-hidden-losses-and-systemic-fragility"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26700">Held-to-Maturity Accounting: Hidden Losses and Systemic Fragility</a>（arXiv:2611.26700）</h3>
+<p>论文提出银行支付授权执行器：在同一原子状态转换中核验身份、额度、可用工具与损失覆盖，并记录决策证据。作者报告，在
+32 种行为组合中改变传递优先级会改变 4 种路由；复用旧状态在 123
+段历史中放过 23 笔参考实现会阻止的支付，而当前状态实现与基线在 144
+段承诺历史、624
+个并发安排中一致。结果来自固定资源和行为格点，不是银行真实支付流量的故障率估计。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="held-to-maturity-accounting-hidden-losses-and-systemic-fragilityarxiv2611.26700"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26700">Held-to-Maturity Accounting:
+Hidden Losses and Systemic Fragility</a>（arXiv:2611.26700）</h3>
 <p><strong>作者</strong>：Dongxu Li、Steve Y. Yang<br>
 <strong>来源/分类</strong>：arXiv · q-fin.RM<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26700">PDF</a></p>
 <p>作者构造持有至到期会计、相关利率资产和内生银行间网络模型，研究延迟确认未实现损失如何在流动性压力下同步显现并放大违约。结论是模型条件下的系统性风险机制，摘要没有报告银行微观数据识别、样本外预测或政策冲击因果估计，不能把理论机制写成已证实的历史效应。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="risk-sharing-for-background-risk-models-with-infinite-mean"><a class="markdownIt-Anchor" href="#risk-sharing-for-background-risk-models-with-infinite-mean"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.27485">Risk sharing for background risk models with infinite mean</a>（arXiv:2611.27485）</h3>
+<h3 id="risk-sharing-for-background-risk-models-with-infinite-meanarxiv2611.27485"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.27485">Risk sharing for background risk
+models with infinite mean</a>（arXiv:2611.27485）</h3>
 <p><strong>作者</strong>：Ziting Miao、Yuyu Chen、Han Li<br>
 <strong>来源/分类</strong>：arXiv · q-fin.RM<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.27485">PDF</a></p>
-<p>论文在正相关、无限均值损失设定下研究线性与条件均值风险分担，并用 Pareto–Clayton、Fréchet–Gumbel 等分布证明风险分担可能使通常随机序意义下的风险上升。结果限定于给定重尾和依赖结构；不能外推成有限均值风险、独立风险或所有分散化组合的普遍结论。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="a-solvency-ii-based-framework-for-pricing-structural-longevity-risk-under-an-affine-mortality-model"><a class="markdownIt-Anchor" href="#a-solvency-ii-based-framework-for-pricing-structural-longevity-risk-under-an-affine-mortality-model"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26670">A Solvency II-Based Framework for Pricing Structural Longevity Risk under an Affine Mortality Model</a>（arXiv:2611.26670）</h3>
-<p><strong>作者</strong>：Madiha Bouhouche、Said Khalil、Fadoua Badaoui<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://q-fin.PR">q-fin.PR</a><br>
+<p>论文在正相关、无限均值损失设定下研究线性与条件均值风险分担，并用
+Pareto–Clayton、Fréchet–Gumbel
+等分布证明风险分担可能使通常随机序意义下的风险上升。结果限定于给定重尾和依赖结构；不能外推成有限均值风险、独立风险或所有分散化组合的普遍结论。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="a-solvency-ii-based-framework-for-pricing-structural-longevity-risk-under-an-affine-mortality-modelarxiv2611.26670"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26670">A Solvency II-Based Framework
+for Pricing Structural Longevity Risk under an Affine Mortality
+Model</a>（arXiv:2611.26670）</h3>
+<p><strong>作者</strong>：Madiha Bouhouche、Said Khalil、Fadoua
+Badaoui<br>
+<strong>来源/分类</strong>：arXiv · q-fin.PR<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26670">PDF</a></p>
-<p>作者将 Solvency II 资本成本法与仿射死亡率模型结合，推导最佳估计负债变化、VaR 和风险边际，并用比利时死亡率数据演示趋势冲击和死亡率水平冲击。数值例中水平冲击产生更大的资本成本；结论对压力情景设定敏感，示范性定价不是实际长寿风险证券的成交价格。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="capturing-cash-non-additivity-and-horizon-risk-via-bsdes-and-generalized-shortfall"><a class="markdownIt-Anchor" href="#capturing-cash-non-additivity-and-horizon-risk-via-bsdes-and-generalized-shortfall"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.14024">Capturing cash non-additivity and horizon risk via BSDEs and generalized shortfall</a>（arXiv:2603.14024）</h3>
+<p>作者将 Solvency II
+资本成本法与仿射死亡率模型结合，推导最佳估计负债变化、VaR
+和风险边际，并用比利时死亡率数据演示趋势冲击和死亡率水平冲击。数值例中水平冲击产生更大的资本成本；结论对压力情景设定敏感，示范性定价不是实际长寿风险证券的成交价格。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="capturing-cash-non-additivity-and-horizon-risk-via-bsdes-and-generalized-shortfallarxiv2603.14024"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.14024">Capturing cash non-additivity
+and horizon risk via BSDEs and generalized
+shortfall</a>（arXiv:2603.14024）</h3>
 <p><strong>作者</strong>：Giulia Di Nunno、Emanuela Rosazza Gianin<br>
 <strong>来源/分类</strong>：arXiv · q-fin.MF<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2603.14024">PDF</a></p>
-<p>论文以 Lipschitz 与二次生成元的 BSDE 和 shortfall 方法构造动态、现金次可加风险度量，并定义 h-generalized shortfall；作者给出对偶表示，证明 hq-entropic 风险度量属于该类但一般不属于 certainty equivalent。贡献是理论刻画，没有市场样本、预测检验或组合绩效比较。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="keeping-in-place-after-the-stormemergency-assistance-and-evictions"><a class="markdownIt-Anchor" href="#keeping-in-place-after-the-stormemergency-assistance-and-evictions"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.14548">Keeping in Place After the Storm—Emergency Assistance and Evictions</a>（arXiv:2505.14548）</h3>
+<p>论文以 Lipschitz 与二次生成元的 BSDE 和 shortfall
+方法构造动态、现金次可加风险度量，并定义 h-generalized
+shortfall；作者给出对偶表示，证明 hq-entropic
+风险度量属于该类但一般不属于 certainty
+equivalent。贡献是理论刻画，没有市场样本、预测检验或组合绩效比较。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="keeping-in-place-after-the-stormemergency-assistance-and-evictionsarxiv2505.14548"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.14548">Keeping in Place After the
+Storm—Emergency Assistance and Evictions</a>（arXiv:2505.14548）</h3>
 <p><strong>作者</strong>：Bilal Islah、Ahmed Zoulati<br>
-<strong>来源/分类</strong>：arXiv · <a target="_blank" rel="noopener" href="http://econ.GN">econ.GN</a><br>
+<strong>来源/分类</strong>：arXiv · econ.GN<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2505.14548">PDF</a></p>
-<p>研究飓风后 FEMA 租金援助是否缓解驱逐和高成本应急信贷需求。作者报告，飓风灾害后总体驱逐约增加 10.9%，增量主要来自靠近飓风路径但未获 FEMA 租金援助的地区；获援地区的交易量在飓风期下降，而未获援地区的下降随后大体逆转。识别依赖地区可比性和灾害冲击设定，摘要未给出随机分配或援助资格断点，因果解释需回到全文检查。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="error-analysis-for-the-numerical-approximation-of-the-quantile-hedging-problem"><a class="markdownIt-Anchor" href="#error-analysis-for-the-numerical-approximation-of-the-quantile-hedging-problem"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26673">Error analysis for the numerical approximation of the quantile hedging problem</a>（arXiv:2611.26673）</h3>
-<p><strong>作者</strong>：Cyril Bénézet、Cyril Nefzaoui-Blanchard、Sergio Pulido<br>
+<p>研究飓风后 FEMA
+租金援助是否缓解驱逐和高成本应急信贷需求。作者报告，飓风灾害后总体驱逐约增加
+10.9%，增量主要来自靠近飓风路径但未获 FEMA
+租金援助的地区；获援地区的交易量在飓风期下降，而未获援地区的下降随后大体逆转。识别依赖地区可比性和灾害冲击设定，摘要未给出随机分配或援助资格断点，因果解释需回到全文检查。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="error-analysis-for-the-numerical-approximation-of-the-quantile-hedging-problemarxiv2611.26673"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26673">Error analysis for the numerical
+approximation of the quantile hedging
+problem</a>（arXiv:2611.26673）</h3>
+<p><strong>作者</strong>：Cyril Bénézet、Cyril
+Nefzaoui-Blanchard、Sergio Pulido<br>
 <strong>来源/分类</strong>：arXiv · q-fin.CP<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26673">PDF</a></p>
-<p>作者把分位数对冲写成受约束随机控制问题，结合控制截断和分段常数策略时间推进给出误差界；无界控制下误差指数可逼近 1/8，预先有界控制下可逼近 1/4。神经网络控制的 Black–Scholes 与局部波动率实验显示网格细化可降低定价误差，但网格投影会造成鞅缺陷和偏差，尚非真实市场对冲收益验证。<strong>证据状态：仅依据摘要。</strong></p>
-<h3 id="distributional-deep-hedging"><a class="markdownIt-Anchor" href="#distributional-deep-hedging"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26652">Distributional Deep Hedging</a>（arXiv:2611.26652）</h3>
-<p><strong>作者</strong>：El-Amine Cherrat、Skander Kazdaghli、Iordanis Kerenidis<br>
+<p>作者把分位数对冲写成受约束随机控制问题，结合控制截断和分段常数策略时间推进给出误差界；无界控制下误差指数可逼近
+1/8，预先有界控制下可逼近 1/4。神经网络控制的 Black–Scholes
+与局部波动率实验显示网格细化可降低定价误差，但网格投影会造成鞅缺陷和偏差，尚非真实市场对冲收益验证。<strong>证据状态：仅依据摘要。</strong></p>
+<h3 id="distributional-deep-hedgingarxiv2611.26652"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.26652">Distributional Deep
+Hedging</a>（arXiv:2611.26652）</h3>
+<p><strong>作者</strong>：El-Amine Cherrat、Skander Kazdaghli、Iordanis
+Kerenidis<br>
 <strong>来源/分类</strong>：arXiv · q-fin.CP<br>
 <strong>原文</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2611.26652">PDF</a></p>
-<p>方法先学习对冲损益分布的分位数，再把 Expected Shortfall 等风险偏好作为后处理权重；因此可用一个分布式 critic 支持训练后选择多个偏好，并据此构造策略搜索和 actor–critic 算法。作者报告学到的对冲策略接近动态规划参照，但摘要没有给出数值误差、交易成本或跨市场表现；模拟最优性不是实盘收益。<strong>证据状态：仅依据摘要。</strong></p>
+<p>方法先学习对冲损益分布的分位数，再把 Expected Shortfall
+等风险偏好作为后处理权重；因此可用一个分布式 critic
+支持训练后选择多个偏好，并据此构造策略搜索和 actor–critic
+算法。作者报告学到的对冲策略接近动态规划参照，但摘要没有给出数值误差、交易成本或跨市场表现；模拟最优性不是实盘收益。<strong>证据状态：仅依据摘要。</strong></p>
 
                 
               </div>
