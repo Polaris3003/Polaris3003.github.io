@@ -1,0 +1,868 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Polaris">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="GITHUB TRENDING · 2026.11.27   今天的 GitHub all-languages 日榜继续把注意力推向“可交付的 Agent”：Claude-BugHunter、Superpowers与 CLI-Anything分别处理安全边界、开发流程和复杂软件接口，Firecrawl与 last30days-skill把外部信息变成可追溯输入，OpenSRE与 App St">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-11-27 GitHub 热榜简报：Agent 工具链开始进入可交付阶段">
+<meta property="og:url" content="https://www.polarisac.top/2026/11/27/daily-github-trending-2026-11-27/index.html">
+<meta property="og:site_name" content="Polarisのblog">
+<meta property="og:description" content="GITHUB TRENDING · 2026.11.27   今天的 GitHub all-languages 日榜继续把注意力推向“可交付的 Agent”：Claude-BugHunter、Superpowers与 CLI-Anything分别处理安全边界、开发流程和复杂软件接口，Firecrawl与 last30days-skill把外部信息变成可追溯输入，OpenSRE与 App St">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-09-13/pixiv-rank-009-149431011.jpg">
+<meta property="article:published_time" content="2026-11-27T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-27T02:23:00.111Z">
+<meta property="article:author" content="Polaris">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="安全工程">
+<meta property="article:tag" content="设计工具">
+<meta property="article:tag" content="开发工作流">
+<meta property="article:tag" content="网页数据">
+<meta property="article:tag" content="CI&#x2F;CD">
+<meta property="article:tag" content="模型训练">
+<meta property="article:tag" content="媒体工具">
+<meta property="article:tag" content="推理部署">
+<meta property="article:tag" content="移动合规">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.polarisac.top/img/covers/pixiv-weekly/2026-09-13/pixiv-rank-009-149431011.jpg">
+  
+  
+  
+  <title>2026-11-27 GitHub 热榜简报：Agent 工具链开始进入可交付阶段 - Polarisのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="/css/quantDoc.css">
+<link rel="stylesheet" href="/css/dailyBriefing.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.polarisac.top","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"4619a4e86212bdbd71da264ccce66185","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"TWgwMoIn138RL2suCBNDihzh-MdYXbMMI","app_key":"pVouTJxhL8gR9SmK3t9P5Vvn","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4619a4e86212bdbd71da264ccce66185";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Polarisのblog" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Polaris</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/covers/pixiv-weekly/2026-10-25/pixiv-rank-013-151061178.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2026-11-27 GitHub 热榜简报：Agent 工具链开始进入可交付阶段"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-11-27 09:00" pubdate>
+          2026年11月27日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2026-11-27 GitHub 热榜简报：Agent 工具链开始进入可交付阶段</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="briefing-masthead">
+  <p class="briefing-masthead__eyebrow">GITHUB TRENDING · 2026.11.27</p>
+  <p>今天的 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">GitHub all-languages 日榜</a>继续把注意力推向“可交付的 Agent”：<a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter#readme">Claude-BugHunter</a>、<a target="_blank" rel="noopener" href="https://github.com/obra/superpowers#readme">Superpowers</a>与 <a target="_blank" rel="noopener" href="https://github.com/HKUDS/CLI-Anything#readme">CLI-Anything</a>分别处理安全边界、开发流程和复杂软件接口，<a target="_blank" rel="noopener" href="https://github.com/firecrawl/firecrawl#readme">Firecrawl</a>与 <a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill#readme">last30days-skill</a>把外部信息变成可追溯输入，<a target="_blank" rel="noopener" href="https://github.com/Tracer-Cloud/opensre#readme">OpenSRE</a>与 <a target="_blank" rel="noopener" href="https://github.com/mjmirza/app-store-compliance#readme">App Store Compliance</a>则把验证推进到 CI 和发布门禁。另一端，<a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind#readme">MiniMind</a>、<a target="_blank" rel="noopener" href="https://github.com/openvinotoolkit/openvino#readme">OpenVINO</a>、<a target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design#readme">diagram-design</a>、<a target="_blank" rel="noopener" href="https://github.com/google-labs-code/stitch-skills#readme">Stitch Skills</a>、<a target="_blank" rel="noopener" href="https://github.com/toeverything/AFFiNE#readme">AFFiNE</a>与 <a target="_blank" rel="noopener" href="https://github.com/zhouxiaoka/autoclip#readme">AutoClip</a>把训练、部署、视觉、知识和媒体产物落到具体系统。</p>
+  <div class="briefing-masthead__topics"><span>Agent 安全</span><span>开发方法</span><span>Agent-native CLI</span><span>网页知识</span><span>模型训练</span><span>推理部署</span><span>设计产物</span><span>CI 可靠性</span></div>
+</div>
+<span id="more"></span>
+<h2 id="今日要点"><a class="markdownIt-Anchor" href="#今日要点"></a> 今日要点</h2>
+<p>今天的 16 个日榜候选里，真正值得学习的共同点不是星标数量，而是它们开始把“模型会不会回答”改写成“系统能不能在边界内完成一件事”：<a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter#readme">Claude-BugHunter</a>强调授权范围和证据卫生，<a target="_blank" rel="noopener" href="https://github.com/obra/superpowers#readme">Superpowers</a>把需求、计划、测试与评审串成方法，<a target="_blank" rel="noopener" href="https://github.com/HKUDS/CLI-Anything#readme">CLI-Anything</a>让复杂软件拥有结构化入口，<a target="_blank" rel="noopener" href="https://github.com/Tracer-Cloud/opensre#readme">OpenSRE</a>把失败后的调查和修复送回 CI/CD。它们的价值在于工作流边界清楚，而不是宣传了多少“自主”能力。</p>
+<p>另一条线是从信息到产物的闭环：<a target="_blank" rel="noopener" href="https://github.com/firecrawl/firecrawl#readme">Firecrawl</a>和 <a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill#readme">last30days-skill</a>负责带来源的网页研究，<a target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design#readme">diagram-design</a>与 <a target="_blank" rel="noopener" href="https://github.com/google-labs-code/stitch-skills#readme">Stitch Skills</a>把设计要求变成可打开的文件，<a target="_blank" rel="noopener" href="https://github.com/zhouxiaoka/autoclip#readme">AutoClip</a>把长视频变成可发布素材，<a target="_blank" rel="noopener" href="https://github.com/mjmirza/app-store-compliance#readme">App Store Compliance</a>提醒发布前必须让扫描结果和人工检查分工。日增星标是 2026-11-27 UTC 02:00 的榜单快照，不是质量证明；以下更应该看许可证、最近代码和失败边界。</p>
+<h2 id="值得尝试"><a class="markdownIt-Anchor" href="#值得尝试"></a> 值得尝试</h2>
+<h3 id="a-hrefhttpsgithubcomelementalsoulsclaude-bughunterreadmeelementalsoulsclaude-bughuntera"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomelementalsoulsclaude-bughunterreadmeelementalsoulsclaude-bughuntera"></a> <a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter#readme">elementalsouls/Claude-BugHunter</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter#readme">Claude-BugHunter</a> 是面向 Claude Code 及多个 Agent Skills 宿主的安全研究技能包，README 将 Web 漏洞模式、企业身份与基础设施攻击链、范围门禁、分诊和证据卫生组织成可复用流程。它适合安全工程师研究 Agent 如何在授权范围内工作；限制是明显的双重用途，技能包不能替代目标授权、凭据隔离和人工复核。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter">Python</a>，日榜快照新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">1,597★</a>，快照总星标 <a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter">24,675★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter/blob/main/LICENSE">MIT</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter/commit/166dd9bb737a396ae7a32f4497108c0b5a98599a">166dd9b</a>（2026-11-27）。</p>
+<h3 id="a-hrefhttpsgithubcomobrasuperpowersreadmeobrasuperpowersa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomobrasuperpowersreadmeobrasuperpowersa"></a> <a target="_blank" rel="noopener" href="https://github.com/obra/superpowers#readme">obra/superpowers</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/obra/superpowers#readme">Superpowers</a> 把需求澄清、设计确认、计划、红绿 TDD、子代理执行和代码评审串成 coding agent 的完整工作方法，强调先理解目标再动手。它适合希望把 Agent 从“直接写代码”改造成可审阅流程的开发者；限制是它是方法论与技能集合而非独立测试框架，安装方式、自动触发行为和权限边界会随宿主变化。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/obra/superpowers">Shell</a>，日榜快照新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">854★</a>，快照总星标 <a target="_blank" rel="noopener" href="https://github.com/obra/superpowers">327,535★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/obra/superpowers/blob/main/LICENSE">MIT</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/obra/superpowers/commit/22f0b463e7a5e579904dd6211a520321035526f7">22f0b46</a>（2026-11-03）。</p>
+<h3 id="a-hrefhttpsgithubcomhkudscli-anythingreadmehkudscli-anythinga"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomhkudscli-anythingreadmehkudscli-anythinga"></a> <a target="_blank" rel="noopener" href="https://github.com/HKUDS/CLI-Anything#readme">HKUDS/CLI-Anything</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/HKUDS/CLI-Anything#readme">CLI-Anything</a> 试图把图形软件和其他已有工具转换成带统一参数、JSON 输出、预览与测试的 Agent-native CLI，并用 CLI-Hub 管理社区适配器。它适合平台工程师研究“模型如何稳定调用复杂软件”；限制是每个适配器仍依赖目标软件、系统环境和集成质量，演示覆盖面不能等同于所有软件都能可靠自动化。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/HKUDS/CLI-Anything">Python</a>，日榜快照新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">746★</a>，快照总星标 <a target="_blank" rel="noopener" href="https://github.com/HKUDS/CLI-Anything">66,405★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/HKUDS/CLI-Anything/blob/main/LICENSE">Apache-2.0</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/HKUDS/CLI-Anything/commit/34f519533bc175d2fe287ab8316b0dd99bb9cc43">34f5195</a>（2026-09-22）。</p>
+<h3 id="a-hrefhttpsgithubcomjingyaogongminimindreadmejingyaogongminiminda"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomjingyaogongminimindreadmejingyaogongminiminda"></a> <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind#readme">jingyaogong/minimind</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind#readme">MiniMind</a> 用可读代码覆盖小型语言模型的预训练、SFT、偏好优化、工具调用和 Agentic RL，把“调用模型”还原成可以逐步复现的训练链路。它适合想从代码和数据理解 LLM 的学习者；限制是“2 小时、3 块钱”的结果基于特定硬件、数据和评测条件，不能直接外推到生产模型。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind">Python</a>，日榜快照新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">702★</a>，快照总星标 <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind">71,682★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind/blob/master/LICENSE">Apache-2.0</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind/commit/96de8920ad12d888fb5c1c8ab4a42065f4c2ed98">96de892</a>（2026-11-26）。</p>
+<h3 id="a-hrefhttpsgithubcomfirecrawlfirecrawlreadmefirecrawlfirecrawla"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomfirecrawlfirecrawlreadmefirecrawlfirecrawla"></a> <a target="_blank" rel="noopener" href="https://github.com/firecrawl/firecrawl#readme">firecrawl/firecrawl</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/firecrawl/firecrawl#readme">Firecrawl</a> 把抓取、爬取、网页映射、搜索、文档解析和 MCP 接入组合成 Agent 的知识入口，并提供本地与自托管路径。它适合做研究助手、RAG 或网页自动化的人；限制是本地路径和自托管都要承担浏览器、编译环境与后台服务运维，<a target="_blank" rel="noopener" href="https://github.com/firecrawl/firecrawl/blob/main/LICENSE">AGPL-3.0</a> 也会影响服务化分发。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/firecrawl/firecrawl">TypeScript</a>，日榜快照新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">1,046★</a>，快照总星标 <a target="_blank" rel="noopener" href="https://github.com/firecrawl/firecrawl">210,983★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/firecrawl/firecrawl/blob/main/LICENSE">AGPL-3.0</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/firecrawl/firecrawl/commit/cb8e1c09106eaa600dafad67806fbde5e0a708a8">cb8e1c0</a>（2026-11-26）。</p>
+<h3 id="a-hrefhttpsgithubcomopenvinotoolkitopenvinoreadmeopenvinotoolkitopenvinoa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomopenvinotoolkitopenvinoreadmeopenvinotoolkitopenvinoa"></a> <a target="_blank" rel="noopener" href="https://github.com/openvinotoolkit/openvino#readme">openvinotoolkit/openvino</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/openvinotoolkit/openvino#readme">OpenVINO</a> 面向深度学习模型的转换、优化和部署，README 覆盖常见训练框架，并把运行目标扩展到 CPU、Intel GPU 与 Intel NPU。它适合研究推理后端、设备抽象和边缘部署的人；限制是实际收益取决于算子支持、模型结构、精度设置和硬件，支持矩阵不是你的模型性能保证。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/openvinotoolkit/openvino">C++</a>，日榜快照新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">176★</a>，快照总星标 <a target="_blank" rel="noopener" href="https://github.com/openvinotoolkit/openvino">12,830★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/openvinotoolkit/openvino/blob/master/LICENSE">Apache-2.0</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/openvinotoolkit/openvino/commit/ca3fdc5da6c8d24d8324c4b2542a850cd39604f6">ca3fdc5</a>（2026-11-26）。</p>
+<h3 id="a-hrefhttpsgithubcomcathrynlaverydiagram-designreadmecathrynlaverydiagram-designa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomcathrynlaverydiagram-designreadmecathrynlaverydiagram-designa"></a> <a target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design#readme">cathrynlavery/diagram-design</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design#readme">diagram-design</a> 把架构图、时序图、四象限等 52 种图形组织成 Agent Skill，目标是让 Agent 生成带品牌样式、可直接打开的单文件 HTML + SVG，而不是一段难以维护的 Mermaid。它适合前端、架构师和文档作者研究“自然语言到可审阅视觉产物”的边界；限制是布局、语义和品牌一致性仍需人工检查，技能的网络数据边界也要在组织内审阅。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design">HTML</a>，日榜快照新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">955★</a>，快照总星标 <a target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design">73,882★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design/blob/main/LICENSE">MIT</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design/commit/795eec47fd376e5dda0b9e056a49520060cd2f13">795eec4</a>（2026-11-26）。</p>
+<h3 id="a-hrefhttpsgithubcommvanhornlast30days-skillreadmemvanhornlast30days-skilla"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcommvanhornlast30days-skillreadmemvanhornlast30days-skilla"></a> <a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill#readme">mvanhorn/last30days-skill</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill#readme">last30days-skill</a> 把 Reddit、X、YouTube、Hacker News、Polymarket、GitHub 等多源搜索并行化，再按互动信号合成带来源的近 30 天研究简报，并适配多种 Agent Skills 宿主。它适合研究跨平台检索、证据归因和“搜索结果如何被模型压缩”的工程实现；限制是部分来源需要 API key 或浏览器会话，互动量代表注意力而不是事实，平台权限与条款也会影响复现。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill">Python</a>，日榜快照新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">759★</a>，快照总星标 <a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill">75,787★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill/blob/main/LICENSE">MIT</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill/commit/4b82dc4d3143a5af5918fb2ac4f13f36265326aa">4b82dc4</a>（2026-11-26）。</p>
+<h3 id="a-hrefhttpsgithubcomgoogle-labs-codestitch-skillsreadmegoogle-labs-codestitch-skillsa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomgoogle-labs-codestitch-skillsreadmegoogle-labs-codestitch-skillsa"></a> <a target="_blank" rel="noopener" href="https://github.com/google-labs-code/stitch-skills#readme">google-labs-code/stitch-skills</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/google-labs-code/stitch-skills#readme">Stitch Skills</a> 是面向 Google Stitch MCP 的 Agent Skills 与插件集合，按 Agent Skills 开放标准提供设计、构建和工具类能力，可供多种 coding agent 使用。它适合研究“设计系统、静态 HTML 和组件实现如何被 Agent 串起来”；限制是它不是独立设计引擎，实际使用前必须配置 Stitch MCP 与相应凭据。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/google-labs-code/stitch-skills">TypeScript</a>，日榜快照新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">309★</a>，快照总星标 <a target="_blank" rel="noopener" href="https://github.com/google-labs-code/stitch-skills">13,309★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/google-labs-code/stitch-skills/blob/main/LICENSE">Apache-2.0</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/google-labs-code/stitch-skills/commit/75f4696f162000fb69fca6a31489b5b21d47a506">75f4696</a>（2026-11-24）。</p>
+<h3 id="a-hrefhttpsgithubcommjmirzaapp-store-compliancereadmemjmirzaapp-store-compliancea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcommjmirzaapp-store-compliancereadmemjmirzaapp-store-compliancea"></a> <a target="_blank" rel="noopener" href="https://github.com/mjmirza/app-store-compliance#readme">mjmirza/app-store-compliance</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/mjmirza/app-store-compliance#readme">App Store Compliance Playbook</a> 把 Apple App Store 与 Google Play 的常见拒审模式、隐私清单、Data safety 和政策日期整理成 playbook，并提供提交前扫描器；README 明确区分“扫描能证明什么”和仍需人工检查的部分。它适合移动端发布流程和 AI coding agent 的门禁设计；限制是平台政策会变，扫描结果不是上架批准，且仓库使用带收入条款的 <a target="_blank" rel="noopener" href="https://github.com/mjmirza/app-store-compliance/blob/main/LICENSE">OpenRoots Agent License 2.3</a>，商用前必须读原文。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/mjmirza/app-store-compliance">Shell</a>，日榜快照新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">562★</a>，快照总星标 <a target="_blank" rel="noopener" href="https://github.com/mjmirza/app-store-compliance">7,058★</a>，许可证元数据为 <a target="_blank" rel="noopener" href="https://github.com/mjmirza/app-store-compliance/blob/main/LICENSE">Other/NOASSERTION</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/mjmirza/app-store-compliance/commit/a6c44640f4b1ee2a0985be4a9e6cf8cc26decf57">a6c4464</a>（2026-11-26）。</p>
+<h3 id="a-hrefhttpsgithubcomtracer-cloudopensrereadmetracer-cloudopensrea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomtracer-cloudopensrereadmetracer-cloudopensrea"></a> <a target="_blank" rel="noopener" href="https://github.com/Tracer-Cloud/opensre#readme">Tracer-Cloud/opensre</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/Tracer-Cloud/opensre#readme">OpenSRE</a> 面向 CI/CD 可靠性：读取失败运行、日志和仓库上下文，分析根因，再把修复推到分支供人审阅，并支持自托管模型。它适合平台工程师研究 Agent 如何进入失败后的反馈闭环；限制是 README 明确标为 public alpha，API 与集成会变化，日志、凭据和自动修复权限必须放在组织边界内单独审查。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/Tracer-Cloud/opensre">Python</a>，日榜快照新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">327★</a>，快照总星标 <a target="_blank" rel="noopener" href="https://github.com/Tracer-Cloud/opensre">15,840★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/Tracer-Cloud/opensre/blob/main/LICENSE">Apache-2.0</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/Tracer-Cloud/opensre/commit/d3d0af888005dd6ed29cb5a5ec7223c6150b1fdf">d3d0af8</a>（2026-11-26）。</p>
+<h3 id="a-hrefhttpsgithubcomtoeverythingaffinereadmetoeverythingaffinea"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomtoeverythingaffinereadmetoeverythingaffinea"></a> <a target="_blank" rel="noopener" href="https://github.com/toeverything/AFFiNE#readme">toeverything/AFFiNE</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/toeverything/AFFiNE#readme">AFFiNE</a> 把文档、白板、表格、知识库和实时协作放进一个 privacy-first、local-first 工作区，并提供跨平台与自托管路径，README 还展示了 AI 辅助写作、幻灯片和思维导图能力。它适合研究富文本、画布、数据库和数据拥有权如何共存；限制是当前默认分支为 canary，许可证元数据为 Other/NOASSERTION，后端目录和第三方组件的边界不能只靠项目简介判断。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/toeverything/AFFiNE">TypeScript</a>，日榜快照新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">525★</a>，快照总星标 <a target="_blank" rel="noopener" href="https://github.com/toeverything/AFFiNE">78,996★</a>，许可证说明见 <a target="_blank" rel="noopener" href="https://github.com/toeverything/AFFiNE/blob/canary/LICENSE">LICENSE</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/toeverything/AFFiNE/commit/5444d929c22b6114fbb1519ccb3ea180c2cd84d4">5444d92</a>（2026-11-26）。</p>
+<h3 id="a-hrefhttpsgithubcomzhouxiaokaautoclipreadmezhouxiaokaautoclipa"><a class="markdownIt-Anchor" href="#a-hrefhttpsgithubcomzhouxiaokaautoclipreadmezhouxiaokaautoclipa"></a> <a target="_blank" rel="noopener" href="https://github.com/zhouxiaoka/autoclip#readme">zhouxiaoka/autoclip</a></h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/zhouxiaoka/autoclip#readme">AutoClip</a> 把长视频链接、文件或直播回放转成短视频、字幕、封面和发布文案，并提供桌面端、CLI 与 MCP 路径。它适合研究模型选择、媒体处理和人工校正如何组成内容工作流；限制是本地计算和 FFmpeg 仍有环境成本，自动取景、字幕与文案需要人工复核，当前桌面包也未完成代码签名和 Apple 公证。主要语言为 <a target="_blank" rel="noopener" href="https://github.com/zhouxiaoka/autoclip">Python</a>，日榜快照新增 <a target="_blank" rel="noopener" href="https://github.com/trending?since=daily">774★</a>，快照总星标 <a target="_blank" rel="noopener" href="https://github.com/zhouxiaoka/autoclip">16,976★</a>，许可证为 <a target="_blank" rel="noopener" href="https://github.com/zhouxiaoka/autoclip/blob/main/LICENSE">MIT</a>，最近提交为 <a target="_blank" rel="noopener" href="https://github.com/zhouxiaoka/autoclip/commit/559f01900aed62ca8bc9244d7bd7092ab29bd82e">559f019</a>（2026-11-26）。</p>
+<h2 id="快速浏览"><a class="markdownIt-Anchor" href="#快速浏览"></a> 快速浏览</h2>
+<div class="briefing-quick-list">
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/elementalsouls/Claude-BugHunter#readme"><span class="briefing-quick-item__source">Agent 安全 · Python · +1,597/日 · 24,675★</span><span class="briefing-quick-item__body"><strong>elementalsouls/Claude-BugHunter</strong><small>把授权安全研究、范围门禁和证据卫生写成可复用技能。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/obra/superpowers#readme"><span class="briefing-quick-item__source">Agent 方法 · Shell · +854/日 · 327,535★</span><span class="briefing-quick-item__body"><strong>obra/superpowers</strong><small>把需求、计划、TDD 和评审串成 coding agent 工作流。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/HKUDS/CLI-Anything#readme"><span class="briefing-quick-item__source">Agent CLI · Python · +746/日 · 66,405★</span><span class="briefing-quick-item__body"><strong>HKUDS/CLI-Anything</strong><small>为复杂软件生成带 JSON 输出和测试的 Agent-native CLI。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind#readme"><span class="briefing-quick-item__source">模型训练 · Python · +702/日 · 71,682★</span><span class="briefing-quick-item__body"><strong>jingyaogong/minimind</strong><small>用可读代码复现从预训练到 Agentic RL 的小模型链路。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/firecrawl/firecrawl#readme"><span class="briefing-quick-item__source">网页知识 · TypeScript · +1,046/日 · 210,983★</span><span class="briefing-quick-item__body"><strong>firecrawl/firecrawl</strong><small>把抓取、搜索、解析和 MCP 组织成 Agent 数据入口。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/openvinotoolkit/openvino#readme"><span class="briefing-quick-item__source">推理部署 · C++ · +176/日 · 12,830★</span><span class="briefing-quick-item__body"><strong>openvinotoolkit/openvino</strong><small>优化模型并部署到 CPU、GPU、NPU 与边缘设备。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/cathrynlavery/diagram-design#readme"><span class="briefing-quick-item__source">视觉产物 · HTML · +955/日 · 73,882★</span><span class="briefing-quick-item__body"><strong>cathrynlavery/diagram-design</strong><small>将 52 类图形封装成可审阅的 HTML + SVG 技能。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill#readme"><span class="briefing-quick-item__source">多源研究 · Python · +759/日 · 75,787★</span><span class="briefing-quick-item__body"><strong>mvanhorn/last30days-skill</strong><small>并行搜索多平台信号，再生成带来源的近 30 天简报。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/google-labs-code/stitch-skills#readme"><span class="briefing-quick-item__source">设计 Agent · TypeScript · +309/日 · 13,309★</span><span class="briefing-quick-item__body"><strong>google-labs-code/stitch-skills</strong><small>让 Stitch MCP 的设计、构建和工具能力按标准接入 Agent。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/mjmirza/app-store-compliance#readme"><span class="briefing-quick-item__source">移动合规 · Shell · +562/日 · 7,058★</span><span class="briefing-quick-item__body"><strong>mjmirza/app-store-compliance</strong><small>把商店拒审模式和提交前扫描变成发布门禁。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/Tracer-Cloud/opensre#readme"><span class="briefing-quick-item__source">CI 可靠性 · Python · +327/日 · 15,840★</span><span class="briefing-quick-item__body"><strong>Tracer-Cloud/opensre</strong><small>读取失败运行、找根因，并把修复推到分支供人审阅。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/toeverything/AFFiNE#readme"><span class="briefing-quick-item__source">Local-first · TypeScript · +525/日 · 78,996★</span><span class="briefing-quick-item__body"><strong>toeverything/AFFiNE</strong><small>把文档、画布、表格与协作合进可自托管的知识工作区。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+  <a class="briefing-quick-item" target="_blank" rel="noopener" href="https://github.com/zhouxiaoka/autoclip#readme"><span class="briefing-quick-item__source">媒体工作流 · Python · +774/日 · 16,976★</span><span class="briefing-quick-item__body"><strong>zhouxiaoka/autoclip</strong><small>本地完成长视频切片、字幕、封面和发布文案生成。</small></span><span class="briefing-quick-item__arrow">↗</span></a>
+</div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/GitHub-%E7%83%AD%E6%A6%9C/" class="category-chain-item">GitHub 热榜</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/GitHub/" class="print-no-link">#GitHub</a>
+      
+        <a href="/tags/%E5%BC%80%E6%BA%90/" class="print-no-link">#开源</a>
+      
+        <a href="/tags/Agent/" class="print-no-link">#Agent</a>
+      
+        <a href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B/" class="print-no-link">#安全工程</a>
+      
+        <a href="/tags/%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7/" class="print-no-link">#设计工具</a>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E4%BD%9C%E6%B5%81/" class="print-no-link">#开发工作流</a>
+      
+        <a href="/tags/%E7%BD%91%E9%A1%B5%E6%95%B0%E6%8D%AE/" class="print-no-link">#网页数据</a>
+      
+        <a href="/tags/CI-CD/" class="print-no-link">#CI/CD</a>
+      
+        <a href="/tags/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/" class="print-no-link">#模型训练</a>
+      
+        <a href="/tags/%E5%AA%92%E4%BD%93%E5%B7%A5%E5%85%B7/" class="print-no-link">#媒体工具</a>
+      
+        <a href="/tags/%E6%8E%A8%E7%90%86%E9%83%A8%E7%BD%B2/" class="print-no-link">#推理部署</a>
+      
+        <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%90%88%E8%A7%84/" class="print-no-link">#移动合规</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2026-11-27 GitHub 热榜简报：Agent 工具链开始进入可交付阶段</div>
+      <div>https://www.polarisac.top/2026/11/27/daily-github-trending-2026-11-27/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Polaris</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年11月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/11/27/daily-briefing-2026-11-27/" title="每日信息简报｜2026 年 11 月 27 日">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">每日信息简报｜2026 年 11 月 27 日</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/11/26/daily-briefing-2026-11-26/" title="每日信息简报｜2026 年 11 月 26 日">
+                        <span class="hidden-mobile">每日信息简报｜2026 年 11 月 26 日</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/DynamicLine.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/star.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/love.min.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
