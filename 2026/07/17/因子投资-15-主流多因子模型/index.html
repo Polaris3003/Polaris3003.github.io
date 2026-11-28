@@ -285,7 +285,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          2.3k 字
         
       </span>
     
@@ -360,9 +360,9 @@
         <div><span>阅读</span><strong>约 8 分钟</strong></div>
         <div><span>材料</span><strong>10 节 · 1 段代码</strong></div>
       </div>
-    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题">本节解决什么问题</h2>
+    </header><section class="quant-section quant-section--purpose" data-quant-section="purpose"><h2 id="本节解决什么问题"><a class="markdownIt-Anchor" href="#本节解决什么问题"></a> 本节解决什么问题</h2>
 <p>多因子模型试图用少量共同收益解释大量资产平均收益与协方差。模型越多、因子越多，不代表越接近真相：增加变量总能改善样本内拟合，却可能带来冗余、估计噪声和更差样本外表现。本讲用统一表比较八类主流模型。</p>
-</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标">前置知识与学习目标</h2>
+</section><section class="quant-section quant-section--goals" data-quant-section="goals"><h2 id="前置知识与学习目标"><a class="markdownIt-Anchor" href="#前置知识与学习目标"></a> 前置知识与学习目标</h2>
 <p>需要第 06、07、10 讲与 11–14 因子定义。学完后你应该能：</p>
 <ul>
 <li>识别 CAPM、FF3、Carhart4、FF5、q-factor 等模型因子；</li>
@@ -371,10 +371,8 @@
 <li>区分风险模型、定价模型和业绩归因模型的用途；</li>
 <li>避免把美国构造机械复制为 A 股真模型。</li>
 </ul>
-</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算">直觉与手算</h2>
-<p>假设 25 个测试组合在 CAPM 下平均绝对月 Alpha 为
-0.30%，加入规模和价值后降到 0.15%，再加动量降到
-0.08%。拟合确实改善，但还需问：</p>
+</section><section class="quant-section quant-section--standard" data-quant-section="standard"><h2 id="直觉与手算"><a class="markdownIt-Anchor" href="#直觉与手算"></a> 直觉与手算</h2>
+<p>假设 25 个测试组合在 CAPM 下平均绝对月 Alpha 为 0.30%，加入规模和价值后降到 0.15%，再加动量降到 0.08%。拟合确实改善，但还需问：</p>
 <ul>
 <li>0.07 个百分点是否大于估计误差？</li>
 <li>新因子本身能否被旧因子解释，是否只是重新包装？</li>
@@ -382,21 +380,17 @@
 <li>测试组合是否包含模型最难解释的资产？</li>
 <li>样本外和扣成本后是否仍改善？</li>
 </ul>
-<p>如果用 20 个因子把 25
-个组合拟合得近乎完美，模型几乎没有留下反证空间。简约不是审美，而是保护样本外有效性的约束。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式">定义与公式</h2>
+<p>如果用 20 个因子把 25 个组合拟合得近乎完美，模型几乎没有留下反证空间。简约不是审美，而是保护样本外有效性的约束。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="定义与公式"><a class="markdownIt-Anchor" href="#定义与公式"></a> 定义与公式</h2>
 <p>统一回归形式：</p>
-<p><span class="math display">\[
-R_{i,t}^e=\alpha_i+\beta_i^{\prime}f_t+\varepsilon_{i,t}
-\]</span></p>
-<p>比较表中的 construction
-是概括，精确复现仍应回到原论文的断点、权重、持有期和数据口径。</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi>R</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow><mi>e</mi></msubsup><mo>=</mo><msub><mi>α</mi><mi>i</mi></msub><mo>+</mo><msubsup><mi>β</mi><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><msub><mi>f</mi><mi>t</mi></msub><mo>+</mo><msub><mi>ε</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">R_{i,t}^e=\alpha_i+\beta_i^{\prime}f_t+\varepsilon_{i,t}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0975000000000001em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.714392em;"><span style="top:-2.4530000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.048892em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8018919999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">ε</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>比较表中的 construction 是概括，精确复现仍应回到原论文的断点、权重、持有期和数据口径。</p>
 <div class="quant-table-shell">
       <div class="quant-table-caption">
         <span>定义与公式</span>
         <small>8 行 × 6 列</small>
-      </div><div class="quant-table-scroll" role="region" tabindex="0" aria-label="定义与公式"><table style="width:100%;">
-
+      </div><div class="quant-table-scroll" role="region" tabindex="0" aria-label="定义与公式"><table>
 <thead>
 <tr>
 <th>model</th>
@@ -474,41 +468,23 @@ R_{i,t}^e=\alpha_i+\beta_i^{\prime}f_t+\varepsilon_{i,t}
 </tr>
 </tbody>
 </table></div></div>
-<h3 id="各模型增量在回答什么">各模型增量在回答什么</h3>
-<p><strong>FF3</strong> 把 CAPM
-未解释的规模与价值共同收益显式化。<strong>Carhart4</strong>
-加动量，特别适合基金归因，但不声称动量一定是风险。</p>
-<p><strong>Novy‑Marx</strong>
-指出毛盈利能力与价值具有增量信息；不同文献的“NM4”组合可能包含市场、规模、价值、盈利或动量，引用时必须列因子而非只写缩写。</p>
-<p><strong>FF5</strong> 用稳健减弱盈利 RMW、保守减激进投资 CMA 扩展
-FF3。HML
-在样本中可能被其他因子吸收，但“回归冗余”不等于价值特征没有预测。</p>
-<p><strong>q-factor</strong> 用市场、规模、投资 IA、盈利
-ROE，从企业投资的一阶条件解释预期收益。它和 FF5
-因子高度相关但理论与构造不同。</p>
-<p><strong>Stambaugh–Yuan M4</strong> 把 11
-个异象按共同收益聚成两组：MGMT
-汇总净发行、应计、净经营资产、资产增长、投资等管理相关变量；PERF
-汇总困境、O-score、动量、毛盈利和 ROA。它们是综合错误定价代理。</p>
-<p><strong>DHS/BF3</strong> 在市场因子外加入 FIN 与 PEAD：FIN
-用管理层发行/回购响应持续错误定价，PEAD
-用盈利公告惊喜捕捉注意不足下的短期漂移。</p>
-<h3 id="模型评价的四个维度">模型评价的四个维度</h3>
-<ol type="1">
-<li><strong>联合 Alpha：</strong> GRS 检验全部测试资产 Alpha
-是否为零。</li>
-<li><strong>效应大小：</strong> 平均绝对 Alpha、Alpha 均方根和最大
-Alpha。</li>
-<li><strong>因子冗余：</strong> 新因子对旧因子回归是否有稳定
-Alpha；暴露是否只重命名旧风险。</li>
-<li><strong>简约与样本外：</strong>
-因子数、参数数、数据需求、测试集表现和跨市场稳定性。</li>
+<h3 id="各模型增量在回答什么"><a class="markdownIt-Anchor" href="#各模型增量在回答什么"></a> 各模型增量在回答什么</h3>
+<p><strong>FF3</strong> 把 CAPM 未解释的规模与价值共同收益显式化。<strong>Carhart4</strong> 加动量，特别适合基金归因，但不声称动量一定是风险。</p>
+<p><strong>Novy‑Marx</strong> 指出毛盈利能力与价值具有增量信息；不同文献的“NM4”组合可能包含市场、规模、价值、盈利或动量，引用时必须列因子而非只写缩写。</p>
+<p><strong>FF5</strong> 用稳健减弱盈利 RMW、保守减激进投资 CMA 扩展 FF3。HML 在样本中可能被其他因子吸收，但“回归冗余”不等于价值特征没有预测。</p>
+<p><strong>q-factor</strong> 用市场、规模、投资 IA、盈利 ROE，从企业投资的一阶条件解释预期收益。它和 FF5 因子高度相关但理论与构造不同。</p>
+<p><strong>Stambaugh–Yuan M4</strong> 把 11 个异象按共同收益聚成两组：MGMT 汇总净发行、应计、净经营资产、资产增长、投资等管理相关变量；PERF 汇总困境、O-score、动量、毛盈利和 ROA。它们是综合错误定价代理。</p>
+<p><strong>DHS/BF3</strong> 在市场因子外加入 FIN 与 PEAD：FIN 用管理层发行/回购响应持续错误定价，PEAD 用盈利公告惊喜捕捉注意不足下的短期漂移。</p>
+<h3 id="模型评价的四个维度"><a class="markdownIt-Anchor" href="#模型评价的四个维度"></a> 模型评价的四个维度</h3>
+<ol>
+<li><strong>联合 Alpha：</strong> GRS 检验全部测试资产 Alpha 是否为零。</li>
+<li><strong>效应大小：</strong> 平均绝对 Alpha、Alpha 均方根和最大 Alpha。</li>
+<li><strong>因子冗余：</strong> 新因子对旧因子回归是否有稳定 Alpha；暴露是否只重命名旧风险。</li>
+<li><strong>简约与样本外：</strong> 因子数、参数数、数据需求、测试集表现和跨市场稳定性。</li>
 </ol>
-<p>GRS 对测试资产和协方差敏感；平均绝对 Alpha
-不提供显著性；简约模型可能遗漏，复杂模型可能过拟合。四者需要并列。</p>
-</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验">Python 最小实验</h2>
-<p>用固定随机种子生成五个测试资产，真实过程包含市场、规模、价值和动量。比较三个嵌套模型的平均绝对
-Alpha。</p>
+<p>GRS 对测试资产和协方差敏感；平均绝对 Alpha 不提供显著性；简约模型可能遗漏，复杂模型可能过拟合。四者需要并列。</p>
+</section><section class="quant-section quant-section--data" data-quant-section="data"><h2 id="python-最小实验"><a class="markdownIt-Anchor" href="#python-最小实验"></a> Python 最小实验</h2>
+<p>用固定随机种子生成五个测试资产，真实过程包含市场、规模、价值和动量。比较三个嵌套模型的平均绝对 Alpha。</p>
 <figure class="highlight python quant-code-block">
       <figcaption class="quant-code-label">
         <span aria-hidden="true"></span>
@@ -516,19 +492,17 @@ Alpha。</p>
         <small>可复现实验</small>
       </figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>rng = np.random.default_rng(<span class="hljs-number">42</span>)<br>t, n = <span class="hljs-number">120</span>, <span class="hljs-number">5</span><br>factors = rng.normal(<span class="hljs-number">0</span>, <span class="hljs-number">0.03</span>, size=(t, <span class="hljs-number">4</span>))<br>exposures = rng.normal(<span class="hljs-number">0.5</span>, <span class="hljs-number">0.2</span>, size=(<span class="hljs-number">4</span>, n))<br>true_alpha = np.array([<span class="hljs-number">0.001</span>, <span class="hljs-number">0.000</span>, -<span class="hljs-number">0.001</span>, <span class="hljs-number">0.0005</span>, -<span class="hljs-number">0.0005</span>])<br>assets = true_alpha + factors @ exposures + rng.normal(<span class="hljs-number">0</span>, <span class="hljs-number">0.01</span>, size=(t, n))<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">mean_absolute_alpha</span>(<span class="hljs-params">factor_columns</span>):<br>    X = np.column_stack([np.ones(t), factors[:, factor_columns]])<br>    coefficients = np.linalg.lstsq(X, assets, rcond=<span class="hljs-literal">None</span>)[<span class="hljs-number">0</span>]<br>    <span class="hljs-keyword">return</span> np.<span class="hljs-built_in">abs</span>(coefficients[<span class="hljs-number">0</span>]).mean()<br><br>capm = mean_absolute_alpha([<span class="hljs-number">0</span>])<br>ff3 = mean_absolute_alpha([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>])<br>carhart4 = mean_absolute_alpha([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])<br><br><span class="hljs-keyword">assert</span> carhart4 &lt; capm<br><span class="hljs-built_in">print</span>(capm, ff3, carhart4)<br></code></pre></td></tr></table></figure>
 <p>真实过程已知，所以完整模型更好并不惊讶。现实模型比较没有“真因子标签”，必须使用预留测试资产、联合推断和经济机制。</p>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项">A 股实现注意事项</h2>
-<ol type="1">
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="a-股实现注意事项"><a class="markdownIt-Anchor" href="#a-股实现注意事项"></a> A 股实现注意事项</h2>
+<ol>
 <li>美国因子文件的断点、交易所与会计字段不能直接套 A 股。</li>
 <li>MKT、SMB、HML 的不同本地构造会让同名模型产生不同 Alpha。</li>
 <li>q-factor 与 FF5 的盈利、投资变量对金融行业和累计财报口径敏感。</li>
-<li>MGMT、PERF、FIN、PEAD
-需要历史发行回购、公告窗口和异象字段，点时数据成本高。</li>
-<li>A
-股做空限制使行为因子的空头腿特别难复制；测试模型和交易模型要分开。</li>
+<li>MGMT、PERF、FIN、PEAD 需要历史发行回购、公告窗口和异象字段，点时数据成本高。</li>
+<li>A 股做空限制使行为因子的空头腿特别难复制；测试模型和交易模型要分开。</li>
 <li>测试资产应包括行业、规模—价值、动量和单因子组合，不能只选模型构造组合。</li>
 <li>模型比较跨越制度变化时，应做注册制、交易费用和板块分段。</li>
 </ol>
-</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界">常见错误与边界</h2>
+</section><section class="quant-section quant-section--risk" data-quant-section="risk"><h2 id="常见错误与边界"><a class="markdownIt-Anchor" href="#常见错误与边界"></a> 常见错误与边界</h2>
 <ul>
 <li>因子多、R² 高就判模型更好。</li>
 <li>用模型构造组合同时做唯一测试资产，产生近似自解释。</li>
@@ -539,9 +513,8 @@ Alpha。</p>
 <li>把风险模型因子用于协方差控制的成功，误写成预期收益定价成功。</li>
 <li>美国样本结论无条件外推 A 股。</li>
 </ul>
-</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文">原书与论文</h2>
-<p>原书第 2、4 章（PDF 文件页
-27–96、158–191）覆盖因子模型与组合比较。</p>
+</section><section class="quant-section quant-section--source" data-quant-section="source"><h2 id="原书与论文"><a class="markdownIt-Anchor" href="#原书与论文"></a> 原书与论文</h2>
+<p>原书第 2、4 章（PDF 文件页 27–96、158–191）覆盖因子模型与组合比较。</p>
 <ul>
 <li>Fama–French 1993：<a target="_blank" rel="noopener" href="https://doi.org/10.1016/0304-405X(93)90023-5">DOI</a></li>
 <li>Carhart 1997：<a target="_blank" rel="noopener" href="https://doi.org/10.1111/j.1540-6261.1997.tb03808.x">DOI</a></li>
@@ -551,21 +524,16 @@ Alpha。</p>
 <li>Stambaugh–Yuan 2017：<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhw107">DOI</a></li>
 <li>Daniel–Hirshleifer–Sun 2020：<a target="_blank" rel="noopener" href="https://doi.org/10.1093/rfs/hhz069">DOI</a></li>
 </ul>
-</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习">练习</h2>
-<ol type="1">
+</section><section class="quant-section quant-section--practice" data-quant-section="practice"><h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
+<ol>
 <li>为八个模型各写一个最可能失败的测试资产组合。</li>
-<li>新因子使平均绝对 Alpha 从 0.15% 降到 0.12%，但自身 Alpha
-不显著；给出保留与拒绝的证据要求。</li>
-<li>比较 FF5 的 RMW/CMA 与 q-factor 的
-ROE/IA：理论、公式和排序有何不同？</li>
+<li>新因子使平均绝对 Alpha 从 0.15% 降到 0.12%，但自身 Alpha 不显著；给出保留与拒绝的证据要求。</li>
+<li>比较 FF5 的 RMW/CMA 与 q-factor 的 ROE/IA：理论、公式和排序有何不同？</li>
 <li>用同一组测试资产计算 CAPM、FF3、Carhart4 的 Alpha 分布与 GRS。</li>
 <li>将模型选择过程放入滚动样本，禁止测试期参与选因子。</li>
 </ol>
-</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步">小结与下一步</h2>
-<p>多因子模型是可反驳的压缩工具，不是越长越好的因子清单。CAPM 到
-FF、q-factor
-和行为模型分别强调市场风险、经验共同收益、投资理论和系统错误定价。评价必须同时看联合
-Alpha、效应大小、冗余、简约和样本外。</p>
+</section><section class="quant-section quant-section--conclusion" data-quant-section="conclusion"><h2 id="小结与下一步"><a class="markdownIt-Anchor" href="#小结与下一步"></a> 小结与下一步</h2>
+<p>多因子模型是可反驳的压缩工具，不是越长越好的因子清单。CAPM 到 FF、q-factor 和行为模型分别强调市场风险、经验共同收益、投资理论和系统错误定价。评价必须同时看联合 Alpha、效应大小、冗余、简约和样本外。</p>
 <p>下一讲聚焦 A 股 CH-3，说明制度与股票池为什么会改变模型本身。</p>
 </section></div>
                 
